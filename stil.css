@@ -56,8 +56,8 @@
   /* Fuss: derselbe Bogen, aber von der anderen Seite und dunkler
      gehalten — die Seite ist oben und unten tuerkis eingefasst,
      ohne dass beides gleich aussieht. */
-  --lauf-fuss:linear-gradient(302deg,#0F4C55 0%,#09363F 24%,#062B32 46%,
-                #09363F 70%,#1C5C66 100%);
+  --lauf-fuss:linear-gradient(302deg,#1C5C66 0%,#175560 24%,#0F4C55 46%,
+                #1C5C66 70%,#36787D 100%);
 
   /* ── Bewegung: gemessen an beiden Vorlagen ── */
   --kurve:cubic-bezier(.44,0,.56,1);          /* Interaktion */
