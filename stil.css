@@ -192,8 +192,11 @@ h1 .brush,h2 .brush{font-size:.88em;letter-spacing:-.01em;
    Regel: violetter Knopf -> weisse Flaeche, violette Schrift. */
 .knopf--dunkel{background:var(--tinte);color:var(--creme);--knopf-fuell:var(--violett)}
 .knopf--dunkel:hover,.knopf--dunkel:focus-visible{color:#fff}
-.knopf--akzent{background:var(--violett);color:#fff;--knopf-fuell:#fff}
-.knopf--akzent:hover,.knopf--akzent:focus-visible{color:var(--violett)}
+/* Gelb traegt keinen weissen Text — der Kontrast reichte auf Violett,
+   auf #F5A524 nicht mehr. Daher dunkle Schrift, und beim Hover fuellt
+   sich der Knopf dunkel und die Schrift dreht auf Creme. */
+.knopf--akzent{background:var(--violett);color:var(--tinte);--knopf-fuell:var(--tinte)}
+.knopf--akzent:hover,.knopf--akzent:focus-visible{color:var(--creme)}
 .knopf--rand{border:2px solid var(--linie);color:var(--tinte);--knopf-fuell:var(--tinte)}
 .knopf--rand:hover,.knopf--rand:focus-visible{border-color:var(--tinte);color:var(--creme)}
 .knopf:active{transform:scale(.98)}
@@ -260,12 +263,13 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .nav{position:fixed;top:14px;left:0;right:0;z-index:40;padding:0 var(--pad);
   display:flex;justify-content:center;pointer-events:none}
 .nav__pille{pointer-events:auto;width:100%;max-width:1520px;
-  background:var(--tinte);border-radius:var(--r-pille);
+  background:var(--creme-3);border-radius:var(--r-pille);
   display:flex;align-items:center;justify-content:space-between;gap:24px;
-  padding:10px 10px 10px 30px;color:var(--creme);
-  box-shadow:0 12px 40px rgb(14 13 11 / .16)}
+  padding:10px 10px 10px 30px;color:var(--tinte);
+  border:1px solid rgb(14 13 11 / .07);
+  box-shadow:0 12px 40px rgb(6 43 50 / .13)}
 .nav__mark{font-weight:800;font-size:23px;letter-spacing:-.045em}
-.nav__mark i{color:var(--violett-hell);font-style:normal}
+.nav__mark i{color:var(--violett);font-style:normal}
 .nav__wege{display:flex;gap:6px;font-size:17px;font-weight:500}
 
 /* ── Menü-Hover: Pille poppt auf, Wort kippt durch ──────────────
@@ -280,13 +284,13 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   padding:9px 18px;border-radius:var(--r-pille);isolation:isolate;
   line-height:1.25}
 .mlink__bg{position:absolute;inset:0;z-index:-1;border-radius:var(--r-pille);
-  background:var(--creme);transform:scale(.25);opacity:0;
+  background:var(--tinte);transform:scale(.25);opacity:0;
   transition:transform var(--t-menue) var(--kurve-rein),
              opacity var(--t-menue) var(--kurve-rein)}
 .mlink__t{grid-area:1/1;white-space:nowrap;
   transition:transform var(--t-menue) var(--kurve-rein),
              opacity var(--t-menue) var(--kurve-rein)}
-.mlink__t--neu{opacity:0;transform:scale(.88);color:var(--tinte)}
+.mlink__t--neu{opacity:0;transform:scale(.88);color:var(--creme)}
 .mlink:hover .mlink__bg,.mlink:focus-visible .mlink__bg{transform:scale(1);opacity:1}
 .mlink:hover .mlink__t,.mlink:focus-visible .mlink__t{
   opacity:0;transform:scale(1.14)}
