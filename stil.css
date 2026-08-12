@@ -291,8 +291,14 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   padding:10px 10px 10px 30px;color:var(--tinte);
   border:1px solid rgb(14 13 11 / .07);
   box-shadow:0 12px 40px rgb(6 43 50 / .13)}
-.nav__mark{font-weight:800;font-size:23px;letter-spacing:-.045em}
-.nav__mark i{color:var(--violett);font-style:normal}
+.nav__mark{font-weight:800;font-size:23px;letter-spacing:-.045em;
+  display:inline-flex;align-items:baseline;gap:.1em}
+/* Der Punkt ist Markenzeichen, nicht Satzzeichen: als Kreis gezeichnet,
+   damit die Groesse frei steuerbar ist. Das Zeichen im HTML bleibt
+   stehen (Vorlesegeraete, Auswahl), wird aber unsichtbar gestellt. */
+.nav__mark i{font-style:normal;color:transparent;flex:0 0 auto;
+  width:.32em;height:.32em;border-radius:50%;background:var(--violett);
+  align-self:baseline;overflow:hidden}
 .nav__wege{display:flex;gap:6px;font-size:17px;font-weight:500}
 
 /* ── Menü-Hover: Pille poppt auf, Wort kippt durch ──────────────
@@ -873,9 +879,10 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    bleibt aber in derselben Familie: helle Flaeche, violette Schrift. */
 /* Die Fuellung ist hier bewusst zart — dann darf die Schrift nicht
    auf Creme drehen, das ergab 1,1:1. Sie bleibt dunkel. */
-.paket--voll .knopf--akzent{--knopf-fuell:var(--violett-zart)}
-.paket--voll .knopf--akzent:hover,
-.paket--voll .knopf--akzent:focus-visible{color:var(--tinte)}
+/* Auf der weissen Karte war die Fuellung zartes Mint — 1,1:1 gegen
+   die Karte, der Knopf loeste sich beim Hover auf. Hier gilt die
+   Grundregel: dunkle Flaeche, helle Schrift. */
+.paket--voll .knopf--akzent{--knopf-fuell:var(--tinte)}
 .paket .knopf--rand,.projekt .knopf--rand{border-color:var(--linie-hell);
   color:var(--creme);--knopf-fuell:var(--creme)}
 .paket .knopf--rand:hover,.projekt .knopf--rand:hover{border-color:var(--creme);
@@ -1151,10 +1158,15 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .fuss__wortmarke{max-width:1520px;margin:clamp(30px,3vw,54px) auto -.2em;
   font-size:clamp(90px,17.4vw,268px);font-weight:900;letter-spacing:-.055em;
   line-height:.8;text-align:center;white-space:nowrap;
+  display:flex;align-items:baseline;justify-content:center;gap:.03em;
   color:transparent;-webkit-text-stroke:2px rgb(247 247 245 / .22);
   transition:color var(--t-bild) var(--kurve),
     -webkit-text-stroke-color var(--t-bild) var(--kurve)}
-.fuss__wortmarke i{font-style:normal;-webkit-text-stroke-color:var(--violett-hell)}
+/* Hier gefuellt statt umrissen: zwischen lauter Konturen ist die volle
+   Flaeche der einzige Punkt, an dem das Auge haengen bleibt. */
+.fuss__wortmarke i{font-style:normal;flex:0 0 auto;-webkit-text-stroke:0;
+  width:.28em;height:.28em;border-radius:50%;background:var(--violett-hell);
+  align-self:baseline;overflow:hidden}
 .fuss:hover .fuss__wortmarke{-webkit-text-stroke-color:rgb(247 247 245 / .4)}
 
 .fuss__recht{max-width:1520px;margin:clamp(50px,5vw,90px) auto 0;padding:26px 0 0;
