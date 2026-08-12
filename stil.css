@@ -396,7 +396,19 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   position:relative;isolation:isolate}
 .buehne::before{content:"";position:absolute;z-index:-1;
   top:0;bottom:0;left:calc(50% - 50vw);width:100vw;
-  background:var(--lauf-hell)}
+  background:var(--lauf-dunkel)}
+
+/* Auf dem dunklen Verlauf dreht die Schrift auf Creme. Nur Farben,
+   keine Groessen oder Abstaende. Der Knopf wird hell, sein Text
+   dagegen dunkel — .rolle ist die Textrolle IM Knopf, nicht der
+   Fliesstext daneben. */
+.buehne h1,.buehne .fuehrung{color:var(--creme)}
+.buehne .chip{background:rgb(247 247 245 / .16);color:var(--creme);
+  border-color:rgb(247 247 245 / .28)}
+.buehne .knopf--dunkel{background:var(--creme);color:var(--tinte);
+  --knopf-fuell:var(--violett)}
+.buehne .knopf--dunkel .rolle{color:var(--tinte)}
+.buehne .kreis{background:var(--violett);color:var(--tinte)}
 .buehne__kopf{max-width:1520px;margin:0 auto;width:100%}
 .buehne__unten{display:flex;align-items:flex-end;justify-content:space-between;
   gap:40px;flex-wrap:wrap;margin-top:36px}
