@@ -53,6 +53,11 @@
                 #8ABABA 83%,#A2C9C7 92%,#ABCDCB 100%);
   --lauf-hell:linear-gradient(118deg,#ABCDCB 0%,#A2C9C7 26%,#98C3C3 48%,
                 #8ABABA 72%,#7CA8A5 100%);
+  /* Fuss: derselbe Bogen, aber von der anderen Seite und dunkler
+     gehalten — die Seite ist oben und unten tuerkis eingefasst,
+     ohne dass beides gleich aussieht. */
+  --lauf-fuss:linear-gradient(302deg,#0F4C55 0%,#09363F 24%,#062B32 46%,
+                #09363F 70%,#1C5C66 100%);
 
   /* ── Bewegung: gemessen an beiden Vorlagen ── */
   --kurve:cubic-bezier(.44,0,.56,1);          /* Interaktion */
@@ -883,9 +888,13 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    passte auf keinen Bildschirm; nebeneinander nutzt er die Breite,
    die ohnehin da ist, und der Kalender darf gross sein. */
 .ruf{padding:var(--sec) var(--pad)}
-.ruf__karte{max-width:1240px;margin:0 auto;background:var(--violett);color:#fff;
-  border-radius:var(--r-seite);padding:clamp(14px,1.3vw,20px)}
-.ruf__karte .brush{color:var(--violett-zart)}
+/* Kontaktkarte in Teal statt in der Akzentfarbe. Als violette Flaeche
+   ging das durch; in Orange waere es ein Block ueber die halbe Seite —
+   ein Akzent, der so gross wird, ist keiner mehr. */
+.ruf__karte{max-width:1240px;margin:0 auto;
+  background:var(--teal-700);background-image:var(--lauf-fuss);
+  color:#fff;border-radius:var(--r-seite);padding:clamp(14px,1.3vw,20px)}
+.ruf__karte .brush{color:var(--violett-hell)}
 .ruf__kopf{display:flex;align-items:flex-end;justify-content:space-between;
   gap:26px;flex-wrap:wrap;margin-bottom:clamp(10px,1vw,16px);
   padding:clamp(6px,.9vw,14px) clamp(8px,1vw,18px) 0}
@@ -1032,7 +1041,8 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Bold und grafisch: links das Gespräch mit Mail und Telefon als
    grosse Pillen-Links, rechts drei Spalten, unten die Wortmarke als
    angeschnittene Riesengrafik. */
-.fuss{background:var(--tinte);color:var(--creme);
+.fuss{background:var(--teal-900);background-image:var(--lauf-fuss);
+  color:var(--creme);
   padding:clamp(70px,7vw,130px) var(--pad) 0;overflow:clip}
 .fuss__oben{max-width:1520px;margin:0 auto;display:grid;
   grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,90px);align-items:start}
