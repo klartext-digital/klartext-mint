@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Wortmarke | KLARTEXT.</title>
+<meta name="description" content="Die KLARTEXT-Wortmarke: Fassungen, Masse, Schutzraum und Dateien.">
+<link rel="preload" href="fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:Figtree;src:url(fonts/figtree-latin.woff2) format('woff2');
+  font-weight:400 900;font-display:swap}
+:root{
+  --creme:#F7F7F5; --creme-2:#ECECE8; --creme-3:#FFFFFF;
+  --tinte:#0E0D0B; --grau:#6B655C; --linie:rgb(14 13 11 / .13);
+  --akzent:#F5A524;
+  --pad:clamp(20px,4vw,56px); --r:clamp(20px,2vw,30px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--creme);color:var(--tinte);
+  font-family:Figtree,system-ui,sans-serif;font-size:18px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+main{max-width:1080px;margin:0 auto;padding:var(--pad) var(--pad) 120px}
+
+.kopf{padding:clamp(40px,7vw,90px) 0 clamp(30px,4vw,54px)}
+.kopf p{color:var(--grau);max-width:60ch;margin-top:14px}
+h1{font-size:clamp(34px,6vw,68px);font-weight:800;letter-spacing:-.04em;line-height:1.02}
+h2{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--grau);margin-bottom:18px}
+h3{font-size:clamp(19px,1.6vw,23px);font-weight:800;letter-spacing:-.025em;margin-bottom:6px}
+
+section{margin-top:clamp(46px,6vw,86px)}
+.karte{background:var(--creme-3);border-radius:var(--r);padding:clamp(24px,3vw,44px)}
+.karte--dunkel{background:var(--tinte)}
+.reihe{display:grid;gap:clamp(14px,1.6vw,22px)}
+@media (min-width:760px){ .reihe--zwei{grid-template-columns:1fr 1fr} }
+
+.zeigen{display:flex;align-items:center;justify-content:center;
+  min-height:clamp(110px,14vw,190px)}
+.zeigen svg,.zeigen img{width:min(100%,420px);height:auto;display:block}
+.bez{font-size:14px;color:var(--grau);margin-top:14px}
+.karte--dunkel .bez{color:rgb(247 247 245 / .58)}
+
+/* Groessenstaffel */
+.staffel{display:flex;align-items:flex-end;gap:clamp(18px,2.6vw,36px);flex-wrap:wrap}
+.staffel figure{margin:0}
+.staffel svg{display:block;height:auto}
+.staffel figcaption{font-size:13px;color:var(--grau);margin-top:10px}
+
+/* Schutzraum — die Breite MUSS gesetzt sein. Ein inline-block schrumpft
+   auf seinen Inhalt, und ein Kind mit width:100% haette dann keinen
+   Bezug: die Marke fiel auf einen Strich zusammen. */
+.schutz{position:relative;display:block;width:min(100%,456px);
+  padding:var(--e);outline:1px dashed rgb(14 13 11 / .3);--e:38px}
+.schutz img{display:block;width:100%;height:auto}
+.schutz::before{content:"";position:absolute;inset:var(--e);
+  outline:1px solid rgb(245 165 36 / .55)}
+
+table{width:100%;border-collapse:collapse;margin-top:4px}
+th,td{text-align:left;padding:11px 0;border-bottom:1px solid var(--linie);font-size:16px}
+th{font-weight:700;width:52%}
+td{color:var(--grau);font-variant-numeric:tabular-nums}
+
+.dateien{display:grid;gap:10px;margin-top:6px}
+@media (min-width:680px){ .dateien{grid-template-columns:1fr 1fr} }
+.datei{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:14px 18px;background:var(--creme-2);border-radius:14px;
+  color:var(--tinte);text-decoration:none;font-size:16px;
+  transition:background .18s ease,transform .18s ease}
+.datei:hover{background:var(--akzent);transform:translateY(-2px)}
+.datei span:last-child{font-size:13px;color:var(--grau);white-space:nowrap}
+.datei:hover span:last-child{color:rgb(14 13 11 / .66)}
+
+.hinweis{background:var(--creme-2);border-radius:var(--r);
+  padding:clamp(20px,2.4vw,32px);font-size:16px;color:var(--grau)}
+.hinweis b{color:var(--tinte)}
+.hinweis ul{margin:10px 0 0 20px}
+.hinweis li{margin-top:6px}
+.zurueck{display:inline-block;margin-bottom:26px;font-size:15px;
+  color:var(--grau);text-decoration:none}
+.zurueck:hover{color:var(--tinte)}
+</style>
+</head>
+<body>
+<main>
+  <a class="zurueck" href="index.html">← Zur Website</a>
+
+  <header class="kopf">
+    <h1>Die Wortmarke.</h1>
+    <p>Aus der Schrift gebaut, nicht nachgezeichnet: Figtree auf Gewicht 800
+      festgeschrieben, die Buchstaben als eine Form, der Punkt als echter Kreis.
+      Die ganze Datei ist 917 Bytes gross.</p>
+  </header>
+
+  <!-- ══ Fassungen ══ -->
+  <section>
+    <h2>Vier Fassungen</h2>
+    <div class="reihe reihe--zwei">
+      <div class="karte">
+        <div class="zeigen"><img src="marke/klartext-wortmarke-schwarz.svg" alt="KLARTEXT Wortmarke schwarz"></div>
+        <p class="bez">Schwarz — der Normalfall auf hellen Flächen.</p>
+      </div>
+      <div class="karte">
+        <div class="zeigen"><img src="marke/klartext-wortmarke-akzent-hell.svg" alt="KLARTEXT Wortmarke mit Akzentpunkt"></div>
+        <p class="bez">Akzentpunkt auf hell — wenn die Marke Farbe tragen soll.</p>
+      </div>
+      <div class="karte karte--dunkel">
+        <div class="zeigen"><img src="marke/klartext-wortmarke-weiss.svg" alt="KLARTEXT Wortmarke weiss"></div>
+        <p class="bez">Weiss — auf dunklen Flächen und über Bildern.</p>
+      </div>
+      <div class="karte karte--dunkel">
+        <div class="zeigen"><img src="marke/klartext-wortmarke-akzent-dunkel.svg" alt="KLARTEXT Wortmarke weiss mit Akzentpunkt"></div>
+        <p class="bez">Akzentpunkt auf dunkel.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Groessen ══ -->
+  <section>
+    <h2>Vom Plakat bis zur Visitenkarte</h2>
+    <div class="karte">
+      <div class="staffel">
+        <figure><img src="marke/klartext-wortmarke-schwarz.svg" style="width:380px" alt=""><figcaption>380 px</figcaption></figure>
+        <figure><img src="marke/klartext-wortmarke-schwarz.svg" style="width:190px" alt=""><figcaption>190 px</figcaption></figure>
+        <figure><img src="marke/klartext-wortmarke-schwarz.svg" style="width:95px" alt=""><figcaption>95 px</figcaption></figure>
+        <figure><img src="marke/klartext-wortmarke-schwarz.svg" style="width:60px" alt=""><figcaption>60 px — Mindestgrösse</figcaption></figure>
+      </div>
+      <p class="bez">Dieselbe Datei, keine zweite Fassung nötig. Unter 60 px
+        schliesst der Punkt optisch an das T an — darunter bitte nicht verwenden.</p>
+    </div>
+  </section>
+
+  <!-- ══ Schutzraum ══ -->
+  <section>
+    <h2>Schutzraum</h2>
+    <div class="karte">
+      <div class="schutz"><img src="marke/klartext-wortmarke-schwarz.svg" alt=""></div>
+      <p class="bez">Rundherum bleibt mindestens der <b>Durchmesser des Punkts</b> frei.
+        Kein Text, keine Kante, kein zweites Logo innerhalb dieser Zone.</p>
+    </div>
+  </section>
+
+  <!-- ══ Masse ══ -->
+  <section>
+    <h2>Die Masse</h2>
+    <div class="karte">
+      <table>
+        <tr><th>Schrift</th><td>Figtree, Gewicht 800</td></tr>
+        <tr><th>Laufweite</th><td>−0,045 em</td></tr>
+        <tr><th>Versalhöhe</th><td>700 Einheiten (0,700 em)</td></tr>
+        <tr><th>Punkt-Durchmesser</th><td>300 Einheiten = 0,43 × Versalhöhe</td></tr>
+        <tr><th>Abstand T → Punkt</th><td>0,10 em</td></tr>
+        <tr><th>Seitenverhältnis</th><td>5119 : 700 (7,31 : 1)</td></tr>
+        <tr><th>Akzentfarbe</th><td>#F5A524</td></tr>
+        <tr><th>Schwarz</th><td>#0E0D0B</td></tr>
+        <tr><th>Weiss</th><td>#F7F7F5</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══ Dateien ══ -->
+  <section>
+    <h2>Dateien</h2>
+    <div class="dateien">
+      <a class="datei" href="marke/klartext-wortmarke.svg" download><span>SVG · nimmt die Farbe der Umgebung</span><span>917 B</span></a>
+      <a class="datei" href="marke/klartext-wortmarke-schwarz.svg" download><span>SVG · schwarz</span><span>927 B</span></a>
+      <a class="datei" href="marke/klartext-wortmarke-weiss.svg" download><span>SVG · weiss</span><span>927 B</span></a>
+      <a class="datei" href="marke/klartext-wortmarke-akzent-hell.svg" download><span>SVG · Akzentpunkt hell</span><span>927 B</span></a>
+      <a class="datei" href="marke/klartext-wortmarke-akzent-dunkel.svg" download><span>SVG · Akzentpunkt dunkel</span><span>927 B</span></a>
+      <a class="datei" href="marke/klartext-wortmarke-schwarz.pdf" download><span>PDF · für die Druckerei</span><span>2 KB</span></a>
+      <a class="datei" href="marke/klartext-wortmarke-schwarz-2400.png" download><span>PNG · schwarz, 2400 px</span><span>35 KB</span></a>
+      <a class="datei" href="marke/klartext-wortmarke-weiss-2400.png" download><span>PNG · weiss, 2400 px</span><span>35 KB</span></a>
+    </div>
+  </section>
+
+  <!-- ══ Offen ══ -->
+  <section>
+    <h2>Was noch fehlt</h2>
+    <div class="hinweis">
+      <ul>
+        <li><b>Eine quadratische Fassung.</b> Für Favicon, Instagram-Profil und
+          App-Symbol braucht es ein Zeichen, das im Quadrat funktioniert — die
+          Wortmarke ist 7:1 breit und wird dort zum Strich. Vorschlag: ein „K"
+          mit dem Punkt.</li>
+        <li><b>Die Akzentfarbe hängt an der Fassung.</b> Hier steht Bernstein
+          #F5A524. Fällt die Entscheidung auf die violette Fassung, wird der
+          Punkt #6A00F4 — die Dateien sind in einer Minute neu erzeugt.</li>
+        <li><b>EPS</b>, falls eine ältere Druckerei kein PDF annimmt. Selten nötig.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+</body>
+</html>
