@@ -973,7 +973,10 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* Kontaktkarte in Teal statt in der Akzentfarbe. Als violette Flaeche
    ging das durch; in Orange waere es ein Block ueber die halbe Seite —
    ein Akzent, der so gross wird, ist keiner mehr. */
-.ruf__karte{max-width:var(--maxw);margin:0 auto;
+/* Bewusst schmaler als die Sektionen: bei voller Breite ziehen
+   sich Kalender und Felder so weit auseinander, dass man die
+   vier Angaben nicht mehr auf einen Blick hat. */
+.ruf__karte{max-width:1240px;margin:0 auto;
   background:var(--teal-700);background-image:var(--lauf-fuss);
   color:#fff;border-radius:var(--r-seite);padding:clamp(14px,1.3vw,20px)}
 .ruf__karte .brush{color:var(--violett-hell)}
