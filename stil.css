@@ -443,11 +443,15 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    weil die Überschrift schwarz bleibt. */
 .buehne{padding:clamp(140px,12vw,190px) var(--pad) clamp(80px,8vw,130px);
   max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto;
-  min-height:min(90vh,860px);display:grid;align-content:center;
+  min-height:100svh;display:grid;align-content:center;
   position:relative;isolation:isolate}
+/* War der Teal-Verlauf, ist jetzt der Schleier ueber dem Kopfbild.
+   Links dicht, damit die Schrift steht; rechts offen, damit das
+   Gesicht frei bleibt. */
 .buehne::before{content:"";position:absolute;z-index:-1;
   top:0;bottom:0;left:calc(50% - 50vw);width:100vw;
-  background:var(--lauf-dunkel)}
+  background:linear-gradient(97deg,rgb(5 18 21 / .90) 0%,rgb(5 18 21 / .74) 28%,
+    rgb(5 18 21 / .34) 52%,rgb(5 18 21 / .10) 74%,rgb(5 18 21 / .22) 100%)}
 
 /* Auf dem dunklen Verlauf dreht die Schrift auf Creme. Nur Farben,
    keine Groessen oder Abstaende. Der Knopf wird hell, sein Text
@@ -1517,8 +1521,9 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    heisst: das ganze Geraet samt Oberflaeche skaliert mit. */
 .buehne__kopf{max-width:var(--maxw);margin:0 auto;width:100%}
 @media (min-width:1100px){
-  .buehne__kopf{display:grid;grid-template-columns:minmax(0,1fr) auto;
-    gap:clamp(36px,4.4vw,84px);align-items:center}
+  /* Kein Raster mehr: die zweite Spalte hielt die Geraete-Attrappe.
+     Der Text bekommt eine Obergrenze, damit er nicht ins Gesicht laeuft. */
+  .buehne__text{max-width:min(56%, 44rem)}
 }
 .handy{--b:clamp(228px,19vw,292px);width:var(--b);justify-self:end;
   margin:clamp(34px,5vw,58px) auto 0}
@@ -2053,20 +2058,28 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   .kal__pfeil{width:30px;height:30px}
 }
 
-/* ── Mona Lisa im Kopfbereich ──────────────────────────────
-   Der Blick folgt dem Zeiger, das Laecheln waechst mit der Naehe zum
-   Knopf "Gespraech buchen". Alle Masse stehen in Prozent des Bildes
-   (1112 x 941) — abgetippte Pixelwerte wuerden beim ersten Umbruch
-   auseinanderlaufen. Gesteuert wird in mona.js. */
-.mona{position:relative;width:clamp(280px,48vw,720px);justify-self:end}
-@media (max-width:1099px){ .mona{margin:clamp(30px,5vw,54px) auto 0} }
-.mona__bild{--bild:url("laune/mona.jpg");position:relative;width:100%;
-  aspect-ratio:1112 / 941;border-radius:var(--r-gross);overflow:hidden;
-  box-shadow:0 44px 84px -30px rgb(4 26 30 / .62)}
+/* ── Mona Lisa als Kopfbild ────────────────────────────────
+   Das Bild liegt ueber die ganze Fensterbreite hinter dem Text. Der
+   Blick folgt dem Zeiger, das Laecheln waechst mit der Naehe zum Knopf
+   "Gespraech buchen". Gesteuert wird in mona.js.
+
+   Der Rahmen bildet den formatfuellenden Zuschnitt SELBST nach, statt
+   object-fit zu benutzen: Augen und Mund sitzen in Prozent des Bildes,
+   und bei object-fit weiss niemand mehr, wo das Bild wirklich liegt.
+   Ist das Fenster breiter als das Bildformat, bestimmt die Breite die
+   Groesse, sonst die Hoehe — genau das macht "cover". */
+.kopfbild{position:absolute;z-index:-2;top:0;bottom:0;
+  left:calc(50% - 50vw);width:100vw;overflow:hidden;background:#0B1A1E}
+.kopfbild__rahmen{--bild:url("laune/basis.jpg");
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:100%;aspect-ratio:1672 / 941}
+@media (max-aspect-ratio:1672 / 941){
+  .kopfbild__rahmen{width:auto;height:100%}
+}
 .mona__grund{position:absolute;inset:0;
   background:var(--bild) center/100% 100% no-repeat}
 .mona__mund{position:absolute;opacity:0;pointer-events:none;will-change:opacity}
-.mona__mund{left:26.2590%;top:35.7067%;width:19.4245%;height:11.4772%}
+.mona__mund{left:50.9569%;top:35.7067%;width:12.9187%;height:11.4772%}
 /* Die Augaepfel liegen als eigene Ebene ueber dem Bild. Die weiche
    Maske verhindert, dass man beim Verschieben eine Kante sieht. */
 .mona__auge{position:absolute;overflow:hidden;pointer-events:none;
@@ -2074,7 +2087,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
           mask-image:radial-gradient(closest-side,#000 52%,transparent 100%)}
 .mona__auge i{position:absolute;display:block;will-change:transform;
   background:var(--bild) center/100% 100% no-repeat}
-#monaAugeL{left:27.3831%;top:29.3305%;width:4.3165%;height:2.3379%}
-#monaAugeL i{width:2316.6667%;height:4277.2727%;left:-634.3750%;top:-1254.5455%}
-#monaAugeR{left:37.5000%;top:27.5239%;width:4.3165%;height:2.3379%}
-#monaAugeR i{width:2316.6667%;height:4277.2727%;left:-868.7500%;top:-1177.2727%}
+#monaAugeL{left:51.7045%;top:29.3305%;width:2.8708%;height:2.3379%}
+#monaAugeL i{width:3483.3333%;height:4277.2727%;left:-1801.0417%;top:-1254.5455%}
+#monaAugeR{left:58.4330%;top:27.5239%;width:2.8708%;height:2.3379%}
+#monaAugeR i{width:3483.3333%;height:4277.2727%;left:-2035.4167%;top:-1177.2727%}

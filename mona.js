@@ -32,7 +32,7 @@
   const ruhig = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   const RADIUS = 560;      /* ab hier faengt das Laecheln an zu wachsen */
-  const BILD_B = 1112;     /* Breite des zugeschnittenen Bildes */
+  const BILD_B = 1672;     /* Breite des Kopfbildes */
   const WEG_X = 4.5, WEG_Y = 2.0;   /* wie weit die Augaepfel hoechstens wandern */
 
   const z = { laune: 0, bx: 0, by: 0 };
