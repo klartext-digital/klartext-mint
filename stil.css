@@ -2052,3 +2052,29 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   .kal__blaettern b{min-width:9ch;font-size:15px}
   .kal__pfeil{width:30px;height:30px}
 }
+
+/* ── Mona Lisa im Kopfbereich ──────────────────────────────
+   Der Blick folgt dem Zeiger, das Laecheln waechst mit der Naehe zum
+   Knopf "Gespraech buchen". Alle Masse stehen in Prozent des Bildes
+   (1112 x 941) — abgetippte Pixelwerte wuerden beim ersten Umbruch
+   auseinanderlaufen. Gesteuert wird in mona.js. */
+.mona{position:relative;width:clamp(280px,48vw,720px);justify-self:end}
+@media (max-width:1099px){ .mona{margin:clamp(30px,5vw,54px) auto 0} }
+.mona__bild{--bild:url("laune/mona.jpg");position:relative;width:100%;
+  aspect-ratio:1112 / 941;border-radius:var(--r-gross);overflow:hidden;
+  box-shadow:0 44px 84px -30px rgb(4 26 30 / .62)}
+.mona__grund{position:absolute;inset:0;
+  background:var(--bild) center/100% 100% no-repeat}
+.mona__mund{position:absolute;opacity:0;pointer-events:none;will-change:opacity}
+.mona__mund{left:26.2590%;top:35.7067%;width:19.4245%;height:11.4772%}
+/* Die Augaepfel liegen als eigene Ebene ueber dem Bild. Die weiche
+   Maske verhindert, dass man beim Verschieben eine Kante sieht. */
+.mona__auge{position:absolute;overflow:hidden;pointer-events:none;
+  -webkit-mask-image:radial-gradient(closest-side,#000 52%,transparent 100%);
+          mask-image:radial-gradient(closest-side,#000 52%,transparent 100%)}
+.mona__auge i{position:absolute;display:block;will-change:transform;
+  background:var(--bild) center/100% 100% no-repeat}
+#monaAugeL{left:27.3831%;top:29.3305%;width:4.3165%;height:2.3379%}
+#monaAugeL i{width:2316.6667%;height:4277.2727%;left:-634.3750%;top:-1254.5455%}
+#monaAugeR{left:37.5000%;top:27.5239%;width:4.3165%;height:2.3379%}
+#monaAugeR i{width:2316.6667%;height:4277.2727%;left:-868.7500%;top:-1177.2727%}
