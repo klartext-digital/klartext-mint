@@ -1,0 +1,378 @@
+<meta name="robots" content="noindex, nofollow">
+<title>Laune folgt dem Zeiger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=Rock+Salt&display=swap">
+<style>
+:root{
+  --grund:#F4F2ED; --flaeche:#FFFFFF; --flaeche-2:#EDEAE3;
+  --tinte:#12110F; --gedaempft:#5E5952; --linie:rgb(18 17 15 / .13);
+  --teal:#0F4C55; --bernstein:#A8720C; --bernstein-voll:#E8A33A;
+  --schatten:0 20px 56px rgb(28 18 6 / .17);
+  --maxw:1080px; --pad:clamp(20px,4.5vw,44px); --r:clamp(16px,1.7vw,24px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --grund:#14110C; --flaeche:#1E1913; --flaeche-2:#191410;
+    --tinte:#F2EDE3; --gedaempft:#A79C8B; --linie:rgb(242 237 227 / .15);
+    --teal:#C9A24A; --bernstein:#E8A33A; --schatten:0 20px 56px rgb(0 0 0 / .5);
+  }
+}
+:root[data-theme="dark"]{
+  --grund:#14110C; --flaeche:#1E1913; --flaeche-2:#191410;
+  --tinte:#F2EDE3; --gedaempft:#A79C8B; --linie:rgb(242 237 227 / .15);
+  --teal:#C9A24A; --bernstein:#E8A33A; --schatten:0 20px 56px rgb(0 0 0 / .5);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--grund);color:var(--tinte);
+  font-family:Figtree,system-ui,-apple-system,Segoe UI,sans-serif;
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.bahn{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+h1{font-size:clamp(30px,5.4vw,52px);font-weight:800;letter-spacing:-.035em;
+  line-height:1.03;text-wrap:balance}
+h2{font-size:clamp(21px,2.6vw,28px);font-weight:800;letter-spacing:-.025em;
+  line-height:1.12;text-wrap:balance}
+h3{font-size:18px;font-weight:800;letter-spacing:-.015em}
+p{max-width:64ch}
+.marke{font-family:'Rock Salt',cursive;font-size:14px;color:var(--bernstein);
+  transform:rotate(-1.6deg);display:inline-block}
+.aufmacher{padding:clamp(38px,7vw,76px) 0 clamp(22px,3vw,32px)}
+.aufmacher p{color:var(--gedaempft);margin-top:16px;font-size:clamp(17px,2vw,19px)}
+
+/* ══ Szene ══════════════════════════════════════════════════ */
+.szene{position:relative;border-radius:var(--r);overflow:hidden;
+  background:#100C07;box-shadow:var(--schatten)}
+.szene__bild{--bild:url("laune/basis.jpg");position:relative;width:100%;
+  aspect-ratio:1672 / 941;overflow:hidden}
+.grund{position:absolute;inset:0;background:var(--bild) center/100% 100% no-repeat}
+.mund{position:absolute;opacity:0;pointer-events:none;will-change:opacity}
+.mund{left:50.9569%;top:35.7067%;width:12.9187%;height:11.4772%}
+.auge{position:absolute;overflow:hidden;pointer-events:none;
+  -webkit-mask-image:radial-gradient(closest-side,#000 52%,transparent 100%);
+          mask-image:radial-gradient(closest-side,#000 52%,transparent 100%)}
+.auge i{position:absolute;display:block;background:var(--bild) center/100% 100% no-repeat;
+  will-change:transform}
+#augeL{left:51.7045%;top:29.3305%;width:2.8708%;height:2.3379%}
+#augeL i{width:3483.3333%;height:4277.2727%;left:-1801.0417%;top:-1254.5455%}
+#augeR{left:58.4330%;top:27.5239%;width:2.8708%;height:2.3379%}
+#augeR i{width:3483.3333%;height:4277.2727%;left:-2035.4167%;top:-1177.2727%}
+
+.szene__wort{position:absolute;left:0;top:0;bottom:0;width:min(46%,430px);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(20px,3.4vw,46px);color:#F6EFE1;z-index:3;
+  background:linear-gradient(100deg,rgb(10 7 4 / .82) 0%,rgb(10 7 4 / .58) 58%,transparent 100%)}
+.szene__wort .schild{font-size:11.5px;font-weight:800;letter-spacing:.18em;
+  text-transform:uppercase;color:#D8AE5E;margin-bottom:11px}
+.szene__wort h2{color:#FFFAF0}
+.szene__wort p{color:rgb(246 239 225 / .76);margin-top:11px;font-size:15.5px;max-width:32ch}
+.knopf{margin-top:22px;align-self:flex-start;display:inline-flex;align-items:center;
+  gap:11px;background:#FFFAF0;color:#241A0C;border:0;border-radius:999px;
+  padding:14px 25px;font:inherit;font-weight:800;font-size:15.5px;cursor:pointer;
+  transition:transform .25s cubic-bezier(.2,.7,.2,1),background .25s ease}
+.knopf:hover{transform:translateY(-2px);background:var(--bernstein-voll)}
+.knopf:focus-visible{outline:3px solid var(--bernstein-voll);outline-offset:4px}
+.knopf i{font-style:normal;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+.knopf:hover i{transform:translateX(4px)}
+@media (max-width:760px){
+  .szene__wort{position:static;width:100%;background:#100C07;padding:24px 22px 28px}
+  .szene__wort p{max-width:none}
+}
+
+/* ══ Messanzeige ════════════════════════════════════════════ */
+.messung{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;
+  margin-top:14px;padding:0 2px}
+.wert{display:inline-flex;align-items:baseline;gap:7px;background:var(--flaeche);
+  border:1px solid var(--linie);border-radius:999px;padding:7px 15px;
+  font-size:13px;font-weight:600;color:var(--gedaempft)}
+.wert b{font-size:15px;font-weight:800;font-variant-numeric:tabular-nums;
+  color:var(--tinte);min-width:4.5ch;text-align:right}
+.balken{flex:1 1 140px;min-width:110px;height:7px;border-radius:99px;
+  background:var(--flaeche-2);border:1px solid var(--linie);overflow:hidden}
+.balken i{display:block;height:100%;width:0%;
+  background:linear-gradient(90deg,var(--teal),var(--bernstein-voll))}
+.regler{display:flex;align-items:center;gap:11px;flex:1 1 210px;
+  font-size:13px;font-weight:600;color:var(--gedaempft)}
+.regler input{flex:1;accent-color:var(--bernstein-voll);min-width:100px}
+
+/* ══ Abschnitte ═════════════════════════════════════════════ */
+section.block{padding:clamp(40px,6vw,72px) 0 0}
+.block > p{color:var(--gedaempft);margin-top:12px}
+.karten{display:grid;gap:14px;margin-top:26px}
+@media (min-width:760px){.karten--zwei{grid-template-columns:1fr 1fr}}
+.karte{background:var(--flaeche);border:1px solid var(--linie);
+  border-radius:var(--r);padding:clamp(20px,2.4vw,28px);display:flex;
+  flex-direction:column;gap:10px}
+.karte p{color:var(--gedaempft);font-size:15.5px;margin:0}
+.schritte{list-style:none;counter-reset:s;display:grid;gap:12px;margin-top:24px}
+.schritt{counter-increment:s;display:grid;grid-template-columns:auto 1fr;gap:16px;
+  align-items:start;background:var(--flaeche);border:1px solid var(--linie);
+  border-radius:var(--r);padding:18px clamp(18px,2.2vw,24px)}
+.schritt::before{content:counter(s,decimal-leading-zero);font-weight:800;
+  font-size:14px;color:var(--bernstein);font-variant-numeric:tabular-nums;padding-top:2px}
+.schritt p{color:var(--gedaempft);font-size:15.5px;margin-top:3px}
+figure{margin-top:24px}
+figure img{width:100%;height:auto;display:block;border-radius:12px;
+  border:1px solid var(--linie)}
+figcaption{color:var(--gedaempft);font-size:14px;margin-top:10px}
+.hinweis{margin-top:26px;border-left:3px solid var(--bernstein);
+  padding:4px 0 4px 18px;color:var(--gedaempft);font-size:15.5px}
+.hinweis b{color:var(--tinte);font-weight:800}
+footer{padding:clamp(44px,6vw,80px) 0 clamp(34px,5vw,60px);color:var(--gedaempft);
+  font-size:14.5px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;
+  transition-duration:.01ms!important}}
+</style>
+
+<div class="bahn">
+  <header class="aufmacher">
+    <span class="marke">Werkstattstück</span>
+    <h1>Sie schaut dir nach. Und je näher du dem Knopf kommst, desto mehr lächelt sie.</h1>
+    <p>Beweg die Maus über das Bild. Der Blick folgt sofort — die Laune braucht
+      einen Moment, so wie bei Menschen auch.</p>
+  </header>
+</div>
+
+<div class="bahn">
+  <div class="szene" id="szene">
+    <div class="szene__bild" id="bild" role="img"
+         aria-label="Gemälde der Mona Lisa, die ein Selfie mit einem Smartphone macht. Ihr Blick folgt dem Mauszeiger, ihr Lächeln wird stärker, je näher der Zeiger dem Knopf kommt.">
+      <div class="grund"></div>
+      <img class="mund" id="mund0" src="laune/mund-0.png" alt="" aria-hidden="true">
+      <img class="mund" id="mund1" src="laune/mund-1.png" alt="" aria-hidden="true">
+      <img class="mund" id="mund2" src="laune/mund-2.png" alt="" aria-hidden="true">
+      <img class="mund" id="mund3" src="laune/mund-3.png" alt="" aria-hidden="true">
+      <img class="mund" id="mund4" src="laune/mund-4.png" alt="" aria-hidden="true">
+      <img class="mund" id="mund5" src="laune/mund-5.png" alt="" aria-hidden="true">
+      <img class="mund" id="mund6" src="laune/mund-6.png" alt="" aria-hidden="true">
+      <span class="auge" id="augeL"><i></i></span>
+      <span class="auge" id="augeR"><i></i></span>
+    </div>
+    <div class="szene__wort">
+      <span class="schild">Beispielhafte Kopfzeile</span>
+      <h2>Reden wir eine halbe Stunde.</h2>
+      <p>Der Knopf ist der Punkt, auf den alles zuläuft. Also lohnt es sich,
+        wenn sie ihn mag.</p>
+      <button class="knopf" id="ziel" type="button">Call buchen <i>→</i></button>
+    </div>
+  </div>
+
+  <div class="messung">
+    <span class="wert">Abstand zum Knopf <b id="anzAbstand">–</b> px</span>
+    <span class="wert">Lächeln <b id="anzLaune">0</b> %</span>
+    <span class="balken"><i id="anzBalken"></i></span>
+    <label class="regler">Von Hand
+      <input id="regler" type="range" min="0" max="100" value="0"
+             aria-label="Lächeln von Hand einstellen">
+    </label>
+  </div>
+</div>
+
+<div class="bahn">
+  <section class="block">
+    <h2>Was da eigentlich passiert</h2>
+    <p>Zwei Dinge laufen gleichzeitig, und sie hängen an unterschiedlichen Sachen.</p>
+    <ol class="schritte">
+      <li class="schritt"><div>
+        <h3>Der Blick hängt an der Mausposition</h3>
+        <p>Die beiden Augäpfel sind aus dem Bild ausgeschnitten und liegen als
+          eigene Ebene darüber. Sie werden um wenige Bildpunkte verschoben — mehr
+          braucht es nicht, damit ein Blick die Richtung wechselt. Die Lider
+          bleiben stehen, sonst würde das Gesicht zucken.</p>
+      </div></li>
+      <li class="schritt"><div>
+        <h3>Das Lächeln hängt am Abstand zum Knopf</h3>
+        <p>Gemessen wird der Abstand zwischen Zeiger und Knopfmitte. Diese Zahl
+          wird auf einen Wert zwischen 0 und 1 gestaucht: ab etwa 500 Bildpunkten
+          Entfernung 0, direkt auf dem Knopf 1. Oben läuft beides live mit.</p>
+      </div></li>
+      <li class="schritt"><div>
+        <h3>Und alles zieht nach statt zu springen</h3>
+        <p>Beide Werte werden geglättet. Ohne das würde das Gesicht bei jeder
+          Mausbewegung zappeln — und ein zappelndes Gesicht wirkt nicht lebendig,
+          sondern kaputt.</p>
+      </div></li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2>Warum ein Foto schwieriger ist als eine Zeichnung</h2>
+    <p>Bei einer gezeichneten Figur sind Augen und Mund eigene Formen — die kann
+      man einzeln bewegen. Ein Bild ist eine einzige Fläche. Also musste das
+      Lächeln anders entstehen: <b>der Mundbereich wird verzogen wie ein
+      Gummituch.</b> Jeder Bildpunkt wird von einer leicht anderen Stelle geholt,
+      am stärksten an den Mundwinkeln, und zum Rand hin auf null — deshalb sieht
+      man keine Kante.</p>
+    <figure>
+      <img src="laune/beleg.jpg" alt="Der Mund im Vergleich: links unverändert, rechts mit angehobenen Mundwinkeln">
+      <figcaption>Links das Original, rechts die stärkste Stufe. Die Mundwinkel
+        stehen gut fünfzehn Bildpunkte höher und etwas weiter aussen, die Mitte bleibt
+        stehen. Genau das liest das Auge als Lächeln.</figcaption>
+    </figure>
+    <p class="hinweis"><b>Sieben fertige Stufen, keine Rechnerei im Browser.</b>
+      Das Verziehen passiert vorher, einmal. Der Browser blendet nur noch zwischen
+      den Stufen über. Deshalb läuft es auch auf einem alten Handy flüssig.</p>
+  </section>
+
+  <section class="block">
+    <h2>Was das kann — und was nicht</h2>
+    <div class="karten karten--zwei">
+      <article class="karte">
+        <h3>Lachen mit Zähnen geht nicht</h3>
+        <p>Verziehen kann nur zeigen, was im Bild schon da ist. Ein offener Mund
+          müsste erfunden werden. Der Endpunkt ist also ein deutliches Lächeln,
+          kein Lachen. Bei der Mona Lisa ist das der Glücksfall: Bei ihr war ja
+          noch nie klar, ob sie lacht.</p>
+      </article>
+      <article class="karte">
+        <h3>Auf dem Handy gibt es keine Maus</h3>
+        <p>Dort kann der Blick niemandem folgen. Sie bekommt stattdessen einen
+          eigenen Auftritt: Das Lächeln wächst, sobald der Knopf in die Bildmitte
+          scrollt. Zieh oben den Regler — der zeigt dieselben Endpunkte.</p>
+      </article>
+      <article class="karte">
+        <h3>Jedes Bild muss neu vermessen werden</h3>
+        <p>Augenmitten, Mundwinkel, Wangen: Diese Punkte habe ich an <em>diesem</em>
+          Bild abgelesen. Ein anderes Bild — andere Zahlen. Das ist eine halbe
+          Stunde Arbeit, keine Einstellung, die man umschaltet.</p>
+      </article>
+      <article class="karte">
+        <h3>Wer weniger Bewegung eingestellt hat</h3>
+        <p>Manche Menschen stellen im System „Bewegung reduzieren“ ein, oft wegen
+          Schwindel. Für sie steht der Blick still, das Lächeln wechselt trotzdem.
+          Das ist eingebaut.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Wenn das auf die Seite soll</h2>
+    <p>Technisch ist es fertig: Bild, Ebenen und Steuerung liegen als ein Stück
+      vor und laufen mit der Animationsbibliothek, die auf der KLARTEXT-Seite
+      ohnehin schon läuft. Was noch fehlt, sind Entscheidungen, keine Arbeit:</p>
+    <ol class="schritte">
+      <li class="schritt"><div>
+        <h3>Darf das Bild überhaupt so verwendet werden?</h3>
+        <p>Das Gemälde selbst ist gemeinfrei. Diese Fassung mit Handy ist eine
+          Bearbeitung — je nachdem, woher sie stammt, hängt daran eine Lizenz.
+          Das solltest du klären, bevor es öffentlich läuft.</p>
+      </div></li>
+      <li class="schritt"><div>
+        <h3>Passt es zur Marke?</h3>
+        <p>Ein Gemälde mit Smartphone ist ein Witz — ein guter, aber einer, den
+          man einmal versteht. Auf einer Startseite steht er dann jeden Tag da.
+          Für eine Kampagne ist das stark, als Dauerzustand eine Festlegung.</p>
+      </div></li>
+      <li class="schritt"><div>
+        <h3>Welcher Knopf ist das Ziel?</h3>
+        <p>Der Effekt braucht genau einen Punkt, auf den er zuläuft. Zwei
+          gleichwertige Knöpfe im Kopfbereich würden ihn entwerten.</p>
+      </div></li>
+    </ol>
+  </section>
+
+  <footer>
+    Das Bild stammt von dir und liegt hier nur als Beispiel. Der Blick bewegt
+    sich um höchstens viereinhalb Bildpunkte, das Lächeln in sieben Stufen — beides
+    absichtlich zurückhaltend, damit es lebendig wirkt und nicht wie ein Trick.
+  </footer>
+</div>
+
+<script src="js/gsap.min.js"></script>
+<script>
+(function(){
+  var bild = document.getElementById('bild');
+  if (!bild || !window.gsap) return;
+
+  var knopf   = document.getElementById('ziel');
+  var augeL   = document.querySelector('#augeL i');
+  var augeR   = document.querySelector('#augeR i');
+  var STUFEN  = 7;
+  var muender = [];
+  for (var i = 0; i < STUFEN; i++) muender.push(document.getElementById('mund' + i));
+
+  var aAbstand = document.getElementById('anzAbstand');
+  var aLaune   = document.getElementById('anzLaune');
+  var aBalken  = document.getElementById('anzBalken');
+  var regler   = document.getElementById('regler');
+
+  var feinerZeiger = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var ruhig = matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  var RADIUS = 500;          /* ab hier faengt das Laecheln an zu wachsen */
+  var BILD_B = 1672;         /* Breite des Originalbildes */
+  var WEG_X = 4.5, WEG_Y = 2.0;   /* wie weit die Augaepfel hoechstens wandern */
+
+  var z = { laune:0, bx:0, by:0 };
+  var setLaune = gsap.quickTo(z, 'laune', { duration:.55, ease:'power3' });
+  var setBx    = gsap.quickTo(z, 'bx',    { duration:.28, ease:'power3' });
+  var setBy    = gsap.quickTo(z, 'by',    { duration:.28, ease:'power3' });
+
+  var mx = null, my = null, abstand = null, handbetrieb = false, handWert = 0;
+
+  function mitte(el){
+    var r = el.getBoundingClientRect();
+    return { x:r.left + r.width/2, y:r.top + r.height/2, b:r.width };
+  }
+
+  function messen(){
+    if (handbetrieb){ setLaune(handWert); abstand = null; setBx(0); setBy(0); return; }
+    if (mx === null){
+      if (!feinerZeiger){ mx = innerWidth/2; my = innerHeight*0.5; }
+      else { setLaune(0); setBx(0); setBy(0); abstand = null; return; }
+    }
+    var k = mitte(knopf);
+    abstand = Math.hypot(mx - k.x, my - k.y);
+    setLaune(gsap.utils.clamp(0, 1, 1 - abstand / RADIUS));
+
+    if (ruhig) { setBx(0); setBy(0); return; }
+    var l = mitte(document.getElementById('augeL'));
+    var r = mitte(document.getElementById('augeR'));
+    var ax = (l.x + r.x) / 2, ay = (l.y + r.y) / 2;
+    setBx(gsap.utils.clamp(-1, 1, (mx - ax) / 400));
+    setBy(gsap.utils.clamp(-1, 1, (my - ay) / 320));
+  }
+
+  var letzteL = -1, letzterA = -1;
+  function zeichnen(){
+    /* Ein Bildpunkt des Originals ist auf dem Schirm so viel wert: */
+    var mass = bild.clientWidth / BILD_B;
+    var tx = z.bx * WEG_X * mass, ty = z.by * WEG_Y * mass;
+    gsap.set([augeL, augeR], { x:tx, y:ty });
+
+    /* Zwischen zwei benachbarten Stufen ueberblenden. Die untere steht auf
+       voll, die obere waechst ein — so bleibt die Mischung sauber. */
+    var s = z.laune * (STUFEN - 1);
+    var k = Math.min(STUFEN - 1, Math.floor(s));
+    var t = s - k;
+    for (var i = 0; i < STUFEN; i++){
+      muender[i].style.opacity = (i === k) ? 1 : (i === k + 1 ? t : 0);
+    }
+
+    var pz = Math.round(z.laune * 100);
+    if (pz !== letzteL){ aLaune.textContent = pz; aBalken.style.width = pz + '%'; letzteL = pz; }
+    var a = abstand === null ? null : Math.round(abstand);
+    if (a !== letzterA){ aAbstand.textContent = a === null ? '–' : a; letzterA = a; }
+  }
+
+  addEventListener('pointermove', function(e){
+    if (e.pointerType === 'touch') return;
+    handbetrieb = false; mx = e.clientX; my = e.clientY; messen();
+  }, { passive:true });
+
+  addEventListener('pointerleave', function(){
+    if (!feinerZeiger) return;
+    mx = null; my = null; messen();
+  });
+
+  regler.addEventListener('input', function(){
+    handbetrieb = true; handWert = this.value / 100; messen();
+  });
+
+  addEventListener('scroll', messen, { passive:true });
+  addEventListener('resize', messen);
+
+  gsap.ticker.add(zeichnen);
+  messen();
+
+})();
+</script>
