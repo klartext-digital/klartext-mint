@@ -2078,20 +2078,3 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 #monaAugeL i{width:2316.6667%;height:4277.2727%;left:-634.3750%;top:-1254.5455%}
 #monaAugeR{left:37.5000%;top:27.5239%;width:4.3165%;height:2.3379%}
 #monaAugeR i{width:2316.6667%;height:4277.2727%;left:-868.7500%;top:-1177.2727%}
-
-/* ── Mona Lisa in den Kopfbereichen der Unterseiten ─────────
-   Text links, Bild rechts. Bewusst Flex und nicht Raster: bei einem
-   Raster legt der Browser eine zweite Spur NEBEN der genannten an,
-   sobald ein Kind eine feste Spalte nennt — genau daran ist der
-   Kontaktknopf schon einmal aus der Flaeche gerutscht. */
-.unter--mona{display:flex;flex-direction:column;gap:clamp(28px,3.4vw,46px)}
-.unter--mona .unter__wort{min-width:0}
-.mona--klein{width:min(100%,470px);margin:0 auto;justify-self:auto}
-.mona--klein .mona__bild{border-radius:var(--r-mittel);
-  box-shadow:0 30px 62px -26px rgb(6 43 50 / .38)}
-@media (min-width:1100px){
-  .unter--mona{flex-direction:row;align-items:center;
-    gap:clamp(40px,4.6vw,80px)}
-  .unter--mona .unter__wort{flex:1 1 auto}
-  .unter--mona .mona--klein{flex:0 0 auto;width:clamp(300px,31vw,460px);margin:0}
-}
