@@ -2059,35 +2059,38 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 }
 
 /* ── Mona Lisa als Kopfbild ────────────────────────────────
-   Das Bild liegt ueber die ganze Fensterbreite hinter dem Text. Der
-   Blick folgt dem Zeiger, das Laecheln waechst mit der Naehe zum Knopf
-   "Gespraech buchen". Gesteuert wird in mona.js.
-
-   Der Rahmen bildet den formatfuellenden Zuschnitt SELBST nach, statt
-   object-fit zu benutzen: Augen und Mund sitzen in Prozent des Bildes,
-   und bei object-fit weiss niemand mehr, wo das Bild wirklich liegt.
-   Ist das Fenster breiter als das Bildformat, bestimmt die Breite die
-   Groesse, sonst die Hoehe — genau das macht "cover". */
+   Drei Ebenen ueber dem Grundbild:
+     lachen-0..8   neun echte Zwischenbilder zwischen ruhig und lachend.
+                   Sie stammen aus ZWEI Aufnahmen derselben Person; die
+                   Zaehne sind da, weil sie fotografiert wurden.
+     auge-*        Iris als eigene Ebene ueber einer Lederhaut-Platte,
+                   beschnitten auf die Lidspalte. Nur die Iris wandert,
+                   das Lid steht — sonst rutscht das ganze Auge.
+   Alle Masse in Prozent des Grundbildes (1672 x 941). Gesteuert: mona.js */
 .kopfbild{position:absolute;z-index:-2;top:0;bottom:0;
   left:calc(50% - 50vw);width:100vw;overflow:hidden;background:#0B1A1E}
-.kopfbild__rahmen{--bild:url("laune/basis.jpg");
+.kopfbild__rahmen{--bild:url("kopf/grund.jpg");
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   width:100%;aspect-ratio:1672 / 941}
-@media (max-aspect-ratio:1672 / 941){
-  .kopfbild__rahmen{width:auto;height:100%}
-}
-.mona__grund{position:absolute;inset:0;
-  background:var(--bild) center/100% 100% no-repeat}
-.mona__mund{position:absolute;opacity:0;pointer-events:none;will-change:opacity}
-.mona__mund{left:50.9569%;top:35.7067%;width:12.9187%;height:11.4772%}
-/* Die Augaepfel liegen als eigene Ebene ueber dem Bild. Die weiche
-   Maske verhindert, dass man beim Verschieben eine Kante sieht. */
-.mona__auge{position:absolute;overflow:hidden;pointer-events:none;
-  -webkit-mask-image:radial-gradient(closest-side,#000 52%,transparent 100%);
-          mask-image:radial-gradient(closest-side,#000 52%,transparent 100%)}
-.mona__auge i{position:absolute;display:block;will-change:transform;
-  background:var(--bild) center/100% 100% no-repeat}
-#monaAugeL{left:51.7045%;top:29.3305%;width:2.8708%;height:2.3379%}
-#monaAugeL i{width:3483.3333%;height:4277.2727%;left:-1801.0417%;top:-1254.5455%}
-#monaAugeR{left:58.4330%;top:27.5239%;width:2.8708%;height:2.3379%}
-#monaAugeR i{width:3483.3333%;height:4277.2727%;left:-2035.4167%;top:-1177.2727%}
+@media (max-aspect-ratio:1672 / 941){ .kopfbild__rahmen{width:auto;height:100%} }
+.mona__grund{position:absolute;inset:0;background:var(--bild) center/100% 100% no-repeat}
+
+/* Die Lachstufen liegen im Gesichtsfeld und sind auf eine weiche
+   Ellipse beschnitten — sonst saehe man die Kante des Feldes. */
+.lachen{position:absolute;left:56.8182%;top:20.1913%;width:16.7464%;height:35.0691%;pointer-events:none;
+  -webkit-mask-image:url("kopf/gesicht-maske.png");mask-image:url("kopf/gesicht-maske.png");
+  -webkit-mask-size:100% 100%;mask-size:100% 100%}
+.lachen img{position:absolute;inset:0;width:100%;height:100%;opacity:0;
+  will-change:opacity}
+
+.blick{position:absolute;pointer-events:none;
+  -webkit-mask-size:100% 100%;mask-size:100% 100%}
+.blick img{position:absolute;display:block}
+.blick .platte{inset:0;width:100%;height:100%}
+.blick .iris{will-change:transform}
+#blickL{left:58.3134%;top:27.0988%;width:5.3828%;height:6.0574%;
+  -webkit-mask-image:url("kopf/auge-L-maske.png");mask-image:url("kopf/auge-L-maske.png")}
+#blickL .iris{left:27.7778%;top:21.0526%;width:33.3333%;height:52.6316%}
+#blickR{left:64.4737%;top:26.5675%;width:5.3828%;height:5.9511%;
+  -webkit-mask-image:url("kopf/auge-R-maske.png");mask-image:url("kopf/auge-R-maske.png")}
+#blickR .iris{left:31.1111%;top:21.4286%;width:35.5556%;height:57.1429%}
