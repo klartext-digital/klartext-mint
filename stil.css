@@ -108,7 +108,9 @@ body{
   /* Der Koerper scheint an den abgerundeten Ecken des Inhaltsbereichs
      durch. In der Violett-Fassung war er schwarz wie der Fuss; hier
      muss er zum Tuerkis passen, sonst blitzt eine schwarze Kante auf. */
-  background:var(--tinte-2);color:var(--tinte);
+  /* Scheint an den abgerundeten unteren Ecken des Inhalts durch und
+   muss deshalb die Farbe der Fusszeile tragen. */
+  background:var(--violett);color:var(--tinte);
   font-family:Figtree,system-ui,sans-serif;font-weight:400;font-size:19px;
   line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
@@ -1146,20 +1148,24 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Bold und grafisch: links das Gespräch mit Mail und Telefon als
    grosse Pillen-Links, rechts drei Spalten, unten die Wortmarke als
    angeschnittene Riesengrafik. */
-.fuss{background:var(--tinte);background-image:var(--lauf-fuss);
-  color:var(--creme);
+/* Gelbe Fusszeile. Alles, was vorher hell auf dunkel stand, muss
+   umgekehrt werden — Creme auf Gelb kommt nur auf 1,9:1 und ist
+   damit unlesbar. Tinte auf Gelb liegt bei 9,5:1, gedaempfte Toene
+   nicht unter 72 Prozent, das sind 5,4:1. */
+.fuss{background:var(--violett);background-image:none;
+  color:var(--tinte);
   padding:clamp(70px,7vw,130px) var(--pad) 0;overflow:clip}
 .fuss__oben{max-width:var(--maxw);margin:0 auto;display:grid;
   grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,90px);align-items:start}
 
-.fuss__reden .brush{color:var(--violett-hell)}
+.fuss__reden .brush{color:var(--tinte)}
 .fuss__reden h2{font-size:clamp(34px,7vw,124px);line-height:.9;margin:10px 0 34px}
 /* Sehr lange Woerter duerfen im Notfall trennen, statt die Spalte
    aufzublasen — betrifft nur Schirme unter rund 400 px. */
 .fuss__reden h2,.fuss__reden .brush{overflow-wrap:break-word}
 .fuss__kontakt{display:grid;gap:10px;justify-items:start;margin-bottom:30px}
 .fuss__gross{display:inline-flex;align-items:center;gap:16px;
-  border:2px solid var(--linie-hell);border-radius:var(--r-pille);
+  border:2px solid rgb(14 13 11 / .22);border-radius:var(--r-pille);
   padding:16px 28px;font-size:clamp(18px,1.7vw,26px);font-weight:700;
   letter-spacing:-.025em;
   transition:background-color var(--t-knopf) var(--kurve-rein),
@@ -1167,14 +1173,14 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
     transform var(--t-knopf) var(--kurve-rein)}
 .fuss__gross i{font-style:normal;font-size:.72em;opacity:.5;
   transition:opacity var(--t-farbe) var(--kurve),transform var(--t-bedien) var(--kurve)}
-.fuss__gross:hover{background:var(--violett);border-color:var(--violett);
-  color:#fff;transform:var(--kipp)}
+.fuss__gross:hover{background:var(--tinte);border-color:var(--tinte);
+  color:var(--creme);transform:var(--kipp)}
 .fuss__gross:hover i{opacity:1;transform:translate(3px,-3px)}
-.fuss__ort{font-size:17px;line-height:1.6;color:rgb(247 247 245 / .55)}
+.fuss__ort{font-size:17px;line-height:1.6;color:rgb(14 13 11 / .72)}
 
 .fuss__spalten{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .fuss__spalte{display:grid;gap:2px;align-content:start;justify-items:start}
-.fuss__kopf{font-family:'Rock Salt',cursive;font-size:16px;color:var(--violett-hell);
+.fuss__kopf{font-family:'Rock Salt',cursive;font-size:16px;color:rgb(14 13 11 / .72);
   margin:0 0 14px 16px}
 .fuss__spalte .mlink{font-size:18px;font-weight:500;padding:8px 16px}
 
@@ -1184,27 +1190,30 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   font-weight:500;
   transition:background-color var(--t-knopf) var(--kurve-rein),
     color var(--t-knopf) var(--kurve-rein),transform var(--t-knopf) var(--kurve-rein)}
-.fuss__sozial a:hover{background:var(--creme);color:var(--tinte);transform:var(--kipp)}
+.fuss__sozial a:hover{background:var(--tinte);color:var(--creme);transform:var(--kipp)}
 
 /* Wortmarke als Grafik — unten angeschnitten, füllt die Breite */
 /* Bleibt dauerhaft zurueckgenommen. Vorher lief sie beim Schweben auf
    volle Deckkraft — Ausloeser war die ganze Fusszeile, es reichte also
    die Maus irgendwo im unteren Seitendrittel. Sie ist dort Grundton,
    nicht Hauptdarsteller. */
+/* Die Wortmarke liegt als Negativfassung vor, also weiss. Auf Gelb
+   verschwindet sie — brightness(0) macht sie schwarz, gedaempft
+   bleibt sie Grundton. */
 .fuss__wortmarke{max-width:var(--maxw);margin:clamp(30px,3vw,54px) auto 0;
-  padding:0 var(--pad);line-height:0;opacity:.14}
+  padding:0 var(--pad);line-height:0;opacity:.13;filter:brightness(0)}
 .fuss__wortmarke img{width:100%;height:auto;display:block}
 /* Hier gefuellt statt umrissen: zwischen lauter Konturen ist die volle
    Flaeche der einzige Punkt, an dem das Auge haengen bleibt. */
 
 
 .fuss__recht{max-width:var(--maxw);margin:clamp(50px,5vw,90px) auto 0;padding:26px 0 0;
-  border-top:1px solid var(--linie-hell);
+  border-top:1px solid rgb(14 13 11 / .18);
   display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
-  font-size:15px;color:rgb(247 247 245 / .48)}
+  font-size:15px;color:rgb(14 13 11 / .72)}
 .fuss__recht nav{display:flex;gap:22px}
 .fuss__recht a{transition:color var(--t-farbe) var(--kurve)}
-.fuss__recht a:hover{color:var(--creme)}
+.fuss__recht a:hover{color:var(--tinte)}
 
 .demo{position:fixed;right:14px;bottom:14px;z-index:50;font-size:11px;
   letter-spacing:.05em;text-transform:uppercase;color:var(--grau);
