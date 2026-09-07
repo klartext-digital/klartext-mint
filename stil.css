@@ -38,7 +38,7 @@
   --violett:#F5A524;          /* Akzent: Knöpfe, Handschrift, Punkte */
   --violett-hell:#FFC65C;     /* Akzent auf dunklem Grund */
   --violett-tief:#9A6004;     /* Akzent auf hellem Grund: 4.8:1 auf Creme */
-  --violett-zart:#DCEBE9;     /* zarte Fläche: Pillen, Hinterlegungen */
+  --violett-zart:#E0DCD3;     /* zarte Fläche: Pillen, Hinterlegungen */
 
   /* Türkis-Skala, gemessen */
   --teal-900:#062B32; --teal-800:#09363F; --teal-700:#0F4C55;
@@ -56,8 +56,10 @@
   /* Fuss: derselbe Bogen, aber von der anderen Seite und dunkler
      gehalten — die Seite ist oben und unten tuerkis eingefasst,
      ohne dass beides gleich aussieht. */
-  --lauf-fuss:linear-gradient(302deg,#1C5C66 0%,#175560 24%,#0F4C55 46%,
-                #1C5C66 70%,#36787D 100%);
+  /* Ohne Tuerkis: warmes Schwarz mit leichtem Bogen, damit die Flaeche
+     nicht flach wirkt. Die alte Tuerkis-Fassung steht in der Historie. */
+  --lauf-fuss:linear-gradient(302deg,#26221B 0%,#1E1A15 24%,#141110 46%,
+                #1E1A15 70%,#2C2720 100%);
 
   /* ── Bewegung: gemessen an beiden Vorlagen ── */
   --kurve:cubic-bezier(.44,0,.56,1);          /* Interaktion */
@@ -106,7 +108,7 @@ body{
   /* Der Koerper scheint an den abgerundeten Ecken des Inhaltsbereichs
      durch. In der Violett-Fassung war er schwarz wie der Fuss; hier
      muss er zum Tuerkis passen, sonst blitzt eine schwarze Kante auf. */
-  background:var(--teal-700);color:var(--tinte);
+  background:var(--tinte-2);color:var(--tinte);
   font-family:Figtree,system-ui,sans-serif;font-weight:400;font-size:19px;
   line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
@@ -275,6 +277,9 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    statt 154 px), damit der Ueberstand kleiner sein darf — sichtbar
    aendert das nichts, weil das Rauschmuster bei jedem Sprung ohnehin
    voellig anders steht. */
+/* AUS: Das Element .korn steht auf keiner Seite mehr im Markup.
+   Die Regeln bleiben stehen — zum Zurueckholen genuegt eine Zeile
+   <div class="korn" aria-hidden="true"></div> je Seite. */
 .korn{position:fixed;inset:-96px;z-index:9;pointer-events:none;
   background-image:url(korn-fein.png);background-repeat:repeat;
   opacity:.04;will-change:transform;
@@ -737,7 +742,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    soft-light faerbt Mitten und Lichter ein und laesst die Tiefen dunkel;
    der Lichtkegel darueber (screen) setzt die Quelle oben links. */
 .lamelle::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(160deg,#1C5C66 0%,rgb(28 92 102 / .5) 62%,transparent 100%);
+  background:linear-gradient(160deg,#3A342B 0%,rgb(58 52 43 / .5) 62%,transparent 100%);
   mix-blend-mode:soft-light;opacity:1;
   transition:opacity var(--t-lamelle) var(--kurve-rein)}
 .lamelle::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
@@ -986,7 +991,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    sich Kalender und Felder so weit auseinander, dass man die
    vier Angaben nicht mehr auf einen Blick hat. */
 .ruf__karte{max-width:1240px;margin:0 auto;
-  background:var(--teal-700);background-image:var(--lauf-fuss);
+  background:var(--tinte-2);background-image:var(--lauf-fuss);
   color:#fff;border-radius:var(--r-seite);padding:clamp(14px,1.3vw,20px)}
 .ruf__karte .brush{color:var(--violett-hell)}
 .ruf__kopf{display:flex;align-items:flex-end;justify-content:space-between;
@@ -1141,7 +1146,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Bold und grafisch: links das Gespräch mit Mail und Telefon als
    grosse Pillen-Links, rechts drei Spalten, unten die Wortmarke als
    angeschnittene Riesengrafik. */
-.fuss{background:var(--teal-900);background-image:var(--lauf-fuss);
+.fuss{background:var(--tinte);background-image:var(--lauf-fuss);
   color:var(--creme);
   padding:clamp(70px,7vw,130px) var(--pad) 0;overflow:clip}
 .fuss__oben{max-width:var(--maxw);margin:0 auto;display:grid;
