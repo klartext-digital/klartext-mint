@@ -2382,3 +2382,81 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    als in Rock Salt, die Zeile bricht dadurch nicht mehr um. */
 .buehne h1 .wort{font-style:normal;font-weight:300;color:var(--violett);
   letter-spacing:-.01em}
+
+/* ── Blog auf der Startseite ───────────────────────────────
+   Aufbau nach Dusans Vorlage: links ein Aufmacher mit Text und
+   grossem Bild, rechts die Liste der neuesten Artikel, dazwischen eine
+   Trennlinie. Die Rolle vorher war eine Karten-Leiste zum Schieben —
+   sie zeigte sechs gleichwertige Artikel und damit keine Rangfolge. */
+.blog__raster{display:grid;gap:clamp(28px,3vw,52px);
+  margin-top:clamp(26px,2.6vw,40px)}
+@media (min-width:1100px){
+  .blog__raster{grid-template-columns:minmax(0,1fr) 360px}
+  .blog__seite{border-left:1px solid var(--linie);padding-left:clamp(28px,3vw,48px)}
+}
+.blog__haupt{display:grid;gap:clamp(24px,2.6vw,40px);align-content:start}
+@media (min-width:820px){
+  .blog__haupt{grid-template-columns:minmax(300px,.9fr) minmax(0,1fr);align-items:start}
+}
+.blog__wort{display:grid;justify-items:start;align-content:start}
+/* Eigener Grad: der globale h2-Grad ist auf die volle Sektionsbreite
+   gerechnet und lief in dieser schmalen Spalte unter das Bild. */
+.blog__wort h2{font-size:clamp(28px,2.6vw,44px)}
+.blog__wort .fuehrung{margin-top:16px}
+.blog__wort .knopfpaar{margin-top:26px}
+/* In einem Raster mit justify-items:start bemisst sich die Zeile am
+   Inhalt und brach mitten im Wort um — der Schreib-Reveal schnitt sie
+   dadurch ab. */
+.blog__hand{margin-top:clamp(26px,2.6vw,44px);font-size:clamp(16px,1.2vw,21px)}
+
+/* Aufmacher: das ganze Feld ist der Link. */
+.blog__auf{display:grid;gap:12px;text-decoration:none;color:inherit;
+  align-content:start}
+.blog__aufbild{display:block;border-radius:var(--r-gross);overflow:hidden;
+  aspect-ratio:4 / 3;background:var(--creme-2)}
+.blog__aufbild img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform var(--t-bild) var(--kurve)}
+.blog__auf:hover .blog__aufbild img{transform:scale(1.05)}
+.blog__aufmeta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+  margin-top:6px;font-size:12px;font-weight:800;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--grau)}
+.blog__aufmeta i{font-style:normal;color:var(--grau-2)}
+.blog__auftitel{font-size:clamp(21px,1.8vw,30px);font-weight:800;
+  letter-spacing:-.025em;line-height:1.12}
+.blog__auf:hover .blog__auftitel{color:var(--violett-tief)}
+.blog__aufriss{color:var(--grau);font-size:16px;line-height:1.55;max-width:52ch}
+
+/* Rechte Spalte: Liste ohne Kartenrahmen — die Trennlinien reichen. */
+.blog__seitenkopf{display:flex;align-items:center;justify-content:space-between;
+  gap:16px;padding-bottom:16px;border-bottom:1px solid var(--linie)}
+.blog__seitentitel{font-size:12px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--grau)}
+.blog__alle{display:inline-flex;align-items:center;gap:8px;font-size:14px;
+  font-weight:700;color:var(--tinte);text-decoration:none}
+.blog__alle svg{transition:transform var(--t-bedien) var(--kurve)}
+.blog__alle:hover svg{transform:translateX(4px)}
+.bzeile{display:grid;grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;gap:16px;padding:16px 0;text-decoration:none;color:inherit;
+  border-bottom:1px solid var(--linie)}
+.bzeile__bild{width:84px;height:64px;border-radius:14px;overflow:hidden;
+  background:var(--creme-2);flex:0 0 auto}
+.bzeile__bild img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform var(--t-bild) var(--kurve)}
+.bzeile:hover .bzeile__bild img{transform:scale(1.07)}
+.bzeile__wort{display:grid;gap:5px;min-width:0}
+/* Auf 360 Punkten Spaltenbreite bleiben der Zeile rund 210 — mit
+   0,13 em Laufweite rutschte das Datum auf eine zweite Zeile. */
+.bzeile__meta{display:flex;align-items:center;gap:7px;font-size:10.5px;
+  font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--grau);
+  white-space:nowrap}
+.bzeile__meta i{font-style:normal;color:var(--grau-2)}
+.bzeile__titel{font-size:16.5px;font-weight:800;letter-spacing:-.015em;
+  line-height:1.25}
+.bzeile:hover .bzeile__titel{color:var(--violett-tief)}
+.bzeile__pfeil{display:grid;place-items:center;width:34px;height:34px;flex:0 0 auto;
+  border-radius:var(--r-pille);color:var(--tinte);
+  transition:background var(--t-knopf) var(--kurve-rein),
+             color var(--t-knopf) var(--kurve-rein),
+             transform var(--t-knopf) var(--kurve-rein)}
+.bzeile:hover .bzeile__pfeil{background:var(--tinte);color:var(--creme);
+  transform:translateX(3px)}
