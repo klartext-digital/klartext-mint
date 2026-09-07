@@ -2333,3 +2333,29 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    staerkste sein — Creme auf Gelb kaeme nur auf 1,9:1. */
 .ruf .fm__fuss .knopf--akzent{background:var(--tinte);color:var(--creme)}
 .ruf .fm__fuss .knopf--akzent .rolle{color:var(--creme)}
+
+/* ── Kopf über dem Termin ──────────────────────────────────
+   Der Abschnitt begann bisher mit dem Kalender: kein Titel, kein
+   Grund, ihn auszufüllen. Der Kopf steht deshalb im dunklen Band ÜBER
+   der gelben Karte — erst warum, dann womit. Die Kontaktwege wandern
+   mit hoch, damit die Karte nur noch das Formular ist. */
+.ruf__kopfzeile{max-width:1240px;margin:0 auto clamp(28px,3vw,46px);
+  color:var(--creme);text-align:center;display:grid;justify-items:center}
+.ruf__kopfzeile h2{font-size:clamp(30px,3.6vw,58px);line-height:1.02;
+  letter-spacing:-.035em;margin-top:14px}
+.ruf__lead{margin-top:16px;max-width:60ch;font-size:clamp(16px,1.15vw,19px);
+  line-height:1.55;color:rgb(247 247 245 / .68)}
+.ruf__punkte{display:flex;flex-wrap:wrap;justify-content:center;
+  gap:10px 26px;margin-top:22px;list-style:none}
+.ruf__punkte li{position:relative;padding-left:20px;font-size:15px;
+  font-weight:600;color:rgb(247 247 245 / .82)}
+.ruf__punkte li::before{content:"";position:absolute;left:0;top:8px;
+  width:7px;height:7px;border-radius:var(--r-pille);background:var(--violett)}
+.ruf__kopfzeile .ruf__wege{margin-top:26px;justify-content:center}
+.ruf__kopfzeile .ruf__weg{border-color:rgb(247 247 245 / .28);color:var(--creme)}
+.ruf__kopfzeile .ruf__weg:hover{background:var(--creme);border-color:var(--creme);
+  color:var(--tinte)}
+/* Eine Zeile Anleitung über dem Formular — mehr braucht es nicht,
+   der Grund steht schon im Kopf darüber. */
+.ruf__anweisung{font-size:15px;font-weight:700;color:rgb(14 13 11 / .74);
+  padding:clamp(10px,1vw,16px) clamp(10px,1.1vw,18px) 0;margin-bottom:4px}
