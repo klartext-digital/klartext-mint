@@ -373,7 +373,10 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .ndd.ist .ndd__chev{transform:translateY(1px) rotate(-135deg)}
 
 .ndd__panel{position:absolute;top:calc(100% + 14px);
-  left:var(--pad);right:var(--pad);max-width:var(--maxw);margin-inline:auto;z-index:5;
+  /* Nicht mehr ueber die volle Breite gespannt: die Liste stand sonst
+     ganz links, waehrend der Zeiger in der Leistenmitte war. Breite
+     fest, Position kommt aus bewegung.js. */
+  left:var(--ndd-links,var(--pad));width:min(1240px,calc(100vw - var(--pad) * 2));z-index:5;
   opacity:0;visibility:hidden;pointer-events:none;
   transform:translateY(-12px) scale(.97);
   transform-origin:var(--ndd-x,50%) 0;
@@ -387,7 +390,11 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    sich entsprechend lang. Jetzt teilen sich Liste und Vorschau den
    Platz im Verhaeltnis 0,85 zu 1: die Vorschau wird groesser, der
    Balken schmaler. */
-.ndd__inhalt{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr) 320px;gap:34px;
+.ndd__inhalt{display:grid;/* Die Liste bekommt genau die Breite ihres laengsten Eintrags:
+     "Performance Marketing" brach sonst auf zwei Zeilen um, sobald
+     die Spalte in Anteilen gerechnet wurde. Den Rest nimmt die
+     Vorschau. */
+  grid-template-columns:max-content minmax(0,1fr) 300px;gap:28px;
   background:var(--creme-3);color:var(--tinte);border-radius:var(--r-gross);
   padding:30px;box-shadow:0 30px 80px rgb(14 13 11 / .2)}
 
@@ -402,7 +409,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
     color var(--t-knopf) var(--kurve-rein),transform var(--t-knopf) var(--kurve-rein)}
 .ndd__nr{font-size:14px;font-weight:700;color:var(--grau-2);width:26px;flex:none;
   transition:color var(--t-knopf) var(--kurve-rein)}
-.ndd__name{flex:1}
+.ndd__name{flex:1;white-space:nowrap}
 .ndd__liste i{font-style:normal;font-size:20px;opacity:0;transform:translateX(-8px);
   transition:opacity var(--t-farbe) var(--kurve),transform var(--t-bedien) var(--kurve)}
 /* Geschwister dimmen, sobald eine Zeile überfahren wird */

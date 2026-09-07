@@ -255,6 +255,18 @@ function zeileHalten(el, dauerMs) {
     const a = ausloeser.getBoundingClientRect();
     const p = bezug.getBoundingClientRect();
     panel.style.setProperty('--ndd-x', Math.round(a.left - p.left + a.width / 2) + 'px');
+
+    /* Die Flaeche haengt am Ausloeser statt in der Seitenmitte: sonst
+       steht die Liste weit links, waehrend der Zeiger in der Mitte der
+       Leiste ist — das liest sich, als gehoere sie nicht dazu.
+       Gerechnet wird die Mitte des Ausloesers, dann in die Seite
+       geklemmt, damit die Flaeche nie ueber den Rand laeuft. */
+    const rand = parseFloat(getComputedStyle(document.documentElement)
+      .getPropertyValue('--pad')) || 40;
+    const breite = panel.offsetWidth;
+    const mitte = a.left + a.width / 2;
+    const links = Math.max(rand, Math.min(mitte - breite / 2, innerWidth - rand - breite));
+    panel.style.setProperty('--ndd-links', Math.round(links) + 'px');
   };
 
   const setze = (auf) => {
