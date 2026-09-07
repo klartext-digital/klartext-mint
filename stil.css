@@ -2229,44 +2229,61 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 
 /* ── Preiszeile mit Erstgespräch ───────────────────────────
    Die beiden Pakete ruecken nach links und werden schmaler; rechts
-   daneben steht das kostenlose Erstgespraech. Aufbau nach der
-   Referenz: Titel, Person mit Bild, Stichpunkte, Knopf, Mailzeile. */
+   daneben steht das kostenlose Erstgespraech.
+
+   Wichtig ist, dass die dritte Karte NICHT als drittes Paket gelesen
+   wird. Drei gleich grosse Kaesten nebeneinander liest das Auge als
+   Reihe. Vier Dinge trennen sie deshalb:
+     Farbe      zweigeteilt, dunkler Kopf statt einfarbiger Flaeche
+     Struktur   Person im Kopf statt Preis, kein Paket-Haken darunter
+     Hoehe      steht oben an und laeuft NICHT auf Paketlaenge mit
+     Ebene      liegt mit Schatten ueber der Flaeche statt darin */
 @media (min-width:1100px){
   .preise__raster{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,.84fr);
     max-width:none;align-items:stretch}
+  .preise__raster .erst{align-self:start}
 }
-.erst{display:flex;flex-direction:column;gap:18px;
+.erst{display:flex;flex-direction:column;overflow:hidden;
   background:var(--creme-3);color:var(--tinte);border-radius:var(--r-gross);
-  padding:clamp(26px,2.2vw,34px)}
-.erst__titel{font-size:clamp(23px,1.7vw,29px);line-height:1.12;letter-spacing:-.03em}
-.erst__titel span{display:block;color:var(--grau);font-weight:700}
-.erst__person{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
-  border:1px solid var(--linie);border-radius:var(--r-mittel);padding:14px 16px}
-.erst__person img{width:52px;height:52px;border-radius:var(--r-pille);
+  box-shadow:0 26px 60px -26px rgb(40 22 0 / .45)}
+
+/* ── Kopf: dunkel, mit der Person als Hauptsache ── */
+.erst__haupt{background:var(--tinte);color:var(--creme);
+  padding:clamp(24px,2vw,30px)}
+.erst__marke{display:inline-block;font-size:11.5px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--violett);
+  margin-bottom:12px}
+.erst__titel{font-size:clamp(21px,1.55vw,26px);line-height:1.14;letter-spacing:-.03em}
+.erst__unter{color:rgb(247 247 245 / .62);font-size:15.5px;margin-top:4px}
+.erst__person{display:flex;align-items:center;gap:13px;flex-wrap:wrap;
+  margin-top:20px;padding-top:18px;border-top:1px solid var(--linie-hell)}
+.erst__person img{width:48px;height:48px;border-radius:var(--r-pille);
   object-fit:cover;object-position:50% 14%;flex:0 0 auto}
 .erst__wer{display:grid;line-height:1.25;margin-right:auto}
-.erst__wer b{font-size:17px;font-weight:800}
-.erst__wer i{font-style:normal;font-size:14px;color:var(--grau)}
-.erst__stand{display:inline-flex;align-items:center;gap:8px;font-size:13px;
-  font-weight:700;color:var(--grau);white-space:nowrap}
-/* Der Punkt ist ein Hinweis, keine Live-Anzeige — deshalb ruhig und
-   ohne Blinken. */
-.erst__stand em{width:9px;height:9px;border-radius:var(--r-pille);
-  background:#3E9A62;flex:0 0 auto}
-/* Die Hakenliste ist auf die Paketkarten hin gebaut (heller Text auf
-   dunklem Grund). Auf der weissen Box braucht sie eigene Farben. */
-.erst__punkte{gap:12px;border-top-color:var(--linie)}
-.erst__punkte li{font-size:15.5px;color:var(--grau)}
-.erst__punkte li::before{border-color:var(--violett)}
-.erst__knopf{margin-top:auto}
-.erst__mail{display:flex;align-items:center;gap:14px;text-decoration:none;
-  background:var(--creme-2);border-radius:var(--r-mittel);padding:14px 16px;
+.erst__wer b{font-size:16.5px;font-weight:800}
+.erst__wer i{font-style:normal;font-size:13.5px;color:rgb(247 247 245 / .58)}
+.erst__stand{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;
+  font-weight:700;color:rgb(247 247 245 / .74);white-space:nowrap}
+/* Ein Hinweis, keine Live-Anzeige — deshalb ruhig und ohne Blinken. */
+.erst__stand em{width:8px;height:8px;border-radius:var(--r-pille);
+  background:#5BC27F;flex:0 0 auto}
+
+/* ── Fuss: hell, Stichpunkte bewusst NICHT im Paket-Haken ── */
+.erst__fuss{display:flex;flex-direction:column;gap:16px;
+  padding:clamp(22px,1.9vw,28px)}
+.erst__punkte{display:grid;gap:11px;list-style:none}
+.erst__punkte li{position:relative;padding-left:20px;font-size:15px;
+  line-height:1.45;color:var(--grau)}
+.erst__punkte li::before{content:"";position:absolute;left:0;top:8px;
+  width:7px;height:7px;border-radius:var(--r-pille);background:var(--violett)}
+.erst__mail{display:flex;align-items:center;gap:13px;text-decoration:none;
+  background:var(--creme-2);border-radius:var(--r-mittel);padding:13px 15px;
   color:var(--tinte);transition:background var(--t-flaeche) var(--kurve)}
 .erst__mail:hover{background:var(--violett-zart)}
-.erst__mailbild{display:grid;place-items:center;width:42px;height:42px;flex:0 0 auto;
-  background:var(--creme-3);border-radius:14px;color:var(--tinte)}
-.erst__mailwort{display:grid;line-height:1.3;font-size:13.5px;color:var(--grau)}
-.erst__mailwort b{font-size:15.5px;font-weight:800;color:var(--tinte);
+.erst__mailbild{display:grid;place-items:center;width:40px;height:40px;flex:0 0 auto;
+  background:var(--creme-3);border-radius:13px;color:var(--tinte)}
+.erst__mailwort{display:grid;line-height:1.3;font-size:13px;color:var(--grau)}
+.erst__mailwort b{font-size:15px;font-weight:800;color:var(--tinte);
   overflow-wrap:anywhere}
 
 /* Der Projektblock stand noch auf der alten Deckelbreite von 1240 und
