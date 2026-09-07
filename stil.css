@@ -974,7 +974,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .fr.ist .fr__leib p{opacity:1}
 
 /* ── 12 · Blog ─────────────────────────────────────────────── */
-.blog{padding:var(--sec) var(--pad) 0;max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto}
+.blog{padding:0;max-width:none;margin:0}
 .blog .kopfzeile,.blog__raster{max-width:var(--maxw);margin-inline:auto}
 .blog__raster{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .beitrag{display:grid;gap:14px}
@@ -2128,8 +2128,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Die Kurve ist nachgemessen: die Vorlage benutzt eine Feder, deren
    Verlauf sich mit cubic-bezier(.25,.25,.15,1) ueber 760 ms auf 1,4
    Prozent genau nachbilden laesst. */
-.werke{padding:var(--sec) var(--pad) 0;
-  max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto}
+.werke{padding:0}
 .werke__raster{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;
   margin-top:clamp(26px,2.6vw,42px)}
 @media (min-width:900px){ .werke__raster{grid-template-columns:repeat(2,minmax(0,1fr))} }
@@ -2297,3 +2296,40 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    damit 25 Punkte weiter innen als die Preiszeile darueber. Er nimmt
    jetzt dieselbe Breite und steht links buendig. */
 .preise .projekt{max-width:none;margin-left:0;margin-right:0}
+
+/* ── Helle Bloecke ─────────────────────────────────────────
+   Arbeiten und Blog hingen frei auf dem Grund: gleiche Flaeche wie
+   alles andere, nur mit Inhalt darauf. Sie bekommen jetzt dieselbe
+   Form wie die dunklen Bloecke — volle Breite, runde Ecken, eigener
+   Ton. Damit liest sich die Seite als Folge von Feldern und nicht als
+   eine Flaeche mit Absaetzen.
+
+   Weiss auf Sand, deshalb muessen die Karten DARIN den Ton wechseln:
+   weisse Karten auf weissem Block waeren wieder derselbe Fehler. */
+.werke,.blog{--einzug:max(var(--pad),calc((100% - var(--maxw)) / 2));
+  margin-top:var(--sec);background:var(--creme-3);border-radius:var(--r-seite);
+  padding:clamp(40px,4.4vw,80px) var(--einzug) clamp(44px,4vw,72px)}
+.werke .werk__leiste{background:var(--grund)}
+.blog .lese{background:var(--grund)}
+.blog .lese:hover{background:var(--creme-2)}
+
+/* ── Termin: das Ende der Seite ist ihr Hoehepunkt ─────────
+   Vorher ein dunkler Kasten unter vielen dunklen Bloecken. Jetzt
+   liegt er als einzige gelbe Flaeche in einem dunklen Band — nichts
+   sonst auf der Seite sieht so aus. Die weissen Felder darin bleiben
+   weiss und stehen mit 1,9:1 auf dem Gelb. */
+.ruf{--einzug:max(var(--pad),calc((100% - var(--maxw)) / 2));
+  margin-top:var(--sec);padding:clamp(46px,4.8vw,86px) var(--einzug) clamp(46px,4.4vw,80px);
+  background:var(--tinte);border-radius:var(--r-seite)}
+.ruf__karte{max-width:1240px;margin:0 auto;
+  background:var(--violett);background-image:none;color:var(--tinte);
+  box-shadow:0 34px 80px -30px rgb(0 0 0 / .55)}
+.ruf__karte .brush{color:var(--tinte)}
+.ruf__text{color:rgb(14 13 11 / .74)}
+.ruf__weg{border-color:rgb(14 13 11 / .26)}
+.ruf__weg:hover{background:var(--tinte);border-color:var(--tinte);color:var(--creme)}
+.ruf__karte--knapp .knopf--akzent{background:var(--tinte);color:var(--creme)}
+/* Der Absendeknopf ist die letzte Handlung der Seite und muss die
+   staerkste sein — Creme auf Gelb kaeme nur auf 1,9:1. */
+.ruf .fm__fuss .knopf--akzent{background:var(--tinte);color:var(--creme)}
+.ruf .fm__fuss .knopf--akzent .rolle{color:var(--creme)}
