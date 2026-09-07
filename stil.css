@@ -2373,3 +2373,12 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    der Grund steht schon im Kopf darüber. */
 .ruf__anweisung{font-size:15px;font-weight:700;color:rgb(14 13 11 / .74);
   padding:clamp(10px,1vw,16px) clamp(10px,1.1vw,18px) 0;margin-bottom:4px}
+
+/* ── Das gelbe Wort im Kopfbereich ─────────────────────────
+   Kein zweiter Schriftschnitt und keine Handschrift: Figtree ist eine
+   veraenderliche Schrift, der Kontrast kommt aus dem GEWICHT. Mager
+   in Gelb neben Fett in Creme — das liest sich als Absicht und nicht
+   als aufgeklebter Akzent. Nebeneffekt: das Wort ist deutlich schmaler
+   als in Rock Salt, die Zeile bricht dadurch nicht mehr um. */
+.buehne h1 .wort{font-style:normal;font-weight:300;color:var(--violett);
+  letter-spacing:-.01em}
