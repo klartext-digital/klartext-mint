@@ -382,7 +382,12 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .nav.auf .ndd__panel{opacity:1;visibility:visible;pointer-events:auto;
   transform:none;transition-delay:0s}
 
-.ndd__inhalt{display:grid;grid-template-columns:1fr 400px 320px;gap:34px;
+/* Die Liste bekam als 1fr den ganzen Rest — bei 1680 Punkten waren
+   das 832 fuer fuenf kurze Woerter, und der markierte Balken zog
+   sich entsprechend lang. Jetzt teilen sich Liste und Vorschau den
+   Platz im Verhaeltnis 0,85 zu 1: die Vorschau wird groesser, der
+   Balken schmaler. */
+.ndd__inhalt{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr) 320px;gap:34px;
   background:var(--creme-3);color:var(--tinte);border-radius:var(--r-gross);
   padding:30px;box-shadow:0 30px 80px rgb(14 13 11 / .2)}
 
