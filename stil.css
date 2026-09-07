@@ -2392,19 +2392,27 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .blog{padding:0;overflow:hidden}
 .blog__raster{display:grid}
 @media (min-width:1100px){
-  .blog__raster{grid-template-columns:minmax(300px,.85fr) minmax(0,1.15fr) 380px;
-    align-items:stretch}
+  .blog__raster{grid-template-columns:minmax(0,1fr) 380px;align-items:stretch}
   .blog__seite{border-left:1px solid var(--linie)}
 }
+/* Die grosse Flaeche IST der neueste Artikel — Text und Bild liegen in
+   einem einzigen Link. Der Knopf darin ist deshalb ein span: ein Link
+   im Link waere kaputt. */
+.blog__gross{display:grid;text-decoration:none;color:inherit}
+@media (min-width:820px){
+  .blog__gross{grid-template-columns:minmax(300px,.85fr) minmax(0,1.15fr);
+    align-items:stretch}
+}
+.blog__gross:hover .blog__lead{color:var(--tinte)}
 .blog__wort{display:grid;justify-items:start;align-content:start;
   padding:clamp(34px,3.4vw,58px) clamp(28px,2.6vw,44px)}
-.blog__marke{font-size:12px;font-weight:800;letter-spacing:.16em;
+.blog__marke{font-size:11.5px;font-weight:800;letter-spacing:.15em;
   text-transform:uppercase;color:var(--grau);margin-bottom:18px}
 .blog__wort h2{font-size:clamp(30px,2.9vw,50px);line-height:1.04}
 .blog__wort h2 .punkt{font-style:normal;color:var(--violett)}
 .blog__lead{margin-top:16px;color:var(--grau);font-size:clamp(15px,1.05vw,17px);
   line-height:1.55;max-width:34ch}
-.blog__knoepfe{display:flex;align-items:center;gap:12px;
+.blog__knoepfe{display:inline-flex;align-items:center;gap:12px;
   margin-top:clamp(22px,2.2vw,32px)}
 .kreis--rand{background:none;border:2px solid var(--violett);color:var(--violett)}
 .kreis--rand:hover{background:var(--violett);color:var(--tinte)}
