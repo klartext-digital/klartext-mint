@@ -2510,28 +2510,25 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   white-space:nowrap}
 
 /* ── Wie wir arbeiten ──────────────────────────────────────
-   Die Grafik ist freigestellt: der Sandgrund, auf dem sie erzeugt
-   wurde, ist herausgeschnitten. Entfernt wurde nur, was vom Rand aus
-   zusammenhaengt — ein Farbfilter haette den hellen Kreis "Strategie"
-   mitgenommen, der dem Hintergrund farblich sehr nahe liegt.
+   Kein Kasten: die Grafik steht frei auf der Flaeche. Der Sandgrund,
+   auf dem sie erzeugt wurde, ist herausgeschnitten — entfernt wurde
+   nur, was vom Rand aus zusammenhaengt, sonst haette ein Farbfilter
+   den hellen Kreis "Strategie" mitgenommen.
 
-   Darunter liegt eine helle Flaeche mit zwei weichen Bernstein-
-   schleiern, unten links kraeftiger als oben rechts.
+   Die beiden Bernsteinschleier laufen ohne Kante aus. Sie liegen
+   direkt auf dem Seitengrund und haben deshalb keinen Radius und
+   keine Fuellfarbe — sonst waere wieder ein Kasten da.
 
    Die Grafik traegt ihren Text als Bild. Deshalb steht die volle
    Beschreibung im alt-Text: fuer Vorleseprogramme und fuer Google ist
    das der einzige Zugang zu diesen zwoelf Begriffen. */
 .wiewir{padding:var(--sec) var(--pad) 0;
-  max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto}
-.wiewir__buehne{position:relative;overflow:hidden;
-  border-radius:var(--r-seite);
+  max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto;
   background:
-    radial-gradient(56% 62% at 4% 86%, rgb(245 165 36 / .30) 0%, transparent 62%),
-    radial-gradient(44% 56% at 98% 10%, rgb(245 165 36 / .16) 0%, transparent 62%),
-    #FBF9F5;
-  padding:clamp(36px,3.6vw,64px) clamp(24px,2.6vw,48px) clamp(20px,2vw,36px)}
+    radial-gradient(48% 46% at 6% 76%, rgb(245 165 36 / .20) 0%, transparent 64%),
+    radial-gradient(38% 40% at 97% 16%, rgb(245 165 36 / .12) 0%, transparent 64%)}
 .wiewir__kopf{text-align:center;display:grid;justify-items:center}
 .wiewir__kopf h2{font-size:clamp(32px,3.6vw,60px);margin-top:6px}
 .wiewir__kopf .fuehrung{margin-top:16px;max-width:56ch;text-align:center}
-.wiewir__bild{margin:clamp(18px,1.8vw,30px) 0 0;line-height:0}
+.wiewir__bild{margin:clamp(20px,2vw,34px) 0 0;line-height:0}
 .wiewir__bild img{width:100%;height:auto;display:block}
