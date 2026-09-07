@@ -111,12 +111,20 @@ function zeileHalten(el, dauerMs) {
 
 /* ── Einblendung ────────────────────────────────────────────── */
 (function reveals() {
+  /* Zusaetzlich zur Bewegung eine Unschaerfe: der Inhalt kommt nicht
+     nur von unten, er faehrt auch scharf. Das ist der Grund, warum die
+     Einblendung teuer aussieht statt nach Standard.
+     Am Ende raeumt clearProps den Filter wieder weg — ein stehender
+     filter-Wert legt jedes Element auf eine eigene Zeichenebene und
+     kostet dauerhaft Leistung, auch wenn er auf 0 steht. */
+  const UNSCHAERFE = 12;
   const rein = (ziele, ausloeser, verzug = 0) => {
     gsap.fromTo(ziele,
-      { y: WEG_REIN, scale: SKALA_REIN, opacity: 0 },
+      { y: WEG_REIN, scale: SKALA_REIN, opacity: 0, filter: 'blur(' + UNSCHAERFE + 'px)' },
       {
-        y: 0, scale: 1, opacity: 1, duration: T_REIN, ease: KURVE_REIN, delay: verzug,
-        clearProps: 'transform,opacity',
+        y: 0, scale: 1, opacity: 1, filter: 'blur(0px)',
+        duration: T_REIN, ease: KURVE_REIN, delay: verzug,
+        clearProps: 'transform,opacity,filter',
         scrollTrigger: { trigger: ausloeser, start: 'top 92%' },
       });
   };
