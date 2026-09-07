@@ -1561,7 +1561,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 @media (min-width:1100px){
   /* Kein Raster mehr: die zweite Spalte hielt die Geraete-Attrappe.
      Der Text bekommt eine Obergrenze, damit er nicht ins Gesicht laeuft. */
-  .buehne__text{max-width:min(56%, 44rem)}
+  .buehne__text{max-width:min(56%, 56rem)}
 }
 .handy{--b:clamp(228px,19vw,292px);width:var(--b);justify-self:end;
   margin:clamp(34px,5vw,58px) auto 0}
@@ -1837,7 +1837,10 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    alten Groesse brach sie auf vier Zeilen und schob den Kopfbereich
    ueber den Bildschirmrand. */
 @media (min-width:1100px){
-  .buehne h1{font-size:clamp(46px,5.15vw,100px)}
+  /* Grad und Spaltenbreite haengen an der laengsten Zeile: bei
+     74 px braucht "Kompetenz reicht nicht," 775 Punkte, die Spalte
+     hatte 704 — die Zeile brach mitten im Satz. */
+  .buehne h1{font-size:clamp(44px,4.75vw,85px)}
 }
 @media (max-width:520px){
   .geraete .handy{--b:min(150px,40vw);right:-2%}
