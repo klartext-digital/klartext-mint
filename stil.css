@@ -21,8 +21,13 @@
   /* ── Farbe: KLARTEXT-Marke auf heller Bühne ── */
   /* Fast-Weiss statt Creme — die Bühne bleibt minimal warm, damit
      Violett und Schwarz nicht kalt kippen, liest sich aber als Weiss. */
-  --creme:#F7F7F5;        /* die Bühne */
-  --creme-2:#ECECE8;      /* Flächen, Pillen */
+  --creme:#F7F7F5;        /* helle Schrift und helle Flächen AUF Dunkel */
+  /* Der Seitengrund war fast Weiss und lag damit 1,07:1 neben den
+     weissen Karten — man sah keine einzige Kante. Ein warmer Sandton
+     bringt ihn auf 1,26:1: Karten, Menüleiste und Kästen stehen
+     wieder als eigene Flächen da. Gedämpfter Text bleibt bei 4,6:1. */
+  --grund:#EAE5DB;        /* die Bühne */
+  --creme-2:#DFD8C9;      /* zurückgenommene Flächen, Pillen */
   --creme-3:#FFFFFF;      /* Karten — echtes Weiss */
   --tinte:#0E0D0B;        /* warmes Schwarz */
   --tinte-2:#1A1814;      /* dunkle Karten */
@@ -38,7 +43,7 @@
   --violett:#F5A524;          /* Akzent: Knöpfe, Handschrift, Punkte */
   --violett-hell:#FFC65C;     /* Akzent auf dunklem Grund */
   --violett-tief:#9A6004;     /* Akzent auf hellem Grund: 4.8:1 auf Creme */
-  --violett-zart:#E0DCD3;     /* zarte Fläche: Pillen, Hinterlegungen */
+  --violett-zart:#DFD8C9;     /* zarte Fläche: Pillen, Hinterlegungen */
 
   /* Türkis-Skala, gemessen */
   --teal-900:#062B32; --teal-800:#09363F; --teal-700:#0F4C55;
@@ -117,7 +122,7 @@ body{
 /* overflow:CLIP, nicht hidden — hidden macht aus main einen Scroll-
    Container und setzt damit jedes position:sticky im Inneren ausser
    Kraft (Arbeiten, Klebe-Sektion, Team, FAQ waren alle tot). */
-main{background:var(--creme);border-radius:0 0 var(--r-seite) var(--r-seite);
+main{background:var(--grund);border-radius:0 0 var(--r-seite) var(--r-seite);
   position:relative;z-index:1;overflow:clip}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
@@ -748,7 +753,9 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   mix-blend-mode:soft-light;opacity:1;
   transition:opacity var(--t-lamelle) var(--kurve-rein)}
 .lamelle::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:radial-gradient(64% 48% at 34% 22%,rgb(140 60 255 / .55) 0%,transparent 70%);
+  /* War Violett aus der ersten Fassung und stand als einzige kalte
+     Farbe in einer warmen Seite. Jetzt warmes Licht im Akzentton. */
+  background:radial-gradient(64% 48% at 34% 22%,rgb(245 165 36 / .42) 0%,transparent 70%);
   mix-blend-mode:screen;opacity:.5;
   transition:opacity var(--t-lamelle) var(--kurve-rein)}
 .lamelle.ist::after{opacity:1}
