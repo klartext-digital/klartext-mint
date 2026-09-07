@@ -2510,25 +2510,50 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   white-space:nowrap}
 
 /* ── Wie wir arbeiten ──────────────────────────────────────
-   Kein Kasten: die Grafik steht frei auf der Flaeche. Der Sandgrund,
-   auf dem sie erzeugt wurde, ist herausgeschnitten — entfernt wurde
-   nur, was vom Rand aus zusammenhaengt, sonst haette ein Farbfilter
-   den hellen Kreis "Strategie" mitgenommen.
+   Echte Vektorgrafik statt erzeugtem Bild. Das loest drei Dinge auf
+   einmal: es ist kein Hintergrund eingebrannt (er ist schlicht nicht
+   da), nichts verpixelt bei jeder Groesse, und der Text ist echter
+   Text — lesbar fuer Vorleseprogramme und fuer Google, aenderbar ohne
+   neu zu rechnen.
 
-   Die beiden Bernsteinschleier laufen ohne Kante aus. Sie liegen
-   direkt auf dem Seitengrund und haben deshalb keinen Radius und
-   keine Fuellfarbe — sonst waere wieder ein Kasten da.
-
-   Die Grafik traegt ihren Text als Bild. Deshalb steht die volle
-   Beschreibung im alt-Text: fuer Vorleseprogramme und fuer Google ist
-   das der einzige Zugang zu diesen zwoelf Begriffen. */
+   Die drei Flaechen sind flach und ohne Schatten; die Toene in den
+   Ueberschneidungen entstehen durch Multiplizieren, nicht durch
+   gemalte Schatten. */
 .wiewir{padding:var(--sec) var(--pad) 0;
-  max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto;
-  background:
-    radial-gradient(48% 46% at 6% 76%, rgb(245 165 36 / .20) 0%, transparent 64%),
-    radial-gradient(38% 40% at 97% 16%, rgb(245 165 36 / .12) 0%, transparent 64%)}
+  max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto}
 .wiewir__kopf{text-align:center;display:grid;justify-items:center}
 .wiewir__kopf h2{font-size:clamp(32px,3.6vw,60px);margin-top:6px}
 .wiewir__kopf .fuehrung{margin-top:16px;max-width:56ch;text-align:center}
 .wiewir__bild{margin:clamp(20px,2vw,34px) 0 0;line-height:0}
-.wiewir__bild img{width:100%;height:auto;display:block}
+.ag{width:100%;height:auto;display:block;overflow:visible;
+  font-family:Figtree,system-ui,sans-serif}
+.ag__gross{font-size:34px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
+.ag__unter{font-size:18px;font-weight:400;text-anchor:middle;opacity:.78}
+.ag__marke{font-size:26px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
+.ag__titel{font-size:23px;font-weight:800;letter-spacing:-.02em;fill:var(--tinte)}
+.ag__bei{font-size:17px;font-weight:400;fill:var(--grau)}
+.ag__end{text-anchor:end}
+.ag__mitte{text-anchor:middle}
+.ag__symfeld{fill:var(--creme-3)}
+.ag__symring{fill:none;stroke:rgb(245 165 36 / .55);stroke-width:1.6}
+.ag__strich{fill:none;stroke:var(--tinte);stroke-width:2.1;
+  stroke-linecap:round;stroke-linejoin:round;opacity:.82}
+.ag__leitung{fill:none;stroke:rgb(199 138 34 / .55);stroke-width:1.6}
+.ag__punkt{fill:var(--violett)}
+
+/* Unter 900 Punkten wird die Grafik unlesbar klein. Dort steht der
+   Inhalt stattdessen als Liste — derselbe Text, andere Form. */
+.wiewir__liste{display:grid;gap:10px;margin-top:clamp(20px,2vw,30px)}
+.wiewir__gruppe{background:var(--creme-3);border-radius:var(--r-mittel);
+  padding:20px 22px}
+.wiewir__gruppe h3{font-size:19px;margin-bottom:4px}
+.wiewir__gruppe p{color:var(--grau);font-size:15px}
+.wiewir__gruppe ul{list-style:none;display:grid;gap:8px;margin-top:14px;
+  padding-top:14px;border-top:1px solid var(--linie)}
+.wiewir__gruppe li{position:relative;padding-left:18px;font-size:15.5px}
+.wiewir__gruppe li::before{content:"";position:absolute;left:0;top:9px;
+  width:6px;height:6px;border-radius:var(--r-pille);background:var(--violett)}
+.wiewir__gruppe li b{font-weight:800}
+.wiewir__gruppe li span{color:var(--grau)}
+@media (max-width:899px){ .wiewir__bild{display:none} }
+@media (min-width:900px){ .wiewir__liste{display:none} }
