@@ -2206,20 +2206,17 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   color:var(--grau);max-width:88ch;
   transition:color var(--f-dauer) var(--f-kurve)}
 
-.frage:hover,.frage.offen,.frage:focus-within{background:var(--violett)}
-.frage:hover .frage__huelle,.frage.offen .frage__huelle,
-.frage:focus-within .frage__huelle{grid-template-rows:1fr}
-.frage:hover .frage__leib p,.frage.offen .frage__leib p,
-.frage:focus-within .frage__leib p{color:rgb(14 13 11 / .78)}
-.frage:hover .frage__kreis,.frage.offen .frage__kreis,
-.frage:focus-within .frage__kreis{background:var(--tinte);transform:rotate(90deg)}
-.frage:hover .frage__kreis b,.frage.offen .frage__kreis b,
-.frage:focus-within .frage__kreis b{opacity:0}
+/* Kein :hover mehr auf dem einzelnen Kasten: zwischen zwei Kaesten
+   liegt eine Luecke, und dort verlor der Kasten den Zeiger und klappte
+   zu — beim Wandern durch die Liste flackerte es dauernd. Jetzt
+   entscheidet fragen.js fuer die ganze Liste, welche Frage offen ist,
+   und setzt .offen. In der Luecke bleibt die bisherige offen. */
+.frage.offen,.frage:focus-within{background:var(--violett)}
+.frage.offen .frage__huelle,.frage:focus-within .frage__huelle{grid-template-rows:1fr}
+.frage.offen .frage__leib p,.frage:focus-within .frage__leib p{color:rgb(14 13 11 / .78)}
+.frage.offen .frage__kreis,.frage:focus-within .frage__kreis{background:var(--tinte);transform:rotate(90deg)}
+.frage.offen .frage__kreis b,.frage:focus-within .frage__kreis b{opacity:0}
 .frage[hidden]{display:none}
-@media (hover:none){ .frage:hover{background:var(--creme-3)}
-  .frage:hover .frage__huelle{grid-template-rows:0fr}
-  .frage:hover .frage__leib p{color:var(--grau)}
-  .frage:hover .frage__kreis{transform:none} }
 
 /* ── Preiszeile mit Erstgespräch ───────────────────────────
    Die beiden Pakete ruecken nach links und werden schmaler; rechts
