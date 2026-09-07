@@ -2345,13 +2345,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   letter-spacing:-.035em;margin-top:14px}
 .ruf__lead{margin-top:16px;max-width:60ch;font-size:clamp(16px,1.15vw,19px);
   line-height:1.55;color:rgb(247 247 245 / .68)}
-.ruf__punkte{display:flex;flex-wrap:wrap;justify-content:center;
-  gap:10px 26px;margin-top:22px;list-style:none}
-.ruf__punkte li{position:relative;padding-left:20px;font-size:15px;
-  font-weight:600;color:rgb(247 247 245 / .82)}
-.ruf__punkte li::before{content:"";position:absolute;left:0;top:8px;
-  width:7px;height:7px;border-radius:var(--r-pille);background:var(--violett)}
-.ruf__kopfzeile .ruf__wege{margin-top:26px;justify-content:center}
+.ruf__kopfzeile .ruf__wege{margin-top:clamp(24px,2.4vw,34px);justify-content:center}
 .ruf__kopfzeile .ruf__weg{border-color:rgb(247 247 245 / .28);color:var(--creme)}
 .ruf__kopfzeile .ruf__weg:hover{background:var(--creme);border-color:var(--creme);
   color:var(--tinte)}
