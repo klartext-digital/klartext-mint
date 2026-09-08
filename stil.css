@@ -2544,7 +2544,10 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Lesbarkeitsregel 4,5:1, und --grau kommt auf dem waermsten Punkt
    dieses Hintergrunds nur auf 4,31. #5E594F erreicht 5,2. */
 .wiewir__text .fuehrung{font-size:17px;line-height:1.62;max-width:46ch;color:#5E594F}
-.wiewir__hinweis{grid-column:1;grid-row:3;align-self:end;margin-bottom:2px}
+/* Oben verankert, nicht unten: an der Unterkante der Textspalte
+   klaffte links unter der Headline eine leere Flaeche ueber die halbe
+   Seitenbreite. */
+.wiewir__hinweis{grid-column:1;grid-row:3;align-self:start}
 /* Schmale Schirme: alles untereinander. Zweispaltig blieben links
    112 Punkte leer und der Text quetschte sich in den Rest. */
 @media (max-width:1000px){

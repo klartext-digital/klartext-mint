@@ -723,34 +723,61 @@ function zeileHalten(el, dauerMs) {
   zeichne(); zeichneSlots(); melden();
 })();
 
-/* ── Die Arbeitsweise-Grafik rastet kurz in der Mitte ein ───────
-   Steht sie genau mittig, bleibt sie fuer 40 Prozent Fensterhoehe
-   stehen, waehrend die Seite weiterlaeuft. Das ist der Moment, in dem
-   man die Kreise ueberfahren kann, ohne dass einem die Grafik unter
-   dem Zeiger wegwandert. Danach loest sie sich von selbst.
+/* ── Die Arbeitsweise-Grafik bremst in der Mitte aus ────────────
+   Kein Pin: der haelt schlagartig an und laesst genauso schlagartig
+   wieder los — beides sieht man als Ruck. Stattdessen bekommt die
+   Grafik beim Durchscrollen einen Gegenversatz, der weich aufgebaut
+   und weich wieder abgebaut wird. Genau in der Mitte hebt er die
+   Scrollbewegung vollstaendig auf: die Grafik steht dort still, ohne
+   dass irgendwo eine Kante in der Bewegung liegt.
 
-   Kein Zwangs-Einrasten (scroll-snap): das reisst den Scroll an sich
-   und laesst sich schwer wieder verlassen. Ein Pin haelt nur fest,
-   was ohnehin gerade in der Mitte steht.
+   Die Rechnung dahinter: die Grafik wandert normal mit -1 Punkt je
+   gescrolltem Punkt. Mit dem Versatz A ueber die Strecke D wird daraus
+   -1 + A*g'(p)/D. Bei der Glaettungskurve g(p) = p*p*(3-2p) ist die
+   groesste Steigung 1,5 (in der Mitte) — mit A = D/1,5 wird der
+   Ausdruck dort exakt null.
 
-   Unter 900 Punkten steht statt der Grafik die Liste — dort waere ein
-   Halt sinnlos. gsap.matchMedia raeumt den Pin beim Verkleinern des
-   Fensters selbst wieder auf. */
+   Gehalten wird nicht die Bildmitte, sondern der Schwerpunkt der drei
+   Kreise. Der liegt bei 395 von 1000 Einheiten der Zeichenflaeche, also
+   10,5 Prozent ueber der Mitte — ohne diese Korrektur sitzen die Kreise
+   sichtbar zu hoch im Fenster, weil der Platz fuer die Beschriftungen
+   unten im Ruhezustand leer ist. */
 (() => {
   const graf = document.querySelector('.wiewir__bild');
-  if (!graf) return;
+  const bild = graf && graf.querySelector('.ag');
+  if (!bild) return;
+  const glatt = (p) => p * p * (3 - 2 * p);
+
   gsap.matchMedia().add(
     '(min-width: 900px) and (prefers-reduced-motion: no-preference)',
     () => {
+      let D = 0, A = 0, hoch = 0;
+      const messen = () => {
+        D = Math.round(innerHeight * 0.85);
+        A = Math.round(D / 1.5);
+        hoch = Math.round(bild.getBoundingClientRect().height * 0.105);
+        /* Der Versatz braucht Platz, sonst rueckt die Grafik in den
+           folgenden Abschnitt hinein. */
+        graf.style.marginBottom = A + 'px';
+      };
+      messen();
+
       const st = ScrollTrigger.create({
         trigger: graf,
-        start: 'center center',
-        end: '+=40%',
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
+        start: () => 'center center+=' + (hoch + D / 6),
+        end: () => '+=' + D,
+        invalidateOnRefresh: true,
+        onRefreshInit: messen,
+        onUpdate: (self) => gsap.set(bild, { y: A * glatt(self.progress) }),
+        onLeave: () => gsap.set(bild, { y: A }),
+        onLeaveBack: () => gsap.set(bild, { y: 0 }),
       });
-      return () => st.kill();
+
+      return () => {
+        st.kill();
+        graf.style.marginBottom = '';
+        gsap.set(bild, { clearProps: 'y' });
+      };
     },
   );
 })();

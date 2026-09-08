@@ -8,7 +8,13 @@
    steht der Bildtakt still — der Schirm wuerde nie verschwinden. */
 (function () {
   const wurzel = document.documentElement;
-  if (!wurzel.classList.contains('laedt')) return;
+  /* Laeuft der Schirm diesmal nicht, muss sein Markup raus: sonst
+     bleibt ein unsichtbarer Block samt Bild im Dokument stehen. */
+  if (!wurzel.classList.contains('laedt')) {
+    const tot = document.getElementById('lader');
+    if (tot && tot.parentNode) tot.parentNode.removeChild(tot);
+    return;
+  }
   const l = document.getElementById('lader');
   if (!l) { wurzel.classList.remove('laedt'); return; }
 
