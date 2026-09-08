@@ -2528,7 +2528,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    beginnt. */
 .wiewir__kopf{display:grid;justify-items:start;max-width:var(--maxw);margin:0 auto}
 .wiewir__kopf h2{font-size:clamp(32px,3.6vw,60px);margin-top:6px}
-.wiewir__kopf .fuehrung{margin-top:16px;max-width:58ch}
+.wiewir__kopf .fuehrung{margin-top:16px;max-width:72ch}
 /* Die Grafik muss ohne Scrollen ganz sichtbar sein. Deshalb haengt
    ihre Breite an der HOEHE des Fensters: 1800 zu 1000 ist ihr
    Verhaeltnis, also passt sie bei 76 vh Hoehe in 76vh x 1.800 Breite.

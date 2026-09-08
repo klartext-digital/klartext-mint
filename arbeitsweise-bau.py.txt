@@ -1,0 +1,165 @@
+# -*- coding: utf-8 -*-
+"""Arbeitsweise-Grafik: drei grosse Kreise, Begriffe beim Ueberfahren.
+
+Ruhezustand: nur die drei Koerper und die Wortmarke, gross. Faehrt man
+ueber einen Kreis, ruecken die Koerper ein Stueck zusammen und die vier
+Begriffe dieses Kreises blenden mit ihren Leitungen ein. So bleibt die
+Flaeche ruhig und traegt trotzdem zwoelf Angaben.
+"""
+import math
+
+B, H = 1800, 1000
+R = 250
+# Die Kreise sitzen bewusst hoch: unter dem unteren Kreis brauchen vier
+# Symbole samt zweizeiliger Beschriftung Platz, und alles muss INNERHALB
+# der viewBox bleiben — was darueber hinausragt, schneidet der Browser ab.
+MITTE = (900, 395)                 # Schwerpunkt der drei Kreise
+KREISE = [
+    ('S', 740, 303, 'gS', '#12110F', 'Strategie',   'Richtung geben.'),
+    ('K', 1060, 303, 'gK', '#12110F', 'Kreativität', 'Ideen zum Leben.'),
+    ('T', 900, 580, 'gT', '#FFFFFF', 'Technologie', 'Skalieren.'),
+]
+SYM = {
+ 'lupe':   'M17 17m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0 M24.5 24.5 32 32',
+ 'kompass':'M20 20m-13 0a13 13 0 1 0 26 0a13 13 0 1 0 -26 0 M25.5 14.5 22.5 22.5 14.5 25.5 17.5 17.5Z',
+ 'fahne':  'M11 33V8 M11 9h17l-4 5.5 4 5.5H11',
+ 'kurve':  'M8 32V9 M8 32h24 M12 27l6-7 5 4 8-11 M31 13h-4.5 M31 13v4.5',
+ 'kamera': 'M7 14.5h6l2.5-3.5h9l2.5 3.5h6v16H7z M20 22.5m-5.5 0a5.5 5.5 0 1 0 11 0a5.5 5.5 0 1 0 -11 0',
+ 'netz':   'M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0 M29 10m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0 M20 30m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0 M15.5 13.5 25 27 M16 11.5h9',
+ 'feder':  'M13 31c0-9 5-17 15-20-1 11-6 17-15 20Z M13 31l6-7',
+ 'megafon':'M9 17v6l14 6V11L9 17Z M9 17H7v6h2 M23 14c3 1 4.5 3 4.5 6s-1.5 5-4.5 6 M13 24.5V31h4v-5',
+ 'fenster':'M7 10h26v20H7z M7 16h26 M11 13h1.5 M15 13h1.5 M19 13h1.5 M14 22h9 M14 26h6',
+ 'chip':   'M13 13h14v14H13z M17.5 17.5h5v5h-5z M16 8v5 M24 8v5 M16 27v5 M24 27v5 M8 16h5 M8 24h5 M27 16h5 M27 24h5',
+ 'balken': 'M8 32h24 M12 32V22 M19 32V14 M26 32V19 M24 10l4-3 4 3',
+ 'server': 'M9 9h22v7H9z M9 20h22v7H9z M13 12.5h.1 M13 23.5h.1 M20 31v-4 M15 31h10',
+}
+LINKS = [('Markenanalyse','Zielgruppe, Markt, Wettbewerb','lupe'),
+         ('Positionierung','Klarer Auftritt mit Haltung','kompass'),
+         ('Strategie','Von der Idee zur Roadmap','fahne'),
+         ('Messbare Ziele','KPIs, Funnels, Wachstum','kurve')]
+RECHTS = [('Content Creation','Foto, Video, Text, Design','kamera'),
+          ('Social Media','Strategie und Umsetzung','netz'),
+          ('Branding und Design','Visuelle Identität mit Charakter','feder'),
+          ('Kampagnen','Kreativ. Zielgerichtet. Effektiv.','megafon')]
+UNTEN = [('Webdesign','Performance und UX','fenster'),
+         ('KI & Automation','Effiziente Prozesse','chip'),
+         ('Tracking','Datenbasiert entscheiden','balken'),
+         ('Umsetzung','Stabil und sicher','server')]
+R_SYM = 34
+
+def symbol(name, cx, cy):
+    s = R_SYM*2*0.56/40.0
+    return ('<g transform="translate(%.1f %.1f) scale(%.4f)" class="ag__strich">'
+            '<path d="%s"/></g>' % (cx-20*s, cy-20*s, s, SYM[name]))
+
+def kreisel(cx, cy, name):
+    return ('<circle class="ag__symfeld" cx="%.0f" cy="%.0f" r="%d"/>'
+            '<circle class="ag__symring" cx="%.0f" cy="%.0f" r="%d"/>%s'
+            % (cx, cy, R_SYM, cx, cy, R_SYM, symbol(name, cx, cy)))
+
+def leitung(ix, iy, k):
+    cx, cy = k[1], k[2]
+    dx, dy = cx-ix, cy-iy; d = math.hypot(dx, dy)
+    ax, ay = ix + dx/d*(R_SYM+8), iy + dy/d*(R_SYM+8)
+    bx, by = cx - dx/d*(R+5),     cy - dy/d*(R+5)
+    mx, my = (ax+bx)/2, (ay+by)/2
+    nx, ny = -(by-ay)/d, (bx-ax)/d
+    bogen = 16 if abs(dy) < 100 else 26
+    # pathLength="1" normiert die Laenge: eine einzige CSS-Regel laesst
+    # damit ALLE Leitungen sauber durchzeichnen, egal wie lang sie sind.
+    return ('<path class="ag__leitung" pathLength="1" d="M%.1f %.1f Q%.1f %.1f %.1f %.1f"/>'
+            '<circle class="ag__punkt" cx="%.1f" cy="%.1f" r="4.5"/>'
+            % (ax,ay, mx+nx*bogen, my+ny*bogen, bx,by, ax,ay))
+
+def richtung(ix, iy, k, weite=14):
+    """Startversatz zum Kreis hin — beim Einblenden wandert es nach aussen."""
+    dx, dy = k[1]-ix, k[2]-iy; d = math.hypot(dx, dy)
+    return dx/d*weite, dy/d*weite
+
+def ast(items, art, k):
+    """Ein Zweig: vier Symbole samt Leitung und Beschriftung."""
+    t = ['<g class="ag__ast" data-fuer="%s">' % k[0]]
+    if art in ('links','rechts'):
+        ys = [k[2]+d for d in (-250, -84, 84, 250)]
+        x  = 380 if art=='links' else 1420
+        for i,(ti,un,ik) in enumerate(items):
+            y = ys[i]
+            vx, vy = richtung(x, y, k)
+            t.append('<g class="ag__glied" style="--i:%d;--vx:%.1fpx;--vy:%.1fpx">' % (i, vx, vy))
+            t.append(leitung(x, y, k)); t.append(kreisel(x, y, ik))
+            if art=='links':
+                t.append('<text class="ag__titel ag__end" x="%d" y="%.0f">%s</text>' % (x-52, y-5, ti))
+                t.append('<text class="ag__bei ag__end" x="%d" y="%.0f">%s</text>' % (x-52, y+23, un))
+                t.append('</g>')
+            else:
+                t.append('<text class="ag__titel" x="%d" y="%.0f">%s</text>' % (x+52, y-5, ti))
+                t.append('<text class="ag__bei" x="%d" y="%.0f">%s</text>' % (x+52, y+23, un))
+                t.append('</g>')
+    else:
+        # Flacher Ellipsenbogen statt Kreisbogen: auf einem Kreisbogen
+        # tauchen die beiden inneren Symbole so tief ab, dass ihre
+        # Beschriftung unten aus der Flaeche faellt. Die Ellipse ist
+        # breiter als hoch und haelt sie oben.
+        a, b = 430, 300
+        for i,(ti,un,ik) in enumerate(items):
+            w = math.radians((170, 132, 48, 10)[i])
+            x, y = k[1]+a*math.cos(w), k[2]+b*math.sin(w)
+            vx, vy = richtung(x, y, k)
+            t.append('<g class="ag__glied" style="--i:%d;--vx:%.1fpx;--vy:%.1fpx">' % (i, vx, vy))
+            t.append(leitung(x, y, k)); t.append(kreisel(x, y, ik))
+            t.append('<text class="ag__titel ag__mitte" x="%.0f" y="%.0f">%s</text>' % (x, y+64, ti))
+            t.append('<text class="ag__bei ag__mitte" x="%.0f" y="%.0f">%s</text>' % (x, y+90, un))
+            t.append('</g>')
+    t.append('</g>')
+    return '\n  '.join(t)
+
+teile = []
+teile.append('''<defs>
+    <radialGradient id="gS" cx="32%" cy="24%" r="86%">
+      <stop offset="0" stop-color="#FFFDF9"/><stop offset=".55" stop-color="#F2ECE1"/>
+      <stop offset="1" stop-color="#D9D0BE"/></radialGradient>
+    <radialGradient id="gK" cx="32%" cy="24%" r="86%">
+      <stop offset="0" stop-color="#FCCE7C"/><stop offset=".52" stop-color="#F5A524"/>
+      <stop offset="1" stop-color="#D8890B"/></radialGradient>
+    <radialGradient id="gT" cx="32%" cy="24%" r="88%">
+      <stop offset="0" stop-color="#5C544A"/><stop offset=".5" stop-color="#241F19"/>
+      <stop offset="1" stop-color="#0C0A08"/></radialGradient>
+  </defs>''')
+teile.append(ast(LINKS, 'links', KREISE[0]))
+teile.append(ast(RECHTS, 'rechts', KREISE[1]))
+teile.append(ast(UNTEN, 'unten', KREISE[2]))
+
+# Der Kern: im Ruhezustand vergroessert, beim Ueberfahren auf 1 zurueck
+teile.append('<g class="ag__kern">')
+for kz,cx,cy,f,_,_,_ in KREISE:
+    deck = {'S': .70, 'K': .76, 'T': .74}[kz]
+    teile.append('<circle class="ag__flaeche" data-fuer="%s" cx="%d" cy="%d" r="%d" '
+                 'fill="url(#%s)" fill-opacity="%.2f" stroke="rgb(255 255 255 / .30)" '
+                 'stroke-width="1.4"/>' % (kz,cx,cy,R,f,deck))
+# Titel gleichmaessig um das Zentrum: jeder auf dem Strahl vom Mittelpunkt
+# durch seine Kreismitte, alle im selben Abstand.
+for kz,cx,cy,_,tf,t,u in KREISE:
+    vx, vy = cx-MITTE[0], cy-MITTE[1]; d = math.hypot(vx,vy)
+    tx, ty = MITTE[0]+vx/d*262, MITTE[1]+vy/d*262
+    teile.append('<text data-fuer="%s" class="ag__gross" x="%.0f" y="%.0f" fill="%s">%s</text>'
+                 % (kz, tx, ty, tf, t))
+    teile.append('<text data-fuer="%s" class="ag__unter" x="%.0f" y="%.0f" fill="%s">%s</text>'
+                 % (kz, tx, ty+38, tf, u))
+mx,my = MITTE
+teile.append('<circle cx="%d" cy="%d" r="104" fill="#F5A524"/>' % (mx,my))
+_lw = 176; _lh = _lw/4.78
+teile.append('<image class="ag__logo" href="marke/wortmarke-einfarbig.svg" x="%.1f" y="%.1f" '
+             'width="%.1f" height="%.1f"/>' % (mx-_lw/2, my-_lh/2, _lw, _lh))
+teile.append('</g>')
+
+# Die Beschreibung steht als aria-label, NICHT als <title>: ein <title>
+# im SVG zeigt der Browser als grauen Tooltip an, der beim Ueberfahren
+# ueber der Grafik klebt und die Begriffe verdeckt.
+_LABEL = ('Strategie gibt die Richtung, Kreativität erweckt Ideen zum Leben, '
+          'Technologie skaliert. In der Mitte KLARTEXT. Zu jedem Bereich '
+          'gehören vier Arbeitsfelder.')
+svg = ('<svg class="ag" viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg" '
+       'role="img" aria-label="%s">\n  ' % (B, H, _LABEL)
+       + '\n  '.join(teile) + '\n</svg>\n')
+open('arbeitsweise.svg','w').write(svg)
+print('SVG gebaut:', len(svg), 'Zeichen · Kreisradius', R)
