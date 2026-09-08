@@ -2907,6 +2907,22 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
   color:rgb(247 247 245 / .55)}
 .pro__fuss i{flex:1;height:1px;background:rgb(247 247 245 / .18)}
+/* Stichworte links unten: was wir machen, in einer Zeile. Die
+   Schraegstriche kommen aus dem Stylesheet, nicht aus dem Text —
+   so bleibt die Liste eine Liste und wird nicht als ein langer
+   Satz vorgelesen. */
+.pro__stich{display:flex;flex-wrap:wrap;align-items:center;gap:0;
+  list-style:none;margin:0;padding:0}
+.pro__stich li{display:inline-flex;align-items:center;
+  color:rgb(247 247 245 / .72)}
+.pro__stich li + li::before{content:"/";margin:0 clamp(10px,1.1vw,18px) 0
+  clamp(9px,1vw,16px);color:var(--violett);opacity:.75;font-weight:700}
+.pro__signatur{white-space:nowrap;color:rgb(247 247 245 / .45)}
+@media (max-width:640px){
+  .pro__fuss{flex-wrap:wrap;gap:12px}
+  .pro__fuss i{order:3;flex-basis:100%}
+  .pro__stich{gap:2px 0}
+}
 
 @media (max-width:1080px){
   .pro__kopf{grid-template-columns:minmax(0,1fr)}
