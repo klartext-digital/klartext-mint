@@ -26,8 +26,8 @@
      weissen Karten — man sah keine einzige Kante. Ein warmer Sandton
      bringt ihn auf 1,26:1: Karten, Menüleiste und Kästen stehen
      wieder als eigene Flächen da. Gedämpfter Text bleibt bei 4,6:1. */
-  --grund:#EAE5DB;        /* die Bühne */
-  --creme-2:#DFD8C9;      /* zurückgenommene Flächen, Pillen */
+  --grund:#F4F3F0;        /* die Bühne */
+  --creme-2:#E9E8E4;      /* zurückgenommene Flächen, Pillen */
   --creme-3:#FFFFFF;      /* Karten — echtes Weiss */
   --tinte:#0E0D0B;        /* warmes Schwarz */
   --tinte-2:#1A1814;      /* dunkle Karten */
@@ -42,8 +42,8 @@
      Inhalt wechselt. Akzent ist jetzt Gelb, die zarte Fläche Mint. */
   --violett:#F5A524;          /* Akzent: Knöpfe, Handschrift, Punkte */
   --violett-hell:#FFC65C;     /* Akzent auf dunklem Grund */
-  --violett-tief:#9A6004;     /* Akzent auf hellem Grund: 4.8:1 auf Creme */
-  --violett-zart:#DFD8C9;     /* zarte Fläche: Pillen, Hinterlegungen */
+  --violett-tief:#8A5504;     /* Akzent auf hellem Grund: 5.1:1 auf der Chip-Flaeche */
+  --violett-zart:#E9E8E4;     /* zarte Fläche: Pillen, Hinterlegungen */
 
   /* Türkis-Skala, gemessen */
   --teal-900:#062B32; --teal-800:#09363F; --teal-700:#0F4C55;
@@ -2524,38 +2524,23 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
     radial-gradient(30% 34% at 88% 20%, rgb(245 165 36 / .14) 0%, transparent 70%),
     /* Heller Teich unter der Grafik: nimmt dem Sandton die Schwere,
        laeuft aber ohne Kante aus. */
-    radial-gradient(66% 62% at 50% 46%, #FCFAF7 0%, rgb(252 250 247 / 0) 74%)}
+    radial-gradient(66% 62% at 50% 46%, #FCFCFB 0%, rgb(252 252 251 / 0) 74%)}
 /* Kopf nach dem Muster der Referenz: die Aussage laeuft gross und fett
-   ueber die ganze Breite, der erklaerende Text steht klein und schmal
-   darunter rechts. Ein Titel in Fliesstextbreite mit einem gleich
-   breiten Absatz darunter liest sich als Textblock — nicht als Kopf. */
-.wiewir__kopf{display:grid;
-  grid-template-columns:1fr minmax(300px,470px);
-  column-gap:clamp(30px,4vw,80px);justify-items:start;
-  max-width:var(--maxw);margin:0 auto}
-.wiewir__kopf .chip{grid-column:1;grid-row:1}
-.wiewir__kopf h2{grid-column:1 / -1;grid-row:2;
-  font-size:clamp(38px,5.2vw,84px);line-height:1.04;letter-spacing:-.035em;
-  margin-top:14px;text-wrap:balance}
-.wiewir__text{grid-column:2;grid-row:3;margin-top:clamp(18px,2vw,30px)}
-/* Kleiner als der uebrige Fliesstext: der Absatz ist hier Beiwerk zur
-   Aussage, nicht die Aussage selbst. */
-/* Etwas dunkler als der uebrige Fliesstext: bei 17px verlangt die
-   Lesbarkeitsregel 4,5:1, und --grau kommt auf dem waermsten Punkt
-   dieses Hintergrunds nur auf 4,31. #5E594F erreicht 5,2. */
-.wiewir__text .fuehrung{font-size:17px;line-height:1.62;max-width:46ch;color:#5E594F}
-/* Oben verankert, nicht unten: an der Unterkante der Textspalte
-   klaffte links unter der Headline eine leere Flaeche ueber die halbe
-   Seitenbreite. */
-.wiewir__hinweis{grid-column:1;grid-row:3;align-self:start}
-/* Schmale Schirme: alles untereinander. Zweispaltig blieben links
-   112 Punkte leer und der Text quetschte sich in den Rest. */
-@media (max-width:1000px){
-  .wiewir__kopf{grid-template-columns:1fr}
-  .wiewir__kopf .chip,.wiewir__kopf h2,.wiewir__text,.wiewir__hinweis{
-    grid-column:1;grid-row:auto}
-  .wiewir__text .fuehrung{max-width:62ch}
-}
+   ueber die ganze Breite, darunter linksbuendig der erklaerende Text.
+   Alles an derselben linken Kante — eine zweite Spalte rechts riss den
+   Text von der Aussage weg, zu der er gehoert. */
+.wiewir__kopf{display:grid;justify-items:start;max-width:var(--maxw);margin:0 auto}
+.wiewir__kopf h2{font-size:clamp(38px,5.2vw,84px);line-height:1.04;
+  letter-spacing:-.035em;margin-top:14px;text-wrap:balance}
+/* Blockfluss: die beiden Absaetze stehen untereinander an derselben
+   linken Kante wie die Ueberschrift. */
+.wiewir__text{margin-top:clamp(18px,2vw,30px);width:100%}
+.wiewir__text .fuehrung + .fuehrung{margin-top:12px}
+/* Breit gesetzt, damit jeder Absatz mit drei Zeilen auskommt statt mit
+   vier oder fuenf. Etwas dunkler als der uebrige Fliesstext, weil 17px
+   die 4,5:1 verlangen und --grau hier nur 4,31 erreicht. */
+.wiewir__text .fuehrung{font-size:17px;line-height:1.62;max-width:76ch;color:#5E594F}
+.wiewir__hinweis{margin-top:clamp(16px,1.6vw,24px)}
 /* Die Grafik muss ohne Scrollen ganz sichtbar sein. Deshalb haengt
    ihre Breite an der HOEHE des Fensters: 1800 zu 1000 ist ihr
    Verhaeltnis, also passt sie bei 76 vh Hoehe in 76vh x 1.800 Breite.
@@ -2646,7 +2631,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   .ag__glied{transform:none}
   .ag__leitung{stroke-dasharray:none;stroke-dashoffset:0}
 }
-.wiewir__zwei{margin-top:12px}
+
 .wiewir__hinweis{margin-top:clamp(18px,2vw,30px);font-size:14px;font-weight:700;
   letter-spacing:.02em;color:var(--grau-2)}
 @media (prefers-reduced-motion:reduce){
