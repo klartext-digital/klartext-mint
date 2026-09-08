@@ -1958,6 +1958,27 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .zeiger__punkt.ist,.zeiger__ring.ist{opacity:1}
 /* Ueber allem, was anklickbar ist, waechst der Ring. */
 .zeiger__ring.zeigt{width:50px;height:50px}
+
+/* Ueber einer Projektkarte tritt eine beschriftete Scheibe an die
+   Stelle von Punkt und Ring. Sie traegt die Aufforderung, die vorher
+   in jeder Karte stand. */
+.zeiger__blase{position:absolute;top:0;left:0;display:grid;place-items:center;
+  width:108px;height:108px;border-radius:50%;
+  background:var(--violett);color:var(--tinte);
+  font-size:13.5px;font-weight:800;letter-spacing:.02em;text-align:center;
+  opacity:0;scale:.4;
+  /* Die Verschiebung setzt das Skript ueber transform — die Groesse
+     laeuft deshalb ueber die eigenstaendige Eigenschaft scale, sonst
+     ueberschreibt eine die andere. */
+  transition:opacity .28s cubic-bezier(.22,1,.36,1),
+             scale .38s cubic-bezier(.22,1,.36,1);
+  will-change:transform}
+.zeiger.aufKarte .zeiger__blase{opacity:1;scale:1}
+.zeiger.aufKarte .zeiger__punkt,
+.zeiger.aufKarte .zeiger__ring{opacity:0}
+@media (prefers-reduced-motion:reduce){
+  .zeiger__blase{transition-duration:.01ms}
+}
 @media (prefers-reduced-motion:reduce){
   .zeiger__ring{transition:opacity .6s}
 }
@@ -2223,7 +2244,40 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Die Kurve ist nachgemessen: die Vorlage benutzt eine Feder, deren
    Verlauf sich mit cubic-bezier(.25,.25,.15,1) ueber 760 ms auf 1,4
    Prozent genau nachbilden laesst. */
-.werke{padding:0}
+/* Die Referenzen stehen auf einer eigenen dunklen Flaeche: die Fotos
+   treten davor hervor, ohne dass eines von ihnen abgedunkelt werden
+   muss. Die Struktur ist gerechnet — zwei weiche Lichtfahnen aus den
+   oberen Ecken und ein feines diagonales Raster. */
+.werke{position:relative;isolation:isolate;overflow:hidden;
+  max-width:min(var(--maxw), calc(100% - var(--pad) * 2));
+  margin:var(--sec) auto 0;
+  border-radius:var(--r-seite);background:#0B0A09;color:var(--creme);
+  padding:clamp(30px,3.2vw,58px) clamp(22px,3vw,54px) clamp(30px,3vw,52px)}
+.werke::before,.werke::after{content:"";position:absolute;z-index:-1;
+  pointer-events:none}
+.werke::before{inset:-28% -12% auto -28%;height:150%;
+  background:
+    radial-gradient(50% 42% at 6% 22%, rgb(245 165 36 / .48) 0%, transparent 66%),
+    radial-gradient(32% 28% at 0% 62%, rgb(216 137 11 / .38) 0%, transparent 68%),
+    conic-gradient(from 186deg at 2% 36%, transparent 0deg,
+      rgb(255 198 92 / .24) 24deg, transparent 58deg);
+  filter:blur(3px)}
+/* Feines Schraegraster als Struktur — bei .04 Deckkraft sieht man es
+   nur als Textur, nicht als Muster. */
+.werke::after{inset:0;
+  background:
+    radial-gradient(42% 36% at 98% 10%, rgb(245 165 36 / .34) 0%, transparent 68%),
+    repeating-linear-gradient(58deg, rgb(247 247 245 / .04) 0 1px,
+      transparent 1px 9px)}
+
+/* Auf der dunklen Flaeche muss der Kopf hell laufen. */
+.werke .chip{background:rgb(247 247 245 / .1);color:var(--violett-hell)}
+.werke h2{color:var(--creme)}
+.werke__lead{color:rgb(247 247 245 / .72)}
+.werke .knopf--rand{border-color:rgb(247 247 245 / .28);color:var(--creme);
+  --knopf-fuell:var(--creme)}
+.werke .knopf--rand:hover,.werke .knopf--rand:focus-visible{
+  border-color:var(--creme);color:var(--tinte)}
 /* Drei nebeneinander statt untereinander: sechs Projekte auf einen
    Blick, wie in Dusans Vorlage — aber hell und mit dem Text UNTER dem
    Bild. Damit muss kein Bild abgedunkelt werden, um Schrift darauf
@@ -2262,18 +2316,6 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   background:var(--creme-3);border-radius:var(--r-mittel);
   padding:clamp(16px,1.4vw,22px)}
 .werk__nr{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--grau-2)}
-/* Der Verweis sitzt unten, damit alle sechs Karten auf gleicher Hoehe
-   enden — auch wenn ein Projektname zwei Zeilen braucht. */
-.werk__mehr{display:inline-flex;align-items:center;gap:11px;margin-top:auto;
-  font-size:14.5px;font-weight:700;color:var(--tinte)}
-.werk__mehr i{display:grid;place-items:center;width:32px;height:32px;flex:none;
-  border-radius:var(--r-pille);border:1.5px solid var(--violett);
-  color:var(--violett-tief);font-style:normal;font-size:15px;
-  transition:background-color var(--t-knopf) var(--kurve-rein),
-    color var(--t-knopf) var(--kurve-rein),
-    transform var(--t-knopf) var(--kurve-rein)}
-.werk:hover .werk__mehr i,.werk:focus-visible .werk__mehr i{
-  background:var(--violett);color:var(--tinte);transform:translateX(3px)}
 .werk{grid-template-rows:auto 1fr}
 .werk__name{font-size:clamp(18px,1.35vw,22px);font-weight:800;letter-spacing:-.025em;
   line-height:1.15}
@@ -2425,10 +2467,23 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 
    Weiss auf Sand, deshalb muessen die Karten DARIN den Ton wechseln:
    weisse Karten auf weissem Block waeren wieder derselbe Fehler. */
-.werke,.blog{--einzug:max(var(--pad),calc((100% - var(--maxw)) / 2));
+.blog{--einzug:max(var(--pad),calc((100% - var(--maxw)) / 2));
   margin-top:var(--sec);background:var(--creme-3);border-radius:var(--r-seite);
   padding:clamp(40px,4.4vw,80px) var(--einzug) clamp(44px,4vw,72px)}
-.werke .werk__leiste{background:var(--grund)}
+/* Die Referenzen bekommen dieselben Masse, aber die dunkle Flaeche.
+   Diese Regel steht bewusst NACH der hellen: sie stand vorher mit
+   .blog zusammen und hat die dunkle Fassung ueberschrieben. */
+.werke{--einzug:max(var(--pad),calc((100% - var(--maxw)) / 2));
+  margin-top:var(--sec);background:#0B0A09;border-radius:var(--r-seite);
+  padding:clamp(40px,4.4vw,80px) var(--einzug) clamp(44px,4vw,72px)}
+/* Die Kartenfuesse tragen die dunkle Fassung mit — heller Text auf
+   heller Kachel waere unsichtbar. */
+.werke .werk__leiste{background:rgb(247 247 245 / .06);
+  box-shadow:inset 0 0 0 1px rgb(247 247 245 / .09)}
+.werke .werk__name{color:var(--creme)}
+.werke .werk__nr{color:rgb(247 247 245 / .5)}
+.werke .pillen span{border-color:rgb(247 247 245 / .22);color:rgb(247 247 245 / .78)}
+.werke .werk:hover .werk__leiste{background:rgb(247 247 245 / .1)}
 .blog .lese{background:var(--grund)}
 .blog .lese:hover{background:var(--creme-2)}
 
