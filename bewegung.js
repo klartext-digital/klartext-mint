@@ -267,8 +267,12 @@ function zeileHalten(el, dauerMs) {
     /* Die Flaeche beginnt UNTER dem Ausloeser und endet buendig mit der
        Leiste. So faehrt der Zeiger von "Leistungen" geradewegs nach
        unten in die Liste, statt erst nach links zu wandern. */
-    const innen = parseFloat(getComputedStyle(panel).getPropertyValue('--ndd-innen')) || 30;
-    const links = Math.max(12, a.left - innen);
+    /* Rechts buendig zur Leiste, nach links so weit wie noetig: die drei
+       Spalten brauchen rund 1120 Punkte. Der Ausloeser liegt dabei
+       weiterhin ueber der Listenspalte — der Zeiger faehrt also
+       geradewegs nach unten hinein, statt erst zur Seite zu wandern. */
+    const breite = Math.min(1120, p.width);
+    const links = Math.max(p.left, p.right - breite);
     panel.style.setProperty('--ndd-links', Math.round(links) + 'px');
     panel.style.setProperty('--ndd-breite', Math.round(p.right - links) + 'px');
   };

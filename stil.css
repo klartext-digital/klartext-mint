@@ -401,10 +401,11 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      "Performance Marketing" brach sonst auf zwei Zeilen um, sobald
      die Spalte in Anteilen gerechnet wurde. Den Rest nimmt die
      Vorschau. */
-  /* Nur noch zwei Spalten: rechtsbuendig zur Leiste bleiben rund 860
-     Punkte, fuer drei Spalten zu wenig. Vorschau und Karte stehen
-     deshalb untereinander in einer gemeinsamen rechten Spalte. */
-  grid-template-columns:minmax(0,auto) minmax(300px,1fr);gap:26px;
+  /* Drei Spalten: Liste, Vorschau, Kontaktkarte. Die Flaeche waechst
+     dafuer nach LINKS — rechts bleibt sie buendig zur Leiste. Der
+     Ausloeser liegt dabei weiterhin ueber der Listenspalte, der Zeiger
+     faehrt also geradewegs nach unten hinein. */
+  grid-template-columns:minmax(0,auto) minmax(280px,1fr) 300px;gap:26px;
   background:var(--creme-3);color:var(--tinte);border-radius:var(--r-gross);
   padding:30px;box-shadow:0 30px 80px rgb(14 13 11 / .2)}
 
@@ -2598,8 +2599,3 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 @media (max-width:899px){ .wiewir__bild{display:none} }
 @media (min-width:900px){ .wiewir__liste{display:none} }
 
-/* Rechte Spalte des Aufklappers: Vorschau oben, Karte darunter. */
-.ndd__rechts{display:grid;gap:18px;align-content:start;min-width:0}
-.ndd__rechts .ndd__karte{padding:20px 22px}
-.ndd__rechts .ndd__karte .brush{font-size:19px}
-.ndd__rechts .ndd__karte h4,.ndd__rechts .ndd__karte p{max-width:52ch}
