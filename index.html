@@ -356,11 +356,20 @@
         <path class="ag__leitung" d="M659.0 607.5 Q671.3 601.2 674.3 587.7"/><circle class="ag__punkt" cx="659.0" cy="607.5" r="4"/>
         <path class="ag__leitung" d="M868.3 608.1 Q864.0 592.1 849.1 584.9"/><circle class="ag__punkt" cx="868.3" cy="608.1" r="4"/>
         <path class="ag__leitung" d="M1107.3 620.2 Q1008.5 550.6 889.4 530.4"/><circle class="ag__punkt" cx="1107.3" cy="620.2" r="4"/>
-        <g style="mix-blend-mode:multiply">
-        <circle cx="650" cy="286" r="136" fill="#F4EFE6"/>
-        <circle cx="870" cy="286" r="136" fill="#F5A524"/>
-        <circle cx="760" cy="477" r="136" fill="#17140F"/>
-        </g>
+        <defs>
+          <radialGradient id="gS" cx="32%" cy="24%" r="86%">
+            <stop offset="0" stop-color="#FFFDF9"/><stop offset=".55" stop-color="#F2ECE1"/>
+            <stop offset="1" stop-color="#D9D0BE"/></radialGradient>
+          <radialGradient id="gK" cx="32%" cy="24%" r="86%">
+            <stop offset="0" stop-color="#FCCE7C"/><stop offset=".52" stop-color="#F5A524"/>
+            <stop offset="1" stop-color="#D8890B"/></radialGradient>
+          <radialGradient id="gT" cx="32%" cy="24%" r="88%">
+            <stop offset="0" stop-color="#5C544A"/><stop offset=".5" stop-color="#241F19"/>
+            <stop offset="1" stop-color="#0C0A08"/></radialGradient>
+        </defs>
+        <circle cx="650" cy="286" r="136" fill="url(#gS)" fill-opacity="0.70" stroke="rgb(255 255 255 / .30)" stroke-width="1.2"/>
+        <circle cx="870" cy="286" r="136" fill="url(#gK)" fill-opacity="0.76" stroke="rgb(255 255 255 / .30)" stroke-width="1.2"/>
+        <circle cx="760" cy="477" r="136" fill="url(#gT)" fill-opacity="0.74" stroke="rgb(255 255 255 / .30)" stroke-width="1.2"/>
         <text class="ag__gross" x="622" y="258" fill="#12110F">Strategie</text>
         <text class="ag__unter" x="622" y="288" fill="#12110F">Richtung geben.</text>
         <text class="ag__gross" x="898" y="258" fill="#12110F">Kreativität</text>
