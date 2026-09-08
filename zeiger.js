@@ -16,8 +16,15 @@
   const ring  = document.createElement('div');
   punkt.className = 'zeiger__punkt';
   ring.className  = 'zeiger__ring';
+  /* Ueber einer Projektkarte wird aus dem Zeiger eine beschriftete
+     Scheibe. Sie ersetzt den Verweis, der frueher in jeder Karte
+     stand — die Aufforderung ist dort, wo der Blick ohnehin ist. */
+  const blase = document.createElement('div');
+  blase.className = 'zeiger__blase';
+  blase.textContent = 'Projekt ansehen';
   wurzel.appendChild(punkt);
   wurzel.appendChild(ring);
+  wurzel.appendChild(blase);
   document.body.appendChild(wurzel);
 
   const sanft = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -229,6 +236,8 @@
     const t = e.target;
     if (t && t.closest && t.closest(KLICKBAR)) ring.classList.add('zeigt');
     else ring.classList.remove('zeigt');
+    const karte = t && t.closest && t.closest('.werk');
+    wurzel.classList.toggle('aufKarte', !!karte);
     nachsehen(t, e.clientX, e.clientY);
   }, { passive: true });
 
@@ -308,6 +317,7 @@
     r.y = misch(r.y, ziel.y, kr);
     setze(punkt, p.x, p.y);
     setze(ring, r.x, r.y);
+    setze(blase, r.x, r.y);
 
     if (anzeige) {
       /* Getrennt zaehlen: waehrend die Maus laeuft und wenn sie steht.
