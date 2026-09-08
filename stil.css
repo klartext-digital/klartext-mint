@@ -787,7 +787,9 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .preise{margin:var(--sec) auto 0;max-width:min(var(--maxw),calc(100% - var(--pad) * 2));
   background:var(--violett);
   color:var(--creme);border-radius:var(--r-seite);
-  padding:clamp(20px,1.8vw,32px) clamp(26px,4vw,72px) clamp(28px,2.6vw,46px)}
+  padding:clamp(20px,1.8vw,32px) clamp(26px,4vw,72px)
+    calc(clamp(28px,2.6vw,46px) + var(--voll-ueber));
+  --voll-ueber:clamp(14px,1.4vw,26px)}
 /* Die Sektion baute 1313 px hoch — auf keinem Bildschirm zu ueberblicken.
    Gekuerzt an vier Stellen: weniger Polsterung, kleinere Ueberschrift,
    BREITERE Karten (sie nutzten nur 1080 von 1520 px, dadurch brach fast
@@ -807,8 +809,8 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    Ton steht klar, ohne lauter zu sein als der Preis selbst. */
 .schalter em{font-style:normal;font-size:13px;font-weight:700;color:var(--violett-zart)}
 .schalter button.ist em{color:var(--violett)}
-.preise__raster{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
-  max-width:1240px;margin:clamp(12px,1.2vw,18px) auto 0}
+.preise__raster{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,2vw,34px);
+  max-width:1240px;margin:calc(clamp(12px,1.2vw,18px) + var(--voll-ueber)) auto 0}
 
 /* ── Projektoption: fuer Firmen ohne Abo ────────────────────────
    Bewusst breiter und flacher als die beiden Abo-Karten, damit sie
@@ -860,13 +862,16 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 /* Etwas flacher als der Standard-Grossknopf — in der Karte zaehlt
    jeder Punkt Hoehe. */
 .paket .knopf.gross{padding-top:15px;padding-bottom:15px;font-size:16.5px}
-/* Die mittlere Karte steht vorn: etwas groesser, mit Schatten und
-   ueber den Nachbarn. Ohne das lesen sich drei gleich grosse Kacheln
-   als gleichwertige Auswahl — die Empfehlung geht unter. */
-.paket--voll{background:var(--creme);color:var(--tinte);
-  transform:scale(1.04);z-index:2;
-  box-shadow:0 26px 60px rgb(14 13 11 / .3)}
-.paket--voll:hover,.paket--voll:focus-within{transform:scale(1.062)}
+/* Die mittlere Karte steht vorn — aber wirklich groesser, nicht
+   skaliert: eine breitere Spalte, mehr Innenraum und oben wie unten
+   ein Stueck ueber die Nachbarn hinaus. Eine Skalierung haette
+   dieselbe Karte nur vergroessert dargestellt, samt Schrift; so
+   bekommt sie tatsaechlich mehr Raum. */
+.paket--voll{background:var(--creme);color:var(--tinte);z-index:2;
+  margin:calc(var(--voll-ueber) * -1) 0;
+  padding:clamp(24px,2vw,32px);
+  box-shadow:0 30px 70px rgb(14 13 11 / .32)}
+.paket--voll:hover,.paket--voll:focus-within{transform:translateY(-4px)}
 /* Der Hinweis liest sich als handgeschriebener Aufkleber —
    auf 15 px war er ein Kritzel. */
 .paket__tipp{position:absolute;right:34px;top:30px;color:var(--violett);
@@ -2301,7 +2306,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
      Hoehe      steht oben an und laeuft NICHT auf Paketlaenge mit
      Ebene      liegt mit Schatten ueber der Flaeche statt darin */
 @media (min-width:1100px){
-  .preise__raster{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,.84fr);
+  .preise__raster{grid-template-columns:minmax(0,1fr) minmax(0,1.16fr) minmax(0,.86fr);
     max-width:none;align-items:stretch}
   .preise__raster .erst{align-self:start}
 }
