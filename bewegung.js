@@ -559,6 +559,10 @@ function zeileHalten(el, dauerMs) {
     document.body.classList.toggle('langtakt', takt === 'lang');
   };
   knoepfe.forEach((k) => k.addEventListener('click', () => setze(k.dataset.takt)));
+  /* Anfangszustand aus dem Markup uebernehmen: voreingestellt ist die
+     laengere Bindung, weil dort der niedrigere Preis steht. */
+  const start = knoepfe.find((k) => k.classList.contains('ist'));
+  if (start) setze(start.dataset.takt);
 })();
 
 /* ── FAQ-Akkordeon mit Höhen-Animation ──────────────────────── */
@@ -780,6 +784,21 @@ function zeileHalten(el, dauerMs) {
       };
     },
   );
+})();
+
+/* ── Zurueck nach oben ──────────────────────────────────────────
+   Faehrt ueber Lenis, damit die Rueckreise dieselbe Bewegung hat wie
+   jedes andere Scrollen der Seite. Sichtbar ab anderthalb
+   Fensterhoehen — davor waere der Weg nach oben kuerzer als der Griff
+   zum Knopf. */
+(() => {
+  const knopf = document.getElementById('hoch');
+  if (!knopf) return;
+  const pruefe = () => knopf.classList.toggle('ist', scrollY > innerHeight * 1.5);
+  pruefe();
+  lenis.on('scroll', pruefe);
+  addEventListener('resize', pruefe);
+  knopf.addEventListener('click', () => lenis.scrollTo(0, { duration: 1.1 }));
 })();
 
 addEventListener('load', () => ScrollTrigger.refresh());

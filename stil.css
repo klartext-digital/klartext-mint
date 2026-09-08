@@ -787,19 +787,19 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .preise{margin:var(--sec) auto 0;max-width:min(var(--maxw),calc(100% - var(--pad) * 2));
   background:var(--violett);
   color:var(--creme);border-radius:var(--r-seite);
-  padding:clamp(28px,2.4vw,44px) clamp(22px,2.4vw,44px)}
+  padding:clamp(20px,1.8vw,32px) clamp(22px,2.4vw,44px) clamp(24px,2.2vw,38px)}
 /* Die Sektion baute 1313 px hoch — auf keinem Bildschirm zu ueberblicken.
    Gekuerzt an vier Stellen: weniger Polsterung, kleinere Ueberschrift,
    BREITERE Karten (sie nutzten nur 1080 von 1520 px, dadurch brach fast
    jede Listenzeile um) und ein kleinerer Preis. */
-.preise__kopf h2{font-size:clamp(28px,2.8vw,46px)}
-.preise__kopf .chip{margin-bottom:14px}
+.preise__kopf h2{font-size:clamp(26px,2.2vw,38px)}
+.preise__kopf .chip{margin-bottom:8px}
 .preise__kopf{text-align:center;display:grid;justify-items:center}
-.preise__lead{max-width:52ch;margin-top:10px;font-size:clamp(15px,1.05vw,18px);
-  line-height:1.55;color:rgb(255 255 255 / .8)}
-.schalter{display:flex;margin-top:22px;border:2px solid var(--linie-hell);
-  border-radius:var(--r-pille);padding:5px;gap:4px}
-.schalter button{border-radius:var(--r-pille);padding:11px 26px;font-size:16px;
+.preise__lead{max-width:66ch;margin-top:7px;font-size:clamp(14px,.95vw,16.5px);
+  line-height:1.5;color:rgb(255 255 255 / .8)}
+.schalter{display:flex;margin-top:14px;border:2px solid var(--linie-hell);
+  border-radius:var(--r-pille);padding:4px;gap:4px}
+.schalter button{border-radius:var(--r-pille);padding:9px 22px;font-size:15px;
   font-weight:700;color:rgb(247 247 245 / .62);display:flex;align-items:center;gap:9px;
   transition:background-color var(--t-flaeche) var(--kurve),color var(--t-farbe) var(--kurve)}
 .schalter button.ist{background:var(--creme);color:var(--tinte)}
@@ -808,7 +808,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .schalter em{font-style:normal;font-size:13px;font-weight:700;color:var(--violett-zart)}
 .schalter button.ist em{color:var(--violett)}
 .preise__raster{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
-  max-width:1240px;margin:clamp(18px,1.8vw,28px) auto 0}
+  max-width:1240px;margin:clamp(12px,1.2vw,18px) auto 0}
 
 /* ── Projektoption: fuer Firmen ohne Abo ────────────────────────
    Bewusst breiter und flacher als die beiden Abo-Karten, damit sie
@@ -846,7 +846,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    oben liest sich als Verschieben, das Wachsen als Naeherkommen.
    Tempo wie bei den Referenzkacheln und den FAQ-Reihen. */
 .paket{position:relative;background:var(--tinte-2);border-radius:var(--r-gross);
-  padding:clamp(22px,1.9vw,28px);display:flex;flex-direction:column;gap:5px;
+  padding:clamp(18px,1.5vw,23px);display:flex;flex-direction:column;gap:3px;
   transition:transform var(--t-knopf) var(--kurve-rein),
              box-shadow var(--t-knopf) var(--kurve-rein)}
 .paket:hover,.paket:focus-within{transform:scale(1.022);
@@ -854,20 +854,29 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 /* Der Knopf sitzt unten — sonst haengt er im kuerzeren Paket mitten
    in der Karte, seit die Listen unterschiedlich lang sind (4 vs 8). */
 .paket > .knopf{margin-top:auto}
-.paket--voll{background:var(--creme);color:var(--tinte)}
+/* Etwas flacher als der Standard-Grossknopf — in der Karte zaehlt
+   jeder Punkt Hoehe. */
+.paket .knopf.gross{padding-top:15px;padding-bottom:15px;font-size:16.5px}
+/* Die mittlere Karte steht vorn: etwas groesser, mit Schatten und
+   ueber den Nachbarn. Ohne das lesen sich drei gleich grosse Kacheln
+   als gleichwertige Auswahl — die Empfehlung geht unter. */
+.paket--voll{background:var(--creme);color:var(--tinte);
+  transform:scale(1.04);z-index:2;
+  box-shadow:0 26px 60px rgb(14 13 11 / .3)}
+.paket--voll:hover,.paket--voll:focus-within{transform:scale(1.062)}
 /* Der Hinweis liest sich als handgeschriebener Aufkleber —
    auf 15 px war er ein Kritzel. */
 .paket__tipp{position:absolute;right:34px;top:30px;color:var(--violett);
   font-size:19px}
-.paket h3{font-size:clamp(26px,2vw,34px)}
-.paket__unter{color:rgb(247 247 245 / .62);font-size:17px}
+.paket h3{font-size:clamp(22px,1.6vw,28px)}
+.paket__unter{color:rgb(247 247 245 / .62);font-size:15px;line-height:1.4}
 .paket--voll .paket__unter{color:var(--grau)}
 /* Nicht an der Schriftlinie ausrichten, sondern an der Unterkante:
    die Schriftlinie der Preiszeile wandert waehrend des Wechsels, weil
    die alte Zahl schrumpft — und die ganze Zeile wanderte mit (gemessen
    3,2 px). An der Unterkante haengt die Hoehe nur noch an den Kaesten,
    und die stehen fest. */
-.paket__preis{display:flex;align-items:flex-end;gap:8px;margin:12px 0 2px;
+.paket__preis{display:flex;align-items:flex-end;gap:8px;margin:8px 0 0;
   font-weight:800;letter-spacing:-.045em}
 .paket__preis > i{line-height:1;padding-bottom:.09em}
 .paket__preis i{font-style:normal;font-size:26px;color:var(--violett-hell)}
@@ -899,10 +908,10 @@ body.langtakt .preis__alt::after{transform:scaleX(1) rotate(-2.5deg)}
 body.langtakt .preis__neu{font-size:1em;opacity:1}
 .paket__preis .brush{font-size:16px;color:var(--grau-2);align-self:flex-start;
   margin-top:10px}
-.haken{display:grid;gap:7px;margin:12px 0 16px;padding-top:12px;
+.haken{display:grid;gap:4px;margin:9px 0 12px;padding-top:9px;
   border-top:1px solid var(--linie-hell)}
 .paket--voll .haken{border-top-color:var(--linie)}
-.haken li{position:relative;padding-left:27px;font-size:15.5px;line-height:1.45;
+.haken li{position:relative;padding-left:25px;font-size:14.5px;line-height:1.36;
   color:rgb(247 247 245 / .74)}
 .paket--voll .haken li{color:var(--grau)}
 .haken li::before{content:"";position:absolute;left:3px;top:7px;width:12px;height:7px;
@@ -1015,6 +1024,15 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   padding:clamp(6px,.9vw,14px) clamp(8px,1vw,18px) 0}
 .ruf__wort .brush{font-size:clamp(19px,1.6vw,28px);margin-bottom:.1em}
 .ruf__wort h2{font-size:clamp(24px,2.1vw,36px);line-height:1.05;margin:0}
+/* Der Abschnitt soll ohne Scrollen zu ueberblicken sein: Titel,
+   Kontaktwege, Kalender und Formular zusammen unter eine
+   Fensterhoehe. Gekuerzt wird an der Kopfzeile, nicht am Kalender. */
+.ruf__kopfzeile h2{font-size:clamp(28px,2.7vw,46px);line-height:1.03}
+.ruf__lead{font-size:clamp(15px,1.05vw,17px);line-height:1.5;
+  max-width:92ch;margin-top:7px}
+.ruf__kopfzeile .chip{margin-bottom:6px}
+.ruf__wege{margin-top:11px}
+.ruf__weg{padding:11px 20px;font-size:16px}
 .ruf__text{font-size:15px;line-height:1.45;margin-top:5px;
   color:rgb(255 255 255 / .78);max-width:64ch}
 .ruf__wege{display:flex;gap:10px;flex-wrap:wrap}
@@ -1059,12 +1077,12 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .fm__zeile{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .feld{display:grid;gap:4px}
 .feld--voll{min-height:0;grid-template-rows:auto minmax(0,1fr)}
-.feld--voll textarea{min-height:clamp(72px,5vw,96px);height:100%}
+.feld--voll textarea{min-height:clamp(58px,3.8vw,78px);height:100%}
 .feld > span,.feld__titel{font-size:12px;font-weight:700;letter-spacing:.03em;
   text-transform:uppercase;color:var(--grau)}
-.feld input,.feld textarea{width:100%;font:inherit;font-size:15.5px;color:var(--tinte);
+.feld input,.feld textarea{width:100%;font:inherit;font-size:15px;color:var(--tinte);
   background:var(--creme);border:2px solid transparent;border-radius:12px;
-  padding:11px 14px;resize:none;
+  padding:10px 13px;resize:none;
   transition:border-color var(--t-knopf) var(--kurve-rein),
     background-color var(--t-knopf) var(--kurve-rein)}
 .feld input::placeholder,.feld textarea::placeholder{color:var(--grau-2)}
@@ -1098,8 +1116,8 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    eine Flaeche faehrt aus der Mitte auf, die Zahl waechst weg und
    eine zweite rollt herein — gleiche Dauer, gleiche Kurve. */
 .kal__tag{position:relative;isolation:isolate;
-  height:clamp(40px,2.9vw,50px);display:inline-grid;place-items:center;
-  border-radius:14px;font-size:20px;font-weight:700;color:var(--tinte);
+  height:clamp(34px,2.4vw,42px);display:inline-grid;place-items:center;
+  border-radius:14px;font-size:17px;font-weight:700;color:var(--tinte);
   letter-spacing:-.02em}
 .kal__bg{position:absolute;inset:0;z-index:-1;border-radius:14px;
   background:var(--violett);transform:scale(.25);opacity:0;
@@ -1123,14 +1141,14 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .kal__tag.ist .kal__t{opacity:0}
 .kal__tag.ist .kal__t--neu{opacity:1;transform:none}
 .kal__tag.heute:not(.ist){box-shadow:inset 0 0 0 2px var(--violett-zart)}
-.kal__leer{height:clamp(40px,2.9vw,50px)}
+.kal__leer{height:clamp(34px,2.4vw,42px)}
 .kal__slots{background:var(--creme-3);border-radius:var(--r-gross);
   padding:clamp(13px,1.15vw,17px)}
 .slots button:disabled{opacity:.42;box-shadow:inset 0 0 0 1.5px var(--linie)}
 .slots button:disabled:hover{transform:none;box-shadow:inset 0 0 0 1.5px var(--linie)}
 .slots{display:grid;gap:6px;margin-top:7px;
   grid-template-columns:repeat(7,minmax(0,1fr))}
-.slots button{border-radius:var(--r-pille);padding:10px 6px;font-size:14px;
+.slots button{border-radius:var(--r-pille);padding:8px 6px;font-size:13.5px;
   font-weight:700;background:var(--creme-3);color:var(--tinte);
   box-shadow:inset 0 0 0 1.5px var(--linie);
   transition:background-color var(--t-knopf) var(--kurve-rein),
@@ -1143,8 +1161,16 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 
 /* Die Abschlusszeile sitzt jetzt links unter dem Formular, neben
    der Uhrzeit — sonst stuende dort eine leere violette Flaeche. */
+/* Feste Zeile: der Knopf sitzt rechts und bleibt dort. Vorher durfte
+   die Zeile umbrechen — sobald aus "Noch kein Termin gewaehlt" ein
+   laengerer Text wurde, rutschte der Knopf nach unten und die ganze
+   Karte wuchs. Die linke Spalte hat darum eine feste Mindesthoehe und
+   darf schrumpfen, der Knopf nicht. */
 .fm__fuss{display:flex;align-items:center;justify-content:space-between;
-  gap:18px;flex-wrap:wrap;color:#fff;padding:4px clamp(6px,.8vw,14px) 0}
+  gap:18px;flex-wrap:nowrap;color:#fff;padding:4px clamp(6px,.8vw,14px) 0;
+  min-height:76px}
+.fm__fuss > div{flex:1 1 auto;min-width:0;min-height:52px}
+.fm__fuss > .knopf{flex:0 0 auto}
 /* Heller Knopf auf dunkler Karte: beim Hover fuellt er in der
    Akzentfarbe statt in Schwarz — schwarz auf dunklem Grund war ein
    Loch. Die Schrift bleibt dabei dunkel (9,5:1 auf dem Akzent). */
@@ -1153,6 +1179,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .fm__fuss .knopf--akzent:hover,.fm__fuss .knopf--akzent:focus-visible{
   color:var(--tinte)}
 .fm__gewaehlt{font-size:17px;font-weight:700;color:rgb(255 255 255 / .6);
+  line-height:1.3;min-height:1.3em;
   transition:color var(--t-farbe) var(--kurve)}
 .fm__gewaehlt.ist{color:#fff}
 .fm__hinweis{font-size:13px;line-height:1.5;color:rgb(255 255 255 / .55);
@@ -1228,6 +1255,22 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .fuss__recht nav{display:flex;gap:22px}
 .fuss__recht a{transition:color var(--t-farbe) var(--kurve)}
 .fuss__recht a:hover{color:var(--tinte)}
+
+/* Zurueck nach oben. Erscheint erst, wenn genug Seite hinter einem
+   liegt, damit er nicht die ganze Zeit im Bild klebt. */
+.hoch{position:fixed;right:18px;bottom:64px;z-index:60;
+  width:48px;height:48px;display:grid;place-items:center;
+  border-radius:var(--r-pille);background:var(--tinte);color:var(--creme);
+  box-shadow:0 12px 30px rgb(14 13 11 / .28);
+  opacity:0;visibility:hidden;transform:translateY(10px) scale(.9);
+  transition:opacity var(--t-knopf) var(--kurve-rein),
+    transform var(--t-knopf) var(--kurve-rein),
+    background-color var(--t-knopf) var(--kurve-rein),
+    visibility 0s linear var(--t-knopf)}
+.hoch.ist{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.hoch:hover,.hoch:focus-visible{background:var(--violett);color:var(--tinte);
+  transform:translateY(-3px)}
+@media (prefers-reduced-motion:reduce){ .hoch{transition-duration:.01ms} }
 
 .demo{position:fixed;right:14px;bottom:14px;z-index:50;font-size:11px;
   letter-spacing:.05em;text-transform:uppercase;color:var(--grau);
@@ -2265,15 +2308,15 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 
 /* ── Kopf: dunkel, mit der Person als Hauptsache ── */
 .erst__haupt{background:var(--tinte);color:var(--creme);
-  padding:clamp(24px,2vw,30px)}
+  padding:clamp(18px,1.5vw,23px)}
 .erst__marke{display:inline-block;font-size:11.5px;font-weight:800;
   letter-spacing:.16em;text-transform:uppercase;color:var(--violett);
-  margin-bottom:12px}
-.erst__titel{font-size:clamp(21px,1.55vw,26px);line-height:1.14;letter-spacing:-.03em}
-.erst__unter{color:rgb(247 247 245 / .62);font-size:15.5px;margin-top:4px}
-.erst__person{display:flex;align-items:center;gap:13px;flex-wrap:wrap;
-  margin-top:20px;padding-top:18px;border-top:1px solid var(--linie-hell)}
-.erst__person img{width:48px;height:48px;border-radius:var(--r-pille);
+  margin-bottom:7px}
+.erst__titel{font-size:clamp(19px,1.35vw,23px);line-height:1.14;letter-spacing:-.03em}
+.erst__unter{color:rgb(247 247 245 / .62);font-size:14.5px;margin-top:3px}
+.erst__person{display:flex;align-items:center;gap:11px;flex-wrap:wrap;
+  margin-top:13px;padding-top:12px;border-top:1px solid var(--linie-hell)}
+.erst__person img{width:42px;height:42px;border-radius:var(--r-pille);
   object-fit:cover;object-position:50% 14%;flex:0 0 auto}
 .erst__wer{display:grid;line-height:1.25;margin-right:auto}
 .erst__wer b{font-size:16.5px;font-weight:800}
@@ -2285,11 +2328,11 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   background:#5BC27F;flex:0 0 auto}
 
 /* ── Fuss: hell, Stichpunkte bewusst NICHT im Paket-Haken ── */
-.erst__fuss{display:flex;flex-direction:column;gap:16px;
-  padding:clamp(22px,1.9vw,28px)}
-.erst__punkte{display:grid;gap:11px;list-style:none}
-.erst__punkte li{position:relative;padding-left:20px;font-size:15px;
-  line-height:1.45;color:var(--grau)}
+.erst__fuss{display:flex;flex-direction:column;gap:11px;
+  padding:clamp(18px,1.5vw,23px)}
+.erst__punkte{display:grid;gap:7px;list-style:none}
+.erst__punkte li{position:relative;padding-left:19px;font-size:14.5px;
+  line-height:1.38;color:var(--grau)}
 .erst__punkte li::before{content:"";position:absolute;left:0;top:8px;
   width:7px;height:7px;border-radius:var(--r-pille);background:var(--violett)}
 .erst__mail{display:flex;align-items:center;gap:13px;text-decoration:none;
@@ -2349,13 +2392,15 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Grund, ihn auszufüllen. Der Kopf steht deshalb im dunklen Band ÜBER
    der gelben Karte — erst warum, dann womit. Die Kontaktwege wandern
    mit hoch, damit die Karte nur noch das Formular ist. */
-.ruf__kopfzeile{max-width:1240px;margin:0 auto clamp(28px,3vw,46px);
+.ruf__kopfzeile{max-width:1240px;margin:0 auto clamp(18px,1.8vw,28px);
   color:var(--creme);text-align:center;display:grid;justify-items:center}
-.ruf__kopfzeile h2{font-size:clamp(30px,3.6vw,58px);line-height:1.02;
-  letter-spacing:-.035em;margin-top:14px}
-.ruf__lead{margin-top:16px;max-width:60ch;font-size:clamp(16px,1.15vw,19px);
-  line-height:1.55;color:rgb(247 247 245 / .68)}
-.ruf__kopfzeile .ruf__wege{margin-top:clamp(24px,2.4vw,34px);justify-content:center}
+/* Knapper als die uebrigen Abschnittskoepfe: hier muss unter der
+   Ueberschrift noch die ganze Terminwahl ins Bild passen. */
+.ruf__kopfzeile h2{font-size:clamp(28px,2.7vw,44px);line-height:1.03;
+  letter-spacing:-.035em;margin-top:9px}
+.ruf__lead{margin-top:10px;max-width:82ch;font-size:clamp(15px,1.05vw,17px);
+  line-height:1.5;color:rgb(247 247 245 / .68)}
+.ruf__kopfzeile .ruf__wege{margin-top:clamp(14px,1.4vw,20px);justify-content:center}
 .ruf__kopfzeile .ruf__weg{border-color:rgb(247 247 245 / .28);color:var(--creme)}
 .ruf__kopfzeile .ruf__weg:hover{background:var(--creme);border-color:var(--creme);
   color:var(--tinte)}
@@ -2539,7 +2584,9 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* Breit gesetzt, damit jeder Absatz mit drei Zeilen auskommt statt mit
    vier oder fuenf. Etwas dunkler als der uebrige Fliesstext, weil 17px
    die 4,5:1 verlangen und --grau hier nur 4,31 erreicht. */
-.wiewir__text .fuehrung{font-size:17px;line-height:1.62;max-width:76ch;color:#5E594F}
+/* Volle Breite des Abschnitts — ausdruecklich so gewollt, nicht auf
+   eine Lesespalte begrenzt. */
+.wiewir__text .fuehrung{font-size:17px;line-height:1.62;max-width:none;color:#5E594F}
 .wiewir__hinweis{margin-top:clamp(16px,1.6vw,24px)}
 /* Die Grafik muss ohne Scrollen ganz sichtbar sein. Deshalb haengt
    ihre Breite an der HOEHE des Fensters: 1800 zu 1000 ist ihr
@@ -2659,3 +2706,43 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 @media (max-width:899px){ .wiewir__bild,.wiewir__hinweis{display:none} }
 @media (min-width:900px){ .wiewir__liste{display:none} }
 
+
+
+/* ── Flache Fenster ────────────────────────────────────────────
+   Auf einem 13-Zoll-Notebook stehen unter der Leiste rund 690 Punkte
+   zur Verfuegung. Preise und Terminwahl sollen auch dort ohne
+   Scrollen als Ganzes lesbar sein — beide ruecken darum ein zweites
+   Mal zusammen. */
+@media (max-height:860px) and (min-width:900px){
+  .preise{padding-top:16px;padding-bottom:22px}
+  .preise__kopf h2{font-size:clamp(24px,1.9vw,32px)}
+  .preise__lead{font-size:14px;margin-top:5px}
+  .schalter{margin-top:10px}
+  .schalter button{padding:8px 18px;font-size:14px}
+  .paket{padding:16px}
+  .paket h3{font-size:22px}
+  .paket__unter{font-size:14px}
+  .haken{gap:3px;margin:7px 0 10px;padding-top:7px}
+  .haken li{font-size:13.5px;line-height:1.32}
+  .paket .knopf.gross{padding-top:12px;padding-bottom:12px;font-size:15.5px}
+  .erst__haupt,.erst__fuss{padding:16px}
+  .erst__punkte{gap:5px}
+  .erst__punkte li{font-size:13.5px}
+  .ruf{padding-top:26px;padding-bottom:26px}
+  .ruf__kopfzeile h2{font-size:clamp(24px,2.2vw,36px)}
+  .ruf__lead{font-size:14px}
+  .ruf__weg{padding:9px 16px;font-size:15px}
+  .kal__tag,.kal__leer{height:30px}
+  .kal__tag{font-size:15px}
+  .fm__fuss{min-height:58px}
+  .fm__fuss > div{min-height:40px}
+  .ruf__kopfzeile{margin-bottom:14px}
+  .ruf__kopfzeile h2{margin-top:6px}
+  .ruf__kopfzeile .ruf__wege{margin-top:11px}
+  .ruf__lead{margin-top:7px}
+  .ruf__anweisung{font-size:14px;margin-bottom:8px}
+  .feld input,.feld textarea{padding:8px 12px;font-size:14.5px}
+  .feld--voll textarea{min-height:52px}
+  .slots button{padding:7px 5px;font-size:13px}
+  .kal,.kal__slots,.fm__links{padding:13px}
+}
