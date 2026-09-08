@@ -2521,7 +2521,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    gemalte Schatten. */
 /* Weniger Vorlauf als die uebrigen Abschnitte: Ueberschrift UND
    Grafik sollen zusammen auf einen Bildschirm passen. */
-.wiewir{position:relative;padding:clamp(64px,6vw,110px) var(--pad) 0;
+.wiewir{position:relative;padding:clamp(52px,4.6vw,88px) var(--pad) 0;
   max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto}
 /* Die Bernsteinschleier liegen HINTER dem Abschnitt und reichen weit
    ueber ihn hinaus. Nur so laufen sie ohne Kante aus — auf dem
@@ -2536,25 +2536,27 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .wiewir__kopf h2{font-size:clamp(32px,3.6vw,60px);margin-top:6px}
 .wiewir__kopf .fuehrung{margin-top:16px;max-width:56ch;text-align:center}
 /* Die Grafik muss ohne Scrollen ganz sichtbar sein. Deshalb haengt
-   ihre Breite an der HOEHE des Fensters: 1520 zu 720 ist ihr
-   Verhaeltnis, also passt sie bei 56 vh Hoehe in 56vh x 2.111 Breite.
+   ihre Breite an der HOEHE des Fensters: 1560 zu 830 ist ihr
+   Verhaeltnis, also passt sie bei 66 vh Hoehe in 66vh x 1.880 Breite.
    Das Format ist bewusst breit und flach — bei hochformatigerem
    Zuschnitt bleibt seitlich viel Flaeche leer. */
 .wiewir__bild{margin:clamp(20px,2vw,34px) auto 0;line-height:0;
-  max-width:min(100%, calc(56vh * 2.111))}
+  max-width:min(100%, calc(66vh * 1.880))}
 .ag{width:100%;height:auto;display:block;overflow:visible;
   font-family:Figtree,system-ui,sans-serif}
-.ag__gross{font-size:32px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
-.ag__unter{font-size:17px;font-weight:400;text-anchor:middle;opacity:.78}
-.ag__titel{font-size:21px;font-weight:800;letter-spacing:-.02em;fill:var(--tinte)}
-.ag__bei{font-size:15.5px;font-weight:400;fill:var(--grau)}
+.ag__gross{font-size:42px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
+.ag__unter{font-size:21px;font-weight:400;text-anchor:middle;opacity:.78}
+.ag__titel{font-size:25px;font-weight:800;letter-spacing:-.02em;fill:var(--tinte)}
+.ag__bei{font-size:18.5px;font-weight:400;fill:var(--grau)}
 .ag__end{text-anchor:end}
 .ag__mitte{text-anchor:middle}
 .ag__symfeld{fill:var(--creme-3)}
 .ag__symring{fill:none;stroke:rgb(245 165 36 / .55);stroke-width:1.6}
-.ag__strich{fill:none;stroke:var(--tinte);stroke-width:2.1;
+.ag__strich{fill:none;stroke:var(--tinte);stroke-width:2.4;
   stroke-linecap:round;stroke-linejoin:round;opacity:.82}
-.ag__leitung{fill:none;stroke:rgb(199 138 34 / .55);stroke-width:1.6}
+.ag__leitung{fill:none;stroke:rgb(199 138 34 / .6);stroke-width:2}
+/* Einfarbige Wortmarke auf Weiss gedreht — so ist auch der Punkt weiss. */
+.ag__logo{filter:brightness(0) invert(1)}
 .ag__punkt{fill:var(--violett)}
 
 /* Unter 900 Punkten wird die Grafik unlesbar klein. Dort steht der
