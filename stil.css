@@ -2536,18 +2536,18 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .wiewir__kopf h2{font-size:clamp(32px,3.6vw,60px);margin-top:6px}
 .wiewir__kopf .fuehrung{margin-top:16px;max-width:56ch;text-align:center}
 /* Die Grafik muss ohne Scrollen ganz sichtbar sein. Deshalb haengt
-   ihre Breite an der HOEHE des Fensters: 1560 zu 830 ist ihr
-   Verhaeltnis, also passt sie bei 66 vh Hoehe in 66vh x 1.880 Breite.
+   ihre Breite an der HOEHE des Fensters: 1560 zu 1060 ist ihr
+   Verhaeltnis, also passt sie bei 80 vh Hoehe in 80vh x 1.472 Breite.
    Das Format ist bewusst breit und flach — bei hochformatigerem
    Zuschnitt bleibt seitlich viel Flaeche leer. */
 .wiewir__bild{margin:clamp(20px,2vw,34px) auto 0;line-height:0;
-  max-width:min(100%, calc(66vh * 1.880))}
+  max-width:min(100%, calc(80vh * 1.472))}
 .ag{width:100%;height:auto;display:block;overflow:visible;
   font-family:Figtree,system-ui,sans-serif}
-.ag__gross{font-size:42px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
-.ag__unter{font-size:21px;font-weight:400;text-anchor:middle;opacity:.78}
-.ag__titel{font-size:25px;font-weight:800;letter-spacing:-.02em;fill:var(--tinte)}
-.ag__bei{font-size:18.5px;font-weight:400;fill:var(--grau)}
+.ag__gross{font-size:46px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
+.ag__unter{font-size:23px;font-weight:400;text-anchor:middle;opacity:.78}
+.ag__titel{font-size:26px;font-weight:800;letter-spacing:-.02em;fill:var(--tinte)}
+.ag__bei{font-size:19px;font-weight:400;fill:var(--grau)}
 .ag__end{text-anchor:end}
 .ag__mitte{text-anchor:middle}
 .ag__symfeld{fill:var(--creme-3)}
