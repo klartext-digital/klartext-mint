@@ -2536,11 +2536,17 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .wiewir::before{content:"";position:absolute;z-index:-1;pointer-events:none;
   left:-14%;right:-14%;top:2%;bottom:-12%;
   background:
-    radial-gradient(38% 42% at 14% 74%, rgb(245 165 36 / .26) 0%, transparent 70%),
-    radial-gradient(30% 34% at 88% 20%, rgb(245 165 36 / .16) 0%, transparent 70%)}
-.wiewir__kopf{text-align:center;display:grid;justify-items:center}
+    radial-gradient(38% 42% at 14% 74%, rgb(245 165 36 / .22) 0%, transparent 70%),
+    radial-gradient(30% 34% at 88% 20%, rgb(245 165 36 / .14) 0%, transparent 70%),
+    /* Heller Teich unter der Grafik: nimmt dem Sandton die Schwere,
+       laeuft aber ohne Kante aus. */
+    radial-gradient(66% 62% at 50% 46%, #FCFAF7 0%, rgb(252 250 247 / 0) 74%)}
+/* Linksbuendig wie die uebrigen Abschnitte — zentrierte Absaetze
+   lesen sich bei drei Zeilen schlechter, weil jede Zeile woanders
+   beginnt. */
+.wiewir__kopf{display:grid;justify-items:start;max-width:var(--maxw);margin:0 auto}
 .wiewir__kopf h2{font-size:clamp(32px,3.6vw,60px);margin-top:6px}
-.wiewir__kopf .fuehrung{margin-top:16px;max-width:56ch;text-align:center}
+.wiewir__kopf .fuehrung{margin-top:16px;max-width:58ch}
 /* Die Grafik muss ohne Scrollen ganz sichtbar sein. Deshalb haengt
    ihre Breite an der HOEHE des Fensters: 1800 zu 1000 ist ihr
    Verhaeltnis, also passt sie bei 76 vh Hoehe in 76vh x 1.800 Breite.
@@ -2550,6 +2556,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   max-width:min(100%, calc(76vh * 1.800))}
 .ag{width:100%;height:auto;display:block;overflow:visible;
   font-family:Figtree,system-ui,sans-serif}
+.ag__gross,.ag__unter{transition:opacity .34s var(--raus)}
 .ag__gross{font-size:50px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
 .ag__unter{font-size:25px;font-weight:400;text-anchor:middle;opacity:.78}
 .ag__titel{font-size:26px;font-weight:800;letter-spacing:-.02em;fill:var(--tinte)}
@@ -2561,18 +2568,75 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .ag__strich{fill:none;stroke:var(--tinte);stroke-width:2.4;
   stroke-linecap:round;stroke-linejoin:round;opacity:.82}
 .ag__leitung{fill:none;stroke:rgb(199 138 34 / .6);stroke-width:2}
+/* ── Bewegung ──────────────────────────────────────────────
+   Kurven: Beschleunigung raus, Abbremsen lang — das liest sich ruhig
+   und nie federnd. Eintritt schneller als Austritt, damit der Wechsel
+   von einem Kreis zum naechsten nicht traege wirkt.
+
+   Die Leitungen zeichnen sich durch. Moeglich macht das pathLength="1"
+   im SVG: damit ist jede Leitung rechnerisch gleich lang und eine
+   einzige Regel genuegt fuer alle zwoelf. */
+.ag{--raus:cubic-bezier(.22,1,.36,1);--rein:cubic-bezier(.32,.72,0,1)}
+
 /* Ruhezustand: nur der Kern, vergroessert. Beim Ueberfahren faehrt er
    auf seine normale Groesse zurueck und macht dem Zweig Platz. */
 .ag__kern{transform-origin:900px 472px;transform:scale(1.24);
-  transition:transform .55s cubic-bezier(.25,.25,.15,1)}
+  transition:transform .62s var(--raus)}
 .ag[data-aktiv]:not([data-aktiv=""]) .ag__kern{transform:scale(1)}
-.ag__ast{opacity:0;pointer-events:none;
-  transition:opacity .45s cubic-bezier(.25,.25,.15,1)}
-.ag[data-aktiv="S"] .ag__ast[data-fuer="S"],
-.ag[data-aktiv="K"] .ag__ast[data-fuer="K"],
-.ag[data-aktiv="T"] .ag__ast[data-fuer="T"]{opacity:1}
-.ag__flaeche{cursor:pointer;outline:none}
+
+/* Der angefahrene Koerper wird kraeftiger und tritt hervor, die
+   anderen treten zurueck. Das ist die eigentliche Rueckmeldung. */
+/* Nur die drei Kreisflaechen sind anfassbar. Ohne das faengt der
+   Titel-Text, der ueber der Flaeche liegt, den Zeiger ab — dann kommt
+   am Kreis nie ein pointerenter an. Gleiches gilt fuer die noch
+   unsichtbaren Begriffe: opacity:0 nimmt Elementen keine Trefferflaeche. */
+.ag *{pointer-events:none}
+.ag__flaeche{pointer-events:auto;cursor:pointer;outline:none;transform-box:fill-box;
+  transform-origin:center;
+  transition:transform .34s var(--raus), fill-opacity .34s var(--raus),
+             opacity .34s var(--raus), filter .34s var(--raus)}
+/* Beschriftung faellt mit ihrer Flaeche zurueck. Bliebe der weisse
+   "Technologie"-Schriftzug voll deckend auf dem aufgehellten Kreis
+   stehen, waere er weiss auf Mittelgrau — der schlechteste Fall. */
+.ag[data-aktiv]:not([data-aktiv=""]) :is(.ag__flaeche,.ag__gross,.ag__unter){opacity:.4}
+.ag[data-aktiv="S"] :is(.ag__gross,.ag__unter)[data-fuer="S"],
+.ag[data-aktiv="K"] :is(.ag__gross,.ag__unter)[data-fuer="K"],
+.ag[data-aktiv="T"] :is(.ag__gross,.ag__unter)[data-fuer="T"]{opacity:1}
+.ag[data-aktiv="S"] .ag__flaeche[data-fuer="S"],
+.ag[data-aktiv="K"] .ag__flaeche[data-fuer="K"],
+.ag[data-aktiv="T"] .ag__flaeche[data-fuer="T"]{
+  opacity:1;fill-opacity:.95;transform:scale(1.045);
+  filter:drop-shadow(0 18px 34px rgb(70 44 6 / .22))}
+
+/* Die vier Glieder eines Zweiges kommen gestaffelt und wandern dabei
+   vom Kreis nach aussen — die Richtung steckt je Glied im Markup. */
+.ag__ast{pointer-events:none}
+.ag__glied{opacity:0;transform:translate(var(--vx),var(--vy));
+  transition:opacity .2s var(--rein), transform .2s var(--rein)}
+.ag[data-aktiv="S"] .ag__ast[data-fuer="S"] .ag__glied,
+.ag[data-aktiv="K"] .ag__ast[data-fuer="K"] .ag__glied,
+.ag[data-aktiv="T"] .ag__ast[data-fuer="T"] .ag__glied{
+  opacity:1;transform:translate(0,0);
+  transition:opacity .46s var(--raus) calc(var(--i) * 55ms),
+             transform .46s var(--raus) calc(var(--i) * 55ms)}
+.ag__leitung{stroke-dasharray:1;stroke-dashoffset:1;
+  transition:stroke-dashoffset .2s var(--rein)}
+.ag[data-aktiv="S"] .ag__ast[data-fuer="S"] .ag__leitung,
+.ag[data-aktiv="K"] .ag__ast[data-fuer="K"] .ag__leitung,
+.ag[data-aktiv="T"] .ag__ast[data-fuer="T"] .ag__leitung{
+  stroke-dashoffset:0;
+  transition:stroke-dashoffset .55s var(--raus) calc(var(--i) * 55ms + 60ms)}
+.ag__symfeld,.ag__symring{transition:none}
 .ag__flaeche:focus-visible{stroke:var(--tinte);stroke-width:3}
+
+@media (prefers-reduced-motion:reduce){
+  /* Kein Wandern, kein Zeichnen — nur noch ein Auf- und Abblenden. */
+  .ag__kern,.ag__flaeche,.ag__glied,.ag__leitung{transition-duration:.01ms!important;
+    transition-delay:0s!important}
+  .ag__kern{transform:none}
+  .ag__glied{transform:none}
+  .ag__leitung{stroke-dasharray:none;stroke-dashoffset:0}
+}
 .wiewir__zwei{margin-top:12px}
 .wiewir__hinweis{margin-top:20px;font-size:14px;font-weight:700;
   letter-spacing:.02em;color:var(--grau-2)}
@@ -2596,6 +2660,8 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   width:6px;height:6px;border-radius:var(--r-pille);background:var(--violett)}
 .wiewir__gruppe li b{font-weight:800}
 .wiewir__gruppe li span{color:var(--grau)}
-@media (max-width:899px){ .wiewir__bild{display:none} }
+/* Unter 900px steht die Liste statt der Grafik — der Hinweis aufs
+   Ueberfahren waere dort eine Anweisung ins Leere. */
+@media (max-width:899px){ .wiewir__bild,.wiewir__hinweis{display:none} }
 @media (min-width:900px){ .wiewir__liste{display:none} }
 
