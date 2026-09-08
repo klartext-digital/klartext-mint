@@ -2772,3 +2772,151 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   .slots button{padding:7px 5px;font-size:13px}
   .kal,.kal__slots,.fm__links{padding:13px}
 }
+
+/* ══════════════════════════════════════════════════════════════
+   Projektseite — dunkle Bühne mit Lichtstreifen
+   Der Aufbau folgt Dusans Referenz: links die Aussage, in der Mitte
+   Filter und Kennzahlen, rechts der Knopf mit handschriftlicher
+   Notiz, darunter sechs Karten im Dreierraster.
+   ══════════════════════════════════════════════════════════════ */
+.pro{position:relative;isolation:isolate;overflow:hidden;
+  max-width:min(var(--maxw), calc(100% - var(--pad) * 2));
+  margin:clamp(122px,11vw,190px) auto 0;
+  border-radius:var(--r-seite);background:#0B0A09;color:var(--creme);
+  padding:clamp(26px,3vw,54px) clamp(22px,3vw,54px) clamp(24px,2.6vw,44px)}
+/* Die Lichtstreifen sind gerechnet, nicht fotografiert: zwei weiche
+   Fahnen aus dem linken und rechten Rand plus ein Schimmer oben.
+   Ein Bild waere hier reine Dateigroesse — der Verlauf skaliert
+   verlustfrei auf jede Breite. */
+.pro::before,.pro::after{content:"";position:absolute;z-index:-1;
+  pointer-events:none}
+.pro::before{inset:-30% -10% auto -30%;height:150%;
+  background:
+    radial-gradient(52% 44% at 4% 24%, rgb(245 165 36 / .52) 0%, transparent 66%),
+    radial-gradient(34% 30% at 0% 64%, rgb(216 137 11 / .42) 0%, transparent 68%),
+    conic-gradient(from 186deg at 2% 38%, transparent 0deg,
+      rgb(255 198 92 / .26) 24deg, transparent 58deg);
+  filter:blur(3px)}
+.pro::after{inset:-20% -25% auto auto;width:70%;height:120%;
+  background:
+    radial-gradient(44% 38% at 98% 12%, rgb(245 165 36 / .38) 0%, transparent 68%),
+    conic-gradient(from 14deg at 100% 26%, transparent 0deg,
+      rgb(255 198 92 / .22) 20deg, transparent 52deg);
+  filter:blur(3px)}
+
+.pro__kopf{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.2fr) auto;
+  gap:clamp(20px,2.6vw,48px);align-items:start;
+  padding-bottom:clamp(24px,2.6vw,44px)}
+.zurueck--dunkel{border-color:rgb(247 247 245 / .2);color:var(--creme);
+  margin-bottom:18px;padding:8px 16px 8px 13px;font-size:14px}
+.zurueck--dunkel:hover{background:var(--creme);border-color:var(--creme);
+  color:var(--tinte)}
+.pro__auge{display:block;font-size:12px;font-weight:800;letter-spacing:.18em;
+  text-transform:uppercase;color:rgb(247 247 245 / .6)}
+.pro h1{font-size:clamp(30px,3.5vw,58px);line-height:1.03;letter-spacing:-.035em;
+  margin:10px 0 0}
+.pro h1 span{display:block}
+.pro__lead{margin-top:14px;max-width:44ch;font-size:clamp(15px,1.15vw,19px);
+  line-height:1.5;color:rgb(247 247 245 / .72)}
+
+.pro__steuer{display:grid;gap:clamp(18px,2vw,30px);margin-top:clamp(30px,3.4vw,64px)}
+.pro__reiter{display:flex;flex-wrap:wrap;gap:8px}
+.pro__reiter .reiter{border:1px solid rgb(247 247 245 / .22);color:rgb(247 247 245 / .78);
+  background:transparent;border-radius:var(--r-pille);padding:8px 14px;
+  font-size:13.5px;font-weight:700;white-space:nowrap;
+  transition:background-color var(--t-knopf) var(--kurve-rein),
+    color var(--t-knopf) var(--kurve-rein),
+    border-color var(--t-knopf) var(--kurve-rein)}
+.pro__reiter .reiter:hover{border-color:var(--creme);color:var(--creme)}
+.pro__reiter .reiter.ist{background:var(--creme);border-color:var(--creme);
+  color:var(--tinte)}
+
+.pro__zahlen{display:flex;flex-wrap:nowrap;gap:clamp(14px,1.6vw,28px)}
+.pro__zahlen > div{position:relative;padding-right:clamp(18px,2.4vw,42px)}
+.pro__zahlen > div + div{padding-left:0}
+.pro__zahlen > div:not(:last-child)::after{content:"";position:absolute;
+  right:0;top:2px;bottom:2px;width:1px;background:rgb(247 247 245 / .18)}
+.pro__zahlen dt{font-size:clamp(20px,1.6vw,27px);font-weight:800;letter-spacing:-.03em;
+  white-space:nowrap}
+.pro__zahlen dd{margin:2px 0 0;font-size:13.5px;line-height:1.35;
+  color:rgb(247 247 245 / .62)}
+
+.pro__ecke{display:grid;justify-items:end;gap:clamp(12px,1.4vw,22px);
+  max-width:clamp(210px,19vw,300px)}
+.pro .pro__notiz{position:relative;margin:0;text-align:right;
+  max-width:100%;
+  font-size:clamp(12.5px,.85vw,15px);line-height:1.5;color:var(--violett)}
+/* Im Fluss statt absolut: absolut positioniert landete der Bogen
+   ueber der Schrift statt darunter. */
+.pro__pfeil{display:block;width:clamp(56px,4.4vw,74px);height:auto;
+  margin:8px 10px 0 auto;color:var(--violett);opacity:.8}
+
+/* ── Die Karten ── */
+.pro__raster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(12px,1.3vw,20px)}
+.pk{position:relative;isolation:isolate;overflow:hidden;display:block;
+  aspect-ratio:16/10.4;border-radius:var(--r-mittel);
+  background:#141110;color:var(--creme);
+  padding:clamp(16px,1.5vw,24px);
+  transition:transform var(--t-knopf) var(--kurve-rein),
+    box-shadow var(--t-knopf) var(--kurve-rein)}
+.pk__bild{position:absolute;inset:0;z-index:-2;width:100%;height:100%;
+  object-fit:cover;filter:saturate(.62) contrast(1.04) brightness(.88);
+  transition:transform var(--t-bild) var(--kurve),
+    filter var(--t-bild) var(--kurve);
+}
+/* Der Verlauf laeuft von links: dort steht die Schrift, rechts bleibt
+   das Bild sichtbar. Ohne ihn stuende Weiss auf hellen Bildstellen. */
+.pk::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(100deg, rgb(9 8 7 / .94) 0%, rgb(9 8 7 / .82) 34%,
+    rgb(9 8 7 / .42) 68%, rgb(9 8 7 / .28) 100%),
+    linear-gradient(0deg, rgb(9 8 7 / .55) 0%, transparent 46%)}
+.pk:hover,.pk:focus-visible{transform:translateY(-4px);
+  box-shadow:0 26px 50px rgb(0 0 0 / .45)}
+.pk:hover .pk__bild,.pk:focus-visible .pk__bild{transform:scale(1.055);
+  filter:saturate(.8) contrast(1.04) brightness(.95)}
+.pk__nr{font-size:12px;font-weight:800;letter-spacing:.14em;
+  color:rgb(247 247 245 / .55)}
+.pk__wort{margin-top:6px}
+.pk__wort h3{font-size:clamp(20px,1.7vw,27px);letter-spacing:-.03em;line-height:1.1}
+.pk__wort p{margin-top:4px;font-size:14.5px;color:rgb(247 247 245 / .68)}
+.pk__mehr{position:absolute;left:clamp(16px,1.5vw,24px);
+  bottom:clamp(16px,1.5vw,24px);
+  display:inline-flex;align-items:center;gap:12px;
+  font-size:14.5px;font-weight:700;color:var(--creme)}
+.pk__mehr i{display:grid;place-items:center;width:34px;height:34px;flex:none;
+  border-radius:var(--r-pille);border:1.5px solid var(--violett);
+  color:var(--violett);font-style:normal;font-size:15px;
+  transition:background-color var(--t-knopf) var(--kurve-rein),
+    color var(--t-knopf) var(--kurve-rein),
+    transform var(--t-knopf) var(--kurve-rein)}
+.pk:hover .pk__mehr i,.pk:focus-visible .pk__mehr i{background:var(--violett);
+  color:var(--tinte);transform:translateX(3px)}
+.pk__claim{position:absolute;right:clamp(16px,1.5vw,24px);
+  bottom:clamp(16px,1.5vw,24px);max-width:8.5em;text-align:right;
+  font-size:11.5px;font-weight:700;letter-spacing:.16em;line-height:1.7;
+  text-transform:uppercase;color:rgb(247 247 245 / .82)}
+
+.pro__leer{margin:clamp(20px,2.4vw,36px) 0 0;text-align:center;
+  font-size:16px;color:rgb(247 247 245 / .7)}
+.pro__leer button{color:var(--violett);font-weight:700;text-decoration:underline;
+  text-underline-offset:4px}
+
+.pro__fuss{display:flex;align-items:center;gap:clamp(14px,2vw,30px);
+  margin-top:clamp(24px,2.6vw,44px);padding-top:clamp(16px,1.8vw,26px);
+  font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+  color:rgb(247 247 245 / .55)}
+.pro__fuss i{flex:1;height:1px;background:rgb(247 247 245 / .18)}
+
+@media (max-width:1080px){
+  .pro__kopf{grid-template-columns:minmax(0,1fr)}
+  .pro__steuer{margin-top:0}
+  .pro__ecke{justify-items:start}
+  .pro__notiz{text-align:left;padding-bottom:0}
+  .pro__pfeil{display:none}
+  .pro__raster{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:700px){
+  .pro__raster{grid-template-columns:minmax(0,1fr)}
+  .pk{aspect-ratio:16/12}
+}
