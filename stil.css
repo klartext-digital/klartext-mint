@@ -236,11 +236,9 @@ h1 .brush,h2 .brush{font-size:.88em;letter-spacing:-.01em;
 /* Dunkle Umgebungen: helle Fuellung, dunkle Schrift */
 .dienste .knopf--akzent,
 .rechner__ergebnis .knopf--akzent,
-.ndd__karte .knopf--akzent,
 .fuss .knopf--akzent{--knopf-fuell:var(--creme)}
 .dienste .knopf--akzent:hover,.dienste .knopf--akzent:focus-visible,
 .rechner__ergebnis .knopf--akzent:hover,.rechner__ergebnis .knopf--akzent:focus-visible,
-.ndd__karte .knopf--akzent:hover,.ndd__karte .knopf--akzent:focus-visible,
 .fuss .knopf--akzent:hover,.fuss .knopf--akzent:focus-visible{color:var(--tinte)}
 .knopf--rand{border:2px solid var(--linie);color:var(--tinte);--knopf-fuell:var(--tinte)}
 .knopf--rand:hover,.knopf--rand:focus-visible{border-color:var(--tinte);color:var(--creme)}
@@ -401,11 +399,11 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      "Performance Marketing" brach sonst auf zwei Zeilen um, sobald
      die Spalte in Anteilen gerechnet wurde. Den Rest nimmt die
      Vorschau. */
-  /* Drei Spalten: Liste, Vorschau, Kontaktkarte. Die Flaeche waechst
-     dafuer nach LINKS — rechts bleibt sie buendig zur Leiste. Der
-     Ausloeser liegt dabei weiterhin ueber der Listenspalte, der Zeiger
-     faehrt also geradewegs nach unten hinein. */
-  grid-template-columns:minmax(0,auto) minmax(280px,1fr) 300px;gap:26px;
+  /* Zwei Spalten: Liste und Vorschau. Die Flaeche waechst nach LINKS —
+     rechts bleibt sie buendig zur Leiste. Der Ausloeser liegt dabei
+     weiterhin ueber der Listenspalte, der Zeiger faehrt also
+     geradewegs nach unten hinein. */
+  grid-template-columns:minmax(0,auto) minmax(280px,1fr);gap:26px;
   background:var(--creme-3);color:var(--tinte);border-radius:var(--r-gross);
   padding:30px;box-shadow:0 30px 80px rgb(14 13 11 / .2)}
 
@@ -449,22 +447,6 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .ndd__satz b{display:block;font-size:21px;font-weight:800;letter-spacing:-.025em;
   margin-bottom:8px}
 .ndd__satz span{font-size:16px;line-height:1.55;color:var(--grau)}
-
-/* Spalte 3 — Einladung, füllt die Breite sinnvoll */
-.ndd__karte{background:var(--violett);color:#fff;border-radius:var(--r-mittel);
-  padding:28px;display:flex;flex-direction:column;gap:10px}
-/* Im Dropdown-Panel ist die Höhe knapp — hier bleibt die Handschrift
-   kleiner als in den Sektionen, sonst drückt sie die Karte auf. */
-.ndd__karte .brush{color:rgb(255 255 255 / .78);
-  font-size:clamp(19px,1.4vw,24px);margin-bottom:.2em}
-.ndd__karte-titel{font-size:24px;font-weight:800;letter-spacing:-.03em;
-  line-height:1.12;margin-top:4px}
-.ndd__karte-text{font-size:15px;line-height:1.5;color:rgb(255 255 255 / .78)}
-/* Cremefarbener Knopf auf violetter Karte: Fuellung Tinte. Weiss auf
-   Creme war unsichtbar. */
-.ndd__karte .knopf{margin-top:auto;background:var(--creme);color:var(--tinte);
-  font-size:16px;padding:14px 24px;--knopf-fuell:var(--tinte)}
-.ndd__karte .knopf:hover,.ndd__karte .knopf:focus-visible{color:var(--creme)}
 
 @media (max-width:1240px){ .ndd__panel{display:none} }
 
