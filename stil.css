@@ -1092,6 +1092,13 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .feld--voll textarea{min-height:clamp(58px,3.8vw,78px);height:100%}
 .feld > span,.feld__titel{font-size:12px;font-weight:700;letter-spacing:.03em;
   text-transform:uppercase;color:var(--grau)}
+/* Pflicht und Kuer sichtbar auseinanderhalten: ein Stern am Feldnamen,
+   und das eine freiwillige Feld sagt es ausdruecklich. Ohne Kennzeichen
+   merkt man erst beim Absenden, was verlangt wird. */
+.feld:has([required]) > span::after{content:" *";color:var(--violett);
+  font-weight:800}
+.feld:not(:has([required])) > span::after{content:" (optional)";
+  text-transform:none;letter-spacing:0;font-weight:500;color:var(--grau-2)}
 .feld input,.feld textarea{width:100%;font:inherit;font-size:15px;color:var(--tinte);
   background:var(--creme);border:2px solid transparent;border-radius:12px;
   padding:10px 13px;resize:none;
