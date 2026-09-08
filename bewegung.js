@@ -709,8 +709,10 @@ function zeileHalten(el, dauerMs) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const w = (n) => (form.elements[n].value || '').trim();
-    const fehlt = ['name', 'firma', 'mail', 'tel'].find((n) => !w(n));
-    if (fehlt) { form.elements[fehlt].focus(); return; }
+    /* reportValidity statt eigener Pruefung: der Browser springt zum
+       ersten leeren Pflichtfeld UND sagt, was fehlt. Vorher wurde nur
+       stumm fokussiert — wer nicht hinsah, klickte ins Leere. */
+    if (!form.reportValidity()) return;
     const zeilen = [
       'Name: ' + w('name'),
       'Unternehmen: ' + w('firma'),
