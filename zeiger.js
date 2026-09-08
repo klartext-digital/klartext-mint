@@ -16,15 +16,16 @@
   const ring  = document.createElement('div');
   punkt.className = 'zeiger__punkt';
   ring.className  = 'zeiger__ring';
-  /* Ueber einer Projektkarte wird aus dem Zeiger eine beschriftete
-     Scheibe. Sie ersetzt den Verweis, der frueher in jeder Karte
-     stand — die Aufforderung ist dort, wo der Blick ohnehin ist. */
-  const blase = document.createElement('div');
-  blase.className = 'zeiger__blase';
-  blase.textContent = 'Projekt ansehen';
+  /* Ueber einer Projektkarte wird der RING selbst zum Knopf: er
+     waechst, fuellt sich und bekommt Schrift. Ein zweites Element,
+     das ein- und das erste ausblendet, sah aus wie zwei Dinge —
+     eines davon flog beim Aufblenden sichtbar heran. */
+  const wort = document.createElement('span');
+  wort.className = 'zeiger__wort';
+  wort.textContent = 'Projekt ansehen';
+  ring.appendChild(wort);
   wurzel.appendChild(punkt);
   wurzel.appendChild(ring);
-  wurzel.appendChild(blase);
   document.body.appendChild(wurzel);
 
   const sanft = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -239,7 +240,9 @@
     else ring.classList.remove('zeigt');
     const karte = t && t.closest && t.closest('.werk');
     const vorher = wurzel.classList.contains('aufKarte');
-    if (karte && !vorher) setze(blase, e.clientX, e.clientY);
+    /* Beim Betreten springt der Ring auf den Zeiger — von dort waechst
+       er zum Knopf, statt aus seiner Nachlaufposition heranzuziehen. */
+    if (karte && !vorher) { r.x = e.clientX; r.y = e.clientY; setze(ring, r.x, r.y); }
     wurzel.classList.toggle('aufKarte', !!karte);
     nachsehen(t, e.clientX, e.clientY);
   }, { passive: true });
@@ -312,7 +315,10 @@
     letzt = jetzt;
     const s = dt / 16.667;
     const kp = 1 - Math.pow(1 - K_PUNKT, s);
-    const kr = 1 - Math.pow(1 - K_RING, s);
+    /* Als Knopf folgt der Ring ohne Verzoegerung — ein 108 Punkte
+       grosses Feld, das nachzieht, wirkt wie ein eigenes Objekt. */
+    const aufKarte = wurzel.classList.contains('aufKarte');
+    const kr = aufKarte ? 1 : (1 - Math.pow(1 - K_RING, s));
 
     p.x = misch(p.x, ziel.x, kp);
     p.y = misch(p.y, ziel.y, kp);
@@ -320,10 +326,6 @@
     r.y = misch(r.y, ziel.y, kr);
     setze(punkt, p.x, p.y);
     setze(ring, r.x, r.y);
-    /* Die Scheibe klebt ohne Verzoegerung am Zeiger. Jede Traegheit
-       laesst sie beim Aufblenden von dort heranfliegen, wo die Maus
-       herkam — bei 108 Punkten Durchmesser sieht man das sofort. */
-    setze(blase, ziel.x, ziel.y);
 
     if (anzeige) {
       /* Getrennt zaehlen: waehrend die Maus laeuft und wenn sie steht.
