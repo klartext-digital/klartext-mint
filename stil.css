@@ -381,7 +381,9 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   /* Nicht mehr ueber die volle Breite gespannt: die Liste stand sonst
      ganz links, waehrend der Zeiger in der Leistenmitte war. Breite
      fest, Position kommt aus bewegung.js. */
-  left:var(--ndd-links,var(--pad));width:min(1240px,calc(100vw - var(--pad) * 2));z-index:5;
+  --ndd-innen:30px;
+  left:var(--ndd-links,var(--pad));
+  width:var(--ndd-breite,min(1240px,calc(100vw - var(--pad) * 2)));z-index:5;
   opacity:0;visibility:hidden;pointer-events:none;
   transform:translateY(-12px) scale(.97);
   transform-origin:var(--ndd-x,50%) 0;
@@ -399,7 +401,10 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      "Performance Marketing" brach sonst auf zwei Zeilen um, sobald
      die Spalte in Anteilen gerechnet wurde. Den Rest nimmt die
      Vorschau. */
-  grid-template-columns:max-content minmax(0,1fr) 300px;gap:28px;
+  /* Nur noch zwei Spalten: rechtsbuendig zur Leiste bleiben rund 860
+     Punkte, fuer drei Spalten zu wenig. Vorschau und Karte stehen
+     deshalb untereinander in einer gemeinsamen rechten Spalte. */
+  grid-template-columns:minmax(0,auto) minmax(300px,1fr);gap:26px;
   background:var(--creme-3);color:var(--tinte);border-radius:var(--r-gross);
   padding:30px;box-shadow:0 30px 80px rgb(14 13 11 / .2)}
 
@@ -407,7 +412,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .ndd__spalte--liste{display:flex;flex-direction:column;justify-content:space-between}
 .ndd__liste{display:grid;gap:4px}
 /* Ganze ZEILE ist die Auslösefläche, nicht nur das Wort. */
-.ndd__liste a{display:flex;align-items:center;gap:20px;width:100%;
+.ndd__liste a{display:flex;align-items:center;gap:16px;width:100%;
   padding:17px 24px;border-radius:var(--r-mittel);
   font-size:clamp(22px,1.8vw,30px);font-weight:800;letter-spacing:-.03em;
   transition:background-color var(--t-knopf) var(--kurve-rein),
@@ -2536,16 +2541,16 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .wiewir__kopf h2{font-size:clamp(32px,3.6vw,60px);margin-top:6px}
 .wiewir__kopf .fuehrung{margin-top:16px;max-width:56ch;text-align:center}
 /* Die Grafik muss ohne Scrollen ganz sichtbar sein. Deshalb haengt
-   ihre Breite an der HOEHE des Fensters: 1560 zu 1060 ist ihr
-   Verhaeltnis, also passt sie bei 80 vh Hoehe in 80vh x 1.472 Breite.
+   ihre Breite an der HOEHE des Fensters: 1800 zu 1000 ist ihr
+   Verhaeltnis, also passt sie bei 76 vh Hoehe in 76vh x 1.800 Breite.
    Das Format ist bewusst breit und flach — bei hochformatigerem
    Zuschnitt bleibt seitlich viel Flaeche leer. */
 .wiewir__bild{margin:clamp(20px,2vw,34px) auto 0;line-height:0;
-  max-width:min(100%, calc(80vh * 1.472))}
+  max-width:min(100%, calc(76vh * 1.800))}
 .ag{width:100%;height:auto;display:block;overflow:visible;
   font-family:Figtree,system-ui,sans-serif}
-.ag__gross{font-size:46px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
-.ag__unter{font-size:23px;font-weight:400;text-anchor:middle;opacity:.78}
+.ag__gross{font-size:50px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
+.ag__unter{font-size:25px;font-weight:400;text-anchor:middle;opacity:.78}
 .ag__titel{font-size:26px;font-weight:800;letter-spacing:-.02em;fill:var(--tinte)}
 .ag__bei{font-size:19px;font-weight:400;fill:var(--grau)}
 .ag__end{text-anchor:end}
@@ -2555,6 +2560,23 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .ag__strich{fill:none;stroke:var(--tinte);stroke-width:2.4;
   stroke-linecap:round;stroke-linejoin:round;opacity:.82}
 .ag__leitung{fill:none;stroke:rgb(199 138 34 / .6);stroke-width:2}
+/* Ruhezustand: nur der Kern, vergroessert. Beim Ueberfahren faehrt er
+   auf seine normale Groesse zurueck und macht dem Zweig Platz. */
+.ag__kern{transform-origin:900px 472px;transform:scale(1.24);
+  transition:transform .55s cubic-bezier(.25,.25,.15,1)}
+.ag[data-aktiv]:not([data-aktiv=""]) .ag__kern{transform:scale(1)}
+.ag__ast{opacity:0;pointer-events:none;
+  transition:opacity .45s cubic-bezier(.25,.25,.15,1)}
+.ag[data-aktiv="S"] .ag__ast[data-fuer="S"],
+.ag[data-aktiv="K"] .ag__ast[data-fuer="K"],
+.ag[data-aktiv="T"] .ag__ast[data-fuer="T"]{opacity:1}
+.ag__flaeche{cursor:pointer;outline:none}
+.ag__flaeche:focus-visible{stroke:var(--tinte);stroke-width:3}
+.wiewir__zwei{margin-top:12px}
+.wiewir__hinweis{margin-top:20px;font-size:14px;font-weight:700;
+  letter-spacing:.02em;color:var(--grau-2)}
+@media (prefers-reduced-motion:reduce){
+  .ag__kern{transition:none} .ag__ast{transition:none} }
 /* Einfarbige Wortmarke auf Weiss gedreht — so ist auch der Punkt weiss. */
 .ag__logo{filter:brightness(0) invert(1)}
 .ag__punkt{fill:var(--violett)}
@@ -2575,3 +2597,9 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .wiewir__gruppe li span{color:var(--grau)}
 @media (max-width:899px){ .wiewir__bild{display:none} }
 @media (min-width:900px){ .wiewir__liste{display:none} }
+
+/* Rechte Spalte des Aufklappers: Vorschau oben, Karte darunter. */
+.ndd__rechts{display:grid;gap:18px;align-content:start;min-width:0}
+.ndd__rechts .ndd__karte{padding:20px 22px}
+.ndd__rechts .ndd__karte .brush{font-size:19px}
+.ndd__rechts .ndd__karte h4,.ndd__rechts .ndd__karte p{max-width:52ch}
