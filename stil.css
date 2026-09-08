@@ -312,6 +312,10 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 
 .kopfzeile{display:flex;align-items:flex-end;justify-content:space-between;
   gap:40px;flex-wrap:wrap;margin-bottom:clamp(40px,4vw,72px)}
+/* Titel, dann ein Satz, was hier zu sehen ist — erst danach die
+   Referenzen. Vorher stand die Ueberschrift allein ueber dem Raster. */
+.kopfzeile__wort{max-width:62ch}
+.werke__lead{margin-top:14px}
 
 /* ── Navigation ────────────────────────────────────────────── */
 .nav{position:fixed;top:14px;left:0;right:0;z-index:40;padding:0 var(--pad);
@@ -460,6 +464,22 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    dem Inhalt, damit die Breitenbegrenzung von 1600 px erhalten bleibt
    und die Fläche trotzdem bis zum Rand läuft. Heller Teil der Skala,
    weil die Überschrift schwarz bleibt. */
+/* Stichworte links unten in der Buehne: was wir machen, in einer
+   Zeile. Die Schraegstriche kommen aus dem Stylesheet — im Markup
+   bleibt es eine Liste und wird nicht als ein Satz vorgelesen. */
+.buehne__stich{position:absolute;left:var(--pad);bottom:clamp(26px,3vw,46px);
+  z-index:2;display:flex;flex-wrap:wrap;align-items:center;gap:0;
+  list-style:none;margin:0;padding:0;
+  font-size:clamp(11px,.82vw,12.5px);font-weight:800;letter-spacing:.18em;
+  text-transform:uppercase;color:rgb(247 247 245 / .78)}
+.buehne__stich li + li::before{content:"/";
+  margin:0 clamp(9px,1vw,16px) 0 clamp(8px,.9vw,14px);
+  color:var(--violett);opacity:.85;font-weight:700}
+@media (max-width:700px){
+  .buehne__stich{position:static;margin-top:clamp(28px,5vw,44px);
+    gap:2px 0}
+}
+
 .buehne{padding:clamp(140px,12vw,190px) var(--pad) clamp(80px,8vw,130px);
   max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto;
   min-height:100svh;display:grid;align-content:center;
