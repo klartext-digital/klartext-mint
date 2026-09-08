@@ -403,7 +403,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      rechts bleibt sie buendig zur Leiste. Der Ausloeser liegt dabei
      weiterhin ueber der Listenspalte, der Zeiger faehrt also
      geradewegs nach unten hinein. */
-  grid-template-columns:minmax(0,auto) minmax(280px,1fr);gap:26px;
+  grid-template-columns:minmax(0,auto) minmax(560px,1fr);gap:26px;
   background:var(--creme-3);color:var(--tinte);border-radius:var(--r-gross);
   padding:30px;box-shadow:0 30px 80px rgb(14 13 11 / .2)}
 
@@ -434,12 +434,14 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 
 /* Spalte 2 — Vorschau */
 .ndd__vorschau{display:grid;gap:18px;align-content:start}
-.ndd__bild{position:relative;height:240px;border-radius:var(--r-mittel);
+/* Querformat 16:9 statt fester Hoehe — hier kann spaeter ein Video
+   stehen, ohne dass der Ausschnitt beschnitten wird. */
+.ndd__bild{position:relative;aspect-ratio:16/9;border-radius:var(--r-mittel);
   overflow:hidden;background:var(--creme-2)}
-.ndd__bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+.ndd__bild :is(img,video){position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   opacity:0;transform:scale(1.05);
   transition:opacity var(--t-farbe) var(--kurve),transform var(--t-bild) var(--kurve)}
-.ndd__bild img.ist{opacity:1;transform:none}
+.ndd__bild :is(img,video).ist{opacity:1;transform:none}
 .ndd__saetze{position:relative;min-height:112px}
 .ndd__satz{position:absolute;inset:0;opacity:0;transform:translateY(6px);
   transition:opacity var(--t-farbe) var(--kurve),transform var(--t-farbe) var(--kurve)}
