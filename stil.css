@@ -2606,7 +2606,10 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .ag__mitte{text-anchor:middle}
 .ag__symfeld{fill:var(--creme-3)}
 .ag__symring{fill:none;stroke:rgb(245 165 36 / .55);stroke-width:1.6}
-.ag__strich{fill:none;stroke:var(--tinte);stroke-width:2.4;
+/* Die Symbole werden als Gruppe skaliert — bei groesseren Kreisen
+   waechst die Strichstaerke mit. 2.0 ergibt bei der jetzigen
+   Skalierung wieder rund 2,7 sichtbare Punkte. */
+.ag__strich{fill:none;stroke:var(--tinte);stroke-width:2;
   stroke-linecap:round;stroke-linejoin:round;opacity:.82}
 .ag__leitung{fill:none;stroke:rgb(199 138 34 / .6);stroke-width:2}
 /* ── Bewegung ──────────────────────────────────────────────
