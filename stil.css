@@ -716,6 +716,9 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .pillen{display:flex;gap:8px;flex-wrap:wrap}
 .pillen span{border:2px solid var(--linie);border-radius:var(--r-pille);
   padding:7px 16px;font-size:15px;font-weight:600;color:var(--grau)}
+/* In der Dreierspalte ist weniger Platz — kleinere Pillen, sonst
+   brechen zwei Woerter auf drei Zeilen um. */
+.werk .pillen span{padding:5px 12px;font-size:13.5px;border-width:1.5px}
 .fall__bild{border-radius:var(--r-gross);overflow:hidden;background:var(--creme-2)}
 .fall__bild img{width:100%;height:600px;object-fit:cover}
 .fall__ausloeser{height:640px}
@@ -2221,13 +2224,18 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Verlauf sich mit cubic-bezier(.25,.25,.15,1) ueber 760 ms auf 1,4
    Prozent genau nachbilden laesst. */
 .werke{padding:0}
-.werke__raster{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;
-  margin-top:clamp(26px,2.6vw,42px)}
-@media (min-width:900px){ .werke__raster{grid-template-columns:repeat(2,minmax(0,1fr))} }
+/* Drei nebeneinander statt untereinander: sechs Projekte auf einen
+   Blick, wie in Dusans Vorlage — aber hell und mit dem Text UNTER dem
+   Bild. Damit muss kein Bild abgedunkelt werden, um Schrift darauf
+   lesbar zu machen. */
+.werke__raster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(14px,1.6vw,26px);margin-top:clamp(26px,2.6vw,42px)}
+@media (max-width:1080px){ .werke__raster{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:640px){ .werke__raster{grid-template-columns:minmax(0,1fr)} }
 .werk{--w-dauer:760ms;--w-kurve:cubic-bezier(.25,.25,.15,1);
   display:grid;grid-template-rows:auto auto;gap:8px;
   text-decoration:none;color:inherit}
-.werk__bild{position:relative;display:block;aspect-ratio:674 / 550;
+.werk__bild{position:relative;display:block;aspect-ratio:16 / 11;
   border-radius:var(--r-mittel);overflow:hidden;background:var(--creme-2)}
 /* :not() ist noetig — sonst greift diese Regel auch auf die
    Kundenmarke und macht sie formatfuellend. */
@@ -2250,10 +2258,25 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .werk:focus-visible .werk__bild img:not(.werk__marke){transform:scale(1)}
 .werk:hover .werk__schleier,.werk:focus-visible .werk__schleier{opacity:.72}
 .werk:hover .werk__marke,.werk:focus-visible .werk__marke{opacity:1}
-.werk__leiste{display:flex;align-items:center;justify-content:space-between;
-  gap:20px;flex-wrap:wrap;background:var(--creme-3);border-radius:var(--r-mittel);
-  padding:24px}
-.werk__name{font-size:clamp(18px,1.5vw,23px);font-weight:800;letter-spacing:-.02em}
+.werk__leiste{display:grid;justify-items:start;gap:9px;
+  background:var(--creme-3);border-radius:var(--r-mittel);
+  padding:clamp(16px,1.4vw,22px)}
+.werk__nr{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--grau-2)}
+/* Der Verweis sitzt unten, damit alle sechs Karten auf gleicher Hoehe
+   enden — auch wenn ein Projektname zwei Zeilen braucht. */
+.werk__mehr{display:inline-flex;align-items:center;gap:11px;margin-top:auto;
+  font-size:14.5px;font-weight:700;color:var(--tinte)}
+.werk__mehr i{display:grid;place-items:center;width:32px;height:32px;flex:none;
+  border-radius:var(--r-pille);border:1.5px solid var(--violett);
+  color:var(--violett-tief);font-style:normal;font-size:15px;
+  transition:background-color var(--t-knopf) var(--kurve-rein),
+    color var(--t-knopf) var(--kurve-rein),
+    transform var(--t-knopf) var(--kurve-rein)}
+.werk:hover .werk__mehr i,.werk:focus-visible .werk__mehr i{
+  background:var(--violett);color:var(--tinte);transform:translateX(3px)}
+.werk{grid-template-rows:auto 1fr}
+.werk__name{font-size:clamp(18px,1.35vw,22px);font-weight:800;letter-spacing:-.025em;
+  line-height:1.15}
 .werk:focus-visible{outline:3px solid var(--violett);outline-offset:5px;border-radius:4px}
 
 /* ── Häufige Fragen ────────────────────────────────────────
