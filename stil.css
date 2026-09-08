@@ -2519,19 +2519,35 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Die drei Flaechen sind flach und ohne Schatten; die Toene in den
    Ueberschneidungen entstehen durch Multiplizieren, nicht durch
    gemalte Schatten. */
-.wiewir{padding:var(--sec) var(--pad) 0;
+/* Weniger Vorlauf als die uebrigen Abschnitte: Ueberschrift UND
+   Grafik sollen zusammen auf einen Bildschirm passen. */
+.wiewir{position:relative;padding:clamp(64px,6vw,110px) var(--pad) 0;
   max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto}
+/* Die Bernsteinschleier liegen HINTER dem Abschnitt und reichen weit
+   ueber ihn hinaus. Nur so laufen sie ohne Kante aus — auf dem
+   Abschnitt selbst wuerden sie an seinem Rechteck abgeschnitten und
+   waeren wieder ein Kasten. */
+.wiewir::before{content:"";position:absolute;z-index:-1;pointer-events:none;
+  left:-14%;right:-14%;top:2%;bottom:-12%;
+  background:
+    radial-gradient(38% 42% at 14% 74%, rgb(245 165 36 / .26) 0%, transparent 70%),
+    radial-gradient(30% 34% at 88% 20%, rgb(245 165 36 / .16) 0%, transparent 70%)}
 .wiewir__kopf{text-align:center;display:grid;justify-items:center}
 .wiewir__kopf h2{font-size:clamp(32px,3.6vw,60px);margin-top:6px}
 .wiewir__kopf .fuehrung{margin-top:16px;max-width:56ch;text-align:center}
-.wiewir__bild{margin:clamp(20px,2vw,34px) 0 0;line-height:0}
+/* Die Grafik muss ohne Scrollen ganz sichtbar sein. Deshalb haengt
+   ihre Breite an der HOEHE des Fensters: 1520 zu 720 ist ihr
+   Verhaeltnis, also passt sie bei 56 vh Hoehe in 56vh x 2.111 Breite.
+   Das Format ist bewusst breit und flach — bei hochformatigerem
+   Zuschnitt bleibt seitlich viel Flaeche leer. */
+.wiewir__bild{margin:clamp(20px,2vw,34px) auto 0;line-height:0;
+  max-width:min(100%, calc(56vh * 2.111))}
 .ag{width:100%;height:auto;display:block;overflow:visible;
   font-family:Figtree,system-ui,sans-serif}
-.ag__gross{font-size:34px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
-.ag__unter{font-size:18px;font-weight:400;text-anchor:middle;opacity:.78}
-.ag__marke{font-size:26px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
-.ag__titel{font-size:23px;font-weight:800;letter-spacing:-.02em;fill:var(--tinte)}
-.ag__bei{font-size:17px;font-weight:400;fill:var(--grau)}
+.ag__gross{font-size:32px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
+.ag__unter{font-size:17px;font-weight:400;text-anchor:middle;opacity:.78}
+.ag__titel{font-size:21px;font-weight:800;letter-spacing:-.02em;fill:var(--tinte)}
+.ag__bei{font-size:15.5px;font-weight:400;fill:var(--grau)}
 .ag__end{text-anchor:end}
 .ag__mitte{text-anchor:middle}
 .ag__symfeld{fill:var(--creme-3)}
