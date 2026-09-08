@@ -30,16 +30,12 @@
   const sanft = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   const K_PUNKT = sanft ? 1 : .2;
   const K_RING  = sanft ? 1 : .1;
-  const K_BLASE = sanft ? 1 : .34;
 
   const mitte = { x: innerWidth / 2, y: innerHeight / 2 };
   const ziel = { x: mitte.x, y: mitte.y };
   const p = { x: mitte.x, y: mitte.y };
   const r = { x: mitte.x, y: mitte.y };
-  /* Eigene Position fuer die Scheibe. Sie folgt straffer als der Ring:
-     mit dessen Traegheit (0,1) hing sie beim Aufblenden noch dort, wo
-     der Zeiger herkam, und flog sichtbar ins Bild hinein. */
-  const bl = { x: mitte.x, y: mitte.y };
+
   let sichtbar = false;
 
   addEventListener('mousemove', function (e) {
@@ -243,10 +239,7 @@
     else ring.classList.remove('zeigt');
     const karte = t && t.closest && t.closest('.werk');
     const vorher = wurzel.classList.contains('aufKarte');
-    /* Beim Betreten der Karte springt die Scheibe ohne Nachziehen auf
-       den Zeiger — sie soll an Ort und Stelle aufgehen, nicht
-       hereinfliegen. */
-    if (karte && !vorher) { bl.x = e.clientX; bl.y = e.clientY; setze(blase, bl.x, bl.y); }
+    if (karte && !vorher) setze(blase, e.clientX, e.clientY);
     wurzel.classList.toggle('aufKarte', !!karte);
     nachsehen(t, e.clientX, e.clientY);
   }, { passive: true });
@@ -325,12 +318,12 @@
     p.y = misch(p.y, ziel.y, kp);
     r.x = misch(r.x, ziel.x, kr);
     r.y = misch(r.y, ziel.y, kr);
-    const kb = 1 - Math.pow(1 - K_BLASE, s);
-    bl.x = misch(bl.x, ziel.x, kb);
-    bl.y = misch(bl.y, ziel.y, kb);
     setze(punkt, p.x, p.y);
     setze(ring, r.x, r.y);
-    setze(blase, bl.x, bl.y);
+    /* Die Scheibe klebt ohne Verzoegerung am Zeiger. Jede Traegheit
+       laesst sie beim Aufblenden von dort heranfliegen, wo die Maus
+       herkam — bei 108 Punkten Durchmesser sieht man das sofort. */
+    setze(blase, ziel.x, ziel.y);
 
     if (anzeige) {
       /* Getrennt zaehlen: waehrend die Maus laeuft und wenn sie steht.
