@@ -723,4 +723,36 @@ function zeileHalten(el, dauerMs) {
   zeichne(); zeichneSlots(); melden();
 })();
 
+/* ── Die Arbeitsweise-Grafik rastet kurz in der Mitte ein ───────
+   Steht sie genau mittig, bleibt sie fuer 40 Prozent Fensterhoehe
+   stehen, waehrend die Seite weiterlaeuft. Das ist der Moment, in dem
+   man die Kreise ueberfahren kann, ohne dass einem die Grafik unter
+   dem Zeiger wegwandert. Danach loest sie sich von selbst.
+
+   Kein Zwangs-Einrasten (scroll-snap): das reisst den Scroll an sich
+   und laesst sich schwer wieder verlassen. Ein Pin haelt nur fest,
+   was ohnehin gerade in der Mitte steht.
+
+   Unter 900 Punkten steht statt der Grafik die Liste — dort waere ein
+   Halt sinnlos. gsap.matchMedia raeumt den Pin beim Verkleinern des
+   Fensters selbst wieder auf. */
+(() => {
+  const graf = document.querySelector('.wiewir__bild');
+  if (!graf) return;
+  gsap.matchMedia().add(
+    '(min-width: 900px) and (prefers-reduced-motion: no-preference)',
+    () => {
+      const st = ScrollTrigger.create({
+        trigger: graf,
+        start: 'center center',
+        end: '+=40%',
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+      });
+      return () => st.kill();
+    },
+  );
+})();
+
 addEventListener('load', () => ScrollTrigger.refresh());
