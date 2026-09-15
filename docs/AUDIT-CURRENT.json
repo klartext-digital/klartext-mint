@@ -1,0 +1,562 @@
+{
+  "canonical_documents": 37,
+  "duplicate_titles": [],
+  "pages": {
+    "404.html": {
+      "title": "Seite nicht gefunden | klartext digital",
+      "description": "Diese Seite wurde nicht gefunden. Zur Startseite oder zu den Leistungen von klartext digital.",
+      "main_words": 22,
+      "schema": [],
+      "html_bytes": 1279,
+      "responsive_images": 0,
+      "robots": "noindex, follow",
+      "clicks_from_home": null,
+      "incoming_pages": 0
+    },
+    "blog/index.html": {
+      "title": "Gedanken zu Marke und Marketing | klartext.",
+      "description": "Artikel und Perspektiven zu Markenaufbau, Websites, Social Media und Strategie. Entdeckt den Blog von klartext.",
+      "main_words": 286,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 25231,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "blog/kluge-marken-wachsen/index.html": {
+      "title": "Warum kluge Marken schneller wachsen | klartext.",
+      "description": "Warum kluge Marken schneller wachsen. Ein Beitrag über Marke und Marketing im klartext.-Blog.",
+      "main_words": 138,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 21642,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 4
+    },
+    "blog/marke-am-anfang/index.html": {
+      "title": "Wie viel Marke braucht ein Start? | klartext.",
+      "description": "Wie viel Marke braucht ein Start?. Ein Beitrag über Marke und Marketing im klartext.-Blog.",
+      "main_words": 162,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 21670,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 4
+    },
+    "blog/rhythmus-statt-kampagne/index.html": {
+      "title": "Rhythmus schlägt Kampagne | klartext.",
+      "description": "Rhythmus schlägt Kampagne. Ein Beitrag über Marke und Marketing im klartext.-Blog.",
+      "main_words": 148,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 21599,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 4
+    },
+    "blog/vorne-bleiben/index.html": {
+      "title": "Der echte Grund, warum Marken vorne bleiben | klartext.",
+      "description": "Der echte Grund, warum Marken vorne bleiben. Ein Beitrag über Marke und Marketing im klartext.-Blog.",
+      "main_words": 143,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 21683,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 4
+    },
+    "blog/website-die-arbeitet/index.html": {
+      "title": "Woran man eine Website misst | klartext.",
+      "description": "Woran man eine Website misst. Ein Beitrag über Marke und Marketing im klartext.-Blog.",
+      "main_words": 144,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 21579,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 4
+    },
+    "blog/wettbewerb-gewinnen/index.html": {
+      "title": "Wie grosse Marken den Wettbewerb gewinnen | klartext.",
+      "description": "Wie grosse Marken den Wettbewerb gewinnen. Ein Beitrag über Marke und Marketing im klartext.-Blog.",
+      "main_words": 153,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 21749,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 4
+    },
+    "branding/index.html": {
+      "title": "Branding und Markenstrategie für KMU | klartext.",
+      "description": "Positionierung, Markenstrategie und Gestaltung: Erfahrt, wie ein Markensystem aus Logo, Farben, Schriften und Bildsprache entsteht.",
+      "main_words": 309,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 24023,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "content-creation/index.html": {
+      "title": "Content Creation Schweiz | Foto, Video &amp; Social | klartext digital",
+      "description": "Content-Produktion für Unternehmen und Marketingteams: Fotos, Videos und Social-Media-Formate. Als Projekt oder Teil eurer laufenden Betreuung.",
+      "main_words": 350,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 22973,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "datenschutz/index.html": {
+      "title": "Datenschutzhinweise – Entwurf | klartext.",
+      "description": "Datenschutzhinweise zum klartext.-Website-Entwurf. Die Angaben müssen vor dem Produktivstart mit den eingesetzten Diensten abgeglichen werden.",
+      "main_words": 165,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 20799,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "email-marketing/index.html": {
+      "title": "E-Mail Marketing und Newsletter für KMU | klartext.",
+      "description": "Newsletter, Segmentierung und automatisierte E-Mail-Strecken: Entdeckt die Leistungen rund um E-Mail Marketing und Kundenkommunikation.",
+      "main_words": 289,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 24116,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "impressum/index.html": {
+      "title": "Impressum – Entwurf | klartext.",
+      "description": "Impressumsentwurf von klartext. Verbindliche Betreiber- und Unternehmensangaben sind vor der Veröffentlichung zu vervollständigen.",
+      "main_words": 120,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 20528,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "index.html": {
+      "title": "Marketingagentur Schweiz: Abo &amp; Projekte | klartext digital",
+      "description": "Marketing im Abo und Projekte für Unternehmen: SEO, Webdesign, Social Media, Google und Meta Ads sowie Newsletter. Auch als Ergänzung eures Marketingteams.",
+      "main_words": 1821,
+      "schema": [
+        "WebPage",
+        "Organization"
+      ],
+      "html_bytes": 81393,
+      "responsive_images": 10,
+      "robots": "noindex, follow",
+      "clicks_from_home": 0,
+      "incoming_pages": 33
+    },
+    "kommunikationsstrategie/index.html": {
+      "title": "Kommunikationsstrategie für Unternehmen | klartext digital",
+      "description": "Zielgruppen, Botschaften, Kanäle und Umsetzung klären. Kommunikationsstrategie als Projekt für Unternehmen und bestehende Marketingteams.",
+      "main_words": 302,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 22599,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "kontakt/index.html": {
+      "title": "Abo oder Projekt besprechen | klartext digital",
+      "description": "Beschreibt euer Vorhaben: laufendes Marketing, ein einzelnes Projekt oder Unterstützung für euer Marketingteam. Ein kurzes Briefing als Gesprächsgrundlage.",
+      "main_words": 135,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 21981,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "laune.html": {
+      "title": "Laune folgt dem Zeiger",
+      "description": "Gestaltungsstudie von klartext. Nicht zur Veröffentlichung in Suchmaschinen vorgesehen.",
+      "main_words": 0,
+      "schema": [
+        "WebPage",
+        "Organization"
+      ],
+      "html_bytes": 21384,
+      "responsive_images": 0,
+      "robots": "noindex, follow",
+      "clicks_from_home": null,
+      "incoming_pages": 0
+    },
+    "leistungen/index.html": {
+      "title": "Marketing-Leistungen für Schweizer KMU | klartext.",
+      "description": "Branding, Social Media, Webdesign, Performance Marketing und E-Mail Marketing: die Leistungen von klartext. im Überblick.",
+      "main_words": 78,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 22351,
+      "responsive_images": 10,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "marke.html": {
+      "title": "Marke | klartext.",
+      "description": "Das KLARTEXT-Logo: Wortmarke, Zeichen, Favicons, Masse und Dateien.",
+      "main_words": 306,
+      "schema": [
+        "WebPage",
+        "Organization"
+      ],
+      "html_bytes": 12035,
+      "responsive_images": 0,
+      "robots": "noindex, follow",
+      "clicks_from_home": null,
+      "incoming_pages": 0
+    },
+    "marketing-abo/index.html": {
+      "title": "Marketing im Abo | SEO, Content &amp; Ads | klartext digital",
+      "description": "Laufendes Marketing im Abo: SEO, Website-Betreuung, Social Media, Google und Meta Ads sowie Newsletter. Als Umsetzungsteam oder Ergänzung eures Marketings.",
+      "main_words": 531,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 24640,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "performance-marketing/index.html": {
+      "title": "Performance Marketing für KMU | klartext.",
+      "description": "Google Ads, Meta Ads, TikTok und LinkedIn: Ziele, Tracking, Kampagnen und Auswertung als Grundlage für nachvollziehbares Performance Marketing.",
+      "main_words": 303,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 24140,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "projektarbeit/index.html": {
+      "title": "Marketing-Projekte: Webdesign &amp; Strategie | klartext digital",
+      "description": "Webdesign, Kommunikationsstrategie und Content-Produktion als klar geplantes Projekt. Auch als externe Ergänzung eurer Marketingabteilung.",
+      "main_words": 308,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 22729,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "projekte/aesthetics-medical/index.html": {
+      "title": "Aesthetics Medical | Social Media | klartext.",
+      "description": "Social Media Management und Content Creation für Aesthetics Medical in Zürich: Reels und Beiträge, gedreht in der Klinik am Utoquai.",
+      "main_words": 457,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 28593,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 2
+    },
+    "projekte/grand-casino-baden/index.html": {
+      "title": "Grand Casino Baden | Social Media | klartext.",
+      "description": "Organischer Social-Media-Aufbau für das Grand Casino Baden: Redaktionsplan, Produktion vor Ort und Formate wie Swiss Jackpot, City54 und Polyball.",
+      "main_words": 372,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 29051,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 4
+    },
+    "projekte/index.html": {
+      "title": "Projekte und Referenzen | klartext digital",
+      "description": "Einblicke in die Referenzen von klartext digital: Projekte aus Branding, Content und digitalem Marketing.",
+      "main_words": 86,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 21737,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "projekte/meridian/index.html": {
+      "title": "Meridian | klartext.",
+      "description": "Eine Position beziehen heisst, auf etwas zu verzichten.",
+      "main_words": 120,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 21539,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 5
+    },
+    "projekte/nordlicht/index.html": {
+      "title": "Nordlicht | klartext.",
+      "description": "Aus einer guten Idee wurde eine Marke, die man erklären kann.",
+      "main_words": 140,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 21698,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 4
+    },
+    "projekte/red-bull/index.html": {
+      "title": "Red Bull × Grand Casino Baden | klartext.",
+      "description": "Kooperation zwischen Red Bull und dem Grand Casino Baden: zwei Signature Drinks zur Winter Edition, fotografiert und gefilmt an der Bar im Haus.",
+      "main_words": 251,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 27627,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 3
+    },
+    "projekte/volta/index.html": {
+      "title": "Volta | klartext.",
+      "description": "Weniger Fachsprache, mehr Bild.",
+      "main_words": 122,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 21449,
+      "responsive_images": 5,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 6
+    },
+    "social-media/index.html": {
+      "title": "Social Media für Schweizer KMU | klartext.",
+      "description": "Social Media mit Plan: Inhalte, Produktion, Veröffentlichung und Auswertung für Instagram, TikTok und LinkedIn. Leistungen im Überblick.",
+      "main_words": 285,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 23966,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "takt.html": {
+      "title": "Bildtakt messen",
+      "description": "Gestaltungsstudie von klartext. Nicht zur Veröffentlichung in Suchmaschinen vorgesehen.",
+      "main_words": 0,
+      "schema": [
+        "WebPage",
+        "Organization"
+      ],
+      "html_bytes": 3445,
+      "responsive_images": 0,
+      "robots": "noindex, follow",
+      "clicks_from_home": null,
+      "incoming_pages": 0
+    },
+    "ueber-uns/index.html": {
+      "title": "Über klartext. | Marketing für Schweizer KMU",
+      "description": "Einblick in die Arbeitsweise und den geplanten Auftritt von klartext. Team- und Unternehmensangaben dieser Entwurfsseite sind noch zu bestätigen.",
+      "main_words": 327,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 25653,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "webdesign/index.html": {
+      "title": "Webdesign Schweiz für KMU | klartext.",
+      "description": "Webdesign für Schweizer KMU: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.",
+      "main_words": 1079,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 34548,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "wissen/index.html": {
+      "title": "Marketing-Wissen für Schweizer KMU | klartext.",
+      "description": "Website, Budget und Marketing verständlich planen: Leitfäden und Antworten auf praktische Fragen von Schweizer KMU.",
+      "main_words": 73,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 20296,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 32
+    },
+    "wissen/website-erstellen-lassen/index.html": {
+      "title": "Website erstellen lassen: Briefing &amp; Ablauf | klartext digital",
+      "description": "Eine Unternehmenswebsite beauftragen: Ziele, Inhalte, Funktionen, Zuständigkeiten und Abnahme klären. Mit einer praktischen Briefing-Checkliste.",
+      "main_words": 521,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "Article",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 26001,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 2,
+      "incoming_pages": 4
+    },
+    "wissen/website-kosten-schweiz/index.html": {
+      "title": "Was kostet eine Website in der Schweiz? | klartext.",
+      "description": "Welche Faktoren bestimmen Website-Kosten? Ein Leitfaden für Schweizer KMU zu Konzept, Design, Inhalten, Technik, Betrieb und dem Vergleich von Offerten.",
+      "main_words": 1015,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "Article",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 30961,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 5
+    },
+    "wissen/website-relaunch-checkliste/index.html": {
+      "title": "Website-Relaunch: SEO-Checkliste | klartext digital",
+      "description": "Website-Relaunch planen: bestehende URLs sichern, Weiterleitungen vorbereiten, Inhalte prüfen und den Start kontrollieren. Checkliste für Marketingteams.",
+      "main_words": 446,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "Article",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 24951,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 2,
+      "incoming_pages": 3
+    }
+  },
+  "limits": [
+    "No rankings, indexing coverage or lead totals available without connected accounts.",
+    "PageSpeed API returned HTTP 429; no Core Web Vitals pass claimed.",
+    "Existing intro animation remains enabled as requested.",
+    "GitHub legacy aliases use HTML redirects; server redirects remain part of the production hosting move."
+  ]
+}
