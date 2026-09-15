@@ -18,5 +18,7 @@ Figtree lokal, 400–900; Rock Salt lokal für vorhandene handschriftliche Akzen
 ## 4. Component Stylings
 Bestehende schwebende Navigation, pillenförmige Aktionen, grosszügige Radien (16/24/36 px), Seitenrahmen 56 px. Neue Artikel nutzen bestehende unter-/artikel-Bausteine. Breadcrumbs sind unaufdringliche Textnavigation. Hinweise bleiben direkt bei betroffenen Inhalten.
 
+Angebotswege: zwei offene Spalten mit Trennlinie, auf dem Handy untereinander. Leistungsdetails als Textliste. Anfrage und Kostenplaner verwenden native, beschriftete Eingaben mit sichtbarem Fokus. Keine neue Farb- oder Schriftpalette. Lange Footer-Links dürfen umbrechen.
+
 ## 5. Layout Principles
 Vorhandene --pad, --sec und --maxw verwenden. Homepage-Bühne, Bild, Wortmarke und Abschnittsfolge erhalten. Neue Wissensseiten mit ruhigeren Lesestrecken, denselben Schriften/Farben und responsiven Abständen. Bestehende Animationen erhalten; keine zusätzliche Bibliothek.
