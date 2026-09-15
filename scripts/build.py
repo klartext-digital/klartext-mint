@@ -3,10 +3,11 @@
 from pathlib import Path
 from html import escape, unescape
 from urllib.parse import urljoin, urlsplit, urlunsplit
-import json, re, shutil, posixpath, struct
+import json, re, shutil, posixpath, struct, os
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / '_site'
+OUT = Path(os.environ.get('KLARTEXT_BUILD_DIR', ROOT / '_site')).resolve()
+assert OUT != ROOT and OUT not in ROOT.parents, 'Output must not replace source directories'
 CONFIG = json.loads((ROOT / 'seo.config.json').read_text())
 BASE = CONFIG['base_url'].rstrip('/') + '/'
 assert urlsplit(BASE).scheme == 'https' and not urlsplit(BASE).query and not urlsplit(BASE).fragment
@@ -31,6 +32,10 @@ for section, target in [('arbeiten', 'projekte'), ('blog', 'blog')]:
  for p in sorted((ROOT/section).glob('*.html')):
   if p.name != 'index.html': ROUTES[str(p.relative_to(ROOT))] = f'{target}/{p.stem}/'
 for filename in ['marke.html', 'laune.html', 'takt.html']: ROUTES[filename] = filename
+PAGE_META = json.loads((ROOT/'page-meta.json').read_text())
+for route in PAGE_META:
+ ROUTES[route+'index.html'] = route
+IMAGE_VARIANTS = json.loads((ROOT/'bild-varianten.json').read_text())
 ALIASES = {'leistungen/websites.html': 'webdesign/'}
 MAP = {**ROUTES, **ALIASES}
 for target in list(MAP.values()):
@@ -38,7 +43,7 @@ for target in list(MAP.values()):
  if not target.endswith('.html'): MAP[target+'index.html'] = target
 
 META = {
- '': ('Marketing Agentur Schweiz für KMU | klartext.', 'Branding, Webdesign, Content, Social Media und Performance Marketing für Schweizer KMU. Entdeckt die Leistungen von klartext. und plant euren nächsten Schritt.'),
+ '': ('Marketingagentur Schweiz: Abo & Projekte | klartext digital', 'Marketing im Abo und Projekte für Unternehmen: SEO, Webdesign, Social Media, Google und Meta Ads sowie Newsletter. Auch als Ergänzung eures Marketingteams.'),
  'webdesign/': ('Webdesign Schweiz für KMU | klartext.', 'Webdesign für Schweizer KMU: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.'),
  'wissen/website-kosten-schweiz/': ('Was kostet eine Website in der Schweiz? | klartext.', 'Welche Faktoren bestimmen Website-Kosten? Ein Leitfaden für Schweizer KMU zu Konzept, Design, Inhalten, Technik, Betrieb und dem Vergleich von Offerten.'),
  'wissen/': ('Marketing-Wissen für Schweizer KMU | klartext.', 'Website, Budget und Marketing verständlich planen: Leitfäden und Antworten auf praktische Fragen von Schweizer KMU.'),
@@ -48,20 +53,26 @@ META = {
  'email-marketing/': ('E-Mail Marketing und Newsletter für KMU | klartext.', 'Newsletter, Segmentierung und automatisierte E-Mail-Strecken: Entdeckt die Leistungen rund um E-Mail Marketing und Kundenkommunikation.'),
  'leistungen/': ('Marketing-Leistungen für Schweizer KMU | klartext.', 'Branding, Social Media, Webdesign, Performance Marketing und E-Mail Marketing: die Leistungen von klartext. im Überblick.'),
  'ueber-uns/': ('Über klartext. | Marketing für Schweizer KMU', 'Einblick in die Arbeitsweise und den geplanten Auftritt von klartext. Team- und Unternehmensangaben dieser Entwurfsseite sind noch zu bestätigen.'),
- 'projekte/': ('Projektentwürfe und Arbeitsbeispiele | klartext.', 'Arbeitsbeispiele aus Branding, Content und digitalem Marketing. Projektzuordnung, Referenzrechte und Ergebnisse sind vor Veröffentlichung zu prüfen.'),
+ 'projekte/': ('Projekte und Referenzen | klartext digital', 'Einblicke in die Referenzen von klartext digital: Projekte aus Branding, Content und digitalem Marketing.'),
  'blog/': ('Gedanken zu Marke und Marketing | klartext.', 'Artikel und Perspektiven zu Markenaufbau, Websites, Social Media und Strategie. Entdeckt den Blog von klartext.'),
  'impressum/': ('Impressum – Entwurf | klartext.', 'Impressumsentwurf von klartext. Verbindliche Betreiber- und Unternehmensangaben sind vor der Veröffentlichung zu vervollständigen.'),
  'datenschutz/': ('Datenschutzhinweise – Entwurf | klartext.', 'Datenschutzhinweise zum klartext.-Website-Entwurf. Die Angaben müssen vor dem Produktivstart mit den eingesetzten Diensten abgeglichen werden.')
 }
 LABELS={'':'Startseite','webdesign/':'Webdesign','wissen/':'Wissen','wissen/website-kosten-schweiz/':'Website-Kosten Schweiz','leistungen/':'Leistungen','branding/':'Branding','social-media/':'Social Media','performance-marketing/':'Performance Marketing','email-marketing/':'E-Mail Marketing','ueber-uns/':'Über uns','projekte/':'Projekte','blog/':'Blog','impressum/':'Impressum','datenschutz/':'Datenschutz'}
+for route, meta in PAGE_META.items():
+ META[route] = (meta['title'], meta['description'])
+ LABELS[route] = meta['label']
 
 assert len(CONFIG['approved_paths']) == len(set(CONFIG['approved_paths'])), 'Duplicate approved paths'
 assert set(CONFIG['approved_paths']) <= set(ROUTES.values()), 'Unknown approved path'
 assert not set(CONFIG['approved_paths']) & {'marke.html','laune.html','takt.html'}, 'Design studies must remain noindex'
 
 # Only generated output is replaced. Never delete source or user-authored files.
-if OUT.exists(): shutil.rmtree(OUT)
+if OUT.exists():
+ assert OUT == ROOT/'_site' or (OUT/'.klartext-generated').is_file(), 'Refuse to replace a directory not owned by this build'
+ shutil.rmtree(OUT)
 OUT.mkdir()
+(OUT/'.klartext-generated').touch()
 for directory in ['bilder','fonts','js','kopf','laune','logos','marke','video']:
  shutil.copytree(ROOT/directory, OUT/directory)
 for p in ROOT.iterdir():
@@ -120,16 +131,15 @@ def breadcrumb(route,title):
  return '<nav class="seo-breadcrumb" aria-label="Brotkrumennavigation">'+' <span aria-hidden="true">/</span> '.join(links)+'</nav>',graph
 
 for source,route in ROUTES.items():
+ route_dir=route if route.endswith('/') else posixpath.dirname(route)
  s=(ROOT/source).read_text()
  if '</head>' not in s:
   s='<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'+s.replace('</style>','</style></head><body>',1)+'</body></html>'
  title_old=unescape(re.search(r'<title>(.*?)</title>',s,re.S).group(1))
  default_title=title_old.replace(' | KLARTEXT. Werbeagentur Zürich',' | klartext.').replace(' | KLARTEXT.',' | klartext.')
- if route.startswith('projekte/') and route!='projekte/':default_title=default_title.replace(' | klartext.',' – Arbeitsbeispiel | klartext.')
  desc_match=re.search(r'<meta name="description" content="([^"]*)"',s)
  desc=unescape(desc_match.group(1)) if desc_match else 'Gestaltungsstudie von klartext. Nicht zur Veröffentlichung in Suchmaschinen vorgesehen.'
  if route.startswith('blog/') and route!='blog/':desc=default_title.split('|')[0].strip()+'. Ein Beitrag über Marke und Marketing im klartext.-Blog.'
- if route.startswith('projekte/') and route!='projekte/':desc='Arbeitsbeispiel im klartext.-Entwurf. Zuordnung, Nutzungsrechte und Projektangaben sind noch nicht für die Veröffentlichung freigegeben.'
  title,desc=META.get(route,(default_title,desc))
  s=re.sub(r'<title>.*?</title>','<title>'+escape(title)+'</title>',s,flags=re.S)
  s=re.sub(r'<meta name="(?:description|robots)"[^>]*>\s*','',s)
@@ -138,10 +148,13 @@ for source,route in ROUTES.items():
  canonical=BASE+route
  graph=[{'@type':'WebPage','@id':canonical+'#webpage','url':canonical,'name':title,'description':desc,'inLanguage':'de-CH'}]
  if CONFIG['organization_verified']:
-  graph.append({'@type':'Organization','@id':BASE+'#organization','name':'klartext.','url':BASE,'logo':BASE+'marke/wortmarke.svg'})
+  graph.append({'@type':'Organization','@id':BASE+'#organization','name':'klartext digital','alternateName':'klartext.','url':BASE,'logo':BASE+'marke/wortmarke.svg'})
   graph[0]['publisher']={'@id':BASE+'#organization'}
- if route=='wissen/website-kosten-schweiz/':
-  article={'@type':'Article','@id':canonical+'#article','headline':'Was kostet eine Website in der Schweiz?','description':desc,'mainEntityOfPage':{'@id':canonical+'#webpage'},'inLanguage':'de-CH'}
+ is_article=route=='wissen/website-kosten-schweiz/' or PAGE_META.get(route,{}).get('article',False)
+ preview_image=BASE+PAGE_META.get(route,{}).get('image','bilder/dienst-3.jpg')
+ if is_article:
+  headline=unescape(re.sub('<[^>]+>','',re.search(r'<h1\b[^>]*>(.*?)</h1>',s,re.S).group(1)))
+  article={'@type':'Article','@id':canonical+'#article','headline':headline,'description':desc,'mainEntityOfPage':{'@id':canonical+'#webpage'},'inLanguage':'de-CH','image':preview_image}
   if CONFIG['organization_verified']:article['publisher']={'@id':BASE+'#organization'}
   graph.append(article)
  person=CONFIG.get('person')
@@ -157,16 +170,22 @@ for source,route in ROUTES.items():
  # Rebase asset and anchor links into clean route output.
  def tagfix(m):
   tag=m.group(0)
+  variants=None
   img=re.match(r'<img\b',tag)
   src=re.search(r'\bsrc="([^"]+)"',tag)
   if img and src:
    item=resolved(src.group(1),source);dim=size_of(item[0]) if item else None
+   variants=IMAGE_VARIANTS.get(item[0]) if item else None
    if dim:
     tag=re.sub(r'\s(?:width|height)="[^"]*"','',tag)
     tag=tag[:-1]+f' width="{dim[0]}" height="{dim[1]}">'
    if 'decoding=' not in tag:tag=tag[:-1]+' decoding="async">'
    if 'dienst-' in src.group(1) and 'loading=' not in tag:tag=tag[:-1]+' loading="lazy">'
-  return re.sub(r'\b(href|src|poster)="([^"]*)"',lambda x:x.group(1)+'="'+rewrite_url(x.group(2),source,route)+'"',tag)
+  tag=re.sub(r'\b(href|src|poster)="([^"]*)"',lambda x:x.group(1)+'="'+rewrite_url(x.group(2),source,route)+'"',tag)
+  if variants:
+   candidates=', '.join(posixpath.relpath(v['path'],route_dir or '.')+' '+str(v['width'])+'w' for v in variants)
+   tag=tag[:-1]+' srcset="'+candidates+'" sizes="(max-width: 700px) 100vw, 50vw">'
+  return tag
  s=re.sub(r'<(?:a|link|img|script|video|source)\b[^>]*>',tagfix,s)
  if route and route not in ['marke.html','laune.html','takt.html']:
   markup,bc=breadcrumb(route,title);graph.append(bc)
@@ -174,21 +193,32 @@ for source,route in ROUTES.items():
   s=re.sub(r'(<section class="unter[^"\n]*">)',lambda m:m.group(1)+markup,s,count=1)
   if markup not in s:s=s.replace('<main>','<main>'+markup,1)
  # All standard footers expose the new knowledge hub.
- s=s.replace('<p class="fuss__kopf">Seite</p>','<p class="fuss__kopf">Seite</p><a href="'+posixpath.relpath('wissen',route or '.')+'/">Wissen</a>')
- # Existing trust claims remain as requested; contextual markers prevent treating them as verified.
- s=s.replace('Vertrauen uns</p>','Referenzen im Entwurf</p><p class="seo-pruefhinweis">Kundenbeziehungen und Nutzungsrechte sind noch zu bestätigen. Teile der Arbeiten stammen aus früheren beruflichen Stationen.</p>')
+ s=s.replace('<p class="fuss__kopf">Seite</p>','<p class="fuss__kopf">Seite</p><a href="'+posixpath.relpath('wissen',route_dir or '.')+'/">Wissen</a>')
+ # Offer navigation is shared; keep the existing visual menu and interactions.
+ def route_link(target):return posixpath.relpath(target,route_dir or '.')+'/'
+ offer_nav='<nav class="seo-offer-nav" aria-label="Zusammenarbeit"><a href="'+route_link('marketing-abo')+'">Marketing im Abo</a><a href="'+route_link('projektarbeit')+'">Projektarbeit</a><a href="'+route_link('kontakt')+'">Anfrage vorbereiten</a></nav>'
+ s=s.replace('<div class="ndd__spalte ndd__spalte--liste">','<div class="ndd__spalte ndd__spalte--liste">'+offer_nav)
+ s=s.replace('<p class="fuss__kopf">Leistungen</p>','<p class="fuss__kopf">Leistungen</p><a href="'+route_link('marketing-abo')+'">Marketing im Abo</a><a href="'+route_link('projektarbeit')+'">Projektarbeit</a><a href="'+route_link('content-creation')+'">Content Creation</a><a href="'+route_link('kommunikationsstrategie')+'">Kommunikationsstrategie</a><a href="'+route_link('kontakt')+'">Anfrage vorbereiten</a>')
+ # References retain their source presentation per the confirmed project rules.
  s=s.replace('<h2 class="mitte">Die Mannschaft</h2>','<h2 class="mitte">Die Mannschaft</h2><p class="seo-pruefhinweis">Teamdarstellung im Entwurf: Namen, Rollen und Zugehörigkeit sind noch zu bestätigen.</p>')
  s=s.replace('<section class="vref">','<section class="vref"><p class="seo-pruefhinweis">Kundenstimmen im Entwurf: Zitate und Zuordnung sind noch nicht bestätigt.</p>')
  s=s.replace('<section class="preise" id="preise">','<section class="preise" id="preise"><p class="seo-pruefhinweis">Preise und Leistungsversprechen sind Entwurfswerte und noch nicht als Angebot freigegeben.</p>')
  s=s.replace('<p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p>','<div><p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p><p>Firmierung, Kontaktangaben und Geschäftszeiten: noch zu bestätigen.</p></div>')
  s=s.replace('<h2 data-rein-zeilen><span>Die Mannschaft</span></h2>','<h2 data-rein-zeilen><span>Die Mannschaft</span></h2><p class="seo-pruefhinweis">Teamdarstellung im Entwurf. Namen, Rollen und Zugehörigkeit sind noch nicht bestätigt.</p>')
  s=s.replace('Werbeagentur mit Sitz in Zürich, tätig in der ganzen Deutschschweiz','Marketing für Schweizer KMU · Standortangaben noch zu bestätigen')
- if route.startswith('projekte/') or route=='ueber-uns/':
-  s=s.replace('<main>','<main><p class="seo-pruefhinweis seo-freigabe">Entwurf: Team, Projektzuordnung, Referenzrechte und Aussagen sind noch zu bestätigen.</p>',1)
- prefix=posixpath.relpath('.',route or '.')+'/'
+ if route=='ueber-uns/':
+  s=s.replace('<main>','<main><p class="seo-pruefhinweis seo-freigabe">Entwurf: Team- und Unternehmensangaben sind noch zu bestätigen.</p>',1)
+ prefix=posixpath.relpath('.',route_dir or '.')+'/'
  schema_json=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False).replace('</','<\\/')
  head=f'''\n<meta name="description" content="{escape(desc,quote=True)}">\n<meta name="robots" content="{robots}">\n<link rel="canonical" href="{canonical}">\n<meta property="og:title" content="{escape(title,quote=True)}">\n<meta property="og:description" content="{escape(desc,quote=True)}">\n<meta property="og:url" content="{canonical}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="de_CH">\n<meta property="og:image" content="{BASE}marke/favicon-180.png">\n<link rel="stylesheet" href="{prefix}seo.css">\n<script type="application/ld+json">{schema_json}</script>\n'''
  if route=='':head+='<link rel="preload" as="image" href="kopf/grund.jpg" fetchpriority="high">\n'
+ # A real landscape image replaces the tiny app icon in link previews.
+ head=head.replace(BASE+'marke/favicon-180.png',preview_image)
+ head=head.replace('property="og:type" content="website"','property="og:type" content="'+('article' if is_article else 'website')+'"')
+ head+=f'<meta property="og:image:alt" content="klartext digital – Webdesign und Marketing">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="{escape(title,quote=True)}">\n<meta name="twitter:description" content="{escape(desc,quote=True)}">\n<meta name="twitter:image" content="{preview_image}">\n<script defer src="{prefix}messung.js"></script>\n'
+ for key,name in [('google','google-site-verification'),('bing','msvalidate.01')]:
+  token=CONFIG.get('verification',{}).get(key)
+  if token:head+=f'<meta name="{name}" content="{escape(token,quote=True)}">\n'
  head+=f'<link rel="preload" href="{prefix}fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>\n'
  s=s.replace('</head>',head+'</head>')
  dest=OUT/(route if route.endswith('.html') else route+'index.html');dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(s)
@@ -205,5 +235,10 @@ xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.
 (OUT/'sitemap.xml').write_text(xml)
 (OUT/'robots.txt').write_text('# Effective only when served at the host root. Draft noindex is in HTML.\nUser-agent: *\nAllow: /\nSitemap: '+BASE+'sitemap.xml\n')
 (OUT/'.nojekyll').touch()
+# GitHub Pages serves this document with HTTP 404 at any missing path.
+# Absolute asset/navigation URLs also work when that path is deeply nested.
+error_html=f'''<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seite nicht gefunden | klartext digital</title><meta name="robots" content="noindex, follow"><meta name="description" content="Diese Seite wurde nicht gefunden. Zur Startseite oder zu den Leistungen von klartext digital."><link rel="canonical" href="{BASE}404.html"><link rel="stylesheet" href="{BASE}stil.css"><link rel="stylesheet" href="{BASE}seo.css"></head><body><main><section class="unter unter--eng"><p class="brush">404</p><h1 class="seo-h1">Hier geht es nicht weiter.</h1><p>Die Adresse stimmt nicht oder die Seite wurde verschoben.</p><p><a class="knopf knopf--akzent" href="{BASE}">Zur Startseite</a></p><nav class="seo-offer-nav" aria-label="Weitere Seiten"><a href="{BASE}marketing-abo/">Marketing im Abo</a><a href="{BASE}projektarbeit/">Projektarbeit</a><a href="{BASE}wissen/">Wissen</a></nav></section></main></body></html>'''
+(OUT/'404.html').write_text(error_html)
+(OUT/'build-manifest.json').write_text(json.dumps(sorted(str(p.relative_to(OUT)) for p in OUT.rglob('*') if p.is_file()),indent=2)+'\n')
 (ROOT/'docs/URL-MAP.json').write_text(json.dumps({k:BASE+v for k,v in {**ROUTES,**ALIASES}.items()},ensure_ascii=False,indent=2)+'\n')
 print(f'Built {len(ROUTES)} pages and legacy redirects. Indexable sitemap entries: {len(paths)}. Output: {OUT}')
