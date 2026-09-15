@@ -31,7 +31,8 @@ Nicht zwei Werkzeuge gleichzeitig auf `main`.
 - **Ladeschirm bleibt aktiv:** beim ersten Besuch und danach bei jedem zehnten Aufruf. Nicht abschalten, auch nicht über den Build.
 - **Design, Farben, Schriften:** nur mit Freigabe ändern. Kein Sandton/Beige, kein Streifenmuster.
 - **Kein vollständiger Personenname auf GitHub** — weder in Dateien noch in Commits. Commits laufen auf „KLARTEXT".
-- **Nichts erfinden:** keine Firmenangaben, Adressen, Bewertungen, Kundenzuordnungen, Kennzahlen oder Preise ohne Bestätigung.
+- **Referenzen (Entscheid des Auftraggebers, 16.09.2026):** Alle Kunden, die er betreut hat, gelten als klartext.-Referenzen und dürfen so gezeigt werden. Keine Hinweise wie „Referenzen im Entwurf“ oder „aus früheren beruflichen Stationen“ mehr einblenden.
+- **Nichts erfinden:** keine Firmenangaben, Adressen, Bewertungen, Kennzahlen oder Preise ohne Bestätigung.
 - **Indexierung** (`indexable` in `seo.config.json`) bleibt `false`, bis Domain und Firmenangaben bestätigt sind.
 - **Domain/DNS** nie ohne ausdrücklichen Auftrag umstellen.
 
