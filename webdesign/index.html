@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<title>Webdesign Schweiz für KMU | klartext.</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){if(!document.documentElement.hasAttribute("data-intro"))return;var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../marke/favicon-180.png">
+
+<meta name="description" content="Webdesign für Schweizer KMU: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://klartext-digital.github.io/klartext-mint/webdesign/">
+<meta property="og:title" content="Webdesign Schweiz für KMU | klartext.">
+<meta property="og:description" content="Webdesign für Schweizer KMU: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.">
+<meta property="og:url" content="https://klartext-digital.github.io/klartext-mint/webdesign/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_CH">
+<meta property="og:image" content="https://klartext-digital.github.io/klartext-mint/marke/favicon-180.png">
+<link rel="stylesheet" href="../seo.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://klartext-digital.github.io/klartext-mint/webdesign/#webpage", "url": "https://klartext-digital.github.io/klartext-mint/webdesign/", "name": "Webdesign Schweiz für KMU | klartext.", "description": "Webdesign für Schweizer KMU: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.", "inLanguage": "de-CH", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "Organization", "@id": "https://klartext-digital.github.io/klartext-mint/#organization", "name": "klartext.", "url": "https://klartext-digital.github.io/klartext-mint/", "logo": "https://klartext-digital.github.io/klartext-mint/marke/wortmarke.svg"}, {"@type": "BreadcrumbList", "@id": "https://klartext-digital.github.io/klartext-mint/webdesign/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://klartext-digital.github.io/klartext-mint/"}, {"@type": "ListItem", "position": 2, "name": "Webdesign", "item": "https://klartext-digital.github.io/klartext-mint/webdesign/"}]}]}</script>
+<link rel="preload" href="../fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../marke/wortmarke-negativ.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../" aria-label="KLARTEXT — zur Startseite"><img src="../marke/wortmarke.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../projekte/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../blog/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../branding/" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Branding</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../social-media/" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="./" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../performance-marketing/" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../email-marketing/" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../leistungen/" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../bilder/dienst-1.jpg" alt="" class="ist" width="626" height="447" decoding="async" loading="lazy">
+          <img src="../bilder/dienst-2.jpg" alt="" width="626" height="447" decoding="async" loading="lazy">
+          <img src="../bilder/dienst-3.jpg" alt="" width="626" height="447" decoding="async" loading="lazy">
+          <img src="../bilder/dienst-4.jpg" alt="" width="626" height="447" decoding="async" loading="lazy">
+          <img src="../bilder/dienst-5.jpg" alt="" width="626" height="447" decoding="async" loading="lazy">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+            </div>
+          </div>
+      <aside class="ndd__karte">
+        <p class="brush">Unsicher?</p>
+        <p class="ndd__karte-titel">Wir sortieren das in 15&nbsp;Minuten.</p>
+        <p class="ndd__karte-text">Kurzes Gespräch, ehrliche Einschätzung.
+          Auch wenn am Ende nichts daraus wird.</p>
+        <a class="knopf knopf--akzent" href="../#kontakt" tabindex="-1">Gespräch buchen</a>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ══ Kopf ══ -->
+  <section class="unter"><nav class="seo-breadcrumb" aria-label="Brotkrumennavigation"><a href="../">Startseite</a> <span aria-hidden="true">/</span> <span aria-current="page">Webdesign</span></nav>
+    <a class="zurueck" href="../#leistungen" data-rein>
+      <i aria-hidden="true">←</i><span>Alle Leistungen</span></a>
+
+    <h1 class="seo-h1"><span>Webdesign für</span><span>Schweizer KMU</span></h1>
+    <p class="brush" data-rein>Eine Website ist kein Prospekt.</p>
+  </section>
+
+  <!-- ══ Text und Bild ══ -->
+  <section class="unter__leib">
+    <div class="unter__text" data-rein>
+      <p>Webdesign beginnt mit dem Ziel eures Unternehmens. Eine Website hat eine Aufgabe: Anfragen, Buchungen oder Bewerbungen. Wir legen diese Aufgabe zu Beginn fest und richten Struktur, Texte und Gestaltung darauf aus. Alles, was nicht darauf einzahlt, kommt nicht auf die Seite.</p>
+      <p>Gebaut wird schnell und auffindbar. Saubere Überschriftenstruktur, sprechende Adressen, Meta-Angaben, komprimierte Bilder und kurze Ladezeiten gehören zur Arbeit und kosten keinen Aufpreis. Auf dem Handy zählt jede Zehntelsekunde, im Zug mit halbem Empfang erst recht.</p>
+      <p>Nach dem Start könnt ihr Inhalte selbst pflegen. Ihr bekommt eine Einführung und eine kurze Anleitung, damit ihr für eine neue Referenz nicht anrufen müsst.</p>
+      <p class="unter__dauer"><span>Typische Dauer</span><b>6 bis 12 Wochen</b></p>
+    </div>
+    <figure class="unter__bild" data-rein>
+      <img src="../bilder/dienst-3.jpg" alt="" loading="lazy" width="626" height="447" decoding="async">
+    </figure>
+  </section>
+
+  <!-- ══ Was drin ist ══ -->
+  <section class="unter__block">
+    <div class="dienste__block" data-zug>
+      <div class="dienste__kopf">
+        <p class="brush">Was drin ist</p>
+        <h2 data-rein-zeilen><span>Der Umfang</span><span>im Überblick.</span></h2>
+      </div>
+      <ul class="drin">
+        <li>Konzept und Seitenplan</li>
+        <li>UX und Gestaltung</li>
+        <li>Umsetzung</li>
+        <li>Technische Suchmaschinenoptimierung</li>
+        <li>Ladezeit und Bilder</li>
+        <li>Barrierefreiheit</li>
+        <li>Inhaltspflege für euch</li>
+        <li>Betreuung danach</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ Ablauf ══ -->
+  <section class="unter__ablauf">
+    <div class="kopfzeile">
+      <div>
+        <span class="chip" data-rein>Ablauf</span>
+        <h2 data-rein-zeilen><span>So arbeiten wir.</span></h2>
+      </div>
+    </div>
+    <ol class="schritte">
+      <li class="schritt"><b>01</b><div><h3>Ziel</h3><p>Was soll die Seite auslösen und bei wem.</p></div></li>
+      <li class="schritt"><b>02</b><div><h3>Struktur</h3><p>Seitenplan und Inhalte, bevor gestaltet wird.</p></div></li>
+      <li class="schritt"><b>03</b><div><h3>Bauen</h3><p>Gestaltung und Umsetzung in einem Zug.</p></div></li>
+      <li class="schritt"><b>04</b><div><h3>Übergabe</h3><p>Einführung, damit ihr selbst pflegen könnt.</p></div></li>
+    </ol>
+  </section>
+
+
+<section class="unter__block seo-prose" aria-labelledby="relaunch"><h2 id="relaunch">Wann lohnt sich ein Website-Relaunch?</h2>
+<p>Ein neuer Auftritt lohnt sich, wenn die bestehende Website euer Angebot nicht mehr verständlich erklärt, auf dem Handy schwer zu bedienen ist oder Anfragen im falschen Postfach landen. Ein anderes Farbschema allein löst diese Probleme nicht. Am Anfang steht deshalb die Bestandsaufnahme: Was funktioniert bereits, was bremst Besucher und welche Inhalte fehlen?</p>
+<p>Bestehende Seiten, die über Suchmaschinen gefunden werden, gehören in diesen Plan. Ihre Adressen, Inhalte und Verlinkungen werden vor einem Umbau erfasst. So lässt sich entscheiden, was erhalten bleibt, was zusammengeführt wird und welche Weiterleitungen nötig sind.</p>
+<h2>Was eine KMU-Website leisten sollte</h2>
+<p>Besucher wollen schnell verstehen, was ihr anbietet, für wen es passt und wie sie weiterkommen. Jede Leistungsseite braucht deshalb einen klaren Schwerpunkt, eine verständliche Erklärung und einen passenden nächsten Schritt. Das kann eine Anfrage, eine Buchung oder eine Bewerbung sein.</p>
+<p>Ein gutes Design macht diese Entscheidungen einfacher. Lesbare Schrift, nachvollziehbare Navigation und echte, freigegebene Arbeitsbeispiele helfen mehr als zusätzliche Effekte. Auf dem Smartphone müssen dieselben Informationen und Funktionen erreichbar sein wie am grossen Bildschirm.</p>
+<h2>Von der Struktur zur fertigen Website</h2>
+<p>Der Seitenplan verbindet Unternehmensziele mit den Fragen eurer Kunden. Danach folgen Inhalte und Gestaltung. Wer Texte, Bilder und Freigaben liefert, wird früh festgelegt. Fehlendes Material beeinflusst den Termin häufig stärker als die eigentliche Umsetzung.</p>
+<p>Für ein neues Erscheinungsbild gehört <a href="../branding/">Branding und Markenstrategie</a> in die Planung. Besteht bereits ein verbindliches Designsystem, bildet es die Grundlage. Eine Website soll zu eurem Unternehmen passen und eure vorhandenen Unterlagen ergänzen.</p>
+<h2>Suchmaschinenoptimierung als technische Grundlage</h2>
+<p>Eine klare Überschriftenstruktur, individuelle Seitentitel und Beschreibungen geben jeder Seite ein eigenes Thema. Verständliche Adressen und interne Links helfen Besuchern und Suchmaschinen, verwandte Inhalte zu finden. Canonicals benennen die bevorzugte Adresse, wenn eine Seite über mehrere Varianten erreichbar ist.</p>
+<p>Die Sitemap enthält die zur Indexierung freigegebenen Seiten. Strukturierte Daten beschreiben nur Informationen, die auf der Website sichtbar und überprüft sind. Diese Grundlage erleichtert die Verarbeitung durch Suchmaschinen; bestimmte Rankings oder Anfragen lassen sich dadurch nicht garantieren.</p>
+<h2>Schnelle Seiten, verständliche Bedienung</h2>
+<p>Bilder werden passend zum Einsatz aufbereitet. Das wichtigste Bild lädt früh, weiter unten liegende Bilder bei Bedarf. Reservierter Platz für Medien verhindert, dass Text und Schaltflächen beim Laden springen. Schriften, Skripte und Videos werden auf ihren tatsächlichen Nutzen geprüft.</p>
+<p>Zur Bedienung gehören sichtbare Tastaturmarkierungen, ausreichend grosse Schaltflächen und Formulare mit verständlichen Bezeichnungen. Bewegung soll Orientierung geben. Wer reduzierte Bewegung eingestellt hat, sollte die Inhalte ebenso zuverlässig erreichen.</p>
+<h2>Inhalte pflegen und Verantwortung klären</h2>
+<p>Ob ein Content-Management-System sinnvoll ist, hängt davon ab, wie häufig und durch wen Inhalte geändert werden. Wer regelmässig neue Projekte, Stellen oder Artikel veröffentlicht, braucht andere Pflegefunktionen als ein Betrieb mit wenigen stabilen Leistungsseiten.</p>
+<p>Zum Projektumfang gehören deshalb auch die Übergabe, Zuständigkeiten für Updates, Sicherungen und Zugänge. Laufende Betreuung und Lizenzen werden separat ausgewiesen, damit die Betriebskosten nach dem Start nachvollziehbar bleiben.</p>
+<h2>Was kostet Webdesign in der Schweiz?</h2>
+<p>Die Seitenzahl allein reicht für eine Schätzung nicht aus. Neue Texte und Fotos, individuelle Gestaltung, Mehrsprachigkeit, ein Shop oder Schnittstellen verändern den Aufwand. Für vergleichbare Angebote braucht es einen gemeinsamen Leistungsumfang.</p>
+<p>Unser <a href="../wissen/website-kosten-schweiz/">Leitfaden zu Website-Kosten in der Schweiz</a> erklärt einmalige und laufende Kosten sowie die Fragen, die in eine Offertanfrage gehören. Die bestehenden Rechnerwerte auf dieser Entwurfsseite sind noch nicht als Preise freigegeben.</p>
+<h2>Fragen vor dem Projektstart</h2>
+<details><summary>Wie lange dauert eine neue Website?</summary><p>Der bisherige Projektentwurf nennt sechs bis zwölf Wochen. Der konkrete Termin hängt von Umfang, Inhalten, Schnittstellen und Freigaben ab und muss im Angebot bestätigt werden.</p></details>
+<details><summary>Müssen alle Texte neu geschrieben werden?</summary><p>Nein. Vorhandene Inhalte werden zuerst auf Aktualität, Verständlichkeit und Suchanfragen geprüft. Was weiterhilft, kann bestehen bleiben; fehlende Antworten werden gezielt ergänzt.</p></details>
+<details><summary>Was passiert mit bestehenden Seitenadressen?</summary><p>Vor dem Wechsel wird eine Zuordnung von alten zu neuen Adressen erstellt. Dauerhafte serverseitige Weiterleitungen sind die bevorzugte Lösung, wenn sich Adressen ändern und der Zielhost sie unterstützt.</p></details>
+<details><summary>Gehören Werbung und Social Media dazu?</summary><p>Eine Website kann einzeln geplant werden. Falls Kampagnen dazugehören, sollten <a href="../performance-marketing/">Performance Marketing</a> und <a href="../social-media/">Social Media</a> auf passende Zielseiten führen. Leistungen, Budget und Zuständigkeiten werden getrennt vereinbart.</p></details>
+</section>
+
+  <!-- ══ Weiter ══ -->
+
+  <section class="rechner" id="rechner">
+    <div class="kopfzeile">
+      <div>
+        <span class="chip" data-rein>Kostenrechner</span>
+        <h2 data-rein-zeilen><span>Was kostet eure Website?</span></h2>
+        <p class="seo-pruefhinweis">Preisrechner im Entwurf: Werte und Leistungsumfang sind noch nicht freigegeben und stellen kein Angebot dar.</p><p class="rechner__lead" data-rein>Ein paar Angaben, ein Richtwert. Damit ihr wisst, in
+          welcher Grössenordnung ihr plant, bevor wir miteinander sprechen.</p>
+      </div>
+    </div>
+
+    <div class="rechner__leib" data-rein>
+      <div class="rechner__fragen">
+
+        <fieldset class="rechner__block">
+          <legend>Was für eine Seite?</legend>
+          <div class="rechner__wahl">
+            <label><input type="radio" name="art" value="onepager" data-wort="Einseitige Website"><span>Einseitig</span></label>
+            <label><input type="radio" name="art" value="mehrseitig" data-wort="Mehrseitige Website" checked><span>Mehrere Seiten</span></label>
+            <label><input type="radio" name="art" value="shop" data-wort="Onlineshop"><span>Onlineshop</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="rechner__block" data-block="seiten">
+          <legend>Wie viele Unterseiten?<output class="rechner__wert" id="rSeitenWert">8</output></legend>
+          <div class="rechner__regler">
+            <span class="rechner__spur" id="rSeitenSpur"></span>
+            <input type="range" id="rSeiten" min="1" max="30" step="1" value="8"
+                   aria-label="Anzahl Unterseiten">
+          </div>
+          <div class="rechner__marken"><span>1</span><span>15</span><span>30+</span></div>
+        </fieldset>
+
+        <fieldset class="rechner__block">
+          <legend>Wie gestaltet?</legend>
+          <div class="rechner__wahl">
+            <label><input type="radio" name="design" value="vorlage" data-wort="Auf Basis einer Vorlage"><span>Vorlage anpassen</span></label>
+            <label><input type="radio" name="design" value="eigen" data-wort="Eigenes Design" checked><span>Eigenes Design</span></label>
+            <label><input type="radio" name="design" value="motion" data-wort="Eigenes Design mit Animationen"><span>Mit Animationen</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="rechner__block">
+          <legend>Woher kommen die Inhalte?</legend>
+          <div class="rechner__wahl">
+            <label><input type="radio" name="inhalt" value="selbst" data-wort="Inhalte kommen von euch" checked><span>Von uns</span></label>
+            <label><input type="radio" name="inhalt" value="texte" data-wort="Texte schreiben wir"><span>Texte von euch</span></label>
+            <label><input type="radio" name="inhalt" value="alles" data-wort="Texte und Bilder von uns"><span>Texte und Bilder</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="rechner__block">
+          <legend>Braucht ihr davon etwas?</legend>
+          <div class="rechner__wahl rechner__wahl--mehr">
+            <label><input type="checkbox" name="extra" value="sprachen" data-wort="Mehrsprachig"><span>Mehrsprachig</span></label>
+            <label><input type="checkbox" name="extra" value="blog" data-wort="Blog oder News"><span>Blog oder News</span></label>
+            <label><input type="checkbox" name="extra" value="termine" data-wort="Terminbuchung"><span>Terminbuchung</span></label>
+            <label><input type="checkbox" name="extra" value="seo" data-wort="SEO-Grundausbau"><span>SEO-Grundausbau</span></label>
+            <label><input type="checkbox" name="extra" value="anbindung" data-wort="Anbindung an bestehende Systeme"><span>Systemanbindung</span></label>
+          </div>
+        </fieldset>
+
+      </div>
+
+      <aside class="rechner__ergebnis">
+        <span class="brush rechner__marke">Richtwert</span>
+        <p class="rechner__spanne" id="rSpanne">Richtwert wird berechnet</p>
+        <p class="rechner__deckel" id="rDeckel" hidden>Ab dieser Grösse hängt der Preis so stark
+          am Einzelfall, dass ein Rechner nur noch raten würde. Sprechen wir darüber.</p>
+        <ul class="rechner__posten" id="rPosten"></ul>
+        <a class="knopf knopf--akzent gross voll" id="rAnfrage" href="../#kontakt">
+          <span class="rolle"><span>Anfrage mit dieser Auswahl</span><span aria-hidden="true">Anfrage mit dieser Auswahl</span></span>
+        </a>
+        <p class="rechner__fussnote">Ein Richtwert, kein Angebot. Was eure Seite wirklich
+          kostet, hängt am Umfang der Inhalte und daran, wie viel ihr selbst übernehmt.
+          Im Erstgespräch wird daraus eine Zahl.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="weiter">
+    <p class="brush mitte">Weiter</p>
+    <div class="weiter__reihe">
+      <a class="weiter__karte" href="../performance-marketing/"><span class="weiter__nr">04</span><span class="weiter__name">Performance Marketing</span><i aria-hidden="true">↗</i></a>
+      <a class="weiter__karte" href="../email-marketing/"><span class="weiter__nr">05</span><span class="weiter__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a>
+    </div>
+  </section>
+
+  <!-- ══ Ruf ══ -->
+  <section class="ruf">
+    <div class="ruf__karte ruf__karte--knapp" data-rein>
+      <div class="ruf__wort">
+        <p class="brush">Auf ein Wort</p>
+        <h2>Passt das zu<br>eurem Vorhaben?</h2>
+        <p class="ruf__text">Fünfzehn Minuten reichen für eine ehrliche
+          Einschätzung, auch wenn am Ende nichts daraus wird.</p>
+        <a class="knopf knopf--akzent gross" href="../#kontakt">
+          <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <p class="brush">Auf ein Wort</p>
+      <h2>Reden<br>wir.</h2>
+      <div class="fuss__kontakt">
+        <a class="fuss__gross" href="mailto:hallo@klartext-digital.ch">
+          <span>hallo@klartext-digital.ch</span><i aria-hidden="true">↗</i></a>
+        <a class="fuss__gross" href="tel:+41000000000">
+          <span>+41 00 000 00 00</span><i aria-hidden="true">↗</i></a>
+      </div>
+      <p class="fuss__ort">Marketing für Schweizer KMU · Standortangaben noch zu bestätigen<br>
+        Mo bis Fr, 08:30 bis 18:00</p>
+    </div>
+
+    <div class="fuss__spalten">
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Seite</p><a href="../wissen/">Wissen</a>
+        <a class="mlink" href="../projekte/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+        <a class="mlink" href="../leistungen/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Leistungen</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen</span></a>
+        <a class="mlink" href="../ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+        <a class="mlink" href="../blog/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+        <a class="mlink" href="../#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+      </nav>
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Leistungen</p>
+        <a class="mlink" href="../branding/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a>
+        <a class="mlink" href="../social-media/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a>
+        <a class="mlink" href="./"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a>
+        <a class="mlink" href="../performance-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a>
+        <a class="mlink" href="../email-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a>
+      </nav>
+      <div class="fuss__spalte">
+        <p class="fuss__kopf">Folgen</p>
+        <div class="fuss__sozial">
+          <a href="../" aria-label="Instagram"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+          <a href="../" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.4 10.4v6.2M7.4 7.6v.1M11.4 16.6v-3.4a2.4 2.4 0 0 1 4.8 0v3.4M11.4 16.6v-6.2"/></svg><span>LinkedIn</span></a>
+          <a href="../" aria-label="TikTok"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M14.2 3.5v10.9a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14.2 3.5a5 5 0 0 0 5 5"/></svg><span>TikTok</span></a>
+          <a href="../" aria-label="Behance"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3 6h5.2a2.6 2.6 0 0 1 0 5.2H3zM3 11.2h5.6a2.9 2.9 0 0 1 0 5.8H3zM14.6 13.4h6.4a3.2 3.2 0 0 0-6.4 0 3.2 3.2 0 0 0 5.9 1.7M15.6 7.4h4.4"/></svg><span>Behance</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <div><p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p><p>Firmierung, Kontaktangaben und Geschäftszeiten: noch zu bestätigen.</p></div>
+    <nav>
+      <a href="../impressum/">Impressum</a>
+      <a href="../datenschutz/">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../marke/wortmarke-negativ.svg" alt="" width="4105" height="859" decoding="async"></div>
+</footer>
+
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script defer src="../js/lenis.min.js"></script>
+<script defer src="../js/gsap.min.js"></script>
+<script defer src="../js/ScrollTrigger.min.js"></script>
+<script defer src="../lader.js"></script>
+<script defer src="../bewegung.js"></script>
+<script defer src="../zeiger.js"></script>
+<script defer src="../rechner.js"></script>
+</body>
+</html>
