@@ -152,8 +152,8 @@ for source,route in ROUTES.items():
   graph.append({'@type':'Person','@id':BASE+'#person','name':person['name'],'url':canonical})
  # Defer external scripts in document order. They still run before DOMContentLoaded.
  s=re.sub(r'<script src="([^"]+)"',r'<script defer src="\1"',s)
- # Preserve optional intro implementation, but do not gate normal visits on all assets.
- s=s.replace('(function(){var n=0,s=null;', '(function(){if(!document.documentElement.hasAttribute("data-intro"))return;var n=0,s=null;')
+ # Ladeschirm: bleibt aktiv — beim ersten Besuch und danach jeden zehnten Aufruf.
+ # Ausdrueckliche Vorgabe des Auftraggebers; nicht ueber den Build abschalten.
  # Rebase asset and anchor links into clean route output.
  def tagfix(m):
   tag=m.group(0)
