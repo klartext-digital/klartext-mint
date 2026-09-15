@@ -33,7 +33,7 @@
    Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
    eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
    Verweis: von der eigenen Seite kommend bleibt er aus. */
-(function(){if(!document.documentElement.hasAttribute("data-intro"))return;var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
 if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
 else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
 if(n%10)return;document.documentElement.className+=" laedt";
