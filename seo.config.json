@@ -3,5 +3,8 @@
   "indexable": false,
   "approved_paths": [],
   "organization_verified": true,
-  "person": null
+  "person": null,
+  "production_domain": "klartext-digital.ch",
+  "production_host": "Hostinger",
+  "verification": {"google": null, "bing": null}
 }

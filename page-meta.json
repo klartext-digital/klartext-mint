@@ -1,0 +1,50 @@
+{
+  "marketing-abo/": {
+    "title": "Marketing im Abo | SEO, Content & Ads | klartext digital",
+    "description": "Laufendes Marketing im Abo: SEO, Website-Betreuung, Social Media, Google und Meta Ads sowie Newsletter. Als Umsetzungsteam oder Ergänzung eures Marketings.",
+    "label": "Marketing im Abo.",
+    "article": false,
+    "image": "bilder/dienst-2.jpg"
+  },
+  "projektarbeit/": {
+    "title": "Marketing-Projekte: Webdesign & Strategie | klartext digital",
+    "description": "Webdesign, Kommunikationsstrategie und Content-Produktion als klar geplantes Projekt. Auch als externe Ergänzung eurer Marketingabteilung.",
+    "label": "Ein Vorhaben. Klar umgesetzt.",
+    "article": false,
+    "image": "bilder/dienst-3.jpg"
+  },
+  "kommunikationsstrategie/": {
+    "title": "Kommunikationsstrategie für Unternehmen | klartext digital",
+    "description": "Zielgruppen, Botschaften, Kanäle und Umsetzung klären. Kommunikationsstrategie als Projekt für Unternehmen und bestehende Marketingteams.",
+    "label": "Kommunikation mit Richtung.",
+    "article": false,
+    "image": "bilder/dienst-1.jpg"
+  },
+  "content-creation/": {
+    "title": "Content Creation Schweiz | Foto, Video & Social | klartext digital",
+    "description": "Content-Produktion für Unternehmen und Marketingteams: Fotos, Videos und Social-Media-Formate. Als Projekt oder Teil eurer laufenden Betreuung.",
+    "label": "Content, der eine Aufgabe hat.",
+    "article": false,
+    "image": "bilder/dienst-2.jpg"
+  },
+  "wissen/website-erstellen-lassen/": {
+    "title": "Website erstellen lassen: Briefing & Ablauf | klartext digital",
+    "description": "Eine Unternehmenswebsite beauftragen: Ziele, Inhalte, Funktionen, Zuständigkeiten und Abnahme klären. Mit einer praktischen Briefing-Checkliste.",
+    "label": "Website erstellen lassen: Was muss vorher klar sein?",
+    "article": true,
+    "image": "bilder/dienst-3.jpg"
+  },
+  "wissen/website-relaunch-checkliste/": {
+    "title": "Website-Relaunch: SEO-Checkliste | klartext digital",
+    "description": "Website-Relaunch planen: bestehende URLs sichern, Weiterleitungen vorbereiten, Inhalte prüfen und den Start kontrollieren. Checkliste für Marketingteams.",
+    "label": "Website-Relaunch: Was darf beim Wechsel nicht verloren gehen?",
+    "article": true,
+    "image": "bilder/dienst-3.jpg"
+  },
+  "kontakt/": {
+    "title": "Abo oder Projekt besprechen | klartext digital",
+    "description": "Beschreibt euer Vorhaben: laufendes Marketing, ein einzelnes Projekt oder Unterstützung für euer Marketingteam. Ein kurzes Briefing als Gesprächsgrundlage.",
+    "label": "Kontakt",
+    "image": "bilder/dienst-3.jpg"
+  }
+}

@@ -50,3 +50,12 @@ Bei einer späteren bestätigten Domain die `base_url` ändern, neu bauen, Canon
 ## Zusammenarbeit mit Claude Code
 
 Ausgangsstand `1a7d7b0`, Sprint-Branch `codex/seo-sprint-1`. Die Desktop-Arbeitskopie wurde nicht verändert. Änderungen über Branch/Pull Request übernehmen, nicht zwei Agenten gleichzeitig dieselben Quellen überschreiben lassen. Nach jeder Änderung Build und Check ausführen und die Ausgabe auf Desktop/Handy prüfen.
+# Weiterarbeit am Gesamtplan
+
+Aktueller Status: [docs/GESAMTPLAN.md](docs/GESAMTPLAN.md). Neue Seiten werden in `page-meta.json` registriert; ältere Routen bleiben in `scripts/build.py`. Inhalt bleibt statisches HTML.
+
+`scripts/publish.py` veröffentlicht ausschliesslich einen sauberen, mit `origin/main` übereinstimmenden Hauptstand. Es baut in einem frischen temporären Ordner und prüft ein Dateimanifest. So gelangen keine nachträglich hinzugekommenen Kopien aus dem synchronisierten Arbeitsordner in die Veröffentlichung.
+
+Für eine lokale Prüfung ausserhalb des synchronisierten Ordners kann `KLARTEXT_BUILD_DIR` auf einen neuen Ausgabeordner gesetzt werden. Dieselbe Variable gilt für `build.py`, `check.py` und `audit.py`. Bestehende fremde Ordner werden nicht überschrieben.
+
+`docs/AUDIT-CURRENT.json` ist eine statische Bestandsaufnahme, kein Ranking- oder Core-Web-Vitals-Bericht. `docs/MESSPLAN.md` beschreibt die vorbereitete, noch nicht an Analytics angeschlossene Ereignisschnittstelle.
