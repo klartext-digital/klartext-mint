@@ -1,5 +1,5 @@
 {
-  "canonical_documents": 37,
+  "canonical_documents": 39,
   "duplicate_titles": [],
   "pages": {
     "404.html": {
@@ -26,7 +26,7 @@
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "blog/kluge-marken-wachsen/index.html": {
       "title": "Warum kluge Marken schneller wachsen | klartext.",
@@ -119,19 +119,19 @@
       "incoming_pages": 4
     },
     "branding/index.html": {
-      "title": "Branding und Markenstrategie für KMU | klartext.",
-      "description": "Positionierung, Markenstrategie und Gestaltung: Erfahrt, wie ein Markensystem aus Logo, Farben, Schriften und Bildsprache entsteht.",
-      "main_words": 309,
+      "title": "Branding &amp; Markenstrategie Schweiz | klartext digital",
+      "description": "Positionierung, Markensystem und Vorlagen für euren Alltag. Branding als Projekt oder spezialisierte Ergänzung eurer Marketingabteilung.",
+      "main_words": 687,
       "schema": [
         "WebPage",
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 24023,
+      "html_bytes": 27589,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "content-creation/index.html": {
       "title": "Content Creation Schweiz | Foto, Video &amp; Social | klartext digital",
@@ -146,7 +146,7 @@
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "datenschutz/index.html": {
       "title": "Datenschutzhinweise – Entwurf | klartext.",
@@ -161,22 +161,22 @@
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "email-marketing/index.html": {
-      "title": "E-Mail Marketing und Newsletter für KMU | klartext.",
-      "description": "Newsletter, Segmentierung und automatisierte E-Mail-Strecken: Entdeckt die Leistungen rund um E-Mail Marketing und Kundenkommunikation.",
-      "main_words": 289,
+      "title": "Newsletter &amp; E-Mail-Marketing | klartext digital",
+      "description": "Newsletter-Kampagnen, Vorlagen und automatisierte Strecken. Konzeption, Umsetzung und Auswertung als laufende Betreuung oder Ergänzung eures Teams.",
+      "main_words": 709,
       "schema": [
         "WebPage",
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 24116,
+      "html_bytes": 28134,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "impressum/index.html": {
       "title": "Impressum – Entwurf | klartext.",
@@ -191,7 +191,7 @@
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "index.html": {
       "title": "Marketingagentur Schweiz: Abo &amp; Projekte | klartext digital",
@@ -205,7 +205,7 @@
       "responsive_images": 10,
       "robots": "noindex, follow",
       "clicks_from_home": 0,
-      "incoming_pages": 33
+      "incoming_pages": 35
     },
     "kommunikationsstrategie/index.html": {
       "title": "Kommunikationsstrategie für Unternehmen | klartext digital",
@@ -220,7 +220,7 @@
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "kontakt/index.html": {
       "title": "Abo oder Projekt besprechen | klartext digital",
@@ -235,7 +235,7 @@
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "laune.html": {
       "title": "Laune folgt dem Zeiger",
@@ -264,7 +264,7 @@
       "responsive_images": 10,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "marke.html": {
       "title": "Marke | klartext.",
@@ -283,32 +283,32 @@
     "marketing-abo/index.html": {
       "title": "Marketing im Abo | SEO, Content &amp; Ads | klartext digital",
       "description": "Laufendes Marketing im Abo: SEO, Website-Betreuung, Social Media, Google und Meta Ads sowie Newsletter. Als Umsetzungsteam oder Ergänzung eures Marketings.",
-      "main_words": 531,
+      "main_words": 563,
       "schema": [
         "WebPage",
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 24640,
+      "html_bytes": 24978,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "performance-marketing/index.html": {
-      "title": "Performance Marketing für KMU | klartext.",
-      "description": "Google Ads, Meta Ads, TikTok und LinkedIn: Ziele, Tracking, Kampagnen und Auswertung als Grundlage für nachvollziehbares Performance Marketing.",
-      "main_words": 303,
+      "title": "Google &amp; Meta Ads: Betreuung | klartext digital",
+      "description": "Google und Meta Ads mit passenden Zielseiten, Messung und laufender Betreuung. Werbeetat und Umsetzung klar planen, Anfragen nach Qualität beurteilen.",
+      "main_words": 717,
       "schema": [
         "WebPage",
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 24140,
+      "html_bytes": 27962,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "projektarbeit/index.html": {
       "title": "Marketing-Projekte: Webdesign &amp; Strategie | klartext digital",
@@ -323,7 +323,7 @@
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "projekte/aesthetics-medical/index.html": {
       "title": "Aesthetics Medical | Social Media | klartext.",
@@ -368,7 +368,7 @@
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "projekte/meridian/index.html": {
       "title": "Meridian | klartext.",
@@ -431,19 +431,19 @@
       "incoming_pages": 6
     },
     "social-media/index.html": {
-      "title": "Social Media für Schweizer KMU | klartext.",
-      "description": "Social Media mit Plan: Inhalte, Produktion, Veröffentlichung und Auswertung für Instagram, TikTok und LinkedIn. Leistungen im Überblick.",
-      "main_words": 285,
+      "title": "Social-Media-Betreuung &amp; Content | klartext digital",
+      "description": "Social Media mit Redaktionsplan, Content-Produktion und Auswertung. Laufende Betreuung, einzelne Kampagnen oder Unterstützung für euer Marketingteam.",
+      "main_words": 684,
       "schema": [
         "WebPage",
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 23966,
+      "html_bytes": 27664,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "takt.html": {
       "title": "Bildtakt messen",
@@ -472,7 +472,7 @@
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
     },
     "webdesign/index.html": {
       "title": "Webdesign Schweiz für KMU | klartext.",
@@ -487,22 +487,54 @@
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
+    },
+    "wissen/google-ads-budget/index.html": {
+      "title": "Google-Ads-Budget planen: Kosten &amp; Kontrolle | klartext digital",
+      "description": "Google-Ads-Budget planen: Werbeetat und Betreuung trennen, Tagesbudget verstehen und Ergebnisse anhand passender Anfragen beurteilen.",
+      "main_words": 830,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "Article",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 28497,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 2,
+      "incoming_pages": 3
     },
     "wissen/index.html": {
       "title": "Marketing-Wissen für Schweizer KMU | klartext.",
       "description": "Website, Budget und Marketing verständlich planen: Leitfäden und Antworten auf praktische Fragen von Schweizer KMU.",
-      "main_words": 73,
+      "main_words": 103,
       "schema": [
         "WebPage",
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 20296,
+      "html_bytes": 20763,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 32
+      "incoming_pages": 34
+    },
+    "wissen/marketingbudget-kmu/index.html": {
+      "title": "Marketingbudget für KMU planen | klartext digital",
+      "description": "Marketingbudget planen: laufende Betreuung, Projekte, Werbeetat und interne Zeit zusammenführen. Mit einer praktischen Vorlage für die Budgetbesprechung.",
+      "main_words": 1008,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "Article",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 30040,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 2,
+      "incoming_pages": 7
     },
     "wissen/website-erstellen-lassen/index.html": {
       "title": "Website erstellen lassen: Briefing &amp; Ablauf | klartext digital",
@@ -534,7 +566,7 @@
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 5
+      "incoming_pages": 6
     },
     "wissen/website-relaunch-checkliste/index.html": {
       "title": "Website-Relaunch: SEO-Checkliste | klartext digital",
