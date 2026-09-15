@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<title>Website erstellen lassen in Zürich | KLARTEXT. Werbeagentur Zürich</title>
+<meta name="description" content="Eine Website ist kein Prospekt. Sie hat eine Aufgabe: Anfragen, Buchungen oder Bewerbungen. Wir legen diese Aufgabe zu Beginn fest und richten Struktur, Texte und Gestaltung darauf a">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/wortmarke-negativ.svg" alt="KLARTEXT" width="4105" height="859"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../index.html" aria-label="KLARTEXT — zur Startseite"><img src="../../marke/wortmarke.svg" alt="KLARTEXT" width="4105" height="859"></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../index.html#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../index.html#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../leistungen/branding.html" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Branding</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/social-media.html" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/websites.html" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/performance.html" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/email-marketing.html" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/index.html" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist">
+          <img src="../../bilder/dienst-2.jpg" alt="">
+          <img src="../../bilder/dienst-3.jpg" alt="">
+          <img src="../../bilder/dienst-4.jpg" alt="">
+          <img src="../../bilder/dienst-5.jpg" alt="">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+            </div>
+          </div>
+      <aside class="ndd__karte">
+        <p class="brush">Unsicher?</p>
+        <p class="ndd__karte-titel">Wir sortieren das in 15&nbsp;Minuten.</p>
+        <p class="ndd__karte-text">Kurzes Gespräch, ehrliche Einschätzung.
+          Auch wenn am Ende nichts daraus wird.</p>
+        <a class="knopf knopf--akzent" href="../../index.html#kontakt" tabindex="-1">Gespräch buchen</a>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="unter unter--eng"><h1 class="seo-h1">Was kostet eine Website in der Schweiz?</h1><p class="brush">Erst den Umfang klären. Dann den Preis.</p></section>
+<figure class="artikel__bild"><img src="../../bilder/dienst-3.jpg" alt="Gestaltung eines digitalen Auftritts" width="1200" height="800"></figure>
+<article class="artikel seo-prose">
+<p>Eine Website hat keinen einheitlichen Preis. Entscheidend ist, was sie leisten soll, welche Inhalte vorhanden sind und welche Funktionen gebaut werden müssen. Mit einem klaren Leistungsumfang könnt ihr Angebote vergleichen und Folgekosten einplanen.</p>
+<p class="seo-pruefhinweis">Redaktioneller Entwurf, Stand September 2026. Dieser Leitfaden erklärt Kostentreiber. Er nennt keine verifizierten Schweizer Marktpreise und ersetzt keine individuelle Offerte.</p>
+<nav class="seo-inhalt" aria-label="Inhaltsverzeichnis"><h2>In diesem Leitfaden</h2><ul><li><a href="#umfang">Website-Typ und Umfang</a></li><li><a href="#kosten">Einmalige Kosten</a></li><li><a href="#betrieb">Laufende Kosten</a></li><li><a href="#vergleich">Offerten vergleichen</a></li><li><a href="#budget">Budget vorbereiten</a></li><li><a href="#fragen">Häufige Fragen</a></li></ul></nav>
+<h2 id="umfang">Welche Website braucht euer Unternehmen?</h2>
+<p>Eine Landingpage führt auf ein konkretes Ziel, etwa eine Kampagnenanfrage. Eine Unternehmenswebsite erklärt mehrere Leistungen und beantwortet unterschiedliche Kundenfragen. Ein Onlineshop umfasst zusätzlich Produkte, Warenkorb, Bestellablauf und gegebenenfalls Verbindungen zu Lager oder Buchhaltung.</p>
+<p>Diese Typen unterscheiden sich im Aufwand. Trotzdem ist eine einzelne Seite nicht automatisch günstig: Ein aufwendiger Rechner oder eine individuelle Animation kann mehr Arbeit verursachen als mehrere einfache Inhaltsseiten. Beschreibt deshalb Funktionen und Inhalte, bevor ihr nur eine Seitenzahl nennt.</p>
+<h3>Landingpage</h3><p>Ein Angebot, eine Zielgruppe, ein nächster Schritt. Zu klären sind die Herkunft der Besucher, die zentrale Aussage und die gewünschte Handlung. Wenn die Seite eine Werbekampagne unterstützt, sollten Anzeigen und Seiteninhalt zusammenpassen.</p>
+<h3>KMU-Website</h3><p>Startseite, Leistungen, Unternehmensinformationen und Kontakt bilden häufig den Kern. Eigene Leistungsseiten helfen, unterschiedliche Fragen verständlich zu beantworten. Echte Referenzen, Teamangaben und Bilder müssen vor der Veröffentlichung geprüft und freigegeben werden.</p>
+<h3>Shop oder Website mit Schnittstellen</h3><p>Produktdaten, Zahlungsabläufe, Terminbuchungen und externe Systeme erhöhen die Zahl der Abläufe, die konzipiert und getestet werden müssen. Beschreibt genau, welches System mit welchem anderen Daten austauscht und wer den laufenden Betrieb verantwortet.</p>
+<h2 id="kosten">Woraus setzen sich einmalige Website-Kosten zusammen?</h2>
+<h3>Konzept und Seitenstruktur</h3><p>Hier werden Ziele, Zielgruppen, Inhalte und Seitenbeziehungen festgelegt. Bei einem Relaunch gehört die Aufnahme bestehender Seiten und ihrer Weiterleitungen dazu. Je klarer diese Grundlage ist, desto besser lässt sich der spätere Umfang abgrenzen.</p>
+<h3>Gestaltung</h3><p>Ein bestehendes Markensystem reduziert offene Entscheidungen. Ein neuer Auftritt mit eigener Bildsprache, mehreren Seitentypen und ausgearbeiteten Interaktionen benötigt mehr Gestaltung als eine klar definierte Vorlage. Entscheidend ist, welche individuellen Arbeiten die Offerte tatsächlich enthält.</p>
+<h3>Texte, Fotos und Videos</h3><p>Inhalte entstehen nicht automatisch während der Entwicklung. Klärt, wer Texte schreibt, wer sie fachlich prüft, welche Bilder verwendet werden dürfen und ob neue Aufnahmen nötig sind. Auch Bildauswahl, Bearbeitung und die Einpflege sollten im Umfang stehen.</p>
+<h3>Entwicklung und Funktionen</h3><p>Die technische Umsetzung verbindet Gestaltung, Inhalte und Bedienung. Formulare, Suche, Filter, Mehrsprachigkeit oder Schnittstellen können zusätzlichen Aufwand verursachen. Ein Formular muss beispielsweise nicht nur gut aussehen: Es braucht ein nachvollziehbares Ziel, verständliche Fehlermeldungen und einen getesteten Übermittlungsweg.</p>
+<h3>SEO, Prüfung und Übergabe</h3><p>Zur technischen Grundlage gehören Seitentitel, Beschreibungen, interne Links, Canonicals, Sitemap und ein sinnvoller Umgang mit Weiterleitungen. Vor dem Start werden wichtige Abläufe auf verschiedenen Bildschirmgrössen geprüft. Die Übergabe sollte erklären, wie Inhalte gepflegt werden und welche Zugänge benötigt werden.</p>
+<h2 id="betrieb">Welche laufenden Kosten kommen hinzu?</h2>
+<p>Einmalige Projektkosten und Betriebskosten gehören getrennt in die Planung. Domain und Hosting, Lizenzen, Wartung, Sicherungen und redaktionelle Pflege können wiederkehrende Kosten verursachen. Bei externen Diensten können zusätzlich nutzungsabhängige Gebühren anfallen.</p>
+<ul><li><strong>Domain und Hosting:</strong> Verlängerung, Speicher, Erreichbarkeit und vereinbarter Support.</li><li><strong>Lizenzen und Dienste:</strong> zum Beispiel Pflegeoberfläche, Buchungssystem oder Newsletter-Dienst, falls eingesetzt.</li><li><strong>Wartung:</strong> Updates, Sicherungen und Wiederherstellung nach Problemen.</li><li><strong>Weiterentwicklung:</strong> neue Inhalte, Funktionen und Optimierungen nach dem Start.</li></ul>
+<p>Fragt nach Vertragsdauer, Kündigungsfrist und Zuständigkeit. Eine Offerte sollte erkennen lassen, welche Kosten an den Anbieter und welche direkt an Dritte gehen. Prüft auch, ob Beträge mit oder ohne Mehrwertsteuer angegeben sind.</p>
+<h2 id="vergleich">So vergleicht ihr Website-Offerten sinnvoll</h2>
+<p>Zwei Gesamtbeträge sind erst vergleichbar, wenn sie denselben Umfang abdecken. Lasst euch deshalb zeigen, welche Seitentypen, Inhalte und Funktionen enthalten sind. Die Zahl der Korrekturrunden und der Umgang mit späteren Änderungswünschen gehören ebenfalls dazu.</p>
+<ol><li><strong>Lieferumfang abgleichen:</strong> Stehen Texte, Fotos, Übersetzungen und Einpflege ausdrücklich im Angebot?</li><li><strong>Funktionen konkretisieren:</strong> Was passiert beim Absenden einer Anfrage, bei einer Buchung oder beim Kauf?</li><li><strong>Zuständigkeiten klären:</strong> Wer liefert Inhalte und wer erteilt Freigaben?</li><li><strong>Übergabe prüfen:</strong> Welche Dateien, Zugänge und Einführungen erhaltet ihr?</li><li><strong>Betrieb berechnen:</strong> Welche wiederkehrenden Gebühren entstehen nach dem Start?</li><li><strong>Änderungen regeln:</strong> Wie werden zusätzliche Wünsche kalkuliert und bestätigt?</li></ol>
+<h2 id="budget">Ein Budget vorbereiten, ohne Scheingenauigkeit</h2>
+<p>Erstellt zuerst eine kurze Liste der notwendigen Ergebnisse: Welche Angebote müssen verständlich werden? Welche Handlung sollen Besucher ausführen? Welche Systeme müssen angebunden sein? Trennt diese Anforderungen von Ergänzungen, die später folgen können.</p>
+<p>Plant ausser Geld auch eure eigene Zeit ein. Fachliche Rückmeldungen, Bildfreigaben und die Abstimmung mit internen Ansprechpersonen sind Teil des Projekts. Wenn diese Aufgaben ungeklärt bleiben, kann auch ein technisch überschaubarer Auftritt lange dauern.</p>
+<p>Für die Offertanfrage helfen eine Liste der gewünschten Seiten, vorhandene Inhalte, benötigte Funktionen, Sprachversionen und ein Wunschtermin. Nennt einen Budgetrahmen, wenn er feststeht. So lässt sich früh prüfen, welche Umsetzung dazu passt.</p>
+<h2 id="fragen">Häufige Fragen zu Website-Kosten</h2>
+<h3>Warum steht hier keine pauschale Preistabelle?</h3><p>Eine belastbare Preisspanne braucht einen definierten Umfang und eine nachvollziehbare Grundlage. Die bisherigen Preiswerte der klartext.-Entwurfswebsite sind noch nicht bestätigt. Wir veröffentlichen daraus keine vermeintlichen Marktpreise.</p>
+<h3>Ist eine Vorlage immer günstiger?</h3><p>Eine passende Vorlage kann Gestaltungsarbeit reduzieren. Müssen Struktur und Funktionen stark angepasst werden, entsteht trotzdem zusätzlicher Aufwand. Entscheidend ist die Übereinstimmung mit euren Anforderungen.</p>
+<h3>Kann die Website in Etappen entstehen?</h3><p>Ja, wenn die erste Etappe bereits sinnvoll nutzbar ist. Leistungen, Kontakt und notwendige Informationen müssen zusammen funktionieren. Spätere Ergänzungen sollten im Seitenplan vorgesehen sein, damit kein zweiter grundlegender Umbau nötig wird.</p>
+<h3>Was muss vor der Beauftragung feststehen?</h3><p>Ziel, Leistungsumfang, Mitwirkung, Termine, Abnahme, laufende Kosten und die Übergabe von Zugängen sollten nachvollziehbar vereinbart sein. Offene Punkte gehören sichtbar in die Offerte.</p>
+<h2>Vom Budget zum Seitenplan</h2><p>Der nächste Schritt ist eine klare Struktur für euer Vorhaben. Auf unserer Seite <a href="../../webdesign/">Webdesign für Schweizer KMU</a> findet ihr den Ablauf und die technischen Grundlagen. Zurück zur <a href="../">Wissensübersicht</a>.</p>
+<p><a class="knopf knopf--akzent" href="../../index.html#kontakt">Website-Projekt besprechen</a></p>
+</article></main>
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <p class="brush">Auf ein Wort</p>
+      <h2>Reden<br>wir.</h2>
+      <div class="fuss__kontakt">
+        <a class="fuss__gross" href="mailto:hallo@klartext-digital.ch">
+          <span>hallo@klartext-digital.ch</span><i aria-hidden="true">↗</i></a>
+        <a class="fuss__gross" href="tel:+41000000000">
+          <span>+41 00 000 00 00</span><i aria-hidden="true">↗</i></a>
+      </div>
+      <p class="fuss__ort">Werbeagentur mit Sitz in Zürich, tätig in der ganzen Deutschschweiz<br>
+        Mo bis Fr, 08:30 bis 18:00</p>
+    </div>
+
+    <div class="fuss__spalten">
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Seite</p>
+        <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+        <a class="mlink" href="../../leistungen/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Leistungen</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen</span></a>
+        <a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+        <a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+        <a class="mlink" href="../../index.html#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+      </nav>
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Leistungen</p>
+        <a class="mlink" href="../../leistungen/branding.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a>
+        <a class="mlink" href="../../leistungen/social-media.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a>
+        <a class="mlink" href="../../leistungen/websites.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a>
+        <a class="mlink" href="../../leistungen/performance.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a>
+        <a class="mlink" href="../../leistungen/email-marketing.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a>
+      </nav>
+      <div class="fuss__spalte">
+        <p class="fuss__kopf">Folgen</p>
+        <div class="fuss__sozial">
+          <a href="../../index.html" aria-label="Instagram"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+          <a href="../../index.html" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.4 10.4v6.2M7.4 7.6v.1M11.4 16.6v-3.4a2.4 2.4 0 0 1 4.8 0v3.4M11.4 16.6v-6.2"/></svg><span>LinkedIn</span></a>
+          <a href="../../index.html" aria-label="TikTok"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M14.2 3.5v10.9a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14.2 3.5a5 5 0 0 0 5 5"/></svg><span>TikTok</span></a>
+          <a href="../../index.html" aria-label="Behance"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3 6h5.2a2.6 2.6 0 0 1 0 5.2H3zM3 11.2h5.6a2.9 2.9 0 0 1 0 5.8H3zM14.6 13.4h6.4a3.2 3.2 0 0 0-6.4 0 3.2 3.2 0 0 0 5.9 1.7M15.6 7.4h4.4"/></svg><span>Behance</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p>
+    <nav>
+      <a href="../../recht/impressum.html">Impressum</a>
+      <a href="../../recht/datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859"></div>
+</footer>
+
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script src="../../js/lenis.min.js"></script>
+<script src="../../js/gsap.min.js"></script>
+<script src="../../js/ScrollTrigger.min.js"></script>
+<script src="../../lader.js"></script>
+<script src="../../bewegung.js"></script>
+<script src="../../zeiger.js"></script>
+<script src="../../rechner.js"></script>
+</body>
+</html>
