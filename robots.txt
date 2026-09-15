@@ -1,0 +1,4 @@
+# Effective only when served at the host root. Draft noindex is in HTML.
+User-agent: *
+Allow: /
+Sitemap: https://klartext-digital.github.io/klartext-mint/sitemap.xml

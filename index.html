@@ -1,0 +1,1110 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<title>Marketing Agentur Schweiz für KMU | klartext.</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%230F4C55'/></svg>">
+<link rel="stylesheet" href="stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){if(!document.documentElement.hasAttribute("data-intro"))return;var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="marke/favicon-180.png">
+
+<meta name="description" content="Branding, Webdesign, Content, Social Media und Performance Marketing für Schweizer KMU. Entdeckt die Leistungen von klartext. und plant euren nächsten Schritt.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://klartext-digital.github.io/klartext-mint/">
+<meta property="og:title" content="Marketing Agentur Schweiz für KMU | klartext.">
+<meta property="og:description" content="Branding, Webdesign, Content, Social Media und Performance Marketing für Schweizer KMU. Entdeckt die Leistungen von klartext. und plant euren nächsten Schritt.">
+<meta property="og:url" content="https://klartext-digital.github.io/klartext-mint/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_CH">
+<meta property="og:image" content="https://klartext-digital.github.io/klartext-mint/marke/favicon-180.png">
+<link rel="stylesheet" href="./seo.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://klartext-digital.github.io/klartext-mint/#webpage", "url": "https://klartext-digital.github.io/klartext-mint/", "name": "Marketing Agentur Schweiz für KMU | klartext.", "description": "Branding, Webdesign, Content, Social Media und Performance Marketing für Schweizer KMU. Entdeckt die Leistungen von klartext. und plant euren nächsten Schritt.", "inLanguage": "de-CH", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "Organization", "@id": "https://klartext-digital.github.io/klartext-mint/#organization", "name": "klartext.", "url": "https://klartext-digital.github.io/klartext-mint/", "logo": "https://klartext-digital.github.io/klartext-mint/marke/wortmarke.svg"}]}</script>
+<link rel="preload" as="image" href="kopf/grund.jpg" fetchpriority="high">
+<link rel="preload" href="./fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="marke/wortmarke-negativ.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<!-- ══ Navigation: schwebende Pille ══ -->
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="./" aria-label="KLARTEXT — zur Startseite"><img src="marke/wortmarke.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="projekte/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="blog/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="branding/" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Branding</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="social-media/" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="webdesign/" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="performance-marketing/" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="email-marketing/" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="leistungen/" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="bilder/dienst-1.jpg" alt="" class="ist" width="626" height="447" decoding="async" loading="lazy">
+          <img src="bilder/dienst-2.jpg" alt="" width="626" height="447" decoding="async" loading="lazy">
+          <img src="bilder/dienst-3.jpg" alt="" width="626" height="447" decoding="async" loading="lazy">
+          <img src="bilder/dienst-4.jpg" alt="" width="626" height="447" decoding="async" loading="lazy">
+          <img src="bilder/dienst-5.jpg" alt="" width="626" height="447" decoding="async" loading="lazy">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══ 1 · Bühne ══ -->
+  <section class="buehne">
+    <div class="kopfbild" aria-hidden="true">
+        <div class="kopfbild__rahmen" id="monaBild">
+          <div class="mona__grund"></div>
+          <div class="lachen" id="lachen">
+            <img id="lachen0" src="kopf/lachen-0.jpg" alt="" width="280" height="330" decoding="async">
+            <img id="lachen1" src="kopf/lachen-1.jpg" alt="" width="280" height="330" decoding="async">
+            <img id="lachen2" src="kopf/lachen-2.jpg" alt="" width="280" height="330" decoding="async">
+            <img id="lachen3" src="kopf/lachen-3.jpg" alt="" width="280" height="330" decoding="async">
+            <img id="lachen4" src="kopf/lachen-4.jpg" alt="" width="280" height="330" decoding="async">
+            <img id="lachen5" src="kopf/lachen-5.jpg" alt="" width="280" height="330" decoding="async">
+            <img id="lachen6" src="kopf/lachen-6.jpg" alt="" width="280" height="330" decoding="async">
+            <img id="lachen7" src="kopf/lachen-7.jpg" alt="" width="280" height="330" decoding="async">
+            <img id="lachen8" src="kopf/lachen-8.jpg" alt="" width="280" height="330" decoding="async">
+          </div>
+          <span class="blick" id="blickL"><img class="platte" src="kopf/auge-L-platte.png" alt="" width="90" height="57" decoding="async"><img class="iris" src="kopf/auge-L-iris.png" alt="" width="30" height="30" decoding="async"></span>
+          <span class="blick" id="blickR"><img class="platte" src="kopf/auge-R-platte.png" alt="" width="90" height="56" decoding="async"><img class="iris" src="kopf/auge-R-iris.png" alt="" width="32" height="32" decoding="async"></span>
+        </div>
+      </div>
+    <div class="buehne__kopf">
+      <div class="buehne__text">
+      <h1 data-rein-zeilen>
+        <span>Kompetenz reicht nicht,</span>
+        <span>wenn sie <em class="wort">niemand</em> sieht.</span>
+      </h1>
+      <div class="buehne__unten">
+        <p class="fuehrung" data-rein>klartext. ist eure Marketingagentur für Schweizer KMU. Branding, Webdesign, Content, Social Media und Performance Marketing aus einer Hand.</p>
+        <div class="knopfpaar" data-rein>
+          <a class="knopf knopf--dunkel gross" href="#arbeiten">
+            <span class="rolle"><span>Arbeiten ansehen</span><span aria-hidden="true">Arbeiten ansehen</span></span>
+          </a>
+          <a class="kreis" href="#kontakt" aria-label="Kontakt">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      </div>
+
+      
+
+    </div>
+
+      <ul class="buehne__stich" data-rein>
+      <li>Branding</li>
+      <li>Social Media</li>
+      <li>Websites</li>
+      <li>Performance</li>
+      <li>E-Mail Marketing</li>
+    </ul>
+  </section>
+
+  <!-- ══ 3 · Referenzen ══ -->
+  <section class="referenzen">
+    <p class="brush mitte">Referenzen im Entwurf</p><p class="seo-pruefhinweis">Kundenbeziehungen und Nutzungsrechte sind noch zu bestätigen. Teile der Arbeiten stammen aus früheren beruflichen Stationen.</p>
+    <div class="ref__reihe">
+      <div class="ref" data-rein><img class="lg lg--rb"   src="logos/redbull.svg" alt="Red Bull" width="380" height="220" decoding="async"></div>
+      <div class="ref" data-rein><img class="lg lg--gcb"  src="logos/gcb.png" alt="Grand Casino Baden" width="1200" height="784" decoding="async"></div>
+      <div class="ref" data-rein><img class="lg lg--plue" src="logos/plue.svg" alt="PLÜ Restaurant &amp; Lounge" width="793" height="336" decoding="async"></div>
+      <div class="ref" data-rein><img class="lg lg--van"  src="logos/vanilla.png" alt="The Vanilla" width="300" height="74" decoding="async"></div>
+      <div class="ref" data-rein><img class="lg lg--es"   src="logos/energie-studio.svg" alt="Energie Studio" width="1065" height="350" decoding="async"></div>
+      <div class="ref" data-rein><img class="lg lg--ec"   src="logos/ec.png" alt="Energy Consulting" width="1400" height="309" decoding="async"></div>
+    </div>
+  </section>
+
+  <!-- ══ 4 · Leistungen ══ -->
+  <section class="dienste" id="leistungen">
+    <div class="dienste__block" data-zug>
+      <div class="dienste__kopf">
+        <p class="brush">Unsere Leistungen</p>
+        <h2 data-rein-zeilen><span>Marketing für</span><span>Schweizer KMU.</span></h2>
+      </div>
+      <ol class="lzliste" id="lzliste">
+      <li class="lz" data-i="0">
+        <button class="lz__kopf" type="button" aria-expanded="false">
+          <span class="lz__nr">01</span>
+          <span class="lz__name">Branding</span>
+          <span class="lz__zeichen" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="lz__huelle">
+          <div class="lz__leib">
+            <p class="lz__text">Bevor gestaltet wird, muss die Position stehen. Wir schauen auf Markt, Wettbewerb und Zielgruppe und leiten daraus eine Aussage ab, die in einem Satz sitzt. Daraus entsteht ein Markensystem aus Wortmarke, Farben, Schriften und Bildsprache, das euer Team selbst anwenden kann, ohne bei jeder Unterlage neu zu beginnen.</p>
+            <div class="lz__tags">
+              <ul><li>Markenstrategie</li><li>Positionierung</li><li>Wettbewerbsanalyse</li></ul>
+              <ul><li>Wortmarke und Logo</li><li>Farb- und Schriftsystem</li><li>Bildsprache</li></ul>
+              <ul><li>Markenarchitektur</li><li>Brand Guide</li><li>Vorlagen fürs Team</li></ul>
+            </div>
+            <a class="knopf lz__mehr" href="branding/"><span class="rolle"><span>Mehr erfahren</span><span aria-hidden="true">Mehr erfahren</span></span></a>
+            <figure class="lz__bild"><img src="bilder/dienst-1.jpg" alt="Branding bei KLARTEXT." loading="lazy" width="626" height="447" decoding="async"></figure>
+          </div>
+        </div>
+      </li>
+      <li class="lz" data-i="1">
+        <button class="lz__kopf" type="button" aria-expanded="false">
+          <span class="lz__nr">02</span>
+          <span class="lz__name">Social Media</span>
+          <span class="lz__zeichen" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="lz__huelle">
+          <div class="lz__leib">
+            <p class="lz__text">Reichweite entsteht durch Rhythmus, nicht durch Zufall. Wir bauen einen Redaktionsplan für Instagram, TikTok und LinkedIn, produzieren im festen Takt und betreuen die Community. Am Monatsende steht schwarz auf weiss, welches Format getragen hat und welches nicht.</p>
+            <div class="lz__tags">
+              <ul><li>Redaktionsplan</li><li>Instagram</li><li>TikTok</li><li>LinkedIn</li></ul>
+              <ul><li>Reels und Kurzvideo</li><li>Foto und Grafik</li><li>Formatentwicklung</li></ul>
+              <ul><li>Community Management</li><li>Kooperationen</li><li>Monatsreport</li></ul>
+            </div>
+            <a class="knopf lz__mehr" href="social-media/"><span class="rolle"><span>Mehr erfahren</span><span aria-hidden="true">Mehr erfahren</span></span></a>
+            <figure class="lz__bild"><img src="bilder/dienst-2.jpg" alt="Social Media bei KLARTEXT." loading="lazy" width="626" height="447" decoding="async"></figure>
+          </div>
+        </div>
+      </li>
+      <li class="lz" data-i="2">
+        <button class="lz__kopf" type="button" aria-expanded="false">
+          <span class="lz__nr">03</span>
+          <span class="lz__name">Websites</span>
+          <span class="lz__zeichen" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="lz__huelle">
+          <div class="lz__leib">
+            <p class="lz__text">Eine Website hat eine Aufgabe: Anfragen, Buchungen oder Bewerbungen. Wir bauen sie schnell, auffindbar und so, dass ihr Inhalte selbst pflegen könnt. Technische Suchmaschinenoptimierung, saubere Struktur und kurze Ladezeiten gehören zur Arbeit und kosten keinen Aufpreis.</p>
+            <div class="lz__tags">
+              <ul><li>Konzept und Seitenplan</li><li>UX und Gestaltung</li><li>Umsetzung</li></ul>
+              <ul><li>SEO Grundlagen</li><li>Ladezeit</li><li>Barrierefreiheit</li></ul>
+              <ul><li>Inhaltspflege für euch</li><li>Messung</li><li>Betreuung danach</li></ul>
+            </div>
+            <a class="knopf lz__mehr" href="webdesign/"><span class="rolle"><span>Mehr erfahren</span><span aria-hidden="true">Mehr erfahren</span></span></a>
+            <figure class="lz__bild"><img src="bilder/dienst-3.jpg" alt="Websites bei KLARTEXT." loading="lazy" width="626" height="447" decoding="async"></figure>
+          </div>
+        </div>
+      </li>
+      <li class="lz" data-i="3">
+        <button class="lz__kopf" type="button" aria-expanded="false">
+          <span class="lz__nr">04</span>
+          <span class="lz__name">Performance Marketing</span>
+          <span class="lz__zeichen" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="lz__huelle">
+          <div class="lz__leib">
+            <p class="lz__text">Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads aus einer Hand. Wir richten zuerst das Tracking ein, starten mit kleinen Budgets auf mehreren Ansätzen und geben dem mehr Geld, was liefert. Der Monatsbericht bleibt auch dann ehrlich, wenn die Zahlen nicht schmeicheln.</p>
+            <div class="lz__tags">
+              <ul><li>Google Ads</li><li>Meta Ads</li><li>TikTok Ads</li><li>LinkedIn Ads</li></ul>
+              <ul><li>Tracking und Conversions</li><li>Landingpages</li><li>A/B Tests</li></ul>
+              <ul><li>Budgetsteuerung</li><li>Zielgruppen</li><li>Monatsreport</li></ul>
+            </div>
+            <a class="knopf lz__mehr" href="performance-marketing/"><span class="rolle"><span>Mehr erfahren</span><span aria-hidden="true">Mehr erfahren</span></span></a>
+            <figure class="lz__bild"><img src="bilder/dienst-4.jpg" alt="Performance Marketing bei KLARTEXT." loading="lazy" width="626" height="447" decoding="async"></figure>
+          </div>
+        </div>
+      </li>
+      <li class="lz" data-i="4">
+        <button class="lz__kopf" type="button" aria-expanded="false">
+          <span class="lz__nr">05</span>
+          <span class="lz__name">E-Mail Marketing</span>
+          <span class="lz__zeichen" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="lz__huelle">
+          <div class="lz__leib">
+            <p class="lz__text">Der einzige Kanal, der euch wirklich gehört. Wir bauen den Verteiler auf, schreiben Newsletter, die gelesen werden, und automatisieren Strecken für Willkommen, Warenkorb und Rückgewinnung. Betreff, Versandzeit und Segment werden getestet statt geraten.</p>
+            <div class="lz__tags">
+              <ul><li>Newsletter Konzept</li><li>Aufbau des Verteilers</li><li>Texte</li></ul>
+              <ul><li>Automatisierte Strecken</li><li>Segmentierung</li><li>Zustellbarkeit</li></ul>
+              <ul><li>Betreff und A/B Tests</li><li>Vorlagen</li><li>Auswertung</li></ul>
+            </div>
+            <a class="knopf lz__mehr" href="email-marketing/"><span class="rolle"><span>Mehr erfahren</span><span aria-hidden="true">Mehr erfahren</span></span></a>
+            <figure class="lz__bild"><img src="bilder/dienst-5.jpg" alt="E-Mail Marketing bei KLARTEXT." loading="lazy" width="626" height="447" decoding="async"></figure>
+          </div>
+        </div>
+      </li>
+      </ol>
+      <a class="knopf knopf--akzent gross dienste__mehr" href="#kontakt">Gespräch buchen</a>
+    </div>
+  </section>
+
+  <!-- ══ Video-Referenzen (aus der ersten Seite, jetzt rund) ══ -->
+  <section class="vref"><p class="seo-pruefhinweis">Kundenstimmen im Entwurf: Zitate und Zuordnung sind noch nicht bestätigt.</p>
+    <div class="vref__karte" data-rein>
+      <div class="vref__film" id="vrefFilm">
+        <video id="vrefVideo" src="video/testimonial-01.mp4" poster="video/testimonial-01-poster.jpg"
+               muted loop playsinline preload="none"></video>
+        <div class="vref__schleier" aria-hidden="true"></div>
+      </div>
+      <div class="vref__inhalt">
+        <p class="brush">Referenzen</p>
+        <blockquote id="vrefZitat">«Sie haben aus groben Ideen eine Marke gemacht,
+          die klar und selbstbewusst wirkt.»</blockquote>
+        <p class="vref__wer"><b id="vrefRolle">Geschäftsführung</b>
+          <span id="vrefFirma">Nordlicht</span></p>
+        <div class="vref__chips" id="vrefChips">
+          <button class="ist" data-i="0"><i>N</i><span><b>Geschäftsführung</b><em>Nordlicht</em></span></button>
+          <button data-i="1"><i>V</i><span><b>Marketing</b><em>Volta</em></span></button>
+          <button data-i="2"><i>M</i><span><b>Gründung</b><em>Meridian</em></span></button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══ 5 · Klebe-Sektion: Problem → Antwort ══ -->
+  <section class="kleben">
+    <div class="kleben__links">
+      <div class="kleben__halt">
+        <span class="chip chip--hell" data-rein>Warum wir</span>
+        <h2 data-rein-zeilen><span>Marketing fühlt sich</span><span>schwerer an,</span><span>als es sein müsste.</span></h2>
+        <p class="fuehrung hell" data-rein>Fünf Sätze, die wir in Erstgesprächen
+          immer wieder hören. Und was wir dagegen tun.</p>
+      </div>
+    </div>
+    <ol class="kleben__karten">
+      <li data-rein><b>01</b><h3>Viele Beiträge, wenig Wirkung</h3>
+        <p>Wir bauen einen Redaktionsplan, der auf Zahlen fusst statt auf Bauchgefühl, und messen jedes Format an einem Ziel.</p></li>
+      <li data-rein><b>02</b><h3>Der Auftritt sagt nicht, wofür ihr steht</h3>
+        <p>Wir schärfen die Position, bevor irgendetwas gestaltet wird. Ein Satz, den alle im Team gleich sagen würden.</p></li>
+      <li data-rein><b>03</b><h3>Schöne Bilder, die nichts verkaufen</h3>
+        <p>Jedes Format bekommt ein Ziel und eine Zahl, an der es gemessen wird. Was nicht liefert, fliegt raus.</p></li>
+      <li data-rein><b>04</b><h3>Zu viele Ansprechpersonen</h3>
+        <p>Ein festes Team, eine Ansprechperson, jede Woche derselbe Rhythmus. Keine Weiterleitungen.</p></li>
+      <li data-rein><b>05</b><h3>Keine klare Richtung</h3>
+        <p>Ihr bekommt einen Brand Guide und Vorlagen, mit denen euer Team selbst weiterarbeitet.</p></li>
+    </ol>
+  </section>
+
+  <!-- ══ 6 · Arbeiten ══ -->
+  <!-- ══ Wie wir arbeiten ══ -->
+  <section class="wiewir">
+    <div class="wiewir__kopf">
+      <span class="chip" data-rein>Wie wir arbeiten</span>
+      <h2 data-rein-zeilen><span>Klarheit verbindet alles<em class="punkt">.</em></span></h2>
+      <div class="wiewir__text">
+        <p class="fuehrung" data-rein>Marketing für Schweizer KMU ohne eigene Marketingabteilung. Strategie, Gestaltung und Technik kommen aus einer
+          Hand — von denselben Leuten, die auch daran arbeiten.</p>
+        <p class="fuehrung wiewir__zwei" data-rein>Was uns unterscheidet: Vor jeder Massnahme
+          steht die Frage, was sie leisten soll. Bekommen wir darauf keine klare Antwort,
+          sagen wir das, bevor Budget dafür draufgeht.</p>
+      </div>
+      <p class="wiewir__hinweis" data-rein>Fahr über einen Kreis, um die Arbeitsfelder zu sehen.</p>
+    </div>
+    <div class="wiewir__bild">
+      <svg class="ag" viewBox="0 0 1800 1000" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Strategie gibt die Richtung, Kreativität erweckt Ideen zum Leben, Technologie skaliert. In der Mitte KLARTEXT. Zu jedem Bereich gehören vier Arbeitsfelder.">
+        <defs>
+        <radialGradient id="gS" cx="32%" cy="24%" r="86%">
+        <stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#F4F3F0"/>
+        <stop offset="1" stop-color="#DEDCD6"/></radialGradient>
+        <radialGradient id="gK" cx="32%" cy="24%" r="86%">
+        <stop offset="0" stop-color="#FCCE7C"/><stop offset=".52" stop-color="#F5A524"/>
+        <stop offset="1" stop-color="#D8890B"/></radialGradient>
+        <radialGradient id="gT" cx="32%" cy="24%" r="88%">
+        <stop offset="0" stop-color="#5C544A"/><stop offset=".5" stop-color="#241F19"/>
+        <stop offset="1" stop-color="#0C0A08"/></radialGradient>
+        </defs>
+        <g class="ag__ast" data-fuer="S">
+        <g class="ag__glied" style="--i:0;--vx:11.5px;--vy:8.0px">
+        <path class="ag__leitung" pathLength="1" d="M426.0 84.9 Q474.0 127.4 530.6 157.5"/><circle class="ag__punkt" cx="426.0" cy="84.9" r="4.5"/>
+        <circle class="ag__symfeld" cx="380" cy="53" r="48"/><circle class="ag__symring" cx="380" cy="53" r="48"/><g transform="translate(353.1 26.1) scale(1.3440)" class="ag__strich"><path d="M17 17m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0 M24.5 24.5 32 32"/></g>
+        <text class="ag__titel ag__end" x="314" y="48">Markenanalyse</text>
+        <text class="ag__bei ag__end" x="314" y="76">Zielgruppe, Markt, Wettbewerb</text>
+        </g>
+        <g class="ag__glied" style="--i:1;--vx:13.6px;--vy:3.2px">
+        <path class="ag__leitung" pathLength="1" d="M434.5 231.7 Q462.5 240.9 491.7 245.1"/><circle class="ag__punkt" cx="434.5" cy="231.7" r="4.5"/>
+        <circle class="ag__symfeld" cx="380" cy="219" r="48"/><circle class="ag__symring" cx="380" cy="219" r="48"/><g transform="translate(353.1 192.1) scale(1.3440)" class="ag__strich"><path d="M20 20m-13 0a13 13 0 1 0 26 0a13 13 0 1 0 -26 0 M25.5 14.5 22.5 22.5 14.5 25.5 17.5 17.5Z"/></g>
+        <text class="ag__titel ag__end" x="314" y="214">Positionierung</text>
+        <text class="ag__bei ag__end" x="314" y="242">Klarer Auftritt mit Haltung</text>
+        </g>
+        <g class="ag__glied" style="--i:2;--vx:13.6px;--vy:-3.2px">
+        <path class="ag__leitung" pathLength="1" d="M434.5 374.3 Q463.7 370.1 491.7 360.9"/><circle class="ag__punkt" cx="434.5" cy="374.3" r="4.5"/>
+        <circle class="ag__symfeld" cx="380" cy="387" r="48"/><circle class="ag__symring" cx="380" cy="387" r="48"/><g transform="translate(353.1 360.1) scale(1.3440)" class="ag__strich"><path d="M11 33V8 M11 9h17l-4 5.5 4 5.5H11"/></g>
+        <text class="ag__titel ag__end" x="314" y="382">Strategie</text>
+        <text class="ag__bei ag__end" x="314" y="410">Von der Idee zur Roadmap</text>
+        </g>
+        <g class="ag__glied" style="--i:3;--vx:11.5px;--vy:-8.0px">
+        <path class="ag__leitung" pathLength="1" d="M426.0 521.1 Q482.6 491.0 530.6 448.5"/><circle class="ag__punkt" cx="426.0" cy="521.1" r="4.5"/>
+        <circle class="ag__symfeld" cx="380" cy="553" r="48"/><circle class="ag__symring" cx="380" cy="553" r="48"/><g transform="translate(353.1 526.1) scale(1.3440)" class="ag__strich"><path d="M8 32V9 M8 32h24 M12 27l6-7 5 4 8-11 M31 13h-4.5 M31 13v4.5"/></g>
+        <text class="ag__titel ag__end" x="314" y="548">Messbare Ziele</text>
+        <text class="ag__bei ag__end" x="314" y="576">KPIs, Funnels, Wachstum</text>
+        </g>
+        </g>
+        <g class="ag__ast" data-fuer="K">
+        <g class="ag__glied" style="--i:0;--vx:-11.5px;--vy:8.0px">
+        <path class="ag__leitung" pathLength="1" d="M1374.0 84.9 Q1317.4 115.0 1269.4 157.5"/><circle class="ag__punkt" cx="1374.0" cy="84.9" r="4.5"/>
+        <circle class="ag__symfeld" cx="1420" cy="53" r="48"/><circle class="ag__symring" cx="1420" cy="53" r="48"/><g transform="translate(1393.1 26.1) scale(1.3440)" class="ag__strich"><path d="M7 14.5h6l2.5-3.5h9l2.5 3.5h6v16H7z M20 22.5m-5.5 0a5.5 5.5 0 1 0 11 0a5.5 5.5 0 1 0 -11 0"/></g>
+        <text class="ag__titel" x="1486" y="48">Content Creation</text>
+        <text class="ag__bei" x="1486" y="76">Foto, Video, Text, Design</text>
+        </g>
+        <g class="ag__glied" style="--i:1;--vx:-13.6px;--vy:3.2px">
+        <path class="ag__leitung" pathLength="1" d="M1365.5 231.7 Q1336.3 235.9 1308.3 245.1"/><circle class="ag__punkt" cx="1365.5" cy="231.7" r="4.5"/>
+        <circle class="ag__symfeld" cx="1420" cy="219" r="48"/><circle class="ag__symring" cx="1420" cy="219" r="48"/><g transform="translate(1393.1 192.1) scale(1.3440)" class="ag__strich"><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0 M29 10m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0 M20 30m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0 M15.5 13.5 25 27 M16 11.5h9"/></g>
+        <text class="ag__titel" x="1486" y="214">Social Media</text>
+        <text class="ag__bei" x="1486" y="242">Strategie und Umsetzung</text>
+        </g>
+        <g class="ag__glied" style="--i:2;--vx:-13.6px;--vy:-3.2px">
+        <path class="ag__leitung" pathLength="1" d="M1365.5 374.3 Q1337.5 365.1 1308.3 360.9"/><circle class="ag__punkt" cx="1365.5" cy="374.3" r="4.5"/>
+        <circle class="ag__symfeld" cx="1420" cy="387" r="48"/><circle class="ag__symring" cx="1420" cy="387" r="48"/><g transform="translate(1393.1 360.1) scale(1.3440)" class="ag__strich"><path d="M13 31c0-9 5-17 15-20-1 11-6 17-15 20Z M13 31l6-7"/></g>
+        <text class="ag__titel" x="1486" y="382">Branding und Design</text>
+        <text class="ag__bei" x="1486" y="410">Visuelle Identität mit Charakter</text>
+        </g>
+        <g class="ag__glied" style="--i:3;--vx:-11.5px;--vy:-8.0px">
+        <path class="ag__leitung" pathLength="1" d="M1374.0 521.1 Q1326.0 478.6 1269.4 448.5"/><circle class="ag__punkt" cx="1374.0" cy="521.1" r="4.5"/>
+        <circle class="ag__symfeld" cx="1420" cy="553" r="48"/><circle class="ag__symring" cx="1420" cy="553" r="48"/><g transform="translate(1393.1 526.1) scale(1.3440)" class="ag__strich"><path d="M9 17v6l14 6V11L9 17Z M9 17H7v6h2 M23 14c3 1 4.5 3 4.5 6s-1.5 5-4.5 6 M13 24.5V31h4v-5"/></g>
+        <text class="ag__titel" x="1486" y="548">Kampagnen</text>
+        <text class="ag__bei" x="1486" y="576">Kreativ. Zielgerichtet. Effektiv.</text>
+        </g>
+        </g>
+        <g class="ag__ast" data-fuer="T">
+        <g class="ag__glied" style="--i:0;--vx:13.9px;--vy:-1.7px">
+        <path class="ag__leitung" pathLength="1" d="M532.1 625.3 Q590.0 622.5 646.9 611.1"/><circle class="ag__punkt" cx="532.1" cy="625.3" r="4.5"/>
+        <circle class="ag__symfeld" cx="477" cy="632" r="48"/><circle class="ag__symring" cx="477" cy="632" r="48"/><g transform="translate(449.7 605.2) scale(1.3440)" class="ag__strich"><path d="M7 10h26v20H7z M7 16h26 M11 13h1.5 M15 13h1.5 M19 13h1.5 M14 22h9 M14 26h6"/></g>
+        <text class="ag__titel ag__mitte" x="477" y="722">Webdesign</text>
+        <text class="ag__bei ag__mitte" x="477" y="748">Performance und UX</text>
+        </g>
+        <g class="ag__glied" style="--i:1;--vx:11.1px;--vy:-8.6px">
+        <path class="ag__leitung" pathLength="1" d="M656.5 768.6 Q679.8 755.4 698.4 736.2"/><circle class="ag__punkt" cx="656.5" cy="768.6" r="4.5"/>
+        <circle class="ag__symfeld" cx="612" cy="803" r="48"/><circle class="ag__symring" cx="612" cy="803" r="48"/><g transform="translate(585.4 776.1) scale(1.3440)" class="ag__strich"><path d="M13 13h14v14H13z M17.5 17.5h5v5h-5z M16 8v5 M24 8v5 M16 27v5 M24 27v5 M8 16h5 M8 24h5 M27 16h5 M27 24h5"/></g>
+        <text class="ag__titel ag__mitte" x="612" y="893">KI & Automation</text>
+        <text class="ag__bei ag__mitte" x="612" y="919">Effiziente Prozesse</text>
+        </g>
+        <g class="ag__glied" style="--i:2;--vx:-11.1px;--vy:-8.6px">
+        <path class="ag__leitung" pathLength="1" d="M1143.5 768.6 Q1124.8 749.4 1101.6 736.2"/><circle class="ag__punkt" cx="1143.5" cy="768.6" r="4.5"/>
+        <circle class="ag__symfeld" cx="1188" cy="803" r="48"/><circle class="ag__symring" cx="1188" cy="803" r="48"/><g transform="translate(1160.8 776.1) scale(1.3440)" class="ag__strich"><path d="M8 32h24 M12 32V22 M19 32V14 M26 32V19 M24 10l4-3 4 3"/></g>
+        <text class="ag__titel ag__mitte" x="1188" y="893">Tracking</text>
+        <text class="ag__bei ag__mitte" x="1188" y="919">Datenbasiert entscheiden</text>
+        </g>
+        <g class="ag__glied" style="--i:3;--vx:-13.9px;--vy:-1.7px">
+        <path class="ag__leitung" pathLength="1" d="M1267.9 625.3 Q1211.0 613.9 1153.1 611.1"/><circle class="ag__punkt" cx="1267.9" cy="625.3" r="4.5"/>
+        <circle class="ag__symfeld" cx="1323" cy="632" r="48"/><circle class="ag__symring" cx="1323" cy="632" r="48"/><g transform="translate(1296.6 605.2) scale(1.3440)" class="ag__strich"><path d="M9 9h22v7H9z M9 20h22v7H9z M13 12.5h.1 M13 23.5h.1 M20 31v-4 M15 31h10"/></g>
+        <text class="ag__titel ag__mitte" x="1323" y="722">Umsetzung</text>
+        <text class="ag__bei ag__mitte" x="1323" y="748">Stabil und sicher</text>
+        </g>
+        </g>
+        <g class="ag__kern">
+        <circle class="ag__flaeche" data-fuer="S" cx="740" cy="303" r="250" fill="url(#gS)" fill-opacity="0.70" stroke="rgb(255 255 255 / .30)" stroke-width="1.4"/>
+        <circle class="ag__flaeche" data-fuer="K" cx="1060" cy="303" r="250" fill="url(#gK)" fill-opacity="0.76" stroke="rgb(255 255 255 / .30)" stroke-width="1.4"/>
+        <circle class="ag__flaeche" data-fuer="T" cx="900" cy="580" r="250" fill="url(#gT)" fill-opacity="0.74" stroke="rgb(255 255 255 / .30)" stroke-width="1.4"/>
+        <text data-fuer="S" class="ag__gross" x="677" y="267" fill="#12110F">Strategie</text>
+        <text data-fuer="S" class="ag__unter" x="677" y="305" fill="#12110F">Richtung geben.</text>
+        <text data-fuer="K" class="ag__gross" x="1132" y="261" fill="#12110F">Kreativität</text>
+        <text data-fuer="K" class="ag__unter" x="1132" y="299" fill="#12110F">Ideen zum Leben.</text>
+        <text data-fuer="T" class="ag__gross" x="900" y="608" fill="#FFFFFF">Technologie</text>
+        <text data-fuer="T" class="ag__unter" x="900" y="646" fill="#FFFFFF">Skalieren.</text>
+        <circle cx="900" cy="395" r="104" fill="#F5A524"/>
+        <image class="ag__logo" href="marke/wortmarke-einfarbig.svg" x="812.0" y="376.6" width="176.0" height="36.8"/>
+        </g>
+        </svg>
+    </div>
+    <div class="wiewir__liste" aria-hidden="true">
+      <div class="wiewir__gruppe">
+        <h3>Strategie</h3>
+        <p>Richtung geben.</p>
+        <ul>
+          <li><b>Markenanalyse</b> <span>Zielgruppe, Markt, Wettbewerb</span></li>
+          <li><b>Positionierung</b> <span>Klarer Auftritt mit Haltung</span></li>
+          <li><b>Strategie</b> <span>Von der Idee zur Roadmap</span></li>
+          <li><b>Messbare Ziele</b> <span>KPIs, Funnels, Wachstum</span></li>
+        </ul>
+      </div>
+      <div class="wiewir__gruppe">
+        <h3>Kreativität</h3>
+        <p>Ideen zum Leben.</p>
+        <ul>
+          <li><b>Content Creation</b> <span>Foto, Video, Text, Design</span></li>
+          <li><b>Social Media</b> <span>Strategie und Umsetzung</span></li>
+          <li><b>Branding und Design</b> <span>Visuelle Identität mit Charakter</span></li>
+          <li><b>Kampagnen</b> <span>Kreativ. Zielgerichtet. Effektiv.</span></li>
+        </ul>
+      </div>
+      <div class="wiewir__gruppe">
+        <h3>Technologie</h3>
+        <p>Skalieren.</p>
+        <ul>
+          <li><b>Webdesign</b> <span>Performance und UX</span></li>
+          <li><b>KI &amp; Automation</b> <span>Effiziente Prozesse</span></li>
+          <li><b>Tracking</b> <span>Datenbasiert entscheiden</span></li>
+          <li><b>Umsetzung</b> <span>Stabil und sicher</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="werke" id="arbeiten">
+    <div class="kopfzeile">
+      <div class="kopfzeile__wort">
+        <span class="chip" data-rein>Arbeiten</span>
+        <h2 data-rein-zeilen><span>Ausgewählte Projekte.</span></h2>
+        <p class="fuehrung werke__lead" data-rein>Marken, für die wir Strategie,
+          Gestaltung und Produktion übernommen haben — vom ersten Auftritt bis zur
+          laufenden Betreuung.</p>
+      </div>
+      <a class="knopf knopf--rand gross" href="projekte/" data-rein>
+        <span class="rolle"><span>Alle Projekte</span><span aria-hidden="true">Alle Projekte</span></span>
+      </a>
+    </div>
+
+    <div class="werke__raster">
+      <a class="werk" href="projekte/grand-casino-baden/" data-rein>
+        <span class="werk__bild">
+          <img src="bilder/gcb-haus.jpg" alt="" loading="lazy" width="1280" height="720" decoding="async">
+          <span class="werk__schleier" aria-hidden="true"></span>
+          <img class="werk__marke" src="logos/gcb.png" alt="" loading="lazy" width="1200" height="784" decoding="async">
+        </span>
+        <span class="werk__leiste">
+          <span class="werk__nr">01</span>
+          <span class="werk__name">Grand Casino Baden</span>
+          <span class="pillen"><span>Social Media</span><span>Content</span></span>
+        </span>
+      </a>
+      <a class="werk" href="projekte/red-bull/" data-rein>
+        <span class="werk__bild">
+          <img src="bilder/rb-blau-2.jpg" alt="" loading="lazy" width="1120" height="1400" decoding="async">
+          <span class="werk__schleier" aria-hidden="true"></span>
+          <img class="werk__marke" src="logos/redbull.svg" alt="" loading="lazy" width="380" height="220" decoding="async">
+        </span>
+        <span class="werk__leiste">
+          <span class="werk__nr">02</span>
+          <span class="werk__name">Red Bull × Grand Casino Baden</span>
+          <span class="pillen"><span>Content</span><span>Fotografie</span></span>
+        </span>
+      </a>
+      <a class="werk" href="projekte/aesthetics-medical/" data-rein>
+        <span class="werk__bild">
+          <img src="bilder/am-haus.jpg" alt="" loading="lazy" width="1600" height="900" decoding="async">
+          <span class="werk__schleier" aria-hidden="true"></span>
+          <span class="werk__marke werk__marke--wort">Aesthetics Medical</span>
+        </span>
+        <span class="werk__leiste">
+          <span class="werk__nr">03</span>
+          <span class="werk__name">Aesthetics Medical</span>
+          <span class="pillen"><span>Social Media</span><span>Reels</span></span>
+        </span>
+      </a>
+      <a class="werk" href="projekte/nordlicht/" data-rein>
+        <span class="werk__bild">
+          <img src="bilder/fall-1.jpg" alt="" loading="lazy" width="1600" height="1068" decoding="async">
+          <span class="werk__schleier" aria-hidden="true"></span>
+          <span class="werk__marke werk__marke--wort">Nordlicht</span>
+        </span>
+        <span class="werk__leiste">
+          <span class="werk__nr">04</span>
+          <span class="werk__name">Nordlicht</span>
+          <span class="pillen"><span>Branding</span><span>Website</span></span>
+        </span>
+      </a>
+      <a class="werk" href="projekte/volta/" data-rein>
+        <span class="werk__bild">
+          <img src="bilder/fall-2.jpg" alt="" loading="lazy" width="3571" height="2551" decoding="async">
+          <span class="werk__schleier" aria-hidden="true"></span>
+          <span class="werk__marke werk__marke--wort">Volta</span>
+        </span>
+        <span class="werk__leiste">
+          <span class="werk__nr">05</span>
+          <span class="werk__name">Volta</span>
+          <span class="pillen"><span>Branding</span><span>3D</span></span>
+        </span>
+      </a>
+      <a class="werk" href="projekte/meridian/" data-rein>
+        <span class="werk__bild">
+          <img src="bilder/fall-3.jpg" alt="" loading="lazy" width="5376" height="3584" decoding="async">
+          <span class="werk__schleier" aria-hidden="true"></span>
+          <span class="werk__marke werk__marke--wort">Meridian</span>
+        </span>
+        <span class="werk__leiste">
+          <span class="werk__nr">06</span>
+          <span class="werk__name">Meridian</span>
+          <span class="pillen"><span>Branding</span><span>Kampagne</span></span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ 8 · Team: Lamellen ══ -->
+  <section class="team" id="team">
+    <div class="team__block" data-zug>
+      <p class="brush mitte">Unser Team</p>
+      <h2 class="mitte">Die Mannschaft</h2><p class="seo-pruefhinweis">Teamdarstellung im Entwurf: Namen, Rollen und Zugehörigkeit sind noch zu bestätigen.</p>
+      <!-- Portraits tauschen: Datei in bilder/ ersetzen (Hochformat 2:3,
+           mindestens 800 px breit, Brustbild, Ganzkoerper wirkt in der
+           schmalen Lamelle weit weg). Zwei Stellschrauben am Streifen:
+           --bildpos = Ausschnitt (erster Wert links/rechts, zweiter
+           oben/unten; 50% 30% heisst mittig und leicht nach oben),
+           --ton = Helligkeit (1 = Original, kleiner = dunkler). Damit
+           laesst sich ein zu helles oder zu dunkles Foto an die
+           anderen angleichen, ohne die Datei zu bearbeiten. -->
+      <div class="lamellen" id="lamellen">
+        <button class="lamelle ist" type="button" aria-pressed="true" style="--bildpos:50% 50%;--ton:.78">
+          <img src="bilder/portrait-1.jpg" alt="" width="840" height="1050" decoding="async">
+          <span class="lamelle__schild"><b>Dušan</b><i>Gründer</i></span>
+        </button>
+        <button class="lamelle" type="button" aria-pressed="false" style="--bildpos:51% 50%;--ton:.85">
+          <img src="bilder/portrait-2.jpg" alt="" width="840" height="1050" decoding="async">
+          <span class="lamelle__schild"><b>Pia</b><i>Marketing Manager</i></span>
+        </button>
+        <button class="lamelle" type="button" aria-pressed="false" style="--bildpos:50% 50%;--ton:.78">
+          <img src="bilder/portrait-4.jpg" alt="" width="840" height="1050" decoding="async">
+          <span class="lamelle__schild"><b>Mara</b><i>Project Manager</i></span>
+        </button>
+        <button class="lamelle" type="button" aria-pressed="false" style="--bildpos:50% 50%;--ton:.66">
+          <img src="bilder/portrait-5.jpg" alt="" width="840" height="1050" decoding="async">
+          <span class="lamelle__schild"><b>Reto</b><i>Digital Strategist</i></span>
+        </button>
+        <button class="lamelle" type="button" aria-pressed="false" style="--bildpos:50% 50%;--ton:.74">
+          <img src="bilder/portrait-6.jpg" alt="" width="840" height="1050" decoding="async">
+          <span class="lamelle__schild"><b>Amir</b><i>Content Creator</i></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 9 · Preise ══ -->
+  <section class="preise" id="preise"><p class="seo-pruefhinweis">Preise und Leistungsversprechen sind Entwurfswerte und noch nicht als Angebot freigegeben.</p>
+    <div class="preise__kopf">
+      <span class="chip chip--hell" data-rein>Preise</span>
+      <h2 class="mitte" data-rein-zeilen><span>Ein Team, fest gebucht.</span></h2>
+      <p class="preise__lead" data-rein>Monatlich statt Projekt für Projekt. Ihr bucht Kapazität,
+        keine Stunden, und wisst vom ersten Tag an, was es kostet.</p>
+      <div class="schalter" id="schalter" data-rein>
+        <button class="ist" data-takt="lang">12 Monate <em>−15 %</em></button>
+        <button data-takt="kurz">6 Monate Bindung</button>
+      </div>
+    </div>
+
+    <div class="preise__raster">
+      <article class="paket" data-rein>
+        <h3>Start</h3>
+        <p class="paket__unter">Für kleine Teams und junge Marken, die sichtbar werden wollen.</p>
+        <p class="paket__preis"><i>CHF</i>
+          <span class="preis">
+            <span class="preis__alt">1499</span>
+            <span class="preis__neu">1&rsquo;274</span>
+          </span>
+          <span class="brush">/Monat</span></p>
+        <ul class="haken">
+          <li>Social Media und Redaktionsplan</li>
+          <li>Content-Produktion: Foto, Grafik, Reels</li>
+          <li>Website-Pflege und Optimierung</li>
+          <li>Feste Ansprechperson</li>
+          <li class="aus">Brand Guide und Vorlagen fürs Team</li>
+          <li class="aus">Google Ads, Meta, TikTok und LinkedIn</li>
+          <li class="aus">E-Mail Marketing und Automationen</li>
+          <li class="aus">Monatlicher Report</li>
+        </ul>
+        <a class="knopf knopf--rand gross voll" href="#kontakt">
+          <span class="rolle"><span>Start wählen</span><span aria-hidden="true">Start wählen</span></span>
+        </a>
+      </article>
+
+      <article class="paket paket--voll" data-rein>
+        <span class="brush paket__tipp">Beliebt</span>
+        <h3>Wachstum</h3>
+        <p class="paket__unter">Für Marken, die wachsen und dafür Werbebudget einsetzen.</p>
+        <p class="paket__preis"><i>CHF</i>
+          <span class="preis">
+            <span class="preis__alt">2999</span>
+            <span class="preis__neu">2&rsquo;549</span>
+          </span>
+          <span class="brush">/Monat</span></p>
+        <ul class="haken">
+          <li>Social Media und Redaktionsplan</li>
+          <li>Content-Produktion: Foto, Grafik, Reels</li>
+          <li>Website-Pflege und Optimierung</li>
+          <li>Feste Ansprechperson</li>
+          <li>Brand Guide und Vorlagen fürs Team</li>
+          <li>Google Ads, Meta, TikTok und LinkedIn</li>
+          <li>E-Mail Marketing und Automationen</li>
+          <li>Monatlicher Report</li>
+        </ul>
+        <a class="knopf knopf--akzent gross voll" href="#kontakt">
+          <span class="rolle"><span>Wachstum wählen</span><span aria-hidden="true">Wachstum wählen</span></span>
+        </a>
+      </article>
+
+      <aside class="erst" data-rein>
+        <div class="erst__haupt">
+          <span class="erst__marke">Kein Paket nötig</span>
+          <h3 class="erst__titel">Kostenloses Erstgespräch</h3>
+          <p class="erst__unter">15 Minuten, unverbindlich.</p>
+          <div class="erst__person">
+            <img src="bilder/portrait-1.jpg" alt="" loading="lazy" width="840" height="1050" decoding="async">
+            <span class="erst__wer"><b>Dušan</b><i>Gründer</i></span>
+            <span class="erst__stand"><em aria-hidden="true"></em>Antwortet heute</span>
+          </div>
+        </div>
+
+        <div class="erst__fuss">
+          <ul class="erst__punkte">
+            <li>15 Minuten per Video oder Telefon</li>
+            <li>Einschätzung zu Aufwand und Preis</li>
+            <li>Antwort meist am selben Arbeitstag</li>
+            <li>Ohne Verpflichtung</li>
+          </ul>
+
+          <a class="knopf knopf--dunkel gross voll erst__knopf" href="#kontakt">
+            <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+          </a>
+
+          <a class="erst__mail" href="mailto:hallo@klartext-digital.ch">
+            <span class="erst__mailbild" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M3 5.5h18v13H3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m3.6 6.4 8.4 6 8.4-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="erst__mailwort">Lieber schreiben?<b>hallo@klartext-digital.ch</b></span>
+          </a>
+        </div>
+      </aside>
+    </div>
+
+    <article class="projekt" data-rein>
+      <div class="projekt__wort">
+        <span class="brush projekt__marke">Ohne Bindung</span>
+        <h3>Lieber ein einzelnes Projekt?</h3>
+        <p>Nicht jede Marke braucht eine laufende Betreuung. Wenn ihr eine Website wollt,
+          einen Film oder einen neuen Auftritt, machen wir das als einzelnes Projekt. Wir
+          schauen uns an, was ihr vorhabt, und ihr bekommt ein Angebot mit festem Preis und
+          festem Termin. Danach seid ihr frei, und wenn es passt, sprechen wir sp&auml;ter
+          &uuml;ber eine Betreuung.</p>
+        <a class="knopf knopf--rand gross" href="#kontakt">
+          <span class="rolle"><span>Projekt anfragen</span><span aria-hidden="true">Projekt anfragen</span></span>
+        </a>
+      </div>
+      <ul class="projekt__liste">
+        <li>Website oder Onlineshop</li>
+        <li>Firmenvideo und Imagefilm</li>
+        <li>Marken-Auftritt: Logo, Farben, Guide</li>
+        <li>Foto- und Videoshooting</li>
+        <li>Landingpage f&uuml;r eine Kampagne</li>
+        <li>Brosch&uuml;re und Printunterlagen</li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- ══ 11 · Blog ══ -->
+  <section class="blog" id="blog">
+    <div class="kopfzeile">
+      <div>
+        <span class="chip" data-rein>Blog</span>
+        <h2 data-rein-zeilen><span>Gedanken zu Marke</span><span>und Marketing<em class="punkt">.</em></span></h2>
+        <p class="fuehrung" data-rein>Strategien, Erfahrungen und Praxiswissen —
+          ehrlich, verständlich und auf den Punkt.</p>
+      </div>
+      <div class="knopfpaar" data-rein>
+        <a class="knopf knopf--dunkel gross" href="blog/"><span class="rolle"><span>Alle Artikel</span><span aria-hidden="true">Alle Artikel</span></span></a>
+        <a class="kreis" href="blog/" aria-label="Alle Artikel">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="blog__block">
+      <div class="blog__raster">
+        <a class="blog__gross" href="blog/rhythmus-statt-kampagne/">
+          <div class="blog__wort">
+            <span class="blog__marke" data-rein>Neuester Artikel</span>
+            <h3 class="blog__titel" data-rein>Rhythmus schlägt Kampagne<em class="punkt">.</em></h3>
+            <p class="blog__lead" data-rein>Vier gute Wochen bringen weniger als vierzig ordentliche.
+              Warum Regelmässigkeit mehr trägt als der grosse Auftritt.</p>
+            <span class="blog__knoepfe" data-rein>
+              <span class="knopf knopf--akzent gross"><span class="rolle"><span>Artikel lesen</span><span aria-hidden="true">Artikel lesen</span></span></span>
+              <span class="kreis kreis--rand">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </span>
+            <p class="blog__zeile" data-rein>
+              <span><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.2h7A1.5 1.5 0 0 1 19 9.7v7.8A1.5 1.5 0 0 1 17.5 19h-13A1.5 1.5 0 0 1 3 17.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Social Media</span><span><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 10h17M8 3.5v4M16 3.5v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> 12. Feb 2026</span><span><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 1.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> 1 Min. Lesezeit</span>
+            </p>
+            <p class="blog__hand" data-rein><svg class="blog__bogen" viewBox="0 0 96 54" width="96" height="54" aria-hidden="true"><path d="M4 50C10 22 34 8 74 10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M64 4l12 6-10 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brush">Mehr als Marketing.</span></p>
+          </div>
+          <span class="blog__bild"><img src="bilder/hero-1.jpg" alt="" loading="lazy" width="1600" height="1067" decoding="async"></span>
+        </a>
+
+        <div class="blog__seite">
+          <div class="blog__seitenkopf" data-rein>
+            <span class="blog__seitentitel">Weitere Artikel</span>
+            <a class="blog__alle" href="blog/">Alle ansehen <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+            <a class="bzeile" href="blog/website-die-arbeitet/" data-rein>
+              <span class="bzeile__bild"><img src="bilder/hero-2.jpg" alt="" loading="lazy" width="1600" height="1067" decoding="async"></span>
+              <span class="bzeile__wort">
+                <span class="bzeile__meta">Websites<i aria-hidden="true">·</i>28. Jan 2026</span>
+                <span class="bzeile__titel">Woran man eine Website misst</span>
+              </span>
+              <span class="bzeile__pfeil" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+            <a class="bzeile" href="blog/marke-am-anfang/" data-rein>
+              <span class="bzeile__bild"><img src="bilder/hero-3.jpg" alt="" loading="lazy" width="1600" height="1200" decoding="async"></span>
+              <span class="bzeile__wort">
+                <span class="bzeile__meta">Branding<i aria-hidden="true">·</i>14. Jan 2026</span>
+                <span class="bzeile__titel">Wie viel Marke braucht ein Start?</span>
+              </span>
+              <span class="bzeile__pfeil" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+            <a class="bzeile" href="blog/wettbewerb-gewinnen/" data-rein>
+              <span class="bzeile__bild"><img src="bilder/blog-1.jpg" alt="" loading="lazy" width="1600" height="1067" decoding="async"></span>
+              <span class="bzeile__wort">
+                <span class="bzeile__meta">Strategie<i aria-hidden="true">·</i>16. Dez 2025</span>
+                <span class="bzeile__titel">Wie grosse Marken den Wettbewerb gewinnen</span>
+              </span>
+              <span class="bzeile__pfeil" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+            <a class="bzeile" href="blog/kluge-marken-wachsen/" data-rein>
+              <span class="bzeile__bild"><img src="bilder/blog-2.jpg" alt="" loading="lazy" width="1600" height="1068" decoding="async"></span>
+              <span class="bzeile__wort">
+                <span class="bzeile__meta">Branding<i aria-hidden="true">·</i>9. Dez 2025</span>
+                <span class="bzeile__titel">Warum kluge Marken schneller wachsen</span>
+              </span>
+              <span class="bzeile__pfeil" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+            <a class="bzeile" href="blog/vorne-bleiben/" data-rein>
+              <span class="bzeile__bild"><img src="bilder/blog-3.jpg" alt="" loading="lazy" width="1600" height="1068" decoding="async"></span>
+              <span class="bzeile__wort">
+                <span class="bzeile__meta">Strategie<i aria-hidden="true">·</i>2. Dez 2025</span>
+                <span class="bzeile__titel">Der echte Grund, warum Marken vorne bleiben</span>
+              </span>
+              <span class="bzeile__pfeil" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="brief" data-rein>
+      <div class="brief__wort">
+        <span class="brief__marke">Newsletter</span>
+        <h3>Wissen, das euch weiterbringt<em class="punkt">.</em></h3>
+        <p>Neue Artikel und Erfahrungen aus Projekten direkt ins Postfach.
+          Kein Spam, nur Klartext.</p>
+      </div>
+      <div class="brief__tat">
+        <form class="brief__form" action="mailto:hallo@klartext-digital.ch" method="post" enctype="text/plain">
+          <label class="brief__feld">
+            <span class="sr">E-Mail-Adresse</span>
+            <input type="email" name="E-Mail" placeholder="Eure E-Mail-Adresse" required>
+          </label>
+          <button class="knopf knopf--akzent" type="submit"><span class="rolle"><span>Anmelden</span><span aria-hidden="true">Anmelden</span></span></button>
+        </form>
+        <p class="brief__punkte">
+          <span><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Praxisnah</span><span><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Kein Spam</span><span><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Jederzeit abmelden</span>
+        </p>
+        <p class="brief__hinweis">Entwurf: öffnet euer Mailprogramm, speichert nichts.</p>
+      </div>
+      <p class="brief__hand" aria-hidden="true"><svg class="blog__bogen" viewBox="0 0 96 54" width="96" height="54" aria-hidden="true"><path d="M4 50C10 22 34 8 74 10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M64 4l12 6-10 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brush">Neue Impulse.<br>Direkt ins Postfach.</span></p>
+    </div>
+  </section>
+
+  <!-- ══ 12 · FAQ ══ -->
+  <section class="fragen" id="faq">
+    <div class="fragen__kopf">
+      <span class="chip" data-rein>FAQ</span>
+      <h2 data-rein-zeilen><span>Häufige Fragen.</span></h2>
+      <p class="fuehrung" data-rein>Noch etwas offen? <a href="#kontakt">Schreib uns</a>.
+        Wir antworten meist am selben Arbeitstag.</p>
+    </div>
+    <div class="fragen__reiter" data-rein>
+        <button class="reiter ist" type="button" data-thema="alle" aria-pressed="true">Alle</button>
+        <button class="reiter" type="button" data-thema="ablauf" aria-pressed="false">Ablauf</button>
+        <button class="reiter" type="button" data-thema="website" aria-pressed="false">Website</button>
+        <button class="reiter" type="button" data-thema="social" aria-pressed="false">Social Media</button>
+        <button class="reiter" type="button" data-thema="preise" aria-pressed="false">Preise</button>
+    </div>
+    <div class="fragen__liste">
+      <div class="frage" data-thema="ablauf" data-rein>
+        <button class="frage__kopf" type="button" aria-expanded="false">
+          <span class="frage__text">Wie läuft ein Projekt bei euch ab?</span>
+          <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+        </button>
+        <div class="frage__huelle"><div class="frage__leib"><p>Wir starten mit einer Analyse: Ziele, Zielgruppe, Wettbewerb, bestehende Zahlen. Daraus entsteht eine Richtung, dann Gestaltung und Produktion. Ihr habt eine feste Ansprechperson vom ersten Gespräch bis zur Auswertung.</p></div></div>
+      </div>
+      <div class="frage" data-thema="ablauf" data-rein>
+        <button class="frage__kopf" type="button" aria-expanded="false">
+          <span class="frage__text">Wie lange dauert ein Projekt?</span>
+          <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+        </button>
+        <div class="frage__huelle"><div class="frage__leib"><p>Ein Markenauftritt braucht vier bis acht Wochen, eine Website sechs bis zwölf, eine Kampagne ist in zwei bis drei Wochen startklar.</p></div></div>
+      </div>
+      <div class="frage" data-thema="website" data-rein>
+        <button class="frage__kopf" type="button" aria-expanded="false">
+          <span class="frage__text">Wie schnell ist meine Website fertig?</span>
+          <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+        </button>
+        <div class="frage__huelle"><div class="frage__leib"><p>Sechs bis zwölf Wochen, je nach Umfang. Eine einzelne Landingpage kann in zwei Wochen stehen, ein Auftritt mit zehn Seiten, Fotos und neuen Texten braucht länger. Den grössten Einfluss habt ihr selbst: Wie schnell Inhalte und Freigaben kommen, entscheidet mehr über den Termin als die Technik.</p></div></div>
+      </div>
+      <div class="frage" data-thema="website" data-rein>
+        <button class="frage__kopf" type="button" aria-expanded="false">
+          <span class="frage__text">Kann ich die Website danach selbst pflegen und anpassen?</span>
+          <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+        </button>
+        <div class="frage__huelle"><div class="frage__leib"><p>Ja, das ist der Normalfall. Wir bauen so, dass ihr Texte, Bilder und ganze Seiten selbst ändern könnt, und zeigen es euch in einer Einführung. Alle Dateien und Zugänge gehören euch — auch wenn ihr später ohne uns weitermacht.</p></div></div>
+      </div>
+      <div class="frage" data-thema="social" data-rein>
+        <button class="frage__kopf" type="button" aria-expanded="false">
+          <span class="frage__text">Übernehmt ihr auch das Posten auf Social Media?</span>
+          <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+        </button>
+        <div class="frage__huelle"><div class="frage__leib"><p>Ja. Wir planen, produzieren, veröffentlichen und beantworten Kommentare. Ihr seht den Redaktionsplan vorher und gebt frei, was rausgeht — selbst mitschreiben müsst ihr nichts.</p></div></div>
+      </div>
+      <div class="frage" data-thema="social" data-rein>
+        <button class="frage__kopf" type="button" aria-expanded="false">
+          <span class="frage__text">Wer hat die Ideen für die Videos und die Drehtage?</span>
+          <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+        </button>
+        <div class="frage__huelle"><div class="frage__leib"><p>Wir. Die Themen kommen meist aus eurem Alltag: was Kunden fragen, was ihr ohnehin erklärt, was gerade ansteht. Daraus machen wir ein Konzept, planen den Drehtag um euren Betrieb herum und bringen Kamera, Licht und Ton mit.</p></div></div>
+      </div>
+      <div class="frage" data-thema="social" data-rein>
+        <button class="frage__kopf" type="button" aria-expanded="false">
+          <span class="frage__text">Betreut ihr Google Ads und Meta Ads auch laufend?</span>
+          <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+        </button>
+        <div class="frage__huelle"><div class="frage__leib"><p>Ja. Wir richten Konten und Tracking ein, schalten Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads und optimieren laufend. Ihr bekommt monatlich einen Bericht mit den Zahlen, auch den unangenehmen.</p></div></div>
+      </div>
+      <div class="frage" data-thema="preise" data-rein>
+        <button class="frage__kopf" type="button" aria-expanded="false">
+          <span class="frage__text">Was kostet eine Website in der Schweiz?</span>
+          <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+        </button>
+        <div class="frage__huelle"><div class="frage__leib"><p>Für eine Website mit fünf bis zehn Seiten liegt der Rahmen üblicherweise zwischen 8000 und 25000 Franken, je nach Umfang, Inhalten und Technik. Nach dem ersten Gespräch bekommt ihr einen festen Preis, keine Schätzung.</p></div></div>
+      </div>
+      <div class="frage" data-thema="preise" data-rein>
+        <button class="frage__kopf" type="button" aria-expanded="false">
+          <span class="frage__text">Gibt es Pakete oder individuelle Angebote?</span>
+          <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+        </button>
+        <div class="frage__huelle"><div class="frage__leib"><p>Beides. Die Monatspakete decken die laufende Betreuung ab und sind nach der Mindestlaufzeit monatlich kündbar. Für einzelne Vorhaben gibt es ein Angebot mit festem Preis und festem Termin.</p></div></div>
+      </div>
+      <div class="frage" data-thema="preise" data-rein>
+        <button class="frage__kopf" type="button" aria-expanded="false">
+          <span class="frage__text">Kann ich einzelne Leistungen buchen?</span>
+          <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+        </button>
+        <div class="frage__huelle"><div class="frage__leib"><p>Ja. Branding, Social Media, Websites, Performance Marketing und E-Mail Marketing gibt es auch einzeln. Zusammen wirkt es stärker, aber ihr müsst nicht alles auf einmal nehmen.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 13 · Kontakt: Formular mit Terminwahl ══ -->
+  <section class="ruf" id="kontakt">
+    <div class="ruf__kopfzeile">
+      <span class="chip chip--hell" data-rein>Termin</span>
+      <h2 data-rein-zeilen><span>In 15 Minuten wisst ihr,</span><span>woran ihr seid.</span></h2>
+      <p class="ruf__lead" data-rein>Kein Verkaufsgespräch. Ihr erzählt, was ansteht, wir sagen
+        offen, was es dafür braucht und in welchem Rahmen es liegt. Passt es nicht,
+        sagen wir das auch.</p>
+      <div class="ruf__wege" data-rein>
+        <a class="ruf__weg" href="mailto:hallo@klartext-digital.ch">
+          <span>hallo@klartext-digital.ch</span><i aria-hidden="true">↗</i></a>
+        <a class="ruf__weg" href="tel:+41000000000">
+          <span>+41 00 000 00 00</span><i aria-hidden="true">↗</i></a>
+      </div>
+    </div>
+
+    <div class="ruf__karte" data-rein>
+      <p class="ruf__anweisung">Wunschtermin wählen und vier Angaben — das war es.</p>
+
+      <form class="fm" id="fm" novalidate>
+        <div class="fm__links">
+          <div class="fm__zeile">
+            <label class="feld"><span>Name</span>
+              <input type="text" name="name" autocomplete="name" placeholder="Vor- und Nachname" required></label>
+            <label class="feld"><span>Unternehmen</span>
+              <input type="text" name="firma" autocomplete="organization" placeholder="Firma AG" required></label>
+          </div>
+          <div class="fm__zeile">
+            <label class="feld"><span>E-Mail</span>
+              <input type="email" name="mail" autocomplete="email" placeholder="name@firma.ch" required></label>
+            <label class="feld"><span>Telefon</span>
+              <input type="tel" name="tel" autocomplete="tel" placeholder="+41 79 000 00 00" required></label>
+          </div>
+          <label class="feld feld--voll"><span>Worum geht’s?</span>
+            <textarea name="text" placeholder="Zwei, drei Sätze genügen."></textarea></label>
+        </div>
+
+        <div class="kal" id="kal">
+          <div class="kal__kopf">
+            <span class="feld__titel">Wunschtermin</span>
+            <div class="kal__blaettern">
+              <button class="kal__pfeil" type="button" data-schritt="-1" aria-label="Monat zurück">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+              </button>
+              <b id="kalMonat"></b>
+              <button class="kal__pfeil" type="button" data-schritt="1" aria-label="Monat vor">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="kal__tage" aria-hidden="true">
+            <span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span>
+          </div>
+          <div class="kal__raster" id="kalRaster"></div>
+        </div>
+          <div class="kal__slots" id="kalSlots">
+            <span class="feld__titel">Uhrzeit</span>
+            <div class="slots" id="slots"></div>
+          </div>
+
+        <div class="fm__fuss">
+          <div>
+            <p class="fm__gewaehlt" id="fmGewaehlt">Noch kein Termin gewählt</p>
+            <p class="fm__hinweis">Entwurf: öffnet dein Mailprogramm, speichert nichts.</p>
+          </div>
+          <button class="knopf knopf--akzent gross" type="submit">
+            <span class="rolle"><span>Anfrage senden</span><span aria-hidden="true">Anfrage senden</span></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+<section class="unter__block seo-lesetipp" aria-labelledby="wissen-titel"><h2 id="wissen-titel">Eine Website planen. Mit klarem Budget.</h2><p>Was gehört zum Webdesign, welche Entscheidungen beeinflussen den Aufwand und welche laufenden Kosten kommen dazu?</p><p><a href="webdesign/">Webdesign für Schweizer KMU</a> · <a href="wissen/website-kosten-schweiz/">Website-Kosten in der Schweiz verstehen</a></p></section>
+</main>
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <p class="brush">Auf ein Wort</p>
+      <h2>Reden<br>wir.</h2>
+      <div class="fuss__kontakt">
+        <a class="fuss__gross" href="mailto:hallo@klartext-digital.ch">
+          <span>hallo@klartext-digital.ch</span><i aria-hidden="true">↗</i></a>
+        <a class="fuss__gross" href="tel:+41000000000">
+          <span>+41 00 000 00 00</span><i aria-hidden="true">↗</i></a>
+      </div>
+      <p class="fuss__ort">Marketing für Schweizer KMU · Standortangaben noch zu bestätigen<br>
+        Mo bis Fr, 08:30 bis 18:00</p>
+    </div>
+
+    <div class="fuss__spalten">
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Seite</p><a href="wissen/">Wissen</a>
+        <a class="mlink" href="projekte/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+        <a class="mlink" href="leistungen/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Leistungen</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen</span></a>
+        <a class="mlink" href="ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+        <a class="mlink" href="blog/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+        <a class="mlink" href="#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+      </nav>
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Leistungen</p>
+        <a class="mlink" href="branding/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a>
+        <a class="mlink" href="social-media/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a>
+        <a class="mlink" href="webdesign/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a>
+        <a class="mlink" href="performance-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a>
+        <a class="mlink" href="email-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a>
+      </nav>
+      <div class="fuss__spalte">
+        <p class="fuss__kopf">Folgen</p>
+        <div class="fuss__sozial">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.4 10.4v6.2M7.4 7.6v.1M11.4 16.6v-3.4a2.4 2.4 0 0 1 4.8 0v3.4M11.4 16.6v-6.2"/></svg><span>LinkedIn</span></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M14.2 3.5v10.9a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14.2 3.5a5 5 0 0 0 5 5"/></svg><span>TikTok</span></a>
+          <a href="#" aria-label="Behance"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3 6h5.2a2.6 2.6 0 0 1 0 5.2H3zM3 11.2h5.6a2.9 2.9 0 0 1 0 5.8H3zM14.6 13.4h6.4a3.2 3.2 0 0 0-6.4 0 3.2 3.2 0 0 0 5.9 1.7M15.6 7.4h4.4"/></svg><span>Behance</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <div><p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p><p>Firmierung, Kontaktangaben und Geschäftszeiten: noch zu bestätigen.</p></div>
+    <nav>
+      <a href="impressum/">Impressum</a>
+      <a href="datenschutz/">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="marke/wortmarke-negativ.svg" alt="" width="4105" height="859" decoding="async"></div>
+</footer>
+
+<button class="hoch" id="hoch" type="button" aria-label="Zurück nach oben">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+       stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script defer src="js/lenis.min.js"></script>
+<script defer src="js/gsap.min.js"></script>
+<script defer src="js/ScrollTrigger.min.js"></script>
+<script defer src="lader.js"></script>
+<script defer src="bewegung.js"></script>
+<script defer src="zeiger.js"></script>
+  <script defer src="mona.js"></script>
+<script defer src="fragen.js"></script>
+<script defer src="kreise.js"></script>
+  <script defer src="leseband.js"></script>
+</body>
+</html>
