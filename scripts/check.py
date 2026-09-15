@@ -2,15 +2,18 @@
 """Validate rendered metadata, schema, links, fragments and HTTP responses."""
 from pathlib import Path
 from html.parser import HTMLParser
-from urllib.parse import urlsplit,unquote
+from urllib.parse import urlsplit,unquote,quote
 from urllib.request import urlopen
-import json,re,sys,xml.etree.ElementTree as ET
-ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'_site'
+import json,re,sys,os,xml.etree.ElementTree as ET
+ROOT=Path(__file__).resolve().parents[1];OUT=Path(os.environ.get('KLARTEXT_BUILD_DIR',ROOT/'_site')).resolve()
 class Page(HTMLParser):
  def __init__(self,text):
   super().__init__();self.tags=[];self.feed(text)
  def handle_starttag(self,tag,attrs):self.tags.append((tag,dict(attrs)))
 errors=[];pages={};http=sys.argv[1] if len(sys.argv)>1 else None
+expected_files=set(json.loads((OUT/'build-manifest.json').read_text()))|{'build-manifest.json'}
+actual_files={str(p.relative_to(OUT)) for p in OUT.rglob('*') if p.is_file()}
+if actual_files!=expected_files:errors.append('Unexpected or missing build files: '+str(sorted(actual_files^expected_files)))
 for p in sorted(OUT.rglob('*.html')):
  text=p.read_text();pages[p]=Page(text)
 for p,page in pages.items():
@@ -24,7 +27,7 @@ for p,page in pages.items():
   if sum(t=='h1' for t,a in tags)!=1:errors.append(f'{rel}: expected one h1')
   if not any(t=='meta' and a.get('name')=='description' and a.get('content') for t,a in tags):errors.append(f'{rel}: missing description')
   schema=re.findall(r'<script type="application/ld\+json">(.*?)</script>',text,re.S)
-  if not schema:errors.append(f'{rel}: missing schema')
+  if not schema and str(rel)!='404.html':errors.append(f'{rel}: missing schema')
   for block in schema:
    try:
     data=json.loads(block)
@@ -36,11 +39,16 @@ for p,page in pages.items():
  ids=[a['id'] for t,a in tags if 'id' in a]
  if len(ids)!=len(set(ids)):errors.append(f'{rel}: duplicate IDs')
  for tag,a in tags:
+  if 'srcset' in a:
+   for candidate in a['srcset'].split(','):
+    image_path=candidate.strip().split()[0]
+    if not (p.parent/image_path).resolve().is_file():errors.append(f'{rel}: missing responsive image {image_path}')
   for attr in ['href','src','poster']:
    if attr not in a:continue
    value=urlsplit(a[attr])
    if value.scheme or value.netloc:continue
    dest=(p.parent/unquote(value.path)).resolve() if value.path else p
+   if not dest.is_relative_to(OUT):errors.append(f'{rel}: asset/link escapes published output {a[attr]}');continue
    if dest.is_dir():dest=dest/'index.html'
    if not dest.exists():errors.append(f'{rel}: broken {attr} {a[attr]}');continue
    if attr=='href' and value.fragment and dest in pages and not any(x.get('id')==unquote(value.fragment) for t,x in pages[dest].tags):errors.append(f'{rel}: missing anchor {a[attr]}')
@@ -48,7 +56,7 @@ for p,page in pages.items():
   path=str(rel)
   if path.endswith('index.html'):path=path[:-10]
   try:
-   response=urlopen(http.rstrip('/')+'/'+path)
+   response=urlopen(http.rstrip('/')+'/'+quote(path))
    if response.status!=200:errors.append(f'{rel}: HTTP {response.status}')
   except Exception as e:errors.append(f'{rel}: HTTP {e}')
 sitemap=ET.parse(OUT/'sitemap.xml')

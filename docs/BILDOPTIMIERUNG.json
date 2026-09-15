@@ -1,0 +1,32 @@
+[
+  {
+    "source": "bilder/dienst-1.jpg",
+    "original_bytes": 29641,
+    "responsive_480_bytes": 6402,
+    "largest_webp_bytes": 8942
+  },
+  {
+    "source": "bilder/dienst-2.jpg",
+    "original_bytes": 24260,
+    "responsive_480_bytes": 4954,
+    "largest_webp_bytes": 6832
+  },
+  {
+    "source": "bilder/dienst-3.jpg",
+    "original_bytes": 24497,
+    "responsive_480_bytes": 5528,
+    "largest_webp_bytes": 7450
+  },
+  {
+    "source": "bilder/dienst-4.jpg",
+    "original_bytes": 20240,
+    "responsive_480_bytes": 4086,
+    "largest_webp_bytes": 5616
+  },
+  {
+    "source": "bilder/dienst-5.jpg",
+    "original_bytes": 26268,
+    "responsive_480_bytes": 5124,
+    "largest_webp_bytes": 7342
+  }
+]
