@@ -200,7 +200,11 @@ Jede Leistungsseite verweist umgekehrt auf zwei bis vier Artikel ihres Dachs.
 3. Leitfäden nach `/blog/`, `/wissen/` weiterleiten ✔ erledigt 17.09.2026 — als
    **Ordner** verschoben (gleiche Verzeichnistiefe, deshalb blieben 475 Pfade gültig),
    Wissens-Übersicht aufgelöst, neun Weiterleitungen, Kartengenerator erweitert
-4. Datum maschinenlesbar, Article-Schema für alle Beiträge
+4. Datum maschinenlesbar, Article-Schema für alle Beiträge ✔ erledigt 17.09.2026 — der
+   Datums-Chip entscheidet: nur die sechs Standpunkte tragen einen, daraus leitet der
+   Build `datePublished` und die Artikel-Auszeichnung ab. Keine page-meta-Einträge von
+   Hand, damit „ein Artikel ist eine Datei" gilt. 14 von 14 Seiten mit Article-Schema
+   (vorher 8), Darstellung des Chips nachweislich unverändert.
 5. „Kurze Antwort"-Kasten je Leitfaden
 6. Die drei Hauptartikel schreiben
 7. Erst danach Freigabe zur Indexierung
