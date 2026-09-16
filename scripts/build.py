@@ -70,8 +70,8 @@ def blog_beitraege():
   if not h1: continue
   stamm=p.parent.name if ordner else p.stem
   meta=PAGE_META.get('blog/'+ziel,{}) if ordner else {}
-  chip=re.search(r'<span class="chip"[^>]*>([^<]*)</span>',k)
-  datum=chip.group(1).strip() if chip else ''
+  chip=re.search(r'<span class="chip"[^>]*>([\s\S]*?)</span>',k)
+  datum=re.sub(r'<[^>]*>','',chip.group(1)).strip() if chip else ''
   t=re.match(r'(\d{1,2})\.\s*([A-Za-zäöüÄÖÜ]+)\s*(\d{4})',datum) if datum else None
   bild=re.search(r'artikel__bild"[\s\S]*?src="(?:\.\./)+([^"]+)"',k)
   bildpfad=bild.group(1) if bild else meta.get('image','')
@@ -267,11 +267,13 @@ for source,route in ROUTES.items():
  if CONFIG['organization_verified']:
   graph.append({'@type':'Organization','@id':BASE+'#organization','name':'klartext digital','alternateName':'klartext.','url':BASE,'logo':BASE+'marke/wortmarke.svg'})
   graph[0]['publisher']={'@id':BASE+'#organization'}
- is_article=PAGE_META.get(route,{}).get('article',False)
+ veroeffentlicht=re.search(r'<time datetime="(\d{4}-\d{2}-\d{2})"',s)
+ is_article=PAGE_META.get(route,{}).get('article',False) or bool(veroeffentlicht)
  preview_image=BASE+PAGE_META.get(route,{}).get('image','bilder/dienst-3.jpg')
  if is_article:
   headline=unescape(re.sub('<[^>]+>','',re.search(r'<h1\b[^>]*>(.*?)</h1>',s,re.S).group(1)))
   article={'@type':'Article','@id':canonical+'#article','headline':headline,'description':desc,'mainEntityOfPage':{'@id':canonical+'#webpage'},'inLanguage':'de-CH','image':preview_image}
+  if veroeffentlicht:article['datePublished']=veroeffentlicht.group(1)
   if CONFIG['organization_verified']:article['publisher']={'@id':BASE+'#organization'}
   graph.append(article)
  fragen=faq_paare(s)
