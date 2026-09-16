@@ -195,8 +195,15 @@ Jede Leistungsseite verweist umgekehrt auf zwei bis vier Artikel ihres Dachs.
 ## Reihenfolge
 
 1. Leistungsebene zusammenführen — sieben Seiten, ein Menü ✔ erledigt 17.09.2026
-2. Übersicht vom Build erzeugen lassen — **vor** dem Umzug, sonst wird Handarbeit
-   verschoben statt beseitigt
+2. Übersicht vom Build erzeugen lassen ✔ erledigt 17.09.2026 — `blog_karten_html()`
+   in `scripts/build.py` füllt das Raster `lesegitter`, abgesichert durch zwei
+   `assert` (Raster gefunden, mindestens ein Beitrag gelesen), damit ein stiller
+   Fehlschlag die Übersicht nicht einfriert. Nachtrag vom selben Tag: Die sechs
+   handgeschriebenen Karten standen bis zuletzt **weiter in der Quelle** und wurden
+   bei jedem Bau verworfen — wer sie bearbeitet hätte, hätte live keine Wirkung
+   gesehen und den Fehler lange gesucht. Sie sind jetzt entfernt (4606 Zeichen),
+   ersetzt durch einen Hinweis im Quelltext. Die erzeugte Ausgabe blieb dabei Byte
+   für Byte identisch — das ist der Beweis, dass sie tot waren.
 3. Leitfäden nach `/blog/`, `/wissen/` weiterleiten ✔ erledigt 17.09.2026 — als
    **Ordner** verschoben (gleiche Verzeichnistiefe, deshalb blieben 475 Pfade gültig),
    Wissens-Übersicht aufgelöst, neun Weiterleitungen, Kartengenerator erweitert
@@ -205,7 +212,15 @@ Jede Leistungsseite verweist umgekehrt auf zwei bis vier Artikel ihres Dachs.
    Build `datePublished` und die Artikel-Auszeichnung ab. Keine page-meta-Einträge von
    Hand, damit „ein Artikel ist eine Datei" gilt. 14 von 14 Seiten mit Article-Schema
    (vorher 8), Darstellung des Chips nachweislich unverändert.
-5. „Kurze Antwort"-Kasten je Leitfaden
+5. „Kurze Antwort" je Leitfaden ✔ erledigt 17.09.2026 — **kein Kasten**: am Prototyp
+   verglichen liest sich ein Kasten direkt über dem Inhaltsverzeichnis-Kasten als
+   Wiederholung, und die Antwort verliert ihren Rang. Stattdessen erster Absatz,
+   42–49 Wörter, vor dem Verzeichnis. In `seo.css` steht genau **eine** Deklaration,
+   weil die Messung (Regeln im Browser abgeschaltet, zwei Seiten verglichen) zeigte:
+   Schriftgrösse, Zeilenhöhe, Zeilenbreite, beide Ränder und die Grundfarbe liefern
+   bereits `.seo-prose p` und `.artikel p:first-child`. Nur die Tintenfarbe der
+   Auszeichnung kommt aus `seo.css`. 8 von 8 Seiten bei 1440 px und 390 px geprüft,
+   live bestätigt (`gh-pages` b20133a), Inhaltsverzeichnisse unverändert.
 6. Die drei Hauptartikel schreiben
 7. Erst danach Freigabe zur Indexierung
 
