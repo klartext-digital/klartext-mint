@@ -50,7 +50,15 @@ Nicht zwei Werkzeuge gleichzeitig auf `main`.
   Textblock — `bewegung.js` koppelt beides über die Position im Array, sonst bleibt die
   Vorschau beim Überfahren leer.
 - **Kein dritter Inhaltsbereich.** Leitfäden und Standpunkte liegen beide unter
-  `/wissen/`. Kein separater Blog-Bereich.
+  `/blog/`, sortiert nach drei Themendächern. `/wissen/` leitet dorthin weiter.
+- **Ein neuer Artikel ist eine Datei. Sonst nichts.** Die Übersicht in
+  `blog/index.html` ist heute handgeschrieben — sechs Karten mit von Hand gepflegter
+  Lesezeit, Datum, Anriss, Autor und Bild. Das muss der Build erzeugen, **bevor** weitere
+  Artikel dazukommen. Wer vorher Artikel anlegt, verschiebt Handarbeit, statt sie zu
+  beseitigen.
+- **Datum maschinenlesbar** im Artikel (`<time datetime="…">`), nicht als blosser Text
+  und nicht zusätzlich in der Übersichtskarte. Keine Veröffentlichungsdaten erfinden —
+  Quelle ist die Git-Historie, angezeigt wird „Aktualisiert".
 - **Jede Leistungsseite ist vollständig gebaut:** Zurück-Knopf, Nummer, Abschluss mit
   „Weiter"-Block und Kontaktblock. Seiten, die nach dem Text einfach aufhören, gelten
   als unfertig.
