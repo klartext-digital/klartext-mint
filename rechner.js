@@ -8,11 +8,15 @@
   const R = document.getElementById('rechner');
   if (!R) return;
 
-  const UNTEN = 2499;
+  const UNTEN = 3000;
   const OBEN  = 20000;
 
   const PREISE = {
-    art:    { onepager: 2499, mehrseitig: 4200, shop: 7500 },
+    art:    { onepager: 3000, mehrseitig: 4200, shop: 4990 },
+    /* Untergrenze je Art. Ohne sie drueckt der Vorlagen-Rabatt einen
+       Onlineshop unter seinen Startpreis: 4'990 minus 600 ergab eine
+       Spanne ab 4'000, die es so nicht gibt. */
+    minimum:{ onepager: 3000, mehrseitig: 3000, shop: 4990 },
     seite:  180,          // je Unterseite über die dritte hinaus
     design: { vorlage: -600, eigen: 0, motion: 1900 },
     inhalt: { selbst: 0, texte: 1100, alles: 2400 },
@@ -20,9 +24,13 @@
   };
 
   /* Auf 100 runden, aber die beiden Eckwerte exakt stehen lassen —
-     2'499 ist eine Aussage, 2'500 waere eine andere. */
+     4'990 ist eine Aussage, 5'000 waere eine andere. */
   const chf = (n) => {
-    const g = (Math.abs(n - UNTEN) < 60 || Math.abs(n - OBEN) < 60)
+    /* Nur die Eckwerte SELBST stehen exakt. Ein Wert, der zufaellig in
+       ihrer Naehe liegt, wird normal auf 100 gerundet — sonst entsteht
+       eine Spanne wie 4'990 bis 5'049. */
+    const eck = [3000, 4990, OBEN];
+    const g = (eck.some((e) => Math.abs(n - e) < 1))
       ? Math.round(n) : Math.round(n / 100) * 100;
     return (g + '').replace(/\B(?=(\d{3})+(?!\d))/g, '’');
   };
@@ -92,7 +100,9 @@
     /* Beide Enden in denselben Rahmen klemmen. Nur das obere zu
        deckeln reichte nicht: bei sehr grossem Umfang schob sich die
        Untergrenze ueber die gedeckelte Obergrenze. */
-    const klemm = (n) => Math.min(OBEN, Math.max(UNTEN, n));
+    const artWahl = wahl('art');
+    const untenArt = (artWahl && PREISE.minimum[artWahl.value]) || UNTEN;
+    const klemm = (n) => Math.min(OBEN, Math.max(untenArt, n));
     const von = klemm(summe * 0.9);
     const bis = klemm(summe * 1.15);
 
