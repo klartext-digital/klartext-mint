@@ -234,76 +234,53 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
       <div>
         <span class="chip" data-rein>Kostenrechner</span>
         <h2 data-rein-zeilen><span>Was kostet eure Website?</span></h2>
-        <p class="seo-pruefhinweis">Preisrechner im Entwurf: Werte und Leistungsumfang sind noch nicht freigegeben und stellen kein Angebot dar.</p><p class="rechner__lead" data-rein>Ein paar Angaben, ein Richtwert. Damit ihr wisst, in
+        <p class="rechner__lead" data-rein>Ein paar Angaben, ein Richtwert. Damit ihr wisst, in
           welcher Grössenordnung ihr plant, bevor wir miteinander sprechen.</p>
       </div>
     </div>
 
     <div class="rechner__leib" data-rein>
-      <div class="rechner__fragen">
-
+            <div class="rechner__fragen">
         <fieldset class="rechner__block">
           <legend>Was für eine Seite?</legend>
           <div class="rechner__wahl">
-            <label><input type="radio" name="art" value="onepager" data-wort="Einseitige Website"><span>Einseitig</span></label>
-            <label><input type="radio" name="art" value="mehrseitig" data-wort="Mehrseitige Website" checked><span>Mehrere Seiten</span></label>
+            <label><input type="radio" name="art" value="landingpage" data-wort="Landingpage"><span>Landingpage</span></label>
+            <label><input type="radio" name="art" value="mehrseitig" data-wort="Website mit mehreren Unterseiten" checked><span>Mehrere Unterseiten</span></label>
             <label><input type="radio" name="art" value="shop" data-wort="Onlineshop"><span>Onlineshop</span></label>
           </div>
         </fieldset>
-
-        <fieldset class="rechner__block" data-block="seiten">
-          <legend>Wie viele Unterseiten?<output class="rechner__wert" id="rSeitenWert">8</output></legend>
-          <div class="rechner__regler">
-            <span class="rechner__spur" id="rSeitenSpur"></span>
-            <input type="range" id="rSeiten" min="1" max="30" step="1" value="8"
-                   aria-label="Anzahl Unterseiten">
-          </div>
-          <div class="rechner__marken"><span>1</span><span>15</span><span>30+</span></div>
-        </fieldset>
-
         <fieldset class="rechner__block">
-          <legend>Wie gestaltet?</legend>
+          <legend>In wie vielen Sprachen?</legend>
           <div class="rechner__wahl">
-            <label><input type="radio" name="design" value="vorlage" data-wort="Auf Basis einer Vorlage"><span>Vorlage anpassen</span></label>
-            <label><input type="radio" name="design" value="eigen" data-wort="Eigenes Design" checked><span>Eigenes Design</span></label>
-            <label><input type="radio" name="design" value="motion" data-wort="Eigenes Design mit Animationen"><span>Mit Animationen</span></label>
+            <label><input type="radio" name="sprachen" value="eine" data-wort="Einsprachig" checked><span>Einsprachig</span></label>
+            <label><input type="radio" name="sprachen" value="mehrere" data-wort="Mehrsprachig"><span>Mehrsprachig</span></label>
           </div>
         </fieldset>
-
-        <fieldset class="rechner__block">
-          <legend>Woher kommen die Inhalte?</legend>
-          <div class="rechner__wahl">
-            <label><input type="radio" name="inhalt" value="selbst" data-wort="Inhalte kommen von euch" checked><span>Von uns</span></label>
-            <label><input type="radio" name="inhalt" value="texte" data-wort="Texte schreiben wir"><span>Texte von euch</span></label>
-            <label><input type="radio" name="inhalt" value="alles" data-wort="Texte und Bilder von uns"><span>Texte und Bilder</span></label>
-          </div>
-        </fieldset>
-
-        <fieldset class="rechner__block">
-          <legend>Braucht ihr davon etwas?</legend>
-          <div class="rechner__wahl rechner__wahl--mehr">
-            <label><input type="checkbox" name="extra" value="sprachen" data-wort="Mehrsprachig"><span>Mehrsprachig</span></label>
-            <label><input type="checkbox" name="extra" value="blog" data-wort="Blog oder News"><span>Blog oder News</span></label>
-            <label><input type="checkbox" name="extra" value="termine" data-wort="Terminbuchung"><span>Terminbuchung</span></label>
-            <label><input type="checkbox" name="extra" value="seo" data-wort="SEO-Grundausbau"><span>SEO-Grundausbau</span></label>
-            <label><input type="checkbox" name="extra" value="anbindung" data-wort="Anbindung an bestehende Systeme"><span>Systemanbindung</span></label>
-          </div>
-        </fieldset>
-
+        <div class="rechner__immer">
+          <p class="rechner__immer-kopf">Immer enthalten, ohne Aufpreis</p>
+          <ul>
+            <li>Eigenes Design — keine gekaufte Vorlage</li>
+            <li>Inhalte gemeinsam erarbeitet: Briefing, Onboarding, Texte</li>
+            <li>Suchmaschinen-Grundlage: Seitenstruktur, Titel und Beschreibungen, eindeutige Adressen</li>
+            <li>Sitemap, robots-Datei und Weiterleitungen alter Adressen</li>
+            <li>Strukturierte Daten für Unternehmen, Brotkrumen und häufige Fragen</li>
+            <li>Google Search Console und Bing Webmaster Tools eingerichtet, Sitemap eingereicht</li>
+            <li>Vorschaubilder für soziale Netzwerke</li>
+            <li>Ladezeit: moderne Bildformate, Bildgrössen, Schriften</li>
+            <li>Mobil geprüft, Kontraste und Bedienung barrierearm</li>
+            <li>HTTPS, eigene Fehlerseite, funktionierende Formularzustellung</li>
+          </ul>
+        </div>
       </div>
-
       <aside class="rechner__ergebnis">
         <span class="brush rechner__marke">Richtwert</span>
-        <p class="rechner__spanne" id="rSpanne">Richtwert wird berechnet</p>
-        <p class="rechner__deckel" id="rDeckel" hidden>Ab dieser Grösse hängt der Preis so stark
-          am Einzelfall, dass ein Rechner nur noch raten würde. Sprechen wir darüber.</p>
+        <p class="rechner__spanne" id="rSpanne">Startwert wird berechnet</p>
+        
         <ul class="rechner__posten" id="rPosten"></ul>
         <a class="knopf knopf--akzent gross voll" id="rAnfrage" href="../#kontakt">
           <span class="rolle"><span>Anfrage mit dieser Auswahl</span><span aria-hidden="true">Anfrage mit dieser Auswahl</span></span>
         </a>
-        <p class="rechner__fussnote">Ein Richtwert, kein Angebot. Was eure Seite wirklich
-          kostet, hängt am Umfang der Inhalte und daran, wie viel ihr selbst übernehmt.
-          Im Erstgespräch wird daraus eine Zahl.</p>
+        <p class="rechner__fussnote">Ein Startwert, kein Angebot. Was oben draufkommt, hängt am Umfang der Inhalte und an besonderen Funktionen. Im Erstgespräch wird daraus eine Zahl. Alle Beträge exklusive 8,1 % Mehrwertsteuer.</p>
       </aside>
     </div>
   </section>
