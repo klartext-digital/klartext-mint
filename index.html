@@ -647,28 +647,62 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 
   <!-- ══ 8b · Zwei Wege: Abo oder Projekt ══ -->
   <section class="wege" id="wege" aria-labelledby="wege-titel">
-    <div class="wege__kopf">
-      <span class="chip" data-rein>Zusammenarbeit</span>
-      <h2 id="wege-titel" data-rein-zeilen><span>Abo oder Projekt?</span></h2>
-      <p class="wege__lead" data-rein>Zwei Wege, mit uns zu arbeiten. Der eine läuft weiter,
-        der andere hat ein Ende.</p>
-    </div>
-    <div class="wege__raster">
-      <a class="wege__karte" href="marketing-abo/" data-event="abo_explore" data-rein>
-        <h3>Laufendes Marketing.</h3>
-        <p>SEO, Website-Betreuung, Social Media, Google und Meta Ads sowie Newsletter im Abo.</p>
-        <span class="wege__mehr">Marketing im Abo entdecken</span>
-      </a>
-      <a class="wege__karte" href="projektarbeit/" data-event="project_explore" data-rein>
-        <h3>Ein konkretes Projekt.</h3>
-        <p>Webdesign, Kommunikationsstrategie oder Content-Produktion. Vom Briefing bis zur Übergabe.</p>
-        <span class="wege__mehr">Projektarbeit entdecken</span>
-      </a>
-    </div>
-    <p class="wege__team" data-rein>Ihr habt bereits ein Marketingteam? Wir ergänzen eure Kapazität
-      und übernehmen spezialisierte Aufgaben.
-      <a href="kontakt/?anliegen=team">Zusammenarbeit besprechen</a></p>
-  </section>
+      <div class="wege__kopf mitte">
+        <span class="chip" data-rein>Zusammenarbeit</span>
+        <h2 id="wege-titel" data-rein-zeilen><span>Abo oder Projekt?</span></h2>
+        <p class="wege__lead" data-rein>Zwei Wege, ein Ziel: mehr Wirkung für eure Marke.
+          Wählt das Modell, das zu euren Zielen, eurem Budget und eurer Lage passt.</p>
+      </div>
+      <div class="wege__raster">
+        <article class="wege__karte" data-rein>
+          <span class="wege__label">Laufend &amp; strategisch</span>
+          <h3>Marketing im Abo<i aria-hidden="true">.</i></h3>
+          <p>Kontinuierliche Betreuung, messbare Ergebnisse und ein Team, das mitdenkt.
+            Für Unternehmen, die langfristig wachsen wollen.</p>
+          <ul class="haken">
+            <li>SEO-Betreuung</li>
+            <li>Website-Betreuung</li>
+            <li>Social-Media-Content und Kampagnen</li>
+            <li>Google und Meta Ads</li>
+            <li>Newsletter-Kampagnen</li>
+          </ul>
+          <div class="wege__fuss">
+            <a class="knopf knopf--akzent" href="marketing-abo/" data-event="abo_explore"><span class="rolle"><span>Marketing im Abo entdecken</span><span aria-hidden="true">Marketing im Abo entdecken</span></span></a>
+            <a class="wege__mehr" href="#preise">Preise ansehen</a>
+          </div>
+        </article>
+        <article class="wege__karte wege__karte--hell" data-rein>
+          <span class="wege__label">Flexibel &amp; fokussiert</span>
+          <h3>Projektarbeit<i aria-hidden="true">.</i></h3>
+          <p>Ein konkretes Vorhaben, klarer Umfang, festes Ende. Für einzelne Massnahmen,
+            Kampagnen oder einmalige Umsetzungen.</p>
+          <ul class="haken">
+            <li>Webdesign und Relaunch</li>
+            <li>Kommunikationsstrategie</li>
+            <li>Branding</li>
+            <li>Content-Produktion</li>
+          </ul>
+          <div class="wege__fuss">
+            <a class="knopf knopf--akzent" href="projektarbeit/" data-event="project_explore"><span class="rolle"><span>Projektarbeit entdecken</span><span aria-hidden="true">Projektarbeit entdecken</span></span></a>
+            <a class="wege__mehr" href="projekte/">Beispiele ansehen</a>
+          </div>
+        </article>
+      </div>
+      <div class="wege__panel" data-rein>
+        <div class="wege__panel-wort">
+          <span class="wege__label wege__label--frage">Schon ein Team?</span>
+          <p class="wege__panel-titel">Wir ergänzen euch, statt euch zu ersetzen.</p>
+        </div>
+        <p class="wege__panel-text">Ihr habt bereits ein Marketingteam? Wir übernehmen
+          spezialisierte Aufgaben und ergänzen eure Kapazität dort, wo sie fehlt.</p>
+        <a class="knopf knopf--dunkel" href="kontakt/?anliegen=team"><span class="rolle"><span>Zusammenarbeit besprechen</span><span aria-hidden="true">Zusammenarbeit besprechen</span></span></a>
+      </div>
+      <ul class="wege__vertrauen" data-rein>
+        <li><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M8 7.5h6.2a2.8 2.8 0 010 5.6H9.8a2.8 2.8 0 000 5.6H16"/></svg><b>Preis von Anfang an klar</b><span>Ihr wisst vom ersten Tag an, was es kostet.</span></li>
+        <li><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12.5a4 4 0 100-8 4 4 0 000 8zM4.5 20.5a7.5 7.5 0 0115 0"/></svg><b>Feste Ansprechperson</b><span>Eine Person, die euer Vorhaben kennt.</span></li>
+        <li><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 100-18 9 9 0 000 18zm0-4.5a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm0-3a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg><b>Ergebnis statt Aktivität</b><span>Gemessen wird, was zählt — nicht die Menge.</span></li>
+      </ul>
+    </section>
 
   <!-- ══ 9 · Preise ══ -->
   <section class="preise" id="preise">
