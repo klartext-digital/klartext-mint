@@ -811,6 +811,46 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   font-size:clamp(15px,1.15vw,21px);color:var(--violett-hell);line-height:1.5}
 
 /* ── 9 · Preise ────────────────────────────────────────────── */
+/* ── Zwei Wege: Abo oder Projekt ───────────────────────────────────
+   Steht direkt vor den Preisen und leitet dorthin ueber. Deshalb
+   dieselbe Bauweise wie die Preistafel darunter: heller Grund, darauf
+   dunkle Karten. Eine dunkle FLAECHE waere hier falsch — die Preise
+   sind orange, dunkel davor wuerde dagegen schlagen. */
+.wege{margin:var(--sec) auto 0;max-width:min(var(--maxw),calc(100% - var(--pad) * 2))}
+.wege__kopf{margin-bottom:clamp(26px,2.6vw,44px)}
+.wege__kopf h2{font-size:clamp(32px,4vw,60px);line-height:1.1;margin:14px 0 0}
+.wege__lead{margin-top:14px;max-width:52ch;color:var(--grau);
+  font-size:clamp(16px,1.3vw,19px);line-height:1.6}
+.wege__raster{display:grid;grid-template-columns:repeat(2,1fr);
+  gap:clamp(18px,2vw,34px)}
+/* Gleiche Karte wie .paket: gleicher Grund, gleicher Radius, gleiche
+   Hebung beim Zeigen. So liest sich der Uebergang in die Preise als
+   eine Bewegung, nicht als zwei fremde Bloecke. */
+.wege__karte{display:flex;flex-direction:column;gap:12px;
+  background:var(--tinte-2);border-radius:var(--r-gross);color:var(--creme);
+  padding:clamp(26px,2.6vw,44px);
+  transition:transform var(--t-knopf) var(--kurve-rein),
+             box-shadow var(--t-knopf) var(--kurve-rein)}
+.wege__karte:hover,.wege__karte:focus-visible{transform:scale(1.022);
+  box-shadow:0 18px 44px rgb(14 13 11 / .22)}
+.wege__karte h3{font-size:clamp(24px,2.3vw,36px);line-height:1.15}
+/* 44ch liess bei 666 px breiten Karten rund 180 px rechts leer stehen.
+   52ch fuellt die Karte, ohne die Zeile zum Rand zu treiben. */
+.wege__karte p{color:rgb(247 247 245 / .72);font-size:clamp(15px,1.2vw,17px);
+  line-height:1.6;max-width:52ch}
+/* Schiebt sich nach unten, damit beide Karten den Verweis auf gleicher
+   Hoehe tragen, auch wenn ein Text laenger ist. */
+.wege__mehr{margin-top:auto;padding-top:10px;font-weight:700;
+  color:var(--violett-hell);text-decoration:underline;text-underline-offset:5px}
+.wege__team{margin-top:clamp(20px,2vw,34px);padding-top:clamp(20px,2vw,30px);
+  border-top:1px solid var(--linie);color:var(--grau);
+  font-size:clamp(15px,1.2vw,17px);line-height:1.6;max-width:70ch}
+.wege__team a{color:var(--violett-tief);font-weight:700;
+  text-decoration:underline;text-underline-offset:4px}
+@media (max-width:700px){
+  .wege__raster{grid-template-columns:minmax(0,1fr)}
+}
+
 .preise{margin:var(--sec) auto 0;max-width:min(var(--maxw),calc(100% - var(--pad) * 2));
   background:var(--violett);
   color:var(--creme);border-radius:var(--r-seite);
