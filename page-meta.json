@@ -81,5 +81,12 @@
     "label": "Was kostet ein Branding?",
     "article": true,
     "image": "bilder/dienst-1.jpg"
+  },
+  "wissen/website-kosten-schweiz/": {
+    "title": "Was kostet eine Website in der Schweiz? | klartext.",
+    "description": "Welche Faktoren bestimmen Website-Kosten? Ein Leitfaden für Schweizer KMU zu Konzept, Design, Inhalten, Technik, Betrieb und dem Vergleich von Offerten.",
+    "label": "Website-Kosten Schweiz",
+    "article": true,
+    "image": "bilder/dienst-3.jpg"
   }
 }
