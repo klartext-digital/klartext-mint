@@ -112,7 +112,7 @@ for target in list(MAP.values()):
 META = {
  '': ('Marketingagentur Schweiz: Abo & Projekte | klartext digital', 'Marketing im Abo und Projekte für Unternehmen: SEO, Webdesign, Social Media, Google und Meta Ads sowie Newsletter. Auch als Ergänzung eures Marketingteams.'),
  'webdesign/': ('Webdesign Schweiz für KMU | klartext.', 'Webdesign für Schweizer KMU: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.'),
- 'wissen/website-kosten-schweiz/': ('Was kostet eine Website in der Schweiz? | klartext.', 'Welche Faktoren bestimmen Website-Kosten? Ein Leitfaden für Schweizer KMU zu Konzept, Design, Inhalten, Technik, Betrieb und dem Vergleich von Offerten.'),
+
  'wissen/': ('Marketing-Wissen für Schweizer KMU | klartext.', 'Website, Budget und Marketing verständlich planen: Leitfäden und Antworten auf praktische Fragen von Schweizer KMU.'),
  'branding/': ('Branding & Markenstrategie Schweiz | klartext digital', 'Positionierung, Markensystem und Vorlagen für euren Alltag. Branding als Projekt oder spezialisierte Ergänzung eurer Marketingabteilung.'),
  'social-media/': ('Social-Media-Betreuung & Content | klartext digital', 'Social Media mit Redaktionsplan, Content-Produktion und Auswertung. Laufende Betreuung, einzelne Kampagnen oder Unterstützung für euer Marketingteam.'),
@@ -247,7 +247,7 @@ for source,route in ROUTES.items():
  if CONFIG['organization_verified']:
   graph.append({'@type':'Organization','@id':BASE+'#organization','name':'klartext digital','alternateName':'klartext.','url':BASE,'logo':BASE+'marke/wortmarke.svg'})
   graph[0]['publisher']={'@id':BASE+'#organization'}
- is_article=route=='wissen/website-kosten-schweiz/' or PAGE_META.get(route,{}).get('article',False)
+ is_article=PAGE_META.get(route,{}).get('article',False)
  preview_image=BASE+PAGE_META.get(route,{}).get('image','bilder/dienst-3.jpg')
  if is_article:
   headline=unescape(re.sub('<[^>]+>','',re.search(r'<h1\b[^>]*>(.*?)</h1>',s,re.S).group(1)))
