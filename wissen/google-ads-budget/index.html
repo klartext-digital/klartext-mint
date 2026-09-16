@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<title>Google-Ads-Budget planen: Kosten & Kontrolle | klartext digital</title>
+<meta name="description" content="Google-Ads-Budget planen: Werbeetat und Betreuung trennen, Tagesbudget verstehen und Ergebnisse anhand passender Anfragen beurteilen.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/wortmarke-negativ.svg" alt="KLARTEXT" width="4105" height="859"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../index.html" aria-label="KLARTEXT — zur Startseite"><img src="../../marke/wortmarke.svg" alt="KLARTEXT" width="4105" height="859"></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../index.html#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../index.html#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../leistungen/branding.html" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Branding</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/social-media.html" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/websites.html" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/performance.html" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/email-marketing.html" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/index.html" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist">
+          <img src="../../bilder/dienst-2.jpg" alt="">
+          <img src="../../bilder/dienst-3.jpg" alt="">
+          <img src="../../bilder/dienst-4.jpg" alt="">
+          <img src="../../bilder/dienst-5.jpg" alt="">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+            </div>
+          </div>
+      <aside class="ndd__karte">
+        <p class="brush">Unsicher?</p>
+        <p class="ndd__karte-titel">Wir sortieren das in 15&nbsp;Minuten.</p>
+        <p class="ndd__karte-text">Kurzes Gespräch, ehrliche Einschätzung.
+          Auch wenn am Ende nichts daraus wird.</p>
+        <a class="knopf knopf--akzent" href="../../index.html#kontakt" tabindex="-1">Gespräch buchen</a>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="unter unter--eng"><h1 class="seo-h1">Google-Ads-Budget: Wie viel wofür einplanen?</h1><p class="brush">Vom Klick zum passenden Kontakt.</p></section>
+<section class="unter__leib"><div class="unter__text"><p>Für eine Google-Ads-Kampagne braucht ihr einen Werbeetat und die Arbeit rundherum: Einrichtung, Anzeigen, Zielseite, Messung und Betreuung. Ein sinnvoller Betrag ergibt sich aus eurem Angebot, den vorhandenen Daten und einem klaren Testvorhaben. Hier erfahrt ihr, wie ihr das Budget plant und kontrolliert.</p></div><figure class="unter__bild"><img src="../../bilder/dienst-4.jpg" alt="" loading="lazy"></figure></section>
+<article class="artikel seo-prose"><nav class="seo-inhalt" aria-label="Inhaltsverzeichnis"><h2>Das Budget verständlich aufteilen</h2><ul><li><a href="#bestandteile">Werbeetat und Betreuung</a></li><li><a href="#tagesbudget">Tagesbudget und Monatsgrenze</a></li><li><a href="#test">Einen begrenzten Test planen</a></li><li><a href="#ergebnis">Kontaktkosten und Kundengewinnung</a></li><li><a href="#entscheidung">Budgetentscheidungen treffen</a></li></ul></nav>
+<h2 id="bestandteile">Welche Ausgaben gehören dazu?</h2>
+<p>Der Betrag im Werbekonto ist der Etat für die Anzeigen. Er bezahlt keine neue Website, keine Fotos und keine Betreuung durch eine Agentur. Für eure Planung braucht es deshalb getrennte Positionen: einmalige Einrichtung, laufende Kampagnenarbeit, benötigte Inhalte oder Zielseiten und den eigentlichen Werbeetat.</p>
+<p>Bei einem bestehenden Konto kann eine Prüfung zeigen, welche Grundlagen bereits vorhanden sind. Bei einem neuen Angebot fehlen möglicherweise eine passende Zielseite oder auswertbare Zielhandlungen. Diese Voraussetzungen beeinflussen den Aufwand und sollten vor dem Kampagnenstart geklärt sein.</p>
+<p>Lasst euch in einer Offerte zeigen, welche Kampagnen, Regionen, Sprachen und Aufgaben enthalten sind. Klärt auch, wer neue Anzeigenvarianten produziert, wer die Website anpasst und wer auf Anfragen reagiert. Ein günstiger Betreuungspreis sagt ohne diesen Umfang wenig aus.</p>
+<h2 id="tagesbudget">Wie hängen Tagesbudget und Monatsgrenze zusammen?</h2>
+<p>Bei Kampagnen mit durchschnittlichem Tagesbudget gilt laut Google für die meisten Kampagnen: Die tägliche Ausgabengrenze beträgt das Doppelte dieses Budgets, die monatliche das 30,4-Fache. Das Tagesbudget ist damit kein starrer Tagesdeckel. An einzelnen Tagen kann mehr ausgegeben werden, an anderen weniger. <a href="https://support.google.com/google-ads/answer/6385083?hl=de">Quelle: Google Ads – durchschnittliche Tagesbudgets</a>.</p>
+<p>Für einen unveränderten vollen Monat lässt sich aus dem geplanten Monatsbetrag ein durchschnittliches Tagesbudget ableiten: <strong>Monatsbetrag geteilt durch 30,4</strong>. Prüft den tatsächlich verwendeten Budgettyp und die Angaben im Konto; es gibt unter anderem auch Gesamtbudgets für Kampagnen. <a href="https://support.google.com/google-ads/answer/10486536?hl=de">Quelle: Google Ads – Budgettypen und Ausgabengrenzen</a>.</p>
+<p>Bei mehreren Kampagnen betrachtet ihr zusätzlich die Summe der Budgets. Änderungen während des Monats gehören in die laufende Kontrolle. Prüft dafür die prognostizierten Kosten und geltenden Grenzen im Budgetbericht, statt nur den aktuellen Tageswert mit einem Faktor hochzurechnen.</p>
+<h2 id="test">Wie plant ihr einen begrenzten Start?</h2>
+<p>Formuliert zuerst, was ihr herausfinden wollt. Zum Beispiel: Erreicht eine Suchkampagne für eine klar definierte Leistung passende Interessenten in eurem Einsatzgebiet? Für diesen Test braucht es eine verständliche Zielseite und eine vereinbarte Definition einer passenden Anfrage.</p>
+<ul><li><strong>Umfang:</strong> Angebot, Region, Sprache und Kampagnenziel festlegen.</li><li><strong>Grundlage:</strong> Vorhandene Kontoergebnisse oder Planungsschätzungen dokumentieren. Schätzungen sind Annahmen, keine zugesicherten Resultate.</li><li><strong>Grenze:</strong> Einen tragbaren Werbeetat und einen Zeitpunkt zur gemeinsamen Prüfung vereinbaren.</li><li><strong>Messung:</strong> Die relevante Handlung und ihren technischen Nachweis prüfen. Ein Kontaktklick ist noch keine gesendete Anfrage.</li><li><strong>Bearbeitung:</strong> Sicherstellen, dass Anfragen eine verantwortliche Person erreichen und eingeordnet werden.</li></ul>
+<p>Verteilt ein enges Testbudget nicht reflexartig auf viele Angebote und Regionen. Jeder zusätzliche Ansatz braucht Material und eine sinnvolle Auswertung. Wenn nur wenige Beobachtungen entstehen, bleibt die Aussage unsicher. Ein längerer Zeitraum allein behebt keine unpassende Ausrichtung oder fehlerhafte Messung.</p>
+<h2 id="ergebnis">Was sagt ein günstiger Klick aus?</h2>
+<p>Ein Klick zeigt zunächst Interesse an einer Anzeige. Ob daraus ein geeigneter Kontakt oder ein Kunde wird, ist eine weitere Frage. Deshalb sollten Berichte klar benennen, welche Handlung jeweils gezählt wurde und welche Kosten in die Berechnung eingehen.</p>
+<dl class="angebot-liste"><div><dt>Kosten pro erfasster Anfrage</dt><dd>Der zugeordnete Werbeetat geteilt durch die erfassten Anfragen. Dieser Wert kann auch Kontakte enthalten, die nicht zum Angebot passen.</dd></div><div><dt>Kosten pro qualifizierter Anfrage</dt><dd>Der zugeordnete Werbeetat geteilt durch die Anfragen, die eure vereinbarten Kriterien erfüllen. Dafür wird eine Rückmeldung aus der Anfragebearbeitung benötigt.</dd></div><div><dt>Kosten der Kundengewinnung</dt><dd>Die berücksichtigten Akquisitionskosten geteilt durch die daraus gewonnenen Neukunden. Legt offen, ob neben Werbeetat auch Betreuung, Produktion und Vertriebsaufwand enthalten sind.</dd></div></dl>
+<p>Vergleicht dieselben Zeiträume und eine nachvollziehbare Zuordnung. Gerade bei längeren Entscheidungswegen entsteht ein Auftrag möglicherweise erst Wochen oder Monate nach dem ersten Kontakt. Ohne diese Einordnung kann eine aktuelle Kampagne schlechter oder besser aussehen, als sie tatsächlich wirkt.</p>
+<h2 id="entscheidung">Wann erhöhen, überarbeiten oder stoppen?</h2>
+<p>Mehr Budget ist dann eine prüfbare Option, wenn passende Ergebnisse vorliegen, die Kosten zum Geschäft passen und euer Team zusätzliche Anfragen bearbeiten kann. Die Entscheidung sollte auch berücksichtigen, wie verlässlich die Messung und wie vollständig die Rückmeldungen sind.</p>
+<p>Wenn die Kontakte nicht passen, untersucht zunächst Ausrichtung, Suchbegriffe, Botschaft und Zielseite. Bei kaputten Formularen oder unklaren Zielhandlungen muss zuerst die Grundlage funktionieren. Ein Bericht sollte diese Probleme sichtbar machen und eine konkrete nächste Massnahme benennen.</p>
+<h2>Häufige Fragen zum Google-Ads-Budget</h2>
+<details><summary>Gibt es einen pauschalen Mindestbetrag für jedes Unternehmen?</summary><p>Ein für alle Unternehmen sinnvoller Startbetrag lässt sich aus dem Kanal allein nicht ableiten. Benötigt werden das konkrete Angebot, Einsatzgebiet, Ziel, vorhandene Daten und ein begrenztes Testvorhaben. Erst daraus lässt sich ein Budgetvorschlag begründen.</p></details>
+<details><summary>Ist das Anzeigenbudget im Marketing-Abo enthalten?</summary><p>Werbeetat und Betreuung werden für die Planung getrennt ausgewiesen. Welche Aufgaben euer <a href="../../marketing-abo/">Marketing-Abo</a> umfasst, wird im Angebot festgelegt. Prüft dabei auch Produktion, Zielseiten und Messung.</p></details>
+<details><summary>Können wir die Strategie intern behalten?</summary><p>Ja. Eure Marketingabteilung kann Ziele, Markenführung und Freigaben verantworten. Wir können die vereinbarte Einrichtung und laufende <a href="../../leistungen/performance.html">Google-Ads-Betreuung</a> ergänzen.</p></details>
+<p>Für die gesamte Planung mit Projekten, Content und interner Zeit hilft der <a href="../marketingbudget-kmu/">Marketingbudget-Leitfaden</a>.</p>
+<p><a class="knopf knopf--akzent" href="../../kontakt/?anliegen=team">Ads-Aufgaben besprechen</a></p><p><a href="../">Alle Leitfäden</a></p></article>
+</main>
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <p class="brush">Auf ein Wort</p>
+      <h2>Reden<br>wir.</h2>
+      <div class="fuss__kontakt">
+        <a class="fuss__gross" href="mailto:hallo@klartext-digital.ch">
+          <span>hallo@klartext-digital.ch</span><i aria-hidden="true">↗</i></a>
+        <a class="fuss__gross" href="tel:+41000000000">
+          <span>+41 00 000 00 00</span><i aria-hidden="true">↗</i></a>
+      </div>
+      <p class="fuss__ort">Werbeagentur mit Sitz in Zürich, tätig in der ganzen Deutschschweiz<br>
+        Mo bis Fr, 08:30 bis 18:00</p>
+    </div>
+
+    <div class="fuss__spalten">
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Seite</p>
+        <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+        <a class="mlink" href="../../leistungen/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Leistungen</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen</span></a>
+        <a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+        <a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+        <a class="mlink" href="../../index.html#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+      </nav>
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Leistungen</p>
+        <a class="mlink" href="../../leistungen/branding.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a>
+        <a class="mlink" href="../../leistungen/social-media.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a>
+        <a class="mlink" href="../../leistungen/websites.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a>
+        <a class="mlink" href="../../leistungen/performance.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a>
+        <a class="mlink" href="../../leistungen/email-marketing.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a>
+      </nav>
+      <div class="fuss__spalte">
+        <p class="fuss__kopf">Folgen</p>
+        <div class="fuss__sozial">
+          <a href="../../index.html" aria-label="Instagram"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+          <a href="../../index.html" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.4 10.4v6.2M7.4 7.6v.1M11.4 16.6v-3.4a2.4 2.4 0 0 1 4.8 0v3.4M11.4 16.6v-6.2"/></svg><span>LinkedIn</span></a>
+          <a href="../../index.html" aria-label="TikTok"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M14.2 3.5v10.9a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14.2 3.5a5 5 0 0 0 5 5"/></svg><span>TikTok</span></a>
+          <a href="../../index.html" aria-label="Behance"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3 6h5.2a2.6 2.6 0 0 1 0 5.2H3zM3 11.2h5.6a2.9 2.9 0 0 1 0 5.8H3zM14.6 13.4h6.4a3.2 3.2 0 0 0-6.4 0 3.2 3.2 0 0 0 5.9 1.7M15.6 7.4h4.4"/></svg><span>Behance</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p>
+    <nav>
+      <a href="../../recht/impressum.html">Impressum</a>
+      <a href="../../recht/datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859"></div>
+</footer>
+
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script src="../../js/lenis.min.js"></script>
+<script src="../../js/gsap.min.js"></script>
+<script src="../../js/ScrollTrigger.min.js"></script>
+<script src="../../lader.js"></script>
+<script src="../../bewegung.js"></script>
+<script src="../../zeiger.js"></script>
+<script src="../../rechner.js"></script>
+</body>
+</html>

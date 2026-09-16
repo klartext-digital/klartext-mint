@@ -46,5 +46,19 @@
     "description": "Beschreibt euer Vorhaben: laufendes Marketing, ein einzelnes Projekt oder Unterstützung für euer Marketingteam. Ein kurzes Briefing als Gesprächsgrundlage.",
     "label": "Kontakt",
     "image": "bilder/dienst-3.jpg"
+  },
+  "wissen/marketingbudget-kmu/": {
+    "title": "Marketingbudget für KMU planen | klartext digital",
+    "description": "Marketingbudget planen: laufende Betreuung, Projekte, Werbeetat und interne Zeit zusammenführen. Mit einer praktischen Vorlage für die Budgetbesprechung.",
+    "label": "Marketingbudget für KMU: Was muss in den Plan?",
+    "article": true,
+    "image": "bilder/dienst-4.jpg"
+  },
+  "wissen/google-ads-budget/": {
+    "title": "Google-Ads-Budget planen: Kosten & Kontrolle | klartext digital",
+    "description": "Google-Ads-Budget planen: Werbeetat und Betreuung trennen, Tagesbudget verstehen und Ergebnisse anhand passender Anfragen beurteilen.",
+    "label": "Google-Ads-Budget: Wie viel wofür einplanen?",
+    "article": true,
+    "image": "bilder/dienst-4.jpg"
   }
 }

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<title>Marketingbudget für KMU planen | klartext digital</title>
+<meta name="description" content="Marketingbudget planen: laufende Betreuung, Projekte, Werbeetat und interne Zeit zusammenführen. Mit einer praktischen Vorlage für die Budgetbesprechung.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/wortmarke-negativ.svg" alt="KLARTEXT" width="4105" height="859"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../index.html" aria-label="KLARTEXT — zur Startseite"><img src="../../marke/wortmarke.svg" alt="KLARTEXT" width="4105" height="859"></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../index.html#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../index.html#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../leistungen/branding.html" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Branding</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/social-media.html" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/websites.html" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/performance.html" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/email-marketing.html" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/index.html" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist">
+          <img src="../../bilder/dienst-2.jpg" alt="">
+          <img src="../../bilder/dienst-3.jpg" alt="">
+          <img src="../../bilder/dienst-4.jpg" alt="">
+          <img src="../../bilder/dienst-5.jpg" alt="">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+            </div>
+          </div>
+      <aside class="ndd__karte">
+        <p class="brush">Unsicher?</p>
+        <p class="ndd__karte-titel">Wir sortieren das in 15&nbsp;Minuten.</p>
+        <p class="ndd__karte-text">Kurzes Gespräch, ehrliche Einschätzung.
+          Auch wenn am Ende nichts daraus wird.</p>
+        <a class="knopf knopf--akzent" href="../../index.html#kontakt" tabindex="-1">Gespräch buchen</a>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="unter unter--eng"><h1 class="seo-h1">Marketingbudget für KMU: Was muss in den Plan?</h1><p class="brush">Jede Ausgabe braucht eine Aufgabe.</p></section>
+<section class="unter__leib"><div class="unter__text"><p>Ein brauchbares Marketingbudget verbindet Ziele mit konkreten Aufgaben. Es zeigt, was einmalig aufgebaut wird, welche Leistungen laufend nötig sind und wie viel Geld für Werbung verfügbar ist. Dazu gehört die Zeit eures eigenen Teams. Dieser Leitfaden hilft euch, daraus einen belastbaren Plan zu machen.</p></div><figure class="unter__bild"><img src="../../bilder/dienst-4.jpg" alt="" loading="lazy"></figure></section>
+<article class="artikel seo-prose"><nav class="seo-inhalt" aria-label="Inhaltsverzeichnis"><h2>Vom Ziel zum Budget</h2><ul><li><a href="#ausgangslage">Ziele und Ausgangslage klären</a></li><li><a href="#kosten">Die Kosten vollständig erfassen</a></li><li><a href="#prioritaeten">Prioritäten und Umfang festlegen</a></li><li><a href="#vorlage">Vorlage für eure Budgetbesprechung</a></li><li><a href="#auswertung">Budget und Ergebnisse prüfen</a></li></ul></nav>
+<h2 id="ausgangslage">Welche Aufgabe soll das Marketing lösen?</h2>
+<p>Beginnt mit einer konkreten geschäftlichen Aufgabe. Wollt ihr eine bestimmte Leistung bekannter machen, mehr passende Anfragen erhalten oder bestehende Kunden zu einem weiteren Kauf bewegen? «Mehr Sichtbarkeit» reicht für die Budgetentscheidung noch nicht. Klärt, bei wem ihr sichtbar werden wollt und welche Handlung daraus entstehen soll.</p>
+<p>Prüft anschliessend die Ausgangslage. Sind Angebot und Zielgruppe klar? Gibt es eine verständliche Website? Liegen brauchbare Bilder und Texte vor? Kann euer Team Anfragen zügig bearbeiten? Ein Budget für Anzeigen hilft wenig, wenn die Zielseite das Angebot nicht erklärt oder niemand die Kontakte übernimmt.</p>
+<p>Haltet für jedes Vorhaben fest, was bereits funktioniert, was fehlt und wer entscheiden kann. Daraus ergeben sich Abhängigkeiten: Eine neue Kampagne benötigt vielleicht zuerst eine Zielseite. Ein regelmässiger Newsletter braucht nutzbare Empfängergruppen und relevante Themen. Diese Vorarbeiten gehören in denselben Plan.</p>
+<h2 id="kosten">Welche Kosten gehören ins Marketingbudget?</h2>
+<dl class="angebot-liste">
+<div><dt>Einmalige Projekte</dt><dd>Zum Beispiel eine neue Website, eine Kommunikationsstrategie, ein Markenauftritt oder die Einrichtung einer Newsletter-Strecke. Notiert Ergebnis, Umfang, Freigaben und die voraussichtlichen Zahlungszeitpunkte.</dd></div>
+<div><dt>Laufende Umsetzung</dt><dd>SEO, Website-Betreuung, Social-Media-Inhalte, Kampagnensteuerung und Newsletter-Arbeit. Im <a href="../../marketing-abo/">Marketing-Abo</a> werden die wiederkehrenden Aufgaben und Prioritäten gemeinsam festgelegt.</dd></div>
+<div><dt>Werbeetat</dt><dd>Geld für die Ausspielung von Anzeigen, etwa bei Google oder Meta. Führt diesen Betrag getrennt von der Betreuung auf. Sonst bleibt unklar, wie viel Budget tatsächlich für die Anzeigen verfügbar ist.</dd></div>
+<div><dt>Produktion und Material</dt><dd>Fotos, Videos, Texte, Übersetzungen und zusätzliche Anzeigenvarianten. Prüft, ob diese bereits im Projekt oder in der laufenden Betreuung enthalten sind, damit ihr dieselbe Leistung nicht doppelt einplant.</dd></div>
+<div><dt>Systeme und Betrieb</dt><dd>Hosting, Versandplattform, benötigte Software und vereinbarte Lizenzen. Erfasst die tatsächlichen Gebühren und Abrechnungsintervalle eurer eingesetzten Systeme.</dd></div>
+<div><dt>Interne Zeit</dt><dd>Briefings, Fachinformationen, Freigaben, Zusammenarbeit und Anfragebearbeitung. Interne Stunden sind nicht automatisch zusätzliche Auszahlungen, begrenzen aber die Menge an Arbeit, die ihr tatsächlich umsetzen könnt.</dd></div>
+</dl>
+<p>Für die Liquiditätsplanung zählt, wann Geld bezahlt werden muss. Für die Beurteilung des gesamten Aufwands zählt zusätzlich die interne Arbeit. Haltet diese beiden Perspektiven auseinander und verwendet in eurer Übersicht eine einheitliche Basis für Beträge und Steuern.</p>
+<h2 id="prioritaeten">Wie setzt ihr Prioritäten?</h2>
+<p>Ordnet Vorhaben danach, welche Aufgabe sie erfüllen und welche Voraussetzungen dafür bestehen. Drei Fragen helfen: Ist das Problem für unser Geschäft relevant? Können wir die Massnahme jetzt sinnvoll umsetzen? Woran erkennen wir, ob sie wirkt? Eine Massnahme ohne klare Antwort gehört zuerst in die Klärung.</p>
+<p>Ein mögliches Planungsbeispiel: Ein Unternehmen erhält Besuche auf einer Leistungsseite, aber fast nur unpassende Anfragen. Statt sofort mehr Werbeetat freizugeben, wird geprüft, ob Angebot, Zielgruppe und Anfrageweg verständlich sind. Erst wenn diese Grundlage stimmt, lässt sich zusätzlicher Traffic sinnvoll bewerten. Das ist ein Entscheidungsbeispiel, keine pauschale Reihenfolge für jedes Unternehmen.</p>
+<p>Legt auch fest, welche Aufgaben warten können. Ein engerer Umfang mit verlässlicher Produktion und Freigabe ist steuerbar. Viele gleichzeitig gestartete Kanäle können dagegen mehr Material und Abstimmung verlangen, als intern verfügbar ist.</p>
+<h2>Was passt ins Abo, was in ein Projekt?</h2>
+<p>Ein Projekt hat ein definiertes Ergebnis und eine Abnahme: etwa eine Website oder eine <a href="../../kommunikationsstrategie/">Kommunikationsstrategie</a>. Laufende Arbeit besteht aus wiederkehrenden Aufgaben und Anpassungen. Dafür eignet sich ein Abo mit vereinbartem Umfang und regelmässiger Priorisierung.</p>
+<p>Beides lässt sich kombinieren. Nach einem <a href="../../webdesign/">Webdesign-Projekt</a> kann euer Team Inhalte selbst pflegen, während wir SEO oder technische Betreuung übernehmen. Eine interne Marketingabteilung kann die Gesamtplanung behalten und spezialisierte Umsetzung extern ergänzen. Im Budget müssen die Übergabe und der Beginn der laufenden Betreuung erkennbar sein.</p>
+<h2 id="vorlage">Vorlage für eure Budgetbesprechung</h2>
+<p>Erstellt für jede Massnahme einen Eintrag mit diesen Feldern. So lassen sich Angebote, interne Aufgaben und spätere Ergebnisse derselben Planung zuordnen.</p>
+<ol><li><strong>Ziel:</strong> Welche geschäftliche Aufgabe soll gelöst werden?</li><li><strong>Zielgruppe und Angebot:</strong> Wen wollen wir wofür erreichen?</li><li><strong>Ergebnis oder laufende Leistung:</strong> Was wird konkret geliefert oder betreut?</li><li><strong>Verantwortung:</strong> Wer setzt um, wer liefert Informationen, wer gibt frei?</li><li><strong>Einmalige Ausgaben:</strong> Welche Einrichtung oder Produktion fällt an?</li><li><strong>Laufende Ausgaben:</strong> Welche Betreuung und Systemgebühren entstehen pro Monat oder Jahr?</li><li><strong>Werbeetat:</strong> Welcher Betrag ist für welche Plattform freigegeben?</li><li><strong>Interne Kapazität:</strong> Wie viel Zeit wird benötigt und ist sie verfügbar?</li><li><strong>Termin und Abhängigkeiten:</strong> Was muss vorher fertig sein?</li><li><strong>Messung und Entscheidung:</strong> Welche Ergebnisse prüfen wir wann, und wer entscheidet über Änderungen?</li></ol>
+<p>Der geplante Geldbedarf ergibt sich aus einmaligen Ausgaben, laufenden Ausgaben im betrachteten Zeitraum und Werbeetat. Ergänzt bewusst reservierte Mittel als eigenen Posten. Vergebt sie erst, wenn Aufgabe und Freigabe klar sind. Eine Reserve ist kein bereits beauftragter Leistungsumfang.</p>
+<h2 id="auswertung">Wie prüft ihr das Budget im laufenden Betrieb?</h2>
+<p>Vergleicht geplante, beauftragte und tatsächliche Ausgaben. Ergänzt die Ergebnisse und die wichtigsten offenen Fragen. Eine Kampagne kann ihr Budget einhalten und trotzdem unpassende Anfragen liefern. Umgekehrt kann eine wichtige Vorarbeit abgeschlossen sein, obwohl daraus noch kein Auftrag entstanden ist. Beurteilt die Massnahme an ihrer jeweiligen Aufgabe.</p>
+<p>Für Anfragen lohnt sich die Rückmeldung des Vertriebs: Welche waren passend, welche wurden zu Angeboten und welche zu Aufträgen? Ein Monatsbericht sollte erklären, was daraus folgt. Wird ein Inhalt überarbeitet, eine Zielgruppe enger gefasst oder ein Test beendet? Änderungen am Umfang und Werbeetat werden anschliessend ausdrücklich freigegeben.</p>
+<h2>Häufige Fragen zur Budgetplanung</h2>
+<details><summary>Wie viel Prozent vom Umsatz sollen wir einplanen?</summary><p>Ein Umsatzanteil allein sagt wenig darüber aus, welche Aufgaben finanziert werden müssen. Startet bei Zielen, Ausgangslage, Kapazität und konkretem Leistungsumfang. Prüft danach, ob der Gesamtbetrag tragbar ist. Pauschale Prozentsätze ersetzen diese Planung nicht.</p></details>
+<details><summary>Wie vergleichen wir unterschiedliche Agenturangebote?</summary><p>Vergleicht Ergebnisse, enthaltene Aufgaben, Produktionsumfang, Fremdkosten, Freigaben und Vertragsbedingungen. Klärt ausdrücklich, ob Werbeetat und Systemgebühren enthalten sind. Bei Websites hilft unser Leitfaden zu <a href="../website-kosten-schweiz/">Website-Kosten</a>.</p></details>
+<details><summary>Wie planen wir Google Ads innerhalb des Gesamtbudgets?</summary><p>Trennt Einrichtung, Betreuung, Zielseiten und den eigentlichen Werbeetat. Unser Leitfaden zum <a href="../google-ads-budget/">Google-Ads-Budget</a> erklärt die anschliessende Planung im Werbekonto.</p></details>
+<p><a class="knopf knopf--akzent" href="../../kontakt/?anliegen=abo">Laufende Aufgaben besprechen</a></p><p><a href="../../projektarbeit/">Ein Projekt planen</a> · <a href="../">Alle Leitfäden</a></p></article>
+</main>
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <p class="brush">Auf ein Wort</p>
+      <h2>Reden<br>wir.</h2>
+      <div class="fuss__kontakt">
+        <a class="fuss__gross" href="mailto:hallo@klartext-digital.ch">
+          <span>hallo@klartext-digital.ch</span><i aria-hidden="true">↗</i></a>
+        <a class="fuss__gross" href="tel:+41000000000">
+          <span>+41 00 000 00 00</span><i aria-hidden="true">↗</i></a>
+      </div>
+      <p class="fuss__ort">Werbeagentur mit Sitz in Zürich, tätig in der ganzen Deutschschweiz<br>
+        Mo bis Fr, 08:30 bis 18:00</p>
+    </div>
+
+    <div class="fuss__spalten">
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Seite</p>
+        <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+        <a class="mlink" href="../../leistungen/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Leistungen</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen</span></a>
+        <a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+        <a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+        <a class="mlink" href="../../index.html#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+      </nav>
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Leistungen</p>
+        <a class="mlink" href="../../leistungen/branding.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a>
+        <a class="mlink" href="../../leistungen/social-media.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a>
+        <a class="mlink" href="../../leistungen/websites.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a>
+        <a class="mlink" href="../../leistungen/performance.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a>
+        <a class="mlink" href="../../leistungen/email-marketing.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a>
+      </nav>
+      <div class="fuss__spalte">
+        <p class="fuss__kopf">Folgen</p>
+        <div class="fuss__sozial">
+          <a href="../../index.html" aria-label="Instagram"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+          <a href="../../index.html" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.4 10.4v6.2M7.4 7.6v.1M11.4 16.6v-3.4a2.4 2.4 0 0 1 4.8 0v3.4M11.4 16.6v-6.2"/></svg><span>LinkedIn</span></a>
+          <a href="../../index.html" aria-label="TikTok"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M14.2 3.5v10.9a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14.2 3.5a5 5 0 0 0 5 5"/></svg><span>TikTok</span></a>
+          <a href="../../index.html" aria-label="Behance"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3 6h5.2a2.6 2.6 0 0 1 0 5.2H3zM3 11.2h5.6a2.9 2.9 0 0 1 0 5.8H3zM14.6 13.4h6.4a3.2 3.2 0 0 0-6.4 0 3.2 3.2 0 0 0 5.9 1.7M15.6 7.4h4.4"/></svg><span>Behance</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p>
+    <nav>
+      <a href="../../recht/impressum.html">Impressum</a>
+      <a href="../../recht/datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859"></div>
+</footer>
+
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script src="../../js/lenis.min.js"></script>
+<script src="../../js/gsap.min.js"></script>
+<script src="../../js/ScrollTrigger.min.js"></script>
+<script src="../../lader.js"></script>
+<script src="../../bewegung.js"></script>
+<script src="../../zeiger.js"></script>
+<script src="../../rechner.js"></script>
+</body>
+</html>
