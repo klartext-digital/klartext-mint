@@ -13,4 +13,6 @@ Marketing im Abo für laufende Leistungen; Projektarbeit für Webdesign, Kommuni
 Bestehendes DESIGN.md und die tatsächlichen CSS-Tokens sind verbindlich. Wortmarke, Figtree, Rock Salt, Bildsprache, Ladeschirm und bestehende Interaktionen erhalten. Kein Redesign beauftragt.
 
 ## Grenzen
+Produktivstart ausdrücklich pausiert. Die öffentlich erreichbare GitHub-Vorschau darf weiter ausgebaut werden und bleibt `noindex`. Möglicher Namenswechsel offen; bestehenden Namen bis zur Entscheidung erhalten. Keine Indexfreigabe, Domain-Umschaltung oder Sitemap-Einreichung ohne neuen Auftrag. Die Veröffentlichungssperre in `scripts/release_policy.py` gilt auch bei inzwischen vollständigen Firmenangaben.
+
 Referenzen unverändert lassen. Keine neuen Preise, Erfolgskennzahlen, Unternehmensdaten oder Personenprofile erfinden. Keine Domain-/DNS-Umschaltung ohne Auftrag. Kontakt-Briefing erstellt nur einen Text bzw. Mailentwurf; Zustellung ist noch nicht integriert. Indexierung bleibt bis zum freigegebenen Produktivstart ausgeschaltet.
