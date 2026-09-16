@@ -38,6 +38,25 @@ Nicht zwei Werkzeuge gleichzeitig auf `main`.
 - **Indexierung** (`indexable` in `seo.config.json`) bleibt `false`, bis ein neuer ausdrücklicher Auftrag den Produktivstart freigibt. Domain- oder Firmenbestätigung allein genügt nicht.
 - **Domain/DNS** nie ohne ausdrücklichen Auftrag umstellen.
 
+## Seitenarchitektur — vor jeder neuen Seite lesen
+
+**`docs/ARCHITEKTUR.md` ist verbindlich** (entschieden am 16.09.2026). Die Seite hat
+**zwei Ebenen**: Leistungen verkaufen, Wissen wird gefunden. Mehr nicht.
+
+- **Keine neue Seite ohne Platz im Menü.** Es sind zuletzt sechs Seiten entstanden, die
+  nur in der Fusszeile standen — das Klappmenü zeigte fünf Leistungen, die Fusszeile
+  acht andere. Wer eine Seite anlegt, trägt sie im selben Zug ins Klappmenü ein
+  (`ndd__liste`, handgeschrieben in 41 Quelldateien) **und** ergänzt Vorschaubild und
+  Textblock — `bewegung.js` koppelt beides über die Position im Array, sonst bleibt die
+  Vorschau beim Überfahren leer.
+- **Kein dritter Inhaltsbereich.** Leitfäden und Standpunkte liegen beide unter
+  `/wissen/`. Kein separater Blog-Bereich.
+- **Jede Leistungsseite ist vollständig gebaut:** Zurück-Knopf, Nummer, Abschluss mit
+  „Weiter"-Block und Kontaktblock. Seiten, die nach dem Text einfach aufhören, gelten
+  als unfertig.
+- **Verlinkungsregel je Artikel:** einer nach oben zum Hauptartikel, zwei bis vier
+  seitwärts zu Geschwistern, ein bis zwei zur passenden Leistung.
+
 ## Technische Fallen
 
 - `scripts/build.py` kopiert nur diese Ordner in die Ausgabe: `bilder fonts js kopf laune logos marke video` sowie `.js/.css/.png` im Hauptordner. Neue Asset-Ordner dort eintragen, sonst fehlen sie live.
