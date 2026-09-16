@@ -81,5 +81,19 @@
     "label": "Website-Pflege: Checkliste",
     "article": true,
     "image": "bilder/dienst-3.jpg"
+  },
+  "wissen/social-media-kosten/": {
+    "title": "Was kostet Social-Media-Betreuung? | klartext digital",
+    "description": "Woraus sich der Aufwand für Social-Media-Betreuung zusammensetzt: Produktion, laufende Betreuung und Kampagnen getrennt betrachten und Offerten vergleichen.",
+    "label": "Was kostet Social-Media-Betreuung?",
+    "article": true,
+    "image": "bilder/dienst-2.jpg"
+  },
+  "wissen/branding-kosten/": {
+    "title": "Was kostet ein Branding? | klartext digital",
+    "description": "Fünf Faktoren bestimmen den Aufwand eines Brandings. Was zu einer vollständigen Übergabe gehört und wie ihr zwei Offerten vergleichbar macht.",
+    "label": "Was kostet ein Branding?",
+    "article": true,
+    "image": "bilder/dienst-1.jpg"
   }
 }
