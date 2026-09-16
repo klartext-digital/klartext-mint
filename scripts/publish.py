@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Publish checked output to gh-pages without changing source files or forcing Git."""
 from pathlib import Path
-import shutil, subprocess, sys, tempfile, os, atexit
+import shutil, subprocess, sys, tempfile, os, atexit, json
+from release_policy import validate_preview
 
 ROOT = Path(__file__).resolve().parents[1]
+validate_preview(json.loads((ROOT / 'seo.config.json').read_text()))
 
 def run(*args, cwd=ROOT, capture=False):
     return subprocess.run(args, cwd=cwd, check=True, text=True,

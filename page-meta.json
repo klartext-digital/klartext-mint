@@ -60,5 +60,26 @@
     "label": "Google-Ads-Budget: Wie viel wofür einplanen?",
     "article": true,
     "image": "bilder/dienst-4.jpg"
+  },
+  "seo/": {
+    "title": "SEO-Betreuung Schweiz | Inhalte & Technik | klartext digital",
+    "description": "SEO für Unternehmen und interne Marketingteams: technische Hürden prüfen, relevante Inhalte verbessern und Fortschritt mit Such- und Anfragedaten bewerten.",
+    "label": "SEO-Betreuung",
+    "article": false,
+    "image": "bilder/dienst-3.jpg"
+  },
+  "website-betreuung/": {
+    "title": "Website-Betreuung & Pflege | klartext digital",
+    "description": "Website-Inhalte pflegen, Funktionen prüfen und Änderungen geordnet umsetzen. Laufende Betreuung für Unternehmen und als Ergänzung eures Marketingteams.",
+    "label": "Website-Betreuung",
+    "article": false,
+    "image": "bilder/dienst-3.jpg"
+  },
+  "wissen/website-pflege-checkliste/": {
+    "title": "Website-Pflege: Checkliste für Unternehmen | klartext digital",
+    "description": "Website-Pflege organisieren: Inhalte, Kontaktwege, Darstellung und technische Zuständigkeiten prüfen. Eine praktische Checkliste für Marketingteams.",
+    "label": "Website-Pflege: Checkliste",
+    "article": true,
+    "image": "bilder/dienst-3.jpg"
   }
 }
