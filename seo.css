@@ -14,6 +14,18 @@
 .seo-pruefhinweis{font-size:15px!important;line-height:1.6!important;color:var(--grau)!important;max-width:70ch;margin:16px auto;padding:16px 20px;background:var(--creme-2);border-radius:var(--r-klein)}
 .seo-freigabe{margin-top:120px}
 .seo-lesetipp{padding-bottom:var(--sec)}
+/* Kurze Antwort: erster Absatz ueber dem Inhaltsverzeichnis, beantwortet die
+   Frage der Ueberschrift sofort. Bewusst KEIN Kasten — am Prototyp verglichen:
+   ein Kasten direkt ueber dem Inhaltsverzeichnis-Kasten liest sich als
+   Wiederholung, und die Antwort verliert ihren Rang.
+   Hier steht nur EINE Deklaration, weil nur sie etwas aendert. Gemessen am
+   17.09.2026 auf zwei Seiten, indem die Regeln im Browser abgeschaltet und die
+   berechneten Werte verglichen wurden: Schriftgroesse, Zeilenhoehe, 70ch,
+   beide Raender und die Grundfarbe liefern bereits .seo-prose p und
+   .artikel p:first-child (stil.css). Nur die Tintenfarbe der Auszeichnung
+   "Kurze Antwort:" kommt von hier — ohne sie erbt sie Grau. font-weight:700
+   waere ebenfalls tot, weil <strong> von Haus aus 700 ist. */
+.seo-antwort strong{color:var(--tinte)}
 .seo-lesetipp h2{margin-bottom:24px}
 .seo-inhalt{margin:36px 0;padding:24px;background:var(--creme-2);border-radius:var(--r-mittel)}
 .seo-inhalt h2{font-size:24px;margin:0 0 16px}
