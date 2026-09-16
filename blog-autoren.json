@@ -1,0 +1,9 @@
+{
+  "_hinweis": "Zuordnung der Blogbeitraege zu Personen. Uebernommen aus der frueher handgeschriebenen Uebersicht in blog/index.html, unveraendert. ACHTUNG: Das Team ist laut Build noch nicht bestaetigt ('Namen, Rollen und Zugehoerigkeit sind noch zu bestaetigen'). Hier wird deshalb nichts Neues zugewiesen und nichts entfernt - die Frage bleibt eine Entscheidung des Auftraggebers. Ein Beitrag ohne Eintrag erscheint einfach ohne Personenzeile.",
+  "rhythmus-statt-kampagne": { "name": "Pia", "rolle": "Marketing Manager", "bild": "portrait-2.jpg" },
+  "website-die-arbeitet":    { "name": "Reto", "rolle": "Digital Strategist", "bild": "portrait-5.jpg" },
+  "marke-am-anfang":         { "name": "Dušan", "rolle": "Gründer", "bild": "portrait-1.jpg" },
+  "wettbewerb-gewinnen":     { "name": "Dušan", "rolle": "Gründer", "bild": "portrait-1.jpg" },
+  "kluge-marken-wachsen":    { "name": "Mara", "rolle": "Project Manager", "bild": "portrait-4.jpg" },
+  "vorne-bleiben":           { "name": "Amir", "rolle": "Content Creator", "bild": "portrait-6.jpg" }
+}
