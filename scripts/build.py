@@ -27,7 +27,6 @@ ROUTES = {
  'arbeiten/index.html': 'projekte/',
  'blog/index.html': 'blog/',
  'wissen/index.html': 'wissen/',
- 'wissen/website-kosten-schweiz/index.html': 'wissen/website-kosten-schweiz/',
  'recht/impressum.html': 'impressum/',
  'recht/datenschutz.html': 'datenschutz/',
 }
@@ -50,33 +49,46 @@ BLOG_AUTOREN = json.loads((ROOT/'blog-autoren.json').read_text()) if (ROOT/'blog
 MONATE = {'Jan':1,'Feb':2,'Mär':3,'Maer':3,'Apr':4,'Mai':5,'Jun':6,'Jul':7,'Aug':8,'Sep':9,'Okt':10,'Nov':11,'Dez':12}
 
 def blog_beitraege():
- """Liest jeden Blogartikel und gibt die Angaben für seine Karte zurück."""
+ """Liest jeden Blogartikel und gibt die Angaben für seine Karte zurück.
+
+ Zwei Bauformen: die kurzen Standpunkte liegen flach als blog/<x>.html und
+ tragen Datum, Einstiegsabsatz und Bild im Artikel selbst. Die Leitfaeden
+ liegen als Ordner blog/<x>/index.html; sie haben kein Datum, oft keinen
+ Einstiegsabsatz vor dem Inhaltsverzeichnis und kein figure-Bild. Fuer sie
+ kommen Anriss und Bild aus page-meta.json. Gemessen am 17.09.2026: eine
+ Karte ohne Datum und ohne Person haelt — die Hoehe kommt aus dem Raster.
+ """
  aus=[]
- for p in sorted((ROOT/'blog').glob('*.html')):
-  if p.name=='index.html' or re.search(r' \d+$',p.stem): continue
+ kandidaten=[(p,p.name,False) for p in sorted((ROOT/'blog').glob('*.html'))]
+ kandidaten+=[(p,p.parent.name+'/',True) for p in sorted((ROOT/'blog').glob('*/index.html'))]
+ for p,ziel,ordner in kandidaten:
+  if not ordner and p.name=='index.html': continue
+  if re.search(r' \d+$',p.stem) or ' ' in p.as_posix(): continue
   s=p.read_text()
   m=re.search(r'<main[\s\S]*?</main>',s)
   k=m.group(0) if m else s
   h1=re.search(r'<h1[^>]*>([\s\S]*?)</h1>',k)
+  if not h1: continue
+  stamm=p.parent.name if ordner else p.stem
+  meta=PAGE_META.get('blog/'+ziel,{}) if ordner else {}
   chip=re.search(r'<span class="chip"[^>]*>([^<]*)</span>',k)
-  bild=re.search(r'artikel__bild"[\s\S]*?src="\.\./([^"]+)"',k)
-  anriss=re.search(r'<article class="artikel"[^>]*>\s*<p>([\s\S]*?)</p>',k)
-  if not (h1 and chip and bild and anriss): continue
-  datum=chip.group(1).strip()
-  t=re.match(r'(\d{1,2})\.\s*([A-Za-zäöüÄÖÜ]+)\s*(\d{4})',datum)
-  # 200 Wörter je Minute, mindestens eine. Der Stern gehört zur Handschrift.
+  datum=chip.group(1).strip() if chip else ''
+  t=re.match(r'(\d{1,2})\.\s*([A-Za-zäöüÄÖÜ]+)\s*(\d{4})',datum) if datum else None
+  bild=re.search(r'artikel__bild"[\s\S]*?src="(?:\.\./)+([^"]+)"',k)
+  bildpfad=bild.group(1) if bild else meta.get('image','')
+  absatz=re.search(r'<article class="artikel[^"]*"[^>]*>\s*<p>([\s\S]*?)</p>',k)
+  anriss=absatz.group(1).strip() if absatz else escape(meta.get('description',''))
+  if not (bildpfad and anriss): continue
   minuten=max(1,round(len(re.sub(r'<[^>]*>',' ',k).split())/200))
   aus.append({
-   'datei':p.name,'stamm':p.stem,
+   'datei':ziel,'stamm':stamm,
    'titel':re.sub(r'<[^>]*>','',h1.group(1)).strip(),
    'datum':datum,
-   'sortierung':(int(t.group(3)),MONATE.get(t.group(2)[:3],0),int(t.group(1))) if t else (0,0,0),
-   'bild':bild.group(1),
-   'anriss':anriss.group(1).strip(),
-   'minuten':minuten,
-   'person':BLOG_AUTOREN.get(p.stem),
+   'sortierung':(1,int(t.group(3)),MONATE.get(t.group(2)[:3],0),int(t.group(1))) if t else (0,0,0,0),
+   'bild':bildpfad,'anriss':anriss,'minuten':minuten,
+   'person':BLOG_AUTOREN.get(stamm),
   })
- aus.sort(key=lambda b:b['sortierung'],reverse=True)   # neueste zuerst
+ aus.sort(key=lambda b:b['sortierung'],reverse=True)
  return aus
 
 def blog_karten_html(beitraege):
