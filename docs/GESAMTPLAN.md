@@ -6,7 +6,7 @@ Stand: 16. September 2026. Arbeitsgrundlage: ursprünglicher 90-Tage-Plan und di
 
 Marketing im Abo: SEO, Website-Betreuung, Social-Media-Content und Kampagnen, Google/Meta Ads, Newsletter. Projektarbeit: insbesondere Webdesign und Kommunikationsstrategie. Beide Modelle bedienen auch Unternehmen mit internen Marketingteams. Schnell, zuverlässig und ergebnisorientiert arbeiten; keine erfundenen Erfolgszahlen oder Liefergarantien.
 
-Zieldomain: **klartext-digital.ch**, bei **Hostinger**, vom Auftraggeber bestätigt. Aktuelle Vorschau bleibt auf GitHub Pages. Keine DNS- oder Domain-Umschaltung erfolgt. Referenzen auf ausdrücklichen Wunsch unverändert lassen.
+Zieldomain: **klartext-digital.ch**, bei **Hostinger**, vom Auftraggeber bestätigt. Aktuelle Vorschau bleibt auf GitHub Pages. Keine Domain-Umschaltung erfolgt. Ein zusätzlicher DNS-TXT-Eintrag zur Google-Inhaberbestätigung wurde nach ausdrücklicher Freigabe ergänzt. Referenzen auf ausdrücklichen Wunsch unverändert lassen.
 
 ## Status nach diesem Ausbau
 
@@ -19,7 +19,7 @@ Zieldomain: **klartext-digital.ch**, bei **Hostinger**, vom Auftraggeber bestät
 | Bestehende Leistungsseiten | Branding, Social Media, Performance und E-Mail fachlich erweitert: Ergebnisse, Verantwortlichkeiten, Budgets, häufige Fragen und nächste Schritte | Nach echten Such- und Anfragedaten weiter schärfen |
 | Anfragen | Briefing vorbereiten, kopieren oder Mailentwurf öffnen; Anliegen wird vom Einstiegslink übernommen | Bestätigter Empfangsweg und echtes Formular-Backend/Terminbuchung fehlen |
 | Messung | Ereignisschnittstelle für Angebotsklicks, Briefing und Kostenplaner; keine Eingabetexte in Ereignissen | Analytics-Anbieter/Konto und Datenschutz-Konfiguration fehlen; derzeit keine Übertragung oder Besucherauswertung |
-| Search Console / Bing | Google-Zugang geprüft; Domain-Property und TXT-Nachweis bei Hostinger vorbereitet | DNS-Speicherung und Inhaberbestätigung warten auf ausdrückliche Freigabe. Domain zeigt noch Parkseite; Sitemap-Einreichung folgt nach Produktivstart. Bing offen. |
+| Search Console / Bing | Google-Domain-Property klartext-digital.ch am 16.09.2026 per zusätzlichem DNS-TXT bei Hostinger bestätigt | Domain zeigt noch Parkseite; Sitemap-Einreichung und URL-Prüfung folgen nach Produktivstart. Bing offen. |
 | Performance | Responsive WebP-Varianten für fünf wiederverwendete Leistungsbilder; vorhandene Optimierungen erhalten | PageSpeed API antwortet 429. Keine belastbaren LCP/INP/CLS-Felddaten; Ladeschirm bleibt aktiv |
 | Person / Unternehmensprofil | Nur bestätigter Markenname im Organization-Schema | Öffentlich freigegebene Personendaten und Firmendaten fehlen; kein vollständiger Personenname wird veröffentlicht |
 | Cases | Bestand unverändert | Zusätzliche ausführliche Fallstudien erst mit konkreten Projektinformationen und realen Resultaten |
@@ -32,7 +32,7 @@ Zieldomain: **klartext-digital.ch**, bei **Hostinger**, vom Auftraggeber bestät
 1. Hostinger-Zugang bzw. bestehendes Hosting-Setup prüfen. Keine Umschaltung aus der Domainangabe ableiten.
 2. Öffentliche Firmierung, Kontaktangaben, Datenschutz und tatsächliche Formulardienste finalisieren.
 3. Einen geprüften Build auf der Zieldomain bereitstellen; HTTPS, bevorzugten Host, Weiterleitungen und 404 testen.
-4. Search Console/Bing verifizieren. Nur freigegebene Seiten indexieren und in die Sitemap aufnehmen.
+4. Search Console ist verifiziert. Nach Produktivstart Sitemap einreichen und wichtige URLs prüfen; Bing bleibt offen. Nur freigegebene Seiten indexieren und in die Sitemap aufnehmen.
 5. Analytics mit passender Einwilligungssteuerung anbinden. Formularzustellung prüfen und erst dann echte Leads zählen.
 
 ### P1 — Angebot und Webdesign fachlich vertiefen
