@@ -36,7 +36,7 @@ Startseite
 **Abo und Projektarbeit sind keine Leistungen**, sondern zwei Arten der Zusammenarbeit.
 Sie bleiben in der Section „Abo oder Projekt?" und im Klappmenü.
 
-## Ebene 1 — Leistungen: sechs statt elf
+## Ebene 1 — Leistungen: sieben statt elf
 
 Neun einzelne Leistungen sind zu viele fürs Menü, zwei davon tragen keine eigene Seite.
 Die dünnen werden Abschnitte in einer starken Seite — dafür muss nichts erfunden werden.
@@ -166,7 +166,7 @@ Jede Leistungsseite verweist umgekehrt auf zwei bis vier Artikel ihres Dachs.
 
 ## Reihenfolge
 
-1. Leistungsebene zusammenführen — sechs Seiten, ein Menü
+1. Leistungsebene zusammenführen — sieben Seiten, ein Menü ✔ erledigt 17.09.2026
 2. Übersicht vom Build erzeugen lassen — **vor** dem Umzug, sonst wird Handarbeit
    verschoben statt beseitigt
 3. Leitfäden nach `/blog/`, `/wissen/` weiterleiten (je eine Zeile in `ALIASES`)
