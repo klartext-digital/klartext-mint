@@ -44,7 +44,21 @@ Die dünnen werden Abschnitte in einer starken Seite — dafür muss nichts erfu
 | Menüpunkt | Seite | nimmt auf |
 |---|---|---|
 | 01 Marke & Strategie | `branding/` | `kommunikationsstrategie/` (302 W.) |
-| 02 Website | `webdesign/` | `website-betreuung/` als Abschnitt + Verweis |
+| 02 Website | `webdesign/` | — |
+| 07 Website-Betreuung | `website-betreuung/` | eigene Seite statt Abschnitt, siehe unten |
+
+**Korrektur vom 17.09.2026 — Website-Betreuung bleibt eigenständig.** Die Tabelle oben
+sah ursprünglich vor, `website-betreuung/` als Abschnitt in `webdesign/` einzuarbeiten.
+Das war entschieden, bevor die Überschriften der Zielseite vorlagen. `webdesign/` deckt
+mit „Inhalte pflegen und Verantwortung klären", „Suchmaschinenoptimierung als technische
+Grundlage" und „Danach geht die Arbeit weiter" das Thema bereits ab und ist mit 1077
+Wörtern die längste Leistungsseite; 656 Wörter zusätzlich hätten eine Seite ergeben, die
+Projekt, Pflege und SEO gleichzeitig sein will. Website-Betreuung ist eine laufend
+nachgefragte Leistung mit eigenem Suchbegriff und steht deshalb als Eintrag 07 im Menü.
+
+Damit hat das Menü sieben statt sechs Einträge. Die Begründung „neun sind zu viele"
+bleibt gültig, sieben sind vertretbar — der Unterschied ist, dass keine Seite mit
+eigener Suchnachfrage in einer anderen verschwindet.
 | 03 Social Media & Content | `social-media/` | `content-creation/` (350 W.) |
 | 04 Werbung | `performance-marketing/` | — |
 | 05 Newsletter | `email-marketing/` | — |
