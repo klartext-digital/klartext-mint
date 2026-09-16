@@ -509,7 +509,11 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 
 /* ── 3 · Referenzen ────────────────────────────────────────── */
 .referenzen{padding:var(--sec) var(--pad) 0;max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto}
-.referenzen .brush{display:block;text-align:center;margin-bottom:30px}
+/* Handschrift auf hellem Grund: das helle Orange stand bei 1,84:1 und
+   war praktisch unlesbar. --violett-tief ist der im System vorgesehene
+   Akzent fuer helle Flaechen und bringt 5,60:1. */
+.referenzen .brush{display:block;text-align:center;margin-bottom:30px;
+  color:var(--violett-tief)}
 .ref__reihe{max-width:var(--maxw);margin:0 auto;display:grid;
   grid-template-columns:repeat(6,1fr);gap:14px}
 .ref{display:grid;place-items:center;padding:38px 20px;min-height:140px;
@@ -906,7 +910,8 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .paket--voll:hover,.paket--voll:focus-within{transform:translateY(-4px)}
 /* Der Hinweis liest sich als handgeschriebener Aufkleber —
    auf 15 px war er ein Kritzel. */
-.paket__tipp{position:absolute;right:34px;top:30px;color:var(--violett);
+/* Der Tipp sitzt auf der hellen Karte: 1,90:1 auf 5,79:1. */
+.paket__tipp{position:absolute;right:34px;top:30px;color:var(--violett-tief);
   font-size:19px}
 .paket h3{font-size:clamp(22px,1.6vw,28px)}
 .paket__unter{color:rgb(247 247 245 / .62);font-size:15px;line-height:1.4}
@@ -948,6 +953,10 @@ body.langtakt .preis__alt::after{transform:scaleX(1) rotate(-2.5deg)}
 body.langtakt .preis__neu{font-size:1em;opacity:1}
 .paket__preis .brush{font-size:16px;color:var(--grau-2);align-self:flex-start;
   margin-top:10px}
+/* --grau-2 stimmt auf den dunklen Karten (6,37:1), faellt auf der hellen
+   Hervorhebung aber auf 2,60:1. Die bekommt ihren eigenen Grauton — genau
+   so, wie es .paket--voll .paket__unter weiter oben schon macht. */
+.paket--voll .paket__preis .brush{color:var(--grau)}
 .haken{display:grid;gap:4px;margin:9px 0 12px;padding-top:9px;
   border-top:1px solid var(--linie-hell)}
 .paket--voll .haken{border-top-color:var(--linie)}
@@ -2584,7 +2593,9 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .blog__hand{display:flex;align-items:flex-end;gap:10px;
   margin-top:clamp(24px,2.4vw,42px);color:var(--violett)}
 .blog__bogen{flex:0 0 auto;margin-bottom:6px}
-.blog__hand .brush{font-size:clamp(16px,1.2vw,21px);line-height:1.25}
+/* Auf weisser Karte: 2,04:1 auf 6,21:1. */
+.blog__hand .brush{font-size:clamp(16px,1.2vw,21px);line-height:1.25;
+  color:var(--violett-tief)}
 
 /* Das Bild fuellt seine Spalte ganz — kein Radius, keine Luft. */
 .blog__bild{display:block;position:relative;overflow:hidden;
@@ -2657,7 +2668,9 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .brief__hinweis{margin-top:8px;font-size:12px;color:var(--grau-2)}
 .brief__hand{display:none;align-items:flex-start;gap:8px;color:var(--violett)}
 @media (min-width:1240px){ .brief__hand{display:flex} }
-.brief__hand .brush{font-size:clamp(15px,1.1vw,19px);line-height:1.35}
+/* Auf zarter Flaeche: 1,66:1 auf 5,06:1 — war der schlechteste Wert. */
+.brief__hand .brush{font-size:clamp(15px,1.1vw,19px);line-height:1.35;
+  color:var(--violett-tief)}
 .brief__hand .blog__bogen{transform:scaleY(-1);margin-top:4px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);
   white-space:nowrap}
