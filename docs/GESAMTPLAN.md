@@ -6,16 +6,16 @@ Stand: 16. September 2026. Arbeitsgrundlage: ursprünglicher 90-Tage-Plan und di
 
 Marketing im Abo: SEO, Website-Betreuung, Social-Media-Content und Kampagnen, Google/Meta Ads, Newsletter. Projektarbeit: insbesondere Webdesign und Kommunikationsstrategie. Beide Modelle bedienen auch Unternehmen mit internen Marketingteams. Schnell, zuverlässig und ergebnisorientiert arbeiten; keine erfundenen Erfolgszahlen oder Liefergarantien.
 
-Zieldomain: **klartext-digital.ch**, bei **Hostinger**, vom Auftraggeber bestätigt. Aktuelle Vorschau bleibt auf GitHub Pages. Keine Domain-Umschaltung erfolgt. Ein zusätzlicher DNS-TXT-Eintrag zur Google-Inhaberbestätigung wurde nach ausdrücklicher Freigabe ergänzt. Referenzen auf ausdrücklichen Wunsch unverändert lassen.
+Bisherige Zieldomain: **klartext-digital.ch**, bei **Hostinger**. **Produktivstart ausdrücklich pausiert; möglicher Namenswechsel offen.** Die GitHub-Vorschau darf weiter aktualisiert werden und bleibt öffentlich erreichbar mit `noindex`. Bauen, Prüfen und Publizieren akzeptieren vorerst nur diese Vorschau. Eine neue ausdrückliche Startfreigabe ist erforderlich. Siehe `NAMENSWECHSEL.md`. Keine Domain-Umschaltung erfolgt. Ein zusätzlicher DNS-TXT-Eintrag zur Google-Inhaberbestätigung wurde nach ausdrücklicher Freigabe ergänzt. Referenzen auf ausdrücklichen Wunsch unverändert lassen.
 
 ## Status nach diesem Ausbau
 
 | Arbeitsstrang | Umgesetzt | Nächster Schritt / Voraussetzung |
 |---|---|---|
 | Technik | Saubere Routen, Seitentitel, Beschreibungen, Canonicals, Sitemap/robots, Organization/Article/Breadcrumb, Social Cards, Fehlerseite, automatische Linkprüfung | Auf Zielhosting echte 301/308-Weiterleitungen und 404 prüfen; finale Betreiberangaben fehlen |
-| Angebotsarchitektur | Abo und Projektarbeit als eigene Seiten; Content Creation und Kommunikationsstrategie ergänzt; Anfrageweg für Abo/Projekt/Team | Weitere SEO- und Website-Betreuungsseiten erst nach Abgrenzung zum Abo ausbauen |
+| Angebotsarchitektur | Abo und Projektarbeit, Content Creation, Kommunikationsstrategie, SEO und Website-Betreuung mit abgegrenztem Umfang; Anfrageweg für Abo/Projekt/Team | Angebote anhand bestätigter Kapazitäten, Preisgrundlage und späterer Anfragedaten schärfen |
 | Homepage | Bestätigtes Geschäftsmodell, zwei Einstiege und Zusammenarbeit mit internen Teams | Nach realen Nutzungsdaten weiter verbessern |
-| Webdesign-Cluster | Webdesign, Website-Kosten, Website erstellen lassen, Relaunch-Checkliste; gegenseitige Links | Bestätigte Preisgrundlage fehlt weiterhin; Preisrechner nutzt ausschliesslich Besuchereingaben |
+| Webdesign-Cluster | Webdesign, Website-Kosten, Website erstellen lassen, Relaunch- und Pflege-Checkliste; gegenseitige Links | Bestätigte Preisgrundlage fehlt weiterhin; Preisrechner nutzt ausschliesslich Besuchereingaben |
 | Bestehende Leistungsseiten | Branding, Social Media, Performance und E-Mail fachlich erweitert: Ergebnisse, Verantwortlichkeiten, Budgets, häufige Fragen und nächste Schritte | Nach echten Such- und Anfragedaten weiter schärfen |
 | Anfragen | Briefing vorbereiten, kopieren oder Mailentwurf öffnen; Anliegen wird vom Einstiegslink übernommen | Bestätigter Empfangsweg und echtes Formular-Backend/Terminbuchung fehlen |
 | Messung | Ereignisschnittstelle für Angebotsklicks, Briefing und Kostenplaner; keine Eingabetexte in Ereignissen | Analytics-Anbieter/Konto und Datenschutz-Konfiguration fehlen; derzeit keine Übertragung oder Besucherauswertung |
@@ -27,9 +27,11 @@ Zieldomain: **klartext-digital.ch**, bei **Hostinger**, vom Auftraggeber bestät
 
 ## Priorisierte nächste Arbeitsblöcke
 
-### P0 — Produktivstart und verlässliche Messung
+### P0 — Produktivstart pausiert; spätere Voraussetzungen
 
-1. Hostinger-Zugang bzw. bestehendes Hosting-Setup prüfen. Keine Umschaltung aus der Domainangabe ableiten.
+Diese Schritte sind bis zur Namensentscheidung und einer neuen ausdrücklichen Startfreigabe zurückgestellt. Die bestätigte Search Console löst keine Veröffentlichung aus.
+
+1. Namen und Zielhost bestätigen; bestehenden Zugang und Hosting-Setup prüfen. Keine Umschaltung aus der Domainangabe ableiten.
 2. Öffentliche Firmierung, Kontaktangaben, Datenschutz und tatsächliche Formulardienste finalisieren.
 3. Einen geprüften Build auf der Zieldomain bereitstellen; HTTPS, bevorzugten Host, Weiterleitungen und 404 testen.
 4. Search Console ist verifiziert. Nach Produktivstart Sitemap einreichen und wichtige URLs prüfen; Bing bleibt offen. Nur freigegebene Seiten indexieren und in die Sitemap aufnehmen.
@@ -44,7 +46,7 @@ Zieldomain: **klartext-digital.ch**, bei **Hostinger**, vom Auftraggeber bestät
 
 ### P2 — Nachfrageorientierte Inhalte
 
-Umgesetzt: Marketingbudget für KMU und Google-Ads-Budget als Planungsleitfäden; Google-Budgetregeln anhand der offiziellen Dokumentation geprüft und direkt verlinkt.
+Umgesetzt: Website-Pflege-Checkliste mit konkreten Prüfwegen und Zuständigkeiten; Marketingbudget für KMU und Google-Ads-Budget als Planungsleitfäden; Google-Budgetregeln anhand der offiziellen Dokumentation geprüft und direkt verlinkt.
 
 Nächste Themen: Social-Media-Betreuungskosten und Branding-Kosten. Je Artikel eine konkrete Aufgabe, nachvollziehbare Quellen oder bestätigte Erfahrungswerte, eine zugehörige Leistung und ein passender nächster Schritt. Keine Preisartikel ohne Zahlenbasis als fertig behandeln.
 

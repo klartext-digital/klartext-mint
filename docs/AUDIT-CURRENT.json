@@ -1,5 +1,5 @@
 {
-  "canonical_documents": 39,
+  "canonical_documents": 42,
   "duplicate_titles": [],
   "pages": {
     "404.html": {
@@ -22,11 +22,11 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 25231,
+      "html_bytes": 25319,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "blog/kluge-marken-wachsen/index.html": {
       "title": "Warum kluge Marken schneller wachsen | klartext.",
@@ -37,7 +37,7 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 21642,
+      "html_bytes": 21736,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
@@ -52,7 +52,7 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 21670,
+      "html_bytes": 21764,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
@@ -67,7 +67,7 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 21599,
+      "html_bytes": 21693,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
@@ -82,7 +82,7 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 21683,
+      "html_bytes": 21777,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
@@ -97,7 +97,7 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 21579,
+      "html_bytes": 21673,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
@@ -112,7 +112,7 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 21749,
+      "html_bytes": 21843,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
@@ -127,11 +127,11 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 27589,
+      "html_bytes": 27677,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "content-creation/index.html": {
       "title": "Content Creation Schweiz | Foto, Video &amp; Social | klartext digital",
@@ -142,11 +142,11 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 22973,
+      "html_bytes": 23061,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "datenschutz/index.html": {
       "title": "Datenschutzhinweise – Entwurf | klartext.",
@@ -157,11 +157,11 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 20799,
+      "html_bytes": 20887,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "email-marketing/index.html": {
       "title": "Newsletter &amp; E-Mail-Marketing | klartext digital",
@@ -172,11 +172,11 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 28134,
+      "html_bytes": 28222,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "impressum/index.html": {
       "title": "Impressum – Entwurf | klartext.",
@@ -187,11 +187,11 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 20528,
+      "html_bytes": 20616,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "index.html": {
       "title": "Marketingagentur Schweiz: Abo &amp; Projekte | klartext digital",
@@ -201,11 +201,11 @@
         "WebPage",
         "Organization"
       ],
-      "html_bytes": 81393,
+      "html_bytes": 81475,
       "responsive_images": 10,
       "robots": "noindex, follow",
       "clicks_from_home": 0,
-      "incoming_pages": 35
+      "incoming_pages": 38
     },
     "kommunikationsstrategie/index.html": {
       "title": "Kommunikationsstrategie für Unternehmen | klartext digital",
@@ -216,11 +216,11 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 22599,
+      "html_bytes": 22687,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "kontakt/index.html": {
       "title": "Abo oder Projekt besprechen | klartext digital",
@@ -231,11 +231,11 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 21981,
+      "html_bytes": 22069,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "laune.html": {
       "title": "Laune folgt dem Zeiger",
@@ -254,17 +254,17 @@
     "leistungen/index.html": {
       "title": "Marketing-Leistungen für Schweizer KMU | klartext.",
       "description": "Branding, Social Media, Webdesign, Performance Marketing und E-Mail Marketing: die Leistungen von klartext. im Überblick.",
-      "main_words": 78,
+      "main_words": 88,
       "schema": [
         "WebPage",
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 22351,
+      "html_bytes": 22570,
       "responsive_images": 10,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "marke.html": {
       "title": "Marke | klartext.",
@@ -283,17 +283,17 @@
     "marketing-abo/index.html": {
       "title": "Marketing im Abo | SEO, Content &amp; Ads | klartext digital",
       "description": "Laufendes Marketing im Abo: SEO, Website-Betreuung, Social Media, Google und Meta Ads sowie Newsletter. Als Umsetzungsteam oder Ergänzung eures Marketings.",
-      "main_words": 563,
+      "main_words": 573,
       "schema": [
         "WebPage",
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 24978,
+      "html_bytes": 25285,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "performance-marketing/index.html": {
       "title": "Google &amp; Meta Ads: Betreuung | klartext digital",
@@ -304,11 +304,11 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 27962,
+      "html_bytes": 28050,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "projektarbeit/index.html": {
       "title": "Marketing-Projekte: Webdesign &amp; Strategie | klartext digital",
@@ -319,11 +319,11 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 22729,
+      "html_bytes": 22817,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "projekte/aesthetics-medical/index.html": {
       "title": "Aesthetics Medical | Social Media | klartext.",
@@ -334,7 +334,7 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 28593,
+      "html_bytes": 28687,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
@@ -349,7 +349,7 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 29051,
+      "html_bytes": 29145,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
@@ -364,11 +364,11 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 21737,
+      "html_bytes": 21825,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "projekte/meridian/index.html": {
       "title": "Meridian | klartext.",
@@ -379,7 +379,7 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 21539,
+      "html_bytes": 21633,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
@@ -394,7 +394,7 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 21698,
+      "html_bytes": 21792,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
@@ -409,7 +409,7 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 27627,
+      "html_bytes": 27721,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
@@ -424,11 +424,26 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 21449,
+      "html_bytes": 21543,
       "responsive_images": 5,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
       "incoming_pages": 6
+    },
+    "seo/index.html": {
+      "title": "SEO-Betreuung Schweiz | Inhalte &amp; Technik | klartext digital",
+      "description": "SEO für Unternehmen und interne Marketingteams: technische Hürden prüfen, relevante Inhalte verbessern und Fortschritt mit Such- und Anfragedaten bewerten.",
+      "main_words": 695,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 26149,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 37
     },
     "social-media/index.html": {
       "title": "Social-Media-Betreuung &amp; Content | klartext digital",
@@ -439,11 +454,11 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 27664,
+      "html_bytes": 27752,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "takt.html": {
       "title": "Bildtakt messen",
@@ -468,26 +483,41 @@
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 25653,
+      "html_bytes": 25741,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "webdesign/index.html": {
       "title": "Webdesign Schweiz für KMU | klartext.",
       "description": "Webdesign für Schweizer KMU: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.",
-      "main_words": 1079,
+      "main_words": 1080,
       "schema": [
         "WebPage",
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 34548,
+      "html_bytes": 34694,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
+    },
+    "website-betreuung/index.html": {
+      "title": "Website-Betreuung &amp; Pflege | klartext digital",
+      "description": "Website-Inhalte pflegen, Funktionen prüfen und Änderungen geordnet umsetzen. Laufende Betreuung für Unternehmen und als Ergänzung eures Marketingteams.",
+      "main_words": 670,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 26043,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 1,
+      "incoming_pages": 37
     },
     "wissen/google-ads-budget/index.html": {
       "title": "Google-Ads-Budget planen: Kosten &amp; Kontrolle | klartext digital",
@@ -499,7 +529,7 @@
         "Article",
         "BreadcrumbList"
       ],
-      "html_bytes": 28497,
+      "html_bytes": 28591,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 2,
@@ -508,17 +538,17 @@
     "wissen/index.html": {
       "title": "Marketing-Wissen für Schweizer KMU | klartext.",
       "description": "Website, Budget und Marketing verständlich planen: Leitfäden und Antworten auf praktische Fragen von Schweizer KMU.",
-      "main_words": 103,
+      "main_words": 114,
       "schema": [
         "WebPage",
         "Organization",
         "BreadcrumbList"
       ],
-      "html_bytes": 20763,
+      "html_bytes": 21038,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
-      "incoming_pages": 34
+      "incoming_pages": 37
     },
     "wissen/marketingbudget-kmu/index.html": {
       "title": "Marketingbudget für KMU planen | klartext digital",
@@ -530,11 +560,11 @@
         "Article",
         "BreadcrumbList"
       ],
-      "html_bytes": 30040,
+      "html_bytes": 30134,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 2,
-      "incoming_pages": 7
+      "incoming_pages": 8
     },
     "wissen/website-erstellen-lassen/index.html": {
       "title": "Website erstellen lassen: Briefing &amp; Ablauf | klartext digital",
@@ -546,7 +576,7 @@
         "Article",
         "BreadcrumbList"
       ],
-      "html_bytes": 26001,
+      "html_bytes": 26095,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 2,
@@ -562,11 +592,27 @@
         "Article",
         "BreadcrumbList"
       ],
-      "html_bytes": 30961,
+      "html_bytes": 31055,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 1,
       "incoming_pages": 6
+    },
+    "wissen/website-pflege-checkliste/index.html": {
+      "title": "Website-Pflege: Checkliste für Unternehmen | klartext digital",
+      "description": "Website-Pflege organisieren: Inhalte, Kontaktwege, Darstellung und technische Zuständigkeiten prüfen. Eine praktische Checkliste für Marketingteams.",
+      "main_words": 752,
+      "schema": [
+        "WebPage",
+        "Organization",
+        "Article",
+        "BreadcrumbList"
+      ],
+      "html_bytes": 27998,
+      "responsive_images": 6,
+      "robots": "noindex, follow",
+      "clicks_from_home": 2,
+      "incoming_pages": 2
     },
     "wissen/website-relaunch-checkliste/index.html": {
       "title": "Website-Relaunch: SEO-Checkliste | klartext digital",
@@ -578,11 +624,11 @@
         "Article",
         "BreadcrumbList"
       ],
-      "html_bytes": 24951,
+      "html_bytes": 25045,
       "responsive_images": 6,
       "robots": "noindex, follow",
       "clicks_from_home": 2,
-      "incoming_pages": 3
+      "incoming_pages": 5
     }
   },
   "limits": [
