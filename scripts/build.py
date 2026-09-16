@@ -38,6 +38,7 @@ PAGE_META = json.loads((ROOT/'page-meta.json').read_text())
 for route in PAGE_META:
  ROUTES[route+'index.html'] = route
 IMAGE_VARIANTS = json.loads((ROOT/'bild-varianten.json').read_text())
+IMAGE_SIZES = json.loads((ROOT/'bild-groessen.json').read_text()) if (ROOT/'bild-groessen.json').exists() else {}
 ALIASES = {'leistungen/websites.html': 'webdesign/'}
 MAP = {**ROUTES, **ALIASES}
 for target in list(MAP.values()):
@@ -55,6 +56,12 @@ META = {
  'email-marketing/': ('Newsletter & E-Mail-Marketing | klartext digital', 'Newsletter-Kampagnen, Vorlagen und automatisierte Strecken. Konzeption, Umsetzung und Auswertung als laufende Betreuung oder Ergänzung eures Teams.'),
  'leistungen/': ('Marketing-Leistungen für Schweizer KMU | klartext.', 'Branding, Social Media, Webdesign, Performance Marketing und E-Mail Marketing: die Leistungen von klartext. im Überblick.'),
  'ueber-uns/': ('Über klartext. | Marketing für Schweizer KMU', 'Einblick in die Arbeitsweise und den geplanten Auftritt von klartext. Team- und Unternehmensangaben dieser Entwurfsseite sind noch zu bestätigen.'),
+ "projekte/grand-casino-baden/": ("Grand Casino Baden: Social Media | klartext digital", "Laufende Social-Media-Betreuung und Content-Produktion für das Grand Casino Baden seit 2024: Präsenz am Markt, organisch gewachsen."),
+ "projekte/red-bull/": ("Red Bull × Grand Casino Baden | klartext digital", "Content und Fotografie für zwei Drinks zur Winter Edition, umgesetzt in der Bar im Grand Casino Baden."),
+ "projekte/aesthetics-medical/": ("Aesthetics Medical: Social Media | klartext digital", "Social Media und Reels für die Aesthetics Medical AG am Utoquai in Zürich: Behandlungen verständlich zeigen statt erklären müssen."),
+ "projekte/nordlicht/": ("Nordlicht: Markenidentität & Website | klartext digital", "Branding und Website für eine junge Energieplattform: eine klare Markenidentität, entwickelt und umgesetzt in sechs Wochen (2025)."),
+ "projekte/volta/": ("Volta: Auftritt für komplexe Technik | klartext digital", "Branding und 3D-Bildsprache für Volta: ein Auftritt, der komplexe Technik verständlich macht. Umgesetzt in neun Wochen (2024)."),
+ "projekte/meridian/": ("Meridian: vom Nischenprodukt zur Marke | klartext digital", "Branding und Kampagne für Meridian: vom Nischenprodukt zur Marke mit Haltung, entwickelt in zwölf Wochen (2024)."),
  'projekte/': ('Projekte und Referenzen | klartext digital', 'Einblicke in die Referenzen von klartext digital: Projekte aus Branding, Content und digitalem Marketing.'),
  'blog/': ('Gedanken zu Marke und Marketing | klartext.', 'Artikel und Perspektiven zu Markenaufbau, Websites, Social Media und Strategie. Entdeckt den Blog von klartext.'),
  'impressum/': ('Impressum – Entwurf | klartext.', 'Impressumsentwurf von klartext. Verbindliche Betreiber- und Unternehmensangaben sind vor der Veröffentlichung zu vervollständigen.'),
@@ -119,6 +126,24 @@ def rewrite_url(value, source, route):
  if target.endswith('/') or target=='':rel=('./' if rel=='.' else rel+'/')
  return escape(urlunsplit(('', '',rel,u.query,u.fragment)),quote=True)
 
+
+def faq_paare(text):
+ """Frage-Antwort-Paare aus dem sichtbaren Seiteninhalt lesen.
+ Zwei Bauformen: <details><summary> auf den neuen Seiten und das
+ Akkordeon der Startseite. Nur was sichtbar auf der Seite steht,
+ darf ausgezeichnet werden."""
+ paare=[]
+ for m in re.finditer(r'<details[^>]*>\s*<summary[^>]*>(.*?)</summary>(.*?)</details>',text,re.S):
+  paare.append((m.group(1),m.group(2)))
+ for m in re.finditer(r'<span class="frage__text">(.*?)</span>[\s\S]*?<div class="frage__leib">(.*?)</div>',text,re.S):
+  paare.append((m.group(1),m.group(2)))
+ sauber=[]
+ for frage,antwort in paare:
+  f=' '.join(unescape(re.sub('<[^>]+>','',frage)).split())
+  a=' '.join(unescape(re.sub('<[^>]+>',' ',antwort)).split())
+  if f and a and len(a)>25: sauber.append((f,a))
+ return sauber
+
 def breadcrumb(route,title):
  crumbs=[('', 'Startseite')]
  if route.startswith('wissen/') and route!='wissen/':crumbs.append(('wissen/','Wissen'))
@@ -136,13 +161,14 @@ for source,route in ROUTES.items():
  route_dir=route if route.endswith('/') else posixpath.dirname(route)
  s=(ROOT/source).read_text()
  if '</head>' not in s:
-  s='<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'+s.replace('</style>','</style></head><body>',1)+'</body></html>'
+  s='<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'+s.replace('</style>','</style></head><body>',1)+'</body></html>'
  title_old=unescape(re.search(r'<title>(.*?)</title>',s,re.S).group(1))
  default_title=title_old.replace(' | KLARTEXT. Werbeagentur Zürich',' | klartext.').replace(' | KLARTEXT.',' | klartext.')
  desc_match=re.search(r'<meta name="description" content="([^"]*)"',s)
  desc=unescape(desc_match.group(1)) if desc_match else 'Gestaltungsstudie von klartext. Nicht zur Veröffentlichung in Suchmaschinen vorgesehen.'
  if route.startswith('blog/') and route!='blog/':desc=default_title.split('|')[0].strip()+'. Ein Beitrag über Marke und Marketing im klartext.-Blog.'
  title,desc=META.get(route,(default_title,desc))
+ s=re.sub(r'<html lang="de">','<html lang="de-CH">',s,count=1)
  s=re.sub(r'<title>.*?</title>','<title>'+escape(title)+'</title>',s,flags=re.S)
  s=re.sub(r'<meta name="(?:description|robots)"[^>]*>\s*','',s)
  indexable=CONFIG['indexable'] and route in CONFIG['approved_paths']
@@ -159,6 +185,10 @@ for source,route in ROUTES.items():
   article={'@type':'Article','@id':canonical+'#article','headline':headline,'description':desc,'mainEntityOfPage':{'@id':canonical+'#webpage'},'inLanguage':'de-CH','image':preview_image}
   if CONFIG['organization_verified']:article['publisher']={'@id':BASE+'#organization'}
   graph.append(article)
+ fragen=faq_paare(s)
+ if len(fragen)>=2:
+  graph.append({'@type':'FAQPage','@id':canonical+'#faq','inLanguage':'de-CH','mainEntity':[
+   {'@type':'Question','name':f,'acceptedAnswer':{'@type':'Answer','text':a}} for f,a in fragen]})
  person=CONFIG.get('person')
  if person and person.get('verified') and source=='ueber-uns.html':
   visible=unescape(re.sub('<[^>]+>',' ',re.sub(r'<(?:script|style)\b.*?</(?:script|style)>','',s,flags=re.S)))
@@ -186,7 +216,8 @@ for source,route in ROUTES.items():
   tag=re.sub(r'\b(href|src|poster)="([^"]*)"',lambda x:x.group(1)+'="'+rewrite_url(x.group(2),source,route)+'"',tag)
   if variants:
    candidates=', '.join(posixpath.relpath(v['path'],route_dir or '.')+' '+str(v['width'])+'w' for v in variants)
-   tag=tag[:-1]+' srcset="'+candidates+'" sizes="(max-width: 700px) 100vw, 50vw">'
+   sizes=IMAGE_SIZES.get(item[0],'(max-width: 700px) 100vw, 50vw') if item else '(max-width: 700px) 100vw, 50vw'
+   tag=tag[:-1]+' srcset="'+candidates+'" sizes="'+sizes+'">'
   return tag
  s=re.sub(r'<(?:a|link|img|script|video|source)\b[^>]*>',tagfix,s)
  if route and route not in ['marke.html','laune.html','takt.html']:
@@ -213,7 +244,7 @@ for source,route in ROUTES.items():
  prefix=posixpath.relpath('.',route_dir or '.')+'/'
  schema_json=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False).replace('</','<\\/')
  head=f'''\n<meta name="description" content="{escape(desc,quote=True)}">\n<meta name="robots" content="{robots}">\n<link rel="canonical" href="{canonical}">\n<meta property="og:title" content="{escape(title,quote=True)}">\n<meta property="og:description" content="{escape(desc,quote=True)}">\n<meta property="og:url" content="{canonical}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="de_CH">\n<meta property="og:image" content="{BASE}marke/favicon-180.png">\n<link rel="stylesheet" href="{prefix}seo.css">\n<script type="application/ld+json">{schema_json}</script>\n'''
- if route=='':head+='<link rel="preload" as="image" href="kopf/grund.jpg" fetchpriority="high">\n'
+ if route=='':head+='<link rel="preload" as="image" href="kopf/grund.webp" type="image/webp" fetchpriority="high">\n'
  # A real landscape image replaces the tiny app icon in link previews.
  head=head.replace(BASE+'marke/favicon-180.png',preview_image)
  head=head.replace('property="og:type" content="website"','property="og:type" content="'+('article' if is_article else 'website')+'"')
@@ -231,7 +262,7 @@ for old,target in {**ROUTES,**ALIASES}.items():
  if old==canonical_file:continue
  dest.parent.mkdir(parents=True,exist_ok=True)
  rel=posixpath.relpath(target or '.',posixpath.dirname(old) or '.')+'/'
- dest.write_text(f'<!doctype html>\n<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seite verschoben | klartext.</title><meta name="robots" content="noindex, follow"><link rel="canonical" href="{BASE+target}"><meta http-equiv="refresh" content="0;url={rel}"></head><body><p>Diese Seite hat eine neue Adresse: <a href="{rel}">Weiter zur Seite</a>.</p></body></html>')
+ dest.write_text(f'<!doctype html>\n<html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seite verschoben | klartext.</title><meta name="robots" content="noindex, follow"><link rel="canonical" href="{BASE+target}"><meta http-equiv="refresh" content="0;url={rel}"></head><body><p>Diese Seite hat eine neue Adresse: <a href="{rel}">Weiter zur Seite</a>.</p></body></html>')
 paths=[p for p in ROUTES.values() if CONFIG['indexable'] and p in CONFIG['approved_paths']]
 xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join('<url><loc>'+escape(BASE+p)+'</loc></url>\n' for p in paths)+'</urlset>\n'
 (OUT/'sitemap.xml').write_text(xml)

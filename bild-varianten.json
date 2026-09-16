@@ -48,5 +48,75 @@
       "path": "bilder/dienst-5-626.webp",
       "width": 626
     }
+  ],
+  "bilder/portrait-1.jpg": [
+    {
+      "path": "bilder/portrait-1-420.webp",
+      "width": 420
+    },
+    {
+      "path": "bilder/portrait-1-840.webp",
+      "width": 840
+    }
+  ],
+  "bilder/portrait-2.jpg": [
+    {
+      "path": "bilder/portrait-2-420.webp",
+      "width": 420
+    },
+    {
+      "path": "bilder/portrait-2-840.webp",
+      "width": 840
+    }
+  ],
+  "bilder/portrait-3.jpg": [
+    {
+      "path": "bilder/portrait-3-420.webp",
+      "width": 420
+    },
+    {
+      "path": "bilder/portrait-3-840.webp",
+      "width": 840
+    }
+  ],
+  "bilder/portrait-4.jpg": [
+    {
+      "path": "bilder/portrait-4-420.webp",
+      "width": 420
+    },
+    {
+      "path": "bilder/portrait-4-840.webp",
+      "width": 840
+    }
+  ],
+  "bilder/portrait-5.jpg": [
+    {
+      "path": "bilder/portrait-5-420.webp",
+      "width": 420
+    },
+    {
+      "path": "bilder/portrait-5-840.webp",
+      "width": 840
+    }
+  ],
+  "bilder/portrait-6.jpg": [
+    {
+      "path": "bilder/portrait-6-420.webp",
+      "width": 420
+    },
+    {
+      "path": "bilder/portrait-6-840.webp",
+      "width": 840
+    }
+  ],
+  "logos/gcb.png": [
+    {
+      "path": "logos/gcb-182.webp",
+      "width": 182
+    },
+    {
+      "path": "logos/gcb-364.webp",
+      "width": 364
+    }
   ]
 }
