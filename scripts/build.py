@@ -26,8 +26,6 @@ ROUTES = {
  'ueber-uns.html': 'ueber-uns/',
  'arbeiten/index.html': 'projekte/',
  'blog/index.html': 'blog/',
- 'wissen/index.html': 'wissen/',
- 'wissen/website-kosten-schweiz/index.html': 'wissen/website-kosten-schweiz/',
  'recht/impressum.html': 'impressum/',
  'recht/datenschutz.html': 'datenschutz/',
 }
@@ -50,33 +48,46 @@ BLOG_AUTOREN = json.loads((ROOT/'blog-autoren.json').read_text()) if (ROOT/'blog
 MONATE = {'Jan':1,'Feb':2,'Mär':3,'Maer':3,'Apr':4,'Mai':5,'Jun':6,'Jul':7,'Aug':8,'Sep':9,'Okt':10,'Nov':11,'Dez':12}
 
 def blog_beitraege():
- """Liest jeden Blogartikel und gibt die Angaben für seine Karte zurück."""
+ """Liest jeden Blogartikel und gibt die Angaben für seine Karte zurück.
+
+ Zwei Bauformen: die kurzen Standpunkte liegen flach als blog/<x>.html und
+ tragen Datum, Einstiegsabsatz und Bild im Artikel selbst. Die Leitfaeden
+ liegen als Ordner blog/<x>/index.html; sie haben kein Datum, oft keinen
+ Einstiegsabsatz vor dem Inhaltsverzeichnis und kein figure-Bild. Fuer sie
+ kommen Anriss und Bild aus page-meta.json. Gemessen am 17.09.2026: eine
+ Karte ohne Datum und ohne Person haelt — die Hoehe kommt aus dem Raster.
+ """
  aus=[]
- for p in sorted((ROOT/'blog').glob('*.html')):
-  if p.name=='index.html' or re.search(r' \d+$',p.stem): continue
+ kandidaten=[(p,p.name,False) for p in sorted((ROOT/'blog').glob('*.html'))]
+ kandidaten+=[(p,p.parent.name+'/',True) for p in sorted((ROOT/'blog').glob('*/index.html'))]
+ for p,ziel,ordner in kandidaten:
+  if not ordner and p.name=='index.html': continue
+  if re.search(r' \d+$',p.stem) or ' ' in p.as_posix(): continue
   s=p.read_text()
   m=re.search(r'<main[\s\S]*?</main>',s)
   k=m.group(0) if m else s
   h1=re.search(r'<h1[^>]*>([\s\S]*?)</h1>',k)
+  if not h1: continue
+  stamm=p.parent.name if ordner else p.stem
+  meta=PAGE_META.get('blog/'+ziel,{}) if ordner else {}
   chip=re.search(r'<span class="chip"[^>]*>([^<]*)</span>',k)
-  bild=re.search(r'artikel__bild"[\s\S]*?src="\.\./([^"]+)"',k)
-  anriss=re.search(r'<article class="artikel"[^>]*>\s*<p>([\s\S]*?)</p>',k)
-  if not (h1 and chip and bild and anriss): continue
-  datum=chip.group(1).strip()
-  t=re.match(r'(\d{1,2})\.\s*([A-Za-zäöüÄÖÜ]+)\s*(\d{4})',datum)
-  # 200 Wörter je Minute, mindestens eine. Der Stern gehört zur Handschrift.
+  datum=chip.group(1).strip() if chip else ''
+  t=re.match(r'(\d{1,2})\.\s*([A-Za-zäöüÄÖÜ]+)\s*(\d{4})',datum) if datum else None
+  bild=re.search(r'artikel__bild"[\s\S]*?src="(?:\.\./)+([^"]+)"',k)
+  bildpfad=bild.group(1) if bild else meta.get('image','')
+  absatz=re.search(r'<article class="artikel[^"]*"[^>]*>\s*<p>([\s\S]*?)</p>',k)
+  anriss=absatz.group(1).strip() if absatz else escape(meta.get('description',''))
+  if not (bildpfad and anriss): continue
   minuten=max(1,round(len(re.sub(r'<[^>]*>',' ',k).split())/200))
   aus.append({
-   'datei':p.name,'stamm':p.stem,
+   'datei':ziel,'stamm':stamm,
    'titel':re.sub(r'<[^>]*>','',h1.group(1)).strip(),
    'datum':datum,
-   'sortierung':(int(t.group(3)),MONATE.get(t.group(2)[:3],0),int(t.group(1))) if t else (0,0,0),
-   'bild':bild.group(1),
-   'anriss':anriss.group(1).strip(),
-   'minuten':minuten,
-   'person':BLOG_AUTOREN.get(p.stem),
+   'sortierung':(1,int(t.group(3)),MONATE.get(t.group(2)[:3],0),int(t.group(1))) if t else (0,0,0,0),
+   'bild':bildpfad,'anriss':anriss,'minuten':minuten,
+   'person':BLOG_AUTOREN.get(stamm),
   })
- aus.sort(key=lambda b:b['sortierung'],reverse=True)   # neueste zuerst
+ aus.sort(key=lambda b:b['sortierung'],reverse=True)
  return aus
 
 def blog_karten_html(beitraege):
@@ -92,7 +103,8 @@ def blog_karten_html(beitraege):
    f'\n      <a class="lese" href="{b["datei"]}" data-rein>'
    '\n        <div class="lese__oben">'
    f'\n          <p class="lese__meta"><span class="lese__zeit">*{b["minuten"]} Min Lesezeit</span>'
-   f'<span class="lese__datum">{escape(b["datum"])}</span></p>'
+   + (f'<span class="lese__datum">{escape(b["datum"])}</span>' if b['datum'] else '')
+   + '</p>'
    f'\n          <h3 class="lese__titel">{escape(b["titel"])}</h3>'
    f'\n          <p class="lese__anriss">{b["anriss"]}</p>'
    f'{person}'
@@ -103,7 +115,16 @@ def blog_karten_html(beitraege):
 
 ALIASES = {'leistungen/websites.html': 'webdesign/',
            'content-creation/index.html': 'social-media/',
-           'kommunikationsstrategie/index.html': 'branding/'}
+           'kommunikationsstrategie/index.html': 'branding/',
+           'wissen/index.html': 'blog/',
+           'wissen/branding-kosten/index.html': 'blog/branding-kosten/',
+           'wissen/google-ads-budget/index.html': 'blog/google-ads-budget/',
+           'wissen/marketingbudget-kmu/index.html': 'blog/marketingbudget-kmu/',
+           'wissen/social-media-kosten/index.html': 'blog/social-media-kosten/',
+           'wissen/website-erstellen-lassen/index.html': 'blog/website-erstellen-lassen/',
+           'wissen/website-kosten-schweiz/index.html': 'blog/website-kosten-schweiz/',
+           'wissen/website-pflege-checkliste/index.html': 'blog/website-pflege-checkliste/',
+           'wissen/website-relaunch-checkliste/index.html': 'blog/website-relaunch-checkliste/'}
 MAP = {**ROUTES, **ALIASES}
 for target in list(MAP.values()):
  MAP[target] = target
@@ -112,8 +133,7 @@ for target in list(MAP.values()):
 META = {
  '': ('Marketingagentur Schweiz: Abo & Projekte | klartext digital', 'Marketing im Abo und Projekte für Unternehmen: SEO, Webdesign, Social Media, Google und Meta Ads sowie Newsletter. Auch als Ergänzung eures Marketingteams.'),
  'webdesign/': ('Webdesign Schweiz für KMU | klartext.', 'Webdesign für Schweizer KMU: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.'),
- 'wissen/website-kosten-schweiz/': ('Was kostet eine Website in der Schweiz? | klartext.', 'Welche Faktoren bestimmen Website-Kosten? Ein Leitfaden für Schweizer KMU zu Konzept, Design, Inhalten, Technik, Betrieb und dem Vergleich von Offerten.'),
- 'wissen/': ('Marketing-Wissen für Schweizer KMU | klartext.', 'Website, Budget und Marketing verständlich planen: Leitfäden und Antworten auf praktische Fragen von Schweizer KMU.'),
+
  'branding/': ('Branding & Markenstrategie Schweiz | klartext digital', 'Positionierung, Markensystem und Vorlagen für euren Alltag. Branding als Projekt oder spezialisierte Ergänzung eurer Marketingabteilung.'),
  'social-media/': ('Social-Media-Betreuung & Content | klartext digital', 'Social Media mit Redaktionsplan, Content-Produktion und Auswertung. Laufende Betreuung, einzelne Kampagnen oder Unterstützung für euer Marketingteam.'),
  'performance-marketing/': ('Google & Meta Ads: Betreuung | klartext digital', 'Google und Meta Ads mit passenden Zielseiten, Messung und laufender Betreuung. Werbeetat und Umsetzung klar planen, Anfragen nach Qualität beurteilen.'),
@@ -131,7 +151,7 @@ META = {
  'impressum/': ('Impressum – Entwurf | klartext.', 'Impressumsentwurf von klartext. Verbindliche Betreiber- und Unternehmensangaben sind vor der Veröffentlichung zu vervollständigen.'),
  'datenschutz/': ('Datenschutzhinweise – Entwurf | klartext.', 'Datenschutzhinweise zum klartext.-Website-Entwurf. Die Angaben müssen vor dem Produktivstart mit den eingesetzten Diensten abgeglichen werden.')
 }
-LABELS={'':'Startseite','webdesign/':'Webdesign','wissen/':'Wissen','wissen/website-kosten-schweiz/':'Website-Kosten Schweiz','leistungen/':'Leistungen','branding/':'Branding','social-media/':'Social Media','performance-marketing/':'Performance Marketing','email-marketing/':'E-Mail Marketing','ueber-uns/':'Über uns','projekte/':'Projekte','blog/':'Blog','impressum/':'Impressum','datenschutz/':'Datenschutz'}
+LABELS={'':'Startseite','webdesign/':'Webdesign','leistungen/':'Leistungen','branding/':'Branding','social-media/':'Social Media','performance-marketing/':'Performance Marketing','email-marketing/':'E-Mail Marketing','ueber-uns/':'Über uns','projekte/':'Projekte','blog/':'Blog','impressum/':'Impressum','datenschutz/':'Datenschutz'}
 for route, meta in PAGE_META.items():
  META[route] = (meta['title'], meta['description'])
  LABELS[route] = meta['label']
@@ -215,7 +235,7 @@ def faq_paare(text):
 
 def breadcrumb(route,title):
  crumbs=[('', 'Startseite')]
- if route.startswith('wissen/') and route!='wissen/':crumbs.append(('wissen/','Wissen'))
+ 
  if route.startswith('blog/') and route!='blog/':crumbs.append(('blog/','Blog'))
  if route.startswith('projekte/') and route!='projekte/':crumbs.append(('projekte/','Projekte'))
  crumbs.append((route,LABELS.get(route,title.split('|')[0].strip())))
@@ -247,7 +267,7 @@ for source,route in ROUTES.items():
  if CONFIG['organization_verified']:
   graph.append({'@type':'Organization','@id':BASE+'#organization','name':'klartext digital','alternateName':'klartext.','url':BASE,'logo':BASE+'marke/wortmarke.svg'})
   graph[0]['publisher']={'@id':BASE+'#organization'}
- is_article=route=='wissen/website-kosten-schweiz/' or PAGE_META.get(route,{}).get('article',False)
+ is_article=PAGE_META.get(route,{}).get('article',False)
  preview_image=BASE+PAGE_META.get(route,{}).get('image','bilder/dienst-3.jpg')
  if is_article:
   headline=unescape(re.sub('<[^>]+>','',re.search(r'<h1\b[^>]*>(.*?)</h1>',s,re.S).group(1)))
@@ -310,7 +330,7 @@ for source,route in ROUTES.items():
   s=re.sub(r'(<section class="unter[^"\n]*">)',lambda m:m.group(1)+markup,s,count=1)
   if markup not in s:s=s.replace('<main>','<main>'+markup,1)
  # All standard footers expose the new knowledge hub.
- s=s.replace('<p class="fuss__kopf">Seite</p>','<p class="fuss__kopf">Seite</p><a href="'+posixpath.relpath('wissen',route_dir or '.')+'/">Wissen</a>')
+ s=s.replace('<p class="fuss__kopf">Seite</p>','<p class="fuss__kopf">Seite</p><a href="'+posixpath.relpath('blog',route_dir or '.')+'/">Blog</a>')
  # Offer navigation is shared; keep the existing visual menu and interactions.
  def route_link(target):return posixpath.relpath(target,route_dir or '.')+'/'
  offer_nav='<nav class="seo-offer-nav" aria-label="Zusammenarbeit"><a href="'+route_link('marketing-abo')+'">Marketing im Abo</a><a href="'+route_link('projektarbeit')+'">Projektarbeit</a><a href="'+route_link('kontakt')+'">Anfrage vorbereiten</a></nav>'
@@ -355,7 +375,7 @@ xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.
 (OUT/'.nojekyll').touch()
 # GitHub Pages serves this document with HTTP 404 at any missing path.
 # Absolute asset/navigation URLs also work when that path is deeply nested.
-error_html=f'''<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seite nicht gefunden | klartext digital</title><meta name="robots" content="noindex, follow"><meta name="description" content="Diese Seite wurde nicht gefunden. Zur Startseite oder zu den Leistungen von klartext digital."><link rel="canonical" href="{BASE}404.html"><link rel="stylesheet" href="{BASE}stil.css"><link rel="stylesheet" href="{BASE}seo.css"></head><body><main><section class="unter unter--eng"><p class="brush">404</p><h1 class="seo-h1">Hier geht es nicht weiter.</h1><p>Die Adresse stimmt nicht oder die Seite wurde verschoben.</p><p><a class="knopf knopf--akzent" href="{BASE}">Zur Startseite</a></p><nav class="seo-offer-nav" aria-label="Weitere Seiten"><a href="{BASE}marketing-abo/">Marketing im Abo</a><a href="{BASE}projektarbeit/">Projektarbeit</a><a href="{BASE}wissen/">Wissen</a></nav></section></main></body></html>'''
+error_html=f'''<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seite nicht gefunden | klartext digital</title><meta name="robots" content="noindex, follow"><meta name="description" content="Diese Seite wurde nicht gefunden. Zur Startseite oder zu den Leistungen von klartext digital."><link rel="canonical" href="{BASE}404.html"><link rel="stylesheet" href="{BASE}stil.css"><link rel="stylesheet" href="{BASE}seo.css"></head><body><main><section class="unter unter--eng"><p class="brush">404</p><h1 class="seo-h1">Hier geht es nicht weiter.</h1><p>Die Adresse stimmt nicht oder die Seite wurde verschoben.</p><p><a class="knopf knopf--akzent" href="{BASE}">Zur Startseite</a></p><nav class="seo-offer-nav" aria-label="Weitere Seiten"><a href="{BASE}marketing-abo/">Marketing im Abo</a><a href="{BASE}projektarbeit/">Projektarbeit</a><a href="{BASE}blog/">Blog</a></nav></section></main></body></html>'''
 (OUT/'404.html').write_text(error_html)
 (OUT/'build-manifest.json').write_text(json.dumps(sorted(str(p.relative_to(OUT)) for p in OUT.rglob('*') if p.is_file()),indent=2)+'\n')
 (ROOT/'docs/URL-MAP.json').write_text(json.dumps({k:BASE+v for k,v in {**ROUTES,**ALIASES}.items()},ensure_ascii=False,indent=2)+'\n')

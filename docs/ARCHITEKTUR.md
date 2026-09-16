@@ -78,6 +78,22 @@ Datei auszulesen (`''` bei 2, `'../'` bei 31, `'../../'` bei 8 Dateien).
 Adresse ist `/blog/`. Die acht Leitfäden ziehen von `/wissen/` dorthin, `/wissen/`
 leitet weiter.
 
+**Wie der Umzug technisch läuft — am 17.09.2026 an einer Kopie erprobt.** Der Schlüssel
+in `page-meta.json` ist **zugleich Quellort und Route**; der Build leitet die Quelldatei
+daraus ab (`ROUTES[route+'index.html'] = route`). Eine Route lässt sich also nicht
+umbiegen, ohne die Datei mitzunehmen — der erste Versuch endete in einem
+`FileNotFoundError`.
+
+Die Lösung ist ein **Ordner-Umzug**: `wissen/<x>/index.html` → `blog/<x>/index.html`.
+Beide liegen zwei Ebenen tief, also bleiben alle Pfade in den Dateien gültig — 475
+`../../`-Verweise über acht Dateien müssen **nicht** angefasst werden. Ein Umzug in die
+flache Form `blog/<x>.html` würde sie alle brechen.
+
+Zu erledigen sind dabei: die acht `page-meta`-Schlüssel umbenennen, eingehende Verweise
+umbiegen (zehn Dateien), `ALIASES` für die alten Adressen, und die Wissens-Übersicht
+auflösen. Der Kartengenerator muss zusätzlich `blog/*/index.html` durchsuchen — als
+Ordner wären die Leitfäden sonst unsichtbar in der Übersicht.
+
 **Warum der Blog der tragende Bereich wird und nicht das Wissen:** Die Blog-Übersicht
 ist bereits das bessere Gerüst — echte Karten mit Datum, Lesezeit, Anriss und
 Kontaktblock. Die Wissens-Übersicht hat 141 Wörter und zwei Aufzählungslisten. Für ein
@@ -130,7 +146,19 @@ Dafür nötig:
 
 ### Datumsquelle
 
-Es werden keine Veröffentlichungsdaten erfunden. Ehrliche Quelle ist die Git-Historie:
+**Korrektur vom 17.09.2026.** Die Angabe unten, die Git-Historie sei die ehrliche
+Datumsquelle, ist falsch und wurde zurückgenommen. Der Menü-Umbau vom 17.09. hat jede
+Datei berührt; „zuletzt geändert" zeigt seither für alle acht Leitfäden denselben Tag.
+Und bei den Standpunkten widerspricht Git der Redaktion ohnehin: Chip sagt Dez 2025,
+erster Commit sagt Aug 2026. Die Chip-Daten sind die redaktionellen.
+
+Die Leitfäden haben **kein** Datum, und es wird keines erfunden. Gemessen am 17.09.2026:
+Eine Karte ohne Datum hält — die Kartenhöhe kommt aus dem Raster (`.lese` mit
+`grid-template-rows:1fr auto`), die Meta-Zeile trägt dann nur die Lesezeit. Ohne
+Personenzeile schrumpft der Abstand zwischen Anriss und Bild von 103 auf 45 px, statt
+eine Lücke zu lassen. **Damit hängt Schritt 3 nicht mehr an Schritt 4.**
+
+Zur Einordnung die Git-Daten, ausdrücklich nicht als Veröffentlichungsdatum:
 
 | Gruppe | angelegt | zuletzt geändert |
 |---|---|---|
@@ -169,7 +197,9 @@ Jede Leistungsseite verweist umgekehrt auf zwei bis vier Artikel ihres Dachs.
 1. Leistungsebene zusammenführen — sieben Seiten, ein Menü ✔ erledigt 17.09.2026
 2. Übersicht vom Build erzeugen lassen — **vor** dem Umzug, sonst wird Handarbeit
    verschoben statt beseitigt
-3. Leitfäden nach `/blog/`, `/wissen/` weiterleiten (je eine Zeile in `ALIASES`)
+3. Leitfäden nach `/blog/`, `/wissen/` weiterleiten ✔ erledigt 17.09.2026 — als
+   **Ordner** verschoben (gleiche Verzeichnistiefe, deshalb blieben 475 Pfade gültig),
+   Wissens-Übersicht aufgelöst, neun Weiterleitungen, Kartengenerator erweitert
 4. Datum maschinenlesbar, Article-Schema für alle Beiträge
 5. „Kurze Antwort"-Kasten je Leitfaden
 6. Die drei Hauptartikel schreiben
