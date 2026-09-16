@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Publish checked output to gh-pages without changing source files or forcing Git."""
 from pathlib import Path
-import shutil, subprocess, sys, tempfile, os, atexit, json
+import re, shutil, subprocess, sys, tempfile, os, atexit, json
 from release_policy import validate_preview
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -43,11 +43,19 @@ with tempfile.TemporaryDirectory(prefix='klartext-publish-') as temporary:
         checkout.mkdir()
         run('git', 'init', '-b', 'gh-pages', cwd=checkout)
         run('git', 'remote', 'add', 'origin', remote, cwd=checkout)
+    # Finder- und iCloud-Kopien ("Datei 2.html") entstehen im erzeugten
+    # Ordner NACH dem Bauen. Sie duerfen nie veroeffentlicht werden:
+    # derselbe Inhalt unter einer zweiten Adresse.
+    kopie = re.compile(r' \d+$')
+    def ohne_kopien(verzeichnis, namen):
+        return [n for n in namen if kopie.search(Path(n).stem)]
     for path in output.iterdir():
         if path.name in {'.klartext-generated', 'build-manifest.json'}:
             continue
+        if kopie.search(path.stem):
+            continue
         if path.is_dir():
-            shutil.copytree(path, checkout / path.name)
+            shutil.copytree(path, checkout / path.name, ignore=ohne_kopien)
         else:
             shutil.copy2(path, checkout / path.name)
     run('git', 'config', 'user.name', 'KLARTEXT', cwd=checkout)
