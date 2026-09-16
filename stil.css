@@ -2205,7 +2205,11 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Alle Masse in Prozent des Grundbildes (1672 x 941). Gesteuert: mona.js */
 .kopfbild{position:absolute;z-index:-2;top:0;bottom:0;
   left:calc(50% - 50vw);width:100vw;overflow:hidden;background:#0B1A1E}
+/* WebP fuer moderne Browser, JPEG als Rueckfall: dasselbe Bild in
+   rund einem Drittel der Dateigroesse. */
 .kopfbild__rahmen{--bild:url("kopf/grund.jpg");
+  --bild:-webkit-image-set(url("kopf/grund.webp") type("image/webp"), url("kopf/grund.jpg") type("image/jpeg"));
+  --bild:image-set(url("kopf/grund.webp") type("image/webp"), url("kopf/grund.jpg") type("image/jpeg"));
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   width:100%;aspect-ratio:1672 / 941}
 @media (max-aspect-ratio:1672 / 941){ .kopfbild__rahmen{width:auto;height:100%} }

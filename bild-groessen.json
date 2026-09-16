@@ -1,0 +1,9 @@
+{
+  "bilder/portrait-1.jpg": "(max-width: 700px) 60vw, 420px",
+  "bilder/portrait-2.jpg": "(max-width: 700px) 60vw, 420px",
+  "bilder/portrait-3.jpg": "(max-width: 700px) 60vw, 420px",
+  "bilder/portrait-4.jpg": "(max-width: 700px) 60vw, 420px",
+  "bilder/portrait-5.jpg": "(max-width: 700px) 60vw, 420px",
+  "bilder/portrait-6.jpg": "(max-width: 700px) 60vw, 420px",
+  "logos/gcb.png": "182px"
+}
