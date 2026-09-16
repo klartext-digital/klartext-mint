@@ -36,7 +36,7 @@ Startseite
 **Abo und Projektarbeit sind keine Leistungen**, sondern zwei Arten der Zusammenarbeit.
 Sie bleiben in der Section „Abo oder Projekt?" und im Klappmenü.
 
-## Ebene 1 — Leistungen: sechs statt elf
+## Ebene 1 — Leistungen: sieben statt elf
 
 Neun einzelne Leistungen sind zu viele fürs Menü, zwei davon tragen keine eigene Seite.
 Die dünnen werden Abschnitte in einer starken Seite — dafür muss nichts erfunden werden.
@@ -44,7 +44,21 @@ Die dünnen werden Abschnitte in einer starken Seite — dafür muss nichts erfu
 | Menüpunkt | Seite | nimmt auf |
 |---|---|---|
 | 01 Marke & Strategie | `branding/` | `kommunikationsstrategie/` (302 W.) |
-| 02 Website | `webdesign/` | `website-betreuung/` als Abschnitt + Verweis |
+| 02 Website | `webdesign/` | — |
+| 07 Website-Betreuung | `website-betreuung/` | eigene Seite statt Abschnitt, siehe unten |
+
+**Korrektur vom 17.09.2026 — Website-Betreuung bleibt eigenständig.** Die Tabelle oben
+sah ursprünglich vor, `website-betreuung/` als Abschnitt in `webdesign/` einzuarbeiten.
+Das war entschieden, bevor die Überschriften der Zielseite vorlagen. `webdesign/` deckt
+mit „Inhalte pflegen und Verantwortung klären", „Suchmaschinenoptimierung als technische
+Grundlage" und „Danach geht die Arbeit weiter" das Thema bereits ab und ist mit 1077
+Wörtern die längste Leistungsseite; 656 Wörter zusätzlich hätten eine Seite ergeben, die
+Projekt, Pflege und SEO gleichzeitig sein will. Website-Betreuung ist eine laufend
+nachgefragte Leistung mit eigenem Suchbegriff und steht deshalb als Eintrag 07 im Menü.
+
+Damit hat das Menü sieben statt sechs Einträge. Die Begründung „neun sind zu viele"
+bleibt gültig, sieben sind vertretbar — der Unterschied ist, dass keine Seite mit
+eigener Suchnachfrage in einer anderen verschwindet.
 | 03 Social Media & Content | `social-media/` | `content-creation/` (350 W.) |
 | 04 Werbung | `performance-marketing/` | — |
 | 05 Newsletter | `email-marketing/` | — |
@@ -152,7 +166,7 @@ Jede Leistungsseite verweist umgekehrt auf zwei bis vier Artikel ihres Dachs.
 
 ## Reihenfolge
 
-1. Leistungsebene zusammenführen — sechs Seiten, ein Menü
+1. Leistungsebene zusammenführen — sieben Seiten, ein Menü ✔ erledigt 17.09.2026
 2. Übersicht vom Build erzeugen lassen — **vor** dem Umzug, sonst wird Handarbeit
    verschoben statt beseitigt
 3. Leitfäden nach `/blog/`, `/wissen/` weiterleiten (je eine Zeile in `ALIASES`)
