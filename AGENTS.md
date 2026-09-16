@@ -46,16 +46,21 @@ Nicht zwei Werkzeuge gleichzeitig auf `main`.
 - **Keine neue Seite ohne Platz im Menü.** Es sind zuletzt sechs Seiten entstanden, die
   nur in der Fusszeile standen — das Klappmenü zeigte fünf Leistungen, die Fusszeile
   acht andere. Wer eine Seite anlegt, trägt sie im selben Zug ins Klappmenü ein
-  (`ndd__liste`, handgeschrieben in 41 Quelldateien) **und** ergänzt Vorschaubild und
+  (`ndd__liste`, handgeschrieben in **38 der 41** Quelldateien — ohne Menü sind nur
+  `laune.html`, `marke.html`, `takt.html`; der Pfad-Vorsatz hängt an der Tiefe:
+  2× `''`, 28× `'../'`, 8× `'../../'`) **und** ergänzt Vorschaubild und
   Textblock — `bewegung.js` koppelt beides über die Position im Array, sonst bleibt die
   Vorschau beim Überfahren leer.
 - **Kein dritter Inhaltsbereich.** Leitfäden und Standpunkte liegen beide unter
   `/blog/`, sortiert nach drei Themendächern. `/wissen/` leitet dorthin weiter.
 - **Ein neuer Artikel ist eine Datei. Sonst nichts.** Die Übersicht in
-  `blog/index.html` ist heute handgeschrieben — sechs Karten mit von Hand gepflegter
-  Lesezeit, Datum, Anriss, Autor und Bild. Das muss der Build erzeugen, **bevor** weitere
-  Artikel dazukommen. Wer vorher Artikel anlegt, verschiebt Handarbeit, statt sie zu
-  beseitigen.
+  `blog/index.html` erzeugt seit 17.09.2026 der Build (`blog_karten_html()` in
+  `scripts/build.py`) aus den Dateien in `blog/` — Lesezeit, Datum, Anriss, Person
+  und Bild. Im Quelltext steht nur das leere Raster `lesegitter` mit einem Hinweis.
+  **Was dort von Hand hineingeschrieben wird, verwirft der Build bei jedem Lauf**
+  — lautlos. Genau das war bis zum 17.09.2026 der Fall: sechs alte Karten standen
+  noch in der Quelle und hatten live keine Wirkung. Personenzuordnung kommt aus
+  `blog-autoren.json`, nicht aus dem Markup.
 - **Datum maschinenlesbar** im Artikel (`<time datetime="…">`), nicht als blosser Text
   und nicht zusätzlich in der Übersichtskarte. Keine Veröffentlichungsdaten erfinden —
   Quelle ist die Git-Historie, angezeigt wird „Aktualisiert".
