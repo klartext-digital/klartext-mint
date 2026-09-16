@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<title>Unternehmenswebsite: der Leitfaden | klartext digital</title>
+<meta name="description" content="Unternehmenswebsite planen: Aufgabe, Struktur, Inhalte, Technik und Betrieb. Der Leitfaden fuehrt die sechs Entscheidungen zusammen, die vor dem ersten Entwurf stehen.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/wortmarke-negativ.svg" alt="KLARTEXT" width="4105" height="859"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../index.html" aria-label="KLARTEXT — zur Startseite"><img src="../../marke/wortmarke.svg" alt="KLARTEXT" width="4105" height="859"></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../index.html#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../index.html#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../leistungen/branding.html" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marke &amp; Strategie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/social-media.html" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media &amp; Content</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/websites.html" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/performance.html" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/email-marketing.html" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../seo/index.html" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../website-betreuung/index.html" data-i="6"><span class="ndd__nr">07</span><span class="ndd__name">Website-Betreuung</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/index.html" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist">
+          <img src="../../bilder/dienst-2.jpg" alt="">
+          <img src="../../bilder/dienst-3.jpg" alt="">
+          <img src="../../bilder/dienst-4.jpg" alt="">
+          <img src="../../bilder/dienst-5.jpg" alt="">
+          <img src="../../bilder/dienst-3.jpg" alt="">
+          <img src="../../bilder/dienst-5.jpg" alt="">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+          <div class="ndd__satz"><b>Gefunden, wenn gesucht wird</b><span>Technische Prüfung, verständliche Inhalte und laufende Auswertung. Als eigenes Projekt oder als Teil des Abos.</span></div>
+          <div class="ndd__satz"><b>Läuft weiter, ohne Nachfragen</b><span>Inhalte pflegen, Funktionen prüfen, Erreichbarkeit im Blick. Mit vereinbartem Weg von der Anfrage zur Änderung.</span></div>
+            </div>
+          </div>
+      <aside class="ndd__karte">
+        <p class="brush">Unsicher?</p>
+        <p class="ndd__karte-titel">Wir sortieren das in 15&nbsp;Minuten.</p>
+        <p class="ndd__karte-text">Kurzes Gespräch, ehrliche Einschätzung.
+          Auch wenn am Ende nichts daraus wird.</p>
+        <a class="knopf knopf--akzent" href="../../index.html#kontakt" tabindex="-1">Gespräch buchen</a>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<main><section class="unter unter--eng"><h1 class="seo-h1">Die Unternehmenswebsite: der Leitfaden</h1><p class="brush">Aufgabe zuerst. Gestaltung danach.</p></section>
+<section class="unter__leib"><div class="unter__text"><p>Die meisten Website-Projekte scheitern nicht an der Gestaltung, sondern daran, dass niemand vorher festgelegt hat, was die Seite eigentlich tun soll. Dieser Leitfaden führt die sechs Entscheidungen zusammen, die vor dem ersten Entwurf gehören — von der Aufgabe über Struktur, Inhalte und Technik bis zum Betrieb danach. Die vertiefenden Leitfäden zu Kosten, Ablauf, Relaunch und Pflege sind jeweils verlinkt.</p></div><figure class="unter__bild"><img src="../../bilder/dienst-5.jpg" alt="" loading="lazy"></figure></section>
+<article class="artikel seo-prose">
+<p class="seo-antwort"><strong>Kurze Antwort:</strong> Eine Unternehmenswebsite ist fertig, wenn sie eine Aufgabe erfüllt — Anfragen, Bewerbungen oder Termine. Vor dem ersten Entwurf gehören sechs Dinge geklärt: Aufgabe, Zielgruppe, Inhalte, Zuständigkeit, Technik und Betrieb. Wer damit anfängt, diskutiert später über Wirkung statt über Geschmack. Der Umfang ergibt sich daraus, nicht umgekehrt.</p>
+<nav class="seo-inhalt" aria-label="Inhaltsverzeichnis"><h2>Worum es geht</h2><ul><li><a href="#aufgabe">Was die Website leisten muss</a></li><li><a href="#entscheidungen">Sechs Entscheidungen vor dem ersten Entwurf</a></li><li><a href="#struktur">Welche Seiten wirklich gebraucht werden</a></li><li><a href="#inhalte">Inhalte: der Teil, der liegen bleibt</a></li><li><a href="#technik">Technik, Auffindbarkeit, Geschwindigkeit</a></li><li><a href="#betrieb">Nach dem Start beginnt der Betrieb</a></li><li><a href="#fehler">Fünf Fehler, die teuer werden</a></li><li><a href="#fragen">Häufige Fragen</a></li></ul></nav>
+
+<h2 id="aufgabe">Was die Website leisten muss</h2>
+<p>Bevor über Farben, Bilder oder Menüpunkte gesprochen wird, braucht ein Website-Projekt eine Antwort auf eine unbequeme Frage: Woran merkt ihr in einem Jahr, dass sie funktioniert? Wenn die Antwort «sie sieht besser aus» lautet, fehlt die Aufgabe — und damit jeder Massstab für die späteren Entscheidungen.</p>
+<p>Brauchbare Aufgaben sind konkret und zählbar: qualifizierte Anfragen über das Kontaktformular, Bewerbungen auf offene Stellen, gebuchte Termine, Downloads einer Unterlage, Anrufe aus der mobilen Ansicht. Eine Seite darf mehrere Aufgaben haben, aber sie haben eine Reihenfolge. Diese Reihenfolge entscheidet später, was auf der Startseite oben steht und was nach unten rutscht.</p>
+<p>Der Nebeneffekt ist wichtiger als die Messbarkeit: Sobald die Aufgabe steht, sind Geschmacksdiskussionen entschärft. «Gefällt mir nicht» wird zu «hilft das der Anfrage?» — eine Frage, über die sich sachlich reden lässt. Wie stark dieser Unterschied wirkt, beschreibt der Standpunkt <a href="../website-die-arbeitet/">Eine Website, die arbeitet</a>.</p>
+
+<h2 id="entscheidungen">Sechs Entscheidungen vor dem ersten Entwurf</h2>
+<p>Diese sechs Punkte bestimmen Aufwand, Zeitplan und Ergebnis. Sie lassen sich vorab klären — jeder Punkt, der offen bleibt, wird mitten im Projekt entschieden, wenn Umbauen teuer ist.</p>
+<dl class="angebot-liste"><div><dt>Die Aufgabe und ihre Rangfolge</dt><dd>Was soll die Seite auslösen, und was davon zuerst? Eine Seite, die gleichzeitig verkaufen, rekrutieren und informieren will, tut am Ende nichts davon richtig.</dd></div><div><dt>Für wen die Seite geschrieben wird</dt><dd>Einkauf, Geschäftsleitung und Fachabteilung suchen unterschiedlich und brauchen unterschiedliche Belege. Wer alle gleichzeitig anspricht, schreibt für niemanden.</dd></div><div><dt>Welche Inhalte tatsächlich vorhanden sind</dt><dd>Texte, Bilder, Referenzen, Zahlen, Personen. Nicht was gewünscht ist, sondern was am Starttag wirklich bereitliegt. Dieser Punkt verzögert Projekte häufiger als die Technik.</dd></div><div><dt>Wer entscheidet und wer pflegt</dt><dd>Eine verantwortliche Person mit gebündeltem Feedback ist der grösste Spareffekt im ganzen Projekt. Und es braucht jemanden, der die Seite nach dem Start wirklich betreut.</dd></div><div><dt>Welche Funktionen gebraucht werden</dt><dd>Mehrsprachigkeit, Stellenportal, Formulare mit Weiterverarbeitung, Shop, Anbindung an bestehende Systeme. Jede Funktion ist ein eigener Arbeitsschritt mit eigenen Folgekosten.</dd></div><div><dt>Wo die Seite betrieben wird</dt><dd>Hosting, Domain, Mailversand, Zugänge. Diese Fragen wirken nebensächlich, blockieren aber regelmässig genau den Tag, an dem live geschaltet werden soll.</dd></div></dl>
+<p>Aus diesen sechs Angaben entsteht eine belastbare Offerte statt einer Spanne. Welche Faktoren dabei den Preis treiben, führt der Leitfaden <a href="../website-kosten-schweiz/">Was kostet eine Website in der Schweiz?</a> im Einzelnen auf; der Ablauf eines Auftrags steht in <a href="../website-erstellen-lassen/">Website erstellen lassen</a>.</p>
+
+<h2 id="struktur">Welche Seiten wirklich gebraucht werden</h2>
+<p>Die Struktur folgt der Aufgabe, nicht dem Organigramm. Ein häufiger Fehler ist, die Abteilungen des Unternehmens als Menüpunkte abzubilden — für Besucher ist das eine Landkarte, die sie nicht lesen können.</p>
+<p>Als Grundgerüst tragen fünf Bereiche die meisten Unternehmensseiten:</p>
+<ol><li>Die Startseite, die in wenigen Sekunden beantwortet, was ihr anbietet und für wen.</li><li>Eine Seite je Leistung, die für sich verständlich ist — denn sie wird oft direkt aus der Suche aufgerufen, nicht über die Startseite.</li><li>Belege: Referenzen, Projekte, Zahlen, Kundenstimmen. Ohne sie bleibt jede Aussage eine Behauptung.</li><li>Eine Seite über das Unternehmen und die Menschen dahinter, weil Vertrauen bei Dienstleistungen ein Teil der Kaufentscheidung ist.</li><li>Ein Weg zum Abschluss: Kontakt, Terminbuchung oder Formular — von jeder Seite aus erreichbar.</li></ol>
+<p>Jede weitere Seite braucht einen Grund. Und sie braucht einen Platz in der Navigation: Eine Seite, die nur in der Fusszeile verlinkt ist, wird kaum aufgerufen — sie existiert technisch, aber nicht im Blickfeld der Besucher.</p>
+<p>Zwei Regeln ersparen später Umbauten. Erstens: Jede Leistungsseite muss für sich verständlich sein, weil Besucher aus der Suche direkt dort landen und die Startseite nie zu sehen bekommen. Zweitens: eine Seite je Anliegen, nicht je Abteilung. Wenn zwei Seiten dieselbe Frage beantworten, treten sie in der Suche gegeneinander an, und beide wirken schwächer als eine gute Seite es täte.</p>
+
+<h2 id="inhalte">Inhalte: der Teil, der liegen bleibt</h2>
+<p>In fast jedem Projekt ist die Gestaltung schneller fertig als die Texte. Der Grund ist strukturell: Gestaltung ist beauftragt, Inhalte entstehen intern — neben dem Tagesgeschäft, oft ohne feste Zuständigkeit und ohne Termin.</p>
+<p>Zwei Dinge helfen zuverlässig. Erstens: Inhalte vor der Gestaltung sammeln, nicht danach. Ein Entwurf mit Platzhaltertext sieht immer aufgeräumter aus als die Wirklichkeit, und genau deshalb verschiebt er das Problem. Zweitens: je Seite eine Person, ein Termin, ein Umfang. «Alle schauen mal drüber» erzeugt keinen Text.</p>
+<p>Beim Schreiben selbst zählt vor allem die Reihenfolge. Die meisten Unternehmensseiten beginnen mit sich selbst — Gründungsjahr, Werte, Philosophie — und kommen zur Leistung erst, wenn der Leser längst weg ist. Umgekehrt ist es richtig: zuerst was jemand bekommt, dann für wen es passt, dann der Beleg, dann der nächste Schritt.</p>
+<p class="seo-lesetipp">Prüft jede Seite mit einer einfachen Probe: Wenn jemand nur die Überschrift und den ersten Absatz liest, weiss er dann, ob er richtig ist? Wenn nicht, steht das Wichtigste zu weit unten.</p>
+
+<h2 id="technik">Technik, Auffindbarkeit, Geschwindigkeit</h2>
+<p>Technik entscheidet nicht darüber, ob eine Seite gut ist, aber sie kann eine gute Seite unsichtbar machen. Drei Bereiche gehören in jeden Auftrag, statt später als Nacharbeit aufzutauchen.</p>
+<ul><li><strong>Auffindbarkeit.</strong> Saubere Adressen, sinnvolle Seitentitel und Beschreibungen, eine lesbare Überschriftenstruktur. Das ist keine Zusatzleistung, sondern Teil der Bauweise. Wer damit erst nach dem Start beginnt, baut um statt auf.</li><li><strong>Geschwindigkeit auf dem Handy.</strong> Nicht im Büro über Glasfaser, sondern unterwegs. Der grösste Hebel sind fast immer die Bilder: richtige Masse, moderne Formate, Masse im Markup, damit beim Laden nichts springt.</li><li><strong>Erreichbarkeit und Barrierefreiheit.</strong> Ausreichende Kontraste, Bedienbarkeit mit der Tastatur, beschriftete Formularfelder. Das nützt allen, nicht nur einer Minderheit — und es ist im Nachhinein deutlich aufwendiger.</li></ul>
+<p>Diese Punkte sind messbar, und sie sollten gemessen werden statt geschätzt. Wie die technische Grundlage laufend betreut wird, steht auf der Seite <a href="../../webdesign/">Webdesign</a>; die Suchseite dazu ist <a href="../../seo/">SEO-Betreuung</a>.</p>
+
+<h2 id="betrieb">Nach dem Start beginnt der Betrieb</h2>
+<p>Der häufigste Planungsfehler ist, den Start als Ziellinie zu behandeln. Eine Website ist keine Broschüre, die gedruckt wird und dann fertig ist, sondern ein Betrieb: Inhalte veralten, Preise ändern sich, Personen wechseln, Systeme brauchen Aktualisierungen.</p>
+<p>Deshalb gehören zwei Dinge in die Planung, bevor gebaut wird. Erstens ein vereinbarter Weg von der Änderungsanfrage zur umgesetzten Änderung — sonst landet jede Kleinigkeit als Zuruf irgendwo und bleibt liegen. Zweitens ein regelmässiger Blick auf das, was die Aufgabe betrifft: Kommen Anfragen? Über welche Seiten? Brechen Formulare ab?</p>
+<p>Bei der Auswertung lohnt eine Unterscheidung, die oft verwischt wird: Ein technischer Testwert sagt etwas über die Bauweise aus, aber nichts darüber, ob die Seite gefunden wird oder Anfragen bringt. Beides braucht seine eigene Messung — die technische Prüfung im Werkzeug, die Sichtbarkeit in der Search Console, die Anfragen dort, wo sie eingehen. Wer nur auf den Testwert schaut, hält eine schnelle Seite für eine erfolgreiche.</p>
+<p>Was dabei konkret geprüft wird, führt die <a href="../website-pflege-checkliste/">Checkliste zur Website-Pflege</a> auf. Wer diese Arbeit abgeben will, findet sie unter <a href="../../website-betreuung/">Website-Betreuung</a>.</p>
+
+<h2 id="fehler">Fünf Fehler, die teuer werden</h2>
+<p>Diese fünf tauchen in Projekten unterschiedlichster Grösse auf, und sie kosten fast immer mehr als der Punkt, an dem gespart wurde.</p>
+<ul><li><strong>Ohne Aufgabe starten.</strong> Ohne Massstab wird über Geschmack entschieden, und zwar wiederholt, in jeder Runde neu.</li><li><strong>Inhalte nach der Gestaltung planen.</strong> Der Entwurf bestimmt dann, wie viel Text vorhanden sein muss — und nicht der Inhalt, wie die Seite aussieht.</li><li><strong>Zu viele Entscheider.</strong> Widersprüchliches Feedback verbraucht die Abstimmungsrunden, die für Verbesserungen gedacht waren.</li><li><strong>Bestehende Adressen beim Relaunch verlieren.</strong> Das ist der einzige Fehler in dieser Liste, der messbar Sichtbarkeit vernichtet, die über Jahre entstanden ist.</li><li><strong>Den Betrieb nicht einplanen.</strong> Eine Seite, die niemand pflegt, ist nach zwei Jahren ein Argument gegen das Unternehmen.</li></ul>
+<p class="seo-lesetipp">Der vierte Punkt ist der folgenreichste und gleichzeitig der am einfachsten vermeidbare. Was vor einem Wechsel gesichert werden muss, steht in der <a href="../website-relaunch-checkliste/">Relaunch-Checkliste</a>.</p>
+
+<h2 id="fragen">Häufige Fragen</h2>
+<details><summary>Wie lange dauert eine neue Unternehmenswebsite?</summary><p>Die Bauzeit ist selten der Engpass. Was die Dauer bestimmt, sind Entscheidungen und Inhalte: Wie schnell liegen Texte, Bilder und Freigaben vor. Projekte mit geklärter Zuständigkeit und vorhandenen Inhalten laufen deutlich schneller als solche mit grösserem Budget und offenen Fragen.</p></details>
+<details><summary>Warum steht hier keine Preisspanne?</summary><p>Weil dieselbe Summe je nach Umfang eine schlanke Seite mit fünf Unterseiten oder einen mehrsprachigen Auftritt mit Anbindungen bedeuten kann. Eine Spanne ohne Leistungsumfang hilft beim Vergleich nicht. Die Faktoren, an denen ihr euer eigenes Angebot prüfen könnt, stehen im <a href="../website-kosten-schweiz/">Kostenleitfaden</a>.</p></details>
+<details><summary>Brauchen wir ein Redaktionssystem?</summary><p>Das hängt daran, wie oft sich Inhalte ändern und wer sie ändert. Bei wenigen Seiten, die selten angepasst werden, ist ein System vor allem zusätzliche Wartung. Sobald mehrere Personen regelmässig Inhalte pflegen, Stellen ausschreiben oder Beiträge veröffentlichen, spart es mehr Zeit als es kostet. Die Frage ist also nicht technisch, sondern organisatorisch.</p></details>
+<details><summary>Sollen wir zuerst die Website oder zuerst die Marke machen?</summary><p>Wenn Positionierung und Botschaften unklar sind, wird die Website diese Unklarheit sichtbar machen — sie ist dann eine teure Art, eine offene Frage zu stellen. Steht die Marke, ist die Website die Umsetzung. Steht sie nicht, ist es meist günstiger, zuerst dort Klarheit zu schaffen.</p></details>
+<details><summary>Können wir die Seite später selbst pflegen?</summary><p>Ja, wenn das von Anfang an so gebaut wird. Selbst pflegen heisst: klare Vorlagen, Schulung und eine zuständige Person mit Zeit dafür. Ohne diese drei Dinge entsteht ein System, das theoretisch bedienbar ist und praktisch nicht benutzt wird.</p></details>
+
+<h2>Euer nächster Schritt</h2>
+<p>Klärt die sechs Entscheidungen aus dem zweiten Abschnitt schriftlich, bevor ihr Angebote einholt. Mit diesen Angaben werden Offerten vergleichbar, und das Projekt beginnt mit einer Aufgabe statt mit einem Entwurf.</p>
+<p><a class="knopf knopf--akzent" href="../../kontakt/?anliegen=projekt">Website-Vorhaben besprechen</a></p>
+</article></main>
+
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <p class="brush">Auf ein Wort</p>
+      <h2>Reden<br>wir.</h2>
+      <div class="fuss__kontakt">
+        <a class="fuss__gross" href="mailto:hallo@klartext-digital.ch">
+          <span>hallo@klartext-digital.ch</span><i aria-hidden="true">↗</i></a>
+        <a class="fuss__gross" href="tel:+41000000000">
+          <span>+41 00 000 00 00</span><i aria-hidden="true">↗</i></a>
+      </div>
+      <p class="fuss__ort">Werbeagentur mit Sitz in Zürich, tätig in der ganzen Deutschschweiz<br>
+        Mo bis Fr, 08:30 bis 18:00</p>
+    </div>
+
+    <div class="fuss__spalten">
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Seite</p>
+        <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+        <a class="mlink" href="../../leistungen/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Leistungen</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen</span></a>
+        <a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+        <a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+        <a class="mlink" href="../../index.html#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+      </nav>
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Leistungen</p>
+        <a class="mlink" href="../../leistungen/branding.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a>
+        <a class="mlink" href="../../leistungen/social-media.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a>
+        <a class="mlink" href="../../leistungen/websites.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a>
+        <a class="mlink" href="../../leistungen/performance.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a>
+        <a class="mlink" href="../../leistungen/email-marketing.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a>
+      </nav>
+      <div class="fuss__spalte">
+        <p class="fuss__kopf">Folgen</p>
+        <div class="fuss__sozial">
+          <a href="../../index.html" aria-label="Instagram"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+          <a href="../../index.html" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.4 10.4v6.2M7.4 7.6v.1M11.4 16.6v-3.4a2.4 2.4 0 0 1 4.8 0v3.4M11.4 16.6v-6.2"/></svg><span>LinkedIn</span></a>
+          <a href="../../index.html" aria-label="TikTok"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M14.2 3.5v10.9a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14.2 3.5a5 5 0 0 0 5 5"/></svg><span>TikTok</span></a>
+          <a href="../../index.html" aria-label="Behance"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3 6h5.2a2.6 2.6 0 0 1 0 5.2H3zM3 11.2h5.6a2.9 2.9 0 0 1 0 5.8H3zM14.6 13.4h6.4a3.2 3.2 0 0 0-6.4 0 3.2 3.2 0 0 0 5.9 1.7M15.6 7.4h4.4"/></svg><span>Behance</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p>
+    <nav>
+      <a href="../../recht/impressum.html">Impressum</a>
+      <a href="../../recht/datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859"></div>
+</footer>
+
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script src="../../js/lenis.min.js"></script>
+<script src="../../js/gsap.min.js"></script>
+<script src="../../js/ScrollTrigger.min.js"></script>
+<script src="../../lader.js"></script>
+<script src="../../bewegung.js"></script>
+<script src="../../zeiger.js"></script>
+<script src="../../rechner.js"></script>
+</body>
+</html>

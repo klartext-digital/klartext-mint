@@ -88,5 +88,12 @@
     "label": "Website-Relaunch: Was darf beim Wechsel nicht verloren gehen?",
     "article": true,
     "image": "bilder/dienst-3.jpg"
+  },
+  "blog/unternehmenswebsite-leitfaden/": {
+    "title": "Unternehmenswebsite: der Leitfaden | klartext digital",
+    "description": "Unternehmenswebsite planen: Aufgabe, Struktur, Inhalte, Technik und Betrieb. Der Leitfaden fuehrt die sechs Entscheidungen zusammen, die vor dem ersten Entwurf stehen.",
+    "label": "Die Unternehmenswebsite: der Leitfaden",
+    "article": true,
+    "image": "bilder/dienst-5.jpg"
   }
 }
