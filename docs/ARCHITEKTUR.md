@@ -121,8 +121,16 @@ Redaktionsteam gegen eine Person; der Massstab wird nicht übernommen.
 
 ## Die Wachstumsbremse: die Übersicht wächst nicht mit
 
-**Das ist wichtiger als der Ordnername.** Die sechs Karten stehen handgeschrieben in
-`blog/index.html`; `build.py` erzeugt davon nichts. Jede Karte trägt von Hand gepflegt:
+> **Behoben am 17.09.2026.** Der Abschnitt beschreibt die Ausgangslage und bleibt als
+> Begründung stehen. Stand heute: `blog_karten_html()` erzeugt alle Karten, und die
+> sechs handgeschriebenen Karten sind aus `blog/index.html` entfernt — sie wurden bei
+> jedem Bau verworfen und hatten live keine Wirkung. Ergänzung zur Routenfrage weiter
+> unten: Ordnerartikel (`blog/<slug>/index.html`) kommen **nicht** über den `glob`,
+> sondern über `page-meta.json` (Zeile 38: `ROUTES[route+'index.html'] = route`). Ein
+> neuer Artikel braucht deshalb genau einen Eintrag dort — und sonst nichts.
+
+**Das war wichtiger als der Ordnername.** Die sechs Karten standen handgeschrieben in
+`blog/index.html`; `build.py` erzeugte davon nichts. Jede Karte trug von Hand gepflegt:
 Lesezeit, Datum, Titel, Anriss, Autor, Bild. Bei 6 Beiträgen geht das, bei 30 driftet es
 auseinander, bei 80 stimmt nichts mehr mit den Artikeln überein.
 
@@ -139,10 +147,12 @@ Dafür nötig:
 2. **Anriss und Lesezeit** aus dem Artikel ableiten, nicht doppelt pflegen.
 3. **Kartenbild** aus `page-meta.json` (`image`) — die Leitfäden haben dort bereits
    eines. Kein neues Bildmaterial nötig.
-4. **Article-Schema für Blogbeiträge**: heute ist `is_article` nur für
-   `wissen/website-kosten-schweiz/` und `page-meta`-Seiten wahr. Die sechs Standpunkte
-   haben deshalb **keine** Artikel-Auszeichnung und alle dasselbe Vorschaubild
-   (`dienst-3.jpg` als Rückfallwert).
+4. **Article-Schema für Blogbeiträge** ✔ erledigt 17.09.2026 (Schritt 4). Die Lage
+   vorher: `is_article` war nur für `wissen/website-kosten-schweiz/` und
+   `page-meta`-Seiten wahr, die sechs Standpunkte hatten **keine** Artikel-Auszeichnung.
+   Heute leitet der Build sie aus dem Datums-Chip ab, 14 von 14 Seiten tragen das
+   Schema. Das Vorschaubild bleibt bei den Standpunkten `dienst-3.jpg` als
+   Rückfallwert — dafür gibt es kein eigenes Bildmaterial und es wird keines erfunden.
 
 ### Datumsquelle
 
