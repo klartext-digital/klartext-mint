@@ -26,7 +26,6 @@ ROUTES = {
  'ueber-uns.html': 'ueber-uns/',
  'arbeiten/index.html': 'projekte/',
  'blog/index.html': 'blog/',
- 'wissen/index.html': 'wissen/',
  'recht/impressum.html': 'impressum/',
  'recht/datenschutz.html': 'datenschutz/',
 }
@@ -104,7 +103,8 @@ def blog_karten_html(beitraege):
    f'\n      <a class="lese" href="{b["datei"]}" data-rein>'
    '\n        <div class="lese__oben">'
    f'\n          <p class="lese__meta"><span class="lese__zeit">*{b["minuten"]} Min Lesezeit</span>'
-   f'<span class="lese__datum">{escape(b["datum"])}</span></p>'
+   + (f'<span class="lese__datum">{escape(b["datum"])}</span>' if b['datum'] else '')
+   + '</p>'
    f'\n          <h3 class="lese__titel">{escape(b["titel"])}</h3>'
    f'\n          <p class="lese__anriss">{b["anriss"]}</p>'
    f'{person}'
@@ -115,7 +115,16 @@ def blog_karten_html(beitraege):
 
 ALIASES = {'leistungen/websites.html': 'webdesign/',
            'content-creation/index.html': 'social-media/',
-           'kommunikationsstrategie/index.html': 'branding/'}
+           'kommunikationsstrategie/index.html': 'branding/',
+           'wissen/index.html': 'blog/',
+           'wissen/branding-kosten/index.html': 'blog/branding-kosten/',
+           'wissen/google-ads-budget/index.html': 'blog/google-ads-budget/',
+           'wissen/marketingbudget-kmu/index.html': 'blog/marketingbudget-kmu/',
+           'wissen/social-media-kosten/index.html': 'blog/social-media-kosten/',
+           'wissen/website-erstellen-lassen/index.html': 'blog/website-erstellen-lassen/',
+           'wissen/website-kosten-schweiz/index.html': 'blog/website-kosten-schweiz/',
+           'wissen/website-pflege-checkliste/index.html': 'blog/website-pflege-checkliste/',
+           'wissen/website-relaunch-checkliste/index.html': 'blog/website-relaunch-checkliste/'}
 MAP = {**ROUTES, **ALIASES}
 for target in list(MAP.values()):
  MAP[target] = target
@@ -125,7 +134,6 @@ META = {
  '': ('Marketingagentur Schweiz: Abo & Projekte | klartext digital', 'Marketing im Abo und Projekte für Unternehmen: SEO, Webdesign, Social Media, Google und Meta Ads sowie Newsletter. Auch als Ergänzung eures Marketingteams.'),
  'webdesign/': ('Webdesign Schweiz für KMU | klartext.', 'Webdesign für Schweizer KMU: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.'),
 
- 'wissen/': ('Marketing-Wissen für Schweizer KMU | klartext.', 'Website, Budget und Marketing verständlich planen: Leitfäden und Antworten auf praktische Fragen von Schweizer KMU.'),
  'branding/': ('Branding & Markenstrategie Schweiz | klartext digital', 'Positionierung, Markensystem und Vorlagen für euren Alltag. Branding als Projekt oder spezialisierte Ergänzung eurer Marketingabteilung.'),
  'social-media/': ('Social-Media-Betreuung & Content | klartext digital', 'Social Media mit Redaktionsplan, Content-Produktion und Auswertung. Laufende Betreuung, einzelne Kampagnen oder Unterstützung für euer Marketingteam.'),
  'performance-marketing/': ('Google & Meta Ads: Betreuung | klartext digital', 'Google und Meta Ads mit passenden Zielseiten, Messung und laufender Betreuung. Werbeetat und Umsetzung klar planen, Anfragen nach Qualität beurteilen.'),
@@ -143,7 +151,7 @@ META = {
  'impressum/': ('Impressum – Entwurf | klartext.', 'Impressumsentwurf von klartext. Verbindliche Betreiber- und Unternehmensangaben sind vor der Veröffentlichung zu vervollständigen.'),
  'datenschutz/': ('Datenschutzhinweise – Entwurf | klartext.', 'Datenschutzhinweise zum klartext.-Website-Entwurf. Die Angaben müssen vor dem Produktivstart mit den eingesetzten Diensten abgeglichen werden.')
 }
-LABELS={'':'Startseite','webdesign/':'Webdesign','wissen/':'Wissen','wissen/website-kosten-schweiz/':'Website-Kosten Schweiz','leistungen/':'Leistungen','branding/':'Branding','social-media/':'Social Media','performance-marketing/':'Performance Marketing','email-marketing/':'E-Mail Marketing','ueber-uns/':'Über uns','projekte/':'Projekte','blog/':'Blog','impressum/':'Impressum','datenschutz/':'Datenschutz'}
+LABELS={'':'Startseite','webdesign/':'Webdesign','leistungen/':'Leistungen','branding/':'Branding','social-media/':'Social Media','performance-marketing/':'Performance Marketing','email-marketing/':'E-Mail Marketing','ueber-uns/':'Über uns','projekte/':'Projekte','blog/':'Blog','impressum/':'Impressum','datenschutz/':'Datenschutz'}
 for route, meta in PAGE_META.items():
  META[route] = (meta['title'], meta['description'])
  LABELS[route] = meta['label']
@@ -227,7 +235,7 @@ def faq_paare(text):
 
 def breadcrumb(route,title):
  crumbs=[('', 'Startseite')]
- if route.startswith('wissen/') and route!='wissen/':crumbs.append(('wissen/','Wissen'))
+ 
  if route.startswith('blog/') and route!='blog/':crumbs.append(('blog/','Blog'))
  if route.startswith('projekte/') and route!='projekte/':crumbs.append(('projekte/','Projekte'))
  crumbs.append((route,LABELS.get(route,title.split('|')[0].strip())))
@@ -322,7 +330,7 @@ for source,route in ROUTES.items():
   s=re.sub(r'(<section class="unter[^"\n]*">)',lambda m:m.group(1)+markup,s,count=1)
   if markup not in s:s=s.replace('<main>','<main>'+markup,1)
  # All standard footers expose the new knowledge hub.
- s=s.replace('<p class="fuss__kopf">Seite</p>','<p class="fuss__kopf">Seite</p><a href="'+posixpath.relpath('wissen',route_dir or '.')+'/">Wissen</a>')
+ s=s.replace('<p class="fuss__kopf">Seite</p>','<p class="fuss__kopf">Seite</p><a href="'+posixpath.relpath('blog',route_dir or '.')+'/">Blog</a>')
  # Offer navigation is shared; keep the existing visual menu and interactions.
  def route_link(target):return posixpath.relpath(target,route_dir or '.')+'/'
  offer_nav='<nav class="seo-offer-nav" aria-label="Zusammenarbeit"><a href="'+route_link('marketing-abo')+'">Marketing im Abo</a><a href="'+route_link('projektarbeit')+'">Projektarbeit</a><a href="'+route_link('kontakt')+'">Anfrage vorbereiten</a></nav>'
@@ -367,7 +375,7 @@ xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.
 (OUT/'.nojekyll').touch()
 # GitHub Pages serves this document with HTTP 404 at any missing path.
 # Absolute asset/navigation URLs also work when that path is deeply nested.
-error_html=f'''<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seite nicht gefunden | klartext digital</title><meta name="robots" content="noindex, follow"><meta name="description" content="Diese Seite wurde nicht gefunden. Zur Startseite oder zu den Leistungen von klartext digital."><link rel="canonical" href="{BASE}404.html"><link rel="stylesheet" href="{BASE}stil.css"><link rel="stylesheet" href="{BASE}seo.css"></head><body><main><section class="unter unter--eng"><p class="brush">404</p><h1 class="seo-h1">Hier geht es nicht weiter.</h1><p>Die Adresse stimmt nicht oder die Seite wurde verschoben.</p><p><a class="knopf knopf--akzent" href="{BASE}">Zur Startseite</a></p><nav class="seo-offer-nav" aria-label="Weitere Seiten"><a href="{BASE}marketing-abo/">Marketing im Abo</a><a href="{BASE}projektarbeit/">Projektarbeit</a><a href="{BASE}wissen/">Wissen</a></nav></section></main></body></html>'''
+error_html=f'''<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seite nicht gefunden | klartext digital</title><meta name="robots" content="noindex, follow"><meta name="description" content="Diese Seite wurde nicht gefunden. Zur Startseite oder zu den Leistungen von klartext digital."><link rel="canonical" href="{BASE}404.html"><link rel="stylesheet" href="{BASE}stil.css"><link rel="stylesheet" href="{BASE}seo.css"></head><body><main><section class="unter unter--eng"><p class="brush">404</p><h1 class="seo-h1">Hier geht es nicht weiter.</h1><p>Die Adresse stimmt nicht oder die Seite wurde verschoben.</p><p><a class="knopf knopf--akzent" href="{BASE}">Zur Startseite</a></p><nav class="seo-offer-nav" aria-label="Weitere Seiten"><a href="{BASE}marketing-abo/">Marketing im Abo</a><a href="{BASE}projektarbeit/">Projektarbeit</a><a href="{BASE}blog/">Blog</a></nav></section></main></body></html>'''
 (OUT/'404.html').write_text(error_html)
 (OUT/'build-manifest.json').write_text(json.dumps(sorted(str(p.relative_to(OUT)) for p in OUT.rglob('*') if p.is_file()),indent=2)+'\n')
 (ROOT/'docs/URL-MAP.json').write_text(json.dumps({k:BASE+v for k,v in {**ROUTES,**ALIASES}.items()},ensure_ascii=False,indent=2)+'\n')

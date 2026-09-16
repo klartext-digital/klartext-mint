@@ -13,39 +13,11 @@
     "article": false,
     "image": "bilder/dienst-3.jpg"
   },
-  "wissen/website-erstellen-lassen/": {
-    "title": "Website erstellen lassen: Ablauf | klartext digital",
-    "description": "Eine Unternehmenswebsite beauftragen: Ziele, Inhalte, Funktionen, Zuständigkeiten und Abnahme klären. Mit einer praktischen Briefing-Checkliste.",
-    "label": "Website erstellen lassen: Was muss vorher klar sein?",
-    "article": true,
-    "image": "bilder/dienst-3.jpg"
-  },
-  "wissen/website-relaunch-checkliste/": {
-    "title": "Website-Relaunch: SEO-Checkliste | klartext digital",
-    "description": "Website-Relaunch planen: bestehende URLs sichern, Weiterleitungen vorbereiten, Inhalte prüfen und den Start kontrollieren. Checkliste für Marketingteams.",
-    "label": "Website-Relaunch: Was darf beim Wechsel nicht verloren gehen?",
-    "article": true,
-    "image": "bilder/dienst-3.jpg"
-  },
   "kontakt/": {
     "title": "Abo oder Projekt besprechen | klartext digital",
     "description": "Beschreibt euer Vorhaben: laufendes Marketing, ein einzelnes Projekt oder Unterstützung für euer Marketingteam. Ein kurzes Briefing als Gesprächsgrundlage.",
     "label": "Kontakt",
     "image": "bilder/dienst-3.jpg"
-  },
-  "wissen/marketingbudget-kmu/": {
-    "title": "Marketingbudget für KMU planen | klartext digital",
-    "description": "Marketingbudget planen: laufende Betreuung, Projekte, Werbeetat und interne Zeit zusammenführen. Mit einer praktischen Vorlage für die Budgetbesprechung.",
-    "label": "Marketingbudget für KMU: Was muss in den Plan?",
-    "article": true,
-    "image": "bilder/dienst-4.jpg"
-  },
-  "wissen/google-ads-budget/": {
-    "title": "Google-Ads-Budget richtig planen | klartext digital",
-    "description": "Google-Ads-Budget planen: Werbeetat und Betreuung trennen, Tagesbudget verstehen und Ergebnisse anhand passender Anfragen beurteilen.",
-    "label": "Google-Ads-Budget: Wie viel wofür einplanen?",
-    "article": true,
-    "image": "bilder/dienst-4.jpg"
   },
   "seo/": {
     "title": "SEO-Betreuung Schweiz | klartext digital",
@@ -61,31 +33,59 @@
     "article": false,
     "image": "bilder/dienst-3.jpg"
   },
-  "wissen/website-pflege-checkliste/": {
-    "title": "Website-Pflege: Checkliste | klartext digital",
-    "description": "Website-Pflege organisieren: Inhalte, Kontaktwege, Darstellung und technische Zuständigkeiten prüfen. Eine praktische Checkliste für Marketingteams.",
-    "label": "Website-Pflege: Checkliste",
-    "article": true,
-    "image": "bilder/dienst-3.jpg"
-  },
-  "wissen/social-media-kosten/": {
-    "title": "Was kostet Social-Media-Betreuung? | klartext digital",
-    "description": "Woraus sich der Aufwand für Social-Media-Betreuung zusammensetzt: Produktion, laufende Betreuung und Kampagnen getrennt betrachten und Offerten vergleichen.",
-    "label": "Was kostet Social-Media-Betreuung?",
-    "article": true,
-    "image": "bilder/dienst-2.jpg"
-  },
-  "wissen/branding-kosten/": {
+  "blog/branding-kosten/": {
     "title": "Was kostet ein Branding? | klartext digital",
     "description": "Fünf Faktoren bestimmen den Aufwand eines Brandings. Was zu einer vollständigen Übergabe gehört und wie ihr zwei Offerten vergleichbar macht.",
     "label": "Was kostet ein Branding?",
     "article": true,
     "image": "bilder/dienst-1.jpg"
   },
-  "wissen/website-kosten-schweiz/": {
+  "blog/google-ads-budget/": {
+    "title": "Google-Ads-Budget richtig planen | klartext digital",
+    "description": "Google-Ads-Budget planen: Werbeetat und Betreuung trennen, Tagesbudget verstehen und Ergebnisse anhand passender Anfragen beurteilen.",
+    "label": "Google-Ads-Budget: Wie viel wofür einplanen?",
+    "article": true,
+    "image": "bilder/dienst-4.jpg"
+  },
+  "blog/marketingbudget-kmu/": {
+    "title": "Marketingbudget für KMU planen | klartext digital",
+    "description": "Marketingbudget planen: laufende Betreuung, Projekte, Werbeetat und interne Zeit zusammenführen. Mit einer praktischen Vorlage für die Budgetbesprechung.",
+    "label": "Marketingbudget für KMU: Was muss in den Plan?",
+    "article": true,
+    "image": "bilder/dienst-4.jpg"
+  },
+  "blog/social-media-kosten/": {
+    "title": "Was kostet Social-Media-Betreuung? | klartext digital",
+    "description": "Woraus sich der Aufwand für Social-Media-Betreuung zusammensetzt: Produktion, laufende Betreuung und Kampagnen getrennt betrachten und Offerten vergleichen.",
+    "label": "Was kostet Social-Media-Betreuung?",
+    "article": true,
+    "image": "bilder/dienst-2.jpg"
+  },
+  "blog/website-erstellen-lassen/": {
+    "title": "Website erstellen lassen: Ablauf | klartext digital",
+    "description": "Eine Unternehmenswebsite beauftragen: Ziele, Inhalte, Funktionen, Zuständigkeiten und Abnahme klären. Mit einer praktischen Briefing-Checkliste.",
+    "label": "Website erstellen lassen: Was muss vorher klar sein?",
+    "article": true,
+    "image": "bilder/dienst-3.jpg"
+  },
+  "blog/website-kosten-schweiz/": {
     "title": "Was kostet eine Website in der Schweiz? | klartext.",
     "description": "Welche Faktoren bestimmen Website-Kosten? Ein Leitfaden für Schweizer KMU zu Konzept, Design, Inhalten, Technik, Betrieb und dem Vergleich von Offerten.",
     "label": "Website-Kosten Schweiz",
+    "article": true,
+    "image": "bilder/dienst-3.jpg"
+  },
+  "blog/website-pflege-checkliste/": {
+    "title": "Website-Pflege: Checkliste | klartext digital",
+    "description": "Website-Pflege organisieren: Inhalte, Kontaktwege, Darstellung und technische Zuständigkeiten prüfen. Eine praktische Checkliste für Marketingteams.",
+    "label": "Website-Pflege: Checkliste",
+    "article": true,
+    "image": "bilder/dienst-3.jpg"
+  },
+  "blog/website-relaunch-checkliste/": {
+    "title": "Website-Relaunch: SEO-Checkliste | klartext digital",
+    "description": "Website-Relaunch planen: bestehende URLs sichern, Weiterleitungen vorbereiten, Inhalte prüfen und den Start kontrollieren. Checkliste für Marketingteams.",
+    "label": "Website-Relaunch: Was darf beim Wechsel nicht verloren gehen?",
     "article": true,
     "image": "bilder/dienst-3.jpg"
   }
