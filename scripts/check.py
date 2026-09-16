@@ -5,12 +5,15 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote,quote
 from urllib.request import urlopen
 import json,re,sys,os,xml.etree.ElementTree as ET
+from release_policy import validate_preview, PREVIEW_URL
 ROOT=Path(__file__).resolve().parents[1];OUT=Path(os.environ.get('KLARTEXT_BUILD_DIR',ROOT/'_site')).resolve()
+validate_preview(json.loads((ROOT/'seo.config.json').read_text()))
 class Page(HTMLParser):
  def __init__(self,text):
   super().__init__();self.tags=[];self.feed(text)
  def handle_starttag(self,tag,attrs):self.tags.append((tag,dict(attrs)))
 errors=[];pages={};http=sys.argv[1] if len(sys.argv)>1 else None
+if (OUT/'CNAME').exists():errors.append('Preview must not contain a custom-domain CNAME file')
 expected_files=set(json.loads((OUT/'build-manifest.json').read_text()))|{'build-manifest.json'}
 actual_files={str(p.relative_to(OUT)) for p in OUT.rglob('*') if p.is_file()}
 if actual_files!=expected_files:errors.append('Unexpected or missing build files: '+str(sorted(actual_files^expected_files)))
@@ -20,8 +23,10 @@ for p,page in pages.items():
  rel=p.relative_to(OUT);text=p.read_text();tags=page.tags
  canonical=[a.get('href') for t,a in tags if t=='link' and a.get('rel')=='canonical']
  if len(canonical)!=1:errors.append(f'{rel}: expected one canonical')
+ if canonical and not canonical[0].startswith(PREVIEW_URL):errors.append(f'{rel}: canonical outside approved preview')
  robots=[a.get('content','') for t,a in tags if t=='meta' and a.get('name')=='robots']
  if len(robots)!=1:errors.append(f'{rel}: expected one robots tag')
+ if not robots or 'noindex' not in {part.strip().lower() for part in robots[0].split(',')}:errors.append(f'{rel}: preview must remain noindex')
  redirect=any(t=='meta' and a.get('http-equiv')=='refresh' for t,a in tags)
  if not redirect and str(rel)!='takt.html':
   if sum(t=='h1' for t,a in tags)!=1:errors.append(f'{rel}: expected one h1')
