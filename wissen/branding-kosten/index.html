@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<title>Was kostet ein Branding? | klartext digital</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+
+<meta name="description" content="Fünf Faktoren bestimmen den Aufwand eines Brandings. Was zu einer vollständigen Übergabe gehört und wie ihr zwei Offerten vergleichbar macht.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://klartext-digital.github.io/klartext-mint/wissen/branding-kosten/">
+<meta property="og:title" content="Was kostet ein Branding? | klartext digital">
+<meta property="og:description" content="Fünf Faktoren bestimmen den Aufwand eines Brandings. Was zu einer vollständigen Übergabe gehört und wie ihr zwei Offerten vergleichbar macht.">
+<meta property="og:url" content="https://klartext-digital.github.io/klartext-mint/wissen/branding-kosten/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_CH">
+<meta property="og:image" content="https://klartext-digital.github.io/klartext-mint/bilder/dienst-1.jpg">
+<link rel="stylesheet" href="../../seo.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://klartext-digital.github.io/klartext-mint/wissen/branding-kosten/#webpage", "url": "https://klartext-digital.github.io/klartext-mint/wissen/branding-kosten/", "name": "Was kostet ein Branding? | klartext digital", "description": "Fünf Faktoren bestimmen den Aufwand eines Brandings. Was zu einer vollständigen Übergabe gehört und wie ihr zwei Offerten vergleichbar macht.", "inLanguage": "de-CH", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "Organization", "@id": "https://klartext-digital.github.io/klartext-mint/#organization", "name": "klartext digital", "alternateName": "klartext.", "url": "https://klartext-digital.github.io/klartext-mint/", "logo": "https://klartext-digital.github.io/klartext-mint/marke/wortmarke.svg"}, {"@type": "Article", "@id": "https://klartext-digital.github.io/klartext-mint/wissen/branding-kosten/#article", "headline": "Was kostet ein Branding?", "description": "Fünf Faktoren bestimmen den Aufwand eines Brandings. Was zu einer vollständigen Übergabe gehört und wie ihr zwei Offerten vergleichbar macht.", "mainEntityOfPage": {"@id": "https://klartext-digital.github.io/klartext-mint/wissen/branding-kosten/#webpage"}, "inLanguage": "de-CH", "image": "https://klartext-digital.github.io/klartext-mint/bilder/dienst-1.jpg", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "FAQPage", "@id": "https://klartext-digital.github.io/klartext-mint/wissen/branding-kosten/#faq", "inLanguage": "de-CH", "mainEntity": [{"@type": "Question", "name": "Warum steht hier keine Preisspanne?", "acceptedAnswer": {"@type": "Answer", "text": "Weil dieselbe Summe je nach Umfang ein überarbeitetes Logo oder ein vollständiges Markensystem bedeuten kann. Eine Spanne ohne definierten Leistungsumfang hilft beim Vergleich nicht weiter. Wir nennen deshalb die Faktoren, an denen ihr euer eigenes Angebot prüfen könnt."}}, {"@type": "Question", "name": "Müssen wir unser bestehendes Logo ersetzen?", "acceptedAnswer": {"@type": "Answer", "text": "Das ergibt sich aus der Bestandsaufnahme. Wenn das Logo weiter passt, kann sich der Auftrag auf Positionierung, Vorlagen oder ein konsistentes System konzentrieren. Bestehende Markenrichtlinien bilden dafür die Grundlage und senken den Aufwand."}}, {"@type": "Question", "name": "Können wir das Branding in Etappen machen?", "acceptedAnswer": {"@type": "Answer", "text": "Ja, wenn die erste Etappe für sich funktioniert. Sinnvoll ist meist: zuerst Positionierung und Kernanwendungen, danach weitere Vorlagen. Die Reihenfolge sollte von Anfang an festgelegt sein, damit die zweite Etappe nicht die erste umbaut."}}, {"@type": "Question", "name": "Wie ordnet sich das ins Gesamtbudget ein?", "acceptedAnswer": {"@type": "Answer", "text": "Ein Branding ist ein einmaliges Projekt, die Anwendung danach ist laufender Aufwand. Beides gehört in dieselbe Planung, sonst wird das Projekt finanziert und die Umsetzung nicht. Der Budget-Leitfaden für KMU führt einmalige und laufende Kosten zusammen."}}]}, {"@type": "BreadcrumbList", "@id": "https://klartext-digital.github.io/klartext-mint/wissen/branding-kosten/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://klartext-digital.github.io/klartext-mint/"}, {"@type": "ListItem", "position": 2, "name": "Wissen", "item": "https://klartext-digital.github.io/klartext-mint/wissen/"}, {"@type": "ListItem", "position": 3, "name": "Was kostet ein Branding?", "item": "https://klartext-digital.github.io/klartext-mint/wissen/branding-kosten/"}]}]}</script>
+<meta property="og:image:alt" content="klartext digital – Webdesign und Marketing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Was kostet ein Branding? | klartext digital">
+<meta name="twitter:description" content="Fünf Faktoren bestimmen den Aufwand eines Brandings. Was zu einer vollständigen Übergabe gehört und wie ihr zwei Offerten vergleichbar macht.">
+<meta name="twitter:image" content="https://klartext-digital.github.io/klartext-mint/bilder/dienst-1.jpg">
+<script defer src="../../messung.js"></script>
+<link rel="preload" href="../../fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/wortmarke-negativ.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../" aria-label="KLARTEXT — zur Startseite"><img src="../../marke/wortmarke.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../projekte/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../../blog/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste"><nav class="seo-offer-nav" aria-label="Zusammenarbeit"><a href="../../marketing-abo/">Marketing im Abo</a><a href="../../projektarbeit/">Projektarbeit</a><a href="../../kontakt/">Anfrage vorbereiten</a></nav>
+        <ol class="ndd__liste">
+            <li><a href="../../branding/" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Branding</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../social-media/" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../webdesign/" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../performance-marketing/" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../email-marketing/" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist" width="626" height="447" decoding="async" loading="lazy" srcset="../../bilder/dienst-1-480.webp 480w, ../../bilder/dienst-1-626.webp 626w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-2.jpg" alt="" width="626" height="447" decoding="async" loading="lazy" srcset="../../bilder/dienst-2-480.webp 480w, ../../bilder/dienst-2-626.webp 626w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-3.jpg" alt="" width="626" height="447" decoding="async" loading="lazy" srcset="../../bilder/dienst-3-480.webp 480w, ../../bilder/dienst-3-626.webp 626w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-4.jpg" alt="" width="626" height="447" decoding="async" loading="lazy" srcset="../../bilder/dienst-4-480.webp 480w, ../../bilder/dienst-4-626.webp 626w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-5.jpg" alt="" width="626" height="447" decoding="async" loading="lazy" srcset="../../bilder/dienst-5-480.webp 480w, ../../bilder/dienst-5-626.webp 626w" sizes="(max-width: 700px) 100vw, 50vw">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+            </div>
+          </div>
+      <aside class="ndd__karte">
+        <p class="brush">Unsicher?</p>
+        <p class="ndd__karte-titel">Wir sortieren das in 15&nbsp;Minuten.</p>
+        <p class="ndd__karte-text">Kurzes Gespräch, ehrliche Einschätzung.
+          Auch wenn am Ende nichts daraus wird.</p>
+        <a class="knopf knopf--akzent" href="../../#kontakt" tabindex="-1">Gespräch buchen</a>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<main><section class="unter unter--eng"><nav class="seo-breadcrumb" aria-label="Brotkrumennavigation"><a href="../../">Startseite</a> <span aria-hidden="true">/</span> <a href="../">Wissen</a> <span aria-hidden="true">/</span> <span aria-current="page">Was kostet ein Branding?</span></nav><h1 class="seo-h1">Was kostet ein Branding?</h1><p class="brush">Aufwand einschätzen. Angebote vergleichen.</p></section>
+<section class="unter__leib"><div class="unter__text"><p>Branding-Angebote sind besonders schwer zu vergleichen, weil dasselbe Wort sehr unterschiedliche Leistungen meinen kann: von einem überarbeiteten Logo bis zu einer vollständigen Positionierung mit Vorlagen für den Arbeitsalltag. Dieser Leitfaden zeigt, welche fünf Faktoren den Aufwand bestimmen, was zu einer vollständigen Übergabe gehört und wie ihr zwei Offerten auf dieselbe Grundlage bringt.</p></div><figure class="unter__bild"><img src="../../bilder/dienst-1.jpg" alt="" loading="lazy" width="626" height="447" decoding="async" srcset="../../bilder/dienst-1-480.webp 480w, ../../bilder/dienst-1-626.webp 626w" sizes="(max-width: 700px) 100vw, 50vw"></figure></section>
+<article class="artikel seo-prose">
+<nav class="seo-inhalt" aria-label="Inhaltsverzeichnis"><h2>Worum es geht</h2><ul><li><a href="#umfang">Was mit «Branding» gemeint sein kann</a></li><li><a href="#treiber">Fünf Faktoren bestimmen den Aufwand</a></li><li><a href="#uebergabe">Was zu einer vollständigen Übergabe gehört</a></li><li><a href="#vergleich">Zwei Offerten vergleichbar machen</a></li><li><a href="#danach">Was nach dem Branding weiterläuft</a></li><li><a href="#fragen">Häufige Fragen</a></li></ul></nav>
+
+<h2 id="umfang">Was mit «Branding» gemeint sein kann</h2>
+<p>Bevor ihr Preise vergleicht, müsst ihr den Umfang vergleichen. In der Praxis stehen hinter dem Begriff drei sehr verschiedene Aufträge.</p>
+<dl class="angebot-liste"><div><dt>Überarbeitung des Erscheinungsbilds</dt><dd>Logo, Farben und Schriften werden aufgeräumt oder erneuert. Die Positionierung bleibt, wie sie ist. Der Aufwand liegt in der Gestaltung und in den Anwendungsregeln.</dd></div><div><dt>Positionierung und Botschaften</dt><dd>Die strategische Arbeit: Angebot, Zielgruppe und Unterschied zum Wettbewerb werden verständlich beschrieben. Das Ergebnis ist Text und Argumentation, nicht Gestaltung.</dd></div><div><dt>Vollständiges Markensystem</dt><dd>Beides zusammen, dazu die Vorlagen, mit denen euer Team im Alltag arbeitet. Der Aufwand liegt weniger im Entwurf als in der Zahl der Anwendungen, die tatsächlich gebraucht werden.</dd></div></dl>
+<p>Die häufigste Ursache für ein enttäuschendes Ergebnis ist nicht ein zu kleines Budget, sondern ein unklarer Auftrag: Ein neues Logo löst kein Positionierungsproblem, und eine saubere Positionierung allein macht noch keine Präsentation.</p>
+
+<h2 id="treiber">Fünf Faktoren bestimmen den Aufwand</h2>
+<p>Wenn ihr diese fünf Punkte vorab festlegt, wird aus einer groben Schätzung eine belastbare Offerte.</p>
+<ul><li><strong>Strategische Tiefe.</strong> Ist die Positionierung bereits geklärt oder muss sie erarbeitet werden? Recherche, Gespräche und die Auseinandersetzung mit dem Wettbewerb sind eigene Arbeitsschritte — oft der grösste Einzelposten.</li><li><strong>Zahl der Anwendungen.</strong> Nicht das Logo kostet, sondern seine Anwendungen: Präsentation, Briefschaft, Social-Media-Formate, Beschriftungen, Messeauftritt, Broschüren. Jede Vorlage ist eigene Arbeit.</li><li><strong>Sprachversionen.</strong> Eine zweite Sprache betrifft nicht nur Texte, sondern auch Layouts: Deutsche Wörter sind länger, Zeilenumbrüche verschieben sich, jede Vorlage muss in beiden Fassungen funktionieren.</li><li><strong>Abstimmungsschritte.</strong> Wie viele Entwurfsrunden sind vorgesehen, und wer entscheidet? Eine verantwortliche Ansprechperson mit gebündeltem Feedback ist der grösste Spareffekt überhaupt.</li><li><strong>Bestand und Altlasten.</strong> Gibt es bestehende Richtlinien, verwendbare Dateien und geklärte Rechte? Muss ein über Jahre gewachsener Wildwuchs erst erhoben werden, ist das eine eigene Aufgabe vor dem ersten Entwurf.</li></ul>
+
+<h2 id="uebergabe">Was zu einer vollständigen Übergabe gehört</h2>
+<p>Ein Branding ist dann fertig, wenn euer Team damit selbstständig arbeiten kann. Diese vier Ergebnisse gehören in den Auftrag — fehlt eines, entsteht später Nacharbeit, die niemand eingeplant hat.</p>
+<ol><li>Eine verständliche Beschreibung von Angebot, Zielgruppe und Unterschied zum Wettbewerb, dazu die Botschaften, die daraus folgen.</li><li>Die vereinbarten Logo-Varianten, Farben, Schriften und Regeln zur Bildsprache — mit den Fällen, in denen sie angewendet werden.</li><li>Die Vorlagen, die euer Team wirklich benötigt, in den Programmen, die ihr tatsächlich verwendet.</li><li>Eine nachvollziehbare Ablage der Dateien, ein Brand Guide sowie geklärte Nutzungsrechte an Schriften und Bildern.</li></ol>
+<p class="seo-lesetipp">Achtet besonders auf Punkt 4: Schriftlizenzen sind an Nutzung und Anzahl Arbeitsplätze gebunden. Wer das erst nach der Übergabe klärt, zahlt doppelt oder muss die Gestaltung ändern.</p>
+
+<h2 id="vergleich">Zwei Offerten vergleichbar machen</h2>
+<p>Zwei Angebote lassen sich nur vergleichen, wenn sie dieselben Ergebnisse und dieselben Dateiformate enthalten. Stellt vor dem Vergleich diese Fragen an beide Anbieter:</p>
+<ul><li>Welche Ergebnisse sind enthalten — und welche ausdrücklich nicht?</li><li>Wie viele Entwurfsrunden und Korrekturschleifen sind vorgesehen?</li><li>In welchen Dateiformaten wird übergeben, und mit welchen Programmen könnt ihr damit weiterarbeiten?</li><li>Welche Rechte an Gestaltung, Schriften und Bildern gehen an euch über?</li><li>Wer erstellt die Vorlagen, und werden sie an einem echten Beispiel getestet?</li><li>Gibt es eine Einführung für euer Team, und ist sie im Preis enthalten?</li><li>Was kostet eine zusätzliche Anwendung nach Abschluss?</li></ul>
+<p>Eine Offerte, die deutlich günstiger ist, enthält fast immer weniger Anwendungen oder weniger Abstimmungsrunden — nicht denselben Umfang zu einem besseren Preis. Das kann die richtige Wahl sein, wenn ihr den Rest selbst übernehmt. Es sollte nur eine bewusste Entscheidung sein.</p>
+
+<h2 id="danach">Was nach dem Branding weiterläuft</h2>
+<p>Ein Branding ist ein abgegrenztes Projekt. Was danach folgt, ist laufende Arbeit: neue Anwendungen, Content in der neuen Bildsprache, Kampagnen. Plant diesen Teil mit, sonst verwässert das System innerhalb eines Jahres, weil jede Abteilung eigene Varianten baut.</p>
+<p>Die <a href="../../kommunikationsstrategie/">Kommunikationsstrategie</a> legt fest, welche Botschaften welche Menschen über welche Kanäle erreichen. Das Branding gibt ihnen einen wiedererkennbaren Auftritt, und beim <a href="../../webdesign/">Webdesign</a> werden daraus konkrete Seiten. Wie wir Branding als Projekt umsetzen, steht auf der Seite <a href="../../branding/">Branding und Markenstrategie</a>.</p>
+
+<h2 id="fragen">Häufige Fragen</h2>
+<details><summary>Warum steht hier keine Preisspanne?</summary><p>Weil dieselbe Summe je nach Umfang ein überarbeitetes Logo oder ein vollständiges Markensystem bedeuten kann. Eine Spanne ohne definierten Leistungsumfang hilft beim Vergleich nicht weiter. Wir nennen deshalb die Faktoren, an denen ihr euer eigenes Angebot prüfen könnt.</p></details>
+<details><summary>Müssen wir unser bestehendes Logo ersetzen?</summary><p>Das ergibt sich aus der Bestandsaufnahme. Wenn das Logo weiter passt, kann sich der Auftrag auf Positionierung, Vorlagen oder ein konsistentes System konzentrieren. Bestehende Markenrichtlinien bilden dafür die Grundlage und senken den Aufwand.</p></details>
+<details><summary>Können wir das Branding in Etappen machen?</summary><p>Ja, wenn die erste Etappe für sich funktioniert. Sinnvoll ist meist: zuerst Positionierung und Kernanwendungen, danach weitere Vorlagen. Die Reihenfolge sollte von Anfang an festgelegt sein, damit die zweite Etappe nicht die erste umbaut.</p></details>
+<details><summary>Wie ordnet sich das ins Gesamtbudget ein?</summary><p>Ein Branding ist ein einmaliges Projekt, die Anwendung danach ist laufender Aufwand. Beides gehört in dieselbe Planung, sonst wird das Projekt finanziert und die Umsetzung nicht. Der <a href="../marketingbudget-kmu/">Budget-Leitfaden für KMU</a> führt einmalige und laufende Kosten zusammen.</p></details>
+
+<h2>Euren Umfang festlegen</h2>
+<p>Stellt zusammen, welche Anwendungen ihr im Alltag wirklich braucht, wer entscheidet und was an Bestand vorhanden ist. Mit diesen drei Angaben lässt sich der Aufwand konkret beziffern, statt über eine Spanne zu sprechen.</p>
+<p><a class="knopf knopf--akzent" href="../../kontakt/?anliegen=projekt">Branding-Umfang besprechen</a></p>
+</article></main>
+
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <p class="brush">Auf ein Wort</p>
+      <h2>Reden<br>wir.</h2>
+      <div class="fuss__kontakt">
+        <a class="fuss__gross" href="mailto:hallo@klartext-digital.ch">
+          <span>hallo@klartext-digital.ch</span><i aria-hidden="true">↗</i></a>
+        <a class="fuss__gross" href="tel:+41000000000">
+          <span>+41 00 000 00 00</span><i aria-hidden="true">↗</i></a>
+      </div>
+      <p class="fuss__ort">Marketing für Schweizer KMU · Standortangaben noch zu bestätigen<br>
+        Mo bis Fr, 08:30 bis 18:00</p>
+    </div>
+
+    <div class="fuss__spalten">
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Seite</p><a href="../">Wissen</a>
+        <a class="mlink" href="../../projekte/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+        <a class="mlink" href="../../leistungen/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Leistungen</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen</span></a>
+        <a class="mlink" href="../../ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+        <a class="mlink" href="../../blog/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+        <a class="mlink" href="../../#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+      </nav>
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Leistungen</p><a href="../../marketing-abo/">Marketing im Abo</a><a href="../../projektarbeit/">Projektarbeit</a><a href="../../content-creation/">Content Creation</a><a href="../../kommunikationsstrategie/">Kommunikationsstrategie</a><a href="../../seo/">SEO-Betreuung</a><a href="../../website-betreuung/">Website-Betreuung</a><a href="../../kontakt/">Anfrage vorbereiten</a>
+        <a class="mlink" href="../../branding/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a>
+        <a class="mlink" href="../../social-media/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a>
+        <a class="mlink" href="../../webdesign/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a>
+        <a class="mlink" href="../../performance-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a>
+        <a class="mlink" href="../../email-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a>
+      </nav>
+      <div class="fuss__spalte">
+        <p class="fuss__kopf">Folgen</p>
+        <div class="fuss__sozial">
+          <a href="../../" aria-label="Instagram"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+          <a href="../../" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.4 10.4v6.2M7.4 7.6v.1M11.4 16.6v-3.4a2.4 2.4 0 0 1 4.8 0v3.4M11.4 16.6v-6.2"/></svg><span>LinkedIn</span></a>
+          <a href="../../" aria-label="TikTok"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M14.2 3.5v10.9a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14.2 3.5a5 5 0 0 0 5 5"/></svg><span>TikTok</span></a>
+          <a href="../../" aria-label="Behance"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3 6h5.2a2.6 2.6 0 0 1 0 5.2H3zM3 11.2h5.6a2.9 2.9 0 0 1 0 5.8H3zM14.6 13.4h6.4a3.2 3.2 0 0 0-6.4 0 3.2 3.2 0 0 0 5.9 1.7M15.6 7.4h4.4"/></svg><span>Behance</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <div><p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p><p>Firmierung, Kontaktangaben und Geschäftszeiten: noch zu bestätigen.</p></div>
+    <nav>
+      <a href="../../impressum/">Impressum</a>
+      <a href="../../datenschutz/">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859" decoding="async"></div>
+</footer>
+
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script defer src="../../js/lenis.min.js"></script>
+<script defer src="../../js/gsap.min.js"></script>
+<script defer src="../../js/ScrollTrigger.min.js"></script>
+<script defer src="../../lader.js"></script>
+<script defer src="../../bewegung.js"></script>
+<script defer src="../../zeiger.js"></script>
+<script defer src="../../rechner.js"></script>
+</body>
+</html>

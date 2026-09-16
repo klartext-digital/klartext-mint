@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<title>Was kostet Social-Media-Betreuung? | klartext digital</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+
+<meta name="description" content="Woraus sich der Aufwand für Social-Media-Betreuung zusammensetzt: Produktion, laufende Betreuung und Kampagnen getrennt betrachten und Offerten vergleichen.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://klartext-digital.github.io/klartext-mint/wissen/social-media-kosten/">
+<meta property="og:title" content="Was kostet Social-Media-Betreuung? | klartext digital">
+<meta property="og:description" content="Woraus sich der Aufwand für Social-Media-Betreuung zusammensetzt: Produktion, laufende Betreuung und Kampagnen getrennt betrachten und Offerten vergleichen.">
+<meta property="og:url" content="https://klartext-digital.github.io/klartext-mint/wissen/social-media-kosten/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_CH">
+<meta property="og:image" content="https://klartext-digital.github.io/klartext-mint/bilder/dienst-2.jpg">
+<link rel="stylesheet" href="../../seo.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://klartext-digital.github.io/klartext-mint/wissen/social-media-kosten/#webpage", "url": "https://klartext-digital.github.io/klartext-mint/wissen/social-media-kosten/", "name": "Was kostet Social-Media-Betreuung? | klartext digital", "description": "Woraus sich der Aufwand für Social-Media-Betreuung zusammensetzt: Produktion, laufende Betreuung und Kampagnen getrennt betrachten und Offerten vergleichen.", "inLanguage": "de-CH", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "Organization", "@id": "https://klartext-digital.github.io/klartext-mint/#organization", "name": "klartext digital", "alternateName": "klartext.", "url": "https://klartext-digital.github.io/klartext-mint/", "logo": "https://klartext-digital.github.io/klartext-mint/marke/wortmarke.svg"}, {"@type": "Article", "@id": "https://klartext-digital.github.io/klartext-mint/wissen/social-media-kosten/#article", "headline": "Was kostet Social-Media-Betreuung?", "description": "Woraus sich der Aufwand für Social-Media-Betreuung zusammensetzt: Produktion, laufende Betreuung und Kampagnen getrennt betrachten und Offerten vergleichen.", "mainEntityOfPage": {"@id": "https://klartext-digital.github.io/klartext-mint/wissen/social-media-kosten/#webpage"}, "inLanguage": "de-CH", "image": "https://klartext-digital.github.io/klartext-mint/bilder/dienst-2.jpg", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "FAQPage", "@id": "https://klartext-digital.github.io/klartext-mint/wissen/social-media-kosten/#faq", "inLanguage": "de-CH", "mainEntity": [{"@type": "Question", "name": "Warum steht hier keine Preisspanne?", "acceptedAnswer": {"@type": "Answer", "text": "Eine Zahl ohne definierten Umfang ist irreführend. Dieselbe Summe kann reine Betreuung ohne Produktion bedeuten oder mehrere Produktionstage einschliessen. Wir nennen deshalb die Treiber, an denen ihr euer eigenes Angebot prüfen könnt, statt einen vermeintlichen Marktpreis zu behaupten."}}, {"@type": "Question", "name": "Gehört das Werbebudget in die Agenturrechnung?", "acceptedAnswer": {"@type": "Answer", "text": "Nein. Werbebudget fliesst an die Plattform, die Betreuung der Kampagne ist Arbeitszeit. Beides gehört getrennt ausgewiesen, sonst lassen sich weder Angebote vergleichen noch Ergebnisse beurteilen. Wie ihr ein Werbebudget plant, steht im Leitfaden zum Google-Ads-Budget ."}}, {"@type": "Question", "name": "Lohnt sich ein einzelner Produktionstag?", "acceptedAnswer": {"@type": "Answer", "text": "Er lohnt sich, wenn der Drehplan vorher steht und klar ist, welche Formate daraus entstehen. Für einen ersten Vorrat an Material ist das ein sinnvoller Einstieg. Für einen verlässlichen Veröffentlichungstakt braucht es eine wiederkehrende Planung, sonst ist der Vorrat nach wenigen Wochen aufgebraucht."}}, {"@type": "Question", "name": "Wie ordnet sich Social Media ins Gesamtbudget ein?", "acceptedAnswer": {"@type": "Answer", "text": "Betrachtet Projekte, laufende Umsetzung, Werbebudget und interne Zeit zusammen. Sonst entsteht ein Plan, der einzelne Posten günstig aussehen lässt und andere vergisst. Der Budget-Leitfaden für KMU führt die Teile zusammen."}}]}, {"@type": "BreadcrumbList", "@id": "https://klartext-digital.github.io/klartext-mint/wissen/social-media-kosten/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://klartext-digital.github.io/klartext-mint/"}, {"@type": "ListItem", "position": 2, "name": "Wissen", "item": "https://klartext-digital.github.io/klartext-mint/wissen/"}, {"@type": "ListItem", "position": 3, "name": "Was kostet Social-Media-Betreuung?", "item": "https://klartext-digital.github.io/klartext-mint/wissen/social-media-kosten/"}]}]}</script>
+<meta property="og:image:alt" content="klartext digital – Webdesign und Marketing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Was kostet Social-Media-Betreuung? | klartext digital">
+<meta name="twitter:description" content="Woraus sich der Aufwand für Social-Media-Betreuung zusammensetzt: Produktion, laufende Betreuung und Kampagnen getrennt betrachten und Offerten vergleichen.">
+<meta name="twitter:image" content="https://klartext-digital.github.io/klartext-mint/bilder/dienst-2.jpg">
+<script defer src="../../messung.js"></script>
+<link rel="preload" href="../../fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/wortmarke-negativ.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../" aria-label="KLARTEXT — zur Startseite"><img src="../../marke/wortmarke.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../projekte/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../../blog/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste"><nav class="seo-offer-nav" aria-label="Zusammenarbeit"><a href="../../marketing-abo/">Marketing im Abo</a><a href="../../projektarbeit/">Projektarbeit</a><a href="../../kontakt/">Anfrage vorbereiten</a></nav>
+        <ol class="ndd__liste">
+            <li><a href="../../branding/" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Branding</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../social-media/" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../webdesign/" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../performance-marketing/" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../email-marketing/" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist" width="626" height="447" decoding="async" loading="lazy" srcset="../../bilder/dienst-1-480.webp 480w, ../../bilder/dienst-1-626.webp 626w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-2.jpg" alt="" width="626" height="447" decoding="async" loading="lazy" srcset="../../bilder/dienst-2-480.webp 480w, ../../bilder/dienst-2-626.webp 626w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-3.jpg" alt="" width="626" height="447" decoding="async" loading="lazy" srcset="../../bilder/dienst-3-480.webp 480w, ../../bilder/dienst-3-626.webp 626w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-4.jpg" alt="" width="626" height="447" decoding="async" loading="lazy" srcset="../../bilder/dienst-4-480.webp 480w, ../../bilder/dienst-4-626.webp 626w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-5.jpg" alt="" width="626" height="447" decoding="async" loading="lazy" srcset="../../bilder/dienst-5-480.webp 480w, ../../bilder/dienst-5-626.webp 626w" sizes="(max-width: 700px) 100vw, 50vw">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+            </div>
+          </div>
+      <aside class="ndd__karte">
+        <p class="brush">Unsicher?</p>
+        <p class="ndd__karte-titel">Wir sortieren das in 15&nbsp;Minuten.</p>
+        <p class="ndd__karte-text">Kurzes Gespräch, ehrliche Einschätzung.
+          Auch wenn am Ende nichts daraus wird.</p>
+        <a class="knopf knopf--akzent" href="../../#kontakt" tabindex="-1">Gespräch buchen</a>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<main><section class="unter unter--eng"><nav class="seo-breadcrumb" aria-label="Brotkrumennavigation"><a href="../../">Startseite</a> <span aria-hidden="true">/</span> <a href="../">Wissen</a> <span aria-hidden="true">/</span> <span aria-current="page">Was kostet Social-Media-Betreuung?</span></nav><h1 class="seo-h1">Was kostet Social-Media-Betreuung?</h1><p class="brush">Aufwand verstehen. Angebote vergleichen.</p></section>
+<section class="unter__leib"><div class="unter__text"><p>Die Frage nach dem Preis lässt sich erst beantworten, wenn klar ist, welche Arbeit tatsächlich anfällt. Zwei Offerten über dieselbe Summe können völlig unterschiedliche Leistungen enthalten. Dieser Leitfaden zeigt, woraus sich der Aufwand zusammensetzt, welche drei Kostenblöcke regelmässig vermischt werden und was in einer Offerte stehen muss, damit ihr sie vergleichen könnt.</p></div><figure class="unter__bild"><img src="../../bilder/dienst-2.jpg" alt="" loading="lazy" width="626" height="447" decoding="async" srcset="../../bilder/dienst-2-480.webp 480w, ../../bilder/dienst-2-626.webp 626w" sizes="(max-width: 700px) 100vw, 50vw"></figure></section>
+<article class="artikel seo-prose">
+<nav class="seo-inhalt" aria-label="Inhaltsverzeichnis"><h2>Worum es geht</h2><ul><li><a href="#bloecke">Drei Kostenblöcke, die oft vermischt werden</a></li><li><a href="#treiber">Wovon der Aufwand abhängt</a></li><li><a href="#produktion">Produktionstage: der grösste einzelne Hebel</a></li><li><a href="#betreuung">Was laufende Betreuung wirklich bedeutet</a></li><li><a href="#offerte">Was in einer Offerte stehen muss</a></li><li><a href="#aufteilung">Selbst machen, abgeben oder teilen</a></li><li><a href="#fragen">Häufige Fragen</a></li></ul></nav>
+
+<h2 id="bloecke">Drei Kostenblöcke, die oft vermischt werden</h2>
+<p>Der häufigste Grund für unvergleichbare Offerten ist, dass drei verschiedene Aufgaben in eine Zahl gepackt werden. Sie haben unterschiedliche Treiber und lassen sich einzeln beauftragen.</p>
+<dl class="angebot-liste"><div><dt>Content-Produktion</dt><dd>Ideen, Vorbereitung, Foto- und Videoaufnahmen sowie die Ausarbeitung der vereinbarten Formate. Der Aufwand hängt an der Zahl der Produktionstage und daran, wie viel Material pro Tag entsteht.</dd></div><div><dt>Laufende Betreuung</dt><dd>Redaktionsplanung, Abstimmung, Veröffentlichung und Auswertung. Der Aufwand hängt an der Zahl der Kanäle, am Veröffentlichungstakt und an der Zahl der Freigabeschleifen.</dd></div><div><dt>Bezahlte Kampagnen</dt><dd>Anzeigen haben ein eigenes Ziel, eine eigene Zielseite und ein separates Werbebudget. Das Budget fliesst an die Plattform, die Betreuung ist Arbeitszeit. Beides gehört getrennt ausgewiesen.</dd></div></dl>
+<p>Prüft bei jeder Offerte, welcher dieser Blöcke enthalten ist. Eine günstige Betreuungspauschale ohne Produktion bedeutet, dass ihr das Material selbst liefert. Das kann sinnvoll sein — aber es ist eine andere Leistung.</p>
+
+<h2 id="treiber">Wovon der Aufwand abhängt</h2>
+<p>Innerhalb der drei Blöcke bestimmen wenige Faktoren den grössten Teil der Arbeit. Wenn ihr sie vorab klärt, wird aus einer Schätzung eine belastbare Zahl.</p>
+<ul><li><strong>Zahl der Kanäle.</strong> Jeder zusätzliche Kanal bedeutet eigene Formate, eigene Bildmasse und eine eigene Auswertung. Derselbe Beitrag lässt sich selten unverändert überall ausspielen.</li><li><strong>Veröffentlichungstakt.</strong> Nicht die Zahl der Beiträge allein, sondern der Vorlauf, den sie erzwingt. Ein fester wöchentlicher Takt braucht einen Themenvorrat, der immer gefüllt sein muss.</li><li><strong>Anteil bewegter Formate.</strong> Video ist der grösste Unterschied zwischen zwei sonst gleichen Angeboten: Dreh, Schnitt, Untertitel und Korrekturschleifen sind eigene Arbeitsschritte.</li><li><strong>Sprachversionen.</strong> Eine zweite Sprache verdoppelt nicht nur Texte, sondern auch Freigaben, Untertitel und die Pflege des Redaktionsplans.</li><li><strong>Freigabewege.</strong> Eine Ansprechperson mit Entscheidungsbefugnis ist der günstigste Faktor überhaupt. Gremien mit mehreren Runden verlängern jede Produktion.</li><li><strong>Reaktion auf Kommentare und Nachrichten.</strong> Community-Betreuung ist eine eigene Aufgabe mit eigenen Reaktionszeiten und gehört ausdrücklich vereinbart.</li></ul>
+
+<h2 id="produktion">Produktionstage: der grösste einzelne Hebel</h2>
+<p>Bei den meisten Angeboten entscheidet die Produktion über den Löwenanteil der Kosten. Ein Produktionstag ist die übliche Einheit: ein Termin, an dem Material für mehrere Wochen entsteht. Entscheidend ist, wie viel verwendbarer Content pro Termin herauskommt.</p>
+<p>Drei Fragen bestimmen die Ausbeute: Ist der Drehplan vor dem Termin abgestimmt? Stehen Personen, Orte und Produkte verlässlich bereit? Ist geklärt, welche Formate am Ende gebraucht werden? Ein unvorbereiteter Termin liefert Material, das nachträglich kaum in den Redaktionsplan passt — und erzeugt einen zweiten Termin.</p>
+<p>Ein Angebot sollte deshalb nicht nur die Zahl der Produktionstage nennen, sondern auch, wie viele fertige Formate daraus entstehen und wer die Vorbereitung übernimmt. Wie aus einem Termin verwendbare Inhalte werden, beschreibt unsere <a href="../../content-creation/">Content-Produktion</a>.</p>
+
+<h2 id="betreuung">Was laufende Betreuung wirklich bedeutet</h2>
+<p>Betreuung klingt nach Veröffentlichen. Der grössere Teil ist Vorbereitung und Nacharbeit. Ein vollständiger Monat enthält in der Regel: Themenplanung, Abstimmung mit euch, Aufbereitung der Beiträge, Veröffentlichung zum passenden Zeitpunkt, Beobachtung der Reaktionen und eine Auswertung, aus der der nächste Plan entsteht.</p>
+<p>Fragt nach, wie viele Abstimmungsrunden enthalten sind und was passiert, wenn ein Thema kurzfristig wechselt. Kurzfristige Änderungen sind normal — sie sollten nur nicht jedes Mal eine Nachtragsrechnung auslösen. Umgekehrt ist ein Angebot ohne jede Auswertung unvollständig: Ein Bericht, aus dem keine Entscheidung für den nächsten Plan folgt, ist bezahlte Statistik.</p>
+
+<h2 id="offerte">Was in einer Offerte stehen muss</h2>
+<p>Damit zwei Angebote vergleichbar werden, braucht ihr dieselben Angaben. Diese Punkte solltet ihr in jeder Offerte finden — fehlen sie, fragt nach, bevor ihr Summen vergleicht.</p>
+<ol><li>Welche Kanäle betreut werden und welche ausdrücklich nicht.</li><li>Wie viele Beiträge und welche Formate pro Monat entstehen.</li><li>Wie viele Produktionstage enthalten sind und wer sie vorbereitet.</li><li>Wie viele Abstimmungs- und Korrekturrunden enthalten sind.</li><li>Ob Community-Betreuung enthalten ist und mit welcher Reaktionszeit.</li><li>Ob Werbebudget enthalten ist oder separat an die Plattform fliesst.</li><li>Wem die entstandenen Aufnahmen und Dateien gehören und wie lange sie verwendet werden dürfen.</li><li>Welche Zugänge wem gehören und was bei einem Wechsel des Partners passiert.</li><li>Vertragsdauer, Kündigungsfrist und die Behandlung nicht genutzter Leistungen.</li><li>Welche Auswertung ihr in welchem Rhythmus erhaltet.</li></ol>
+<p class="seo-lesetipp">Punkt 8 wird am häufigsten vergessen und ist am teuersten nachzuholen: Wer keinen eigenen Zugang zu den Konten hat, kann den Partner nicht ohne Verlust wechseln.</p>
+
+<h2 id="aufteilung">Selbst machen, abgeben oder teilen</h2>
+<p>Die günstigste Lösung ist selten die vollständige Abgabe oder die vollständige Eigenleistung, sondern eine klare Teilung. Häufig sinnvoll: Die Produktion wird extern gemacht, weil sie Ausrüstung und Routine braucht. Die Community-Betreuung bleibt intern, weil eure Leute die Fragen fachlich beantworten können.</p>
+<p>Prüft ehrlich, welche Zeit intern tatsächlich verfügbar ist. Eine geteilte Lösung scheitert nicht am Konzept, sondern daran, dass die intern eingeplanten Stunden im Tagesgeschäft untergehen. Haltet deshalb fest, wer welche Aufgabe bis wann übernimmt — und was passiert, wenn es nicht klappt.</p>
+<p>Wiederkehrende Aufgaben passen ins <a href="../../marketing-abo/">Marketing im Abo</a>, eine einzelne Kampagne oder Produktion in die <a href="../../projektarbeit/">Projektarbeit</a>. Wie wir Social Media konkret betreuen, steht auf der Seite <a href="../../social-media/">Social-Media-Betreuung</a>.</p>
+
+<h2 id="fragen">Häufige Fragen</h2>
+<details><summary>Warum steht hier keine Preisspanne?</summary><p>Eine Zahl ohne definierten Umfang ist irreführend. Dieselbe Summe kann reine Betreuung ohne Produktion bedeuten oder mehrere Produktionstage einschliessen. Wir nennen deshalb die Treiber, an denen ihr euer eigenes Angebot prüfen könnt, statt einen vermeintlichen Marktpreis zu behaupten.</p></details>
+<details><summary>Gehört das Werbebudget in die Agenturrechnung?</summary><p>Nein. Werbebudget fliesst an die Plattform, die Betreuung der Kampagne ist Arbeitszeit. Beides gehört getrennt ausgewiesen, sonst lassen sich weder Angebote vergleichen noch Ergebnisse beurteilen. Wie ihr ein Werbebudget plant, steht im <a href="../google-ads-budget/">Leitfaden zum Google-Ads-Budget</a>.</p></details>
+<details><summary>Lohnt sich ein einzelner Produktionstag?</summary><p>Er lohnt sich, wenn der Drehplan vorher steht und klar ist, welche Formate daraus entstehen. Für einen ersten Vorrat an Material ist das ein sinnvoller Einstieg. Für einen verlässlichen Veröffentlichungstakt braucht es eine wiederkehrende Planung, sonst ist der Vorrat nach wenigen Wochen aufgebraucht.</p></details>
+<details><summary>Wie ordnet sich Social Media ins Gesamtbudget ein?</summary><p>Betrachtet Projekte, laufende Umsetzung, Werbebudget und interne Zeit zusammen. Sonst entsteht ein Plan, der einzelne Posten günstig aussehen lässt und andere vergisst. Der <a href="../marketingbudget-kmu/">Budget-Leitfaden für KMU</a> führt die Teile zusammen.</p></details>
+
+<h2>Euren Aufwand einschätzen</h2>
+<p>Wenn ihr Kanäle, gewünschten Takt, Formate und die intern verfügbare Zeit zusammenstellt, lässt sich der Aufwand konkret beziffern. Bringt diese vier Angaben ins Erstgespräch mit — dann wird aus einer Spanne eine Zahl.</p>
+<p><a class="knopf knopf--akzent" href="../../kontakt/?anliegen=abo">Social-Media-Aufwand besprechen</a></p>
+</article></main>
+
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <p class="brush">Auf ein Wort</p>
+      <h2>Reden<br>wir.</h2>
+      <div class="fuss__kontakt">
+        <a class="fuss__gross" href="mailto:hallo@klartext-digital.ch">
+          <span>hallo@klartext-digital.ch</span><i aria-hidden="true">↗</i></a>
+        <a class="fuss__gross" href="tel:+41000000000">
+          <span>+41 00 000 00 00</span><i aria-hidden="true">↗</i></a>
+      </div>
+      <p class="fuss__ort">Marketing für Schweizer KMU · Standortangaben noch zu bestätigen<br>
+        Mo bis Fr, 08:30 bis 18:00</p>
+    </div>
+
+    <div class="fuss__spalten">
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Seite</p><a href="../">Wissen</a>
+        <a class="mlink" href="../../projekte/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+        <a class="mlink" href="../../leistungen/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Leistungen</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen</span></a>
+        <a class="mlink" href="../../ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+        <a class="mlink" href="../../blog/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+        <a class="mlink" href="../../#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+      </nav>
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Leistungen</p><a href="../../marketing-abo/">Marketing im Abo</a><a href="../../projektarbeit/">Projektarbeit</a><a href="../../content-creation/">Content Creation</a><a href="../../kommunikationsstrategie/">Kommunikationsstrategie</a><a href="../../seo/">SEO-Betreuung</a><a href="../../website-betreuung/">Website-Betreuung</a><a href="../../kontakt/">Anfrage vorbereiten</a>
+        <a class="mlink" href="../../branding/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a>
+        <a class="mlink" href="../../social-media/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a>
+        <a class="mlink" href="../../webdesign/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a>
+        <a class="mlink" href="../../performance-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a>
+        <a class="mlink" href="../../email-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a>
+      </nav>
+      <div class="fuss__spalte">
+        <p class="fuss__kopf">Folgen</p>
+        <div class="fuss__sozial">
+          <a href="../../" aria-label="Instagram"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+          <a href="../../" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.4 10.4v6.2M7.4 7.6v.1M11.4 16.6v-3.4a2.4 2.4 0 0 1 4.8 0v3.4M11.4 16.6v-6.2"/></svg><span>LinkedIn</span></a>
+          <a href="../../" aria-label="TikTok"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M14.2 3.5v10.9a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14.2 3.5a5 5 0 0 0 5 5"/></svg><span>TikTok</span></a>
+          <a href="../../" aria-label="Behance"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3 6h5.2a2.6 2.6 0 0 1 0 5.2H3zM3 11.2h5.6a2.9 2.9 0 0 1 0 5.8H3zM14.6 13.4h6.4a3.2 3.2 0 0 0-6.4 0 3.2 3.2 0 0 0 5.9 1.7M15.6 7.4h4.4"/></svg><span>Behance</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <div><p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p><p>Firmierung, Kontaktangaben und Geschäftszeiten: noch zu bestätigen.</p></div>
+    <nav>
+      <a href="../../impressum/">Impressum</a>
+      <a href="../../datenschutz/">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859" decoding="async"></div>
+</footer>
+
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script defer src="../../js/lenis.min.js"></script>
+<script defer src="../../js/gsap.min.js"></script>
+<script defer src="../../js/ScrollTrigger.min.js"></script>
+<script defer src="../../lader.js"></script>
+<script defer src="../../bewegung.js"></script>
+<script defer src="../../zeiger.js"></script>
+<script defer src="../../rechner.js"></script>
+</body>
+</html>
