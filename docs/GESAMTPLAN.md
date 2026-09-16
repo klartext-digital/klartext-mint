@@ -16,10 +16,10 @@ Zieldomain: **klartext-digital.ch**, bei **Hostinger**, vom Auftraggeber bestät
 | Angebotsarchitektur | Abo und Projektarbeit als eigene Seiten; Content Creation und Kommunikationsstrategie ergänzt; Anfrageweg für Abo/Projekt/Team | Weitere SEO- und Website-Betreuungsseiten erst nach Abgrenzung zum Abo ausbauen |
 | Homepage | Bestätigtes Geschäftsmodell, zwei Einstiege und Zusammenarbeit mit internen Teams | Nach realen Nutzungsdaten weiter verbessern |
 | Webdesign-Cluster | Webdesign, Website-Kosten, Website erstellen lassen, Relaunch-Checkliste; gegenseitige Links | Bestätigte Preisgrundlage fehlt weiterhin; Preisrechner nutzt ausschliesslich Besuchereingaben |
-| Bestehende Leistungsseiten | Zusammenarbeit, Leistungsabgrenzung und kontextuelle Links ergänzt | Branding, Social Media, Performance und E-Mail fachlich vertiefen; der Ausbau ist begonnen, nicht abgeschlossen |
+| Bestehende Leistungsseiten | Branding, Social Media, Performance und E-Mail fachlich erweitert: Ergebnisse, Verantwortlichkeiten, Budgets, häufige Fragen und nächste Schritte | Nach echten Such- und Anfragedaten weiter schärfen |
 | Anfragen | Briefing vorbereiten, kopieren oder Mailentwurf öffnen; Anliegen wird vom Einstiegslink übernommen | Bestätigter Empfangsweg und echtes Formular-Backend/Terminbuchung fehlen |
 | Messung | Ereignisschnittstelle für Angebotsklicks, Briefing und Kostenplaner; keine Eingabetexte in Ereignissen | Analytics-Anbieter/Konto und Datenschutz-Konfiguration fehlen; derzeit keine Übertragung oder Besucherauswertung |
-| Search Console / Bing | Verifikation im Build vorbereitet, leere Konfiguration | Zugriff und Verifikation der finalen Domain fehlen |
+| Search Console / Bing | Google-Zugang geprüft; Domain-Property und TXT-Nachweis bei Hostinger vorbereitet | DNS-Speicherung und Inhaberbestätigung warten auf ausdrückliche Freigabe. Domain zeigt noch Parkseite; Sitemap-Einreichung folgt nach Produktivstart. Bing offen. |
 | Performance | Responsive WebP-Varianten für fünf wiederverwendete Leistungsbilder; vorhandene Optimierungen erhalten | PageSpeed API antwortet 429. Keine belastbaren LCP/INP/CLS-Felddaten; Ladeschirm bleibt aktiv |
 | Person / Unternehmensprofil | Nur bestätigter Markenname im Organization-Schema | Öffentlich freigegebene Personendaten und Firmendaten fehlen; kein vollständiger Personenname wird veröffentlicht |
 | Cases | Bestand unverändert | Zusätzliche ausführliche Fallstudien erst mit konkreten Projektinformationen und realen Resultaten |
@@ -38,13 +38,15 @@ Zieldomain: **klartext-digital.ch**, bei **Hostinger**, vom Auftraggeber bestät
 ### P1 — Angebot und Webdesign fachlich vertiefen
 
 1. Preisgrundlage für Website-Projekte und Abo-Leistungen bestätigen. Ohne sie keine vermeintlichen Marktpreise veröffentlichen.
-2. Die vier bestehenden Leistungsseiten mit konkreten Auswahlfragen, Ergebnissen der Zusammenarbeit und passenden Beispielen vertiefen.
+2. Erledigt: die vier bestehenden Leistungsseiten mit konkreten Auswahlfragen, Ergebnissen der Zusammenarbeit und Planungsbeispielen vertieft.
 3. Einen ausführlichen Webdesign-Case aus realen Projektdaten erarbeiten.
 4. Suchdaten und Anfragequalität prüfen, sobald sie vorliegen. Das heutige Keyword-Mapping beschreibt Suchabsichten; es behauptet keine gemessenen Suchvolumen.
 
 ### P2 — Nachfrageorientierte Inhalte
 
-Nächste Themen: Marketingbudget für KMU, Social-Media-Betreuungskosten, Google-Ads-Budget, Branding-Kosten. Je Artikel eine konkrete Aufgabe, nachvollziehbare Quellen oder bestätigte Erfahrungswerte, eine zugehörige Leistung und ein passender nächster Schritt. Keine Preisartikel ohne Zahlenbasis als fertig behandeln.
+Umgesetzt: Marketingbudget für KMU und Google-Ads-Budget als Planungsleitfäden; Google-Budgetregeln anhand der offiziellen Dokumentation geprüft und direkt verlinkt.
+
+Nächste Themen: Social-Media-Betreuungskosten und Branding-Kosten. Je Artikel eine konkrete Aufgabe, nachvollziehbare Quellen oder bestätigte Erfahrungswerte, eine zugehörige Leistung und ein passender nächster Schritt. Keine Preisartikel ohne Zahlenbasis als fertig behandeln.
 
 ### P3 — Eigene Daten und Verbreitung
 
