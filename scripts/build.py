@@ -4,11 +4,13 @@ from pathlib import Path
 from html import escape, unescape
 from urllib.parse import urljoin, urlsplit, urlunsplit
 import json, re, shutil, posixpath, struct, os
+from release_policy import validate_preview
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = Path(os.environ.get('KLARTEXT_BUILD_DIR', ROOT / '_site')).resolve()
 assert OUT != ROOT and OUT not in ROOT.parents, 'Output must not replace source directories'
 CONFIG = json.loads((ROOT / 'seo.config.json').read_text())
+validate_preview(CONFIG)
 BASE = CONFIG['base_url'].rstrip('/') + '/'
 assert urlsplit(BASE).scheme == 'https' and not urlsplit(BASE).query and not urlsplit(BASE).fragment
 # Canonical paths are relative to BASE, so GitHub project Pages and a future domain both work.
@@ -198,7 +200,7 @@ for source,route in ROUTES.items():
  def route_link(target):return posixpath.relpath(target,route_dir or '.')+'/'
  offer_nav='<nav class="seo-offer-nav" aria-label="Zusammenarbeit"><a href="'+route_link('marketing-abo')+'">Marketing im Abo</a><a href="'+route_link('projektarbeit')+'">Projektarbeit</a><a href="'+route_link('kontakt')+'">Anfrage vorbereiten</a></nav>'
  s=s.replace('<div class="ndd__spalte ndd__spalte--liste">','<div class="ndd__spalte ndd__spalte--liste">'+offer_nav)
- s=s.replace('<p class="fuss__kopf">Leistungen</p>','<p class="fuss__kopf">Leistungen</p><a href="'+route_link('marketing-abo')+'">Marketing im Abo</a><a href="'+route_link('projektarbeit')+'">Projektarbeit</a><a href="'+route_link('content-creation')+'">Content Creation</a><a href="'+route_link('kommunikationsstrategie')+'">Kommunikationsstrategie</a><a href="'+route_link('kontakt')+'">Anfrage vorbereiten</a>')
+ s=s.replace('<p class="fuss__kopf">Leistungen</p>','<p class="fuss__kopf">Leistungen</p><a href="'+route_link('marketing-abo')+'">Marketing im Abo</a><a href="'+route_link('projektarbeit')+'">Projektarbeit</a><a href="'+route_link('content-creation')+'">Content Creation</a><a href="'+route_link('kommunikationsstrategie')+'">Kommunikationsstrategie</a><a href="'+route_link('seo')+'">SEO-Betreuung</a><a href="'+route_link('website-betreuung')+'">Website-Betreuung</a><a href="'+route_link('kontakt')+'">Anfrage vorbereiten</a>')
  # References retain their source presentation per the confirmed project rules.
  s=s.replace('<h2 class="mitte">Die Mannschaft</h2>','<h2 class="mitte">Die Mannschaft</h2><p class="seo-pruefhinweis">Teamdarstellung im Entwurf: Namen, Rollen und Zugehörigkeit sind noch zu bestätigen.</p>')
  s=s.replace('<section class="vref">','<section class="vref"><p class="seo-pruefhinweis">Kundenstimmen im Entwurf: Zitate und Zuordnung sind noch nicht bestätigt.</p>')

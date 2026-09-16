@@ -4,7 +4,9 @@ Hier arbeiten zwei KI-Werkzeuge: **ChatGPT/Codex** und **Claude Code**. Diese Re
 
 ## Ein einziger Weg zur Live-Seite
 
-Live-Adresse: https://klartext-digital.github.io/klartext-mint/
+Öffentlich erreichbare Vorschau: https://klartext-digital.github.io/klartext-mint/
+
+**Produktivstart pausiert (Auftraggeber, 16.09.2026):** Die GitHub-Vorschau darf weiter aktualisiert werden. Die finale Domain darf noch nicht live gehen. Der Agenturname könnte sich ändern. Keine Domain-Umschaltung, Indexfreigabe oder Sitemap-Einreichung ohne neuen ausdrücklichen Auftrag. `scripts/release_policy.py` begrenzt Bauen, Prüfen und Publizieren auf diese Vorschau mit `noindex`. Diese Sperre nicht allein aufgrund vollständiger Firmenangaben entfernen. Namenswechsel erst nach bestätigtem neuen Namen; siehe `docs/NAMENSWECHSEL.md`.
 
 1. Quellstand ist immer `main`. Nie direkt `gh-pages` bearbeiten, nie die Pages-Quelle in den GitHub-Einstellungen ändern.
 2. Arbeit auf einem eigenen Zweig beginnen, der vom aktuellen `main` abzweigt:
@@ -33,11 +35,11 @@ Nicht zwei Werkzeuge gleichzeitig auf `main`.
 - **Kein vollständiger Personenname auf GitHub** — weder in Dateien noch in Commits. Commits laufen auf „KLARTEXT".
 - **Referenzen (Entscheid des Auftraggebers, 16.09.2026):** Alle Kunden, die er betreut hat, gelten als klartext.-Referenzen und dürfen so gezeigt werden. Keine Hinweise wie „Referenzen im Entwurf“ oder „aus früheren beruflichen Stationen“ mehr einblenden.
 - **Nichts erfinden:** keine Firmenangaben, Adressen, Bewertungen, Kennzahlen oder Preise ohne Bestätigung.
-- **Indexierung** (`indexable` in `seo.config.json`) bleibt `false`, bis Domain und Firmenangaben bestätigt sind.
+- **Indexierung** (`indexable` in `seo.config.json`) bleibt `false`, bis ein neuer ausdrücklicher Auftrag den Produktivstart freigibt. Domain- oder Firmenbestätigung allein genügt nicht.
 - **Domain/DNS** nie ohne ausdrücklichen Auftrag umstellen.
 
 ## Technische Fallen
 
 - `scripts/build.py` kopiert nur diese Ordner in die Ausgabe: `bilder fonts js kopf laune logos marke video` sowie `.js/.css/.png` im Hauptordner. Neue Asset-Ordner dort eintragen, sonst fehlen sie live.
-- Neue Seiten brauchen einen Eintrag in `ROUTES` und `META` in `scripts/build.py`, sonst bekommen sie keine saubere Adresse und keine Metadaten.
+- Neue Ordnerseiten in `page-meta.json` aufnehmen; der Build übernimmt Routen und Metadaten daraus. Bestehende Legacy-Dateien bleiben über `ROUTES` und `META` in `scripts/build.py` zugeordnet.
 - GitHub Pages cached rund 10 Minuten; zum Prüfen `?c=<zufall>` an die Adresse hängen.
