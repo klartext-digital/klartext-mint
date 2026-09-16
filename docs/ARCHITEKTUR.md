@@ -197,7 +197,9 @@ Jede Leistungsseite verweist umgekehrt auf zwei bis vier Artikel ihres Dachs.
 1. Leistungsebene zusammenführen — sieben Seiten, ein Menü ✔ erledigt 17.09.2026
 2. Übersicht vom Build erzeugen lassen — **vor** dem Umzug, sonst wird Handarbeit
    verschoben statt beseitigt
-3. Leitfäden nach `/blog/`, `/wissen/` weiterleiten (je eine Zeile in `ALIASES`)
+3. Leitfäden nach `/blog/`, `/wissen/` weiterleiten ✔ erledigt 17.09.2026 — als
+   **Ordner** verschoben (gleiche Verzeichnistiefe, deshalb blieben 475 Pfade gültig),
+   Wissens-Übersicht aufgelöst, neun Weiterleitungen, Kartengenerator erweitert
 4. Datum maschinenlesbar, Article-Schema für alle Beiträge
 5. „Kurze Antwort"-Kasten je Leitfaden
 6. Die drei Hauptartikel schreiben
