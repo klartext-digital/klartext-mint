@@ -5,6 +5,7 @@ from html import escape, unescape
 from urllib.parse import urljoin, urlsplit, urlunsplit
 import json, re, shutil, posixpath, struct, os
 from release_policy import validate_preview
+import verkleinern
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = Path(os.environ.get('KLARTEXT_BUILD_DIR', ROOT / '_site')).resolve()
@@ -84,8 +85,13 @@ OUT.mkdir()
 (OUT/'.klartext-generated').touch()
 for directory in ['bilder','fonts','js','kopf','laune','logos','marke','video']:
  shutil.copytree(ROOT/directory, OUT/directory)
+# Quelldateien bleiben lesbar; nur die Ausgabe wird verkleinert.
+# Fremde Bibliotheken unter js/ sind bereits verkleinert und werden kopiert.
 for p in ROOT.iterdir():
- if p.is_file() and p.suffix in {'.js','.css','.png'}: shutil.copy2(p,OUT/p.name)
+ if not p.is_file(): continue
+ if p.suffix=='.css': (OUT/p.name).write_text(verkleinern.css(p.read_text()))
+ elif p.suffix=='.js': (OUT/p.name).write_text(verkleinern.js(p.read_text()))
+ elif p.suffix=='.png': shutil.copy2(p,OUT/p.name)
 
 sizes={}
 def size_of(path):
