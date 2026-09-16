@@ -7,7 +7,7 @@
     "image": "bilder/dienst-2.jpg"
   },
   "projektarbeit/": {
-    "title": "Marketing-Projekte: Webdesign & Strategie | klartext digital",
+    "title": "Marketing-Projekte & Webdesign | klartext digital",
     "description": "Webdesign, Kommunikationsstrategie und Content-Produktion als klar geplantes Projekt. Auch als externe Ergänzung eurer Marketingabteilung.",
     "label": "Ein Vorhaben. Klar umgesetzt.",
     "article": false,
@@ -21,14 +21,14 @@
     "image": "bilder/dienst-1.jpg"
   },
   "content-creation/": {
-    "title": "Content Creation Schweiz | Foto, Video & Social | klartext digital",
+    "title": "Content Creation: Foto, Video & Social | klartext digital",
     "description": "Content-Produktion für Unternehmen und Marketingteams: Fotos, Videos und Social-Media-Formate. Als Projekt oder Teil eurer laufenden Betreuung.",
     "label": "Content, der eine Aufgabe hat.",
     "article": false,
     "image": "bilder/dienst-2.jpg"
   },
   "wissen/website-erstellen-lassen/": {
-    "title": "Website erstellen lassen: Briefing & Ablauf | klartext digital",
+    "title": "Website erstellen lassen: Ablauf | klartext digital",
     "description": "Eine Unternehmenswebsite beauftragen: Ziele, Inhalte, Funktionen, Zuständigkeiten und Abnahme klären. Mit einer praktischen Briefing-Checkliste.",
     "label": "Website erstellen lassen: Was muss vorher klar sein?",
     "article": true,
@@ -55,14 +55,14 @@
     "image": "bilder/dienst-4.jpg"
   },
   "wissen/google-ads-budget/": {
-    "title": "Google-Ads-Budget planen: Kosten & Kontrolle | klartext digital",
+    "title": "Google-Ads-Budget richtig planen | klartext digital",
     "description": "Google-Ads-Budget planen: Werbeetat und Betreuung trennen, Tagesbudget verstehen und Ergebnisse anhand passender Anfragen beurteilen.",
     "label": "Google-Ads-Budget: Wie viel wofür einplanen?",
     "article": true,
     "image": "bilder/dienst-4.jpg"
   },
   "seo/": {
-    "title": "SEO-Betreuung Schweiz | Inhalte & Technik | klartext digital",
+    "title": "SEO-Betreuung Schweiz | klartext digital",
     "description": "SEO für Unternehmen und interne Marketingteams: technische Hürden prüfen, relevante Inhalte verbessern und Fortschritt mit Such- und Anfragedaten bewerten.",
     "label": "SEO-Betreuung",
     "article": false,
@@ -76,7 +76,7 @@
     "image": "bilder/dienst-3.jpg"
   },
   "wissen/website-pflege-checkliste/": {
-    "title": "Website-Pflege: Checkliste für Unternehmen | klartext digital",
+    "title": "Website-Pflege: Checkliste | klartext digital",
     "description": "Website-Pflege organisieren: Inhalte, Kontaktwege, Darstellung und technische Zuständigkeiten prüfen. Eine praktische Checkliste für Marketingteams.",
     "label": "Website-Pflege: Checkliste",
     "article": true,
