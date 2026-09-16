@@ -40,6 +40,67 @@ for route in PAGE_META:
  ROUTES[route+'index.html'] = route
 IMAGE_VARIANTS = json.loads((ROOT/'bild-varianten.json').read_text())
 IMAGE_SIZES = json.loads((ROOT/'bild-groessen.json').read_text()) if (ROOT/'bild-groessen.json').exists() else {}
+# ── Blogübersicht: aus den Artikeln erzeugt, nicht von Hand gepflegt ──────────
+# Die sechs Karten standen handgeschrieben in blog/index.html — samt Lesezeit,
+# Datum, Anriss, Bild und Person. Jeder neue Beitrag hätte dort eine weitere
+# Karte von Hand gebraucht; Anrisse und Daten wären mit der Zeit auseinander
+# gelaufen. Fünf der sechs Angaben stehen ohnehin im Artikel. Sie werden von
+# dort gelesen, die Personenzuordnung kommt aus blog-autoren.json.
+BLOG_AUTOREN = json.loads((ROOT/'blog-autoren.json').read_text()) if (ROOT/'blog-autoren.json').exists() else {}
+MONATE = {'Jan':1,'Feb':2,'Mär':3,'Maer':3,'Apr':4,'Mai':5,'Jun':6,'Jul':7,'Aug':8,'Sep':9,'Okt':10,'Nov':11,'Dez':12}
+
+def blog_beitraege():
+ """Liest jeden Blogartikel und gibt die Angaben für seine Karte zurück."""
+ aus=[]
+ for p in sorted((ROOT/'blog').glob('*.html')):
+  if p.name=='index.html' or re.search(r' \d+$',p.stem): continue
+  s=p.read_text()
+  m=re.search(r'<main[\s\S]*?</main>',s)
+  k=m.group(0) if m else s
+  h1=re.search(r'<h1[^>]*>([\s\S]*?)</h1>',k)
+  chip=re.search(r'<span class="chip"[^>]*>([^<]*)</span>',k)
+  bild=re.search(r'artikel__bild"[\s\S]*?src="\.\./([^"]+)"',k)
+  anriss=re.search(r'<article class="artikel"[^>]*>\s*<p>([\s\S]*?)</p>',k)
+  if not (h1 and chip and bild and anriss): continue
+  datum=chip.group(1).strip()
+  t=re.match(r'(\d{1,2})\.\s*([A-Za-zäöüÄÖÜ]+)\s*(\d{4})',datum)
+  # 200 Wörter je Minute, mindestens eine. Der Stern gehört zur Handschrift.
+  minuten=max(1,round(len(re.sub(r'<[^>]*>',' ',k).split())/200))
+  aus.append({
+   'datei':p.name,'stamm':p.stem,
+   'titel':re.sub(r'<[^>]*>','',h1.group(1)).strip(),
+   'datum':datum,
+   'sortierung':(int(t.group(3)),MONATE.get(t.group(2)[:3],0),int(t.group(1))) if t else (0,0,0),
+   'bild':bild.group(1),
+   'anriss':anriss.group(1).strip(),
+   'minuten':minuten,
+   'person':BLOG_AUTOREN.get(p.stem),
+  })
+ aus.sort(key=lambda b:b['sortierung'],reverse=True)   # neueste zuerst
+ return aus
+
+def blog_karten_html(beitraege):
+ teile=[]
+ for b in beitraege:
+  person=''
+  if b['person']:
+   person=('\n          <span class="lese__wer">'
+           f'\n            <img src="../bilder/{b["person"]["bild"]}" alt="" loading="lazy">'
+           f'\n            <span><b>{escape(b["person"]["name"])}</b><i>{escape(b["person"]["rolle"])}</i></span>'
+           '\n          </span>')
+  teile.append(
+   f'\n      <a class="lese" href="{b["datei"]}" data-rein>'
+   '\n        <div class="lese__oben">'
+   f'\n          <p class="lese__meta"><span class="lese__zeit">*{b["minuten"]} Min Lesezeit</span>'
+   f'<span class="lese__datum">{escape(b["datum"])}</span></p>'
+   f'\n          <h3 class="lese__titel">{escape(b["titel"])}</h3>'
+   f'\n          <p class="lese__anriss">{b["anriss"]}</p>'
+   f'{person}'
+   '\n        </div>'
+   f'\n        <div class="lese__bild"><img src="../{b["bild"]}" alt="" loading="lazy"></div>'
+   '\n      </a>')
+ return ''.join(teile)
+
 ALIASES = {'leistungen/websites.html': 'webdesign/'}
 MAP = {**ROUTES, **ALIASES}
 for target in list(MAP.values()):
@@ -201,6 +262,21 @@ for source,route in ROUTES.items():
   visible=' '.join(visible.split())
   assert person.get('name') and person['name'] in visible and person.get('visible_text') in visible, 'Person must match visible, verified profile.'
   graph.append({'@type':'Person','@id':BASE+'#person','name':person['name'],'url':canonical})
+ # Die Blogübersicht wird erzeugt, nicht gepflegt: ein neuer Beitrag ist eine
+ # Datei, die Karte entsteht daraus.
+ # WICHTIG: Das muss VOR tagfix laufen. tagfix ergaenzt Bildmasse, decoding und
+ # WebP-Varianten und schreibt interne Verweise auf die sauberen Adressen um.
+ # Stand der Block dahinter, verloren die erzeugten Karten beides: Portraets
+ # luden als volles JPEG statt als 420er WebP, ohne Bildmasse sprang beim Laden
+ # das Layout, und die Verweise zeigten auf die alten .html-Adressen.
+ # Der assert ist Absicht — ein stiller Fehlschlag wuerde die Uebersicht
+ # einfrieren, ohne dass es jemand merkt.
+ if route=='blog/':
+  raster=re.search(r'(<div class="lesegitter">)([\s\S]*?)(\n    </div>\n  </section>)',s)
+  assert raster, 'Kartenraster in blog/index.html nicht gefunden — Aufbau geaendert?'
+  karten=blog_karten_html(blog_beitraege())
+  assert karten.count('<a class="lese"')>=1, 'Keine Blogbeitraege gelesen'
+  s=s[:raster.start(2)]+karten+s[raster.end(2):]
  # Defer external scripts in document order. They still run before DOMContentLoaded.
  s=re.sub(r'<script src="([^"]+)"',r'<script defer src="\1"',s)
  # Ladeschirm: bleibt aktiv — beim ersten Besuch und danach jeden zehnten Aufruf.
