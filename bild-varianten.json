@@ -7,6 +7,10 @@
     {
       "path": "bilder/dienst-1-626.webp",
       "width": 626
+    },
+    {
+      "path": "bilder/dienst-1-1200.webp",
+      "width": 1200
     }
   ],
   "bilder/dienst-2.jpg": [
@@ -17,6 +21,10 @@
     {
       "path": "bilder/dienst-2-626.webp",
       "width": 626
+    },
+    {
+      "path": "bilder/dienst-2-1200.webp",
+      "width": 1200
     }
   ],
   "bilder/dienst-3.jpg": [
@@ -27,6 +35,10 @@
     {
       "path": "bilder/dienst-3-626.webp",
       "width": 626
+    },
+    {
+      "path": "bilder/dienst-3-1200.webp",
+      "width": 1200
     }
   ],
   "bilder/dienst-4.jpg": [
@@ -37,6 +49,10 @@
     {
       "path": "bilder/dienst-4-626.webp",
       "width": 626
+    },
+    {
+      "path": "bilder/dienst-4-1200.webp",
+      "width": 1200
     }
   ],
   "bilder/dienst-5.jpg": [
@@ -47,6 +63,10 @@
     {
       "path": "bilder/dienst-5-626.webp",
       "width": 626
+    },
+    {
+      "path": "bilder/dienst-5-1200.webp",
+      "width": 1200
     }
   ],
   "bilder/portrait-1.jpg": [
