@@ -5,5 +5,13 @@
   "bilder/portrait-4.jpg": "(max-width: 700px) 60vw, 420px",
   "bilder/portrait-5.jpg": "(max-width: 700px) 60vw, 420px",
   "bilder/portrait-6.jpg": "(max-width: 700px) 60vw, 420px",
-  "logos/gcb.png": "182px"
+  "logos/gcb.png": "182px",
+  "bilder/em-newsletter.jpg": "(max-width: 900px) 100vw, 44vw",
+  "bilder/em-verteiler.jpg": "(max-width: 900px) 100vw, 44vw",
+  "bilder/em-anmeldung.jpg": "(max-width: 900px) 100vw, 44vw",
+  "bilder/em-strecken.jpg": "(max-width: 900px) 100vw, 44vw",
+  "bilder/em-segment.jpg": "(max-width: 900px) 100vw, 44vw",
+  "bilder/em-test.jpg": "(max-width: 900px) 100vw, 44vw",
+  "bilder/em-zustellung.jpg": "(max-width: 900px) 100vw, 44vw",
+  "bilder/em-report.jpg": "(max-width: 900px) 100vw, 44vw"
 }

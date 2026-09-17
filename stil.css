@@ -1483,43 +1483,46 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    gesetztes --bild bleibt nur das Leuchten. Auf Touchgeraeten gibt es kein
    Hover, dort steht das Bild dauerhaft schwach - sonst saehe die Haelfte
    der Besucher den Effekt nie. */
-.umfang{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+.umfang{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
   gap:clamp(12px,1.2vw,18px);margin-top:clamp(22px,2.4vw,38px);padding:0;list-style:none}
 .umfang__karte{position:relative;overflow:hidden;isolation:isolate;
-  display:flex;flex-direction:column;gap:9px;
-  padding:clamp(20px,1.7vw,26px);border-radius:var(--r-mittel);
+  display:flex;flex-direction:column;gap:9px;justify-content:flex-end;
+  min-height:clamp(148px,9.6vw,178px);
+  padding:clamp(22px,1.9vw,30px);border-radius:var(--r-mittel);
   background:rgb(247 247 245 / .05);border:2px solid transparent;
   transition:border-color var(--t-flaeche) var(--kurve-rein),
     box-shadow var(--t-flaeche) var(--kurve-rein),
     background-color var(--t-flaeche) var(--kurve-rein),
     transform var(--t-flaeche) var(--kurve-rein)}
-.umfang__karte::before{content:"";position:absolute;inset:0;z-index:-2;
-  background-image:var(--bild,none);background-size:cover;background-position:center;
+.umfang__bild{position:absolute;inset:0;z-index:-2;width:100%;height:100%;
+  object-fit:cover;object-position:right center;
   opacity:0;transition:opacity var(--t-bild) var(--kurve-rein)}
 .umfang__karte::after{content:"";position:absolute;inset:0;z-index:-1;
-  background:radial-gradient(118% 88% at 78% 16%,rgb(245 165 36 / .30) 0%,
-      rgb(245 165 36 / .07) 44%,transparent 72%),
-    linear-gradient(180deg,rgb(14 13 11 / .32),rgb(14 13 11 / .78));
+  background:radial-gradient(86% 120% at 88% 20%,rgb(245 165 36 / .26) 0%,
+      rgb(245 165 36 / .06) 46%,transparent 74%),
+    linear-gradient(90deg,rgb(14 13 11 / .92) 0%,rgb(14 13 11 / .82) 34%,
+      rgb(14 13 11 / .42) 62%,rgb(14 13 11 / .22) 100%);
   opacity:0;transition:opacity var(--t-bild) var(--kurve-rein)}
 .umfang__karte:hover{background:rgb(245 165 36 / .10);border-color:var(--violett);
   transform:translateY(-3px);
   box-shadow:0 0 44px -4px rgb(245 165 36 / .50),0 22px 54px -18px rgb(0 0 0 / .65)}
-.umfang__karte:hover::before{opacity:.55}
+.umfang__karte:hover .umfang__bild{opacity:.55}
 .umfang__karte:hover::after{opacity:1}
-.umfang__ikon{color:var(--violett-hell);line-height:0}
+.umfang__ikon{color:var(--violett-hell);line-height:0;margin-bottom:3px}
+.umfang__karte h3,.umfang__karte p{max-width:min(58%,34ch)}
 .umfang__karte h3{font-size:clamp(17px,1.25vw,20px);line-height:1.25;margin:0;
   letter-spacing:-.02em}
 .umfang__karte p{margin:0;font-size:14.5px;line-height:1.45;
   color:rgb(247 247 245 / .68)}
 .umfang__karte:hover p{color:rgb(247 247 245 / .86)}
-@media(max-width:1000px){.umfang{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){.umfang{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:900px){.umfang{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.umfang__karte h3,.umfang__karte p{max-width:74%}}
 @media(hover:none){
-  .umfang__karte::before{opacity:.22}
+  .umfang__bild{opacity:.22}
   .umfang__karte::after{opacity:1}
 }
 @media(prefers-reduced-motion:reduce){
-  .umfang__karte,.umfang__karte::before,.umfang__karte::after{transition:none}
+  .umfang__karte,.umfang__bild,.umfang__karte::after{transition:none}
   .umfang__karte:hover{transform:none}
 }
 /* ── Vorteile in der orangen Abschlusskarte ──
