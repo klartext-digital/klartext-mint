@@ -1438,8 +1438,15 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    runden Ecken durchscheint. Eine feste Auslauffarbe waere dort falsch;
    die Maske blendet das Bild gegen das aus, was tatsaechlich dahinter ist. */
 .hero{position:relative;isolation:isolate;min-height:clamp(420px,46vh,640px)}
-.hero__grund{position:absolute;z-index:-1;top:0;bottom:0;
-  left:auto;right:calc(50% - 50vw);width:min(62vw,1040px);overflow:hidden}
+/* Die Box erbte die volle Hero-Hoehe, und die haengt an der Textlaenge.
+   Gemessen ergab das 893x1075 (Verhaeltnis 0,83) fuer ein 16:9-Motiv:
+   object-fit:cover skalierte 2,67-fach hoch und warf 54 Prozent der
+   Bildbreite weg. Bei einem Foto ginge das; unsere Motive sind
+   Bildschirmaufnahmen und vertragen keinen Zoom. Darum ein eigenes
+   Seitenverhaeltnis nahe der Quelle, oben verankert. */
+.hero__grund{position:absolute;z-index:-1;top:0;bottom:auto;
+  left:auto;right:calc(50% - 50vw);width:min(62vw,1040px);
+  aspect-ratio:16/10;max-height:100%;overflow:hidden}
 .hero__grund img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;
   -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgb(0 0 0 / .28) 20%,
     rgb(0 0 0 / .78) 44%,#000 66%);
