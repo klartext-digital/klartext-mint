@@ -1483,11 +1483,11 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    gesetztes --bild bleibt nur das Leuchten. Auf Touchgeraeten gibt es kein
    Hover, dort steht das Bild dauerhaft schwach - sonst saehe die Haelfte
    der Besucher den Effekt nie. */
-.umfang{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+.umfang{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;
   gap:clamp(12px,1.2vw,18px);margin-top:clamp(22px,2.4vw,38px);padding:0;list-style:none}
 .umfang__karte{position:relative;overflow:hidden;isolation:isolate;
-  display:flex;flex-direction:column;gap:9px;justify-content:flex-end;
-  min-height:clamp(164px,11.4vw,204px);
+  display:flex;flex-direction:column;gap:9px;justify-content:flex-start;
+  min-height:clamp(178px,12.2vw,218px);
   padding:clamp(22px,1.9vw,30px);border-radius:var(--r-mittel);
   background:rgb(247 247 245 / .05);border:2px solid transparent;
   transition:border-color var(--t-flaeche) var(--kurve-rein),
@@ -1510,8 +1510,8 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .umfang__karte:hover::after{opacity:1}
 .umfang__ikon{color:var(--violett-hell);line-height:0;margin-bottom:3px}
 .umfang__karte h3,.umfang__karte p{max-width:min(58%,34ch)}
-.umfang__karte h3{font-size:clamp(17px,1.25vw,20px);line-height:1.25;margin:0;
-  letter-spacing:-.02em}
+.umfang__karte h3{font-size:clamp(19px,1.5vw,24px);line-height:1.25;margin:0;
+  letter-spacing:-.02em;min-height:2.5em}
 .umfang__karte p{margin:0;font-size:14.5px;line-height:1.45;
   color:rgb(247 247 245 / .68)}
 .umfang__karte:hover p{color:rgb(247 247 245 / .86)}
