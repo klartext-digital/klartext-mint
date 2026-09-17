@@ -2552,6 +2552,13 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .frage.offen .frage__kreis b,.frage:focus-within .frage__kreis b{opacity:0}
 .frage[hidden]{display:none}
 
+/* FAQ innerhalb einer Textspalte: dieselben Karten wie auf der Startseite,
+   aber ohne deren Sektionspolster und Breitenbegrenzung — die Spalte
+   drumherum setzt beides bereits. Ohne das stuende oben ein --sec-Polster
+   von bis zu 170px mitten im Fliesstext. */
+.fragen--eingebettet{padding:0;max-width:none;margin:clamp(22px,2.4vw,34px) 0 0}
+.fragen--eingebettet .fragen__liste{margin-top:0;max-width:none}
+
 /* ── Preiszeile mit Erstgespräch ───────────────────────────
    Die beiden Pakete ruecken nach links und werden schmaler; rechts
    daneben steht das kostenlose Erstgespraech.

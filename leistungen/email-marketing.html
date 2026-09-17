@@ -200,20 +200,6 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
   </section>
 
   <!-- ══ Ablauf ══ -->
-  <section class="unter__ablauf">
-    <div class="kopfzeile">
-      <div>
-        <span class="chip" data-rein>Ablauf</span>
-        <h2 data-rein-zeilen><span>So arbeiten wir.</span></h2>
-      </div>
-    </div>
-    <ol class="schritte">
-      <li class="schritt"><b>01</b><div><h3>Aufsetzen</h3><p>Konto, Anmeldeformular, Einwilligung, Vorlagen.</p></div></li>
-      <li class="schritt"><b>02</b><div><h3>Schreiben</h3><p>Ein fester Rhythmus, Themen aus eurem Alltag.</p></div></li>
-      <li class="schritt"><b>03</b><div><h3>Automatisieren</h3><p>Willkommen, Warenkorb, Rückgewinnung.</p></div></li>
-      <li class="schritt"><b>04</b><div><h3>Testen</h3><p>Betreff, Zeitpunkt, Segment, immer nur eine Variable.</p></div></li>
-    </ol>
-  </section>
 
 <section class="unter__block seo-prose">
 <h2>Ein Newsletter braucht einen konkreten Anlass</h2>
@@ -232,9 +218,31 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 <p>Die Auswertung beginnt mit der Aufgabe der Nachricht: Wurde das verlinkte Angebot aufgerufen? Sind passende Anfragen, Anmeldungen oder Bestellungen entstanden? Auch Abmeldungen und Zustellprobleme liefern Hinweise. Einzelne Kennzahlen sollten immer im Zusammenhang mit Ziel, Empfängergruppe und Messmöglichkeiten gelesen werden.</p>
 <p>Für die nächste Kampagne halten wir fest, was verändert werden soll. Ein klarerer Einstieg, eine besser passende Empfängergruppe oder eine verständlichere Zielseite können sinnvolle Ansatzpunkte sein. Wer mehrere Elemente gleichzeitig ändert, kann anschliessend schwerer erkennen, was den Unterschied ausgemacht hat.</p>
 <h2>Häufige Fragen zum E-Mail-Marketing</h2>
-<details><summary>Können wir mit unserem vorhandenen System weiterarbeiten?</summary><p>Das prüfen wir anhand der benötigten Funktionen und vorhandenen Zugänge. Ein neues System ist nur dann sinnvoll, wenn die Anforderungen es rechtfertigen. Datenübernahme, Vorlagen und laufende Kosten gehören in diese Entscheidung.</p></details>
-<details><summary>Übernehmt ihr nur die Gestaltung und Technik?</summary><p>Ja, Aufgaben lassen sich abgrenzen. Euer Team kann Themen und Texte liefern, während wir die vereinbarte Gestaltung, Einrichtung und Prüfung übernehmen. Zuständigkeiten und die letzte Freigabe halten wir zu Beginn fest.</p></details>
-<details><summary>Welche Kosten müssen wir einplanen?</summary><p>Neben der Kampagnenarbeit können Gebühren der Versandplattform und Aufwand für Vorlagen, Datenaufbereitung oder Systemverbindungen anfallen. Wiederkehrende Betreuung und einmalige Einrichtung sollten im Angebot getrennt sein. Mehr zur vollständigen Planung im <a href="../blog/marketingbudget-kmu/">Marketingbudget-Leitfaden</a>.</p></details>
+<div class="fragen fragen--eingebettet">
+  <div class="fragen__liste">
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Können wir mit unserem vorhandenen System weiterarbeiten?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Das prüfen wir anhand der benötigten Funktionen und vorhandenen Zugänge. Ein neues System ist nur dann sinnvoll, wenn die Anforderungen es rechtfertigen. Datenübernahme, Vorlagen und laufende Kosten gehören in diese Entscheidung.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Übernehmt ihr nur die Gestaltung und Technik?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Ja, Aufgaben lassen sich abgrenzen. Euer Team kann Themen und Texte liefern, während wir die vereinbarte Gestaltung, Einrichtung und Prüfung übernehmen. Zuständigkeiten und die letzte Freigabe halten wir zu Beginn fest.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Welche Kosten müssen wir einplanen?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Neben der Kampagnenarbeit können Gebühren der Versandplattform und Aufwand für Vorlagen, Datenaufbereitung oder Systemverbindungen anfallen. Wiederkehrende Betreuung und einmalige Einrichtung sollten im Angebot getrennt sein. Mehr zur vollständigen Planung im <a href="../blog/marketingbudget-kmu/">Marketingbudget-Leitfaden</a>.</p></div></div>
+    </div>
+  </div>
+</div>
 <p>Für eine neue inhaltliche Ausrichtung beginnen wir bei der <a href="../branding/">Kommunikationsstrategie</a>. Für eine einzelne Einrichtung oder Kampagne eignet sich <a href="../projektarbeit/">Projektarbeit</a>.</p>
 <p><a class="knopf knopf--akzent" href="../kontakt/?anliegen=team">Newsletter-Aufgaben besprechen</a></p>
 </section>
@@ -334,6 +342,7 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 <script src="../js/ScrollTrigger.min.js"></script>
 <script src="../lader.js"></script>
 <script src="../bewegung.js"></script>
+<script src="../fragen.js"></script>
 <script src="../zeiger.js"></script>
 </body>
 </html>
