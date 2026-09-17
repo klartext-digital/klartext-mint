@@ -318,7 +318,9 @@ for source,route in ROUTES.items():
     tag=re.sub(r'\s(?:width|height)="[^"]*"','',tag)
     tag=tag[:-1]+f' width="{dim[0]}" height="{dim[1]}">'
    if 'decoding=' not in tag:tag=tag[:-1]+' decoding="async">'
-   if 'dienst-' in src.group(1) and 'loading=' not in tag:tag=tag[:-1]+' loading="lazy">'
+   # Hero-Hintergruende tragen fetchpriority="high" und duerfen NICHT lazy laden —
+   # sonst poppt das erste Bild der Seite verzoegert nach und widerspricht der Prioritaet.
+   if 'dienst-' in src.group(1) and 'loading=' not in tag and 'fetchpriority="high"' not in tag:tag=tag[:-1]+' loading="lazy">'
   tag=re.sub(r'\b(href|src|poster)="([^"]*)"',lambda x:x.group(1)+'="'+rewrite_url(x.group(2),source,route)+'"',tag)
   if variants:
    candidates=', '.join(posixpath.relpath(v['path'],route_dir or '.')+' '+str(v['width'])+'w' for v in variants)
