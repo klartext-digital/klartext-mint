@@ -202,5 +202,341 @@
       "path": "bilder/em-report-1200.webp",
       "width": 1200
     }
+  ],
+  "bilder/br-markt.jpg": [
+    {
+      "path": "bilder/br-markt-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/br-markt-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/br-markt-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/br-position.jpg": [
+    {
+      "path": "bilder/br-position-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/br-position-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/br-position-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/br-marke.jpg": [
+    {
+      "path": "bilder/br-marke-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/br-marke-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/br-marke-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/br-sprache.jpg": [
+    {
+      "path": "bilder/br-sprache-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/br-sprache-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/br-sprache-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/br-architektur.jpg": [
+    {
+      "path": "bilder/br-architektur-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/br-architektur-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/br-architektur-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/br-guide.jpg": [
+    {
+      "path": "bilder/br-guide-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/br-guide-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/br-guide-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/sm-plan.jpg": [
+    {
+      "path": "bilder/sm-plan-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/sm-plan-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/sm-plan-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/sm-kanaele.jpg": [
+    {
+      "path": "bilder/sm-kanaele-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/sm-kanaele-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/sm-kanaele-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/sm-reels.jpg": [
+    {
+      "path": "bilder/sm-reels-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/sm-reels-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/sm-reels-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/sm-foto.jpg": [
+    {
+      "path": "bilder/sm-foto-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/sm-foto-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/sm-foto-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/sm-community.jpg": [
+    {
+      "path": "bilder/sm-community-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/sm-community-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/sm-community-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/sm-report.jpg": [
+    {
+      "path": "bilder/sm-report-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/sm-report-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/sm-report-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/pf-google.jpg": [
+    {
+      "path": "bilder/pf-google-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/pf-google-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/pf-google-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/pf-plattformen.jpg": [
+    {
+      "path": "bilder/pf-plattformen-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/pf-plattformen-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/pf-plattformen-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/pf-tracking.jpg": [
+    {
+      "path": "bilder/pf-tracking-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/pf-tracking-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/pf-tracking-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/pf-landing.jpg": [
+    {
+      "path": "bilder/pf-landing-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/pf-landing-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/pf-landing-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/pf-test.jpg": [
+    {
+      "path": "bilder/pf-test-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/pf-test-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/pf-test-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/pf-budget.jpg": [
+    {
+      "path": "bilder/pf-budget-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/pf-budget-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/pf-budget-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/wd-konzept.jpg": [
+    {
+      "path": "bilder/wd-konzept-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/wd-konzept-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/wd-konzept-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/wd-ux.jpg": [
+    {
+      "path": "bilder/wd-ux-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/wd-ux-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/wd-ux-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/wd-umsetzung.jpg": [
+    {
+      "path": "bilder/wd-umsetzung-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/wd-umsetzung-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/wd-umsetzung-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/wd-technik.jpg": [
+    {
+      "path": "bilder/wd-technik-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/wd-technik-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/wd-technik-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/wd-barriere.jpg": [
+    {
+      "path": "bilder/wd-barriere-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/wd-barriere-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/wd-barriere-1200.webp",
+      "width": 1200
+    }
+  ],
+  "bilder/wd-pflege.jpg": [
+    {
+      "path": "bilder/wd-pflege-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/wd-pflege-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/wd-pflege-1200.webp",
+      "width": 1200
+    }
   ]
 }
