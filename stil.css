@@ -932,11 +932,6 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 /* Der Abstand rechnet den Ueberstand der mittleren Preiskarte mit
    heraus — sonst beruehrt sie diese Karte, bei breiten Fenstern
    ueberlappt sie sogar. */
-/* Rechtlicher Hinweis unter den Paketen: auf der orangen Flaeche muss
-   er DUNKEL sein. Weiss auf diesem Orange kommt nur auf 1,9:1 und ist
-   damit unlesbar; Tinte liegt bei 9,5:1. */
-.preise__fuss{max-width:1240px;margin:clamp(14px,1.4vw,22px) auto 0;
-  font-size:14px;line-height:1.55;color:rgb(14 13 11 / .78)}
 .projekt{max-width:1240px;margin:calc(clamp(28px,2.6vw,44px) + var(--voll-ueber)) auto 0;
   background:var(--tinte-2);
   border-radius:var(--r-gross);padding:clamp(22px,1.9vw,30px);
