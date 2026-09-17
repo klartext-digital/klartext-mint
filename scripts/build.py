@@ -324,8 +324,12 @@ for source,route in ROUTES.items():
   tag=re.sub(r'\b(href|src|poster)="([^"]*)"',lambda x:x.group(1)+'="'+rewrite_url(x.group(2),source,route)+'"',tag)
   if variants:
    candidates=', '.join(posixpath.relpath(v['path'],route_dir or '.')+' '+str(v['width'])+'w' for v in variants)
+   # Ein im Markup gesetztes sizes bleibt stehen: dieselbe Bilddatei dient
+   # sowohl als Umfang-Karte (30vw) als auch als Hero-Hintergrund (62vw),
+   # und bild-groessen.json kennt nur EINEN Wert je Datei.
+   hat_sizes='sizes="' in tag
    sizes=IMAGE_SIZES.get(item[0],'(max-width: 700px) 100vw, 50vw') if item else '(max-width: 700px) 100vw, 50vw'
-   tag=tag[:-1]+' srcset="'+candidates+'" sizes="'+sizes+'">'
+   tag=tag[:-1]+' srcset="'+candidates+'"'+('' if hat_sizes else ' sizes="'+sizes+'"')+'>'
   return tag
  s=re.sub(r'<(?:a|link|img|script|video|source)\b[^>]*>',tagfix,s)
  if route and route not in ['marke.html','laune.html','takt.html']:
