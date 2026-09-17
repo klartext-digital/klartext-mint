@@ -1483,11 +1483,11 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    gesetztes --bild bleibt nur das Leuchten. Auf Touchgeraeten gibt es kein
    Hover, dort steht das Bild dauerhaft schwach - sonst saehe die Haelfte
    der Besucher den Effekt nie. */
-.umfang{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+.umfang{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
   gap:clamp(12px,1.2vw,18px);margin-top:clamp(22px,2.4vw,38px);padding:0;list-style:none}
 .umfang__karte{position:relative;overflow:hidden;isolation:isolate;
   display:flex;flex-direction:column;gap:9px;justify-content:flex-end;
-  min-height:clamp(148px,9.6vw,178px);
+  min-height:clamp(164px,11.4vw,204px);
   padding:clamp(22px,1.9vw,30px);border-radius:var(--r-mittel);
   background:rgb(247 247 245 / .05);border:2px solid transparent;
   transition:border-color var(--t-flaeche) var(--kurve-rein),
@@ -1515,7 +1515,8 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .umfang__karte p{margin:0;font-size:14.5px;line-height:1.45;
   color:rgb(247 247 245 / .68)}
 .umfang__karte:hover p{color:rgb(247 247 245 / .86)}
-@media(max-width:900px){.umfang{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:1100px){.umfang{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.umfang{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:600px){.umfang__karte h3,.umfang__karte p{max-width:74%}}
 @media(hover:none){
   .umfang__bild{opacity:.22}
