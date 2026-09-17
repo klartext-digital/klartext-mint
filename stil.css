@@ -1460,6 +1460,49 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   transition:transform var(--t-bild) var(--kurve)}
 .unter__bild:hover img{transform:scale(1.05)}
 
+/* ── Hero der Unterseiten: Querformat-Bild als Grund, Text darueber ──
+   Vorgabe des Auftraggebers (17.09.2026). .unter (Brotkrume) und
+   .unter__leib (Text) sind Geschwister — ein Hintergrund auf einem von
+   beiden liegt nicht hinter dem anderen. Der Rahmen .hero fasst beide.
+   Vollbreite wie bei .buehne: left:calc(50% - 50vw);width:100vw.
+   Verlauf links dicht, rechts offen, damit das Motiv sichtbar bleibt;
+   warmes Schwarz statt des Teal-Tons der Startseite. Gemessen: der Text
+   steht auf allen 19 Motiven bei Kontrast 9,4 bis 18,8 gegen Creme. */
+/* Mindesthoehe, weil die Hero-Hoehe sonst allein an der Textlaenge haengt:
+   SEO hat einen Absatz (677px), Branding drei (970px), Webdesign vier (1076px).
+   Bei den kurzen Seiten wurde das Motiv waagrecht mitten durchgeschnitten und
+   das Band wirkte abgeschnitten statt gestaltet. */
+.hero{position:relative;isolation:isolate;min-height:clamp(460px,52vh,720px)}
+.hero__grund{position:absolute;z-index:-2;top:0;bottom:0;
+  left:calc(50% - 50vw);width:100vw;overflow:hidden;background:var(--tinte)}
+.hero__grund img{width:100%;height:100%;object-fit:cover;object-position:75% 50%}
+.hero::before{content:"";position:absolute;z-index:-1;
+  top:0;bottom:0;left:calc(50% - 50vw);width:100vw;
+  background:linear-gradient(97deg,rgb(14 13 11 / .94) 0%,rgb(14 13 11 / .82) 30%,
+    rgb(14 13 11 / .48) 56%,rgb(14 13 11 / .24) 78%,rgb(14 13 11 / .36) 100%)}
+.hero .unter{padding-bottom:0}
+.hero .unter__leib{grid-template-columns:minmax(0,1fr);
+  padding-bottom:clamp(56px,6vw,96px)}
+.hero .unter__text{max-width:min(62%,62ch)}
+.hero :is(h1,.unter__text p,.seo-breadcrumb,.seo-breadcrumb a){color:var(--creme)}
+.hero .zurueck{border-color:rgb(247 247 245 / .28);color:var(--creme)}
+.hero .zurueck:hover{background:var(--creme);border-color:var(--creme);color:var(--tinte)}
+.hero .chip{background:rgb(247 247 245 / .16);color:var(--creme)}
+.hero .unter__dauer{background:rgb(247 247 245 / .14)}
+.hero .unter__dauer span{color:rgb(247 247 245 / .72)}
+.hero .unter__dauer b{color:var(--creme)}
+@media (max-width:1100px){
+  .hero .unter__text{max-width:none}
+  /* Am Handy nimmt der Text die volle Breite ein — es gibt kein "rechts",
+     das der 97-Grad-Verlauf offen lassen koennte. Gemessen am Bild schlug
+     das Motiv dort durch den Fliesstext (Farbfelder und Mockup-Schrift
+     mitten in den Absaetzen). Deshalb hier ein deckender Schleier statt
+     eines seitlichen; das Motiv bleibt als Textur erkennbar. */
+  .hero::before{background:linear-gradient(180deg,rgb(14 13 11 / .88) 0%,
+    rgb(14 13 11 / .93) 45%,rgb(14 13 11 / .90) 100%)}
+  .hero__grund img{object-position:60% 50%}
+}
+
 /* ── Hero: Kopf und Text in EINER Spalte, Bild daneben ─────────
    Dusans Vorgabe (17.09.2026): Zurueck-Pille, Chip, Titel,
    Handschrift, Fliesstext und Dauer-Pille stehen links; rechts
