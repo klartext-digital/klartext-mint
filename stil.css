@@ -1477,6 +1477,68 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .drin li::before{content:"";position:absolute;left:19px;top:23px;width:12px;height:7px;
   border-left:2.5px solid var(--violett-hell);border-bottom:2.5px solid var(--violett-hell);
   transform:rotate(-45deg)}
+/* ── Umfang als Karten (Vorlage des Auftraggebers, 17.09.2026) ──
+   Ersetzt die schlichte .drin-Liste auf der Musterseite. Beim Ueberfahren
+   leuchtet die Karte auf und das Hintergrundbild scheint durch; ohne
+   gesetztes --bild bleibt nur das Leuchten. Auf Touchgeraeten gibt es kein
+   Hover, dort steht das Bild dauerhaft schwach - sonst saehe die Haelfte
+   der Besucher den Effekt nie. */
+.umfang{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:clamp(12px,1.2vw,18px);margin-top:clamp(22px,2.4vw,38px);padding:0;list-style:none}
+.umfang__karte{position:relative;overflow:hidden;isolation:isolate;
+  display:flex;flex-direction:column;gap:9px;
+  padding:clamp(20px,1.7vw,26px);border-radius:var(--r-mittel);
+  background:rgb(247 247 245 / .05);border:2px solid transparent;
+  transition:border-color var(--t-flaeche) var(--kurve-rein),
+    box-shadow var(--t-flaeche) var(--kurve-rein),
+    background-color var(--t-flaeche) var(--kurve-rein),
+    transform var(--t-flaeche) var(--kurve-rein)}
+.umfang__karte::before{content:"";position:absolute;inset:0;z-index:-2;
+  background-image:var(--bild,none);background-size:cover;background-position:center;
+  opacity:0;transition:opacity var(--t-bild) var(--kurve-rein)}
+.umfang__karte::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgb(14 13 11 / .58),rgb(14 13 11 / .88));
+  opacity:0;transition:opacity var(--t-bild) var(--kurve-rein)}
+.umfang__karte:hover{background:rgb(247 247 245 / .09);border-color:var(--violett);
+  transform:translateY(-3px);
+  box-shadow:0 0 34px -6px rgb(245 165 36 / .55),0 20px 50px -18px rgb(0 0 0 / .6)}
+.umfang__karte:hover::before{opacity:.42}
+.umfang__karte:hover::after{opacity:1}
+.umfang__ikon{color:var(--violett-hell);line-height:0}
+.umfang__karte h3{font-size:clamp(17px,1.25vw,20px);line-height:1.25;margin:0;
+  letter-spacing:-.02em}
+.umfang__karte p{margin:0;font-size:14.5px;line-height:1.45;
+  color:rgb(247 247 245 / .68)}
+.umfang__karte:hover p{color:rgb(247 247 245 / .86)}
+@media(hover:none){
+  .umfang__karte::before{opacity:.22}
+  .umfang__karte::after{opacity:1}
+}
+@media(prefers-reduced-motion:reduce){
+  .umfang__karte,.umfang__karte::before,.umfang__karte::after{transition:none}
+  .umfang__karte:hover{transform:none}
+}
+/* ── Vorteile in der orangen Abschlusskarte ──
+   NUR ueber den Zusatz --vorteile. .ruf__karte--knapp allein steht auf 22
+   Seiten; die bleibt unveraendert. */
+.ruf__karte.ruf__karte--vorteile{text-align:left;justify-items:stretch;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);
+  gap:clamp(24px,3vw,56px);align-items:center}
+.ruf__karte.ruf__karte--vorteile .ruf__wort{text-align:left}
+.ruf__karte.ruf__karte--vorteile .ruf__text{margin-left:0;margin-right:0;text-align:left}
+.vorteile{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.vorteile li{position:relative;padding-left:40px;font-size:clamp(15px,1.1vw,17px);
+  line-height:1.4;font-weight:700;color:var(--tinte)}
+.vorteile li::before{content:"";position:absolute;left:0;top:50%;
+  width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--tinte)}
+.vorteile li::after{content:"";position:absolute;left:8px;top:50%;
+  width:10px;height:6px;margin-top:-4px;
+  border-left:2.2px solid var(--violett);border-bottom:2.2px solid var(--violett);
+  transform:rotate(-45deg)}
+@media(max-width:900px){
+  .ruf__karte.ruf__karte--vorteile{grid-template-columns:minmax(0,1fr);gap:26px}
+}
+
 
 .unter__ablauf{max-width:var(--maxw);margin:var(--sec) auto 0;padding:0 var(--pad)}
 .schritte{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
