@@ -887,18 +887,10 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .wege__panel-titel{font-size:clamp(20px,1.8vw,26px);line-height:1.25;font-weight:700;margin:0}
 .wege__panel-text{color:var(--grau);font-size:clamp(15px,1.2vw,17px);line-height:1.6;margin:0}
 .wege__panel .knopf{white-space:nowrap}
-/* Vertrauenszeile: drei belegte Aussagen, keine erfundenen Kennzahlen. */
-.wege__vertrauen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:clamp(16px,2vw,34px);margin:clamp(22px,2.4vw,38px) 0 0;padding:0;list-style:none}
-.wege__vertrauen li{display:grid;grid-template-columns:auto 1fr;
-  grid-template-areas:"ikon titel" "ikon text";column-gap:14px;row-gap:2px;align-items:start}
-.wege__vertrauen svg{grid-area:ikon;color:var(--violett-tief);margin-top:2px}
-.wege__vertrauen b{grid-area:titel;font-size:16px;line-height:1.35}
-.wege__vertrauen span{grid-area:text;color:var(--grau);font-size:14.5px;line-height:1.5}
+
 @media(max-width:900px){
   .wege__panel{grid-template-columns:minmax(0,1fr);text-align:left}
   .wege__panel .knopf{justify-self:start}
-  .wege__vertrauen{grid-template-columns:minmax(0,1fr);gap:16px}
 }
 
 @media (max-width:700px){
