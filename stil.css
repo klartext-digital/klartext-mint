@@ -1444,7 +1444,15 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Bildbreite weg. Bei einem Foto ginge das; unsere Motive sind
    Bildschirmaufnahmen und vertragen keinen Zoom. Darum ein eigenes
    Seitenverhaeltnis nahe der Quelle, oben verankert. */
-.hero__grund{position:absolute;z-index:-1;top:0;bottom:auto;
+/* An der UNTERKANTE verankert, nicht oben. Gemessen: das Geruest aus
+   Polster, Brotkrume, Pille, Chip, Titel, Handschrift und Dauer-Pille
+   ist 617-706px hoch, ein 16:10-Band aber nur 558-650px. Oben verankert
+   endete das Bild darum mitten auf der Seite mit einer harten Kante und
+   liess darunter bis zu 559px leere Flaeche. Unten verankert faellt die
+   Bildunterkante mit dem Abschnittsende zusammen; die freie Flaeche liegt
+   oben, wo die Ueberschrift steht. Kein Beschnitt, weil das Verhaeltnis
+   bleibt. */
+.hero__grund{position:absolute;z-index:-1;top:auto;bottom:0;
   left:auto;right:calc(50% - 50vw);width:min(62vw,1040px);
   aspect-ratio:16/10;max-height:100%;overflow:hidden}
 .hero__grund img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;
@@ -1455,7 +1463,23 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .hero .unter{padding-bottom:0}
 .hero .unter__leib{grid-template-columns:minmax(0,1fr);
   padding-bottom:clamp(48px,5vw,84px)}
-.hero .unter__text{max-width:min(52%,58ch)}
+/* Die Spalte muss vor dem Bildband enden, nicht bei einem festen Prozentwert.
+   Das Band ist min(62vw,1040px) breit und rechts angeschlagen; links davon
+   bleibt 100vw minus Bandbreite, abzueglich Seitenpolster und etwas Luft.
+   Mit 52% ragte der Text bei 1440 bis 707px, das Band begann aber bei 547 —
+   auf der SEO-Seite lief der Absatz dadurch ins Bild. */
+.hero .unter__text{max-width:min(calc(100vw - min(62vw,1040px) - var(--pad) - 48px),58ch)}
+/* Neben dem Bildband ist die Spalte nur 330-499px breit. Die Ueberschrift
+   lief dort mit 92px und brach auf VIER Zeilen um ("Webdesign / fuer /
+   Schweizer / KMU"). Nur im Hero mit Band daher kleiner; ohne Band, also
+   unter 1100px, gilt weiter die normale Groesse. */
+/* !important ist hier noetig, nicht bequem: seo.css setzt
+   .seo-h1{font-size:clamp(36px,5.3vw,86px)!important}, und genau die
+   Seiten mit seo-h1 (Webdesign, SEO) haben die Regel ignoriert und mit
+   85px auf vier Zeilen umgebrochen, waehrend Branding und Ueber uns
+   korrekt folgten. Ohne !important gewinnt die fremde Datei. */
+.hero .unter__text h1{font-size:clamp(32px,3.5vw,72px)!important;line-height:1.04!important}
+.hero .unter__text > .brush{font-size:clamp(19px,1.8vw,30px)}
 @media (max-width:1100px){
   /* Am Handy nimmt der Text die volle Breite ein — rechts bleibt kein Platz,
      in den das Bild auslaufen koennte. Statt es unter den Text zu schieben
