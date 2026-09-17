@@ -175,16 +175,48 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
         <p class="brush">Was drin ist</p>
         <h2 data-rein-zeilen><span>Der Umfang</span><span>im Überblick.</span></h2>
       </div>
-      <ul class="drin">
-        <li>Google Ads</li>
-        <li>Meta Ads für Facebook und Instagram</li>
-        <li>TikTok Ads</li>
-        <li>LinkedIn Ads</li>
-        <li>Tracking und Conversions</li>
-        <li>Landingpages</li>
-        <li>A/B Tests</li>
-        <li>Budgetsteuerung und Monatsreport</li>
-      </ul>
+      <ul class="umfang">
+          <li class="umfang__karte">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/></svg></span>
+            <h3>Google Ads</h3>
+            <p>Aus einer Hand betreut.</p>
+          </li>
+          <li class="umfang__karte">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3l7 4v-13l-7 4zM17 9a4 4 0 010 6"/></svg></span>
+            <h3>Meta Ads für Facebook und Instagram</h3>
+            <p>Aus einer Hand betreut.</p>
+          </li>
+          <li class="umfang__karte">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 5.5h17v13h-17z"/><path d="M8.5 5.5v13M15.5 5.5v13M3.5 12h17"/></svg></span>
+            <h3>TikTok Ads</h3>
+            <p>Die Plattformwahl richtet sich nach dem Ziel.</p>
+          </li>
+          <li class="umfang__karte">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12.5a4 4 0 100-8 4 4 0 000 8zM4.5 20.5a7.5 7.5 0 0115 0"/></svg></span>
+            <h3>LinkedIn Ads</h3>
+            <p>Die Plattformwahl richtet sich nach dem Ziel.</p>
+          </li>
+          <li class="umfang__karte">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17M7 20.5V13M12 20.5V7M17 20.5v-5"/></svg></span>
+            <h3>Tracking und Conversions</h3>
+            <p>Vor dem ersten Franken steht das Tracking.</p>
+          </li>
+          <li class="umfang__karte">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 5.5h17v13h-17z"/><path d="M3.5 9.5h17M7 13h6"/></svg></span>
+            <h3>Landingpages</h3>
+            <p>Von der Anzeige bis zur qualifizierten Anfrage.</p>
+          </li>
+          <li class="umfang__karte">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 100-18 9 9 0 000 18zm0-4.5a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm0-3a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg></span>
+            <h3>A/B Tests</h3>
+            <p>Kleine Budgets, mehrere Ansätze parallel.</p>
+          </li>
+          <li class="umfang__karte">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 108.5 8.5H12z"/><path d="M14.5 3.9A8.5 8.5 0 0120.1 9.5h-5.6z"/></svg></span>
+            <h3>Budgetsteuerung und Monatsreport</h3>
+            <p>Ein Blatt pro Monat, ohne Kennzahlen-Nebel.</p>
+          </li>
+        </ul>
     </div>
   </section>
 
@@ -239,7 +271,7 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 
   <!-- ══ Ruf ══ -->
   <section class="ruf">
-    <div class="ruf__karte ruf__karte--knapp" data-rein>
+    <div class="ruf__karte ruf__karte--knapp ruf__karte--vorteile" data-rein>
       <div class="ruf__wort">
         <p class="brush">Auf ein Wort</p>
         <h2>Passt das zu<br>eurem Vorhaben?</h2>
@@ -249,6 +281,13 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
           <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
         </a>
       </div>
+      <ul class="vorteile">
+        <li>Das Tracking steht, bevor Geld fliesst</li>
+        <li>Was funktioniert, bekommt mehr</li>
+        <li>Konten und Werbeetat laufen über euch</li>
+        <li>Zugriff, Rechnungen und Daten bleiben bei euch</li>
+        <li>Ein Blatt pro Monat, ohne Kennzahlen-Nebel</li>
+      </ul>
     </div>
   </section>
 </main>
