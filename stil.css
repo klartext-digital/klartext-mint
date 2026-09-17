@@ -925,40 +925,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .preise__raster{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,2vw,34px);
   max-width:1240px;margin:calc(clamp(12px,1.2vw,18px) + var(--voll-ueber)) auto 0}
 
-/* ── Projektoption: fuer Firmen ohne Abo ────────────────────────
-   Bewusst breiter und flacher als die beiden Abo-Karten, damit sie
-   nicht als dritter Tarif gelesen wird, sondern als eigener Weg.
-   Nutzt dieselben Bausteine — Karte, Haken-Liste, Knopf. */
-/* Der Abstand rechnet den Ueberstand der mittleren Preiskarte mit
-   heraus — sonst beruehrt sie diese Karte, bei breiten Fenstern
-   ueberlappt sie sogar. */
-.projekt{max-width:1240px;margin:calc(clamp(28px,2.6vw,44px) + var(--voll-ueber)) auto 0;
-  background:var(--tinte-2);
-  border-radius:var(--r-gross);padding:clamp(22px,1.9vw,30px);
-  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
-  gap:clamp(20px,2.6vw,44px);align-items:center;
-  transition:transform var(--t-knopf) var(--kurve-rein),
-             box-shadow var(--t-knopf) var(--kurve-rein)}
-.projekt:hover,.projekt:focus-within{transform:scale(1.012);
-  box-shadow:0 18px 44px rgb(14 13 11 / .22)}
-.projekt__wort{display:grid;justify-items:start;gap:9px}
-.projekt__marke{color:var(--violett-hell);font-size:19px}
-.projekt h3{font-size:clamp(24px,1.9vw,32px);line-height:1.1}
-.projekt__wort p{color:rgb(247 247 245 / .62);font-size:16px;line-height:1.6;
-  max-width:46ch}
-.projekt__wort .knopf{margin-top:7px}
-/* Beispiele statt Preisliste: beim Projektgeschaeft haengt der Preis
-   am Umfang, und eine Zahlenspalte lud zum Vergleichen mit den
-   Abo-Paketen ein. Zweispaltig, damit die sechs Zeilen nicht in die
-   Laenge gehen. */
-.projekt__liste{display:grid;gap:0;align-content:start}
-.projekt__liste li{padding:12px 0;border-bottom:1px solid var(--linie-hell);
-  font-size:16px;line-height:1.4;color:rgb(247 247 245 / .78)}
-.projekt__liste li:first-child{padding-top:0}
-.projekt__liste li:last-child{border-bottom:0;padding-bottom:0}
-
 @media (max-width:860px){
-  .projekt{grid-template-columns:minmax(0,1fr);gap:22px}
 }
 /* Die Karte kommt beim Hover auf den Betrachter zu statt nach oben zu
    rutschen — sie wird minimal groesser, mehr nicht. Ein Versatz nach
@@ -1064,10 +1031,6 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    die Karte, der Knopf loeste sich beim Hover auf. Hier gilt die
    Grundregel: dunkle Flaeche, helle Schrift. */
 .paket--voll .knopf--akzent{--knopf-fuell:var(--tinte)}
-.paket .knopf--rand,.projekt .knopf--rand{border-color:var(--linie-hell);
-  color:var(--creme);--knopf-fuell:var(--creme)}
-.paket .knopf--rand:hover,.projekt .knopf--rand:hover{border-color:var(--creme);
-  color:var(--tinte)}
 
 /* ── 11 · FAQ ──────────────────────────────────────────────── */
 .faq{padding:var(--sec) var(--pad) 0;max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto;
@@ -1460,47 +1423,39 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   transition:transform var(--t-bild) var(--kurve)}
 .unter__bild:hover img{transform:scale(1.05)}
 
-/* ── Hero der Unterseiten: Querformat-Bild als Grund, Text darueber ──
-   Vorgabe des Auftraggebers (17.09.2026). .unter (Brotkrume) und
-   .unter__leib (Text) sind Geschwister — ein Hintergrund auf einem von
-   beiden liegt nicht hinter dem anderen. Der Rahmen .hero fasst beide.
-   Vollbreite wie bei .buehne: left:calc(50% - 50vw);width:100vw.
-   Verlauf links dicht, rechts offen, damit das Motiv sichtbar bleibt;
-   warmes Schwarz statt des Teal-Tons der Startseite. Gemessen: der Text
-   steht auf allen 19 Motiven bei Kontrast 9,4 bis 18,8 gegen Creme. */
-/* Mindesthoehe, weil die Hero-Hoehe sonst allein an der Textlaenge haengt:
-   SEO hat einen Absatz (677px), Branding drei (970px), Webdesign vier (1076px).
-   Bei den kurzen Seiten wurde das Motiv waagrecht mitten durchgeschnitten und
-   das Band wirkte abgeschnitten statt gestaltet. */
-.hero{position:relative;isolation:isolate;min-height:clamp(460px,52vh,720px)}
-.hero__grund{position:absolute;z-index:-2;top:0;bottom:0;
-  left:calc(50% - 50vw);width:100vw;overflow:hidden;background:var(--tinte)}
-.hero__grund img{width:100%;height:100%;object-fit:cover;object-position:75% 50%}
-.hero::before{content:"";position:absolute;z-index:-1;
-  top:0;bottom:0;left:calc(50% - 50vw);width:100vw;
-  background:linear-gradient(97deg,rgb(14 13 11 / .94) 0%,rgb(14 13 11 / .82) 30%,
-    rgb(14 13 11 / .48) 56%,rgb(14 13 11 / .24) 78%,rgb(14 13 11 / .36) 100%)}
+/* ── Hero der Unterseiten: Bild rechts, nach links auslaufend ──
+   Zweiter Anlauf nach Rueckmeldung des Auftraggebers (17.09.2026).
+   Erster Versuch legte das Motiv ueber die volle Breite und dunkelte es
+   ab, damit heller Text darauf lesbar wird — dadurch stand die Schrift
+   MITTEN im Bild (die MODAIRE-Farbpalette lag hinter der Schlagzeile).
+
+   Richtig ist: das Bild sitzt ganz rechts und laeuft nach links aus,
+   der Text steht auf freier Flaeche in den normalen dunklen Farben.
+   Kein Schleier noetig, weil nichts uebereinanderliegt.
+
+   Maske statt Farbverlauf: hinter dem Hero liegt der Inhaltsbereich mit
+   rgb(244,243,240), dahinter aber der amberfarbene Koerper, der an den
+   runden Ecken durchscheint. Eine feste Auslauffarbe waere dort falsch;
+   die Maske blendet das Bild gegen das aus, was tatsaechlich dahinter ist. */
+.hero{position:relative;isolation:isolate;min-height:clamp(420px,46vh,640px)}
+.hero__grund{position:absolute;z-index:-1;top:0;bottom:0;
+  left:auto;right:calc(50% - 50vw);width:min(62vw,1040px);overflow:hidden}
+.hero__grund img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgb(0 0 0 / .28) 20%,
+    rgb(0 0 0 / .78) 44%,#000 66%);
+  mask-image:linear-gradient(90deg,transparent 0%,rgb(0 0 0 / .28) 20%,
+    rgb(0 0 0 / .78) 44%,#000 66%)}
 .hero .unter{padding-bottom:0}
 .hero .unter__leib{grid-template-columns:minmax(0,1fr);
-  padding-bottom:clamp(56px,6vw,96px)}
-.hero .unter__text{max-width:min(62%,62ch)}
-.hero :is(h1,.unter__text p,.seo-breadcrumb,.seo-breadcrumb a){color:var(--creme)}
-.hero .zurueck{border-color:rgb(247 247 245 / .28);color:var(--creme)}
-.hero .zurueck:hover{background:var(--creme);border-color:var(--creme);color:var(--tinte)}
-.hero .chip{background:rgb(247 247 245 / .16);color:var(--creme)}
-.hero .unter__dauer{background:rgb(247 247 245 / .14)}
-.hero .unter__dauer span{color:rgb(247 247 245 / .72)}
-.hero .unter__dauer b{color:var(--creme)}
+  padding-bottom:clamp(48px,5vw,84px)}
+.hero .unter__text{max-width:min(52%,58ch)}
 @media (max-width:1100px){
+  /* Am Handy nimmt der Text die volle Breite ein — rechts bleibt kein Platz,
+     in den das Bild auslaufen koennte. Statt es unter den Text zu schieben
+     und wieder abdunkeln zu muessen, bleibt der Hero hier schlicht. */
+  .hero{min-height:0}
+  .hero__grund{display:none}
   .hero .unter__text{max-width:none}
-  /* Am Handy nimmt der Text die volle Breite ein — es gibt kein "rechts",
-     das der 97-Grad-Verlauf offen lassen koennte. Gemessen am Bild schlug
-     das Motiv dort durch den Fliesstext (Farbfelder und Mockup-Schrift
-     mitten in den Absaetzen). Deshalb hier ein deckender Schleier statt
-     eines seitlichen; das Motiv bleibt als Textur erkennbar. */
-  .hero::before{background:linear-gradient(180deg,rgb(14 13 11 / .88) 0%,
-    rgb(14 13 11 / .93) 45%,rgb(14 13 11 / .90) 100%)}
-  .hero__grund img{object-position:60% 50%}
 }
 
 /* ── Hero: Kopf und Text in EINER Spalte, Bild daneben ─────────
@@ -2509,6 +2464,14 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .werke .chip{background:rgb(247 247 245 / .1);color:var(--violett-hell)}
 .werke h2{color:var(--creme)}
 .werke__lead{color:rgb(247 247 245 / .72)}
+/* Beim Entfernen des Projektblocks habe ich diese Regel mitgeloescht:
+   sie stand als Sammelselektor ".paket .knopf--rand,.projekt .knopf--rand".
+   .paket sind aber die Preiskarten, die es weiterhin gibt — ohne die Regel
+   fiel der Knopf auf .knopf--rand{color:var(--tinte)} zurueck, also dunkle
+   Schrift auf dunkler Karte. Nur der .paket-Teil kehrt zurueck. */
+.paket .knopf--rand{border-color:var(--linie-hell);
+  color:var(--creme);--knopf-fuell:var(--creme)}
+.paket .knopf--rand:hover{border-color:var(--creme);color:var(--tinte)}
 .werke .knopf--rand{border-color:rgb(247 247 245 / .28);color:var(--creme);
   --knopf-fuell:var(--creme)}
 .werke .knopf--rand:hover,.werke .knopf--rand:focus-visible{
@@ -2625,6 +2588,13 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .frage.offen .frage__kreis b,.frage:focus-within .frage__kreis b{opacity:0}
 .frage[hidden]{display:none}
 
+/* Auf den Unterseiten liegt die FAQ in .seo-prose bzw. .artikel. Dort schlugen
+   zwei fremde Regeln die 16px: .seo-prose p aus seo.css (spaeter geladen, gleiche
+   Spezifitaet) ergab 19,44px, und .artikel p:first-child mit clamp(20px,1.7vw,26px)
+   sogar 24,48px. Beide werden hier mit hoeherer Spezifitaet zurueckgeholt. */
+.fragen .frage__leib p,
+.fragen .frage__leib p:first-child{font-size:16px;line-height:1.7}
+
 /* FAQ innerhalb einer Textspalte: dieselben Karten wie auf der Startseite,
    aber ohne deren Sektionspolster und Breitenbegrenzung — die Spalte
    drumherum setzt beides bereits. Ohne das stuende oben ein --sec-Polster
@@ -2694,11 +2664,6 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .erst__mailwort{display:grid;line-height:1.28;font-size:12.5px;color:var(--grau)}
 .erst__mailwort b{font-size:15px;font-weight:800;color:var(--tinte);
   overflow-wrap:anywhere}
-
-/* Der Projektblock stand noch auf der alten Deckelbreite von 1240 und
-   damit 25 Punkte weiter innen als die Preiszeile darueber. Er nimmt
-   jetzt dieselbe Breite und steht links buendig. */
-.preise .projekt{max-width:none;margin-left:0;margin-right:0}
 
 /* ── Helle Bloecke ─────────────────────────────────────────
    Arbeiten und Blog hingen frei auf dem Grund: gleiche Flaeche wie
