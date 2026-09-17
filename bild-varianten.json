@@ -147,20 +147,6 @@
       "width": 1200
     }
   ],
-  "bilder/em-anmeldung.jpg": [
-    {
-      "path": "bilder/em-anmeldung-480.webp",
-      "width": 480
-    },
-    {
-      "path": "bilder/em-anmeldung-626.webp",
-      "width": 626
-    },
-    {
-      "path": "bilder/em-anmeldung-1200.webp",
-      "width": 1200
-    }
-  ],
   "bilder/em-strecken.jpg": [
     {
       "path": "bilder/em-strecken-480.webp",
@@ -186,20 +172,6 @@
     },
     {
       "path": "bilder/em-segment-1200.webp",
-      "width": 1200
-    }
-  ],
-  "bilder/em-test.jpg": [
-    {
-      "path": "bilder/em-test-480.webp",
-      "width": 480
-    },
-    {
-      "path": "bilder/em-test-626.webp",
-      "width": 626
-    },
-    {
-      "path": "bilder/em-test-1200.webp",
       "width": 1200
     }
   ],
