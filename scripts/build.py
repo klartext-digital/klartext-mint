@@ -353,7 +353,17 @@ for source,route in ROUTES.items():
  s=s.replace('<h2 data-rein-zeilen><span>Die Mannschaft</span></h2>','<h2 data-rein-zeilen><span>Die Mannschaft</span></h2><p class="seo-pruefhinweis">Teamdarstellung im Entwurf. Namen, Rollen und Zugehörigkeit sind noch nicht bestätigt.</p>')
  s=s.replace('Werbeagentur mit Sitz in Zürich, tätig in der ganzen Deutschschweiz','Marketing für Schweizer KMU · Standortangaben noch zu bestätigen')
  if route=='ueber-uns/':
-  s=s.replace('<main>','<main><p class="seo-pruefhinweis seo-freigabe">Entwurf: Team- und Unternehmensangaben sind noch zu bestätigen.</p>',1)
+  # Der Hinweis stand hinter <main> und damit VOR dem Hero. Zusammen mit
+  # .seo-freigabe (margin-top:120px in seo.css) ergab das 192px Versatz:
+  # gemessen 120 + 16 Aussenabstand + 56 Hoehe. Dadurch fiel die Dauer-Pille
+  # auf JEDER Desktop-Breite unter die Bildschirmkante (+18 bis +134px),
+  # waehrend die acht anderen Heros bei y=0 beginnen. Gleicher Text, gleiche
+  # Seite, nur hinter dem Hero statt davor; .seo-freigabe entfaellt, weil es
+  # nur dazu diente, die feste Kopfzeile am Seitenanfang freizuhalten.
+  vorher=s.count('seo-pruefhinweis')
+  s=s.replace('<section class="unter__block"','<p class="seo-pruefhinweis">Entwurf: Team- und Unternehmensangaben sind noch zu bestätigen.</p><section class="unter__block"',1)
+  if s.count('seo-pruefhinweis')!=vorher+1:
+   raise SystemExit('ueber-uns: Entwurfshinweis nicht eingesetzt — Anker <section class="unter__block" fehlt')
  prefix=posixpath.relpath('.',route_dir or '.')+'/'
  schema_json=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False).replace('</','<\\/')
  head=f'''\n<meta name="description" content="{escape(desc,quote=True)}">\n<meta name="robots" content="{robots}">\n<link rel="canonical" href="{canonical}">\n<meta property="og:title" content="{escape(title,quote=True)}">\n<meta property="og:description" content="{escape(desc,quote=True)}">\n<meta property="og:url" content="{canonical}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="de_CH">\n<meta property="og:image" content="{BASE}marke/favicon-180.png">\n<link rel="stylesheet" href="{prefix}seo.css">\n<script type="application/ld+json">{schema_json}</script>\n'''
