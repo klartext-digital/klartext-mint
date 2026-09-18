@@ -1527,6 +1527,34 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   .hero__grund{width:min(52vw,1040px)}
   .hero .unter__text{max-width:min(calc(100vw - min(52vw,1040px) - var(--pad) - 48px),58ch)}
 }
+/* "Das sieht unten so abgehakt aus" (Dusan, 18.09.2026). Gemessen lag es NICHT
+   an der Bildkante, sondern an der Leere darunter: zwischen Bandende und der
+   naechsten Sektion standen 130px, die komplett deren margin-top gehoerten
+   (129,6px bei .unter__block, 57,6px bei .artikel). Der Hero selbst hatte
+   daran null Anteil — ein erster Versuch, sein unteres Polster zu kuerzen,
+   blieb darum wirkungslos.
+
+   Zwei Teile sind noetig. Der zweite ist nicht Kosmetik: bei der
+   .artikel-Familie (SEO, Marketing-Abo, Projektarbeit, Website-Betreuung)
+   traegt das ERSTE KIND den Abstand (h2 mit margin-top 77,76px) und
+   kollabiert durch das Geschwister hindurch. Die Regel am Geschwister allein
+   bewegte dort gemessen 0px, erst mit dem Kind zusammen 64px.
+
+   Bewusst NICHT gemacht, beides geprueft und verworfen:
+   - Senkrechter Verlauf am Bandende: weicht das Motiv auf und loest nur das
+     Symptom. Die Leere blieb.
+   - Verlauf an der Bandoberkante: nicht statisch bindbar. Dieselbe Seite hat
+     die Oberkante bei 0 (1920), 270 (1440) und 429 (1101) — jeder Selektor
+     trifft mal richtig, mal schaedlich. Auf der SEO-Seite frass er die
+     Kopfzeile des Analytics-Motivs weg.
+   - Band auf volle Hero-Hoehe fuer alle: schneidet 16:9-Motive in eine fast
+     quadratische Box (893x831) und verliert 36-40 Prozent der Bildbreite. Bei
+     Performance Marketing war die Google-Ads-Oberflaeche rechts aufgeschnitten
+     (CHF-Spalte abgebrochen). Darum bleibt hero--voll weiter selektiv. */
+.hero + section.unter__block,
+.hero + .artikel{margin-top:clamp(12px,1.4vw,22px)}
+.hero + section.unter__block > *:first-child,
+.hero + .artikel > *:first-child{margin-top:0}
 
 /* ── Hero: Kopf und Text in EINER Spalte, Bild daneben ─────────
    Dusans Vorgabe (17.09.2026): Zurueck-Pille, Chip, Titel,
