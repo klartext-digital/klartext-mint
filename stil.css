@@ -1555,6 +1555,25 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .hero + .artikel{margin-top:clamp(12px,1.4vw,22px)}
 .hero + section.unter__block > *:first-child,
 .hero + .artikel > *:first-child{margin-top:0}
+/* Die FAQ-Huelle hinter dem Abschlussblock (18.09.2026, Dusan: "abstaende"
+   und "klebt wieder hier unten"). Beim Verschieben habe ich die Spaltenbreite
+   exakt reproduziert, aber den vertikalen Rhythmus der Fliesstext-Sektion
+   mitgeerbt — und der ist an dieser Stelle in BEIDE Richtungen falsch.
+
+   Gemessener Hausrhythmus: Sektionen trennt --sec (170/129,6/99/90px je
+   Breite), eine ABSCHLIESSENDE Sektion traegt inneres Polster (ruf: 86/80,
+   69/63, 53/48, 46/46) und sitzt dann buendig an der Fusszeile — auf Ueber
+   uns, Red Bull und der Startseite gemessen jeweils 0px.
+
+   Vorher hier: oben 129,6px voller Sektionsabstand (die FAQ ist aber ein
+   Nachsatz zum Abschluss, kein neues Kapitel), unten 0 Polster und nur
+   43px bzw. 28px Rest zur Fusszeile — genau deshalb wirkte es angeklebt.
+
+   Der Selektor greift nur die eine Huelle direkt hinter ruf; die uebrigen
+   seo-prose-Sektionen behalten ihren Rhythmus. */
+.ruf + section.unter__block.seo-prose{
+  margin-top:clamp(48px,4.5vw,86px);
+  padding-bottom:clamp(46px,4.4vw,80px)}
 
 /* ── Hero: Kopf und Text in EINER Spalte, Bild daneben ─────────
    Dusans Vorgabe (17.09.2026): Zurueck-Pille, Chip, Titel,
