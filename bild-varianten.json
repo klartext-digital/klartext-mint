@@ -576,5 +576,23 @@
       "path": "bilder/preis-grund-1536.webp",
       "width": 1536
     }
+  ],
+  "bilder/termin-grund.jpg": [
+    {
+      "path": "bilder/termin-grund-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/termin-grund-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/termin-grund-1200.webp",
+      "width": 1200
+    },
+    {
+      "path": "bilder/termin-grund-1672.webp",
+      "width": 1672
+    }
   ]
 }

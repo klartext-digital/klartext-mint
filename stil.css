@@ -1155,6 +1155,11 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Kalender rechts. Untereinander wurde der Block 1270 px hoch und
    passte auf keinen Bildschirm; nebeneinander nutzt er die Breite,
    die ohnehin da ist, und der Kalender darf gross sein. */
+/* 19.09.2026, Dusans Entwurf: Foto als Grund statt flaechiger Farbe.
+   Inhaltlich aendert sich nichts — Ueberschrift, Vorspann, Felder,
+   Kalender und das mailto-Verhalten bleiben. Der Verlauf deckt oben und
+   unten dichter ab, weil dort Text direkt auf dem Bild steht; in der
+   Mitte bleibt er offener, dort liegt die Karte mit eigenem Grund. */
 .ruf{padding:var(--sec) var(--pad)}
 /* Kontaktkarte in Teal statt in der Akzentfarbe. Als violette Flaeche
    ging das durch; in Orange waere es ein Block ueber die halbe Seite —
@@ -1162,6 +1167,12 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* Bewusst schmaler als die Sektionen: bei voller Breite ziehen
    sich Kalender und Felder so weit auseinander, dass man die
    vier Angaben nicht mehr auf einen Blick hat. */
+/* 19.09.2026: Glas statt Vollton. Die Karte liegt jetzt auf einem Foto,
+   also wird sie durchscheinend — feiner heller Rahmen, Unschaerfe
+   dahinter, leichter Schein nach aussen. Bewusst NUR die aeussere Karte:
+   Formular und Kalender behalten ihre hellen Flaechen, sonst stuende
+   ihr dunkler Text samt Eingabefeldern auf dem Foto und die
+   Lesbarkeit kippt. So haelt es auch der Entwurf. */
 .ruf__karte{max-width:1240px;margin:0 auto;
   background:var(--tinte-2);background-image:var(--lauf-fuss);
   color:#fff;border-radius:var(--r-seite);padding:clamp(14px,1.3vw,20px)}
@@ -1175,6 +1186,8 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Kontaktwege, Kalender und Formular zusammen unter eine
    Fensterhoehe. Gekuerzt wird an der Kopfzeile, nicht am Kalender. */
 .ruf__kopfzeile h2{font-size:clamp(28px,2.7vw,46px);line-height:1.03}
+/* Akzent auf dem Schlussteil, wie im Entwurf. Kein neuer Text. */
+.ruf__akzent{color:var(--violett)}
 .ruf__lead{font-size:clamp(15px,1.05vw,17px);line-height:1.5;
   max-width:92ch;margin-top:7px}
 .ruf__kopfzeile .chip{margin-bottom:6px}
@@ -2964,21 +2977,43 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    liegt er als einzige gelbe Flaeche in einem dunklen Band — nichts
    sonst auf der Seite sieht so aus. Die weissen Felder darin bleiben
    weiss und stehen mit 1,9:1 auf dem Gelb. */
+/* 19.09.2026, Dusans Entwurf: Foto als Grund. Die Regel steht BEWUSST
+   hier und nicht oben bei den uebrigen .ruf-Regeln — es gibt zwei
+   Fassungen, und diese spaetere gewinnt. Ein erster Versuch weiter oben
+   war wirkungslos, der Browser meldete weiter Tinte statt Bild.
+   Der Verlauf deckt oben und unten dichter ab, weil dort Text direkt auf
+   dem Foto steht; in der Mitte bleibt er offen, dort liegt die Karte. */
 .ruf{--einzug:max(var(--pad),calc((100% - var(--maxw)) / 2));
   margin-top:var(--sec);padding:clamp(46px,4.8vw,86px) var(--einzug) clamp(46px,4.4vw,80px);
-  background:var(--tinte);border-radius:var(--r-seite)}
+  background:linear-gradient(180deg,
+      rgb(14 13 11 / .86) 0%,
+      rgb(14 13 11 / .70) 32%,
+      rgb(14 13 11 / .64) 62%,
+      rgb(14 13 11 / .88) 100%),
+    url("bilder/termin-grund.jpg") center/cover no-repeat,
+    var(--tinte);
+  border-radius:var(--r-seite)}
+/* Glas statt gelber Flaeche (Dusans Entwurf). Damit faellt die
+   Begruendung von oben weg: die Karte war die einzige helle Flaeche am
+   Seitenende. Dafuer traegt jetzt das Foto den Hoehepunkt.
+   Nur die AEUSSERE Karte wird durchscheinend — Formular und Kalender
+   behalten ihre weissen Flaechen, sonst stuende ihr dunkler Text samt
+   Eingabefeldern auf dem Bild. */
 .ruf__karte{max-width:1240px;margin:0 auto;
-  background:var(--violett);background-image:none;color:var(--tinte);
-  box-shadow:0 34px 80px -30px rgb(0 0 0 / .55)}
-.ruf__karte .brush{color:var(--tinte)}
-.ruf__text{color:rgb(14 13 11 / .74)}
-.ruf__weg{border-color:rgb(14 13 11 / .26)}
-.ruf__weg:hover{background:var(--tinte);border-color:var(--tinte);color:var(--creme)}
+  background:rgb(20 18 15 / .55);background-image:none;color:#fff;
+  -webkit-backdrop-filter:blur(20px) saturate(1.1);
+  backdrop-filter:blur(20px) saturate(1.1);
+  border:1px solid rgb(247 247 245 / .16);
+  box-shadow:0 40px 90px -30px rgb(0 0 0 / .68)}
+.ruf__karte .brush{color:var(--violett-hell)}
+.ruf__text{color:rgb(247 247 245 / .74)}
+.ruf__weg{border-color:rgb(247 247 245 / .28)}
+.ruf__weg:hover{background:var(--creme);border-color:var(--creme);color:var(--tinte)}
 .ruf__karte--knapp .knopf--akzent{background:var(--tinte);color:var(--creme)}
 /* Der Absendeknopf ist die letzte Handlung der Seite und muss die
    staerkste sein — Creme auf Gelb kaeme nur auf 1,9:1. */
-.ruf .fm__fuss .knopf--akzent{background:var(--tinte);color:var(--creme)}
-.ruf .fm__fuss .knopf--akzent .rolle{color:var(--creme)}
+.ruf .fm__fuss .knopf--akzent{background:var(--violett);color:var(--tinte)}
+.ruf .fm__fuss .knopf--akzent .rolle{color:var(--tinte)}
 
 /* ── Kopf über dem Termin ──────────────────────────────────
    Der Abschnitt begann bisher mit dem Kalender: kein Titel, kein
@@ -2999,7 +3034,11 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   color:var(--tinte)}
 /* Eine Zeile Anleitung über dem Formular — mehr braucht es nicht,
    der Grund steht schon im Kopf darüber. */
-.ruf__anweisung{font-size:15px;font-weight:700;color:rgb(14 13 11 / .74);
+/* 19.09.2026: Die Karte ist jetzt dunkles Glas statt gelber Flaeche —
+   diese Zeile stand dadurch dunkel auf dunkel. Mein Kontrasttest hatte
+   nur Chip, Ueberschrift, Vorspann und Kontaktwege geprueft und sie
+   durchgelassen; gefunden habe ich sie erst im Bild. */
+.ruf__anweisung{font-size:15px;font-weight:700;color:rgb(247 247 245 / .78);
   padding:clamp(10px,1vw,16px) clamp(10px,1.1vw,18px) 0;margin-bottom:4px}
 
 /* ── Das gelbe Wort im Kopfbereich ─────────────────────────
