@@ -1259,8 +1259,16 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .feld input:user-invalid,.feld textarea:user-invalid{border-color:#C4231E}
 
 /* ── Terminwahl ── */
+/* 19.09.2026, Dusan: "der kalender muss etwas hervorgehoben werden, durch
+   licht oder aehnliches". Kein Filter ueber die Flaeche — die Zahlen sollen
+   lesbar bleiben. Stattdessen ein warmer Schein NACH AUSSEN plus ein feiner
+   heller Saum: dieselbe Sprache wie die Glas-Karte, nur eine Stufe heller,
+   damit der Kalender aus ihr heraustritt statt auf ihr zu liegen. */
 .kal{background:var(--creme-3);border-radius:var(--r-gross);
-  padding:clamp(14px,1.3vw,20px)}
+  padding:clamp(14px,1.3vw,20px);
+  box-shadow:0 0 0 1px rgb(255 255 255 / .5),
+    0 0 34px -6px rgb(245 165 36 / .42),
+    0 26px 60px -22px rgb(0 0 0 / .6)}
 .kal__kopf{display:flex;align-items:center;justify-content:space-between;
   gap:14px;margin-bottom:10px}
 .kal__blaettern{display:flex;align-items:center;gap:8px}
@@ -1309,8 +1317,14 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .kal__tag.ist .kal__t--neu{opacity:1;transform:none}
 .kal__tag.heute:not(.ist){box-shadow:inset 0 0 0 2px var(--violett-zart)}
 .kal__leer{height:clamp(34px,2.4vw,42px)}
+/* Die Uhrzeit-Karte gehoert zur Terminwahl und bekommt denselben Schein —
+   aber eine Stufe schwaecher, sonst leuchten zwei Flaechen gleich stark und
+   der Kalender ist nicht mehr die Hauptsache. */
 .kal__slots{background:var(--creme-3);border-radius:var(--r-gross);
-  padding:clamp(13px,1.15vw,17px)}
+  padding:clamp(13px,1.15vw,17px);
+  box-shadow:0 0 0 1px rgb(255 255 255 / .38),
+    0 0 24px -8px rgb(245 165 36 / .3),
+    0 18px 44px -20px rgb(0 0 0 / .5)}
 .slots button:disabled{opacity:.42;box-shadow:inset 0 0 0 1.5px var(--linie)}
 .slots button:disabled:hover{transform:none;box-shadow:inset 0 0 0 1.5px var(--linie)}
 .slots{display:grid;gap:6px;margin-top:7px;
