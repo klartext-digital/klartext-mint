@@ -558,5 +558,23 @@
       "path": "bilder/wd-pflege-1200.webp",
       "width": 1200
     }
+  ],
+  "bilder/preis-grund.jpg": [
+    {
+      "path": "bilder/preis-grund-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/preis-grund-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/preis-grund-1200.webp",
+      "width": 1200
+    },
+    {
+      "path": "bilder/preis-grund-1536.webp",
+      "width": 1536
+    }
   ]
 }

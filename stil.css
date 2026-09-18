@@ -897,8 +897,31 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   .wege__raster{grid-template-columns:minmax(0,1fr)}
 }
 
+/* 18.09.2026, Dusans Entwurf: Foto als Grund statt einfarbiger Amber-Flaeche.
+   Das Bild (bilder/preis-grund.jpg, 1536x1024, aus seiner Vorlage) liegt
+   darunter, darueber unser eigener Ton — KEIN neuer Orangeton: sein Entwurf
+   liegt praktisch auf --violett (#F5A524), darum bleibt die Marke die Marke.
+   Der Verlauf ist kraeftig genug, dass die weisse Schrift traegt, und laesst
+   das Foto an den Raendern durchscheinen. */
 .preise{margin:var(--sec) auto 0;max-width:min(var(--maxw),calc(100% - var(--pad) * 2));
-  background:var(--violett);
+  /* Der Verlauf ist nach Kontrast gebaut, nicht nach Gefuehl: gemessen auf
+     der Sektionsflaeche lag das offene Amber oben und unten bei 2,3-2,5
+     gegen die cremeweisse Schrift — Schwelle fuer grossen hellen Text ist
+     3,0. Dort, wo Text direkt auf der Flaeche steht (Ueberschrift, Vorspann,
+     Erstgespraech), deckt er deshalb dichter ab; in der Mitte bleibt er
+     offen, weil dort die Karten liegen, die ihren eigenen Grund mitbringen.
+     Zusaetzlich ein dunklerer Markenton beigemischt (--violett-tief), der
+     abdunkelt statt aufzuhellen. */
+  background:linear-gradient(180deg,
+      rgb(138 85 4 / .52) 0%,
+      rgb(138 85 4 / .34) 9%,
+      rgb(138 85 4 / .30) 14%,
+      rgb(245 165 36 / .72) 20%,
+      rgb(245 165 36 / .48) 42%,
+      rgb(245 165 36 / .58) 62%,
+      rgb(138 85 4 / .46) 100%),
+    url("bilder/preis-grund.jpg") center/cover no-repeat,
+    var(--violett);
   color:var(--creme);border-radius:var(--r-seite);
   padding:clamp(20px,1.8vw,32px) clamp(26px,4vw,72px)
     calc(clamp(28px,2.6vw,46px) + var(--voll-ueber));
@@ -931,7 +954,14 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    rutschen — sie wird minimal groesser, mehr nicht. Ein Versatz nach
    oben liest sich als Verschieben, das Wachsen als Naeherkommen.
    Tempo wie bei den Referenzkacheln und den FAQ-Reihen. */
-.paket{position:relative;background:var(--tinte-2);border-radius:var(--r-gross);
+/* 18.09.2026, Dusans Entwurf: Start hell, Wachstum dunkel mit "Beliebt" —
+   vorher war es umgekehrt. Getauscht wird die FARBBEHANDLUNG, nicht die
+   Klasse: .paket--voll bleibt auf Wachstum, weil daran Abzeichen, Polster
+   und Schatten haengen. Darum traegt .paket jetzt den hellen Grund und
+   .paket--voll den dunklen; alle Folgeregeln (Haken, Preis, Streichpreis,
+   Knopf) sind unten entsprechend umgedreht. */
+.paket{position:relative;background:var(--creme-3);color:var(--tinte);
+  border-radius:var(--r-gross);
   padding:clamp(18px,1.5vw,23px);display:flex;flex-direction:column;gap:3px;
   transition:transform var(--t-knopf) var(--kurve-rein),
              box-shadow var(--t-knopf) var(--kurve-rein)}
@@ -951,7 +981,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    ein Stueck ueber die Nachbarn hinaus. Eine Skalierung haette
    dieselbe Karte nur vergroessert dargestellt, samt Schrift; so
    bekommt sie tatsaechlich mehr Raum. */
-.paket--voll{background:var(--creme);color:var(--tinte);z-index:2;
+.paket--voll{background:var(--tinte-2);color:var(--creme);z-index:2;
   margin:calc(var(--voll-ueber) * -1) 0;
   padding:clamp(24px,2vw,32px);
   box-shadow:0 30px 70px rgb(14 13 11 / .32)}
@@ -959,11 +989,11 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 /* Der Hinweis liest sich als handgeschriebener Aufkleber —
    auf 15 px war er ein Kritzel. */
 /* Der Tipp sitzt auf der hellen Karte: 1,90:1 auf 5,79:1. */
-.paket__tipp{position:absolute;right:34px;top:30px;color:var(--violett-tief);
+.paket__tipp{position:absolute;right:34px;top:30px;color:var(--violett-hell);
   font-size:19px}
 .paket h3{font-size:clamp(22px,1.6vw,28px)}
-.paket__unter{color:rgb(247 247 245 / .62);font-size:15px;line-height:1.4}
-.paket--voll .paket__unter{color:var(--grau)}
+.paket__unter{color:var(--grau);font-size:15px;line-height:1.4}
+.paket--voll .paket__unter{color:rgb(247 247 245 / .62)}
 /* Nicht an der Schriftlinie ausrichten, sondern an der Unterkante:
    die Schriftlinie der Preiszeile wandert waehrend des Wechsels, weil
    die alte Zahl schrumpft — und die ganze Zeile wanderte mit (gemessen
@@ -972,8 +1002,8 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .paket__preis{display:flex;align-items:flex-end;gap:8px;margin:8px 0 0;
   font-weight:800;letter-spacing:-.045em}
 .paket__preis > i{line-height:1;padding-bottom:.09em}
-.paket__preis i{font-style:normal;font-size:26px;color:var(--violett-hell)}
-.paket--voll .paket__preis i{color:var(--violett)}
+.paket__preis i{font-style:normal;font-size:26px;color:var(--violett)}
+.paket--voll .paket__preis i{color:var(--violett-hell)}
 /* ── Preiswechsel 6 -> 12 Monate ───────────────────────────────
    Der bisherige Preis wird DURCHGESTRICHEN und der neue tritt daneben.
    Der Strich ist von Hand gezogen — dicke, runde Enden, leicht schief,
@@ -989,10 +1019,10 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   transition:font-size var(--t-bedien) var(--kurve),
              color var(--t-bedien) var(--kurve)}
 .preis__alt::after{content:"";position:absolute;left:-6%;right:-6%;top:52%;
-  height:.085em;min-height:4px;border-radius:99px;background:var(--violett-hell);
+  height:.085em;min-height:4px;border-radius:99px;background:var(--violett);
   transform:scaleX(0) rotate(-2.5deg);transform-origin:left center;
   transition:transform var(--t-bedien) var(--kurve-rein)}
-.paket--voll .preis__alt::after{background:var(--violett)}
+.paket--voll .preis__alt::after{background:var(--violett-hell)}
 .preis__neu{font-size:0;opacity:0;line-height:1;
   transition:font-size var(--t-bedien) var(--kurve),
              opacity var(--t-bedien) var(--kurve)}
@@ -1004,21 +1034,23 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* --grau-2 stimmt auf den dunklen Karten (6,37:1), faellt auf der hellen
    Hervorhebung aber auf 2,60:1. Die bekommt ihren eigenen Grauton — genau
    so, wie es .paket--voll .paket__unter weiter oben schon macht. */
-.paket--voll .paket__preis .brush{color:var(--grau)}
+.paket--voll .paket__preis .brush{color:var(--grau-2)}
 .haken{display:grid;gap:4px;margin:9px 0 12px;padding-top:9px;
-  border-top:1px solid var(--linie-hell)}
-.paket--voll .haken{border-top-color:var(--linie)}
+  border-top:1px solid var(--linie)}
+.paket--voll .haken{border-top-color:var(--linie-hell)}
 .haken li{position:relative;padding-left:25px;font-size:14.5px;line-height:1.36;
-  color:rgb(247 247 245 / .74)}
-.paket--voll .haken li{color:var(--grau)}
+  color:var(--grau)}
+.paket--voll .haken li{color:rgb(247 247 245 / .74)}
 .haken li::before{content:"";position:absolute;left:3px;top:7px;width:12px;height:7px;
-  border-left:2.5px solid var(--violett-hell);border-bottom:2.5px solid var(--violett-hell);
+  border-left:2.5px solid var(--violett);border-bottom:2.5px solid var(--violett);
   transform:rotate(-45deg)}
-.paket--voll .haken li::before{border-color:var(--violett)}
+.paket--voll .haken li::before{border-color:var(--violett-hell)}
 /* Nicht enthalten: bleibt in der Liste stehen, damit man den
    Unterschied sieht — aber ausgegraut und mit Strich statt Haken. */
-.haken li.aus{color:rgb(247 247 245 / .3)}
-.paket--voll .haken li.aus{color:rgb(107 101 92 / .45)}
+/* Auf der weissen Karte gemessen 1,94 — zu blass fuer "nicht enthalten",
+   das man ja lesen koennen soll. Derselbe Grauton, weniger durchsichtig. */
+.haken li.aus{color:rgb(107 101 92 / .72)}
+.paket--voll .haken li.aus{color:rgb(247 247 245 / .3)}
 .haken li.aus::before{border:0;background:currentColor;
   width:13px;height:2.5px;border-radius:2px;left:2px;top:10px;transform:none}
 .paket .knopf{margin-top:0}
@@ -1030,7 +1062,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* Auf der weissen Karte war die Fuellung zartes Mint — 1,1:1 gegen
    die Karte, der Knopf loeste sich beim Hover auf. Hier gilt die
    Grundregel: dunkle Flaeche, helle Schrift. */
-.paket--voll .knopf--akzent{--knopf-fuell:var(--tinte)}
+.paket--voll .knopf--akzent{--knopf-fuell:var(--creme)}
 
 /* ── 11 · FAQ ──────────────────────────────────────────────── */
 .faq{padding:var(--sec) var(--pad) 0;max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto;
@@ -1444,9 +1476,21 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Bildbreite weg. Bei einem Foto ginge das; Motive mit Text (Tablet-
    Checkliste u.ae.) vertragen keinen Zoom, sonst laeuft die Schrift aus
    dem Bild. Darum als Standard ein 16:10-Band, unten verankert. */
-.hero__grund{position:absolute;z-index:-1;top:auto;bottom:0;
+/* 18.09.2026, Dusan: "bilder rechts anpassen an die hoehe". Das Band lief
+   vorher als 16:10-Streifen unten im Hero und endete oben mit einer harten
+   Kante — bei 1440 von 270 bis 828 in einem 828px hohen Hero, darueber tote
+   Creme. Jetzt fuellt es die ganze Hoehe.
+
+   Der Preis ist gemessen und nicht klein: ein 16:9-Motiv in einer fast
+   quadratischen Box (893x831) verliert 36-40 Prozent der Bildbreite, bei
+   1920 noch 21-30. Darum war das frueher nur per hero--voll einzeln
+   angeschaltet. Auf ausdruecklichen Wunsch gilt es jetzt ueberall; wo der
+   Zuschnitt ein Motiv zerschneidet, wird es per --bildpos am Element
+   nachgezogen, nicht neu erzeugt. hero--voll bleibt wirkungslos bestehen,
+   damit die Klasse im Markup nichts kaputt macht. */
+.hero__grund{position:absolute;z-index:-1;top:0;bottom:0;
   left:auto;right:calc(50% - 50vw);width:min(62vw,1040px);
-  aspect-ratio:16/10;max-height:100%;overflow:hidden}
+  aspect-ratio:auto;max-height:none;overflow:hidden}
 /* Kino-Hero (18.09.2026, Dusans Wunsch am Branding-Hero): Bei Motiven, die
    den Zuschnitt vertragen (Foto ohne Randtext), fuellt das Bild die GANZE
    Hero-Hoehe statt als niedriges Band unten zu sitzen — sonst blieb oben bis
@@ -1455,7 +1499,12 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    schnitten). object-position steuerbar ueber --bildpos am Element. */
 .hero--voll .hero__grund{top:0;bottom:0;aspect-ratio:auto;max-height:none}
 .hero--voll .hero__grund img{object-position:var(--bildpos,50% 50%)}
-.hero__grund img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;
+/* object-position ueber --bildpos steuerbar, seit das Band ueberall die volle
+   Hoehe fuellt: der Zuschnitt schneidet dann je Motiv unterschiedlich viel weg
+   (gemessen 36-40 Prozent der Breite bei 1440), und genau hier wird es pro
+   Bild nachgezogen statt ein neues Motiv zu erzeugen. */
+.hero__grund img{width:100%;height:100%;object-fit:cover;
+  object-position:var(--bildpos,50% 50%);
   -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgb(0 0 0 / .28) 20%,
     rgb(0 0 0 / .78) 44%,#000 66%);
   mask-image:linear-gradient(90deg,transparent 0%,rgb(0 0 0 / .28) 20%,
@@ -1526,6 +1575,16 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 @media (min-width:1101px) and (max-width:1400px){
   .hero__grund{width:min(52vw,1040px)}
   .hero .unter__text{max-width:min(calc(100vw - min(52vw,1040px) - var(--pad) - 48px),58ch)}
+  /* Unter 1400 zurueck zum 16:10-Band. Die volle Hoehe ist hier nicht
+     Ausschnitt, sondern Schaden: gemessen 41 Prozent sichtbare Bildbreite bei
+     1101 (Zoom 2,03), und im Bild sind die Checklisten-Zeilen mitten im Wort
+     durchtrennt ("Tastatur-Na", "Screenrea") sowie der Google-Ads-Betrag
+     abgeschnitten. Ab 1440 ist dasselbe Motiv vollstaendig lesbar, darum
+     laeuft die Grenze nach Schaden und nicht nach Prozentwert.
+     Warum ein schmaleres Band hier NICHT hilft: bindend ist die Hoehe, nicht
+     die Breite — schmaler heisst staerker gezoomt. */
+  .hero__grund,
+  .hero--voll .hero__grund{top:auto;aspect-ratio:16/10;max-height:100%}
 }
 /* "Das sieht unten so abgehakt aus" (Dusan, 18.09.2026). Gemessen lag es NICHT
    an der Bildkante, sondern an der Leere darunter: zwischen Bandende und der
@@ -2622,9 +2681,17 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    .paket sind aber die Preiskarten, die es weiterhin gibt — ohne die Regel
    fiel der Knopf auf .knopf--rand{color:var(--tinte)} zurueck, also dunkle
    Schrift auf dunkler Karte. Nur der .paket-Teil kehrt zurueck. */
-.paket .knopf--rand{border-color:var(--linie-hell);
+/* 18.09.2026 gespiegelt: .paket ist jetzt die HELLE Karte, deshalb dunkler
+   Rahmen und dunkle Schrift. Mit den alten hellen Werten stand "Start
+   waehlen" weiss auf Weiss und war praktisch unsichtbar — derselbe Knopf,
+   der schon einmal andersherum untergegangen ist (siehe Notiz darueber).
+   Die hellen Werte gelten nur noch auf der dunklen Hervorhebung. */
+.paket--voll .knopf--rand{border-color:var(--linie-hell);
   color:var(--creme);--knopf-fuell:var(--creme)}
-.paket .knopf--rand:hover{border-color:var(--creme);color:var(--tinte)}
+.paket--voll .knopf--rand:hover{border-color:var(--creme);color:var(--tinte)}
+.paket .knopf--rand{border-color:var(--linie);
+  color:var(--tinte);--knopf-fuell:var(--tinte)}
+.paket .knopf--rand:hover{border-color:var(--tinte);color:var(--creme)}
 .werke .knopf--rand{border-color:rgb(247 247 245 / .28);color:var(--creme);
   --knopf-fuell:var(--creme)}
 .werke .knopf--rand:hover,.werke .knopf--rand:focus-visible{
@@ -2771,10 +2838,23 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
      Struktur   Person im Kopf statt Preis, kein Paket-Haken darunter
      Hoehe      steht oben an und laeuft NICHT auf Paketlaenge mit
      Ebene      liegt mit Schatten ueber der Flaeche statt darin */
+/* 18.09.2026, Dusan: "die beiden preisboxen sollen abschliessen mit der
+   unteren box". Vorher standen Start, Wachstum und Erstgespraech in EINER
+   Reihe mit drei ungleichen Spalten (gemessen 393/456/338 bei 1440, also
+   auch untereinander verschieden breit). Jetzt: zwei gleich breite Pakete
+   oben, der Erstgespraech-Block darunter ueber beide Spalten — damit fluchten
+   linke und rechte Kante mit ihm, was ohne "untere Box" gar nicht ginge.
+
+   Der negative Aussenabstand von .paket--voll muss hier weg: er liess die
+   mittlere Karte oben und unten ueber die Nachbarn hinausragen. In der alten
+   Dreierreihe war das die Hervorhebung, an einer fluchtenden Kante ist es
+   genau der Fehler. Die Karte bleibt hervorgehoben — ueber Farbe, Polster
+   und Schatten, nicht ueber einen Versatz. */
 @media (min-width:1100px){
-  .preise__raster{grid-template-columns:minmax(0,1fr) minmax(0,1.16fr) minmax(0,.86fr);
+  .preise__raster{grid-template-columns:repeat(2,minmax(0,1fr));
     max-width:none;align-items:stretch}
-  .preise__raster .erst{align-self:start}
+  .preise__raster .erst{grid-column:1 / -1;align-self:stretch}
+  .preise__raster .paket--voll{margin:0}
 }
 .erst{display:flex;flex-direction:column;overflow:hidden;
   background:var(--creme-3);color:var(--tinte);border-radius:var(--r-gross);

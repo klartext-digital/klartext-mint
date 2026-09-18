@@ -342,7 +342,12 @@ for source,route in ROUTES.items():
  # Offer navigation is shared; keep the existing visual menu and interactions.
  def route_link(target):return posixpath.relpath(target,route_dir or '.')+'/'
  offer_nav='<nav class="seo-offer-nav" aria-label="Zusammenarbeit"><a href="'+route_link('marketing-abo')+'">Marketing im Abo</a><a href="'+route_link('projektarbeit')+'">Projektarbeit</a></nav>'
- s=s.replace('<div class="ndd__spalte ndd__spalte--liste">','<div class="ndd__spalte ndd__spalte--liste">'+offer_nav)
+ # Entfernt 18.09.2026 (Dusan: "brauchen wir das" - nein). Die beiden Links
+ # standen als schlichte unterstrichene Textlinks ueber den nummerierten
+ # Leistungen derselben Menuespalte, also in fremder Formensprache, und die
+ # Fusszeile fuehrt Marketing im Abo und Projektarbeit ohnehin schon.
+ # Die 404-Seite behaelt ihre seo-offer-nav: dort ist sie neben "Zur
+ # Startseite" die einzige Navigation, keine Dopplung.
  s=s.replace('<p class="fuss__kopf">Leistungen</p>','<p class="fuss__kopf">Leistungen</p><a href="'+route_link('marketing-abo')+'">Marketing im Abo</a><a href="'+route_link('projektarbeit')+'">Projektarbeit</a><a href="'+route_link('seo')+'">SEO-Betreuung</a><a href="'+route_link('website-betreuung')+'">Website-Betreuung</a>')
  # References retain their source presentation per the confirmed project rules.
  s=s.replace('<h2 class="mitte">Die Mannschaft</h2>','<h2 class="mitte">Die Mannschaft</h2><p class="seo-pruefhinweis">Teamdarstellung im Entwurf: Namen, Rollen und Zugehörigkeit sind noch zu bestätigen.</p>')
