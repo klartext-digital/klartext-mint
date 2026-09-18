@@ -1460,9 +1460,30 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
     rgb(0 0 0 / .78) 44%,#000 66%);
   mask-image:linear-gradient(90deg,transparent 0%,rgb(0 0 0 / .28) 20%,
     rgb(0 0 0 / .78) 44%,#000 66%)}
-.hero .unter{padding-bottom:0}
+/* Kompakter Hero (18.09.2026, Dusans Wunsch: "so kompakt dass es sich auf die
+   ganze Seite ausgeht, typische Dauer am Ende"). Gemessen war der Hero bei
+   1440x900 bis zu 314px zu hoch (Webdesign 1214) und bei 1101x800 bis zu
+   377px (Ueber uns). Die Hoehe lag in vier Posten: Polster oben 158, Polster
+   unten 72+37, Handschrift 83 und die drei Absaetze mit zusammen 589px.
+   Alle vier sind hier gekuerzt — Inhalt wurde KEINER entfernt und keiner
+   verschoben. Ergebnis: 0 von 90 Messungen ab 1000px Breite noch zu hoch.
+   Verworfen, weil gemessen schlechter: display:flex mit margin-top:auto fuer
+   die Pille (11 statt 5 Ueberschreitungen) und ein erzwungenes min-height
+   von 100svh (kurze Seiten wie SEO standen dann 400px leer). */
+/* Die Untergrenze ist nicht frei waehlbar: header.nav steht fest und belegt
+   14 bis 90px. Die Brotkrume sitzt genau auf diesem Polster. Mit 80px lag sie
+   bei jeder Breite unter 1280px 10px HINTER der Kopfzeile, bei 1440 blieben
+   2px. 98px gibt 8px Luft und bleibt bei 1201x800 mit 795px knapp im Schirm. */
+.hero .unter{padding-bottom:0;padding-top:clamp(98px,6.4vw,104px)}
 .hero .unter__leib{grid-template-columns:minmax(0,1fr);
-  padding-bottom:clamp(48px,5vw,84px)}
+  padding-bottom:clamp(24px,2.1vw,38px);margin-bottom:clamp(10px,1vw,18px)}
+/* :not(.unter__dauer) ist noetig, nicht kosmetisch: die Dauer-Pille ist ein
+   <p class="unter__dauer">. Ohne die Ausnahme schrumpft ihre Schrift mit —
+   derselbe Irrtum hat mir beim Messen die Pille ganz weggeloescht. */
+.hero .unter__text p:not(.brush):not(.unter__dauer){
+  font-size:clamp(16px,1.12vw,17.5px);line-height:1.48;margin-bottom:.65em}
+.hero .unter__text > .zurueck{margin-bottom:12px}
+.hero .unter__text > .chip{margin-bottom:14px}
 /* Die Spalte muss vor dem Bildband enden, nicht bei einem festen Prozentwert.
    Das Band ist min(62vw,1040px) breit und rechts angeschlagen; links davon
    bleibt 100vw minus Bandbreite, abzueglich Seitenpolster und etwas Luft.
@@ -1479,7 +1500,11 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    85px auf vier Zeilen umgebrochen, waehrend Branding und Ueber uns
    korrekt folgten. Ohne !important gewinnt die fremde Datei. */
 .hero .unter__text h1{font-size:clamp(32px,3.5vw,72px)!important;line-height:1.04!important}
-.hero .unter__text > .brush{font-size:clamp(19px,1.8vw,30px)}
+/* Die Handschrift stand mit 25,9px auf 41,99px Zeilenhoehe und brauchte bei
+   Branding/Webdesign zwei Zeilen, zusammen 83px. Kleiner gesetzt bleibt sie
+   einzeilig und der Vorspann rueckt naeher an den Titel. */
+.hero .unter__text > .brush{font-size:clamp(17px,1.4vw,22px);line-height:1.5;
+  margin-bottom:10px}
 @media (max-width:1100px){
   /* Am Handy nimmt der Text die volle Breite ein — rechts bleibt kein Platz,
      in den das Bild auslaufen koennte. Statt es unter den Text zu schieben
@@ -1487,6 +1512,20 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   .hero{min-height:0}
   .hero__grund{display:none}
   .hero .unter__text{max-width:none}
+}
+/* Zwischen 1101 und 1400 ist die Textspalte am engsten: das Band nimmt 62vw,
+   links bleiben bei 1201px nur 368px. Der Text bricht dort so oft um, dass
+   der Hero trotz straffer Typografie noch bis zu 128px ueberlief (E-Mail-
+   Marketing bei 1101x800). Fuenf Gegenmittel wurden gemessen; das Band auf
+   52vw zu verschmaelern war das mildeste, das ueberall passt — Textspalte
+   488 statt 368px, das Bild bleibt mit 625px sichtbar. Den Haltepunkt auf
+   1280 anzuheben waere schlechter gewesen: das Bild verschwaende auf
+   1101-1280 ganz UND 1366x768 lief trotzdem um 60px ueber. Die Formel fuer
+   die Textbreite muss denselben vw-Wert tragen wie das Band, sonst bleibt
+   die Spalte schmal und die Verschmaelerung wirkungslos. */
+@media (min-width:1101px) and (max-width:1400px){
+  .hero__grund{width:min(52vw,1040px)}
+  .hero .unter__text{max-width:min(calc(100vw - min(52vw,1040px) - var(--pad) - 48px),58ch)}
 }
 
 /* ── Hero: Kopf und Text in EINER Spalte, Bild daneben ─────────
