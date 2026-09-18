@@ -927,7 +927,19 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
       rgb(245 165 36 / .48) 42%,
       rgb(245 165 36 / .58) 62%,
       rgb(138 85 4 / .46) 100%),
-    url("bilder/preis-grund.jpg") center/cover no-repeat,
+    /* 19.09.2026, Dusan: verschieben. Kamera, Display und der Kopf davor
+       lagen im linken Fuenftel (bis x=340 von 1536); das Gesicht auf dem
+       Display war nur 35x40 Pixel gross — zu wenig fuer Augen, Nase, Mund.
+       Rechtsbuendig allein half nur bis 1440: ab ~1500 ist die Sektion
+       breiter als 1,5:1, cover zeigt dann fast die volle Bildbreite und der
+       linke Rand kommt zurueck. Zoomen scheidet aus — 1536x1024 ist bereits
+       die hoechste vorhandene Aufloesung (die PNG-Vorlage ist identisch),
+       und ein ueber cover hinaus vergroessertes Bild kann bei sehr breiten
+       Schirmen die Flaeche nicht mehr decken. Darum sind die 360 Pixel AUS
+       DER DATEI geschnitten: 1176x1024. Kamera bei jeder Breite weg.
+       Rechtsbuendig bleibt, weil der Ausschnitt bei 1440 damit rechnerisch
+       exakt derselbe ist wie vor dem Schnitt. */
+    url("bilder/preis-grund.jpg") right center/cover no-repeat,
     var(--violett);
   color:var(--creme);border-radius:0;
   padding:clamp(20px,1.8vw,32px) clamp(26px,4vw,72px)
