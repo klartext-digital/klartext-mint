@@ -36,5 +36,6 @@
   "bilder/wd-technik.jpg": "(max-width: 900px) 100vw, 30vw",
   "bilder/wd-barriere.jpg": "(max-width: 900px) 100vw, 30vw",
   "bilder/wd-pflege.jpg": "(max-width: 900px) 100vw, 30vw",
-  "bilder/preis-grund.jpg": "100vw"
+  "bilder/preis-grund.jpg": "100vw",
+  "bilder/termin-grund.jpg": "100vw"
 }
