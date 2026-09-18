@@ -2873,8 +2873,13 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    genau der Fehler. Die Karte bleibt hervorgehoben — ueber Farbe, Polster
    und Schatten, nicht ueber einen Versatz. */
 @media (min-width:1100px){
+  /* max-width:none stammt aus der Zeit der eingerueckten Karte und hat meine
+     Deckelung aus der Grundregel ueberstimmt: gemessen lief das Raster bei
+     1920 auf 1776px, waehrend der Kopf bei --maxw (1680) endete — 37px
+     Versatz auf jeder Seite, also genau die Buendigkeit kaputt, die hier
+     gefordert war. Kopf und Raster teilen sich jetzt dieselbe Breite. */
   .preise__raster{grid-template-columns:repeat(2,minmax(0,1fr));
-    max-width:none;align-items:stretch}
+    max-width:1060px;align-items:stretch}
   .preise__raster .erst{grid-column:1 / -1;align-self:stretch}
   .preise__raster .paket--voll{margin:0}
 }
