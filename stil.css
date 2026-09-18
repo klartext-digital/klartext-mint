@@ -1441,20 +1441,20 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* Die Box erbte die volle Hero-Hoehe, und die haengt an der Textlaenge.
    Gemessen ergab das 893x1075 (Verhaeltnis 0,83) fuer ein 16:9-Motiv:
    object-fit:cover skalierte 2,67-fach hoch und warf 54 Prozent der
-   Bildbreite weg. Bei einem Foto ginge das; unsere Motive sind
-   Bildschirmaufnahmen und vertragen keinen Zoom. Darum ein eigenes
-   Seitenverhaeltnis nahe der Quelle, oben verankert. */
-/* An der UNTERKANTE verankert, nicht oben. Gemessen: das Geruest aus
-   Polster, Brotkrume, Pille, Chip, Titel, Handschrift und Dauer-Pille
-   ist 617-706px hoch, ein 16:10-Band aber nur 558-650px. Oben verankert
-   endete das Bild darum mitten auf der Seite mit einer harten Kante und
-   liess darunter bis zu 559px leere Flaeche. Unten verankert faellt die
-   Bildunterkante mit dem Abschnittsende zusammen; die freie Flaeche liegt
-   oben, wo die Ueberschrift steht. Kein Beschnitt, weil das Verhaeltnis
-   bleibt. */
+   Bildbreite weg. Bei einem Foto ginge das; Motive mit Text (Tablet-
+   Checkliste u.ae.) vertragen keinen Zoom, sonst laeuft die Schrift aus
+   dem Bild. Darum als Standard ein 16:10-Band, unten verankert. */
 .hero__grund{position:absolute;z-index:-1;top:auto;bottom:0;
   left:auto;right:calc(50% - 50vw);width:min(62vw,1040px);
   aspect-ratio:16/10;max-height:100%;overflow:hidden}
+/* Kino-Hero (18.09.2026, Dusans Wunsch am Branding-Hero): Bei Motiven, die
+   den Zuschnitt vertragen (Foto ohne Randtext), fuellt das Bild die GANZE
+   Hero-Hoehe statt als niedriges Band unten zu sitzen — sonst blieb oben bis
+   zu 559px tote Beige-Flaeche und der Hero wirkte leer. Nur per hero--voll
+   angeschaltet, NICHT global (Tablet-Checkliste u.ae. wuerden sonst abge-
+   schnitten). object-position steuerbar ueber --bildpos am Element. */
+.hero--voll .hero__grund{top:0;bottom:0;aspect-ratio:auto;max-height:none}
+.hero--voll .hero__grund img{object-position:var(--bildpos,50% 50%)}
 .hero__grund img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;
   -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgb(0 0 0 / .28) 20%,
     rgb(0 0 0 / .78) 44%,#000 66%);
