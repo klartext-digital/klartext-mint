@@ -634,8 +634,19 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    Beschreibungstext dunkel auf dunklem Foto und verschwand fast; die
    Schlagworte waren sichtbar, weil sie eine eigene Farbe mitbringen, und
    genau das hat den Fehler verdeckt. */
+/* 19.09.2026, Dusan: "ich will unseren orange glow effekt haben umrandung
+   wie beim kalender und auch das plus." Die offene Zeile trug bisher nur
+   einen dunklen Schlagschatten — kein Saum, kein Amber. Jetzt dieselbe
+   Rezeptur wie die Terminwahl: ein feiner Ring direkt an der Kante, dann
+   zweistufig Licht nach AUSSEN (eng und weit), zuletzt ein dunkler
+   Schatten fuer die Tiefe. Der Saum ist hier amberfarben statt weiss,
+   weil der Balken auf hellem Grund steht und ein weisser Ring darauf
+   verschwaende. */
 .lz.ist{color:var(--creme);
-  box-shadow:0 22px 50px -26px rgb(14 13 11 / .5)}
+  box-shadow:0 0 0 1.5px rgb(245 165 36 / .85),
+    0 6px 30px -6px rgb(245 165 36 / .70),
+    0 18px 90px -16px rgb(245 165 36 / .80),
+    0 30px 64px -28px rgb(14 13 11 / .6)}
 .lz::before{content:"";position:absolute;
   inset:0;z-index:-1;
   border-radius:inherit;
@@ -697,13 +708,15 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .lz__zeichen{position:relative;width:clamp(38px,3.4vw,54px);
   height:clamp(38px,3.4vw,54px);border-radius:50%;flex:none;
   display:grid;place-items:center;background:transparent;
-  box-shadow:0 0 0 1.5px rgb(245 165 36 / .65),
-    0 0 18px -2px rgb(245 165 36 / .55);
+  box-shadow:0 0 0 1.5px rgb(245 165 36 / .8),
+    0 3px 14px -2px rgb(245 165 36 / .6),
+    0 0 34px -4px rgb(245 165 36 / .7);
   transition:background-color var(--t-knopf) var(--kurve-rein),
     box-shadow var(--t-knopf) var(--kurve-rein)}
 .lz.ist .lz__zeichen{background:var(--tinte-2);
-  box-shadow:0 0 0 1.5px rgb(245 165 36 / .9),
-    0 0 30px -2px rgb(245 165 36 / .85)}
+  box-shadow:0 0 0 1.5px rgb(245 165 36 / .95),
+    0 3px 16px -2px rgb(245 165 36 / .8),
+    0 0 44px -4px rgb(245 165 36 / .9)}
 .lz__zeichen i{position:absolute;background:var(--violett);border-radius:2px;
   transition:transform .3s var(--kurve),background-color var(--t-flaeche) var(--kurve)}
 .lz__zeichen i:first-child{width:44%;height:2.5px}
