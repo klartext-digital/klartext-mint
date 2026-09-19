@@ -1776,8 +1776,28 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   color:var(--tinte);position:relative;isolation:isolate;
   padding:clamp(70px,7vw,130px) var(--pad) 0;overflow:clip}
 .fuss::after{content:"";position:absolute;z-index:-1;pointer-events:none;
-  right:max(0px,calc((100% - var(--maxw)) / 2));bottom:0;
-  width:clamp(260px,30vw,460px);aspect-ratio:900 / 750;
+  /* 20.09.2026, Dusan: "person etwas groesser und hoeher ziehen, sodass
+     man auch den laptop erkennen kann." Also breiter UND vom unteren Rand
+     abgehoben — vorher sass sie bundig auf bottom:0 und der Laptop wurde
+     vom Fusszeilenrand abgeschnitten.
+     Die drei Striche ueber dem Kopf sind NICHT per CSS entfernt worden,
+     sondern aus der Bilddatei: sie waren dort eingebrannt. Gefunden ueber
+     die zusammenhaengenden Flaechen des Alphakanals — Person 99,4 %, die
+     drei Striche je 0,1 bis 0,2 % und sauber getrennt. */
+  right:max(0px,calc((100% - var(--maxw)) / 2));
+  bottom:clamp(18px,2.6vw,44px);
+  /* Die Hoehe ist der eigentliche Engpass, nicht die Breite: das Motiv
+     waechst nach OBEN in die Spalten hinein (aspect-ratio 1,2). Deshalb
+     hier gedeckelt statt die Spalten immer weiter nach links zu draengen. */
+  width:clamp(300px,34vw,520px);
+  /* Der Deckel haelt das Motiv unten. ACHTUNG, hier steckt eine Falle:
+     greift max-height staerker als aspect-ratio, wird das Bild GESTAUCHT.
+     Mit 210 bis 330 px gemessen: Verhaeltnis 1,484 statt 1,200 — also zu
+     eng. Mit den Werten unten bleibt es exakt bei 1,200. Wer den Deckel
+     aendert, misst das Verhaeltnis neu; es ist nicht mitgeprueft, nur
+     weil es einmal stimmte. */
+  max-height:clamp(240px,30vw,430px);
+  aspect-ratio:900 / 750;
   background:url("bilder/fuss-person-900.webp") bottom right/contain no-repeat;
   /* Die Kontur steckt bereits im freigestellten Motiv. Der Schein
      daneben ist unserer: weich und rundherum, kein gezeichneter Rand —
@@ -1866,8 +1886,18 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Marketing" hinein. */
 @media (min-width:901px){
   .fuss__recht{justify-content:flex-start;gap:clamp(20px,3vw,48px);
-    max-width:calc(100% - clamp(380px,34vw,520px));
-    margin-right:auto;padding-right:0}
+    /* Freiraum waechst mit der Person mit. Meine erste Rechnung hatte nur
+       die BREITE beruecksichtigt und war deshalb falsch: mit bottom-Versatz
+       und groesserer Hoehe reicht das Motiv jetzt bis an die Oberkante der
+       Rechtszeile, gemessen lag "Datenschutz" mit 1530 px darin. Darum
+       zusaetzlich Luft nach oben — die Zeile rueckt tiefer als das Motiv. */
+    max-width:calc(100% - clamp(420px,40vw,620px));
+    /* margin-right:auto allein band die Zeile NICHT nach links: die
+       Basisregel setzt margin:… auto 0, also auch links auto — der Block
+       blieb zentriert und begann bei x 328 statt 40. Dadurch endete er
+       bei 1112 und lag 190 px im Motiv, obwohl die Breite stimmte.
+       margin-left:0 ist der eigentliche Hebel. */
+    margin-left:0;margin-right:auto;padding-right:0}
   /* max-width am Container allein reicht NICHT: .fuss__recht ist ein
      Flex-Container, seine Kinder haben min-width:auto und schrumpfen
      darum nicht unter ihre Inhaltsbreite. Der lange Satz lief deshalb
@@ -1875,13 +1905,34 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
      die letzten Buchstaben lagen im Motiv. min-width:0 erlaubt den
      Umbruch und haelt ihn drin. */
   .fuss__recht > *{min-width:0}
-  .fuss__spalten{padding-right:clamp(180px,20vw,340px)}
+  /* NACHTRAG: Der seitliche Abstand war hier durchgehend der falsche
+     Hebel. "Behance" ragte 4 px von OBEN ins Motiv — ich habe das mit
+     Polsterung nach rechts zu heilen versucht und damit zweimal etwas
+     Schlimmeres erzeugt: bei 1440 ein 374 px breites totes Feld neben den
+     Spalten, bei 1000 nahm die Polsterung dem Raster die dritte Spur, so
+     dass "Folgen" 453 px tiefer in eine eigene Reihe rutschte.
+     Richtig ist die HOEHE: das Motiv wird unten gehalten und waechst
+     nicht mehr in die Spaltenzone. Die Spalten behalten ihre drei
+     Spuren, der Abstand bleibt bescheiden. */
+  /* Nur oberhalb von 1100 px noetig: dort stehen drei Spalten in einer
+     Reihe und die aeusserste reicht bis an das Motiv. Darunter ist die
+     Liste ohnehin zweispaltig (Regel von 08/2026, nicht von hier) und
+     das Motiv sitzt klein und tief — gemessen 0 px Text im Motiv. Die
+     Polsterung riss dort nur eine Luecke zwischen den beiden Spalten. */
+  .fuss__spalten{padding-right:0}
+}
+@media (min-width:1101px){
+  .fuss__spalten{padding-right:clamp(200px,26vw,420px)}
 }
 /* Zwischen 901 und 1100 wird es eng: dort ist 34vw nur rund 310 px, die
    Person aber schon 270 px breit. Sie rueckt deshalb etwas tiefer und
    schmaler, damit die Copyright-Zeile Luft behaelt. */
 @media (min-width:901px) and (max-width:1100px){
-  .fuss::after{width:clamp(220px,26vw,300px)}
+  /* Diese Zwischenregel machte die Person KLEINER als die Hauptregel
+     (280 statt 360 px bei 1000 px Fensterbreite) — das Gegenteil des
+     Auftrags. Sie ist nur dazu da, sie bei knappem Platz etwas
+     zurueckzunehmen, nicht sie zu schrumpfen. */
+  .fuss::after{width:clamp(300px,34vw,400px)}
 }
 
 /* Zurueck nach oben. Erscheint erst, wenn genug Seite hinter einem
