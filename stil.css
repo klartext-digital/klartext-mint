@@ -3410,7 +3410,25 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
      gefordert war. Kopf und Raster teilen sich jetzt dieselbe Breite. */
   .preise__raster{grid-template-columns:repeat(2,minmax(0,1fr));
     max-width:1060px;align-items:stretch}
-  .preise__raster .erst{grid-column:1 / -1;align-self:stretch}
+  /* 20.09.2026, Dusan: "diese box verkleinern auf die haelfte (breite)
+     und rechts davon mein portrait". Die Box lief ueber beide Spuren
+     (1 / -1, gemessen 1008 px). Jetzt nur noch die erste — bei 1060 px
+     Raster und 28,8 px Abstand sind das rund 516 px, also genau die
+     Haelfte. Die zweite Spur derselben Zeile bleibt frei und nimmt das
+     Portrait auf. */
+  .preise__raster .erst{grid-column:1;align-self:stretch}
+  /* Das Portrait kommt als ::after in die frei gewordene zweite Spur —
+     kein Markup-Eingriff noetig. Kontur und Schein wie beim Motiv in der
+     Fusszeile: weich und rundherum, kein gezeichneter Rand. Unten
+     buendig, damit es auf der Box-Unterkante steht. */
+  .preise__raster{position:relative}
+  .preise__raster::after{content:"";grid-column:2;align-self:end;
+    justify-self:center;width:min(100%,360px);aspect-ratio:461 / 1039;
+    max-height:clamp(320px,34vw,520px);
+    background:url("bilder/erst-person-820.webp") bottom center/contain no-repeat;
+    filter:drop-shadow(0 0 24px rgb(255 255 255 / .55))
+           drop-shadow(0 0 64px rgb(245 165 36 / .35));
+    pointer-events:none}
   .preise__raster .paket--voll{margin:0}
 }
 .erst{display:flex;flex-direction:column;overflow:hidden;
