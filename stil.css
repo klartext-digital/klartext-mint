@@ -1319,15 +1319,16 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* Dasselbe Glas wie die Terminwahl, aber OHNE den warmen Schein: ein
    flacher weisser Block neben einer Glasflaeche sieht nach Versehen aus,
    und wenn beide leuchten, hebt sich nichts mehr hervor. */
+/* Deckend wie die Terminwahl: sonst faerbt der Schein des Kalenders auch
+   das Formular daneben ein, und die Sache sieht wieder nach "Orange ueber
+   allem" aus statt nach Licht dahinter. */
 .fm__links{position:relative;
   background:
     radial-gradient(130% 100% at 10% -15%,
-      rgb(255 255 255 / .9) 0%, rgb(255 255 255 / 0) 52%),
+      rgb(255 255 255) 0%, rgb(255 255 255 / 0) 52%),
     linear-gradient(157deg,
-      rgb(252 251 249 / .96) 0%,
-      rgb(240 237 232 / .94) 100%);
-  -webkit-backdrop-filter:blur(16px) saturate(1.15);
-  backdrop-filter:blur(16px) saturate(1.15);
+      rgb(252 251 249) 0%,
+      rgb(240 237 232) 100%);
   border-radius:var(--r-gross);
   padding:clamp(13px,1.15vw,17px);display:grid;gap:8px;
   grid-template-rows:auto auto minmax(0,1fr);
@@ -1378,24 +1379,33 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Scheibe — die vergangenen Tage verschwanden darin fast. Glas auf dunklem
    Grund muss HELL und fast deckend bleiben; das Glasige kommt aus Kante und
    Licht, nicht aus Durchsicht: beleuchtete obere Ecke, heller Saum, warme
-   Abschattung unten innen, grosser Schein nach aussen. */
+   Abschattung unten innen, grosser Schein nach aussen.
+   NACHTRAG 2, Dusan: "der orange glow effekt soll hinter dem kalender sein
+   und diesen im 3D look hervorheben, nicht ueber ihn."
+   Ursache benennbar: die Flaeche war halbdurchsichtig (94-97 %) MIT
+   backdrop-filter, dahinter ein 150-px-Schein bei 80 % Amber — das Orange
+   kam also durch die Platte hindurch. Dazu eine warme Innenschattierung,
+   die tatsaechlich AUF dem Kalender lag. Solange die Flaeche durchsichtig
+   ist, laesst sich "dahinter" gar nicht herstellen.
+   Jetzt: Flaeche DECKEND (kein Amber kann durchscheinen), die warme
+   Innenschattierung ersatzlos weg, und das Licht ausschliesslich als
+   Aussenschatten — der liegt per Definition hinter dem Element. Drei
+   Stufen: enger heller Kern, weiter Hof, und ein tiefer dunkler Schatten
+   nach unten, der die Platte abhebt statt sie einzufaerben. */
 .kal{position:relative;
   background:
     radial-gradient(130% 100% at 10% -15%,
-      rgb(255 255 255 / .95) 0%, rgb(255 255 255 / 0) 52%),
+      rgb(255 255 255) 0%, rgb(255 255 255 / 0) 52%),
     linear-gradient(157deg,
-      rgb(253 252 250 / .97) 0%,
-      rgb(246 244 240 / .95) 55%,
-      rgb(238 235 229 / .94) 100%);
-  -webkit-backdrop-filter:blur(18px) saturate(1.2);
-  backdrop-filter:blur(18px) saturate(1.2);
+      rgb(253 252 250) 0%,
+      rgb(246 244 240) 55%,
+      rgb(238 235 229) 100%);
   border-radius:var(--r-gross);
   padding:clamp(14px,1.3vw,20px);
   box-shadow:inset 0 1.5px 0 rgb(255 255 255 / 1),
-    inset 0 -26px 40px -30px rgb(138 85 4 / .30),
     0 0 0 1px rgb(255 255 255 / .55),
-    0 0 44px -14px rgb(245 165 36 / .55),
-    0 0 150px -10px rgb(245 165 36 / .8),
+    0 6px 30px -6px rgb(245 165 36 / .75),
+    0 18px 90px -16px rgb(245 165 36 / .85),
     0 34px 70px -26px rgb(0 0 0 / .78)}
 .kal__kopf{display:flex;align-items:center;justify-content:space-between;
   gap:14px;margin-bottom:10px}
@@ -1459,18 +1469,16 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .kal__slots{position:relative;
   background:
     radial-gradient(130% 100% at 10% -25%,
-      rgb(255 255 255 / .9) 0%, rgb(255 255 255 / 0) 55%),
+      rgb(255 255 255) 0%, rgb(255 255 255 / 0) 55%),
     linear-gradient(157deg,
-      rgb(252 251 249 / .96) 0%,
-      rgb(240 237 232 / .94) 100%);
-  -webkit-backdrop-filter:blur(16px) saturate(1.15);
-  backdrop-filter:blur(16px) saturate(1.15);
+      rgb(252 251 249) 0%,
+      rgb(240 237 232) 100%);
   border-radius:var(--r-gross);
   padding:clamp(13px,1.15vw,17px);
   box-shadow:inset 0 1.5px 0 rgb(255 255 255 / .95),
-    inset 0 -18px 30px -26px rgb(138 85 4 / .26),
     0 0 0 1px rgb(255 255 255 / .42),
-    0 0 62px -18px rgb(245 165 36 / .36),
+    0 5px 22px -6px rgb(245 165 36 / .45),
+    0 14px 60px -18px rgb(245 165 36 / .5),
     0 22px 50px -22px rgb(0 0 0 / .6)}
 /* Dieselbe Sache wie bei den vergangenen Tagen: 0,42 war nicht "gedaempft",
    sondern weg. Die Uhrzeiten sind gesperrt, solange kein Tag gewaehlt ist —
