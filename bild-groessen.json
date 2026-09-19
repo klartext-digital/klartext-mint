@@ -41,5 +41,6 @@
   "bilder/dienst-grund-2.jpg": "100vw",
   "bilder/dienst-grund-1.jpg": "100vw",
   "bilder/dienst-grund-3.jpg": "100vw",
-  "bilder/fuss-person.png": "(max-width: 1100px) 60vw, 34vw"
+  "bilder/fuss-person.png": "(max-width: 1100px) 60vw, 34vw",
+  "bilder/dienst-grund-4.jpg": "100vw"
 }

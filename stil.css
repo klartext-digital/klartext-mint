@@ -751,6 +751,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .lz[data-i="0"]{--lz-grund:url("bilder/dienst-grund-1.jpg")}
 .lz[data-i="1"]{--lz-grund:url("bilder/dienst-grund-2.jpg")}
 .lz[data-i="2"]{--lz-grund:url("bilder/dienst-grund-3.jpg")}
+.lz[data-i="3"]{--lz-grund:url("bilder/dienst-grund-4.jpg")}
 
 /* Die Polsterung sitzt jetzt IM Balken, nicht mehr aussen: ein Balken mit
    randbuendiger Schrift sieht aus wie ein Fehler. Dadurch ruecken Nummer
