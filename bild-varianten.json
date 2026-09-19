@@ -608,5 +608,41 @@
       "path": "bilder/dienst-grund-2-1920.webp",
       "width": 1920
     }
+  ],
+  "bilder/dienst-grund-1.jpg": [
+    {
+      "path": "bilder/dienst-grund-1-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/dienst-grund-1-960.webp",
+      "width": 960
+    },
+    {
+      "path": "bilder/dienst-grund-1-1440.webp",
+      "width": 1440
+    },
+    {
+      "path": "bilder/dienst-grund-1-1920.webp",
+      "width": 1920
+    }
+  ],
+  "bilder/dienst-grund-3.jpg": [
+    {
+      "path": "bilder/dienst-grund-3-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/dienst-grund-3-960.webp",
+      "width": 960
+    },
+    {
+      "path": "bilder/dienst-grund-3-1440.webp",
+      "width": 1440
+    },
+    {
+      "path": "bilder/dienst-grund-3-1920.webp",
+      "width": 1920
+    }
   ]
 }
