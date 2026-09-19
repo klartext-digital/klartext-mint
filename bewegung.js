@@ -364,6 +364,44 @@ function zeileHalten(el, dauerMs) {
       zeileHalten(kopf, 460);
     });
   });
+  /* Aufklappen beim Überfahren — dieselbe Mechanik wie bei den Fragen
+     (fragen.js), nicht neu erfunden: NICHT :hover je Zeile, sondern die
+     LISTE entscheidet. Zwischen den Zeilen liegt eine Lücke; mit :hover
+     verlöre der Balken dort den Zeiger und klappte zu, beim Wandern durch
+     die Liste flackerte alles auf und zu. Also gewinnt die Zeile unter
+     dem Zeiger, sonst die nächstgelegene — in der Lücke ist das fast
+     immer die bereits offene.
+     zeileHalten() wird hier bewusst NICHT gerufen: beim Klicken ist das
+     Nachführen erwünscht, beim blossen Überfahren wäre es ein unter dem
+     Zeiger wegspringender Seiteninhalt. */
+  const liste = document.querySelector('#lzliste');
+  if (liste && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    const waehle = (e) => {
+      if (e.pointerType === 'touch') return;
+      const y = e.clientY;
+      let ziel = zeilen.find((lz) => {
+        const r = lz.getBoundingClientRect();
+        return y >= r.top && y <= r.bottom;
+      });
+      if (!ziel) {
+        let kleinster = Infinity;
+        zeilen.forEach((lz) => {
+          const r = lz.getBoundingClientRect();
+          const d = y < r.top ? r.top - y : y - r.bottom;
+          if (d < kleinster) { kleinster = d; ziel = lz; }
+        });
+      }
+      if (!ziel || ziel.classList.contains('ist')) return;
+      zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
+      auf(ziel);
+    };
+    liste.addEventListener('pointerenter', waehle, { passive: true });
+    liste.addEventListener('pointermove', waehle, { passive: true });
+    liste.addEventListener('pointerleave', () => {
+      zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
+    });
+  }
+
   /* Bewusst NICHTS offen zum Start — wie bei Redondo. Die Liste der
      fünf Namen ist die Aussage, das Aufklappen die Entscheidung des
      Lesers. */
