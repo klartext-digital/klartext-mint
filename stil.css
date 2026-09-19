@@ -3421,14 +3421,37 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
      kein Markup-Eingriff noetig. Kontur und Schein wie beim Motiv in der
      Fusszeile: weich und rundherum, kein gezeichneter Rand. Unten
      buendig, damit es auf der Box-Unterkante steht. */
+  /* 20.09.2026, Dusan: "nur oberkoerper, groesser und bis zum unteren
+     rand". Der Zuschnitt sitzt in der Bilddatei: der Guertel wurde
+     gemessen, nicht geschaetzt — die mittlere Helligkeit der sichtbaren
+     Pixel je Zeile bricht bei 69 Prozent der Hoehe um 138 Stufen ein
+     (helles Hemd auf dunkle Hose), geschnitten wurde knapp darunter bei
+     75 Prozent. Neues Verhaeltnis 461 / 778.
+     ABSOLUT statt Rasterzelle: als Zelle wuerde ein hoeheres Motiv die
+     Rasterzeile aufblaehen und die Box mitziehen. So ragt es oben ueber
+     die Box hinaus, ohne das Layout zu verschieben, und steht unten
+     buendig auf der Rasterkante. */
   .preise__raster{position:relative}
-  .preise__raster::after{content:"";grid-column:2;align-self:end;
-    justify-self:center;width:min(100%,360px);aspect-ratio:461 / 1039;
-    max-height:clamp(320px,34vw,520px);
-    background:url("bilder/erst-person-820.webp") bottom center/contain no-repeat;
-    filter:drop-shadow(0 0 24px rgb(255 255 255 / .55))
-           drop-shadow(0 0 64px rgb(245 165 36 / .35));
+  .preise__raster::after{content:"";position:absolute;
+    right:0;bottom:0;
+    /* NACHTRAG: 27vw ergab bei 1440 eine Motivhoehe von 656 px. Der
+       Rasterbereich ueber der Box misst aber nur rund 520 px — der Kopf
+       lief oben aus dem Bild. "Groesser" und "bis zum unteren Rand"
+       waren erfuellt, "nur Oberkoerper" damit zerstoert. Die Breite ist
+       jetzt so gewaehlt, dass die Hoehe (Verhaeltnis 0,5926) in den Platz
+       passt und der Kopf vollstaendig steht. */
+    width:clamp(250px,21vw,320px);aspect-ratio:461 / 778;
+    background:url("bilder/erst-person-900.webp") bottom center/contain no-repeat;
+    filter:drop-shadow(0 0 24px rgb(255 255 255 / .6))
+           drop-shadow(0 0 64px rgb(245 165 36 / .38));
     pointer-events:none}
+}
+/* Folge der absoluten Positionierung: als Rasterzelle entfiel das
+   Portrait unter 1100 px von selbst (dort ist das Raster einspaltig).
+   Absolut verankert tut es das NICHT mehr und klebte sonst ueber dem
+   Inhalt — hier ausdruecklich abschalten. */
+@media (max-width:1099px){
+  .preise__raster::after{display:none}
   .preise__raster .paket--voll{margin:0}
 }
 .erst{display:flex;flex-direction:column;overflow:hidden;

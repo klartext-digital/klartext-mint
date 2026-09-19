@@ -697,16 +697,16 @@
   ],
   "bilder/erst-person.png": [
     {
-      "path": "bilder/erst-person-420.webp",
-      "width": 420
+      "path": "bilder/erst-person-460.webp",
+      "width": 460
     },
     {
-      "path": "bilder/erst-person-620.webp",
-      "width": 620
+      "path": "bilder/erst-person-680.webp",
+      "width": 680
     },
     {
-      "path": "bilder/erst-person-820.webp",
-      "width": 820
+      "path": "bilder/erst-person-900.webp",
+      "width": 900
     }
   ]
 }
