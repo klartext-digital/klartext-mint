@@ -589,17 +589,34 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .lz::before{content:"";position:absolute;inset:0;z-index:-1;
   background:
     linear-gradient(90deg,
-      rgb(14 13 11 / .95) 0%,
-      rgb(14 13 11 / .88) 30%,
-      rgb(14 13 11 / .58) 62%,
-      rgb(14 13 11 / .70) 100%),
+      rgb(14 13 11 / .90) 0%,
+      rgb(14 13 11 / .72) 32%,
+      rgb(14 13 11 / .30) 56%,
+      rgb(14 13 11 / .16) 100%),
     var(--lz-grund) center/cover no-repeat;
   opacity:0;pointer-events:none;
   transition:opacity var(--t-oeffnen) var(--kurve)}
 /* Geschlossen nur angedeutet, offen ganz da — sonst flimmert die Liste. */
 .lz:hover::before{opacity:.42}
 .lz.ist::before{opacity:1}
+/* Schmale Schirme brauchen einen ANDEREN Verlauf, nicht denselben.
+   Waagrecht abzudunkeln funktioniert nur, solange die Zeile breit und der
+   Text auf die linke Haelfte begrenzt ist. Bei 390 px ist die Zeile schmal
+   und hoch: der Textstapel laeuft ueber die volle Breite, und im Branding-
+   Motiv lief die Wortmarke "klartext." quer durch die Ueberschrift. Also
+   senkrecht und deutlich dichter — das Foto bleibt als Stimmung da, traegt
+   aber nicht mehr die Schrift. */
+@media (max-width:1100px){
+  .lz::before{background:
+    linear-gradient(180deg,
+      rgb(14 13 11 / .92) 0%,
+      rgb(14 13 11 / .88) 48%,
+      rgb(14 13 11 / .74) 100%),
+    var(--lz-grund) center/cover no-repeat}
+}
+.lz[data-i="0"]{--lz-grund:url("bilder/dienst-grund-1.jpg")}
 .lz[data-i="1"]{--lz-grund:url("bilder/dienst-grund-2.jpg")}
+.lz[data-i="2"]{--lz-grund:url("bilder/dienst-grund-3.jpg")}
 
 .lz__kopf{width:100%;display:flex;align-items:center;
   gap:clamp(14px,1.4vw,26px);text-align:left;
@@ -632,21 +649,17 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    Spalte und begannen erst bei 660 px, also mitten auf der Seite.
    Jetzt: links eine Spalte mit Text oben und Schlagworten darunter,
    rechts das Bild ueber beide Zeilen (unsere Ergaenzung zu Redondo). */
-/* Das Glas: dieselbe Rezeptur wie die Karte der Terminwahl (dunkles Glas,
-   Unschaerfe, heller Saum) — nicht neu erfunden, damit die Seite eine
-   Sprache spricht. Es liegt auf dem Zeilenfoto und traegt den Text. */
+/* 19.09.2026, Dusan: "was ist das? schau dir meine referenzen an."
+   Ich hatte hier eine dunkle Glasplatte ueber das Foto gelegt — in seinen
+   Referenzbildern gibt es die NICHT. Dort liegt der Text direkt auf dem
+   Motiv, das Bild bleibt sichtbar, und darunter laeuft die Schlagwortreihe
+   ueber die volle Breite. Die Platte hat genau das zugedeckt, wofuer das
+   Foto da ist. Also: keine Platte, eine Spalte, Text links begrenzt (das
+   Abdunkeln uebernimmt der Verlauf der Zeile), Schlagworte volle Breite. */
 .lz__leib{display:grid;
-  grid-template-columns:minmax(0,1fr) clamp(280px,25vw,420px);
-  gap:clamp(20px,2vw,34px) clamp(24px,3vw,54px);
-  padding:clamp(22px,2.2vw,34px);align-items:start;
-  margin-bottom:clamp(30px,3vw,48px);
-  background:rgb(20 18 15 / .55);
-  -webkit-backdrop-filter:blur(20px) saturate(1.1);
-  backdrop-filter:blur(20px) saturate(1.1);
-  border:1px solid rgb(247 247 245 / .16);
-  border-radius:var(--r-gross);
-  box-shadow:inset 0 1px 0 rgb(247 247 245 / .14),
-    0 30px 70px -30px rgb(0 0 0 / .7)}
+  grid-template-columns:minmax(0,1fr);
+  gap:clamp(18px,1.8vw,28px);
+  padding:clamp(8px,1vw,16px) 0 clamp(30px,3vw,48px);align-items:start}
 .lz__text{grid-column:1;grid-row:1;max-width:46ch}
 .lz__tags{grid-column:1;grid-row:2;max-width:720px}
 .lz__bild{grid-column:2;grid-row:1 / span 2}
@@ -667,6 +680,17 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   transition:opacity .3s var(--kurve) .13s,
              transform .3s var(--kurve) .13s}
 .lz__bild img{width:100%;height:230px;object-fit:cover}
+/* Das gerahmte Kaertchen rechts zeigte ein ZWEITES Motiv derselben Zeile —
+   in der Referenz gibt es nur EIN Foto je Leistung, naemlich den Grund.
+   Es ist ausgeblendet, nicht geloescht: das Markup und die Bilddatei
+   bleiben, ein Wort genuegt und es ist wieder da. */
+.lz__bild{display:none}
+/* Schlagworte wie in der Referenz: eine Reihe ueber die volle Breite,
+   die drei Gruppen durch feine Striche getrennt statt als Spaltenblock. */
+.lz__tags{max-width:none;grid-template-columns:repeat(3,minmax(0,auto));
+  justify-content:start;gap:clamp(18px,2.4vw,44px)}
+.lz__tags ul + ul{border-left:1px solid rgb(247 247 245 / .18);
+  padding-left:clamp(18px,2.4vw,44px)}
 .lz.ist .lz__text,.lz.ist .lz__tags,.lz.ist .lz__bild{opacity:1;transform:none}
 
 .dienste__mehr{margin-top:clamp(30px,3vw,48px)}
@@ -2076,7 +2100,12 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
      Deshalb alle festen Platzangaben zuruecknehmen, sonst stehen
      Bild, Eingabefelder und Sendeknopf im Nirgendwo. */
   .lz__leib > *{grid-column:1;grid-row:auto;min-width:0}
-  .lz__tags{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* Zwei Spalten ergaben bei 390 px ein ausgefranstes Bild (Eintraege
+     brachen um, die Spalten standen unterschiedlich hoch). Untereinander,
+     und der trennende Strich wandert von der Seite nach oben. */
+  .lz__tags{grid-template-columns:minmax(0,1fr);gap:14px}
+  .lz__tags ul + ul{border-left:0;padding-left:0;
+    border-top:1px solid rgb(247 247 245 / .18);padding-top:14px}
   .lz__bild img{height:200px}
   .dienste__vorschau{display:none}
   .kleben__halt,.faq__links{position:static}
