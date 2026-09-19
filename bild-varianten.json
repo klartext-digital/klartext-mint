@@ -590,5 +590,23 @@
       "path": "bilder/termin-grund-1672.webp",
       "width": 1672
     }
+  ],
+  "bilder/dienst-grund-2.jpg": [
+    {
+      "path": "bilder/dienst-grund-2-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/dienst-grund-2-960.webp",
+      "width": 960
+    },
+    {
+      "path": "bilder/dienst-grund-2-1440.webp",
+      "width": 1440
+    },
+    {
+      "path": "bilder/dienst-grund-2-1920.webp",
+      "width": 1920
+    }
   ]
 }
