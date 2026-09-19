@@ -658,5 +658,23 @@
       "path": "bilder/fuss-person-900.webp",
       "width": 900
     }
+  ],
+  "bilder/dienst-grund-4.jpg": [
+    {
+      "path": "bilder/dienst-grund-4-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/dienst-grund-4-960.webp",
+      "width": 960
+    },
+    {
+      "path": "bilder/dienst-grund-4-1440.webp",
+      "width": 1440
+    },
+    {
+      "path": "bilder/dienst-grund-4-1920.webp",
+      "width": 1920
+    }
   ]
 }
