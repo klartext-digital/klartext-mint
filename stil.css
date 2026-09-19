@@ -663,6 +663,71 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    Zeile OEFFNET, waere eine halb abgedunkelte Vorschau nur ein Flackern
    auf dem Weg dorthin. */
 .lz.ist::before{opacity:1}
+/* 19.09.2026, Dusan: "die bilder sollen ja bereits vorher als vorschau zu
+   sehen sein mit dem verlauf, nicht erst beim aufklappen."
+   Dafuer eine ZWEITE Bildebene, die genau umgekehrt arbeitet: geschlossen
+   sichtbar, beim Oeffnen ausgeblendet, waehrend ::before einblendet — so
+   entsteht eine Ueberblendung statt eines Sprungs. Ihr Verlauf ist HELL
+   (der Balken ist hell) und deckt links vollstaendig ab, wo Nummer, Name
+   und Zeile stehen; erst ab der Mitte gibt er das Motiv frei.
+   Die Reihenfolge ist wichtig: beide liegen hinter dem Text, aber ::after
+   auf -2 und ::before auf -1, damit beim Oeffnen das dunkle Bild oben
+   liegt und nicht umgekehrt.
+   NACHTRAG, erster Versuch verworfen: Der seitliche Verlauf allein reicht
+   nicht. Die Motive sind DUNKEL (Helligkeit 41 bis 56); wo der Verlauf sie
+   freigibt, stand ein fast schwarzer Block auf dem hellen Balken, die
+   Pillenform brach und der amberne Plus-Kreis sass auf Schwarz. Meine
+   Kontrastmessung meldete trotzdem gruen — sie prueft die linken 36 %,
+   wo Nummer und Name stehen, nicht die rechte Haelfte.
+   Darum eine dritte Ebene: ein GLEICHMAESSIGER weisser Schleier direkt
+   ueber dem Foto. Er hellt das Motiv auf, ohne den seitlichen Verlauf zu
+   veraendern — die Vorschau wird zur Andeutung, der Balken bleibt hell. */
+.lz::after{content:"";position:absolute;inset:0;z-index:-2;
+  border-radius:inherit;pointer-events:none;
+  /* NACHTRAG 2: Auch mit Schleier lag die Vorschau als grauer Dunst ueber der
+   GANZEN rechten Haelfte — gemessen 0,46 bis 0,58 Helligkeit gegen 0,95 bei
+   Zeile 04, die noch kein Foto hat. Die Balken mit Motiv sahen neben den
+   weissen schmutzig aus, und der Plus-Kreis sass im Dunst. In der Vorlage
+   bleibt der Balken weiss und das Motiv sitzt als Objekt DARIN.
+   Also faehrt der Verlauf zweimal nach Weiss zurueck: links voll deckend,
+   dazwischen ein Fenster fuer das Motiv, ganz rechts wieder weiss, damit
+   der Plus-Kreis auf hellem Grund steht. */
+  background:
+    linear-gradient(90deg,
+      rgb(255 255 255) 0%,
+      rgb(255 255 255) 40%,
+      rgb(255 255 255 / .82) 52%,
+      rgb(255 255 255 / .40) 64%,
+      rgb(255 255 255 / .40) 84%,
+      rgb(255 255 255 / .88) 94%,
+      rgb(255 255 255) 100%),
+    linear-gradient(rgb(255 255 255 / .70), rgb(255 255 255 / .70)),
+    var(--lz-grund) right center/cover no-repeat;
+  transition:opacity var(--t-oeffnen) var(--kurve)}
+.lz.ist::after{opacity:0}
+/* Schmale Schirme: dort reicht der Balken kaum fuer Name und Zeichen —
+   die Vorschau wird zur Stoerung, nicht zur Information. Sie bleibt, aber
+   deutlich zurueckgenommen und erst ganz rechts. */
+@media (max-width:700px){
+  /* ACHTUNG: Diese Regel ueberschreibt den Hintergrund VOLLSTAENDIG. Sie
+     stand nach der Verbesserung oben noch auf dem alten Stand (kein
+     Fenster, kein Schleier) und gewann als spaetere Regel — am Handy
+     blieben die Messwerte darum unveraendert bei 0,46 statt 0,74.
+     Identische Zahlen nach einer Aenderung heissen: sie greift dort
+     nicht. Aufbau jetzt derselbe wie oben, nur mit engerem Fenster,
+     weil der Balken schmal ist und das Plus mehr Weiss braucht. */
+  .lz::after{background:
+    linear-gradient(90deg,
+      rgb(255 255 255) 0%,
+      rgb(255 255 255) 54%,
+      rgb(255 255 255 / .84) 62%,
+      rgb(255 255 255 / .52) 70%,
+      rgb(255 255 255 / .52) 82%,
+      rgb(255 255 255 / .94) 90%,
+      rgb(255 255 255) 100%),
+    linear-gradient(rgb(255 255 255 / .70), rgb(255 255 255 / .70)),
+    var(--lz-grund) right center/cover no-repeat}
+}
 /* Schmale Schirme brauchen einen ANDEREN Verlauf, nicht denselben.
    Waagrecht abzudunkeln funktioniert nur, solange die Zeile breit und der
    Text auf die linke Haelfte begrenzt ist. Bei 390 px ist die Zeile schmal
