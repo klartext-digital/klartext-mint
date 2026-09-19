@@ -644,5 +644,19 @@
       "path": "bilder/dienst-grund-3-1920.webp",
       "width": 1920
     }
+  ],
+  "bilder/fuss-person.png": [
+    {
+      "path": "bilder/fuss-person-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fuss-person-700.webp",
+      "width": 700
+    },
+    {
+      "path": "bilder/fuss-person-900.webp",
+      "width": 900
+    }
   ]
 }
