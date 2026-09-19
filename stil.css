@@ -657,11 +657,19 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   inset:0;z-index:-1;
   border-radius:inherit;
   background:
+    /* 19.09.2026, Dusan: "mach den verlauf von links nach rechts dunkler,
+       links vorne dunkler, damit man den text besser lesen kann". Vorher
+       fiel die Abdeckung schon bei 32 Prozent der Breite von .72 auf .30 —
+       genau dort steht aber die dritte Schlagwortspalte (rund 40 bis 47
+       Prozent), und die Schlagworte sind grau, nicht weiss. Die dichte
+       Zone reicht jetzt weiter nach rechts und beginnt kraeftiger. */
     linear-gradient(90deg,
-      rgb(14 13 11 / .90) 0%,
-      rgb(14 13 11 / .72) 32%,
-      rgb(14 13 11 / .30) 56%,
-      rgb(14 13 11 / .16) 100%),
+      rgb(14 13 11 / .96) 0%,
+      rgb(14 13 11 / .92) 26%,
+      rgb(14 13 11 / .82) 42%,
+      rgb(14 13 11 / .46) 60%,
+      rgb(14 13 11 / .20) 82%,
+      rgb(14 13 11 / .14) 100%),
     var(--lz-grund) center/cover no-repeat;
   opacity:0;pointer-events:none;
   transition:opacity var(--t-oeffnen) var(--kurve)}
@@ -1551,8 +1559,15 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
       rgb(238 235 229) 100%);
   border-radius:var(--r-gross);
   padding:clamp(14px,1.3vw,20px);
-  box-shadow:inset 0 1.5px 0 rgb(255 255 255 / 1),
-    0 0 0 1px rgb(255 255 255 / .55),
+  /* NACHTRAG 3, Dusan: "ich moechte auch eine umrandung, die in glow gibt,
+     und nicht auf dem kalender drauf. das habe ich dir schon mal gesagt."
+     Zu Recht — hier standen noch zwei Reste, die ich bei den Leistungs-
+     zeilen laengst richtig gebaut hatte: ein heller Strich INNEN auf der
+     Flaeche (inset) und ein WEISSER Ring, der auf dem hellen Kalender
+     ohnehin unsichtbar war. Beides ersetzt durch dieselbe Rezeptur wie
+     bei den Zeilen: amberner Ring an der Kante, Licht dahinter, nichts
+     auf der Flaeche. */
+  box-shadow:0 0 0 1.5px rgb(245 165 36 / .85),
     0 6px 30px -6px rgb(245 165 36 / .75),
     0 18px 90px -16px rgb(245 165 36 / .85),
     0 34px 70px -26px rgb(0 0 0 / .78)}
@@ -1624,8 +1639,10 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
       rgb(240 237 232) 100%);
   border-radius:var(--r-gross);
   padding:clamp(13px,1.15vw,17px);
-  box-shadow:inset 0 1.5px 0 rgb(255 255 255 / .95),
-    0 0 0 1px rgb(255 255 255 / .42),
+  /* Uhrzeit-Karte gleich behandelt, nur eine Stufe schwaecher — sonst
+     leuchten zwei Flaechen gleich stark und der Kalender ist nicht mehr
+     die Hauptsache. */
+  box-shadow:0 0 0 1.5px rgb(245 165 36 / .55),
     0 5px 22px -6px rgb(245 165 36 / .45),
     0 14px 60px -18px rgb(245 165 36 / .5),
     0 22px 50px -22px rgb(0 0 0 / .6)}
