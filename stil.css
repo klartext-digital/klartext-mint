@@ -692,16 +692,22 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    Also faehrt der Verlauf zweimal nach Weiss zurueck: links voll deckend,
    dazwischen ein Fenster fuer das Motiv, ganz rechts wieder weiss, damit
    der Plus-Kreis auf hellem Grund steht. */
+  /* NACHTRAG 3, Dusan: "nicht zu transparent, normal sichtbar wie in der
+     referenz". Der gleichmaessige weisse Schleier ist damit wieder raus —
+     er hat das Motiv zur Andeutung gemacht. Das Fenster gibt es jetzt
+     VOLL frei; nur die Raender laufen weich nach Weiss: links, wo Nummer
+     und Name stehen, und rechts vor dem Plus-Kreis, damit der auf hellem
+     Grund sitzt. Eingebettet statt abgeschnitten, aber dazwischen
+     ungedaempft. */
   background:
     linear-gradient(90deg,
       rgb(255 255 255) 0%,
-      rgb(255 255 255) 40%,
-      rgb(255 255 255 / .82) 52%,
-      rgb(255 255 255 / .40) 64%,
-      rgb(255 255 255 / .40) 84%,
-      rgb(255 255 255 / .88) 94%,
+      rgb(255 255 255) 34%,
+      rgb(255 255 255 / .55) 46%,
+      rgb(255 255 255 / 0) 58%,
+      rgb(255 255 255 / 0) 86%,
+      rgb(255 255 255 / .85) 95%,
       rgb(255 255 255) 100%),
-    linear-gradient(rgb(255 255 255 / .70), rgb(255 255 255 / .70)),
     var(--lz-grund) right center/cover no-repeat;
   transition:opacity var(--t-oeffnen) var(--kurve)}
 .lz.ist::after{opacity:0}
@@ -716,17 +722,16 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      Identische Zahlen nach einer Aenderung heissen: sie greift dort
      nicht. Aufbau jetzt derselbe wie oben, nur mit engerem Fenster,
      weil der Balken schmal ist und das Plus mehr Weiss braucht. */
-  .lz::after{background:
-    linear-gradient(90deg,
-      rgb(255 255 255) 0%,
-      rgb(255 255 255) 54%,
-      rgb(255 255 255 / .84) 62%,
-      rgb(255 255 255 / .52) 70%,
-      rgb(255 255 255 / .52) 82%,
-      rgb(255 255 255 / .94) 90%,
-      rgb(255 255 255) 100%),
-    linear-gradient(rgb(255 255 255 / .70), rgb(255 255 255 / .70)),
-    var(--lz-grund) right center/cover no-repeat}
+  /* NACHTRAG: Seit das Motiv voll sichtbar ist (Dusans Vorgabe), geht die
+     Vorschau am Handy nicht mehr auf — und zwar aus Platzgruenden, nicht
+     wegen der Farbe. Bei rund 342 px Balkenbreite teilen sich Name,
+     Bildfenster und Plus-Kreis dieselbe Zeile: gemessen lief "Social
+     Media" ins dunkle Bild (Kontrast 1,16 an der unguenstigsten Stelle)
+     und der Plus-Kreis sass bei 0,27 bis 0,38 Helligkeit mitten im Motiv
+     statt auf hellem Grund. Die Vorlage ist ein Desktop-Entwurf und sagt
+     fuer diese Breite nichts. Darum unter 700 px keine Vorschau; das
+     Motiv erscheint dort beim Aufklappen. */
+  .lz::after{display:none}
 }
 /* Schmale Schirme brauchen einen ANDEREN Verlauf, nicht denselben.
    Waagrecht abzudunkeln funktioniert nur, solange die Zeile breit und der
