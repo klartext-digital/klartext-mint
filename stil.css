@@ -566,11 +566,33 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    aendert sich nur noch die BREITE. */
 .dienste__block,.team__block{--einzug:max(var(--pad),calc((100% - var(--maxw)) / 2));
   --innen:clamp(26px,3vw,56px);
-  max-width:none;margin:0;background:var(--tinte);
-  color:var(--creme);border-radius:var(--r-seite);
+  max-width:none;margin:0;border-radius:var(--r-seite);
   padding:clamp(40px,4.4vw,80px) var(--einzug) clamp(40px,4vw,64px)}
+/* ACHTUNG: Leistungen und Team teilten sich bis 19.09.2026 EINE Regel.
+   Der helle Grund gilt nur den Leistungen — der Team-Block bleibt dunkel,
+   sonst faerbt sich eine Section mit um, die niemand angefasst hat. */
+.team__block{background:var(--tinte);color:var(--creme)}
+/* 19.09.2026, Dusan: "ich will den hintergrund hell haben mit so einem
+   weiss/orange/grau muster". Gerechnete Verlaeufe statt Bild: bleibt in
+   jeder Breite scharf, kostet keine Ladezeit und laesst sich im Ton
+   nachziehen. Zwei diagonale Baender geben die Schraegen seiner Vorlage,
+   vier weiche Flecken die warmen und grauen Zonen, darunter ein heller
+   Grundverlauf. */
+.dienste__block{color:var(--tinte);
+  background:
+    linear-gradient(118deg, transparent 16%,
+      rgb(245 165 36 / .16) 25%, transparent 34%),
+    linear-gradient(118deg, transparent 56%,
+      rgb(245 165 36 / .10) 65%, transparent 75%),
+    radial-gradient(58% 45% at 6% 6%, rgb(245 165 36 / .28), transparent 70%),
+    radial-gradient(48% 38% at 94% 10%, rgb(245 165 36 / .16), transparent 72%),
+    radial-gradient(68% 55% at 88% 96%, rgb(245 165 36 / .20), transparent 70%),
+    radial-gradient(46% 40% at 16% 94%, rgb(107 101 92 / .16), transparent 72%),
+    linear-gradient(115deg,#FFFFFF 0%,#F7F7F5 38%,#EFEDE9 62%,#F9F8F6 100%)}
 .dienste__kopf{margin-bottom:clamp(30px,3vw,52px)}
-.dienste__kopf .brush{color:var(--violett-hell);margin-bottom:14px}
+/* Auf dem hellen Grund ist --violett-hell (#FFC65C) praktisch unsichtbar;
+   der tiefe Markenton traegt dort. */
+.dienste__kopf .brush{color:var(--violett-tief);margin-bottom:14px}
 .dienste__kopf h2{max-width:16ch}
 
 /* 19.09.2026, Dusan: "seitlich abgehakt … die einzelnen sections branding
@@ -594,11 +616,28 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    der Zeile kommen: dann ruecken Nummer und Name nach innen und fluchten
    nicht mehr mit der Ueberschrift darueber. Also andersherum, das Foto
    greift nach aussen. */
+/* Geschlossen ist die Zeile jetzt ein heller Balken (Dusans Vorlage), der
+   das Foto beim Oeffnen vollstaendig unter sich verschwinden laesst: das
+   ::before liegt zwar bei z-index -1, aber innerhalb der eigenen
+   Stapelebene der Zeile — also UEBER deren Hintergrund und unter dem Text.
+   Genau deshalb funktioniert heller Balken plus dunkles Foto ohne Tricks. */
 .lz{position:relative;isolation:isolate;--lz-grund:none;
-  --lz-luft:clamp(14px,1.4vw,26px);
-  border-radius:var(--r-gross)}
+  border-radius:var(--r-gross);color:var(--tinte);
+  background:linear-gradient(135deg,
+    rgb(255 255 255 / .97) 0%, rgb(247 247 245 / .88) 100%);
+  box-shadow:inset 0 0 0 1px rgb(255 255 255 / .9),
+    0 14px 34px -22px rgb(14 13 11 / .30);
+  transition:box-shadow var(--t-flaeche) var(--kurve-rein)}
+/* Die Zeile traegt im geschlossenen Zustand DUNKLE Schrift (heller Balken).
+   Beim Oeffnen wird der Grund dunkel — dann muss die Schrift der ganzen
+   Zeile mitwechseln, nicht nur die der Kopfzeile. Ohne das stand der
+   Beschreibungstext dunkel auf dunklem Foto und verschwand fast; die
+   Schlagworte waren sichtbar, weil sie eine eigene Farbe mitbringen, und
+   genau das hat den Fehler verdeckt. */
+.lz.ist{color:var(--creme);
+  box-shadow:0 22px 50px -26px rgb(14 13 11 / .5)}
 .lz::before{content:"";position:absolute;
-  inset:0 calc(-1 * var(--lz-luft));z-index:-1;
+  inset:0;z-index:-1;
   border-radius:inherit;
   background:
     linear-gradient(90deg,
@@ -609,8 +648,9 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
     var(--lz-grund) center/cover no-repeat;
   opacity:0;pointer-events:none;
   transition:opacity var(--t-oeffnen) var(--kurve)}
-/* Geschlossen nur angedeutet, offen ganz da — sonst flimmert die Liste. */
-.lz:hover::before{opacity:.42}
+/* Kein Zwischenzustand mehr beim Ueberfahren: seit das Ueberfahren die
+   Zeile OEFFNET, waere eine halb abgedunkelte Vorschau nur ein Flackern
+   auf dem Weg dorthin. */
 .lz.ist::before{opacity:1}
 /* Schmale Schirme brauchen einen ANDEREN Verlauf, nicht denselben.
    Waagrecht abzudunkeln funktioniert nur, solange die Zeile breit und der
@@ -631,27 +671,44 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .lz[data-i="1"]{--lz-grund:url("bilder/dienst-grund-2.jpg")}
 .lz[data-i="2"]{--lz-grund:url("bilder/dienst-grund-3.jpg")}
 
+/* Die Polsterung sitzt jetzt IM Balken, nicht mehr aussen: ein Balken mit
+   randbuendiger Schrift sieht aus wie ein Fehler. Dadurch ruecken Nummer
+   und Name gegenueber der Ueberschrift ein — genau wie in der Vorlage. */
 .lz__kopf{width:100%;display:flex;align-items:center;
   gap:clamp(14px,1.4vw,26px);text-align:left;
-  padding:clamp(20px,2.2vw,34px) 0;color:var(--creme);
+  padding:clamp(18px,1.9vw,30px) clamp(20px,2vw,34px);color:var(--tinte);
   transition:color var(--t-knopf) var(--kurve-rein)}
-.lz__kopf:hover,.lz.ist .lz__kopf{color:var(--violett-hell)}
+/* --grau-2 auf dem hellen Balken gemessen: 2,76 (Schrift ausgeblendet,
+   reiner Grund gegen die echte Farbe) — zu schwach. Eine Stufe dunkler. */
+.lz__nr{color:var(--grau)}
+.lz.ist .lz__kopf{color:var(--creme)}
+.lz.ist .lz__nr{color:var(--violett)}
 .lz__nr{font-size:clamp(30px,4.4vw,86px);font-weight:800;letter-spacing:-.05em;
   line-height:.9;font-variant-numeric:tabular-nums}
 .lz__name{font-size:clamp(30px,4.4vw,86px);font-weight:800;letter-spacing:-.05em;
   line-height:.9;margin-right:auto}
 
 /* Kreis mit Plus — füllt sich beim Überfahren, klappt beim Öffnen zu */
+/* 19.09.2026, Dusan: "das symbol + im glow effekt". Geschlossen ein
+   amberner Ring mit weichem Schein auf hellem Balken, geoeffnet ein
+   dunkler Kreis mit amberner Marke und staerkerem Schein — wie in der
+   Vorlage. Der Schein liegt als Aussenschatten an, also HINTER dem
+   Kreis, nicht als Faerbung darauf. */
 .lz__zeichen{position:relative;width:clamp(38px,3.4vw,54px);
   height:clamp(38px,3.4vw,54px);border-radius:50%;flex:none;
   display:grid;place-items:center;background:transparent;
-  transition:background-color var(--t-knopf) var(--kurve-rein)}
-.lz__kopf:hover .lz__zeichen,.lz.ist .lz__zeichen{background:var(--violett)}
-.lz__zeichen i{position:absolute;background:var(--violett-hell);border-radius:2px;
+  box-shadow:0 0 0 1.5px rgb(245 165 36 / .65),
+    0 0 18px -2px rgb(245 165 36 / .55);
+  transition:background-color var(--t-knopf) var(--kurve-rein),
+    box-shadow var(--t-knopf) var(--kurve-rein)}
+.lz.ist .lz__zeichen{background:var(--tinte-2);
+  box-shadow:0 0 0 1.5px rgb(245 165 36 / .9),
+    0 0 30px -2px rgb(245 165 36 / .85)}
+.lz__zeichen i{position:absolute;background:var(--violett);border-radius:2px;
   transition:transform .3s var(--kurve),background-color var(--t-flaeche) var(--kurve)}
 .lz__zeichen i:first-child{width:44%;height:2.5px}
 .lz__zeichen i:last-child{width:2.5px;height:44%}
-.lz__kopf:hover .lz__zeichen i,.lz.ist .lz__zeichen i{background:#fff}
+.lz.ist .lz__zeichen i{background:var(--violett-hell)}
 .lz.ist .lz__zeichen i:last-child{transform:scaleY(0)}
 
 .lz__huelle{height:0;overflow:hidden;
@@ -672,7 +729,8 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .lz__leib{display:grid;
   grid-template-columns:minmax(0,1fr);
   gap:clamp(18px,1.8vw,28px);
-  padding:clamp(8px,1vw,16px) 0 clamp(30px,3vw,48px);align-items:start}
+  padding:clamp(8px,1vw,16px) clamp(20px,2vw,34px) clamp(30px,3vw,48px);
+  align-items:start}
 .lz__text{grid-column:1;grid-row:1;max-width:46ch}
 .lz__tags{grid-column:1;grid-row:2;max-width:720px}
 .lz__bild{grid-column:2;grid-row:1 / span 2}
