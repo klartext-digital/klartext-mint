@@ -573,7 +573,13 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .dienste__kopf .brush{color:var(--violett-hell);margin-bottom:14px}
 .dienste__kopf h2{max-width:16ch}
 
-.lzliste{border-top:1px solid var(--linie-hell)}
+/* 19.09.2026, Dusan: "seitlich abgehakt … die einzelnen sections branding
+   etc. ebenso abgerundet". Die Zeilen sassen als scharfkantige Baender im
+   schwarzen Block — das Foto brach links und rechts hart ab. Jetzt ist
+   jede Zeile eine eigene abgerundete Flaeche mit Luft dazwischen; die
+   trennenden Haarlinien entfallen dafuer, sonst schneidet eine gerade
+   Linie durch eine runde Ecke. */
+.lzliste{display:grid;gap:clamp(6px,.6vw,12px)}
 /* 19.09.2026, Dusan: "leistungs section im gleichen stil wie preis section,
    glass style, inhaltlich bleibt alles gleich." Also dieselbe Sprache wie
    dort — Foto, Verlauf darueber, Glas darauf — aber JE ZEILE statt einmal
@@ -584,9 +590,16 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    darum bricht nichts, solange erst ein Motiv vorliegt.
    Der Verlauf deckt LINKS dicht ab (dort steht die Schrift) und oeffnet
    sich nach rechts, wo in den Motiven das Licht sitzt. */
-.lz{border-bottom:1px solid var(--linie-hell);
-  position:relative;isolation:isolate;--lz-grund:none}
-.lz::before{content:"";position:absolute;inset:0;z-index:-1;
+/* Das Foto braucht Luft zum Text — aber die darf NICHT aus einer Polsterung
+   der Zeile kommen: dann ruecken Nummer und Name nach innen und fluchten
+   nicht mehr mit der Ueberschrift darueber. Also andersherum, das Foto
+   greift nach aussen. */
+.lz{position:relative;isolation:isolate;--lz-grund:none;
+  --lz-luft:clamp(14px,1.4vw,26px);
+  border-radius:var(--r-gross)}
+.lz::before{content:"";position:absolute;
+  inset:0 calc(-1 * var(--lz-luft));z-index:-1;
+  border-radius:inherit;
   background:
     linear-gradient(90deg,
       rgb(14 13 11 / .90) 0%,
