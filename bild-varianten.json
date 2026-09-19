@@ -676,5 +676,23 @@
       "path": "bilder/dienst-grund-4-1920.webp",
       "width": 1920
     }
+  ],
+  "bilder/dienst-grund-5.jpg": [
+    {
+      "path": "bilder/dienst-grund-5-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/dienst-grund-5-960.webp",
+      "width": 960
+    },
+    {
+      "path": "bilder/dienst-grund-5-1440.webp",
+      "width": 1440
+    },
+    {
+      "path": "bilder/dienst-grund-5-1920.webp",
+      "width": 1920
+    }
   ]
 }
