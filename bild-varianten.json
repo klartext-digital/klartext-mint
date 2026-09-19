@@ -694,5 +694,19 @@
       "path": "bilder/dienst-grund-5-1920.webp",
       "width": 1920
     }
+  ],
+  "bilder/erst-person.png": [
+    {
+      "path": "bilder/erst-person-420.webp",
+      "width": 420
+    },
+    {
+      "path": "bilder/erst-person-620.webp",
+      "width": 620
+    },
+    {
+      "path": "bilder/erst-person-820.webp",
+      "width": 820
+    }
   ]
 }
