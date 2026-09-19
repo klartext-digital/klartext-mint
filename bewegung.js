@@ -222,6 +222,33 @@ if (!offen) auf(lz);
 zeileHalten(kopf, 460);
 });
 });
+const liste = document.querySelector('#lzliste');
+if (liste && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+const waehle = (e) => {
+if (e.pointerType === 'touch') return;
+const y = e.clientY;
+let ziel = zeilen.find((lz) => {
+const r = lz.getBoundingClientRect();
+return y >= r.top && y <= r.bottom;
+});
+if (!ziel) {
+let kleinster = Infinity;
+zeilen.forEach((lz) => {
+const r = lz.getBoundingClientRect();
+const d = y < r.top ? r.top - y : y - r.bottom;
+if (d < kleinster) { kleinster = d; ziel = lz; }
+});
+}
+if (!ziel || ziel.classList.contains('ist')) return;
+zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
+auf(ziel);
+};
+liste.addEventListener('pointerenter', waehle, { passive: true });
+liste.addEventListener('pointermove', waehle, { passive: true });
+liste.addEventListener('pointerleave', () => {
+zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
+});
+}
 })();
 (function vollbreiteBloecke() {
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
