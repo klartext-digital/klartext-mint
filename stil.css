@@ -320,12 +320,35 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 /* ── Navigation ────────────────────────────────────────────── */
 .nav{position:fixed;top:14px;left:0;right:0;z-index:40;padding:0 var(--pad);
   display:flex;justify-content:center;pointer-events:none}
+/* 20.09.2026, Dusan: "mach den glow-styl, gloss-styl. die form soll
+   gleich bleiben." Also ausschliesslich Oberflaeche und Licht — Radius,
+   Polsterung, Breite und das Flexraster bleiben unangetastet.
+   GLOSS: ein Glanz von oben links ueber die Flaeche, darunter ein feiner
+   Verlauf nach unten, damit die Leiste gewoelbt statt flach liest.
+   Dieselbe Bauweise wie am Kalender, nur flacher — die Leiste ist 76 px
+   hoch, ein starker Verlauf wuerde dort zur Bande.
+   GLOW: die beschlossene Rezeptur — amberner Ring an der KANTE, Licht
+   dahinter, nichts auf der Flaeche. Der alte Schatten war blaustichig
+   (rgb 6 43 50) und passte zu keinem Ton der Seite mehr.
+   Bewusst KEINE Transparenz: die Leiste ist fixiert und laeuft ueber
+   hellen wie dunklen Grund; ein durchscheinender Gloss verschwaende
+   ueber der Hero-Flaeche und wuerde ueber den dunklen Sections grau. */
 .nav__pille{pointer-events:auto;width:100%;max-width:var(--maxw);
-  background:var(--creme-3);border-radius:var(--r-leiste);
+  background:
+    radial-gradient(120% 180% at 12% -40%,
+      rgb(255 255 255) 0%, rgb(255 255 255 / 0) 58%),
+    linear-gradient(176deg,
+      rgb(255 255 255) 0%,
+      rgb(250 249 247) 52%,
+      rgb(241 239 234) 100%);
+  border-radius:var(--r-leiste);
   display:flex;align-items:center;justify-content:space-between;gap:24px;
   padding:10px 10px 10px 30px;color:var(--tinte);
   border:1px solid rgb(14 13 11 / .07);
-  box-shadow:0 12px 40px rgb(6 43 50 / .13)}
+  box-shadow:0 0 0 1.5px rgb(245 165 36 / .55),
+    0 4px 22px -6px rgb(245 165 36 / .55),
+    0 14px 64px -14px rgb(245 165 36 / .62),
+    0 18px 44px -20px rgb(0 0 0 / .45)}
 /* Die Wortmarke ist jetzt eine Datei, keine gesetzte Schrift mehr.
    Hoehe statt Schriftgrad steuern — das Seitenverhaeltnis steckt im
    SVG und bleibt dabei unangetastet. */
@@ -1571,10 +1594,12 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
      ohnehin unsichtbar war. Beides ersetzt durch dieselbe Rezeptur wie
      bei den Zeilen: amberner Ring an der Kante, Licht dahinter, nichts
      auf der Flaeche. */
-  box-shadow:0 0 0 1.5px rgb(245 165 36 / .85),
-    0 6px 30px -6px rgb(245 165 36 / .75),
-    0 18px 90px -16px rgb(245 165 36 / .85),
-    0 34px 70px -26px rgb(0 0 0 / .78)}
+  /* NACHTRAG 4, Dusan (20.09.2026): "hier sollte die gesamte box glowrand
+     haben und nicht nur der kalender. also glow vom kalender weg und
+     umrandung vollumfaenglich." Der Ring sitzt jetzt an .ruf__karte, der
+     Box, die Kalender, Uhrzeit und Formular umschliesst. Hier bleibt nur
+     die Tiefe — kein Ring, kein Amber. */
+  box-shadow:0 34px 70px -26px rgb(0 0 0 / .78)}
 .kal__kopf{display:flex;align-items:center;justify-content:space-between;
   gap:14px;margin-bottom:10px}
 .kal__blaettern{display:flex;align-items:center;gap:8px}
@@ -1646,10 +1671,8 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   /* Uhrzeit-Karte gleich behandelt, nur eine Stufe schwaecher — sonst
      leuchten zwei Flaechen gleich stark und der Kalender ist nicht mehr
      die Hauptsache. */
-  box-shadow:0 0 0 1.5px rgb(245 165 36 / .55),
-    0 5px 22px -6px rgb(245 165 36 / .45),
-    0 14px 60px -18px rgb(245 165 36 / .5),
-    0 22px 50px -22px rgb(0 0 0 / .6)}
+  /* Ebenfalls entlastet — der Ring gehoert an die umschliessende Box. */
+  box-shadow:0 22px 50px -22px rgb(0 0 0 / .6)}
 /* Dieselbe Sache wie bei den vergangenen Tagen: 0,42 war nicht "gedaempft",
    sondern weg. Die Uhrzeiten sind gesperrt, solange kein Tag gewaehlt ist —
    man soll trotzdem lesen koennen, was da zur Wahl stuende. */
@@ -3360,8 +3383,15 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   background:rgb(20 18 15 / .55);background-image:none;color:#fff;
   -webkit-backdrop-filter:blur(20px) saturate(1.1);
   backdrop-filter:blur(20px) saturate(1.1);
-  border:1px solid rgb(247 247 245 / .16);
-  box-shadow:0 40px 90px -30px rgb(0 0 0 / .68)}
+  /* 20.09.2026: Der Glow umfasst jetzt die GANZE Box statt einzelner
+     Karten darin. Dieselbe Rezeptur wie ueberall: Ring an der Kante,
+     Licht dahinter, nichts auf der Flaeche. Der helle Saum weicht dem
+     ambernen, sonst liegen zwei Raender uebereinander. */
+  border:1px solid rgb(245 165 36 / .38);
+  box-shadow:0 0 0 1.5px rgb(245 165 36 / .85),
+    0 8px 34px -8px rgb(245 165 36 / .62),
+    0 24px 110px -20px rgb(245 165 36 / .72),
+    0 40px 90px -30px rgb(0 0 0 / .68)}
 .ruf__karte .brush{color:var(--violett-hell)}
 .ruf__text{color:rgb(247 247 245 / .74)}
 .ruf__weg{border-color:rgb(247 247 245 / .28)}
