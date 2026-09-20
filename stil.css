@@ -3382,19 +3382,18 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
      gefordert war. Kopf und Raster teilen sich jetzt dieselbe Breite. */
   .preise__raster{grid-template-columns:repeat(2,minmax(0,1fr));
     max-width:1060px;align-items:stretch}
-  /* Die Box spannt ueber beide Spuren und teilt sich intern selbst
-     auf. Bis zum 20.09.2026 waren das zwei gleiche Haelften (je rund
-     516 px gemessen). Dusan: "die box links mach schmal und flach wie
-     sie anfangs war" — die erste Spur ist deshalb fest und schmaler
-     (rund 418 px bei 1440), die zweite nimmt den Rest und traegt das
-     Portrait. Fest statt 1fr, damit die Karte nicht wieder mitwaechst,
-     sobald das Raster breiter wird. */
-  .preise__raster .erst{grid-column:1 / -1;
-    grid-template-columns:clamp(340px,29vw,430px) minmax(0,1fr)}
-  /* Hoehere Spezifitaet als die Grundregel, die die rechte Haelfte
-     abschaltet: .erst__seite steht weiter unten in der Datei und
-     gewaenne sonst allein durch die Reihenfolge. */
-  .preise__raster .erst__seite{display:block}
+  /* 20.09.2026: der Kasten ist kein Rasterkind mehr, sondern ein
+     eigenes Band unter den Preiskarten. Hier steht deshalb nur noch
+     seine Zweiteilung - Infos links, Motiv rechts. */
+  /* Hoehere Spezifitaet ist hier PFLICHT: die Grundregeln stehen
+     weiter unten in der Datei und gewaennen sonst allein durch die
+     Reihenfolge - .erst__seite{display:none} haette das Motiv bei
+     jeder Breite ausgeblendet. */
+  .erst .erst__karte{grid-template-columns:minmax(0,1fr) clamp(300px,29vw,430px);
+    align-items:end}
+  .erst .erst__seite{display:block}
+  /* Vier nebeneinander wie in Vorlage 1, nicht zwei mal zwei. */
+  .erst .erst__punkte{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 /* Unter 1100 px ist das Raster einspaltig: die Karte steht allein,
    die rechte Haelfte mit Portrait, Handschrift und Namenszug
@@ -3404,109 +3403,84 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 @media (max-width:1099px){
   .preise__raster .paket--voll{margin:0}
 }
-/* ── Erstgespraech: Karte links, Portrait rechts ──────────────
-   .erst ist nur noch die Klammer um beides. Flaeche, Rundung und
-   Schatten sitzen an der Karte — sonst laege der Schein auch hinter
-   dem freigestellten Motiv und wuerde es als Kasten umranden. */
-.erst{display:grid;gap:clamp(18px,2vw,34px)}
-.erst__seite{display:none;position:relative}
+/* ── Erstgespraech: ein breites Band unter den Preiskarten ────
+   20.09.2026, Dusan mit zwei Vorlagen: "unten die box soll breit
+   sein, also sie kann ueber die beiden preisboxen hinausgehen,
+   rechts mein portrait das ueber die box hinausragt fuer den effekt,
+   und links die infos. gestaltung und design wie in referenzfoto 1".
+   Der Kasten sitzt darum NICHT mehr im Preisraster: das ist auf
+   1060 px gedeckelt, darueber kaeme er nur mit negativen
+   Aussenabstaenden hinaus. Gerechnet, nicht geraten: bei 1440 stehen
+   1324,8 px Inhaltsbreite bereit (1440 minus zweimal 57,6 px
+   Sektionspolster), das Raster nutzt davon 1060. */
+.erst{max-width:min(var(--maxw),1280px);
+  margin:clamp(104px,9.5vw,176px) auto 0}
 
-/* Die Karte ist hell wie in Dusans Vorlage; vorher dunkler Kopf plus
-   heller Fuss. Der Schein liegt HINTER ihr und rundherum, es ist kein
-   gezeichneter Rand — das ist seine ausdrueckliche Ansage vom 20.09.
-   ("Glow-Effekt hinter der Box und rundherum", "ich habe nicht gesagt,
-   dass ich eine orange Umrandung moechte"). Die Haarlinie ist weiss
-   und sitzt auf der Kante, nicht daneben. */
-.erst__karte{display:flex;flex-direction:column;gap:clamp(9px,.75vw,12px);
-  overflow:hidden;background:var(--creme-3);color:var(--tinte);
-  border-radius:var(--r-gross);border:1px solid rgb(255 255 255 / .55);
-  padding:clamp(16px,1.3vw,22px);
-  box-shadow:0 0 40px -8px rgb(245 165 36 / .5),
-    0 0 120px -14px rgb(245 165 36 / .55),
-    0 30px 66px -28px rgb(40 22 0 / .6)}
-/* Auf Weiss traegt der offene Akzent nicht — --violett-tief steht bei
-   5,1:1, der helle Ton laege darunter. */
-.erst__marke{display:inline-block;font-size:10.5px;font-weight:800;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--violett-tief)}
-/* Zweizeilig, der Schlusspunkt ist die Marke — derselbe Punkt wie im
-   Wortbild. Am 20.09.2026 auf Dusans "flach" zurueckgenommen: mit
-   38,9 px bei 1440 war die Ueberschrift der groesste Einzelposten der
-   Kartenhoehe. */
-.erst__titel{font-size:clamp(23px,1.8vw,30px);line-height:1.06;
+/* KEIN overflow:hidden. Genau das wuerde den Ueberstand des Motivs
+   abschneiden, und der ist hier der ganze Zweck. position:relative,
+   damit das Motiv an der KARTE haengt statt an einer Rasterzeile. */
+.erst__karte{position:relative;display:grid;gap:clamp(18px,2.2vw,40px);
+  color:var(--tinte);border-radius:var(--r-seite);
+  border:1px solid rgb(255 255 255 / .6);
+  padding:clamp(22px,2.4vw,44px);
+  background:
+    radial-gradient(74% 130% at 86% 6%, rgb(245 165 36 / .15), transparent 70%),
+    linear-gradient(112deg, #FFFFFF 0%, #FEFCFA 48%, #FDF5EA 100%);
+  box-shadow:0 0 46px -10px rgb(245 165 36 / .42),
+    0 0 132px -16px rgb(245 165 36 / .5),
+    0 34px 74px -30px rgb(40 22 0 / .55)}
+.erst__text{display:flex;flex-direction:column;gap:clamp(11px,1.1vw,18px);min-width:0}
+/* Offener Akzent statt --violett-tief: hier liegt die Marke auf einer
+   nahezu weissen Flaeche und darf die Markenfarbe selbst tragen. */
+.erst__marke{display:inline-block;font-size:clamp(11px,.85vw,13px);font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--violett)}
+/* Einzeilig wie in Vorlage 1, "Klarheit." in Amber - nicht nur der
+   Schlusspunkt wie bisher. */
+.erst__titel{font-size:clamp(28px,2.9vw,50px);line-height:1.04;
   letter-spacing:-.035em;text-wrap:balance}
 .erst__titel i{font-style:normal;color:var(--violett)}
+.erst__lead{max-width:52ch;font-size:clamp(14px,1.05vw,17.5px);
+  line-height:1.55;color:var(--grau)}
 
-/* ── Rechte Haelfte: nur noch das Portrait ────────────────────
-   Das Motiv haengt absolut, damit es die Rasterzeile nicht aufblaeht
-   und die Karte mitzieht. Die Huelle wird von der Rasterzeile auf
-   Kartenhoehe gestreckt.
-   NACH OBEN ist kein Platz: mit width:72% war das Motiv 606 px hoch
-   gegen 536 px Spaltenhoehe und ragte 61,33 px in die Karte
-   "Wachstum", die z-index:2 traegt — der Haaransatz war an deren
-   Unterkante hart abgeschnitten, und elementFromPoint lieferte auf
-   Kopfhoehe den Knopf "Wachstum waehlen". Ueber der Karte sind
-   gemessen nur 8,6 px frei.
-   NACH UNTEN ist der Weg frei, und dorther kommt die Groesse
-   (20.09.2026, Dusan: "unten am rand platzieren und etwas
-   groesser"): das Motiv waechst um genau die untere Polsterung der
-   Sektion und steht damit auf deren Kante. Bewusst dieselben Token
-   wie die Polsterung selbst, sonst laufen beide bei anderer
-   Fensterbreite auseinander. --voll-ueber ist auf .preise gesetzt
-   und wird hierher vererbt; das Raster ist das letzte Kind der
-   Sektion, dazwischen liegt nichts.
-   Waagrecht mittig, weil der rechte Streifen ohne Handschrift und
-   Namenszug sonst leer klafft. */
-.erst__foto{position:absolute;left:50%;transform:translateX(-50%);
-  bottom:calc(-1 * (clamp(28px,2.6vw,46px) + var(--voll-ueber)));
-  height:calc(100% + clamp(28px,2.6vw,46px) + var(--voll-ueber));
-  /* 20.09.2026: Kontur und Schein stammen ab hier aus Dusans
-     fertiger Datei, nicht mehr aus einer gerechneten Maske
-     ("ich hab dir doch das fertige gezeigt"). Zugeschnitten auf
-     Huefthoehe - der Guertel wurde gemessen, nicht geschaetzt:
-     Helligkeitsbruch bei 75,3 Prozent der Bildhoehe, vier
-     Kandidaten dicht beisammen. Leinwand 1024x1210, Verhaeltnis
-     0,8463 statt 0,6443 - weil die Hoehe im Layout fest ist,
-     wird das Motiv dadurch 404 statt 308 px breit. */
-  aspect-ratio:1024 / 1210;
-  background:url("bilder/erst-person-900.webp") bottom center/contain no-repeat;
-  /* KEIN filter: Kontur UND Schein stecken seit dem 20.09.2026 in
-     Dusans fertiger Bilddatei. Ein CSS-Schein kaeme obendrauf und
-     wuerde den vorhandenen zuziehen. */
-  pointer-events:none}
-/* Handschrift und Namenszug sind am 20.09.2026 auf Dusans Ansage
-   entfallen ("weg"): die rechte Haelfte traegt nur noch das Motiv.
-   Die zugehoerigen Regeln (.erst__hand, .erst__wer, .erst__stand)
-   sind zusammen mit dem Markup geloescht, damit keine toten Reste
-   stehen bleiben. */
-
-/* ── Die vier Zeilen: Sinnbild, Stichwort, Erlaeuterung ───────
-   Inhaltlich unveraendert. Es sind dieselben vier Stichpunkte wie
-   vorher, nur typografisch in Stichwort und Erlaeuterung getrennt,
-   wie es die Vorlage zeigt — kein neuer Text. Die Liste nimmt den
-   Rest der Hoehe, darunter folgen Knopf und Mail-Zeile. */
-/* 20.09.2026, Dusan: "flach". Die Hoehe steckt nicht an einer Stelle,
-   sondern an fuenf: Sinnbild, Zeilenabstand, beide Schriftgrade und
-   das Knopfpolster. Alle zusammen zurueckgenommen — nur an der
-   Schrift zu drehen macht die Karte kleinlich, aber nicht flacher. */
-.erst__karte .knopf{padding-top:12px;padding-bottom:12px;font-size:15.5px}
-.erst__punkte{display:grid;gap:clamp(7px,.65vw,10px);list-style:none;
-  margin:2px 0 auto}
-.erst__punkte li{display:flex;align-items:center;gap:11px}
-.erst__bild{display:grid;place-items:center;width:32px;height:32px;
-  flex:0 0 auto;border-radius:var(--r-pille);
+/* Die vier Stichpunkte stehen jetzt NEBENeinander, Sinnbild ueber dem
+   Wort - Anordnung aus Vorlage 1. Inhaltlich unveraendert. */
+.erst__punkte{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(12px,1.4vw,24px);list-style:none;margin:clamp(2px,.4vw,8px) 0 0}
+.erst__punkte li{display:grid;gap:9px;justify-items:start}
+.erst__bild{display:grid;place-items:center;width:clamp(34px,2.6vw,44px);
+  aspect-ratio:1;flex:0 0 auto;border-radius:var(--r-pille);
   color:var(--violett-tief);background:rgb(245 165 36 / .17)}
-.erst__wort{display:grid;line-height:1.28;min-width:0}
-.erst__wort b{font-size:clamp(13.5px,.95vw,15px);font-weight:800;color:var(--tinte)}
-.erst__wort i{font-style:normal;font-size:clamp(12px,.85vw,13px);color:var(--grau)}
+.erst__wort{display:grid;line-height:1.3;min-width:0}
+.erst__wort b{font-size:clamp(14px,1vw,16px);font-weight:800;color:var(--tinte)}
+.erst__wort i{font-style:normal;font-size:clamp(12.5px,.9vw,14px);color:var(--grau)}
+
+/* Knopf und Mail-Zeile in EINER Reihe, wie in der Vorlage. */
+.erst__aktion{display:flex;align-items:center;gap:clamp(12px,1.4vw,26px);
+  flex-wrap:wrap;margin-top:clamp(4px,.6vw,10px)}
+.erst__karte .knopf{padding-top:14px;padding-bottom:14px;font-size:16px}
 .erst__mail{display:flex;align-items:center;gap:11px;text-decoration:none;
-  background:var(--creme-2);border-radius:var(--r-mittel);padding:10px 13px;
+  background:rgb(255 255 255 / .72);border-radius:var(--r-pille);padding:9px 18px 9px 10px;
   color:var(--tinte);transition:background var(--t-flaeche) var(--kurve)}
-.erst__mail:hover{background:var(--violett-zart)}
-.erst__mailbild{display:grid;place-items:center;width:34px;height:34px;flex:0 0 auto;
-  background:var(--creme-3);border-radius:13px;color:var(--tinte)}
+.erst__mail:hover{background:#fff}
+.erst__mailbild{display:grid;place-items:center;width:36px;height:36px;flex:0 0 auto;
+  background:var(--creme-3);border-radius:var(--r-pille);color:var(--tinte)}
 .erst__mailwort{display:grid;line-height:1.28;font-size:12.5px;color:var(--grau)}
 .erst__mailwort b{font-size:15px;font-weight:800;color:var(--tinte);
   overflow-wrap:anywhere}
+
+/* Das Motiv haengt an der Karte: unten buendig mit deren AUSSENkante
+   (darum der negative Wert in Hoehe des Kartenpolsters) und oben
+   darueber hinaus - "das ueber die box hinausragt fuer den effekt".
+   Die Hoehe folgt aus der Breite ueber das Seitenverhaeltnis der
+   Datei; ragt sie ueber die Karte hinaus, entsteht genau der
+   Ueberstand. Kontur und Schein stecken in Dusans Datei, deshalb
+   KEIN filter. */
+.erst__seite{display:none;position:relative;align-self:end}
+.erst__foto{position:absolute;left:0;right:0;
+  bottom:calc(-1 * clamp(22px,2.4vw,44px));
+  aspect-ratio:1024 / 1210;
+  background:url("bilder/erst-person-900.webp") bottom center/contain no-repeat;
+  pointer-events:none}
 
 /* ── Helle Bloecke ─────────────────────────────────────────
    Arbeiten und Blog hingen frei auf dem Grund: gleiche Flaeche wie
@@ -3941,9 +3915,9 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   .haken{gap:3px;margin:7px 0 10px;padding-top:7px}
   .haken li{font-size:13.5px;line-height:1.32}
   .paket .knopf.gross{padding-top:12px;padding-bottom:12px;font-size:15.5px}
-  .erst__karte{padding:14px}
-  .erst__punkte{gap:7px}
-  .erst__bild{width:30px;height:30px}
+  .erst__karte{padding:16px}
+  .erst__punkte{grid-template-columns:minmax(0,1fr);gap:11px}
+  .erst__bild{width:32px}
   .ruf{padding-top:26px;padding-bottom:26px}
   .ruf__kopfzeile h2{font-size:clamp(24px,2.2vw,36px)}
   .ruf__lead{font-size:14px}
