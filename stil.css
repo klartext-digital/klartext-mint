@@ -4143,3 +4143,17 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   background:
     linear-gradient(rgb(255 255 255 / .42), rgb(255 255 255 / .50)),
     url("bilder/blog-grund.jpg") center/cover no-repeat}
+
+
+/* 20.09.2026, Dusan: "ecken abrunden oben und unten. blog section
+   hintergrund ohne abrundung sodass die orange section ueberlappt".
+   Rundung 56 px wie bei .werke und .ruf. Die Preis-Sektion legt sich
+   mit negativem Aussenabstand und z-index UEBER den Blog; der Blog
+   muss dafuer seine Rundung abgeben - er trug sie aus einer aelteren
+   Regel (.blog bei Zeile 3511), die spaeter nie entfernt wurde.
+   Steht am Dateiende, weil .blog mehrfach definiert ist und bei
+   gleicher Spezifitaet die spaetere Regel gewinnt. */
+.preise{position:relative;z-index:1;
+  border-radius:var(--r-seite);
+  margin-bottom:calc(-1 * var(--r-seite))}
+.blog,.fragen{border-radius:0}
