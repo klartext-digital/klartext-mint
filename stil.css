@@ -3496,12 +3496,16 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
      328 px Anzeigebreite also je 4,7 px. */
   aspect-ratio:978 / 1558;
   background:url("bilder/erst-person-900.webp") bottom center/contain no-repeat;
-  /* Der weisse Schein ist raus: er laege AUSSERHALB des amberen Rings
-     und zoege ihn zu. Die Kante wird jetzt in der Datei gezeichnet,
-     der Schein bleibt weich dahinter — dieselbe Rezeptur wie sonst
-     auf der Seite. */
-  filter:drop-shadow(0 0 34px rgb(245 165 36 / .5))
-         drop-shadow(0 0 90px rgb(245 165 36 / .4));
+  /* 20.09.2026, Dusan: Ringfarben vertauscht (amber innen an der
+     Silhouette, weiss aussen) und "auch etwas mehr wie beim portrait
+     im footer". Der Schein ist deshalb derselbe wie dort, Wert fuer
+     Wert: zwei weiche weisse Ringe, siehe .fuss::after.
+     Vorher stand hier Amber, weil ein weisser Schein den damaligen
+     amberen AUSSENring zugezogen haette. Mit Weiss aussen ist es
+     umgekehrt — der Schein verlaengert den Ring, statt ihn zu
+     schlucken. Wer die Ringfarben wieder dreht, dreht auch das hier. */
+  filter:drop-shadow(0 0 26px rgb(255 255 255 / .55))
+         drop-shadow(0 0 70px rgb(255 255 255 / .35));
   pointer-events:none}
 /* Handschrift und Namenszug sind am 20.09.2026 auf Dusans Ansage
    entfallen ("weg"): die rechte Haelfte traegt nur noch das Motiv.
