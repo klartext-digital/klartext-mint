@@ -938,26 +938,6 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .vref__chips em{display:block;font-style:normal;font-size:13px;
   color:rgb(247 247 245 / .6)}
 
-/* ── 5 · Klebe-Sektion ─────────────────────────────────────── */
-/* Ohne die untere Grenze klebt der Block unter 1600 px an den
-   Bildschirmraendern — die Sektion haengt direkt in main und hat
-   keinen eigenen Seitenabstand. */
-.kleben{margin:var(--sec) auto 0;max-width:min(var(--maxw),calc(100% - var(--pad) * 2));
-  background:var(--tinte);
-  color:var(--creme);border-radius:var(--r-seite);padding:clamp(40px,4vw,70px);
-  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-.kleben__halt{position:sticky;top:130px}
-.kleben__karten{display:grid;gap:16px}
-.kleben__karten li{background:var(--tinte-2);border-radius:var(--r-mittel);
-  padding:32px 34px;display:grid;gap:8px;
-  transition:background-color var(--t-flaeche) var(--kurve),
-    transform var(--t-bedien) var(--kurve)}
-.kleben__karten li:hover{background:#241f1a;transform:translateX(8px)}
-.kleben__karten b{font-family:'Rock Salt',cursive;font-size:16px;font-weight:400;
-  color:var(--violett-hell)}
-.kleben__karten h3{color:var(--creme)}
-.kleben__karten p{color:rgb(247 247 245 / .62);font-size:17px}
-
 /* ── 6 · Arbeiten ──────────────────────────────────────────── */
 .arbeiten{padding:var(--sec) var(--pad) 0;max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto}
 .arbeiten .kopfzeile{max-width:var(--maxw);margin-inline:auto}
@@ -1802,17 +1782,9 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   /* Die Kontur steckt bereits im freigestellten Motiv. Der Schein
      daneben ist unserer: weich und rundherum, kein gezeichneter Rand —
      dieselbe Sprache wie Box und Kopfleiste. */
-  filter:drop-shadow(0 0 26px rgb(255 255 255 / .55))
-         drop-shadow(0 0 70px rgb(255 255 255 / .35))}
-/* Der Platz-Freiraum fuer die Person steht NICHT hier, sondern hinter den
-   Basisregeln von .fuss__recht weiter unten — sonst gewinnt die spaetere
-   Basisregel und die Medienabfrage bleibt wirkungslos. Genau das ist hier
-   zweimal passiert. */
-/* Schmale Schirme: kein Platz neben dem Inhalt, das Motiv entfaellt. */
-@media (max-width:900px){
-  .fuss::after{display:none}
-}
-.fuss__oben{max-width:var(--maxw);margin:0 auto;display:grid;
+  /* KEIN filter mehr: Kontur UND Schein stecken seit dem
+     20.09.2026 in Dusans fertiger Bilddatei. Ein CSS-Schein kaeme
+     hier obendrauf und wuerde den vorhandenen zuziehen. */margin:0 auto;display:grid;
   grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,90px);align-items:start}
 
 .fuss__reden .brush{color:var(--tinte)}
@@ -2443,7 +2415,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   .nav__wege{display:none}
   .nav__pille{padding-left:22px}
   .buehne{min-height:auto}
-  .faq,.kleben{grid-template-columns:minmax(0,1fr);gap:36px}
+  .faq{grid-template-columns:minmax(0,1fr);gap:36px}
   .lz__leib{grid-template-columns:minmax(0,1fr);gap:24px}
   /* Einspaltig heisst nur: EINE Spur ist definiert. Kinder, die
      weiterhin grid-column:2 verlangen, bekommen vom Browser eine
@@ -2459,7 +2431,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
     border-top:1px solid rgb(247 247 245 / .18);padding-top:14px}
   .lz__bild img{height:200px}
   .dienste__vorschau{display:none}
-  .kleben__halt,.faq__links{position:static}
+  .faq__links{position:static}
   .ref__reihe{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fall__raster{grid-template-columns:minmax(0,1fr);height:auto}
   .fall__bild{display:none}
@@ -2479,7 +2451,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   /* Kinder duerfen unter ihre Mindestbreite — sonst bleibt die
      Spalte trotz minmax(0,1fr) am laengsten Wort haengen. */
   .fuss__oben > *,.fuss__spalten > *,.unter__leib > *,
-  .faq > *,.kleben > *{min-width:0}
+  .faq > *{min-width:0}
   .fuss__spalten{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .fuss__wortmarke{font-size:clamp(60px,19vw,120px)}
   /* Ohne Zeiger gibt es keinen Hover — die Lamellen werden zum
@@ -3487,25 +3459,19 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .erst__foto{position:absolute;left:50%;transform:translateX(-50%);
   bottom:calc(-1 * (clamp(28px,2.6vw,46px) + var(--voll-ueber)));
   height:calc(100% + clamp(28px,2.6vw,46px) + var(--voll-ueber));
-  /* 20.09.2026, Dusans Vorlage: doppelte Kontur, weiss innen, amber
-     aussen. Beide stecken in der Bilddatei (Alphamaske zweimal
-     aufgeweitet), darum ist die Leinwand zuletzt auf 1016x1577
-     gewachsen. Das Verhaeltnis MUSS hier mitwandern, sonst passt der
-     Kasten nicht mehr zum Motiv und die Unterkante steht nicht mehr
-     buendig auf der Kartenkante. Gemessene Baender: je 14 px, bei
-     328 px Anzeigebreite also je 4,7 px. */
-  aspect-ratio:1016 / 1577;
+  /* 20.09.2026: Kontur und Schein stammen ab hier aus Dusans
+     fertiger Datei, nicht mehr aus einer gerechneten Maske
+     ("ich hab dir doch das fertige gezeigt"). Zugeschnitten auf
+     Huefthoehe - der Guertel wurde gemessen, nicht geschaetzt:
+     Helligkeitsbruch bei 75,3 Prozent der Bildhoehe, vier
+     Kandidaten dicht beisammen. Leinwand 1024x1210, Verhaeltnis
+     0,8463 statt 0,6443 - weil die Hoehe im Layout fest ist,
+     wird das Motiv dadurch 404 statt 308 px breit. */
+  aspect-ratio:1024 / 1210;
   background:url("bilder/erst-person-900.webp") bottom center/contain no-repeat;
-  /* 20.09.2026, Dusan: Ringfarben vertauscht (amber innen an der
-     Silhouette, weiss aussen) und "auch etwas mehr wie beim portrait
-     im footer". Der Schein ist deshalb derselbe wie dort, Wert fuer
-     Wert: zwei weiche weisse Ringe, siehe .fuss::after.
-     Vorher stand hier Amber, weil ein weisser Schein den damaligen
-     amberen AUSSENring zugezogen haette. Mit Weiss aussen ist es
-     umgekehrt — der Schein verlaengert den Ring, statt ihn zu
-     schlucken. Wer die Ringfarben wieder dreht, dreht auch das hier. */
-  filter:drop-shadow(0 0 26px rgb(255 255 255 / .55))
-         drop-shadow(0 0 70px rgb(255 255 255 / .35));
+  /* KEIN filter: Kontur UND Schein stecken seit dem 20.09.2026 in
+     Dusans fertiger Bilddatei. Ein CSS-Schein kaeme obendrauf und
+     wuerde den vorhandenen zuziehen. */
   pointer-events:none}
 /* Handschrift und Namenszug sind am 20.09.2026 auf Dusans Ansage
    entfallen ("weg"): die rechte Haelfte traegt nur noch das Motiv.
