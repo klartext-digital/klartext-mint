@@ -3489,12 +3489,12 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   height:calc(100% + clamp(28px,2.6vw,46px) + var(--voll-ueber));
   /* 20.09.2026, Dusans Vorlage: doppelte Kontur, weiss innen, amber
      aussen. Beide stecken in der Bilddatei (Alphamaske zweimal
-     aufgeweitet), darum ist die Leinwand von 944x1541 auf 978x1558
+     aufgeweitet), darum ist die Leinwand zuletzt auf 1016x1577
      gewachsen. Das Verhaeltnis MUSS hier mitwandern, sonst passt der
      Kasten nicht mehr zum Motiv und die Unterkante steht nicht mehr
      buendig auf der Kartenkante. Gemessene Baender: je 14 px, bei
      328 px Anzeigebreite also je 4,7 px. */
-  aspect-ratio:978 / 1558;
+  aspect-ratio:1016 / 1577;
   background:url("bilder/erst-person-900.webp") bottom center/contain no-repeat;
   /* 20.09.2026, Dusan: Ringfarben vertauscht (amber innen an der
      Silhouette, weiss aussen) und "auch etwas mehr wie beim portrait
