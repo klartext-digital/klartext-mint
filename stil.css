@@ -4135,11 +4135,11 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    plus 100vw. Ohne das endet der Foto-Grund am Inhaltsrand, weil .blog
    auf --maxw plus Polster gedeckelt und zentriert ist. Das Innenpolster
    haelt den Inhalt trotzdem auf seiner Breite. */
-.blog,.faq{
+.blog,.fragen{
   margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
   width:100vw;max-width:100vw;
   padding-left:max(var(--pad),calc((100vw - var(--maxw)) / 2));
   padding-right:max(var(--pad),calc((100vw - var(--maxw)) / 2));
   background:
-    linear-gradient(rgb(255 255 255 / .82), rgb(255 255 255 / .86)),
+    linear-gradient(rgb(255 255 255 / .42), rgb(255 255 255 / .50)),
     url("bilder/blog-grund.jpg") center/cover no-repeat}
