@@ -3483,10 +3483,21 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    sind gemessen nur 8,6 px frei, dort ist nichts zu holen. Mit
    height:100% kann das Motiv die Zeile nie mehr verlassen. */
 .erst__foto{position:absolute;left:0;bottom:0;height:100%;
-  aspect-ratio:944 / 1541;
+  /* 20.09.2026, Dusans Vorlage: doppelte Kontur, weiss innen, amber
+     aussen. Beide stecken in der Bilddatei (Alphamaske zweimal
+     aufgeweitet), darum ist die Leinwand von 944x1541 auf 978x1558
+     gewachsen. Das Verhaeltnis MUSS hier mitwandern, sonst passt der
+     Kasten nicht mehr zum Motiv und die Unterkante steht nicht mehr
+     buendig auf der Kartenkante. Gemessene Baender: je 14 px, bei
+     328 px Anzeigebreite also je 4,7 px. */
+  aspect-ratio:978 / 1558;
   background:url("bilder/erst-person-900.webp") bottom center/contain no-repeat;
-  filter:drop-shadow(0 0 30px rgb(255 255 255 / .4))
-         drop-shadow(0 0 80px rgb(245 165 36 / .45));
+  /* Der weisse Schein ist raus: er laege AUSSERHALB des amberen Rings
+     und zoege ihn zu. Die Kante wird jetzt in der Datei gezeichnet,
+     der Schein bleibt weich dahinter — dieselbe Rezeptur wie sonst
+     auf der Seite. */
+  filter:drop-shadow(0 0 34px rgb(245 165 36 / .5))
+         drop-shadow(0 0 90px rgb(245 165 36 / .4));
   pointer-events:none}
 /* Die weisse Kontur steckt IN der Bilddatei: die Alphamaske wurde
    aufgeweitet und weiss hinterlegt, gemessen 13 px auf 944 px Breite
