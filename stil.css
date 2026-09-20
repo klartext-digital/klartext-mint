@@ -3469,20 +3469,29 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   letter-spacing:-.035em;text-wrap:balance}
 .erst__titel i{font-style:normal;color:var(--violett)}
 
-/* ── Rechte Haelfte: Portrait, Handschrift, Namenszug ─────────
-   Das Portrait haengt absolut, damit ein hoeheres Motiv die
-   Rasterzeile nicht aufblaeht und die Karte mitzieht; unten steht es
-   buendig auf der Kartenkante. Die Huelle wird von der Rasterzeile
-   auf Kartenhoehe gestreckt — daran haengen die beiden Textstuecke. */
-/* HOEHE statt Breite als Mass, gemessen am 20.09.2026: mit width:72%
-   wurde das Motiv 606 px hoch gegen 536 px Spaltenhoehe und ragte
-   61,33 px in die Karte "Wachstum" — die traegt z-index:2, lag also
-   darueber und schnitt den Haaransatz an ihrer Unterkante hart ab.
-   elementFromPoint auf Kopfhoehe lieferte den Knopf "Wachstum
-   waehlen": das Motiv lag hinter einem Kaufknopf. Ueber der Karte
-   sind gemessen nur 8,6 px frei, dort ist nichts zu holen. Mit
-   height:100% kann das Motiv die Zeile nie mehr verlassen. */
-.erst__foto{position:absolute;left:0;bottom:0;height:100%;
+/* ── Rechte Haelfte: nur noch das Portrait ────────────────────
+   Das Motiv haengt absolut, damit es die Rasterzeile nicht aufblaeht
+   und die Karte mitzieht. Die Huelle wird von der Rasterzeile auf
+   Kartenhoehe gestreckt.
+   NACH OBEN ist kein Platz: mit width:72% war das Motiv 606 px hoch
+   gegen 536 px Spaltenhoehe und ragte 61,33 px in die Karte
+   "Wachstum", die z-index:2 traegt — der Haaransatz war an deren
+   Unterkante hart abgeschnitten, und elementFromPoint lieferte auf
+   Kopfhoehe den Knopf "Wachstum waehlen". Ueber der Karte sind
+   gemessen nur 8,6 px frei.
+   NACH UNTEN ist der Weg frei, und dorther kommt die Groesse
+   (20.09.2026, Dusan: "unten am rand platzieren und etwas
+   groesser"): das Motiv waechst um genau die untere Polsterung der
+   Sektion und steht damit auf deren Kante. Bewusst dieselben Token
+   wie die Polsterung selbst, sonst laufen beide bei anderer
+   Fensterbreite auseinander. --voll-ueber ist auf .preise gesetzt
+   und wird hierher vererbt; das Raster ist das letzte Kind der
+   Sektion, dazwischen liegt nichts.
+   Waagrecht mittig, weil der rechte Streifen ohne Handschrift und
+   Namenszug sonst leer klafft. */
+.erst__foto{position:absolute;left:50%;transform:translateX(-50%);
+  bottom:calc(-1 * (clamp(28px,2.6vw,46px) + var(--voll-ueber)));
+  height:calc(100% + clamp(28px,2.6vw,46px) + var(--voll-ueber));
   /* 20.09.2026, Dusans Vorlage: doppelte Kontur, weiss innen, amber
      aussen. Beide stecken in der Bilddatei (Alphamaske zweimal
      aufgeweitet), darum ist die Leinwand von 944x1541 auf 978x1558
@@ -3499,33 +3508,11 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   filter:drop-shadow(0 0 34px rgb(245 165 36 / .5))
          drop-shadow(0 0 90px rgb(245 165 36 / .4));
   pointer-events:none}
-/* Die weisse Kontur steckt IN der Bilddatei: die Alphamaske wurde
-   aufgeweitet und weiss hinterlegt, gemessen 13 px auf 944 px Breite
-   (1,4 Prozent). Nicht als Filterkette — gestapelte drop-shadows
-   fransen an Unterarmen und Kragen aus. */
-/* p.brush ist elementgebunden und damit spezifischer als eine blosse
-   Klasse: .erst__hand allein verlaere Groesse und Farbe an die
-   Grundregel. Darum beide Klassen. */
-/* Die Handschrift steht im freien Streifen NEBEN dem Motiv, nicht
-   ueber der Karte: bei rund 328 px Motivbreite in der 515,6 px
-   breiten Spur bleiben 187,6 px. right:3px statt 0, weil Rock Salt
-   mit seinen Unterlaengen gemessen 1,75 px ueber den eigenen Kasten
-   hinausragt und damit ueber die Rasterkante lief. */
-.erst__hand.brush{position:absolute;right:3px;top:4px;
-  width:min(34%,170px);text-align:center;transform:rotate(-7deg);
-  font-size:clamp(15px,1.25vw,19px);line-height:1.5;color:var(--creme)}
-.erst__wer{position:absolute;right:0;bottom:58px;display:grid;
-  text-align:right;line-height:1.2;color:var(--creme)}
-.erst__wer b{font-size:clamp(19px,1.5vw,24px);font-weight:800}
-.erst__wer i{font-style:normal;font-size:12px;font-weight:700;
-  letter-spacing:.16em;text-transform:uppercase;margin-top:5px;
-  color:rgb(247 247 245 / .82)}
-.erst__stand{position:absolute;right:0;bottom:24px;
-  display:inline-flex;align-items:center;gap:7px;font-size:12.5px;
-  font-weight:700;color:rgb(247 247 245 / .82);white-space:nowrap}
-/* Ein Hinweis, keine Live-Anzeige — deshalb ruhig und ohne Blinken. */
-.erst__stand em{width:8px;height:8px;border-radius:var(--r-pille);
-  background:#5BC27F;flex:0 0 auto}
+/* Handschrift und Namenszug sind am 20.09.2026 auf Dusans Ansage
+   entfallen ("weg"): die rechte Haelfte traegt nur noch das Motiv.
+   Die zugehoerigen Regeln (.erst__hand, .erst__wer, .erst__stand)
+   sind zusammen mit dem Markup geloescht, damit keine toten Reste
+   stehen bleiben. */
 
 /* ── Die vier Zeilen: Sinnbild, Stichwort, Erlaeuterung ───────
    Inhaltlich unveraendert. Es sind dieselben vier Stichpunkte wie
