@@ -4131,7 +4131,15 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    ersten waere wirkungslos geblieben. Der helle Schleier darueber ist
    kein Geschmack, sondern Lesbarkeit: die Kopfzeile steht direkt auf
    der Flaeche, die Karten bringen ihren eigenen Grund mit. */
+/* Randlos von Kante zu Kante, wie .preise: negative Aussenabstaende
+   plus 100vw. Ohne das endet der Foto-Grund am Inhaltsrand, weil .blog
+   auf --maxw plus Polster gedeckelt und zentriert ist. Das Innenpolster
+   haelt den Inhalt trotzdem auf seiner Breite. */
 .blog,.faq{
+  margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+  width:100vw;max-width:100vw;
+  padding-left:max(var(--pad),calc((100vw - var(--maxw)) / 2));
+  padding-right:max(var(--pad),calc((100vw - var(--maxw)) / 2));
   background:
     linear-gradient(rgb(255 255 255 / .82), rgb(255 255 255 / .86)),
     url("bilder/blog-grund.jpg") center/cover no-repeat}
