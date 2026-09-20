@@ -3414,6 +3414,11 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    1324,8 px Inhaltsbreite bereit (1440 minus zweimal 57,6 px
    Sektionspolster), das Raster nutzt davon 1060. */
 .erst{max-width:min(var(--maxw),1280px);
+  border-radius:var(--r-seite);
+  box-shadow:0 0 30px 2px rgb(255 190 80 / .85),
+    0 0 90px 10px rgb(245 165 36 / .8),
+    0 0 180px 30px rgb(245 165 36 / .55),
+    0 40px 90px -30px rgb(0 0 0 / .6);
   margin:clamp(96px,8.6vw,158px) auto 0}
 
 /* KEIN overflow:hidden. Genau das wuerde den Ueberstand des Motivs
@@ -3445,9 +3450,10 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
       rgb(245 243 239 / .68) 100%);
   -webkit-backdrop-filter:blur(22px) saturate(1.4);
   backdrop-filter:blur(22px) saturate(1.4);
-  box-shadow:0 0 44px -8px rgb(245 165 36 / .55),
-    0 0 130px -12px rgb(245 165 36 / .62),
-    0 40px 90px -30px rgb(0 0 0 / .68)}
+  /* Der Schein sitzt NICHT hier: eine Karte mit backdrop-filter
+     zeichnet ihren aeusseren Schatten nicht mehr. Gemessen ueber eine
+     Vorher-Nachher-Differenz: 0,00 Unterschied an der Kante. Er liegt
+     jetzt auf .erst, der Huelle dahinter. */}
 .erst__text{display:flex;flex-direction:column;gap:clamp(8px,.8vw,13px);min-width:0}
 /* Offener Akzent statt --violett-tief: hier liegt die Marke auf einer
    nahezu weissen Flaeche und darf die Markenfarbe selbst tragen. */
@@ -4117,3 +4123,15 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   .pro__raster{grid-template-columns:minmax(0,1fr)}
   .pk{aspect-ratio:16/12}
 }
+
+
+/* 20.09.2026, Dusan: dieses Foto als Grund fuer Blog und FAQ.
+   BEWUSST am Dateiende: .blog ist zweimal definiert (3511 und 3629);
+   bei gleicher Spezifitaet gewinnt die spaetere, eine Aenderung an der
+   ersten waere wirkungslos geblieben. Der helle Schleier darueber ist
+   kein Geschmack, sondern Lesbarkeit: die Kopfzeile steht direkt auf
+   der Flaeche, die Karten bringen ihren eigenen Grund mit. */
+.blog,.faq{
+  background:
+    linear-gradient(rgb(255 255 255 / .82), rgb(255 255 255 / .86)),
+    url("bilder/blog-grund.jpg") center/cover no-repeat}
