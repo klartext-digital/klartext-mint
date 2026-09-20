@@ -3470,7 +3470,12 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    KEIN filter. */
 .erst__seite{display:none;position:relative;align-self:end}
 .erst__foto{position:absolute;left:0;right:0;
-  bottom:calc(-1 * clamp(22px,2.4vw,44px));
+  /* ACHTUNG: dieser Versatz MUSS dem Kartenpolster entsprechen, sonst
+     haengt das Motiv unter der Kartenkante heraus. Genau das ist am
+     20.09.2026 passiert: Polster auf clamp(18px,1.9vw,34px)
+     verkleinert, den Versatz auf clamp(22px,2.4vw,44px) stehen
+     gelassen - 7,2 px zu tief bei 1440. */
+  bottom:calc(-1 * clamp(18px,1.9vw,34px));
   aspect-ratio:1024 / 1210;
   background:url("bilder/erst-person-900.webp") bottom center/contain no-repeat;
   pointer-events:none}
