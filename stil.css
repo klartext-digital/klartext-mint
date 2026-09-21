@@ -169,15 +169,30 @@ h1 .brush,h2 .brush{font-size:.88em;letter-spacing:-.01em;
 .brush .brush__t{font:inherit;color:inherit}
 
 /* Chip */
-.chip{display:inline-block;background:var(--violett-zart);color:var(--violett-tief);
+/* 21.09.2026, Dusan: "warum ist das braun?" — der Chip trug braune Schrift
+   auf grauer Pille (10 Stellen). Umgedreht: die FLAECHE traegt jetzt
+   die Markenfarbe, die Schrift ist schwarz. Genau so macht es
+   knopf--akzent. Amberne SCHRIFT ginge hier nicht — auf der hellen
+   Pille waere sie unlesbar, und ein Orange, das dort traegt, ist
+   zwangslaeufig dunkel und liest wieder als Braun.
+   .chip--hell (dunkle Flaechen) ueberschreibt beides und bleibt. */
+.chip{display:inline-block;background:var(--violett);color:var(--tinte);
   border-radius:var(--r-pille);padding:9px 20px;font-size:13px;font-weight:700;
   letter-spacing:.09em;text-transform:uppercase;margin-bottom:22px}
 .chip--hell{background:rgb(247 247 245 / .14);color:var(--creme)}
 
 .fuehrung{color:var(--grau);font-size:clamp(17px,1.25vw,21px);max-width:52ch}
 .fuehrung.hell{color:rgb(247 247 245 / .68)}
-/* Verweise im Fliesstext standen in Amber auf Hell: 1.90 : 1. */
-.fuehrung a{color:var(--violett-tief);font-weight:700;text-decoration:underline;
+/* 21.09.2026: der einzige Fall, der NICHT auf Amber zurueckgeht. Ein
+   Verweis im Fliesstext muss als Text lesbar sein; Amber haelt das
+   auf Hell nicht (1.90 : 1) und Braun ist nicht gewollt. Loesung:
+   schwarze Schrift, amberne Unterstreichung — lesbar und trotzdem
+   als Link erkennbar, ohne braunen Text. */
+/* ACHTUNG Reihenfolge: text-decoration ist eine Kurzschrift und
+   setzt die Strichfarbe zurueck. text-decoration-color MUSS also
+   danach stehen, sonst ist der Strich schwarz statt amber. */
+.fuehrung a{color:var(--tinte);font-weight:700;text-decoration:underline;
+  text-decoration-color:var(--violett);
   text-underline-offset:4px;text-decoration-thickness:2px}
 
 /* ── Knöpfe: gross und rund ────────────────────────────────── */
@@ -544,8 +559,10 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 /* Handschrift auf hellem Grund: das helle Orange stand bei 1,84:1 und
    war praktisch unlesbar. --violett-tief ist der im System vorgesehene
    Akzent fuer helle Flaechen und bringt 5,60:1. */
+/* 21.09.2026: Handschrift wie ueberall sonst in Amber — sie war nur noch
+   braun, weil diese Regel aelter ist als der Rest. */
 .referenzen .brush{display:block;text-align:center;margin-bottom:30px;
-  color:var(--violett-tief)}
+  color:var(--violett)}
 .ref__reihe{max-width:var(--maxw);margin:0 auto;display:grid;
   grid-template-columns:repeat(6,1fr);gap:14px}
 .ref{display:grid;place-items:center;padding:38px 20px;min-height:140px;
@@ -622,9 +639,10 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
     radial-gradient(46% 40% at 16% 94%, rgb(107 101 92 / .16), transparent 72%),
     linear-gradient(115deg,#FFFFFF 0%,#F7F7F5 38%,#EFEDE9 62%,#F9F8F6 100%)}
 .dienste__kopf{margin-bottom:clamp(30px,3vw,52px)}
-/* Auf dem hellen Grund ist --violett-hell (#FFC65C) praktisch unsichtbar;
-   der tiefe Markenton traegt dort. */
-.dienste__kopf .brush{color:var(--violett-tief);margin-bottom:14px}
+/* 21.09.2026: hierzu kam Dusans erste Braun-Frage. Der tiefe Ton traegt
+   zwar rechnerisch, liest aber als Braun. Amber wie ueberall sonst;
+   die Ueberschrift darunter traegt die Aussage in Schwarz. */
+.dienste__kopf .brush{color:var(--violett);margin-bottom:14px}
 .dienste__kopf h2{max-width:16ch}
 
 /* 19.09.2026, Dusan: "seitlich abgehakt … die einzelnen sections branding
@@ -935,9 +953,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .vref__chips button.ist{opacity:1;border-color:rgb(247 247 245 / .5);
   background:rgb(247 247 245 / .16)}
 .vref__chips i{display:grid;place-items:center;width:42px;height:42px;flex:none;
-  /* Weiss auf Amber misst 2.04 : 1. Geaendert wird die Flaeche,
-     nicht die Initiale: die Kreisform und der Markenton bleiben. */
-  border-radius:50%;background:var(--violett-tief);color:#fff;font-style:normal;
+  border-radius:50%;background:var(--violett);color:#fff;font-style:normal;
   font-size:16px;font-weight:800}
 .vref__chips b{display:block;font-size:15px;font-weight:700}
 /* 21.09.2026: gleiche Deckkraft wie .vref__wer span eine Regel weiter
@@ -1094,8 +1110,12 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .wege__team{margin-top:clamp(20px,2vw,34px);padding-top:clamp(20px,2vw,30px);
   border-top:1px solid var(--linie);color:var(--grau);
   font-size:clamp(15px,1.2vw,17px);line-height:1.6;max-width:70ch}
-.wege__team a{color:var(--violett-tief);font-weight:700;
-  text-decoration:underline;text-underline-offset:4px}
+/* 21.09.2026: Verweis im Fliesstext, gleicher Fall wie .fuehrung a.
+   Schwarze Schrift, amberne Unterstreichung — die Strichfarbe MUSS
+   nach der Kurzschrift stehen, sonst setzt diese sie zurueck. */
+.wege__team a{color:var(--tinte);font-weight:700;
+  text-decoration:underline;text-decoration-color:var(--violett);
+  text-underline-offset:4px;text-decoration-thickness:2px}
 /* ── Abo oder Projekt: hell/dunkel-Kartenpaar nach Dusans Vorlage ──
    Bewusst wiederverwendet statt neu gebaut: .chip fuer die Pillen,
    .haken fuer die Listen (dieselbe Haken-Geometrie wie bei den Preisen),
@@ -1127,10 +1147,10 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 /* Helle Karte: dieselbe Geometrie, gedrehte Farbrollen. */
 .wege__karte--hell{background:var(--creme-3);color:var(--tinte)}
 .wege__karte--hell p{color:var(--grau)}
-.wege__karte--hell .wege__label{background:var(--violett-zart);color:var(--violett-tief)}
-/* Amber auf der weissen Karte: 2.04 : 1. Die dunkle Schwesterkarte
-   behaelt --violett-hell, dort traegt der Ton. */
-.wege__karte--hell h3 i{color:var(--violett-tief)}
+/* 21.09.2026: Chip-Geschwister — gleiche Behandlung wie .chip, sonst
+   traegt die Seite zwei verschiedene Pillenfarben. */
+.wege__karte--hell .wege__label{background:var(--violett);color:var(--tinte)}
+.wege__karte--hell h3 i{color:var(--violett)}
 .wege__karte--hell .haken{border-top-color:var(--linie)}
 .wege__karte--hell .haken li{color:var(--grau)}
 .wege__karte--hell .haken li::before{border-color:var(--violett)}
@@ -1140,7 +1160,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   align-items:center;gap:clamp(18px,2.4vw,40px);
   margin-top:clamp(18px,2vw,34px);padding:clamp(22px,2.2vw,34px);
   background:var(--creme-2);border-radius:var(--r-mittel)}
-.wege__label--frage{background:var(--violett-zart);color:var(--violett-tief);margin:0 0 10px}
+.wege__label--frage{background:var(--violett);color:var(--tinte);margin:0 0 10px}
 .wege__panel-titel{font-size:clamp(20px,1.8vw,26px);line-height:1.25;font-weight:700;margin:0}
 .wege__panel-text{color:var(--grau);font-size:clamp(15px,1.2vw,17px);line-height:1.6;margin:0}
 .wege__panel .knopf{white-space:nowrap}
@@ -1234,12 +1254,8 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .schalter button.ist{background:var(--creme);color:var(--tinte)}
 /* Auf der violetten Fläche verschwand --violett-hell fast — der zarte
    Ton steht klar, ohne lauter zu sein als der Preis selbst. */
-/* Der Rabattvermerk sitzt auf der hellen Taste: Amber mass 1.90 : 1. */
-.schalter em{font-style:normal;font-size:13px;font-weight:700;color:var(--violett-tief)}
-/* 21.09.2026: DIESE Regel gewinnt gegen .schalter em eine Zeile darueber.
-   Die gewaehlte Taste ist hell (--creme), Amber darauf misst
-   1.90 : 1. Der tiefe Ton traegt und bleibt als Akzent erkennbar. */
-.schalter button.ist em{color:var(--violett-tief)}
+.schalter em{font-style:normal;font-size:13px;font-weight:700;color:var(--violett)}
+.schalter button.ist em{color:var(--violett)}
 .preise__raster{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,2vw,34px);
   max-width:1060px;margin:calc(clamp(12px,1.2vw,18px) + var(--voll-ueber)) auto 0}
 
@@ -1302,10 +1318,9 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .paket__preis{display:flex;align-items:flex-end;gap:8px;margin:8px 0 0;
   font-weight:800;letter-spacing:-.045em}
 .paket__preis > i{line-height:1;padding-bottom:.09em}
-/* Amber auf der weissen Karte misst 2.04 : 1 (Schwelle 3.0 fuer
-   grosse Schrift). Die Zeile darunter korrigiert nur die dunkle
-   Karte — fuer die helle fehlte die Gegenregel. */
-.paket__preis i{font-style:normal;font-size:26px;color:var(--violett-tief)}
+/* "CHF" als Akzent vor dem Preis — die Zahl daneben traegt die
+   Information und steht in Schwarz. */
+.paket__preis i{font-style:normal;font-size:26px;color:var(--violett)}
 .paket--voll .paket__preis i{color:var(--violett-hell)}
 /* ── Preiswechsel 6 -> 12 Monate ───────────────────────────────
    Der bisherige Preis wird DURCHGESTRICHEN und der neue tritt daneben.
@@ -1441,9 +1456,8 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .beitrag img{width:100%;height:100%;object-fit:cover;
   transition:transform var(--t-bild) var(--kurve)}
 .beitrag:hover img{transform:scale(1.06)}
-/* 21.09.2026: die Rock-Salt-Zeile steht auf der hellen Buehne und mass
-   1.84 : 1. Gleiche Behandlung wie die uebrigen Handschrift-Zeilen. */
-.beitrag .datum{font-family:'Rock Salt',cursive;font-size:15px;color:var(--violett-tief)}
+/* Handschriftliche Zaehlzeile — Zierde ueber dem Titel. */
+.beitrag .datum{font-family:'Rock Salt',cursive;font-size:15px;color:var(--violett)}
 .beitrag h3{transition:color var(--t-farbe) var(--kurve)}
 .beitrag:hover h3{color:var(--violett-tief)}
 
@@ -1989,10 +2003,10 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* Die Handschrift liegt seit dem Hero-Umbau in .unter__text, nicht mehr
    direkt in .unter — ohne den zweiten Selektor griffe die Grundgroesse
    p.brush (44,6px statt 34,6px) und die Zeile draengte sich an den Titel. */
-/* 21.09.2026: Amber auf der hellen Buehne misst 1.84 : 1. DESIGN.md haelt
-   dafuer den tiefen Ton fest; .dienste__kopf .brush macht es laengst
-   so, diese Regel war die Ausnahme. */
-.unter .brush,.unter__text > .brush{font-size:clamp(22px,2.4vw,38px);color:var(--violett-tief)}
+/* 21.09.2026, Dusan: "warum ist das braun?" — --violett-tief (#8A5504)
+   liest auf freiem Text als Braun. Zurueck auf Amber: der Akzent
+   ist dekorativ, der Inhalt steht daneben in Schwarz. */
+.unter .brush,.unter__text > .brush{font-size:clamp(22px,2.4vw,38px);color:var(--violett)}
 .unter__text > .brush{margin-bottom:.55em}
 .zurueck{display:inline-flex;align-items:center;gap:10px;margin-bottom:26px;
   border:2px solid var(--linie);border-radius:var(--r-pille);
@@ -2234,16 +2248,16 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .unter__block{max-width:var(--maxw);margin:var(--sec) auto 0;padding:0 var(--pad)}
 .drin{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
   gap:10px;margin-top:clamp(22px,2.4vw,38px)}
-/* 21.09.2026: wie die Umfang-Karten fuer den schwarzen Block gebaut und
-   seit der Hell-Umstellung unsichtbar. Gleiche Behandlung. */
+/* 21.09.2026: steht im selben Block wie die Umfang-Karten und gehoert
+   genauso dunkel. Gleicher Ton, gleiche Begruendung. */
 .drin li{position:relative;padding:16px 18px 16px 46px;border-radius:16px;
-  background:rgb(255 255 255 / .72);font-size:16px;line-height:1.4;
-  color:rgb(14 13 11 / .82);
+  background:var(--tinte-2);font-size:16px;line-height:1.4;
+  color:rgb(247 247 245 / .82);
   transition:background-color var(--t-knopf) var(--kurve-rein),
     transform var(--t-knopf) var(--kurve-rein)}
-.drin li:hover{background:#FFFFFF;transform:scale(1.02)}
+.drin li:hover{background:#221F1A;transform:scale(1.02)}
 .drin li::before{content:"";position:absolute;left:19px;top:23px;width:12px;height:7px;
-  border-left:2.5px solid var(--violett-tief);border-bottom:2.5px solid var(--violett-tief);
+  border-left:2.5px solid var(--violett-hell);border-bottom:2.5px solid var(--violett-hell);
   transform:rotate(-45deg)}
 /* ── Umfang als Karten (Vorlage des Auftraggebers, 17.09.2026) ──
    Ersetzt die schlichte .drin-Liste auf der Musterseite. Beim Ueberfahren
@@ -2257,10 +2271,16 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   display:flex;flex-direction:column;gap:9px;justify-content:flex-start;
   min-height:clamp(178px,12.2vw,218px);
   padding:clamp(22px,1.9vw,30px);border-radius:var(--r-mittel);
-  /* 21.09.2026: Grund und Rand waren fuer den schwarzen Block gebaut
-     (Weiss zu 5 %). Auf dem hellen Block seit 19.09. blieb davon
-     eine unsichtbare Karte. Jetzt echte helle Flaeche mit Kontur. */
-  background:rgb(255 255 255 / .72);border:2px solid rgb(14 13 11 / .10);
+  /* 21.09.2026, Dusan: "seit wann sollen diese boxen weiss sein? die waren
+     doch alle dunkel". Stimmt. Die Karten kamen am 17.09. in den
+     damals SCHWARZEN Block und trugen dort 5 % Weiss — also dunkel.
+     Am 19.09. wurde der Block hell, die Karten blieben stehen und
+     waren seither unsichtbar. Ich habe sie daraufhin faelschlich an
+     den hellen Block angepasst, statt sie zurueckzuholen.
+     Jetzt --tinte-2 wie bei allen Schwesterkarten auf hellem Grund
+     (.wege__karte, .paket--voll, .ruf__karte). Die alten 5 % Weiss
+     wuerden auf Hell wieder nichts ergeben; es braucht Deckung. */
+  background:var(--tinte-2);color:var(--creme);border:2px solid transparent;
   transition:border-color var(--t-flaeche) var(--kurve-rein),
     box-shadow var(--t-flaeche) var(--kurve-rein),
     background-color var(--t-flaeche) var(--kurve-rein),
@@ -2279,21 +2299,20 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   box-shadow:0 0 44px -4px rgb(245 165 36 / .50),0 22px 54px -18px rgb(0 0 0 / .65)}
 .umfang__karte:hover .umfang__bild{opacity:.55}
 .umfang__karte:hover::after{opacity:1}
-/* --violett-hell (#FFC65C) traegt nur auf Dunkel; auf dem hellen
-   Block ist der tiefe Markenton der lesbare. */
-.umfang__ikon{color:var(--violett-tief);line-height:0;margin-bottom:3px}
-.umfang__karte:hover .umfang__ikon{color:var(--violett-hell)}
+/* Die Karte ist dunkel — dort traegt --violett-hell, wie im Ursprung. */
+.umfang__ikon{color:var(--violett-hell);line-height:0;margin-bottom:3px}
 .umfang__karte h3,.umfang__karte p{max-width:min(58%,34ch)}
-.umfang__karte h3{font-size:clamp(19px,1.5vw,24px);line-height:1.25;margin:0;
+/* Der Titel erbte im Ursprung die Blockfarbe (--creme). Der Block
+   ist seit 19.09. hell und vererbt --tinte — auf der dunklen Karte
+   waere das dunkel auf dunkel. Darum jetzt ausdruecklich. */
+.umfang__karte h3{color:var(--creme);
+  font-size:clamp(19px,1.5vw,24px);line-height:1.25;margin:0;
   letter-spacing:-.02em;min-height:2.5em}
-/* Der Beschreibungstext stand in Cremeweiss auf hellem Grund und war
-   damit unsichtbar — gemessen 1.02 : 1 bei 4.5 gefordert. */
+/* Auf der dunklen Karte ist Cremeweiss richtig — so stand es im
+   Ursprung (35122df). */
 .umfang__karte p{margin:0;font-size:14.5px;line-height:1.45;
-  color:rgb(14 13 11 / .72)}
+  color:rgb(247 247 245 / .74)}
 .umfang__karte:hover p{color:rgb(247 247 245 / .86)}
-/* Beim Ueberfahren legt sich ::after dunkel darueber — dort gilt
-   wieder die helle Schrift, auch fuer Titel und Zeichen. */
-.umfang__karte:hover h3{color:var(--creme)}
 @media(max-width:1100px){.umfang{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.umfang{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:600px){.umfang__karte h3,.umfang__karte p{max-width:74%}}
@@ -2340,8 +2359,8 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
     transform var(--t-knopf) var(--kurve-rein)}
 .schritt:hover{box-shadow:inset 0 0 0 2px var(--violett-zart);
   transform:translateY(-3px)}
-/* Die Rock-Salt-Ziffern stehen auf weissen Karten: 2.04 : 1. */
-.schritt > b{font-family:'Rock Salt',cursive;font-size:15px;color:var(--violett-tief);
+/* Handschriftliche Schrittnummer — Zierde neben dem Titel. */
+.schritt > b{font-family:'Rock Salt',cursive;font-size:15px;color:var(--violett);
   line-height:1.5;flex:none}
 .schritt h3{font-size:20px;letter-spacing:-.025em;margin-bottom:5px}
 .schritt p{font-size:16px;line-height:1.5;color:var(--grau)}
@@ -2575,7 +2594,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .rechner__immer{margin-top:4px;padding:clamp(16px,1.4vw,22px);
   background:var(--grund);border-radius:var(--r-mittel)}
 .rechner__immer-kopf{font-size:13px;font-weight:800;letter-spacing:.04em;
-  text-transform:uppercase;color:var(--violett-tief);margin-bottom:10px}
+  text-transform:uppercase;color:var(--violett);margin-bottom:10px}
 .rechner__immer ul{display:grid;gap:7px;list-style:none;margin:0;padding:0}
 .rechner__immer li{position:relative;padding-left:24px;font-size:15px;
   line-height:1.45;color:var(--grau)}
@@ -3526,13 +3545,15 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* Offener Akzent statt --violett-tief: hier liegt die Marke auf einer
    nahezu weissen Flaeche und darf die Markenfarbe selbst tragen. */
 .erst__marke{display:inline-block;font-size:clamp(11px,.85vw,13px);font-weight:800;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--violett-tief)}
+  /* Freistehende Marke ohne Pille: hier traegt Amber als SCHRIFT.
+     Eine amberne Flaeche waere ein Element, das es nie gab. */
+  letter-spacing:.16em;text-transform:uppercase;color:var(--violett)}
 /* Einzeilig wie in Vorlage 1, "Klarheit." in Amber - nicht nur der
    Schlusspunkt wie bisher. */
 .erst__titel{font-size:clamp(28px,2.9vw,50px);line-height:1.04;
   letter-spacing:-.035em;text-wrap:balance}
-/* "Klarheit." stand in Amber auf der hellen Glaskarte: 1.69 : 1. */
-.erst__titel i{font-style:normal;color:var(--violett-tief)}
+/* Akzentwort der Ueberschrift — Amber, wie im Entwurf. */
+.erst__titel i{font-style:normal;color:var(--violett)}
 .erst__lead{max-width:52ch;font-size:clamp(14px,1.05vw,17.5px);
   line-height:1.55;color:var(--grau)}
 
@@ -3727,9 +3748,9 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .blog__marke{font-size:11.5px;font-weight:800;letter-spacing:.15em;
   text-transform:uppercase;color:var(--grau);margin-bottom:16px}
 .blog__titel{font-size:clamp(26px,2.4vw,40px);line-height:1.06;letter-spacing:-.03em}
-/* Der Akzentpunkt steht ausschliesslich in Ueberschriften auf hellem
-   Grund (wiewir, blog, brief) — dort misst Amber 1.66 : 1. */
-.punkt{font-style:normal;color:var(--violett-tief)}
+/* Ein einzelner Punkt hinter der Ueberschrift — reine Zierde.
+   Amber, wie im Entwurf. */
+.punkt{font-style:normal;color:var(--violett)}
 .blog__lead{margin-top:14px;color:var(--grau);font-size:clamp(15px,1.05vw,17px);
   line-height:1.55;max-width:36ch;transition:color var(--t-farbe) var(--kurve)}
 .blog__knoepfe{display:inline-flex;align-items:center;gap:12px;
@@ -3745,7 +3766,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .blog__bogen{flex:0 0 auto;margin-bottom:6px}
 /* Auf weisser Karte: 2,04:1 auf 6,21:1. */
 .blog__hand .brush{font-size:clamp(16px,1.2vw,21px);line-height:1.25;
-  color:var(--violett-tief)}
+  color:var(--violett)}
 
 /* Das Bild fuellt seine Spalte ganz — kein Radius, keine Luft. */
 .blog__bild{display:block;position:relative;overflow:hidden;
@@ -3821,7 +3842,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 @media (min-width:1240px){ .brief__hand{display:flex} }
 /* Auf zarter Flaeche: 1,66:1 auf 5,06:1 — war der schlechteste Wert. */
 .brief__hand .brush{font-size:clamp(15px,1.1vw,19px);line-height:1.35;
-  color:var(--violett-tief)}
+  color:var(--violett)}
 .brief__hand .blog__bogen{transform:scaleY(-1);margin-top:4px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);
   white-space:nowrap}
