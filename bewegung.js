@@ -376,9 +376,19 @@ function zeileHalten(el, dauerMs) {
      Zeiger wegspringender Seiteninhalt. */
   const liste = document.querySelector('#lzliste');
   if (liste && matchMedia('(hover:hover) and (pointer:fine)').matches) {
-    const waehle = (e) => {
-      if (e.pointerType === 'touch') return;
-      const y = e.clientY;
+    /* 13.10.2026, Dusan: "beim hover flackert".
+       GEMESSEN: eine offene Zeile ist 503 px hoch statt 112 — sie schiebt
+       alle folgenden um 392 px nach unten. Wer eine weiter unten liegende
+       Zeile ansteuert, berührt dabei zwangsläufig die darüber, die klappt
+       sofort auf, und das Ziel springt unter dem Zeiger weg. Man fährt
+       hinterher, die nächste klappt auf, alles springt zurück.
+       Das Aufklappen beim blossen DURCHqueren ist der Fehler, nicht die
+       Zeilenwahl selbst (Oszillation war messbar null).
+       Also eine Absichtsprüfung: geöffnet wird erst, wenn der Zeiger kurz
+       auf derselben Zeile bleibt. Beim Durchfahren passiert nichts. */
+    const RUHE = 140;
+    let warte = null, letztesZiel = null, letzteY = null;
+    const finde = (y) => {
       let ziel = zeilen.find((lz) => {
         const r = lz.getBoundingClientRect();
         return y >= r.top && y <= r.bottom;
@@ -391,13 +401,41 @@ function zeileHalten(el, dauerMs) {
           if (d < kleinster) { kleinster = d; ziel = lz; }
         });
       }
-      if (!ziel || ziel.classList.contains('ist')) return;
-      zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
-      auf(ziel);
+      return ziel;
+    };
+    const waehle = (e) => {
+      if (e.pointerType === 'touch') return;
+      const ziel = finde(e.clientY);
+      if (!ziel || ziel.classList.contains('ist')) {
+        /* Zurück auf der bereits offenen Zeile: angefangene Absicht
+           verwerfen, sonst klappt sie nachträglich noch um. */
+        if (warte) { clearTimeout(warte); warte = null; letztesZiel = null; }
+        return;
+      }
+      /* Der Zeitgeber startet bei JEDER nennenswerten Bewegung neu, nicht
+         nur beim Zeilenwechsel: eine Zeile ist 112 px hoch, man ist beim
+         Durchqueren leicht länger darauf als die Ruhefrist — dann klappte
+         sie trotz Absichtsprüfung auf. Kleine Zuckungen (unter 5 px)
+         gelten als Ruhe, sonst wartet man mit zittriger Hand ewig. */
+      const bewegt = letzteY === null || Math.abs(e.clientY - letzteY) > 5;
+      letzteY = e.clientY;
+      if (ziel === letztesZiel && !bewegt) return;   // ruht bereits
+      letztesZiel = ziel;
+      if (warte) clearTimeout(warte);
+      warte = setTimeout(() => {
+        warte = null; letztesZiel = null;
+        /* Lage kann sich seit dem Auslösen geändert haben — neu prüfen,
+           sonst öffnet eine Zeile, die gar nicht mehr unter dem Zeiger ist. */
+        if (!ziel.isConnected || ziel.classList.contains('ist')) return;
+        zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
+        auf(ziel);
+      }, RUHE);
     };
     liste.addEventListener('pointerenter', waehle, { passive: true });
     liste.addEventListener('pointermove', waehle, { passive: true });
     liste.addEventListener('pointerleave', () => {
+      if (warte) { clearTimeout(warte); warte = null; }
+      letztesZiel = null; letzteY = null;
       zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
     });
   }
