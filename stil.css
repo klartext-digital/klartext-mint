@@ -694,7 +694,12 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   /* Die Schrift MUSS dieselbe Verzoegerung haben wie der Grund.
      Spraenge sie beim Schliessen sofort auf dunkel, stuende sie
      260 ms lang dunkel auf dem noch dunklen Motiv. */
-  transition:box-shadow var(--t-flaeche) var(--kurve-rein),
+  /* 13.10.2026: Der Schein lief 300 ms, waehrend die Zeile 505 ms waechst -
+     er war fertig, bevor die Bewegung zu Ende war, und ein grosser
+     weicher Schatten ist in jedem Bild neu zu zeichnen. Jetzt schaltet
+     er hart, zusammen mit Grund und Schrift. Dann bewegt sich wirklich
+     nur noch die Hoehe, wie bei den Fragen. */
+  transition:box-shadow 0s linear 250ms,
     color 0s linear 250ms}
 /* Die Zeile traegt im geschlossenen Zustand DUNKLE Schrift (heller Balken).
    Beim Oeffnen wird der Grund dunkel — dann muss die Schrift der ganzen
@@ -711,7 +716,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    weil der Balken auf hellem Grund steht und ein weisser Ring darauf
    verschwaende. */
 .lz.ist{color:var(--creme);
-  transition:box-shadow var(--t-flaeche) var(--kurve-rein);
+  transition:none;
   box-shadow:0 0 0 1.5px rgb(245 165 36 / .85),
     0 6px 30px -6px rgb(245 165 36 / .70),
     0 18px 90px -16px rgb(245 165 36 / .80),
@@ -944,22 +949,26 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .lz__text{grid-column:1;grid-row:1;max-width:46ch}
 .lz__tags{grid-column:1;grid-row:2;max-width:720px}
 .lz__bild{grid-column:2;grid-row:1 / span 2}
+/* 13.10.2026, Dusan: "die motion ist unsauber ... ich will dass es maximal
+   smooth die bewegung ist".
+   Beim Oeffnen liefen FUENF Bewegungen gleichzeitig mit
+   unterschiedlichen Dauern und Kurven: die Hoehe als Feder ueber
+   505 ms, dazu Text (300 ms), Schlagworte (300 ms + 60 ms Versatz)
+   und Bild (300 ms + 130 ms Versatz) je mit opacity UND translateY.
+   Uebereinandergelegt ergibt das kein ruhiges Aufklappen, sondern
+   mehrere Takte.
+   Die Fragen bewegen genau EINE Sache - die Hoehe. Genau das hier
+   jetzt auch: die Inhalte stehen einfach da und werden von der
+   wachsenden Zeile freigegeben. */
 .lz__text{font-size:clamp(17px,1.35vw,21px);font-weight:700;line-height:1.4;
-  letter-spacing:-.015em;opacity:0;transform:translateY(10px);
-  transition:opacity var(--t-oeffnen) var(--kurve),transform var(--t-oeffnen) var(--kurve)}
+  letter-spacing:-.015em}
 .lz__tags{display:grid;grid-template-columns:repeat(3,1fr);
-  gap:clamp(14px,1.6vw,28px);align-items:start;
-  opacity:0;transform:translateY(10px);
-  transition:opacity var(--t-oeffnen) var(--kurve) .06s,
-             transform var(--t-oeffnen) var(--kurve) .06s}
+  gap:clamp(14px,1.6vw,28px);align-items:start}
 .lz__tags ul{display:grid;gap:8px;align-content:start}
 .lz__tags li{font-size:13px;font-weight:600;letter-spacing:.07em;
   text-transform:uppercase;color:rgb(247 247 245 / .62)}
 .lz__bild{justify-self:end;width:100%;
-  border-radius:var(--r-mittel);overflow:hidden;background:var(--tinte-2);
-  opacity:0;transform:translateY(10px) scale(.96);
-  transition:opacity .3s var(--kurve) .13s,
-             transform .3s var(--kurve) .13s}
+  border-radius:var(--r-mittel);overflow:hidden;background:var(--tinte-2)}
 .lz__bild img{width:100%;height:230px;object-fit:cover}
 /* Das gerahmte Kaertchen rechts zeigte ein ZWEITES Motiv derselben Zeile —
    in der Referenz gibt es nur EIN Foto je Leistung, naemlich den Grund.
@@ -972,7 +981,8 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   justify-content:start;gap:clamp(18px,2.4vw,44px)}
 .lz__tags ul + ul{border-left:1px solid rgb(247 247 245 / .18);
   padding-left:clamp(18px,2.4vw,44px)}
-.lz.ist .lz__text,.lz.ist .lz__tags,.lz.ist .lz__bild{opacity:1;transform:none}
+/* Die zugehoerige Gegenregel entfaellt mit: es gibt nichts mehr
+   einzublenden. */
 
 .dienste__mehr{margin-top:clamp(30px,3vw,48px)}
 
