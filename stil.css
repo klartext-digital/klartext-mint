@@ -722,7 +722,19 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
       rgb(14 13 11 / .14) 100%),
     var(--lz-grund) center/cover no-repeat;
   opacity:0;pointer-events:none;
-  transition:opacity var(--t-oeffnen) var(--kurve)}
+  /* 13.10.2026, Dusan: "flackert immer noch gleich".
+     GESEHEN im Standbild 70 ms nach dem Oeffnen: der Zeilentitel steht
+     blass und unlesbar da, waehrend die Nachbarzeilen kraeftig schwarz
+     sind. Grund: die Klasse ist setzt die Schrift SOFORT auf --creme,
+     das dunkle Motiv brauchte aber 300 ms zum Einblenden. Solange steht
+     helle Schrift auf hellem Balken - der Text verschwindet und kommt
+     wieder. Bei jedem Zeilenwechsel erneut, daher der Flacker-Eindruck.
+     Ein SYNCHRONER Uebergang hilft nicht: der Grund laeuft von 247 nach
+     20, die Schrift von 14 nach 247 - in der Mitte treffen sich beide
+     bei rund 130 und der Kontrast ist null. Also schaltet der Grund
+     hart um, zeitgleich mit der Schrift. Weich bleibt die Hoehe, die
+     traegt den Eindruck des Aufklappens. */
+  transition:none}
 /* Kein Zwischenzustand mehr beim Ueberfahren: seit das Ueberfahren die
    Zeile OEFFNET, waere eine halb abgedunkelte Vorschau nur ein Flackern
    auf dem Weg dorthin. */
@@ -773,7 +785,8 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
       rgb(255 255 255 / .85) 95%,
       rgb(255 255 255) 100%),
     var(--lz-grund) right center/cover no-repeat;
-  transition:opacity var(--t-oeffnen) var(--kurve)}
+  /* Gegenstueck zur Vorschau-Ebene: ebenfalls hart, siehe oben. */
+  transition:none}
 .lz.ist::after{opacity:0}
 /* Schmale Schirme: dort reicht der Balken kaum fuer Name und Zeichen —
    die Vorschau wird zur Stoerung, nicht zur Information. Sie bleibt, aber
