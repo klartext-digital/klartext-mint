@@ -194,16 +194,19 @@ setze(false);
 (function leistungen() {
 const zeilen = [...document.querySelectorAll('#lzliste .lz')];
 if (!zeilen.length) return;
-const zu = (lz) => {
+const messenZu = (lz) => lz.querySelector('.lz__huelle').scrollHeight;
+const messenAuf = (lz) =>
+lz.querySelector('.lz__huelle').querySelector('.lz__leib').offsetHeight;
+const setzeZu = (lz, hoehe) => {
 const h = lz.querySelector('.lz__huelle');
-h.style.height = h.scrollHeight + 'px';
+h.style.height = hoehe + 'px';
 requestAnimationFrame(() => { h.style.height = '0px'; });
 lz.classList.remove('ist');
 lz.querySelector('.lz__kopf').setAttribute('aria-expanded', 'false');
 };
-const auf = (lz) => {
+const setzeAuf = (lz, hoehe) => {
 const h = lz.querySelector('.lz__huelle');
-h.style.height = h.querySelector('.lz__leib').offsetHeight + 'px';
+h.style.height = hoehe + 'px';
 lz.classList.add('ist');
 lz.querySelector('.lz__kopf').setAttribute('aria-expanded', 'true');
 const fertig = (e) => {
@@ -213,12 +216,19 @@ h.removeEventListener('transitionend', fertig);
 };
 h.addEventListener('transitionend', fertig);
 };
+const wechsle = (ziel) => {
+const offene = zeilen.filter((a) => a.classList.contains('ist'));
+const masse = offene.map((a) => [a, messenZu(a)]);
+const hochNeu = ziel ? messenAuf(ziel) : 0;
+masse.forEach(([a, hoehe]) => setzeZu(a, hoehe));
+if (ziel) setzeAuf(ziel, hochNeu);
+};
+const zu = (lz) => setzeZu(lz, messenZu(lz));
 zeilen.forEach((lz) => {
 const kopf = lz.querySelector('.lz__kopf');
 kopf.addEventListener('click', () => {
 const offen = lz.classList.contains('ist');
-zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
-if (!offen) auf(lz);
+wechsle(offen ? null : lz);
 zeileHalten(kopf, 460);
 });
 });
@@ -256,8 +266,7 @@ if (warte) clearTimeout(warte);
 warte = setTimeout(() => {
 warte = null; letztesZiel = null;
 if (!ziel.isConnected || ziel.classList.contains('ist')) return;
-zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
-auf(ziel);
+wechsle(ziel);
 }, RUHE);
 };
 liste.addEventListener('pointerenter', waehle, { passive: true });
