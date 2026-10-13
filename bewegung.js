@@ -194,49 +194,24 @@ setze(false);
 (function leistungen() {
 const zeilen = [...document.querySelectorAll('#lzliste .lz')];
 if (!zeilen.length) return;
-const messenZu = (lz) => lz.querySelector('.lz__huelle').scrollHeight;
-const messenAuf = (lz) =>
-lz.querySelector('.lz__huelle').querySelector('.lz__leib').offsetHeight;
-const setzeZu = (lz, hoehe) => {
-const h = lz.querySelector('.lz__huelle');
-h.style.height = hoehe + 'px';
-requestAnimationFrame(() => { h.style.height = '0px'; });
-lz.classList.remove('ist');
-lz.querySelector('.lz__kopf').setAttribute('aria-expanded', 'false');
-};
-const setzeAuf = (lz, hoehe) => {
-const h = lz.querySelector('.lz__huelle');
-h.style.height = hoehe + 'px';
-lz.classList.add('ist');
-lz.querySelector('.lz__kopf').setAttribute('aria-expanded', 'true');
-const fertig = (e) => {
-if (e.propertyName !== 'height') return;
-if (lz.classList.contains('ist')) h.style.height = 'auto';
-h.removeEventListener('transitionend', fertig);
-};
-h.addEventListener('transitionend', fertig);
-};
-const wechsle = (ziel) => {
-const offene = zeilen.filter((a) => a.classList.contains('ist'));
-const masse = offene.map((a) => [a, messenZu(a)]);
-const hochNeu = ziel ? messenAuf(ziel) : 0;
-masse.forEach(([a, hoehe]) => setzeZu(a, hoehe));
-if (ziel) setzeAuf(ziel, hochNeu);
-};
-const zu = (lz) => setzeZu(lz, messenZu(lz));
+const setze = (ziel) => {
 zeilen.forEach((lz) => {
-const kopf = lz.querySelector('.lz__kopf');
-kopf.addEventListener('click', () => {
-const offen = lz.classList.contains('ist');
-wechsle(offen ? null : lz);
-zeileHalten(kopf, 460);
+const offen = lz === ziel;
+lz.classList.toggle('ist', offen);
+lz.querySelector('.lz__kopf')
+.setAttribute('aria-expanded', offen ? 'true' : 'false');
+});
+};
+zeilen.forEach((lz) => {
+lz.querySelector('.lz__kopf').addEventListener('click', () => {
+setze(lz.classList.contains('ist') ? null : lz);
 });
 });
 const liste = document.querySelector('#lzliste');
 if (liste && matchMedia('(hover:hover) and (pointer:fine)').matches) {
-const RUHE = 90;
-let warte = null, letztesZiel = null, letzteY = null;
-const finde = (y) => {
+const waehle = (e) => {
+if (e.pointerType === 'touch') return;
+const y = e.clientY;
 let ziel = zeilen.find((lz) => {
 const r = lz.getBoundingClientRect();
 return y >= r.top && y <= r.bottom;
@@ -249,33 +224,11 @@ const d = y < r.top ? r.top - y : y - r.bottom;
 if (d < kleinster) { kleinster = d; ziel = lz; }
 });
 }
-return ziel;
-};
-const waehle = (e) => {
-if (e.pointerType === 'touch') return;
-const ziel = finde(e.clientY);
-if (!ziel || ziel.classList.contains('ist')) {
-if (warte) { clearTimeout(warte); warte = null; letztesZiel = null; }
-return;
-}
-const bewegt = letzteY === null || Math.abs(e.clientY - letzteY) > 5;
-letzteY = e.clientY;
-if (ziel === letztesZiel && !bewegt) return;   // ruht bereits
-letztesZiel = ziel;
-if (warte) clearTimeout(warte);
-warte = setTimeout(() => {
-warte = null; letztesZiel = null;
-if (!ziel.isConnected || ziel.classList.contains('ist')) return;
-wechsle(ziel);
-}, RUHE);
+if (ziel && !ziel.classList.contains('ist')) setze(ziel);
 };
 liste.addEventListener('pointerenter', waehle, { passive: true });
 liste.addEventListener('pointermove', waehle, { passive: true });
-liste.addEventListener('pointerleave', () => {
-if (warte) { clearTimeout(warte); warte = null; }
-letztesZiel = null; letzteY = null;
-zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
-});
+liste.addEventListener('pointerleave', () => setze(null));
 }
 })();
 (function vollbreiteBloecke() {
