@@ -73,7 +73,15 @@
   --t-flaeche:.3s;
   --t-bild:.6s;
   --t-bedien:.46s;
-  --t-oeffnen:.3s;  /* Akkordeon: Redondo braucht 265 ms, nicht 400 */
+  --t-oeffnen:.3s;
+  /* 13.10.2026: Die Feder der Fragen war in .fragen{} eingesperrt und damit
+     fuer die Leistungszeilen unsichtbar - deren Uebergang hatte keine
+     gueltige Dauer und sprang hart, statt zu animieren. Jetzt an der
+     Wurzel, damit beide Aufklapper dieselbe Bewegung haben. */
+  --f-dauer:505ms;
+  --f-kurve:linear(0 0%,.109 7.1%,.339 13.3%,.591 20.2%,.767 26.5%,.892 33.3%,
+            .965 39.8%,.999 46.5%,1.013 52.9%,1.016 59.6%,1.013 66.3%,1.009 72.7%,
+            1.006 79.2%,1.003 85.9%,1.001 92.5%,1 100%);  /* Akkordeon: Redondo braucht 265 ms, nicht 400 */
   /* Menü-Hover: an Shinta gemessen t98 155 ms — also RUND DREIMAL
      schneller als eine Text-Rolle. Das war der spürbare Unterschied. */
   --t-menue:.13s;   /* wie die Knöpfe — ein Tempo für alle Bedienelemente */
@@ -687,7 +695,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      Spraenge sie beim Schliessen sofort auf dunkel, stuende sie
      260 ms lang dunkel auf dem noch dunklen Motiv. */
   transition:box-shadow var(--t-flaeche) var(--kurve-rein),
-    color 0s linear 260ms}
+    color 0s linear 250ms}
 /* Die Zeile traegt im geschlossenen Zustand DUNKLE Schrift (heller Balken).
    Beim Oeffnen wird der Grund dunkel — dann muss die Schrift der ganzen
    Zeile mitwechseln, nicht nur die der Kopfzeile. Ohne das stand der
@@ -748,7 +756,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      Zurueckschalten, der auf .ist beim Hinschalten. Oeffnen bleibt hart
      (sonst steht helle Schrift auf hellem Balken), Schliessen wartet die
      Hoehenanimation ab - erst wenn die Zeile fast zu ist, wird sie hell. */
-  transition:opacity 0s linear 260ms}
+  transition:opacity 0s linear 250ms}
 /* Kein Zwischenzustand mehr beim Ueberfahren: seit das Ueberfahren die
    Zeile OEFFNET, waere eine halb abgedunkelte Vorschau nur ein Flackern
    auf dem Weg dorthin. */
@@ -801,7 +809,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
     var(--lz-grund) right center/cover no-repeat;
   /* Gegenstueck zur Vorschau-Ebene: ebenfalls hart, siehe oben. */
   /* Gegenstueck: ebenso verzoegert zurueck, sofort hin. */
-  transition:opacity 0s linear 260ms}
+  transition:opacity 0s linear 250ms}
 .lz.ist::after{opacity:0;transition:none}
 /* Schmale Schirme: dort reicht der Balken kaum fuer Name und Zeichen —
    die Vorschau wird zur Stoerung, nicht zur Information. Sie bleibt, aber
@@ -857,7 +865,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      das Motiv noch dunkel stand - gemessen bei 72 ms schwarze
      Schrift auf schwarzem Grund. Gleiche Asymmetrie wie die Zeile:
      hin sofort, zurueck erst wenn der Balken wieder hell ist. */
-  transition:color 0s linear 260ms}
+  transition:color 0s linear 250ms}
 /* --grau-2 auf dem hellen Balken gemessen: 2,76 (Schrift ausgeblendet,
    reiner Grund gegen die echte Farbe) — zu schwach. Eine Stufe dunkler. */
 .lz__nr{color:var(--grau)}
@@ -893,8 +901,16 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .lz.ist .lz__zeichen i{background:var(--violett-hell)}
 .lz.ist .lz__zeichen i:last-child{transform:scaleY(0)}
 
-.lz__huelle{height:0;overflow:hidden;
-  transition:height var(--t-oeffnen) var(--kurve)}
+/* 13.10.2026, Dusan: "der klapp effekt soll maximal smooth sein wie bei den
+   faqs usw" - und in Safari trat das Flackern NIE auf, nur in Chrome.
+   Die FAQ nutzt eine andere Technik: grid-template-rows 0fr -> 1fr
+   statt height, und sie braucht dafuer KEIN JavaScript. Hier wurde die
+   Hoehe dagegen in JS gemessen und gesetzt - Layout-Arbeit in jedem
+   Bild, genau das, was Chrome ins Stocken bringt.
+   Jetzt dieselbe Mechanik und dieselbe Kurve wie die Fragen. */
+.lz__huelle{display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows var(--f-dauer) var(--f-kurve)}
+.lz.ist .lz__huelle{grid-template-rows:1fr}
 /* An redondo.design abgelesen (1920 px): dort beginnen Beschreibung
    UND Schlagworte an derselben linken Kante — die Schlagworte stehen
    UNTER dem Text, nicht daneben. Bei uns standen sie in einer eigenen
@@ -908,11 +924,23 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    ueber die volle Breite. Die Platte hat genau das zugedeckt, wofuer das
    Foto da ist. Also: keine Platte, eine Spalte, Text links begrenzt (das
    Abdunkeln uebernimmt der Verlauf der Zeile), Schlagworte volle Breite. */
-.lz__leib{display:grid;
+/* overflow gehoert jetzt hierher: die Huelle ist das Raster, der Leib
+   das Kind, das beschnitten wird - genau wie .frage__leib. */
+/* min-height:0 ist Pflicht: ein Rasterkind schrumpft sonst nie unter
+   seinen Inhalt, und die geschlossene Zeile blieb 169 statt 112 px. */
+/* Das SENKRECHTE Polster muss mitlaufen, sonst bleibt die geschlossene
+   Zeile 169 statt 112 px hoch: ein Element schrumpft nie unter sein
+   eigenes Polster, und 0fr loeste genau auf dessen Hoehe auf (57,6 px).
+   Bei den Fragen tritt das nicht auf, weil das Polster dort an den
+   Absaetzen sitzt und nicht am Wrapper. Seitlich bleibt es stehen -
+   nur oben und unten wird es mitanimiert, in derselben Kurve. */
+.lz__leib{overflow:hidden;min-height:0;display:grid;
   grid-template-columns:minmax(0,1fr);
   gap:clamp(18px,1.8vw,28px);
-  padding:clamp(8px,1vw,16px) clamp(20px,2vw,34px) clamp(30px,3vw,48px);
+  padding:0 clamp(20px,2vw,34px);
+  transition:padding-block var(--f-dauer) var(--f-kurve);
   align-items:start}
+.lz.ist .lz__leib{padding-block:clamp(8px,1vw,16px) clamp(30px,3vw,48px)}
 .lz__text{grid-column:1;grid-row:1;max-width:46ch}
 .lz__tags{grid-column:1;grid-row:2;max-width:720px}
 .lz__bild{grid-column:2;grid-row:1 / span 2}

@@ -330,93 +330,44 @@ function zeileHalten(el, dauerMs) {
    gestaffelt heraus: Text, dann Schlagworte, dann Bild. Es bleibt
    immer nur eine Zeile offen. */
 (function leistungen() {
+  /* 13.10.2026, Dusan: "der klapp effekt soll maximal smooth sein wie bei den
+     faqs usw" - und: in Safari flackerte es NIE, nur in Chrome.
+     Die Fragen (fragen.js) messen keine Hoehe. Sie schalten nur eine
+     Klasse um, den Rest macht CSS ueber grid-template-rows. Hier wurde
+     dagegen bei jedem Oeffnen scrollHeight/offsetHeight gelesen und
+     height gesetzt - Layout-Arbeit mitten in der Animation, und genau
+     das bringt Chrome ins Stocken, waehrend Safari es wegsteckt.
+     Jetzt dieselbe Mechanik: Klasse umschalten, sonst nichts.
+     Die Absichtspruefung von heute Mittag ist damit auch weg - sie war
+     nur noetig, weil das Aufklappen teuer war; Dusan empfand sie zu
+     Recht als Verzoegerung. */
   const zeilen = [...document.querySelectorAll('#lzliste .lz')];
   if (!zeilen.length) return;
 
-  /* 13.10.2026, Dusan: "kein fluessiges auf und zuklappen".
-     GEMESSEN: einfaches Oeffnen laeuft sauber (Mittel 16,7 ms, kein Bild
-     ueber 20 ms). Beim WECHSEL dagegen ein Bild von 133 ms — acht
-     ausgelassene Bilder, deutlich sichtbar.
-     Grund: zu() und auf() lasen beide mitten in der laufenden Animation
-     eine Layout-Groesse (scrollHeight bzw. offsetHeight). Jedes Lesen
-     NACH einem Schreiben zwingt den Browser, das ganze Layout sofort neu
-     zu rechnen — beim Wechsel zweimal hintereinander.
-     Darum jetzt getrennt: erst messen (nur lesen), dann setzen (nur
-     schreiben). Dazwischen fasst niemand das Layout an. */
-  const messenZu = (lz) => lz.querySelector('.lz__huelle').scrollHeight;
-  const messenAuf = (lz) =>
-    lz.querySelector('.lz__huelle').querySelector('.lz__leib').offsetHeight;
-
-  const setzeZu = (lz, hoehe) => {
-    const h = lz.querySelector('.lz__huelle');
-    h.style.height = hoehe + 'px';
-    requestAnimationFrame(() => { h.style.height = '0px'; });
-    lz.classList.remove('ist');
-    lz.querySelector('.lz__kopf').setAttribute('aria-expanded', 'false');
+  const setze = (ziel) => {
+    zeilen.forEach((lz) => {
+      const offen = lz === ziel;
+      lz.classList.toggle('ist', offen);
+      lz.querySelector('.lz__kopf')
+        .setAttribute('aria-expanded', offen ? 'true' : 'false');
+    });
   };
-  const setzeAuf = (lz, hoehe) => {
-    const h = lz.querySelector('.lz__huelle');
-    h.style.height = hoehe + 'px';
-    lz.classList.add('ist');
-    lz.querySelector('.lz__kopf').setAttribute('aria-expanded', 'true');
-    const fertig = (e) => {
-      if (e.propertyName !== 'height') return;
-      if (lz.classList.contains('ist')) h.style.height = 'auto';
-      h.removeEventListener('transitionend', fertig);
-    };
-    h.addEventListener('transitionend', fertig);
-  };
-
-  /* Der einzige Weg, der beides anfasst: erst ALLE Hoehen lesen, dann
-     ALLE setzen. Wird auch fuer das blosse Oeffnen und Schliessen
-     benutzt, damit es nur eine Mechanik gibt. */
-  const wechsle = (ziel) => {
-    const offene = zeilen.filter((a) => a.classList.contains('ist'));
-    const masse = offene.map((a) => [a, messenZu(a)]);
-    const hochNeu = ziel ? messenAuf(ziel) : 0;
-    masse.forEach(([a, hoehe]) => setzeZu(a, hoehe));
-    if (ziel) setzeAuf(ziel, hochNeu);
-  };
-  const zu = (lz) => setzeZu(lz, messenZu(lz));
 
   zeilen.forEach((lz) => {
-    const kopf = lz.querySelector('.lz__kopf');
-    kopf.addEventListener('click', () => {
-      const offen = lz.classList.contains('ist');
-      wechsle(offen ? null : lz);
-      /* 460 ms: Öffnen und Schliessen laufen 300 ms, das Schliessen
-         startet ein Bild später — mit Reserve für den Ausklang. */
-      zeileHalten(kopf, 460);
+    lz.querySelector('.lz__kopf').addEventListener('click', () => {
+      setze(lz.classList.contains('ist') ? null : lz);
     });
   });
-  /* Aufklappen beim Überfahren — dieselbe Mechanik wie bei den Fragen
-     (fragen.js), nicht neu erfunden: NICHT :hover je Zeile, sondern die
-     LISTE entscheidet. Zwischen den Zeilen liegt eine Lücke; mit :hover
-     verlöre der Balken dort den Zeiger und klappte zu, beim Wandern durch
-     die Liste flackerte alles auf und zu. Also gewinnt die Zeile unter
-     dem Zeiger, sonst die nächstgelegene — in der Lücke ist das fast
-     immer die bereits offene.
-     zeileHalten() wird hier bewusst NICHT gerufen: beim Klicken ist das
-     Nachführen erwünscht, beim blossen Überfahren wäre es ein unter dem
-     Zeiger wegspringender Seiteninhalt. */
+
+  /* Aufklappen beim Ueberfahren: die LISTE entscheidet, nicht :hover je
+     Zeile - zwischen den Zeilen liegt eine Luecke, dort verloere der
+     Balken den Zeiger und klappte zu. Die Zeile unter dem Zeiger gewinnt,
+     sonst die naechstgelegene. */
   const liste = document.querySelector('#lzliste');
   if (liste && matchMedia('(hover:hover) and (pointer:fine)').matches) {
-    /* 13.10.2026, Dusan: "beim hover flackert".
-       GEMESSEN: eine offene Zeile ist 503 px hoch statt 112 — sie schiebt
-       alle folgenden um 392 px nach unten. Wer eine weiter unten liegende
-       Zeile ansteuert, berührt dabei zwangsläufig die darüber, die klappt
-       sofort auf, und das Ziel springt unter dem Zeiger weg. Man fährt
-       hinterher, die nächste klappt auf, alles springt zurück.
-       Das Aufklappen beim blossen DURCHqueren ist der Fehler, nicht die
-       Zeilenwahl selbst (Oszillation war messbar null).
-       Also eine Absichtsprüfung: geöffnet wird erst, wenn der Zeiger kurz
-       auf derselben Zeile bleibt. Beim Durchfahren passiert nichts. */
-    /* 140 ms fuehlten sich traege an (Dusan: "reagiert jetzt
-       verzoegert"). 90 ms reichen, um das Durchqueren vom Ansteuern
-       zu unterscheiden, ohne zu bremsen. */
-    const RUHE = 90;
-    let warte = null, letztesZiel = null, letzteY = null;
-    const finde = (y) => {
+    const waehle = (e) => {
+      if (e.pointerType === 'touch') return;
+      const y = e.clientY;
       let ziel = zeilen.find((lz) => {
         const r = lz.getBoundingClientRect();
         return y >= r.top && y <= r.bottom;
@@ -429,47 +380,12 @@ function zeileHalten(el, dauerMs) {
           if (d < kleinster) { kleinster = d; ziel = lz; }
         });
       }
-      return ziel;
-    };
-    const waehle = (e) => {
-      if (e.pointerType === 'touch') return;
-      const ziel = finde(e.clientY);
-      if (!ziel || ziel.classList.contains('ist')) {
-        /* Zurück auf der bereits offenen Zeile: angefangene Absicht
-           verwerfen, sonst klappt sie nachträglich noch um. */
-        if (warte) { clearTimeout(warte); warte = null; letztesZiel = null; }
-        return;
-      }
-      /* Der Zeitgeber startet bei JEDER nennenswerten Bewegung neu, nicht
-         nur beim Zeilenwechsel: eine Zeile ist 112 px hoch, man ist beim
-         Durchqueren leicht länger darauf als die Ruhefrist — dann klappte
-         sie trotz Absichtsprüfung auf. Kleine Zuckungen (unter 5 px)
-         gelten als Ruhe, sonst wartet man mit zittriger Hand ewig. */
-      const bewegt = letzteY === null || Math.abs(e.clientY - letzteY) > 5;
-      letzteY = e.clientY;
-      if (ziel === letztesZiel && !bewegt) return;   // ruht bereits
-      letztesZiel = ziel;
-      if (warte) clearTimeout(warte);
-      warte = setTimeout(() => {
-        warte = null; letztesZiel = null;
-        /* Lage kann sich seit dem Auslösen geändert haben — neu prüfen,
-           sonst öffnet eine Zeile, die gar nicht mehr unter dem Zeiger ist. */
-        if (!ziel.isConnected || ziel.classList.contains('ist')) return;
-        wechsle(ziel);
-      }, RUHE);
+      if (ziel && !ziel.classList.contains('ist')) setze(ziel);
     };
     liste.addEventListener('pointerenter', waehle, { passive: true });
     liste.addEventListener('pointermove', waehle, { passive: true });
-    liste.addEventListener('pointerleave', () => {
-      if (warte) { clearTimeout(warte); warte = null; }
-      letztesZiel = null; letzteY = null;
-      zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
-    });
+    liste.addEventListener('pointerleave', () => setze(null));
   }
-
-  /* Bewusst NICHTS offen zum Start — wie bei Redondo. Die Liste der
-     fünf Namen ist die Aussage, das Aufklappen die Entscheidung des
-     Lesers. */
 })();
 
 /* ── Vollbreite Bloecke: am Ende einlaufen ──────────────────────
