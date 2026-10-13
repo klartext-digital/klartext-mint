@@ -224,9 +224,9 @@ zeileHalten(kopf, 460);
 });
 const liste = document.querySelector('#lzliste');
 if (liste && matchMedia('(hover:hover) and (pointer:fine)').matches) {
-const waehle = (e) => {
-if (e.pointerType === 'touch') return;
-const y = e.clientY;
+const RUHE = 140;
+let warte = null, letztesZiel = null, letzteY = null;
+const finde = (y) => {
 let ziel = zeilen.find((lz) => {
 const r = lz.getBoundingClientRect();
 return y >= r.top && y <= r.bottom;
@@ -239,13 +239,32 @@ const d = y < r.top ? r.top - y : y - r.bottom;
 if (d < kleinster) { kleinster = d; ziel = lz; }
 });
 }
-if (!ziel || ziel.classList.contains('ist')) return;
+return ziel;
+};
+const waehle = (e) => {
+if (e.pointerType === 'touch') return;
+const ziel = finde(e.clientY);
+if (!ziel || ziel.classList.contains('ist')) {
+if (warte) { clearTimeout(warte); warte = null; letztesZiel = null; }
+return;
+}
+const bewegt = letzteY === null || Math.abs(e.clientY - letzteY) > 5;
+letzteY = e.clientY;
+if (ziel === letztesZiel && !bewegt) return;   // ruht bereits
+letztesZiel = ziel;
+if (warte) clearTimeout(warte);
+warte = setTimeout(() => {
+warte = null; letztesZiel = null;
+if (!ziel.isConnected || ziel.classList.contains('ist')) return;
 zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
 auf(ziel);
+}, RUHE);
 };
 liste.addEventListener('pointerenter', waehle, { passive: true });
 liste.addEventListener('pointermove', waehle, { passive: true });
 liste.addEventListener('pointerleave', () => {
+if (warte) { clearTimeout(warte); warte = null; }
+letztesZiel = null; letzteY = null;
 zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
 });
 }
