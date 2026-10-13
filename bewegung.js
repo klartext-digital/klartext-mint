@@ -411,7 +411,10 @@ function zeileHalten(el, dauerMs) {
        Zeilenwahl selbst (Oszillation war messbar null).
        Also eine Absichtsprüfung: geöffnet wird erst, wenn der Zeiger kurz
        auf derselben Zeile bleibt. Beim Durchfahren passiert nichts. */
-    const RUHE = 140;
+    /* 140 ms fuehlten sich traege an (Dusan: "reagiert jetzt
+       verzoegert"). 90 ms reichen, um das Durchqueren vom Ansteuern
+       zu unterscheiden, ohne zu bremsen. */
+    const RUHE = 90;
     let warte = null, letztesZiel = null, letzteY = null;
     const finde = (y) => {
       let ziel = zeilen.find((lz) => {

@@ -683,7 +683,11 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      0 Unschaerfe) — den kann kein Pseudoelement ueberdecken. */
   box-shadow:0 0 0 1px rgb(14 13 11 / .16),
     0 14px 34px -22px rgb(14 13 11 / .30);
-  transition:box-shadow var(--t-flaeche) var(--kurve-rein)}
+  /* Die Schrift MUSS dieselbe Verzoegerung haben wie der Grund.
+     Spraenge sie beim Schliessen sofort auf dunkel, stuende sie
+     260 ms lang dunkel auf dem noch dunklen Motiv. */
+  transition:box-shadow var(--t-flaeche) var(--kurve-rein),
+    color 0s linear 260ms}
 /* Die Zeile traegt im geschlossenen Zustand DUNKLE Schrift (heller Balken).
    Beim Oeffnen wird der Grund dunkel — dann muss die Schrift der ganzen
    Zeile mitwechseln, nicht nur die der Kopfzeile. Ohne das stand der
@@ -699,6 +703,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    weil der Balken auf hellem Grund steht und ein weisser Ring darauf
    verschwaende. */
 .lz.ist{color:var(--creme);
+  transition:box-shadow var(--t-flaeche) var(--kurve-rein);
   box-shadow:0 0 0 1.5px rgb(245 165 36 / .85),
     0 6px 30px -6px rgb(245 165 36 / .70),
     0 18px 90px -16px rgb(245 165 36 / .80),
@@ -734,11 +739,20 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      bei rund 130 und der Kontrast ist null. Also schaltet der Grund
      hart um, zeitgleich mit der Schrift. Weich bleibt die Hoehe, die
      traegt den Eindruck des Aufklappens. */
-  transition:none}
+  /* 13.10.2026, Dusan: "leicht weisse schimmer beim wechsel der zeilen".
+     GESEHEN 40 ms nach dem Wechsel: die schliessende Zeile hat den Grund
+     schon hell, steht aber noch in voller Hoehe da - eine rund 500 px
+     hohe Flaeche springt schlagartig auf Weiss und schrumpft erst danach.
+     Das ist das Aufblitzen.
+     Darum ASYMMETRISCH: in CSS gilt der Uebergang des GRUNDzustands beim
+     Zurueckschalten, der auf .ist beim Hinschalten. Oeffnen bleibt hart
+     (sonst steht helle Schrift auf hellem Balken), Schliessen wartet die
+     Hoehenanimation ab - erst wenn die Zeile fast zu ist, wird sie hell. */
+  transition:opacity 0s linear 260ms}
 /* Kein Zwischenzustand mehr beim Ueberfahren: seit das Ueberfahren die
    Zeile OEFFNET, waere eine halb abgedunkelte Vorschau nur ein Flackern
    auf dem Weg dorthin. */
-.lz.ist::before{opacity:1}
+.lz.ist::before{opacity:1;transition:none}
 /* 19.09.2026, Dusan: "die bilder sollen ja bereits vorher als vorschau zu
    sehen sein mit dem verlauf, nicht erst beim aufklappen."
    Dafuer eine ZWEITE Bildebene, die genau umgekehrt arbeitet: geschlossen
@@ -786,8 +800,9 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
       rgb(255 255 255) 100%),
     var(--lz-grund) right center/cover no-repeat;
   /* Gegenstueck zur Vorschau-Ebene: ebenfalls hart, siehe oben. */
-  transition:none}
-.lz.ist::after{opacity:0}
+  /* Gegenstueck: ebenso verzoegert zurueck, sofort hin. */
+  transition:opacity 0s linear 260ms}
+.lz.ist::after{opacity:0;transition:none}
 /* Schmale Schirme: dort reicht der Balken kaum fuer Name und Zeichen —
    die Vorschau wird zur Stoerung, nicht zur Information. Sie bleibt, aber
    deutlich zurueckgenommen und erst ganz rechts. */
@@ -837,11 +852,16 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .lz__kopf{width:100%;display:flex;align-items:center;
   gap:clamp(14px,1.4vw,26px);text-align:left;
   padding:clamp(18px,1.9vw,30px) clamp(20px,2vw,34px);color:var(--tinte);
-  transition:color var(--t-knopf) var(--kurve-rein)}
+  /* Die Kopfzeile hatte einen EIGENEN weichen Farbuebergang. Beim
+     Schliessen wanderte sie dadurch von hell nach dunkel, waehrend
+     das Motiv noch dunkel stand - gemessen bei 72 ms schwarze
+     Schrift auf schwarzem Grund. Gleiche Asymmetrie wie die Zeile:
+     hin sofort, zurueck erst wenn der Balken wieder hell ist. */
+  transition:color 0s linear 260ms}
 /* --grau-2 auf dem hellen Balken gemessen: 2,76 (Schrift ausgeblendet,
    reiner Grund gegen die echte Farbe) — zu schwach. Eine Stufe dunkler. */
 .lz__nr{color:var(--grau)}
-.lz.ist .lz__kopf{color:var(--creme)}
+.lz.ist .lz__kopf{color:var(--creme);transition:none}
 .lz.ist .lz__nr{color:var(--violett)}
 .lz__nr{font-size:clamp(30px,4.4vw,86px);font-weight:800;letter-spacing:-.05em;
   line-height:.9;font-variant-numeric:tabular-nums}
