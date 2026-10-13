@@ -680,17 +680,27 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    Stapelebene der Zeile — also UEBER deren Hintergrund und unter dem Text.
    Genau deshalb funktioniert heller Balken plus dunkles Foto ohne Tricks. */
 .lz{position:relative;isolation:isolate;--lz-grund:none;
-  border-radius:var(--r-gross);color:var(--tinte);
-  background:linear-gradient(135deg,
-    rgb(255 255 255 / .97) 0%, rgb(247 247 245 / .88) 100%);
+  border-radius:var(--r-gross);color:var(--creme);
+/* 13.10.2026, Dusan: "die boxen aendern beim zuklappen die farbe, das laesst
+   es unrund wirken, lass alles in der farbe wie aufgeklappt also dark
+   mode, sodass sich nur aufklappen und vergroessert".
+   Die Zeile war geschlossen ein HELLER Balken und offen dunkel. Jeder
+   Wechsel war damit zugleich ein Farbwechsel - und der war die Quelle
+   fast aller Probleme dieses Tages: blasse Schrift beim Oeffnen,
+   weisses Aufblitzen beim Schliessen, dazu Verzoegerungen und
+   Kontrastkniffe, um beides zu umgehen.
+   Jetzt durchgehend dunkel. Es bleibt genau EINE Bewegung: die Hoehe.
+   Alle Farbverzoegerungen von heute entfallen ersatzlos. */
+  background:var(--tinte-2);
   /* 19.09.2026, Dusan: "mach die raender etwas klarer, bzw mehr ins grau".
      Vorher ein WEISSER Innenring — doppelt untauglich: auf hellem Grund
      unsichtbar, und ein Innenring wird direkt nach dem Element-Hintergrund
      gezeichnet, also VOR den beiden Bildebenen. Rechts, wo das Foto deckt,
      verschwand er ganz. Jetzt ein grauer Ring nach AUSSEN (0 Versatz,
      0 Unschaerfe) — den kann kein Pseudoelement ueberdecken. */
-  box-shadow:0 0 0 1px rgb(14 13 11 / .16),
-    0 14px 34px -22px rgb(14 13 11 / .30);
+  /* Ring hell: ein dunkler Ring auf dunklem Grund waere unsichtbar. */
+  box-shadow:0 0 0 1px rgb(247 247 245 / .14),
+    0 14px 34px -22px rgb(14 13 11 / .5);
   /* Die Schrift MUSS dieselbe Verzoegerung haben wie der Grund.
      Spraenge sie beim Schliessen sofort auf dunkel, stuende sie
      260 ms lang dunkel auf dem noch dunklen Motiv. */
@@ -699,8 +709,11 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      weicher Schatten ist in jedem Bild neu zu zeichnen. Jetzt schaltet
      er hart, zusammen mit Grund und Schrift. Dann bewegt sich wirklich
      nur noch die Hoehe, wie bei den Fragen. */
-  transition:box-shadow 0s linear 250ms,
-    color 0s linear 250ms}
+  /* 13.10.2026: Alles, was sich beim Aufklappen bewegt, laeuft jetzt in
+     DERSELBEN Dauer und Kurve wie die Hoehe. Vorher hatte der Schein
+     300 ms gegen 505 ms der Hoehe - er war fertig, bevor die Bewegung
+     zu Ende war, und genau das las sich als unrund. */
+  transition:box-shadow var(--f-dauer) var(--f-kurve)}
 /* Die Zeile traegt im geschlossenen Zustand DUNKLE Schrift (heller Balken).
    Beim Oeffnen wird der Grund dunkel — dann muss die Schrift der ganzen
    Zeile mitwechseln, nicht nur die der Kopfzeile. Ohne das stand der
@@ -715,9 +728,8 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    Schatten fuer die Tiefe. Der Saum ist hier amberfarben statt weiss,
    weil der Balken auf hellem Grund steht und ein weisser Ring darauf
    verschwaende. */
-.lz.ist{color:var(--creme);
-  transition:none;
-  box-shadow:0 0 0 1.5px rgb(245 165 36 / .85),
+/* Offen unterscheidet sich jetzt NUR noch durch den Schein. */
+.lz.ist{box-shadow:0 0 0 1.5px rgb(245 165 36 / .85),
     0 6px 30px -6px rgb(245 165 36 / .70),
     0 18px 90px -16px rgb(245 165 36 / .80),
     0 30px 64px -28px rgb(14 13 11 / .6)}
@@ -761,11 +773,11 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      Zurueckschalten, der auf .ist beim Hinschalten. Oeffnen bleibt hart
      (sonst steht helle Schrift auf hellem Balken), Schliessen wartet die
      Hoehenanimation ab - erst wenn die Zeile fast zu ist, wird sie hell. */
-  transition:opacity 0s linear 250ms}
+  opacity:1}
 /* Kein Zwischenzustand mehr beim Ueberfahren: seit das Ueberfahren die
    Zeile OEFFNET, waere eine halb abgedunkelte Vorschau nur ein Flackern
    auf dem Weg dorthin. */
-.lz.ist::before{opacity:1;transition:none}
+
 /* 19.09.2026, Dusan: "die bilder sollen ja bereits vorher als vorschau zu
    sehen sein mit dem verlauf, nicht erst beim aufklappen."
    Dafuer eine ZWEITE Bildebene, die genau umgekehrt arbeitet: geschlossen
@@ -812,10 +824,9 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
       rgb(255 255 255 / .85) 95%,
       rgb(255 255 255) 100%),
     var(--lz-grund) right center/cover no-repeat;
-  /* Gegenstueck zur Vorschau-Ebene: ebenfalls hart, siehe oben. */
-  /* Gegenstueck: ebenso verzoegert zurueck, sofort hin. */
-  transition:opacity 0s linear 250ms}
-.lz.ist::after{opacity:0;transition:none}
+  /* Die helle Vorschau entfaellt: der Balken ist jetzt immer dunkel und
+     zeigt durchgehend das Motiv von ::before. */
+  display:none}
 /* Schmale Schirme: dort reicht der Balken kaum fuer Name und Zeichen —
    die Vorschau wird zur Stoerung, nicht zur Information. Sie bleibt, aber
    deutlich zurueckgenommen und erst ganz rechts. */
@@ -864,18 +875,16 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    und Name gegenueber der Ueberschrift ein — genau wie in der Vorlage. */
 .lz__kopf{width:100%;display:flex;align-items:center;
   gap:clamp(14px,1.4vw,26px);text-align:left;
-  padding:clamp(18px,1.9vw,30px) clamp(20px,2vw,34px);color:var(--tinte);
+  padding:clamp(18px,1.9vw,30px) clamp(20px,2vw,34px);color:var(--creme);
   /* Die Kopfzeile hatte einen EIGENEN weichen Farbuebergang. Beim
      Schliessen wanderte sie dadurch von hell nach dunkel, waehrend
      das Motiv noch dunkel stand - gemessen bei 72 ms schwarze
      Schrift auf schwarzem Grund. Gleiche Asymmetrie wie die Zeile:
      hin sofort, zurueck erst wenn der Balken wieder hell ist. */
-  transition:color 0s linear 250ms}
+}
 /* --grau-2 auf dem hellen Balken gemessen: 2,76 (Schrift ausgeblendet,
    reiner Grund gegen die echte Farbe) — zu schwach. Eine Stufe dunkler. */
-.lz__nr{color:var(--grau)}
-.lz.ist .lz__kopf{color:var(--creme);transition:none}
-.lz.ist .lz__nr{color:var(--violett)}
+.lz__nr{color:var(--violett)}
 .lz__nr{font-size:clamp(30px,4.4vw,86px);font-weight:800;letter-spacing:-.05em;
   line-height:.9;font-variant-numeric:tabular-nums}
 .lz__name{font-size:clamp(30px,4.4vw,86px);font-weight:800;letter-spacing:-.05em;
@@ -893,14 +902,15 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   box-shadow:0 0 0 1.5px rgb(245 165 36 / .8),
     0 3px 14px -2px rgb(245 165 36 / .6),
     0 0 34px -4px rgb(245 165 36 / .7);
-  transition:background-color var(--t-knopf) var(--kurve-rein),
-    box-shadow var(--t-knopf) var(--kurve-rein)}
+  transition:background-color var(--f-dauer) var(--f-kurve),
+    box-shadow var(--f-dauer) var(--f-kurve)}
 .lz.ist .lz__zeichen{background:var(--tinte-2);
   box-shadow:0 0 0 1.5px rgb(245 165 36 / .95),
     0 3px 16px -2px rgb(245 165 36 / .8),
     0 0 44px -4px rgb(245 165 36 / .9)}
 .lz__zeichen i{position:absolute;background:var(--violett);border-radius:2px;
-  transition:transform .3s var(--kurve),background-color var(--t-flaeche) var(--kurve)}
+  transition:transform var(--f-dauer) var(--f-kurve),
+    background-color var(--f-dauer) var(--f-kurve)}
 .lz__zeichen i:first-child{width:44%;height:2.5px}
 .lz__zeichen i:last-child{width:2.5px;height:44%}
 .lz.ist .lz__zeichen i{background:var(--violett-hell)}
