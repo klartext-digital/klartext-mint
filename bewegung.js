@@ -333,16 +333,30 @@ function zeileHalten(el, dauerMs) {
   const zeilen = [...document.querySelectorAll('#lzliste .lz')];
   if (!zeilen.length) return;
 
-  const zu = (lz) => {
+  /* 13.10.2026, Dusan: "kein fluessiges auf und zuklappen".
+     GEMESSEN: einfaches Oeffnen laeuft sauber (Mittel 16,7 ms, kein Bild
+     ueber 20 ms). Beim WECHSEL dagegen ein Bild von 133 ms — acht
+     ausgelassene Bilder, deutlich sichtbar.
+     Grund: zu() und auf() lasen beide mitten in der laufenden Animation
+     eine Layout-Groesse (scrollHeight bzw. offsetHeight). Jedes Lesen
+     NACH einem Schreiben zwingt den Browser, das ganze Layout sofort neu
+     zu rechnen — beim Wechsel zweimal hintereinander.
+     Darum jetzt getrennt: erst messen (nur lesen), dann setzen (nur
+     schreiben). Dazwischen fasst niemand das Layout an. */
+  const messenZu = (lz) => lz.querySelector('.lz__huelle').scrollHeight;
+  const messenAuf = (lz) =>
+    lz.querySelector('.lz__huelle').querySelector('.lz__leib').offsetHeight;
+
+  const setzeZu = (lz, hoehe) => {
     const h = lz.querySelector('.lz__huelle');
-    h.style.height = h.scrollHeight + 'px';
+    h.style.height = hoehe + 'px';
     requestAnimationFrame(() => { h.style.height = '0px'; });
     lz.classList.remove('ist');
     lz.querySelector('.lz__kopf').setAttribute('aria-expanded', 'false');
   };
-  const auf = (lz) => {
+  const setzeAuf = (lz, hoehe) => {
     const h = lz.querySelector('.lz__huelle');
-    h.style.height = h.querySelector('.lz__leib').offsetHeight + 'px';
+    h.style.height = hoehe + 'px';
     lz.classList.add('ist');
     lz.querySelector('.lz__kopf').setAttribute('aria-expanded', 'true');
     const fertig = (e) => {
@@ -353,12 +367,23 @@ function zeileHalten(el, dauerMs) {
     h.addEventListener('transitionend', fertig);
   };
 
+  /* Der einzige Weg, der beides anfasst: erst ALLE Hoehen lesen, dann
+     ALLE setzen. Wird auch fuer das blosse Oeffnen und Schliessen
+     benutzt, damit es nur eine Mechanik gibt. */
+  const wechsle = (ziel) => {
+    const offene = zeilen.filter((a) => a.classList.contains('ist'));
+    const masse = offene.map((a) => [a, messenZu(a)]);
+    const hochNeu = ziel ? messenAuf(ziel) : 0;
+    masse.forEach(([a, hoehe]) => setzeZu(a, hoehe));
+    if (ziel) setzeAuf(ziel, hochNeu);
+  };
+  const zu = (lz) => setzeZu(lz, messenZu(lz));
+
   zeilen.forEach((lz) => {
     const kopf = lz.querySelector('.lz__kopf');
     kopf.addEventListener('click', () => {
       const offen = lz.classList.contains('ist');
-      zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
-      if (!offen) auf(lz);
+      wechsle(offen ? null : lz);
       /* 460 ms: Öffnen und Schliessen laufen 300 ms, das Schliessen
          startet ein Bild später — mit Reserve für den Ausklang. */
       zeileHalten(kopf, 460);
@@ -427,8 +452,7 @@ function zeileHalten(el, dauerMs) {
         /* Lage kann sich seit dem Auslösen geändert haben — neu prüfen,
            sonst öffnet eine Zeile, die gar nicht mehr unter dem Zeiger ist. */
         if (!ziel.isConnected || ziel.classList.contains('ist')) return;
-        zeilen.forEach((a) => { if (a.classList.contains('ist')) zu(a); });
-        auf(ziel);
+        wechsle(ziel);
       }, RUHE);
     };
     liste.addEventListener('pointerenter', waehle, { passive: true });
