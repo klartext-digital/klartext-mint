@@ -234,7 +234,7 @@ zeileHalten(kopf, 460);
 });
 const liste = document.querySelector('#lzliste');
 if (liste && matchMedia('(hover:hover) and (pointer:fine)').matches) {
-const RUHE = 140;
+const RUHE = 90;
 let warte = null, letztesZiel = null, letzteY = null;
 const finde = (y) => {
 let ziel = zeilen.find((lz) => {
