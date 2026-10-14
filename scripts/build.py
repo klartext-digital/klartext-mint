@@ -131,15 +131,15 @@ for target in list(MAP.values()):
  if not target.endswith('.html'): MAP[target+'index.html'] = target
 
 META = {
- '': ('Marketingagentur Schweiz: Abo & Projekte | klartext digital', 'Marketing im Abo und Projekte für Unternehmen: SEO, Webdesign, Social Media, Google und Meta Ads sowie Newsletter. Auch als Ergänzung eures Marketingteams.'),
- 'webdesign/': ('Webdesign Schweiz für KMU | klartext.', 'Webdesign für Schweizer KMU: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.'),
+ '': ('Marketingagentur Basel, Baselland & Aargau | klartext digital', 'Marketingagentur aus Pratteln für KMU in Basel, Baselland und im Aargau: SEO, Webdesign, Social Media, Google und Meta Ads, im Abo oder als Projekt.'),
+ 'webdesign/': ('Webdesign Basel & Aargau für KMU | klartext digital', 'Webdesign für KMU in Basel, Baselland und im Aargau: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.'),
 
- 'branding/': ('Branding & Markenstrategie Schweiz | klartext digital', 'Positionierung, Markensystem und Vorlagen für euren Alltag. Branding als Projekt oder spezialisierte Ergänzung eurer Marketingabteilung.'),
- 'social-media/': ('Social-Media-Betreuung & Content | klartext digital', 'Social Media mit Redaktionsplan, Content-Produktion und Auswertung. Laufende Betreuung, einzelne Kampagnen oder Unterstützung für euer Marketingteam.'),
- 'performance-marketing/': ('Google & Meta Ads: Betreuung | klartext digital', 'Google und Meta Ads mit passenden Zielseiten, Messung und laufender Betreuung. Werbeetat und Umsetzung klar planen, Anfragen nach Qualität beurteilen.'),
- 'email-marketing/': ('Newsletter & E-Mail-Marketing | klartext digital', 'Newsletter-Kampagnen, Vorlagen und automatisierte Strecken. Konzeption, Umsetzung und Auswertung als laufende Betreuung oder Ergänzung eures Teams.'),
- 'leistungen/': ('Marketing-Leistungen für Schweizer KMU | klartext.', 'Branding, Social Media, Webdesign, Performance Marketing und E-Mail Marketing: die Leistungen von klartext. im Überblick.'),
- 'ueber-uns/': ('Über klartext. | Marketing für Schweizer KMU', 'Einblick in die Arbeitsweise und den geplanten Auftritt von klartext. Team- und Unternehmensangaben dieser Entwurfsseite sind noch zu bestätigen.'),
+ 'branding/': ('Branding & Markenstrategie Basel | klartext digital', 'Positionierung, Markensystem und Vorlagen für euren Alltag. Branding als Projekt oder spezialisierte Ergänzung eurer Marketingabteilung.'),
+ 'social-media/': ('Social-Media-Agentur Basel & Aargau | klartext digital', 'Social Media für Unternehmen in der Region Basel und im Aargau: Redaktionsplan, Content-Produktion und Auswertung. Laufende Betreuung, einzelne Kampagnen oder Unterstützung für euer Marketingteam.'),
+ 'performance-marketing/': ('Google & Meta Ads Agentur Basel | klartext digital', 'Google und Meta Ads mit passenden Zielseiten, Messung und laufender Betreuung. Werbeetat und Umsetzung klar planen, Anfragen nach Qualität beurteilen.'),
+ 'email-marketing/': ('Newsletter & E-Mail-Marketing Basel | klartext digital', 'Newsletter-Kampagnen, Vorlagen und automatisierte Strecken. Konzeption, Umsetzung und Auswertung als laufende Betreuung oder Ergänzung eures Teams.'),
+ 'leistungen/': ('Marketing-Leistungen für KMU, Region Basel | klartext.', 'Branding, Social Media, Webdesign, Performance Marketing und E-Mail Marketing für Unternehmen in Basel, Baselland und im Aargau: die Leistungen im Überblick.'),
+ 'ueber-uns/': ('Über klartext. | Marketingagentur aus Pratteln', 'Marketingagentur mit Sitz in Pratteln für Unternehmen in Basel, Baselland und im Aargau: wer wir sind und wie wir arbeiten.'),
  "projekte/grand-casino-baden/": ("Grand Casino Baden: Social Media | klartext digital", "Laufende Social-Media-Betreuung und Content-Produktion für das Grand Casino Baden seit 2024: Präsenz am Markt, organisch gewachsen."),
  "projekte/red-bull/": ("Red Bull × Grand Casino Baden | klartext digital", "Content und Fotografie für zwei Drinks zur Winter Edition, umgesetzt in der Bar im Grand Casino Baden."),
  "projekte/aesthetics-medical/": ("Aesthetics Medical: Social Media | klartext digital", "Social Media und Reels für die Aesthetics Medical AG am Utoquai in Zürich: Behandlungen verständlich zeigen statt erklären müssen."),
@@ -148,9 +148,22 @@ META = {
  "projekte/meridian/": ("Meridian: vom Nischenprodukt zur Marke | klartext digital", "Branding und Kampagne für Meridian: vom Nischenprodukt zur Marke mit Haltung, entwickelt in zwölf Wochen (2024)."),
  'projekte/': ('Projekte und Referenzen | klartext digital', 'Einblicke in die Referenzen von klartext digital: Projekte aus Branding, Content und digitalem Marketing.'),
  'blog/': ('Gedanken zu Marke und Marketing | klartext.', 'Artikel und Perspektiven zu Markenaufbau, Websites, Social Media und Strategie. Entdeckt den Blog von klartext.'),
- 'impressum/': ('Impressum – Entwurf | klartext.', 'Impressumsentwurf von klartext. Verbindliche Betreiber- und Unternehmensangaben sind vor der Veröffentlichung zu vervollständigen.'),
+ 'impressum/': ('Impressum | klartext digital', 'Impressum der Klartext Digital GmbH (in Gründung), Lohagstrasse 15, 4133 Pratteln.'),
  'datenschutz/': ('Datenschutzhinweise – Entwurf | klartext.', 'Datenschutzhinweise zum klartext.-Website-Entwurf. Die Angaben müssen vor dem Produktivstart mit den eingesetzten Diensten abgeglichen werden.')
 }
+# Unternehmensangaben: eine Quelle (seo.config.json → business), dieselben
+# Daten wie im Google-Unternehmensprofil und in der Fusszeile. Google und
+# KI-Suchen vergleichen Name, Adresse und Einzugsgebiet über alle Quellen;
+# Abweichungen kosten Vertrauen. ProfessionalService ist ein LocalBusiness
+# und damit auch eine Organization.
+BUSINESS=CONFIG.get('business') or {}
+ORGANISATION={'@type':'Organization','@id':BASE+'#organization','name':'klartext digital','alternateName':'klartext.','url':BASE,'logo':BASE+'marke/wortmarke.svg'}
+if BUSINESS:
+ ORGANISATION={'@type':BUSINESS['type'],'@id':BASE+'#organization','name':BUSINESS['name'],'alternateName':BUSINESS['alternateName'],
+  'url':BASE,'logo':BASE+'marke/wortmarke.svg','image':BASE+'bilder/dienst-3.jpg','email':BUSINESS['email'],
+  'address':{'@type':'PostalAddress','streetAddress':BUSINESS['street'],'postalCode':BUSINESS['postal_code'],'addressLocality':BUSINESS['locality'],'addressRegion':BUSINESS['region'],'addressCountry':BUSINESS['country']},
+  'areaServed':[{'@type':'AdministrativeArea','name':n} for n in BUSINESS['area_served']],
+  'knowsAbout':['Webdesign','Suchmaschinenoptimierung','Social Media Marketing','Google Ads','Meta Ads','E-Mail-Marketing','Branding']}
 LABELS={'':'Startseite','webdesign/':'Webdesign','leistungen/':'Leistungen','branding/':'Branding','social-media/':'Social Media','performance-marketing/':'Performance Marketing','email-marketing/':'E-Mail Marketing','ueber-uns/':'Über uns','projekte/':'Projekte','blog/':'Blog','impressum/':'Impressum','datenschutz/':'Datenschutz'}
 for route, meta in PAGE_META.items():
  META[route] = (meta['title'], meta['description'])
@@ -265,7 +278,7 @@ for source,route in ROUTES.items():
  canonical=BASE+route
  graph=[{'@type':'WebPage','@id':canonical+'#webpage','url':canonical,'name':title,'description':desc,'inLanguage':'de-CH'}]
  if CONFIG['organization_verified']:
-  graph.append({'@type':'Organization','@id':BASE+'#organization','name':'klartext digital','alternateName':'klartext.','url':BASE,'logo':BASE+'marke/wortmarke.svg'})
+  graph.append(ORGANISATION)
   graph[0]['publisher']={'@id':BASE+'#organization'}
  veroeffentlicht=re.search(r'<time datetime="(\d{4}-\d{2}-\d{2})"',s)
  is_article=PAGE_META.get(route,{}).get('article',False) or bool(veroeffentlicht)
@@ -354,9 +367,10 @@ for source,route in ROUTES.items():
  s=s.replace('<section class="vref">','<section class="vref"><p class="seo-pruefhinweis">Kundenstimmen im Entwurf: Zitate und Zuordnung sind noch nicht bestätigt.</p>')
  # Preise sind vom Auftraggeber bestaetigt (16.09.2026): kein Entwurfshinweis mehr.
  # Die Angaben zur Mehrwertsteuer stehen sichtbar unter den Paketen.
- s=s.replace('<p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p>','<div><p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p><p>Firmierung, Kontaktangaben und Geschäftszeiten: noch zu bestätigen.</p></div>')
+ # Firmierung und Adresse bestätigt (14.10.2026). "in Gründung" entfällt mit dem
+ # Handelsregistereintrag; Telefon und Geschäftszeiten sind noch offen.
+ s=s.replace('<p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p>','<div><p>2026 Klartext Digital GmbH (in Gründung) · Alle Rechte vorbehalten</p><p>Telefon und Geschäftszeiten: noch zu bestätigen.</p></div>')
  s=s.replace('<h2 data-rein-zeilen><span>Die Mannschaft</span></h2>','<h2 data-rein-zeilen><span>Die Mannschaft</span></h2><p class="seo-pruefhinweis">Teamdarstellung im Entwurf. Namen, Rollen und Zugehörigkeit sind noch nicht bestätigt.</p>')
- s=s.replace('Werbeagentur mit Sitz in Zürich, tätig in der ganzen Deutschschweiz','Marketing für Schweizer KMU · Standortangaben noch zu bestätigen')
  if route=='ueber-uns/':
   # Der Hinweis stand hinter <main> und damit VOR dem Hero. Zusammen mit
   # .seo-freigabe (margin-top:120px in seo.css) ergab das 192px Versatz:
@@ -395,6 +409,25 @@ paths=[p for p in ROUTES.values() if CONFIG['indexable'] and p in CONFIG['approv
 xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join('<url><loc>'+escape(BASE+p)+'</loc></url>\n' for p in paths)+'</urlset>\n'
 (OUT/'sitemap.xml').write_text(xml)
 (OUT/'robots.txt').write_text('# Effective only when served at the host root. Draft noindex is in HTML.\nUser-agent: *\nAllow: /\nSitemap: '+BASE+'sitemap.xml\n')
+# llms.txt: Kurzsteckbrief für KI-Suchen (ChatGPT, Perplexity, Gemini), aus
+# denselben Titeln und Beschreibungen erzeugt wie die Seiten selbst. Wirkt wie
+# robots.txt erst an der Wurzel der Produktivdomain.
+def llms_txt():
+ b=BUSINESS
+ zeilen=['# klartext digital','',
+  '> Marketingagentur mit Sitz in '+b.get('locality','Pratteln')+' für Unternehmen in Basel, Baselland und im Aargau: '
+  'Webdesign, SEO, Social Media, Google und Meta Ads, Branding und Newsletter, im Abo oder als Projekt.','']
+ if b:zeilen+=['Adresse: '+b['street']+', '+b['postal_code']+' '+b['locality']+', Schweiz','E-Mail: '+b['email'],'Einzugsgebiet: '+', '.join(b['area_served'])+' und die übrige Deutschschweiz','']
+ gruppen=[('Leistungen',['marketing-abo/','projektarbeit/','webdesign/','seo/','social-media/','performance-marketing/','branding/','email-marketing/','website-betreuung/']),
+  ('Leitfäden',sorted(r for r in META if r.startswith('blog/') and r!='blog/')),
+  ('Über uns',['ueber-uns/','projekte/','impressum/'])]
+ for name,routen in gruppen:
+  zeilen.append('## '+name)
+  for r in routen:
+   if r in META:zeilen.append('- ['+META[r][0].split(' | ')[0]+']('+BASE+r+'): '+META[r][1])
+  zeilen.append('')
+ return '\n'.join(zeilen)
+(OUT/'llms.txt').write_text(llms_txt())
 (OUT/'.nojekyll').touch()
 # GitHub Pages serves this document with HTTP 404 at any missing path.
 # Absolute asset/navigation URLs also work when that path is deeply nested.
