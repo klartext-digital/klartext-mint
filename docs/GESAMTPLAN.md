@@ -1,4 +1,4 @@
-# klartext digital — Gesamtplan und tatsächlicher Stand
+# Klartext Digital — Gesamtplan und tatsächlicher Stand
 
 Stand: 16. September 2026. Arbeitsgrundlage: ursprünglicher 90-Tage-Plan und die im Gespräch präzisierte Positionierung. Ein veröffentlichter Entwurf ist noch keine indexierte oder nachweislich erfolgreiche Seite.
 

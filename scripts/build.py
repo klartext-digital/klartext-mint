@@ -131,24 +131,24 @@ for target in list(MAP.values()):
  if not target.endswith('.html'): MAP[target+'index.html'] = target
 
 META = {
- '': ('Marketingagentur Basel, Baselland & Aargau | klartext digital', 'Marketingagentur aus Pratteln, Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: SEO, Webdesign, Social Media, Google und Meta Ads.'),
- 'webdesign/': ('Webdesign Basel & Aargau für KMU | klartext digital', 'Webdesign für KMU in Basel, Baselland und im Aargau: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.'),
+ '': ('Marketingagentur Basel, Baselland & Aargau | Klartext Digital', 'Marketingagentur aus Pratteln, Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: SEO, Webdesign, Social Media, Google und Meta Ads.'),
+ 'webdesign/': ('Webdesign Basel & Aargau für KMU | Klartext Digital', 'Webdesign für KMU in Basel, Baselland und im Aargau: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.'),
 
- 'branding/': ('Branding & Markenstrategie Basel | klartext digital', 'Positionierung, Markensystem und Vorlagen für euren Alltag. Branding als Projekt oder spezialisierte Ergänzung eurer Marketingabteilung.'),
- 'social-media/': ('Social-Media-Agentur Basel & Aargau | klartext digital', 'Social Media für Unternehmen in der Region Basel und im Aargau: Redaktionsplan, Content-Produktion und Auswertung. Laufende Betreuung, einzelne Kampagnen oder Unterstützung für euer Marketingteam.'),
- 'performance-marketing/': ('Google & Meta Ads Agentur Basel | klartext digital', 'Google und Meta Ads mit passenden Zielseiten, Messung und laufender Betreuung. Werbeetat und Umsetzung klar planen, Anfragen nach Qualität beurteilen.'),
- 'email-marketing/': ('Newsletter & E-Mail-Marketing Basel | klartext digital', 'Newsletter-Kampagnen, Vorlagen und automatisierte Strecken. Konzeption, Umsetzung und Auswertung als laufende Betreuung oder Ergänzung eures Teams.'),
+ 'branding/': ('Branding & Markenstrategie Basel | Klartext Digital', 'Positionierung, Markensystem und Vorlagen für euren Alltag. Branding als Projekt oder spezialisierte Ergänzung eurer Marketingabteilung.'),
+ 'social-media/': ('Social-Media-Agentur Basel & Aargau | Klartext Digital', 'Social Media für Unternehmen in der Region Basel und im Aargau: Redaktionsplan, Content-Produktion und Auswertung. Laufende Betreuung, einzelne Kampagnen oder Unterstützung für euer Marketingteam.'),
+ 'performance-marketing/': ('Google & Meta Ads Agentur Basel | Klartext Digital', 'Google und Meta Ads mit passenden Zielseiten, Messung und laufender Betreuung. Werbeetat und Umsetzung klar planen, Anfragen nach Qualität beurteilen.'),
+ 'email-marketing/': ('Newsletter & E-Mail-Marketing Basel | Klartext Digital', 'Newsletter-Kampagnen, Vorlagen und automatisierte Strecken. Konzeption, Umsetzung und Auswertung als laufende Betreuung oder Ergänzung eures Teams.'),
  'leistungen/': ('Marketing-Leistungen für KMU, Region Basel | klartext.', 'Branding, Social Media, Webdesign, Performance Marketing und E-Mail Marketing für Unternehmen in Basel, Baselland und im Aargau: die Leistungen im Überblick.'),
  'ueber-uns/': ('Über klartext. | Marketingagentur aus Pratteln', 'Marketingagentur aus Pratteln, Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: wer wir sind und wie wir arbeiten.'),
- "projekte/grand-casino-baden/": ("Grand Casino Baden: Social Media | klartext digital", "Laufende Social-Media-Betreuung und Content-Produktion für das Grand Casino Baden seit 2024: Präsenz am Markt, organisch gewachsen."),
- "projekte/red-bull/": ("Red Bull × Grand Casino Baden | klartext digital", "Content und Fotografie für zwei Drinks zur Winter Edition, umgesetzt in der Bar im Grand Casino Baden."),
- "projekte/aesthetics-medical/": ("Aesthetics Medical: Social Media | klartext digital", "Social Media und Reels für die Aesthetics Medical AG am Utoquai in Zürich: Behandlungen verständlich zeigen statt erklären müssen."),
- "projekte/nordlicht/": ("Nordlicht: Markenidentität & Website | klartext digital", "Branding und Website für eine junge Energieplattform: eine klare Markenidentität, entwickelt und umgesetzt in sechs Wochen (2025)."),
- "projekte/volta/": ("Volta: Auftritt für komplexe Technik | klartext digital", "Branding und 3D-Bildsprache für Volta: ein Auftritt, der komplexe Technik verständlich macht. Umgesetzt in neun Wochen (2024)."),
- "projekte/meridian/": ("Meridian: vom Nischenprodukt zur Marke | klartext digital", "Branding und Kampagne für Meridian: vom Nischenprodukt zur Marke mit Haltung, entwickelt in zwölf Wochen (2024)."),
- 'projekte/': ('Projekte und Referenzen | klartext digital', 'Einblicke in die Referenzen von klartext digital: Projekte aus Branding, Content und digitalem Marketing.'),
+ "projekte/grand-casino-baden/": ("Grand Casino Baden: Social Media | Klartext Digital", "Laufende Social-Media-Betreuung und Content-Produktion für das Grand Casino Baden seit 2024: Präsenz am Markt, organisch gewachsen."),
+ "projekte/red-bull/": ("Red Bull × Grand Casino Baden | Klartext Digital", "Content und Fotografie für zwei Drinks zur Winter Edition, umgesetzt in der Bar im Grand Casino Baden."),
+ "projekte/aesthetics-medical/": ("Aesthetics Medical: Social Media | Klartext Digital", "Social Media und Reels für die Aesthetics Medical AG am Utoquai in Zürich: Behandlungen verständlich zeigen statt erklären müssen."),
+ "projekte/nordlicht/": ("Nordlicht: Markenidentität & Website | Klartext Digital", "Branding und Website für eine junge Energieplattform: eine klare Markenidentität, entwickelt und umgesetzt in sechs Wochen (2025)."),
+ "projekte/volta/": ("Volta: Auftritt für komplexe Technik | Klartext Digital", "Branding und 3D-Bildsprache für Volta: ein Auftritt, der komplexe Technik verständlich macht. Umgesetzt in neun Wochen (2024)."),
+ "projekte/meridian/": ("Meridian: vom Nischenprodukt zur Marke | Klartext Digital", "Branding und Kampagne für Meridian: vom Nischenprodukt zur Marke mit Haltung, entwickelt in zwölf Wochen (2024)."),
+ 'projekte/': ('Projekte und Referenzen | Klartext Digital', 'Einblicke in die Referenzen von Klartext Digital: Projekte aus Branding, Content und digitalem Marketing.'),
  'blog/': ('Gedanken zu Marke und Marketing | klartext.', 'Artikel und Perspektiven zu Markenaufbau, Websites, Social Media und Strategie. Entdeckt den Blog von klartext.'),
- 'impressum/': ('Impressum | klartext digital', 'Impressum der Klartext Digital GmbH (in Gründung), Lohagstrasse 15, 4133 Pratteln.'),
+ 'impressum/': ('Impressum | Klartext Digital', 'Impressum der Klartext Digital GmbH (in Gründung), Lohagstrasse 15, 4133 Pratteln.'),
  'datenschutz/': ('Datenschutzhinweise – Entwurf | klartext.', 'Datenschutzhinweise zum klartext.-Website-Entwurf. Die Angaben müssen vor dem Produktivstart mit den eingesetzten Diensten abgeglichen werden.')
 }
 # Unternehmensangaben: eine Quelle (seo.config.json → business), dieselben
@@ -157,7 +157,7 @@ META = {
 # Abweichungen kosten Vertrauen. ProfessionalService ist ein LocalBusiness
 # und damit auch eine Organization.
 BUSINESS=CONFIG.get('business') or {}
-ORGANISATION={'@type':'Organization','@id':BASE+'#organization','name':'klartext digital','alternateName':'klartext.','url':BASE,'logo':BASE+'marke/wortmarke.svg'}
+ORGANISATION={'@type':'Organization','@id':BASE+'#organization','name':'Klartext Digital','alternateName':'klartext.','url':BASE,'logo':BASE+'marke/wortmarke.svg'}
 if BUSINESS:
  ORGANISATION={'@type':BUSINESS['type'],'@id':BASE+'#organization','name':BUSINESS['name'],'alternateName':BUSINESS['alternateName'],
   'url':BASE,'logo':BASE+'marke/wortmarke.svg','image':BASE+'bilder/dienst-3.jpg','email':BUSINESS['email'],
@@ -390,7 +390,7 @@ for source,route in ROUTES.items():
  # A real landscape image replaces the tiny app icon in link previews.
  head=head.replace(BASE+'marke/favicon-180.png',preview_image)
  head=head.replace('property="og:type" content="website"','property="og:type" content="'+('article' if is_article else 'website')+'"')
- head+=f'<meta property="og:image:alt" content="klartext digital – Webdesign und Marketing">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="{escape(title,quote=True)}">\n<meta name="twitter:description" content="{escape(desc,quote=True)}">\n<meta name="twitter:image" content="{preview_image}">\n<script defer src="{prefix}messung.js"></script>\n'
+ head+=f'<meta property="og:image:alt" content="Klartext Digital – Webdesign und Marketing">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="{escape(title,quote=True)}">\n<meta name="twitter:description" content="{escape(desc,quote=True)}">\n<meta name="twitter:image" content="{preview_image}">\n<script defer src="{prefix}messung.js"></script>\n'
  for key,name in [('google','google-site-verification'),('bing','msvalidate.01')]:
   token=CONFIG.get('verification',{}).get(key)
   if token:head+=f'<meta name="{name}" content="{escape(token,quote=True)}">\n'
@@ -414,7 +414,7 @@ xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.
 # robots.txt erst an der Wurzel der Produktivdomain.
 def llms_txt():
  b=BUSINESS
- zeilen=['# klartext digital','',
+ zeilen=['# Klartext Digital','',
   '> Marketingagentur aus '+b.get('locality','Pratteln')+'. Schwerpunkt '+b.get('focus','Region Basel und Aargau')+', tätig in der ganzen Deutschschweiz: '
   'Webdesign, SEO, Social Media, Google und Meta Ads, Branding und Newsletter, im Abo oder als Projekt.','']
  if b:zeilen+=['Firma: '+b['name']+(' ('+b['legal_status']+')' if b.get('legal_status') else ''),'Adresse: '+b['street']+', '+b['postal_code']+' '+b['locality']+', Schweiz','E-Mail: '+b['email'],'Schwerpunkt: '+b.get('focus',''),'Einzugsgebiet: ganze Deutschschweiz ('+', '.join(b['area_served'])+')','']
@@ -431,7 +431,7 @@ def llms_txt():
 (OUT/'.nojekyll').touch()
 # GitHub Pages serves this document with HTTP 404 at any missing path.
 # Absolute asset/navigation URLs also work when that path is deeply nested.
-error_html=f'''<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seite nicht gefunden | klartext digital</title><meta name="robots" content="noindex, follow"><meta name="description" content="Diese Seite wurde nicht gefunden. Zur Startseite oder zu den Leistungen von klartext digital."><link rel="canonical" href="{BASE}404.html"><link rel="stylesheet" href="{BASE}stil.css"><link rel="stylesheet" href="{BASE}seo.css"></head><body><main><section class="unter unter--eng"><p class="brush">404</p><h1 class="seo-h1">Hier geht es nicht weiter.</h1><p>Die Adresse stimmt nicht oder die Seite wurde verschoben.</p><p><a class="knopf knopf--akzent" href="{BASE}">Zur Startseite</a></p><nav class="seo-offer-nav" aria-label="Weitere Seiten"><a href="{BASE}marketing-abo/">Marketing im Abo</a><a href="{BASE}projektarbeit/">Projektarbeit</a><a href="{BASE}blog/">Blog</a></nav></section></main></body></html>'''
+error_html=f'''<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seite nicht gefunden | Klartext Digital</title><meta name="robots" content="noindex, follow"><meta name="description" content="Diese Seite wurde nicht gefunden. Zur Startseite oder zu den Leistungen von Klartext Digital."><link rel="canonical" href="{BASE}404.html"><link rel="stylesheet" href="{BASE}stil.css"><link rel="stylesheet" href="{BASE}seo.css"></head><body><main><section class="unter unter--eng"><p class="brush">404</p><h1 class="seo-h1">Hier geht es nicht weiter.</h1><p>Die Adresse stimmt nicht oder die Seite wurde verschoben.</p><p><a class="knopf knopf--akzent" href="{BASE}">Zur Startseite</a></p><nav class="seo-offer-nav" aria-label="Weitere Seiten"><a href="{BASE}marketing-abo/">Marketing im Abo</a><a href="{BASE}projektarbeit/">Projektarbeit</a><a href="{BASE}blog/">Blog</a></nav></section></main></body></html>'''
 (OUT/'404.html').write_text(error_html)
 (OUT/'build-manifest.json').write_text(json.dumps(sorted(str(p.relative_to(OUT)) for p in OUT.rglob('*') if p.is_file()),indent=2)+'\n')
 (ROOT/'docs/URL-MAP.json').write_text(json.dumps({k:BASE+v for k,v in {**ROUTES,**ALIASES}.items()},ensure_ascii=False,indent=2)+'\n')

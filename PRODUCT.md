@@ -1,4 +1,4 @@
-# klartext digital
+# Klartext Digital
 
 ## Platform
 web

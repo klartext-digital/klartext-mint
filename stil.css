@@ -1945,7 +1945,9 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .fuss__gross:hover{background:var(--tinte);border-color:var(--tinte);
   color:var(--creme);transform:var(--kipp)}
 .fuss__gross:hover i{opacity:1;transform:translate(3px,-3px)}
-.fuss__ort{font-size:17px;line-height:1.6;color:rgb(14 13 11 / .72)}
+.fuss__ort{font-size:17px;line-height:1.6;color:rgb(14 13 11 / .72);
+  /* Abstand zur Linkspalte darunter: ohne ihn stiess die Adresse direkt an „Seite“. */
+  margin-bottom:clamp(36px,4vw,56px)}
 
 .fuss__spalten{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .fuss__spalte{display:grid;gap:2px;align-content:start;justify-items:start}
