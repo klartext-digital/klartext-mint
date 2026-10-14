@@ -2057,6 +2057,13 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
      zurueckzunehmen, nicht sie zu schrumpfen. */
   .fuss::after{width:clamp(300px,34vw,400px)}
 }
+/* Bis 900 px stehen die Spalten untereinander und reichen bis an die
+   Copyright-Zeile; die Person lag dort ueber dem Text (14.10.2026, Dusan:
+   beheben). Die Fusszeile bekommt unten so viel Platz, wie das Motiv hoch
+   ist, damit es UNTER der Copyright-Zeile steht statt darauf. */
+@media (max-width:900px){
+  .fuss{padding-bottom:calc(clamp(240px,30vw,430px) + clamp(18px,2.6vw,44px) + 16px)}
+}
 
 /* Zurueck nach oben. Erscheint erst, wenn genug Seite hinter einem
    liegt, damit er nicht die ganze Zeit im Bild klebt. */
