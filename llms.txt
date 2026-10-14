@@ -1,10 +1,12 @@
 # klartext digital
 
-> Marketingagentur mit Sitz in Pratteln für Unternehmen in Basel, Baselland und im Aargau: Webdesign, SEO, Social Media, Google und Meta Ads, Branding und Newsletter, im Abo oder als Projekt.
+> Marketingagentur aus Pratteln. Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: Webdesign, SEO, Social Media, Google und Meta Ads, Branding und Newsletter, im Abo oder als Projekt.
 
+Firma: Klartext Digital GmbH (in Gründung)
 Adresse: Lohagstrasse 15, 4133 Pratteln, Schweiz
 E-Mail: hallo@klartext-digital.ch
-Einzugsgebiet: Basel-Stadt, Basel-Landschaft, Aargau und die übrige Deutschschweiz
+Schwerpunkt: Region Basel und Aargau
+Einzugsgebiet: ganze Deutschschweiz (Aargau, Appenzell Ausserrhoden, Appenzell Innerrhoden, Basel-Landschaft, Basel-Stadt, Bern, Glarus, Graubünden, Luzern, Nidwalden, Obwalden, St. Gallen, Schaffhausen, Schwyz, Solothurn, Thurgau, Uri, Zug, Zürich)
 
 ## Leistungen
 - [Marketing im Abo, Region Basel](https://klartext-digital.github.io/klartext-mint/marketing-abo/): Laufendes Marketing im Abo für KMU in Basel, Baselland und im Aargau: SEO, Website-Betreuung, Social Media, Google und Meta Ads sowie Newsletter.
@@ -29,6 +31,6 @@ Einzugsgebiet: Basel-Stadt, Basel-Landschaft, Aargau und die übrige Deutschschw
 - [Website-Relaunch: SEO-Checkliste](https://klartext-digital.github.io/klartext-mint/blog/website-relaunch-checkliste/): Website-Relaunch planen: bestehende URLs sichern, Weiterleitungen vorbereiten, Inhalte prüfen und den Start kontrollieren. Checkliste für Marketingteams.
 
 ## Über uns
-- [Über klartext.](https://klartext-digital.github.io/klartext-mint/ueber-uns/): Marketingagentur mit Sitz in Pratteln für Unternehmen in Basel, Baselland und im Aargau: wer wir sind und wie wir arbeiten.
+- [Über klartext.](https://klartext-digital.github.io/klartext-mint/ueber-uns/): Marketingagentur aus Pratteln, Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: wer wir sind und wie wir arbeiten.
 - [Projekte und Referenzen](https://klartext-digital.github.io/klartext-mint/projekte/): Einblicke in die Referenzen von klartext digital: Projekte aus Branding, Content und digitalem Marketing.
 - [Impressum](https://klartext-digital.github.io/klartext-mint/impressum/): Impressum der Klartext Digital GmbH (in Gründung), Lohagstrasse 15, 4133 Pratteln.
