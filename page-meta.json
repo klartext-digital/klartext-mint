@@ -96,5 +96,12 @@
     "label": "In ChatGPT gefunden werden: Wie funktioniert GEO?",
     "article": true,
     "image": "bilder/dienst-6.jpg"
+  },
+  "blog/google-unternehmensprofil/": {
+    "title": "Google-Unternehmensprofil einrichten | Klartext Digital",
+    "description": "Google-Unternehmensprofil richtig einrichten: Name, Kategorie, Bestätigung, Fotos und Bewertungen. Der Leitfaden für KMU in der Schweiz, mit Checkliste.",
+    "label": "Google-Unternehmensprofil: So richtet ihr es richtig ein",
+    "article": true,
+    "image": "bilder/gbp-profil.jpg"
   }
 }
