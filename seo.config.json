@@ -12,8 +12,11 @@
   },
   "business": {
     "type": "ProfessionalService",
-    "name": "klartext digital",
-    "alternateName": "KLARTEXT.",
+    "name": "Klartext Digital GmbH",
+    "alternateName": [
+      "KLARTEXT.",
+      "klartext digital"
+    ],
     "legal_status": "in Gründung",
     "email": "hallo@klartext-digital.ch",
     "street": "Lohagstrasse 15",
@@ -22,9 +25,26 @@
     "region": "BL",
     "country": "CH",
     "area_served": [
-      "Basel-Stadt",
+      "Aargau",
+      "Appenzell Ausserrhoden",
+      "Appenzell Innerrhoden",
       "Basel-Landschaft",
-      "Aargau"
-    ]
+      "Basel-Stadt",
+      "Bern",
+      "Glarus",
+      "Graubünden",
+      "Luzern",
+      "Nidwalden",
+      "Obwalden",
+      "St. Gallen",
+      "Schaffhausen",
+      "Schwyz",
+      "Solothurn",
+      "Thurgau",
+      "Uri",
+      "Zug",
+      "Zürich"
+    ],
+    "focus": "Region Basel und Aargau"
   }
 }
