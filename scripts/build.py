@@ -132,10 +132,10 @@ for target in list(MAP.values()):
 
 META = {
  '': ('Marketingagentur Basel, Baselland & Aargau | Klartext Digital', 'Marketingagentur aus Pratteln, Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: SEO, Webdesign, Social Media, Google und Meta Ads.'),
- 'webdesign/': ('Webdesign Basel & Aargau für KMU | Klartext Digital', 'Webdesign für KMU in Basel, Baselland und im Aargau: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.'),
+ 'webdesign/': ('Webdesign Basel & Aargau für KMU | Klartext Digital', 'Webdesign für KMU in Basel, Baselland und im Aargau: Struktur, Gestaltung, technische SEO, Ladezeit und Pflege aus einer Hand.'),
 
  'branding/': ('Branding & Markenstrategie Basel | Klartext Digital', 'Positionierung, Markensystem und Vorlagen für euren Alltag. Branding als Projekt oder spezialisierte Ergänzung eurer Marketingabteilung.'),
- 'social-media/': ('Social-Media-Agentur Basel & Aargau | Klartext Digital', 'Social Media für Unternehmen in der Region Basel und im Aargau: Redaktionsplan, Content-Produktion und Auswertung. Laufende Betreuung, einzelne Kampagnen oder Unterstützung für euer Marketingteam.'),
+ 'social-media/': ('Social-Media-Agentur Basel & Aargau | Klartext Digital', 'Social Media für Unternehmen in der Region Basel und im Aargau: Redaktionsplan, Reels und Auswertung. Laufend, als Kampagne oder für euer Team.'),
  'performance-marketing/': ('Google & Meta Ads Agentur Basel | Klartext Digital', 'Google und Meta Ads mit passenden Zielseiten, Messung und laufender Betreuung. Werbeetat und Umsetzung klar planen, Anfragen nach Qualität beurteilen.'),
  'email-marketing/': ('Newsletter & E-Mail-Marketing Basel | Klartext Digital', 'Newsletter-Kampagnen, Vorlagen und automatisierte Strecken. Konzeption, Umsetzung und Auswertung als laufende Betreuung oder Ergänzung eures Teams.'),
  'leistungen/': ('Marketing-Leistungen für KMU, Region Basel | klartext.', 'Branding, Social Media, Webdesign, Performance Marketing und E-Mail Marketing für Unternehmen in Basel, Baselland und im Aargau: die Leistungen im Überblick.'),
@@ -165,6 +165,7 @@ if BUSINESS:
   'areaServed':[{'@type':'AdministrativeArea','name':n} for n in BUSINESS['area_served']],
   'openingHoursSpecification':[{'@type':'OpeningHoursSpecification','dayOfWeek':['Monday','Tuesday','Wednesday','Thursday','Friday'],'opens':BUSINESS['opens'],'closes':BUSINESS['closes']}] if BUSINESS.get('opens') else [],
   'knowsAbout':['Webdesign','Suchmaschinenoptimierung','Social Media Marketing','Google Ads','Meta Ads','E-Mail-Marketing','Branding']}
+LEISTUNGEN={'webdesign/':'Webdesign','seo/':'Suchmaschinenoptimierung (SEO)','social-media/':'Social-Media-Betreuung','performance-marketing/':'Google Ads und Meta Ads','branding/':'Branding und Markenstrategie','email-marketing/':'E-Mail-Marketing und Newsletter','website-betreuung/':'Website-Betreuung','marketing-abo/':'Marketing im Abo','projektarbeit/':'Marketing-Projekte'}
 LABELS={'':'Startseite','webdesign/':'Webdesign','leistungen/':'Leistungen','branding/':'Branding','social-media/':'Social Media','performance-marketing/':'Performance Marketing','email-marketing/':'E-Mail Marketing','ueber-uns/':'Über uns','projekte/':'Projekte','blog/':'Blog','impressum/':'Impressum','datenschutz/':'Datenschutz'}
 for route, meta in PAGE_META.items():
  META[route] = (meta['title'], meta['description'])
@@ -290,6 +291,11 @@ for source,route in ROUTES.items():
   if veroeffentlicht:article['datePublished']=veroeffentlicht.group(1)
   if CONFIG['organization_verified']:article['publisher']={'@id':BASE+'#organization'}
   graph.append(article)
+ # Leistungsseiten: Service mit Anbieter und Einzugsgebiet. Hilft Google
+ # und KI-Suchen, Leistung, Firma und Region zusammenzubringen.
+ if route in LEISTUNGEN and BUSINESS:
+  graph.append({'@type':'Service','@id':canonical+'#service','name':LEISTUNGEN[route],'serviceType':LEISTUNGEN[route],
+   'provider':{'@id':BASE+'#organization'},'areaServed':ORGANISATION['areaServed'],'url':canonical,'description':desc})
  fragen=faq_paare(s)
  if len(fragen)>=2:
   graph.append({'@type':'FAQPage','@id':canonical+'#faq','inLanguage':'de-CH','mainEntity':[
