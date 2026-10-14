@@ -47,6 +47,14 @@ Die dünnen werden Abschnitte in einer starken Seite — dafür muss nichts erfu
 | 02 Website | `webdesign/` | — |
 | 07 Website-Betreuung | `website-betreuung/` | eigene Seite statt Abschnitt, siehe unten |
 
+**Korrektur vom 14.10.2026 — Website-Betreuung ist kein Menüpunkt mehr.** Entscheid des
+Auftraggebers: Betreuung ist ein Angebotsmodell zu Websites, keine eigene Disziplin, und
+stand als Eintrag 07 gleichrangig neben „Marke & Strategie". Die **Seite bleibt** —
+eigener Suchbegriff, wiederkehrende Nachfrage — sie wird jetzt von `webdesign/` aus
+verlinkt (im Abschnitt „Inhaltspflege und Betreuung danach" und im Ablauftext) sowie
+aus der Leistungsübersicht. Das Menü hat damit **sechs** Einträge. Der Absatz unten
+beschreibt den überholten Stand vom 17.09.2026.
+
 **Korrektur vom 17.09.2026 — Website-Betreuung bleibt eigenständig.** Die Tabelle oben
 sah ursprünglich vor, `website-betreuung/` als Abschnitt in `webdesign/` einzuarbeiten.
 Das war entschieden, bevor die Überschriften der Zielseite vorlagen. `webdesign/` deckt
@@ -56,7 +64,7 @@ Wörtern die längste Leistungsseite; 656 Wörter zusätzlich hätten eine Seite
 Projekt, Pflege und SEO gleichzeitig sein will. Website-Betreuung ist eine laufend
 nachgefragte Leistung mit eigenem Suchbegriff und steht deshalb als Eintrag 07 im Menü.
 
-Damit hat das Menü sieben statt sechs Einträge. Die Begründung „neun sind zu viele"
+Damit hatte das Menü sieben statt sechs Einträge — bis zum 14.10.2026, siehe oben. Die Begründung „neun sind zu viele"
 bleibt gültig, sieben sind vertretbar — der Unterschied ist, dass keine Seite mit
 eigener Suchnachfrage in einer anderen verschwindet.
 | 03 Social Media & Content | `social-media/` | `content-creation/` (350 W.) |
