@@ -1,7 +1,7 @@
 # Regionale Sichtbarkeit: SEO und GEO
 
 Stand: 14. Oktober 2026. Entscheid des Auftraggebers: **regional starten**, Fokus
-**Basel, Baselland, Aargau**, Sitz Lohagstrasse 15, 4133 Pratteln. National später.
+**Basel, Baselland, Aargau**, Sitz Lohagstrasse 15, 4133 Pratteln. Tätig in der ganzen Deutschschweiz (Einzugsgebiet wie Google-Profil: 19 Kantone). Einheitliche Formel überall: „Marketingagentur aus Pratteln. Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz.“ Seitentitel bleiben regional.
 
 Grundregel: Ein Punkt gilt erst als erledigt, wenn der **Nachweis** vorliegt
 (Search Console, Bing Webmaster Tools, Live-Abruf). „Code eingebaut“ ist kein Nachweis.
@@ -45,7 +45,10 @@ ChatGPT sucht über Bing, Gemini und die KI-Übersichten über Google, Perplexit
 | Erwähnungen Dritter: Kundenseiten („Website von Klartext Digital“), regionale Medien, Wirtschaftskammer Baselland, Gewerbeverein Pratteln | offen | Liste der Fundstellen |
 | Echte Fallstudien mit Zahlen aus der Region | offen | |
 
-## 4. Regionale Seiten (Vorschlag, braucht Freigabe)
+## 4. Regionale Seiten (Entscheid 14.10.: vorerst keine, erst bei Nachfrage)
+
+Eine Regionsseite entsteht nur, wenn die Search Console Nachfrage aus der Region zeigt UND es echte Kunden/Projekte von dort gibt. Kandidaten: Aargau (Grand Casino Baden), Zürich (Aesthetics Medical). Der Monats-Check meldet, wenn eine Region das erfüllt.
+
 
 Das Google-Profil in Pratteln trägt in der Kartensuche für Basel und Baselland. Für den
 **Aargau** reicht es nicht: dort braucht es eine eigene Seite mit echtem Bezug

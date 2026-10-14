@@ -131,7 +131,7 @@ for target in list(MAP.values()):
  if not target.endswith('.html'): MAP[target+'index.html'] = target
 
 META = {
- '': ('Marketingagentur Basel, Baselland & Aargau | klartext digital', 'Marketingagentur aus Pratteln für KMU in Basel, Baselland und im Aargau: SEO, Webdesign, Social Media, Google und Meta Ads, im Abo oder als Projekt.'),
+ '': ('Marketingagentur Basel, Baselland & Aargau | klartext digital', 'Marketingagentur aus Pratteln, Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: SEO, Webdesign, Social Media, Google und Meta Ads.'),
  'webdesign/': ('Webdesign Basel & Aargau für KMU | klartext digital', 'Webdesign für KMU in Basel, Baselland und im Aargau: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.'),
 
  'branding/': ('Branding & Markenstrategie Basel | klartext digital', 'Positionierung, Markensystem und Vorlagen für euren Alltag. Branding als Projekt oder spezialisierte Ergänzung eurer Marketingabteilung.'),
@@ -139,7 +139,7 @@ META = {
  'performance-marketing/': ('Google & Meta Ads Agentur Basel | klartext digital', 'Google und Meta Ads mit passenden Zielseiten, Messung und laufender Betreuung. Werbeetat und Umsetzung klar planen, Anfragen nach Qualität beurteilen.'),
  'email-marketing/': ('Newsletter & E-Mail-Marketing Basel | klartext digital', 'Newsletter-Kampagnen, Vorlagen und automatisierte Strecken. Konzeption, Umsetzung und Auswertung als laufende Betreuung oder Ergänzung eures Teams.'),
  'leistungen/': ('Marketing-Leistungen für KMU, Region Basel | klartext.', 'Branding, Social Media, Webdesign, Performance Marketing und E-Mail Marketing für Unternehmen in Basel, Baselland und im Aargau: die Leistungen im Überblick.'),
- 'ueber-uns/': ('Über klartext. | Marketingagentur aus Pratteln', 'Marketingagentur mit Sitz in Pratteln für Unternehmen in Basel, Baselland und im Aargau: wer wir sind und wie wir arbeiten.'),
+ 'ueber-uns/': ('Über klartext. | Marketingagentur aus Pratteln', 'Marketingagentur aus Pratteln, Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: wer wir sind und wie wir arbeiten.'),
  "projekte/grand-casino-baden/": ("Grand Casino Baden: Social Media | klartext digital", "Laufende Social-Media-Betreuung und Content-Produktion für das Grand Casino Baden seit 2024: Präsenz am Markt, organisch gewachsen."),
  "projekte/red-bull/": ("Red Bull × Grand Casino Baden | klartext digital", "Content und Fotografie für zwei Drinks zur Winter Edition, umgesetzt in der Bar im Grand Casino Baden."),
  "projekte/aesthetics-medical/": ("Aesthetics Medical: Social Media | klartext digital", "Social Media und Reels für die Aesthetics Medical AG am Utoquai in Zürich: Behandlungen verständlich zeigen statt erklären müssen."),
@@ -415,9 +415,9 @@ xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.
 def llms_txt():
  b=BUSINESS
  zeilen=['# klartext digital','',
-  '> Marketingagentur mit Sitz in '+b.get('locality','Pratteln')+' für Unternehmen in Basel, Baselland und im Aargau: '
+  '> Marketingagentur aus '+b.get('locality','Pratteln')+'. Schwerpunkt '+b.get('focus','Region Basel und Aargau')+', tätig in der ganzen Deutschschweiz: '
   'Webdesign, SEO, Social Media, Google und Meta Ads, Branding und Newsletter, im Abo oder als Projekt.','']
- if b:zeilen+=['Adresse: '+b['street']+', '+b['postal_code']+' '+b['locality']+', Schweiz','E-Mail: '+b['email'],'Einzugsgebiet: '+', '.join(b['area_served'])+' und die übrige Deutschschweiz','']
+ if b:zeilen+=['Firma: '+b['name']+(' ('+b['legal_status']+')' if b.get('legal_status') else ''),'Adresse: '+b['street']+', '+b['postal_code']+' '+b['locality']+', Schweiz','E-Mail: '+b['email'],'Schwerpunkt: '+b.get('focus',''),'Einzugsgebiet: ganze Deutschschweiz ('+', '.join(b['area_served'])+')','']
  gruppen=[('Leistungen',['marketing-abo/','projektarbeit/','webdesign/','seo/','social-media/','performance-marketing/','branding/','email-marketing/','website-betreuung/']),
   ('Leitfäden',sorted(r for r in META if r.startswith('blog/') and r!='blog/')),
   ('Über uns',['ueber-uns/','projekte/','impressum/'])]
