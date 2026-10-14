@@ -722,5 +722,19 @@
       "path": "bilder/dienst-6-1200.webp",
       "width": 1200
     }
+  ],
+  "bilder/gbp-profil.jpg": [
+    {
+      "path": "bilder/gbp-profil-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/gbp-profil-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/gbp-profil-1200.webp",
+      "width": 1200
+    }
   ]
 }
