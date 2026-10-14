@@ -45,6 +45,8 @@
       "Zug",
       "Zürich"
     ],
-    "focus": "Region Basel und Aargau"
+    "focus": "Region Basel und Aargau",
+    "opens": "08:00",
+    "closes": "20:00"
   }
 }

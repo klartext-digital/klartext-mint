@@ -163,6 +163,7 @@ if BUSINESS:
   'url':BASE,'logo':BASE+'marke/wortmarke.svg','image':BASE+'bilder/dienst-3.jpg','email':BUSINESS['email'],
   'address':{'@type':'PostalAddress','streetAddress':BUSINESS['street'],'postalCode':BUSINESS['postal_code'],'addressLocality':BUSINESS['locality'],'addressRegion':BUSINESS['region'],'addressCountry':BUSINESS['country']},
   'areaServed':[{'@type':'AdministrativeArea','name':n} for n in BUSINESS['area_served']],
+  'openingHoursSpecification':[{'@type':'OpeningHoursSpecification','dayOfWeek':['Monday','Tuesday','Wednesday','Thursday','Friday'],'opens':BUSINESS['opens'],'closes':BUSINESS['closes']}] if BUSINESS.get('opens') else [],
   'knowsAbout':['Webdesign','Suchmaschinenoptimierung','Social Media Marketing','Google Ads','Meta Ads','E-Mail-Marketing','Branding']}
 LABELS={'':'Startseite','webdesign/':'Webdesign','leistungen/':'Leistungen','branding/':'Branding','social-media/':'Social Media','performance-marketing/':'Performance Marketing','email-marketing/':'E-Mail Marketing','ueber-uns/':'Über uns','projekte/':'Projekte','blog/':'Blog','impressum/':'Impressum','datenschutz/':'Datenschutz'}
 for route, meta in PAGE_META.items():
@@ -351,7 +352,9 @@ for source,route in ROUTES.items():
   s=re.sub(r'(<section class="unter[^"\n]*">)',lambda m:m.group(1)+markup,s,count=1)
   if markup not in s:s=s.replace('<main>','<main>'+markup,1)
  # All standard footers expose the new knowledge hub.
- s=s.replace('<p class="fuss__kopf">Seite</p>','<p class="fuss__kopf">Seite</p><a href="'+posixpath.relpath('blog',route_dir or '.')+'/">Blog</a>')
+ spalte=re.search(r'<p class="fuss__kopf">Seite</p>[\s\S]*?</nav>',s)
+ if spalte and 'mlink__t">Blog<' not in spalte.group(0):
+  s=s.replace('<p class="fuss__kopf">Seite</p>','<p class="fuss__kopf">Seite</p><a href="'+posixpath.relpath('blog',route_dir or '.')+'/">Blog</a>')
  # Offer navigation is shared; keep the existing visual menu and interactions.
  def route_link(target):return posixpath.relpath(target,route_dir or '.')+'/'
  offer_nav='<nav class="seo-offer-nav" aria-label="Zusammenarbeit"><a href="'+route_link('marketing-abo')+'">Marketing im Abo</a><a href="'+route_link('projektarbeit')+'">Projektarbeit</a></nav>'
@@ -368,8 +371,8 @@ for source,route in ROUTES.items():
  # Preise sind vom Auftraggeber bestaetigt (16.09.2026): kein Entwurfshinweis mehr.
  # Die Angaben zur Mehrwertsteuer stehen sichtbar unter den Paketen.
  # Firmierung und Adresse bestätigt (14.10.2026). "in Gründung" entfällt mit dem
- # Handelsregistereintrag; Telefon und Geschäftszeiten sind noch offen.
- s=s.replace('<p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p>','<div><p>2026 Klartext Digital GmbH (in Gründung) · Alle Rechte vorbehalten</p><p>Telefon und Geschäftszeiten: noch zu bestätigen.</p></div>')
+ # Handelsregistereintrag. Telefon bewusst leer (Dusan, 14.10.2026).
+ s=s.replace('<p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p>','<p>2026 Klartext Digital GmbH (in Gründung) · Alle Rechte vorbehalten</p>')
  s=s.replace('<h2 data-rein-zeilen><span>Die Mannschaft</span></h2>','<h2 data-rein-zeilen><span>Die Mannschaft</span></h2><p class="seo-pruefhinweis">Teamdarstellung im Entwurf. Namen, Rollen und Zugehörigkeit sind noch nicht bestätigt.</p>')
  if route=='ueber-uns/':
   # Der Hinweis stand hinter <main> und damit VOR dem Hero. Zusammen mit
@@ -417,7 +420,7 @@ def llms_txt():
  zeilen=['# Klartext Digital','',
   '> Marketingagentur aus '+b.get('locality','Pratteln')+'. Schwerpunkt '+b.get('focus','Region Basel und Aargau')+', tätig in der ganzen Deutschschweiz: '
   'Webdesign, SEO, Social Media, Google und Meta Ads, Branding und Newsletter, im Abo oder als Projekt.','']
- if b:zeilen+=['Firma: '+b['name']+(' ('+b['legal_status']+')' if b.get('legal_status') else ''),'Adresse: '+b['street']+', '+b['postal_code']+' '+b['locality']+', Schweiz','E-Mail: '+b['email'],'Schwerpunkt: '+b.get('focus',''),'Einzugsgebiet: ganze Deutschschweiz ('+', '.join(b['area_served'])+')','']
+ if b:zeilen+=['Firma: '+b['name']+(' ('+b['legal_status']+')' if b.get('legal_status') else ''),'Adresse: '+b['street']+', '+b['postal_code']+' '+b['locality']+', Schweiz','E-Mail: '+b['email'],'Öffnungszeiten: Montag bis Freitag, '+b.get('opens','')+' bis '+b.get('closes','')+' Uhr','Schwerpunkt: '+b.get('focus',''),'Einzugsgebiet: ganze Deutschschweiz ('+', '.join(b['area_served'])+')','']
  gruppen=[('Leistungen',['marketing-abo/','projektarbeit/','webdesign/','seo/','social-media/','performance-marketing/','branding/','email-marketing/','website-betreuung/']),
   ('Leitfäden',sorted(r for r in META if r.startswith('blog/') and r!='blog/')),
   ('Über uns',['ueber-uns/','projekte/','impressum/'])]
