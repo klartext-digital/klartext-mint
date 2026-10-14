@@ -89,5 +89,12 @@
     "label": "Die Unternehmenswebsite: der Leitfaden",
     "article": true,
     "image": "bilder/dienst-5.jpg"
+  },
+  "blog/in-chatgpt-gefunden-werden/": {
+    "title": "In ChatGPT gefunden werden: GEO für KMU | Klartext Digital",
+    "description": "Wie KMU in ChatGPT, Perplexity und den KI-Antworten von Google auftauchen: Technik, Firmenangaben, Inhalte, Erwähnungen und Messung. Der Leitfaden zu GEO.",
+    "label": "In ChatGPT gefunden werden: Wie funktioniert GEO?",
+    "article": true,
+    "image": "bilder/dienst-6.jpg"
   }
 }
