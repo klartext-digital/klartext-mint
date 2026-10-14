@@ -441,6 +441,11 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   --ndd-innen:30px;
   left:var(--ndd-links,var(--pad));
   width:var(--ndd-breite,min(1240px,calc(100vw - var(--pad) * 2)));z-index:5;
+  /* Sicherheitsnetz: Das Menue waechst mit jeder neuen Leistungsseite.
+     Bei sieben Eintraegen plus Kasten lief es unten aus dem Bild — die
+     Oberkante sitzt rund 92 Punkte unter dem Fensterrand, darum bleibt
+     hier Platz fuer sie und etwas Luft. */
+  max-height:calc(100dvh - 112px);
   opacity:0;visibility:hidden;pointer-events:none;
   transform:translateY(-12px) scale(.97);
   transform-origin:var(--ndd-x,50%) 0;
@@ -464,6 +469,10 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      geradewegs nach unten hinein. */
   grid-template-columns:minmax(0,auto) minmax(560px,1fr);gap:26px;
   background:var(--creme-3);color:var(--tinte);border-radius:var(--r-gross);
+  /* Weisse Flaeche auf cremefarbenem Grund: ohne Kontur war nicht zu
+     erkennen, wo das Menue aufhoert. Gleiche Kontur wie die Leiste. */
+  border:1px solid rgb(14 13 11 / .07);
+  max-height:inherit;overflow:auto;
   padding:30px;box-shadow:0 30px 80px rgb(14 13 11 / .2)}
 
 /* Spalte 1 — die Liste, gross genug für die volle Breite */
