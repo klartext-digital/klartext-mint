@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<title>Google-Unternehmensprofil einrichten | Klartext Digital</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+
+<meta name="description" content="Google-Unternehmensprofil richtig einrichten: Name, Kategorie, Bestätigung, Fotos und Bewertungen. Der Leitfaden für KMU in der Schweiz, mit Checkliste.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://klartext-digital.github.io/klartext-mint/blog/google-unternehmensprofil/">
+<meta property="og:title" content="Google-Unternehmensprofil einrichten | Klartext Digital">
+<meta property="og:description" content="Google-Unternehmensprofil richtig einrichten: Name, Kategorie, Bestätigung, Fotos und Bewertungen. Der Leitfaden für KMU in der Schweiz, mit Checkliste.">
+<meta property="og:url" content="https://klartext-digital.github.io/klartext-mint/blog/google-unternehmensprofil/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_CH">
+<meta property="og:image" content="https://klartext-digital.github.io/klartext-mint/bilder/gbp-profil.jpg">
+<link rel="stylesheet" href="../../seo.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://klartext-digital.github.io/klartext-mint/blog/google-unternehmensprofil/#webpage", "url": "https://klartext-digital.github.io/klartext-mint/blog/google-unternehmensprofil/", "name": "Google-Unternehmensprofil einrichten | Klartext Digital", "description": "Google-Unternehmensprofil richtig einrichten: Name, Kategorie, Bestätigung, Fotos und Bewertungen. Der Leitfaden für KMU in der Schweiz, mit Checkliste.", "inLanguage": "de-CH", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "ProfessionalService", "@id": "https://klartext-digital.github.io/klartext-mint/#organization", "name": "Klartext Digital GmbH", "alternateName": ["KLARTEXT.", "Klartext Digital"], "url": "https://klartext-digital.github.io/klartext-mint/", "logo": "https://klartext-digital.github.io/klartext-mint/marke/wortmarke.svg", "image": "https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg", "email": "hallo@klartext-digital.ch", "address": {"@type": "PostalAddress", "streetAddress": "Lohagstrasse 15", "postalCode": "4133", "addressLocality": "Pratteln", "addressRegion": "BL", "addressCountry": "CH"}, "areaServed": [{"@type": "AdministrativeArea", "name": "Aargau"}, {"@type": "AdministrativeArea", "name": "Appenzell Ausserrhoden"}, {"@type": "AdministrativeArea", "name": "Appenzell Innerrhoden"}, {"@type": "AdministrativeArea", "name": "Basel-Landschaft"}, {"@type": "AdministrativeArea", "name": "Basel-Stadt"}, {"@type": "AdministrativeArea", "name": "Bern"}, {"@type": "AdministrativeArea", "name": "Glarus"}, {"@type": "AdministrativeArea", "name": "Graubünden"}, {"@type": "AdministrativeArea", "name": "Luzern"}, {"@type": "AdministrativeArea", "name": "Nidwalden"}, {"@type": "AdministrativeArea", "name": "Obwalden"}, {"@type": "AdministrativeArea", "name": "St. Gallen"}, {"@type": "AdministrativeArea", "name": "Schaffhausen"}, {"@type": "AdministrativeArea", "name": "Schwyz"}, {"@type": "AdministrativeArea", "name": "Solothurn"}, {"@type": "AdministrativeArea", "name": "Thurgau"}, {"@type": "AdministrativeArea", "name": "Uri"}, {"@type": "AdministrativeArea", "name": "Zug"}, {"@type": "AdministrativeArea", "name": "Zürich"}], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "20:00"}], "knowsAbout": ["Webdesign", "Suchmaschinenoptimierung", "Social Media Marketing", "Google Ads", "Meta Ads", "E-Mail-Marketing", "Branding"]}, {"@type": "Article", "@id": "https://klartext-digital.github.io/klartext-mint/blog/google-unternehmensprofil/#article", "headline": "Google-Unternehmensprofil: So richtet ihr es richtig ein", "description": "Google-Unternehmensprofil richtig einrichten: Name, Kategorie, Bestätigung, Fotos und Bewertungen. Der Leitfaden für KMU in der Schweiz, mit Checkliste.", "mainEntityOfPage": {"@id": "https://klartext-digital.github.io/klartext-mint/blog/google-unternehmensprofil/#webpage"}, "inLanguage": "de-CH", "image": "https://klartext-digital.github.io/klartext-mint/bilder/gbp-profil.jpg", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "FAQPage", "@id": "https://klartext-digital.github.io/klartext-mint/blog/google-unternehmensprofil/#faq", "inLanguage": "de-CH", "mainEntity": [{"@type": "Question", "name": "Kostet das Google-Unternehmensprofil etwas?", "acceptedAnswer": {"@type": "Answer", "text": "Nein, das Profil ist kostenlos. Google bietet beim Einrichten oft Werbeguthaben an. Das ist ein separates Werbeangebot und für das Profil nicht nötig."}}, {"@type": "Question", "name": "Brauche ich ein Ladenlokal für ein Profil?", "acceptedAnswer": {"@type": "Answer", "text": "Nein. Wer bei Kunden arbeitet, kann die Adresse ausblenden und ein Einzugsgebiet angeben. Nötig ist aber ein echter Geschäftssitz, kein virtuelles Büro."}}, {"@type": "Question", "name": "Was tun bei einer unfairen Bewertung?", "acceptedAnswer": {"@type": "Answer", "text": "Ruhig und sachlich antworten, damit spätere Leser beide Seiten sehen. Verstösst eine Bewertung gegen die Richtlinien, etwa weil sie von keinem Kunden stammt, könnt ihr sie bei Google melden."}}, {"@type": "Question", "name": "Darf ich Suchbegriffe in den Firmennamen schreiben?", "acceptedAnswer": {"@type": "Answer", "text": "Nein. Der Name muss dem tatsächlichen Firmennamen entsprechen. Zusätze mit Ort oder Leistung verstossen gegen die Richtlinien und können zur Sperrung des Profils führen."}}]}, {"@type": "BreadcrumbList", "@id": "https://klartext-digital.github.io/klartext-mint/blog/google-unternehmensprofil/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://klartext-digital.github.io/klartext-mint/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://klartext-digital.github.io/klartext-mint/blog/"}, {"@type": "ListItem", "position": 3, "name": "Google-Unternehmensprofil: So richtet ihr es richtig ein", "item": "https://klartext-digital.github.io/klartext-mint/blog/google-unternehmensprofil/"}]}]}</script>
+<meta property="og:image:alt" content="Klartext Digital – Webdesign und Marketing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Google-Unternehmensprofil einrichten | Klartext Digital">
+<meta name="twitter:description" content="Google-Unternehmensprofil richtig einrichten: Name, Kategorie, Bestätigung, Fotos und Bewertungen. Der Leitfaden für KMU in der Schweiz, mit Checkliste.">
+<meta name="twitter:image" content="https://klartext-digital.github.io/klartext-mint/bilder/gbp-profil.jpg">
+<script defer src="../../messung.js"></script>
+<link rel="preload" href="../../fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/wortmarke-negativ.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../" aria-label="KLARTEXT — zur Startseite"><img src="../../marke/wortmarke.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../projekte/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../branding/" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marke &amp; Strategie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../social-media/" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media &amp; Content</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../webdesign/" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../performance-marketing/" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../email-marketing/" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../seo/" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-1-480.webp 480w, ../../bilder/dienst-1-626.webp 626w, ../../bilder/dienst-1-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-2.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-2-480.webp 480w, ../../bilder/dienst-2-626.webp 626w, ../../bilder/dienst-2-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-3.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-3-480.webp 480w, ../../bilder/dienst-3-626.webp 626w, ../../bilder/dienst-3-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-4.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-4-480.webp 480w, ../../bilder/dienst-4-626.webp 626w, ../../bilder/dienst-4-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-5.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-5-480.webp 480w, ../../bilder/dienst-5-626.webp 626w, ../../bilder/dienst-5-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-6.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-6-480.webp 480w, ../../bilder/dienst-6-626.webp 626w, ../../bilder/dienst-6-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+          <div class="ndd__satz"><b>Gefunden, wenn gesucht wird</b><span>Technische Prüfung, verständliche Inhalte und laufende Auswertung. Als eigenes Projekt oder als Teil des Abos.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main><div class="hero" data-hero>
+  <div class="hero__grund" aria-hidden="true"><img sizes="(max-width: 1100px) 1px, 62vw" src="../../bilder/gbp-profil.jpg" alt="" fetchpriority="high" decoding="async" width="1200" height="671" srcset="../../bilder/gbp-profil-480.webp 480w, ../../bilder/gbp-profil-626.webp 626w, ../../bilder/gbp-profil-1200.webp 1200w"></div>
+  <section class="unter unter--eng"><nav class="seo-breadcrumb" aria-label="Brotkrumennavigation"><a href="../../">Startseite</a> <span aria-hidden="true">/</span> <a href="../">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">Google-Unternehmensprofil: So richtet ihr es richtig ein</span></nav>
+  </section>
+<section class="unter__leib"><div class="unter__text">
+<h1 class="seo-h1">Google-Unternehmensprofil: So richtet ihr es richtig ein</h1><p class="brush">Gefunden werden, wo es zählt.</p><p>Wer nach einer Werkstatt, einer Praxis oder einer Agentur in der Nähe sucht, sieht zuerst die Karte mit den Unternehmensprofilen. Dieser Leitfaden zeigt Schritt für Schritt, wie ihr das Profil einrichtet, bestätigt und so pflegt, dass es für euch arbeitet.</p></div></section>
+</div>
+<article class="artikel seo-prose">
+<p class="seo-antwort"><strong>Kurze Antwort:</strong> Das Google-Unternehmensprofil ist kostenlos und entscheidet mit, ob euch Menschen in der Kartensuche und bei Suchen wie „in der Nähe“ finden. Richtig eingerichtet heisst: der echte Firmenname ohne Zusätze, eine passende Hauptkategorie, korrekte Adresse oder Einzugsgebiet, aktuelle Öffnungszeiten, echte Fotos und regelmässig Bewertungen von echten Kunden. Danach zählt die Pflege mehr als die Einrichtung.</p>
+<h2>Warum das Profil so wichtig ist</h2><p>Bei Suchen mit Ortsbezug zeigt Google oft eine Karte mit drei Einträgen über den normalen Ergebnissen. Diese Einträge stammen aus den Unternehmensprofilen. Wer dort erscheint, wird gesehen, bevor jemand auf eine Website klickt. Auch KI-Assistenten greifen bei lokalen Fragen auf Profile, Bewertungen und Öffnungszeiten zurück. Mehr dazu im Ratgeber <a href="../in-chatgpt-gefunden-werden/">In ChatGPT gefunden werden</a>.</p>
+<h2>Schritt 1: Profil anlegen, mit dem richtigen Konto</h2><p>Das Profil wird über ein Google-Konto verwaltet. Nehmt dafür ein Firmenkonto, zum Beispiel eure geschäftliche E-Mail-Adresse, und nicht das private Konto einer einzelnen Person. Fügt danach eine zweite Person als Inhaber hinzu. So bleibt das Profil erreichbar, auch wenn jemand das Unternehmen verlässt.</p><p>Prüft vor dem Anlegen, ob es euer Unternehmen schon gibt. Google schlägt beim Einrichten ähnliche Einträge vor. Beansprucht nur ein Profil, das wirklich euch gehört. Firmen mit ähnlichem Namen sind oft andere Unternehmen.</p>
+<h2>Schritt 2: Name, Kategorie und Standort</h2><ul><li><strong>Name:</strong> genau so, wie er auf Schild, Briefkasten und Website steht. Zusätze wie „Webdesign Basel“ oder „beste Agentur“ verstossen gegen die Richtlinien und können zur Sperrung führen.</li><li><strong>Hauptkategorie:</strong> Sie zählt am meisten. Wählt die Kategorie, die euer Kerngeschäft beschreibt, und ergänzt weitere nur, wenn sie wirklich zutreffen. Die Kategorienliste unterscheidet sich je nach Land. In der Schweizer Liste gibt es zum Beispiel keine „Marketingagentur“, wohl aber „Werbeagentur“ und „Online-Marketing-Unternehmen“. Probiert deshalb mehrere Suchwörter aus.</li><li><strong>Standort:</strong> Empfangt ihr Kundschaft vor Ort, wird die Adresse angezeigt. Arbeitet ihr ausschliesslich bei Kunden, blendet ihr die Adresse aus und legt ein Einzugsgebiet fest. Virtuelle Büros und Briefkastenadressen ohne Personal vor Ort sind nicht erlaubt.</li></ul>
+<h2>Schritt 3: Bestätigung</h2><p>Bevor das Profil öffentlich erscheint, muss es bestätigt werden. Die Methode legt Google fest. Häufig ist heute ein kurzes Video, möglich sind je nach Fall auch Telefon, SMS, E-Mail oder eine Postkarte.</p><p>Für das Video gilt: Zeigt in einer durchgehenden Aufnahme den Standort von aussen (Strasse, Hausnummer, Firmenschild oder Briefkasten), dann Arbeitsmittel oder Räume und einen Nachweis, dass ihr dazugehört, zum Beispiel das Aufschliessen der Tür. Ist das Schild noch nicht montiert, wartet lieber damit. Eine abgelehnte Bestätigung macht den nächsten Versuch nicht einfacher.</p>
+<h2>Schritt 4: Das Profil vollständig ausfüllen</h2><ul><li><strong>Öffnungszeiten</strong> inklusive Feiertagen und Betriebsferien. Abweichende Zeiten verärgern Kunden mehr als ein fehlender Eintrag.</li><li><strong>Telefon und Website</strong>, identisch mit den Angaben auf der Website.</li><li><strong>Beschreibung</strong> mit bis zu 750 Zeichen: was ihr macht, für wen und wo. Ohne Links, ohne Rabatte.</li><li><strong>Leistungen</strong> einzeln erfassen, mit kurzer Erklärung.</li><li><strong>Fotos:</strong> Logo, Titelbild, Aussenansicht mit Schild, Räume, Team und Arbeitsbeispiele. Echte Fotos wirken besser als Bilddatenbanken.</li></ul>
+<h2>Schritt 5: Bewertungen sammeln und beantworten</h2><p>Bewertungen sind eines der stärksten Signale, für Google wie für Menschen. Fragt nach jedem abgeschlossenen Auftrag, direkt und persönlich. Im Profil findet ihr einen Link, den ihr per E-Mail oder Nachricht verschicken könnt.</p><ul><li>Beantwortet jede Bewertung, auch die kritischen. Sachlich, kurz und mit Namen.</li><li>Bietet keine Gegenleistung für Bewertungen an und kauft keine. Beides verstösst gegen die Richtlinien von Google.</li><li>Bittet nicht nur zufriedene Kunden gezielt. Ein ehrliches Gesamtbild wirkt glaubwürdiger als eine Reihe perfekter Noten.</li></ul>
+<h2>Schritt 6: Pflegen statt vergessen</h2><p>Ein Profil, das sich nicht verändert, wirkt verlassen. Aktualisiert Öffnungszeiten vor Feiertagen, ergänzt neue Fotos und veröffentlicht ab und zu ein Update, etwa zu einem abgeschlossenen Projekt. Unter „Leistung“ seht ihr, wie oft das Profil aufgerufen wurde und wie viele Anrufe, Routenplanungen und Website-Klicks daraus entstanden sind.</p><p>Vorsicht bei Änderungen an Name, Adresse oder Hauptkategorie: Sie werden von Google geprüft und können eine erneute Bestätigung auslösen. Plant sie bewusst und nicht nebenbei.</p>
+<h2>Auch an Bing und Apple denken</h2><p>Bing Places kann die Angaben aus dem Google-Profil übernehmen. Das lohnt sich, weil unter anderem ChatGPT und Microsoft Copilot auf Bing zurückgreifen. Für Apple Karten gibt es Apple Business Connect. Achtet überall auf dieselben Angaben.</p>
+<h2>Checkliste</h2><ul><li>Firmenkonto als Inhaber, zweite Person ergänzt</li><li>Name exakt wie auf Schild und Website</li><li>Passende Hauptkategorie, wenige zutreffende Nebenkategorien</li><li>Adresse oder Einzugsgebiet korrekt</li><li>Profil bestätigt</li><li>Öffnungszeiten, Telefon, Website und Beschreibung vollständig</li><li>Echte Fotos hochgeladen</li><li>Bewertungen regelmässig angefragt und beantwortet</li><li>Bing Places und Apple Business Connect mit denselben Angaben</li></ul>
+<h2>Häufige Fragen</h2>
+<div class="fragen fragen--eingebettet">
+  <div class="fragen__liste">
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Kostet das Google-Unternehmensprofil etwas?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Nein, das Profil ist kostenlos. Google bietet beim Einrichten oft Werbeguthaben an. Das ist ein separates Werbeangebot und für das Profil nicht nötig.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Brauche ich ein Ladenlokal für ein Profil?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Nein. Wer bei Kunden arbeitet, kann die Adresse ausblenden und ein Einzugsgebiet angeben. Nötig ist aber ein echter Geschäftssitz, kein virtuelles Büro.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Was tun bei einer unfairen Bewertung?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Ruhig und sachlich antworten, damit spätere Leser beide Seiten sehen. Verstösst eine Bewertung gegen die Richtlinien, etwa weil sie von keinem Kunden stammt, könnt ihr sie bei Google melden.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Darf ich Suchbegriffe in den Firmennamen schreiben?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Nein. Der Name muss dem tatsächlichen Firmennamen entsprechen. Zusätze mit Ort oder Leistung verstossen gegen die Richtlinien und können zur Sperrung des Profils führen.</p></div></div>
+    </div>
+  </div>
+</div>
+<h2>Quellen und Vertiefung</h2><p>Google erklärt die <a href="https://support.google.com/business/answer/3038177">Richtlinien für Unternehmensprofile</a> und den Ablauf der <a href="https://support.google.com/business/answer/7107242">Bestätigung</a>. Was bei Bewertungen verboten ist, steht in den <a href="https://support.google.com/contributionpolicy/answer/7400114">Richtlinien für Beiträge</a>. Für Bing gibt es <a href="https://www.bingplaces.com/">Bing Places</a>, für Apple <a href="https://businessconnect.apple.com/">Apple Business Connect</a>.</p><p>Mehr im <a href="../unternehmenswebsite-leitfaden/">Leitfaden zur Unternehmenswebsite</a> und in der <a href="../website-pflege-checkliste/">Pflege-Checkliste</a>.</p>
+<p><a class="knopf knopf--akzent" href="../../seo/">Lokale Sichtbarkeit mit Klartext Digital</a></p><p><a href="../in-chatgpt-gefunden-werden/">In ChatGPT gefunden werden</a> · <a href="../../website-betreuung/">Website-Betreuung</a></p>
+</article></main>
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <p class="brush">Auf ein Wort</p>
+      <h2>Reden<br>wir.</h2>
+      <div class="fuss__kontakt">
+        <a class="fuss__gross" href="mailto:hallo@klartext-digital.ch">
+          <span>hallo@klartext-digital.ch</span><i aria-hidden="true">↗</i></a>
+      </div>
+      <p class="fuss__ort">Lohagstrasse 15, 4133 Pratteln<br>
+        Schwerpunkt Region Basel und Aargau,<br>
+        tätig in der ganzen Deutschschweiz<br>
+        Mo bis Fr, 08:00 bis 20:00</p>
+    </div>
+
+    <div class="fuss__spalten">
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Seite</p>
+        <a class="mlink" href="../../projekte/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+        <a class="mlink" href="../../leistungen/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Leistungen</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen</span></a>
+        <a class="mlink" href="../../ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+        <a class="mlink" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+        <a class="mlink" href="../../#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+      </nav>
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Leistungen</p><a href="../../marketing-abo/">Marketing im Abo</a><a href="../../projektarbeit/">Projektarbeit</a><a href="../../seo/">SEO-Betreuung</a><a href="../../website-betreuung/">Website-Betreuung</a>
+        <a class="mlink" href="../../branding/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a>
+        <a class="mlink" href="../../social-media/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a>
+        <a class="mlink" href="../../webdesign/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a>
+        <a class="mlink" href="../../performance-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a>
+        <a class="mlink" href="../../email-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a>
+        <a class="mlink" href="../../seo/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">SEO</span><span class="mlink__t mlink__t--neu" aria-hidden="true">SEO</span></a>
+      </nav>
+      <div class="fuss__spalte">
+        <p class="fuss__kopf">Folgen</p>
+        <div class="fuss__sozial">
+          <a href="../../" aria-label="Instagram"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+          <a href="../../" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.4 10.4v6.2M7.4 7.6v.1M11.4 16.6v-3.4a2.4 2.4 0 0 1 4.8 0v3.4M11.4 16.6v-6.2"/></svg><span>LinkedIn</span></a>
+          <a href="../../" aria-label="TikTok"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M14.2 3.5v10.9a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14.2 3.5a5 5 0 0 0 5 5"/></svg><span>TikTok</span></a>
+          <a href="../../" aria-label="Behance"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3 6h5.2a2.6 2.6 0 0 1 0 5.2H3zM3 11.2h5.6a2.9 2.9 0 0 1 0 5.8H3zM14.6 13.4h6.4a3.2 3.2 0 0 0-6.4 0 3.2 3.2 0 0 0 5.9 1.7M15.6 7.4h4.4"/></svg><span>Behance</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH (in Gründung) · Alle Rechte vorbehalten</p>
+    <nav>
+      <a href="../../impressum/">Impressum</a>
+      <a href="../../datenschutz/">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859" decoding="async"></div>
+</footer>
+
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script defer src="../../js/lenis.min.js"></script>
+<script defer src="../../js/gsap.min.js"></script>
+<script defer src="../../js/ScrollTrigger.min.js"></script>
+<script defer src="../../lader.js"></script>
+<script defer src="../../bewegung.js"></script>
+<script defer src="../../fragen.js"></script>
+<script defer src="../../zeiger.js"></script>
+<script defer src="../../rechner.js"></script>
+</body>
+</html>
