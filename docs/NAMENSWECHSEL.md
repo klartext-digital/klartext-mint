@@ -1,5 +1,7 @@
 # Namensentscheidung und Startpause
 
+**Nachtrag 14.10.2026:** Name bestätigt: **Klartext Digital GmbH** (Gründung über Startups.ch läuft, Handelsregistereintrag ausstehend), Sitz Lohagstrasse 15, 4133 Pratteln, Domain klartext-digital.ch bleibt. Regionale Ausrichtung Basel, Baselland, Aargau, siehe `REGIONAL-SEO-GEO.md`. Der Produktivstart braucht weiterhin einen eigenen ausdrücklichen Auftrag.
+
 Stand: 16. September 2026. Der Auftraggeber erwägt wegen ähnlicher Agenturnamen einen Namenswechsel. Noch kein neuer Name bestätigt. Keine Aussage zur rechtlichen Verfügbarkeit geprüft oder getroffen.
 
 ## Verbindlicher Zwischenstand

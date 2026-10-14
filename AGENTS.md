@@ -6,7 +6,7 @@ Hier arbeiten zwei KI-Werkzeuge: **ChatGPT/Codex** und **Claude Code**. Diese Re
 
 Öffentlich erreichbare Vorschau: https://klartext-digital.github.io/klartext-mint/
 
-**Produktivstart pausiert (Auftraggeber, 16.09.2026):** Die GitHub-Vorschau darf weiter aktualisiert werden. Die finale Domain darf noch nicht live gehen. Der Agenturname könnte sich ändern. Keine Domain-Umschaltung, Indexfreigabe oder Sitemap-Einreichung ohne neuen ausdrücklichen Auftrag. `scripts/release_policy.py` begrenzt Bauen, Prüfen und Publizieren auf diese Vorschau mit `noindex`. Diese Sperre nicht allein aufgrund vollständiger Firmenangaben entfernen. Namenswechsel erst nach bestätigtem neuen Namen; siehe `docs/NAMENSWECHSEL.md`.
+**Produktivstart pausiert (Auftraggeber, 16.09.2026):** Die GitHub-Vorschau darf weiter aktualisiert werden. Die finale Domain darf noch nicht live gehen. Name seit 14.10.2026 bestätigt: Klartext Digital GmbH, Sitz Pratteln, regionale Ausrichtung Basel, Baselland, Aargau (`docs/REGIONAL-SEO-GEO.md`). Unternehmensangaben stehen zentral in `seo.config.json` → `business`. Keine Domain-Umschaltung, Indexfreigabe oder Sitemap-Einreichung ohne neuen ausdrücklichen Auftrag. `scripts/release_policy.py` begrenzt Bauen, Prüfen und Publizieren auf diese Vorschau mit `noindex`. Diese Sperre nicht allein aufgrund vollständiger Firmenangaben entfernen. Namenswechsel erst nach bestätigtem neuen Namen; siehe `docs/NAMENSWECHSEL.md`.
 
 1. Quellstand ist immer `main`. Nie direkt `gh-pages` bearbeiten, nie die Pages-Quelle in den GitHub-Einstellungen ändern.
 2. Arbeit auf einem eigenen Zweig beginnen, der vom aktuellen `main` abzweigt:

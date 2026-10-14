@@ -6,5 +6,25 @@
   "person": null,
   "production_domain": "klartext-digital.ch",
   "production_host": "Hostinger",
-  "verification": {"google": null, "bing": null}
+  "verification": {
+    "google": null,
+    "bing": null
+  },
+  "business": {
+    "type": "ProfessionalService",
+    "name": "klartext digital",
+    "alternateName": "KLARTEXT.",
+    "legal_status": "in Gründung",
+    "email": "hallo@klartext-digital.ch",
+    "street": "Lohagstrasse 15",
+    "postal_code": "4133",
+    "locality": "Pratteln",
+    "region": "BL",
+    "country": "CH",
+    "area_served": [
+      "Basel-Stadt",
+      "Basel-Landschaft",
+      "Aargau"
+    ]
+  }
 }
