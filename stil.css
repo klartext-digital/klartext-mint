@@ -3535,7 +3535,12 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    zusammen, der groessere gewinnt, dort aendert sich also nichts. */
 .fragen--eingebettet{padding:0;max-width:none;
   margin:clamp(22px,2.4vw,34px) 0 clamp(28px,3vw,44px)}
-.fragen--eingebettet .fragen__liste{margin-top:0;max-width:none}
+/* Die Breite bleibt die der Startseite. Vorher hob max-width:none sie auf:
+   der Rahmen bricht mit negativen Raendern auf die volle Fensterbreite aus,
+   und die Fragen wurden mit 1648 Punkten doppelt so breit wie der Fliesstext
+   daneben (820). Der Rahmen darf vollbreit bleiben, die Liste darin steht
+   zentriert in 1200 Punkten — wie auf der Startseite. */
+.fragen--eingebettet .fragen__liste{margin-top:0}
 
 /* ── Preiszeile mit Erstgespräch ───────────────────────────
    Die beiden Pakete ruecken nach links und werden schmaler; rechts
