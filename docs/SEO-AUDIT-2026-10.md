@@ -88,7 +88,7 @@ Unterscheidungsmerkmal.
 **Dieses Quartal**
 7. Verzeichnisse mit identischen Angaben: local.ch, search.ch, Sortlist, GoodFirms, Clutch
 8. ✔ 14.10.2026: Ratgeber „In ChatGPT gefunden werden“ unter /blog/in-chatgpt-gefunden-werden/ (Dach Website, verlinkt von SEO-Seite und Hauptartikel)
-9. Ratgeber „Google-Unternehmensprofil richtig einrichten“
+9. ✔ 15.10.2026: Ratgeber unter /blog/google-unternehmensprofil/ (eigenes Motiv gbp-profil.jpg)
 10. Bewertungen: nach jedem Projekt um eine Google-Bewertung bitten
 11. Zwei echte Fallstudien mit Zahlen (z. B. Grand Casino Baden)
 12. Erwähnungen: Gewerbeverein Pratteln, Wirtschaftskammer Baselland, Kundenseiten
