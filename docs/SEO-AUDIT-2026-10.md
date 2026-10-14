@@ -87,7 +87,7 @@ Unterscheidungsmerkmal.
 
 **Dieses Quartal**
 7. Verzeichnisse mit identischen Angaben: local.ch, search.ch, Sortlist, GoodFirms, Clutch
-8. Ratgeber „In ChatGPT und Google gefunden werden: GEO für KMU“
+8. ✔ 14.10.2026: Ratgeber „In ChatGPT gefunden werden“ unter /blog/in-chatgpt-gefunden-werden/ (Dach Website, verlinkt von SEO-Seite und Hauptartikel)
 9. Ratgeber „Google-Unternehmensprofil richtig einrichten“
 10. Bewertungen: nach jedem Projekt um eine Google-Bewertung bitten
 11. Zwei echte Fallstudien mit Zahlen (z. B. Grand Casino Baden)
