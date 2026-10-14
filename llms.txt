@@ -1,0 +1,34 @@
+# klartext digital
+
+> Marketingagentur mit Sitz in Pratteln für Unternehmen in Basel, Baselland und im Aargau: Webdesign, SEO, Social Media, Google und Meta Ads, Branding und Newsletter, im Abo oder als Projekt.
+
+Adresse: Lohagstrasse 15, 4133 Pratteln, Schweiz
+E-Mail: hallo@klartext-digital.ch
+Einzugsgebiet: Basel-Stadt, Basel-Landschaft, Aargau und die übrige Deutschschweiz
+
+## Leistungen
+- [Marketing im Abo, Region Basel](https://klartext-digital.github.io/klartext-mint/marketing-abo/): Laufendes Marketing im Abo für KMU in Basel, Baselland und im Aargau: SEO, Website-Betreuung, Social Media, Google und Meta Ads sowie Newsletter.
+- [Marketing-Projekte & Webdesign](https://klartext-digital.github.io/klartext-mint/projektarbeit/): Webdesign, Kommunikationsstrategie und Content-Produktion als klar geplantes Projekt. Auch als externe Ergänzung eurer Marketingabteilung.
+- [Webdesign Basel & Aargau für KMU](https://klartext-digital.github.io/klartext-mint/webdesign/): Webdesign für KMU in Basel, Baselland und im Aargau: Seitenstruktur, Gestaltung, technische SEO, Ladezeit und Pflege. Erfahrt, wie ihr euren neuen Webauftritt sinnvoll plant.
+- [SEO-Agentur Basel & Aargau](https://klartext-digital.github.io/klartext-mint/seo/): SEO für Unternehmen in Basel, Baselland und im Aargau: technische Hürden prüfen, relevante Inhalte verbessern und Fortschritt mit Such- und Anfragedaten bewerten.
+- [Social-Media-Agentur Basel & Aargau](https://klartext-digital.github.io/klartext-mint/social-media/): Social Media für Unternehmen in der Region Basel und im Aargau: Redaktionsplan, Content-Produktion und Auswertung. Laufende Betreuung, einzelne Kampagnen oder Unterstützung für euer Marketingteam.
+- [Google & Meta Ads Agentur Basel](https://klartext-digital.github.io/klartext-mint/performance-marketing/): Google und Meta Ads mit passenden Zielseiten, Messung und laufender Betreuung. Werbeetat und Umsetzung klar planen, Anfragen nach Qualität beurteilen.
+- [Branding & Markenstrategie Basel](https://klartext-digital.github.io/klartext-mint/branding/): Positionierung, Markensystem und Vorlagen für euren Alltag. Branding als Projekt oder spezialisierte Ergänzung eurer Marketingabteilung.
+- [Newsletter & E-Mail-Marketing Basel](https://klartext-digital.github.io/klartext-mint/email-marketing/): Newsletter-Kampagnen, Vorlagen und automatisierte Strecken. Konzeption, Umsetzung und Auswertung als laufende Betreuung oder Ergänzung eures Teams.
+- [Website-Betreuung Basel & Aargau](https://klartext-digital.github.io/klartext-mint/website-betreuung/): Website-Inhalte pflegen, Funktionen prüfen und Änderungen geordnet umsetzen. Laufende Betreuung für Unternehmen in der Region Basel und im Aargau.
+
+## Leitfäden
+- [Was kostet ein Branding?](https://klartext-digital.github.io/klartext-mint/blog/branding-kosten/): Fünf Faktoren bestimmen den Aufwand eines Brandings. Was zu einer vollständigen Übergabe gehört und wie ihr zwei Offerten vergleichbar macht.
+- [Google-Ads-Budget richtig planen](https://klartext-digital.github.io/klartext-mint/blog/google-ads-budget/): Google-Ads-Budget planen: Werbeetat und Betreuung trennen, Tagesbudget verstehen und Ergebnisse anhand passender Anfragen beurteilen.
+- [Marketingbudget für KMU planen](https://klartext-digital.github.io/klartext-mint/blog/marketingbudget-kmu/): Marketingbudget planen: laufende Betreuung, Projekte, Werbeetat und interne Zeit zusammenführen. Mit einer praktischen Vorlage für die Budgetbesprechung.
+- [Was kostet Social-Media-Betreuung?](https://klartext-digital.github.io/klartext-mint/blog/social-media-kosten/): Woraus sich der Aufwand für Social-Media-Betreuung zusammensetzt: Produktion, laufende Betreuung und Kampagnen getrennt betrachten und Offerten vergleichen.
+- [Unternehmenswebsite: der Leitfaden](https://klartext-digital.github.io/klartext-mint/blog/unternehmenswebsite-leitfaden/): Unternehmenswebsite planen: Aufgabe, Struktur, Inhalte, Technik und Betrieb. Der Leitfaden fuehrt die sechs Entscheidungen zusammen, die vor dem ersten Entwurf stehen.
+- [Website erstellen lassen: Ablauf](https://klartext-digital.github.io/klartext-mint/blog/website-erstellen-lassen/): Eine Unternehmenswebsite beauftragen: Ziele, Inhalte, Funktionen, Zuständigkeiten und Abnahme klären. Mit einer praktischen Briefing-Checkliste.
+- [Was kostet eine Website in der Schweiz?](https://klartext-digital.github.io/klartext-mint/blog/website-kosten-schweiz/): Welche Faktoren bestimmen Website-Kosten? Ein Leitfaden für Schweizer KMU zu Konzept, Design, Inhalten, Technik, Betrieb und dem Vergleich von Offerten.
+- [Website-Pflege: Checkliste](https://klartext-digital.github.io/klartext-mint/blog/website-pflege-checkliste/): Website-Pflege organisieren: Inhalte, Kontaktwege, Darstellung und technische Zuständigkeiten prüfen. Eine praktische Checkliste für Marketingteams.
+- [Website-Relaunch: SEO-Checkliste](https://klartext-digital.github.io/klartext-mint/blog/website-relaunch-checkliste/): Website-Relaunch planen: bestehende URLs sichern, Weiterleitungen vorbereiten, Inhalte prüfen und den Start kontrollieren. Checkliste für Marketingteams.
+
+## Über uns
+- [Über klartext.](https://klartext-digital.github.io/klartext-mint/ueber-uns/): Marketingagentur mit Sitz in Pratteln für Unternehmen in Basel, Baselland und im Aargau: wer wir sind und wie wir arbeiten.
+- [Projekte und Referenzen](https://klartext-digital.github.io/klartext-mint/projekte/): Einblicke in die Referenzen von klartext digital: Projekte aus Branding, Content und digitalem Marketing.
+- [Impressum](https://klartext-digital.github.io/klartext-mint/impressum/): Impressum der Klartext Digital GmbH (in Gründung), Lohagstrasse 15, 4133 Pratteln.
