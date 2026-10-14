@@ -708,5 +708,19 @@
       "path": "bilder/erst-person-900.webp",
       "width": 900
     }
+  ],
+  "bilder/dienst-6.jpg": [
+    {
+      "path": "bilder/dienst-6-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/dienst-6-626.webp",
+      "width": 626
+    },
+    {
+      "path": "bilder/dienst-6-1200.webp",
+      "width": 1200
+    }
   ]
 }
