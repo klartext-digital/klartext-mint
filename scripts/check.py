@@ -37,7 +37,7 @@ for p,page in pages.items():
    try:
     data=json.loads(block)
     for entity in data['@graph']:
-     if entity['@type'] in ['Organization','Person'] and not json.loads((ROOT/'seo.config.json').read_text()).get('organization_verified'):errors.append(f'{rel}: unverified entity')
+     if entity['@type'] in ['Organization','ProfessionalService','Person'] and not json.loads((ROOT/'seo.config.json').read_text()).get('organization_verified'):errors.append(f'{rel}: unverified entity')
      if entity['@type']=='BreadcrumbList':
       assert [x['position'] for x in entity['itemListElement']]==list(range(1,len(entity['itemListElement'])+1))
    except Exception as e:errors.append(f'{rel}: invalid schema {e}')
