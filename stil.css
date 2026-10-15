@@ -3541,7 +3541,9 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    schon fuer den Block hinter dem Kontaktblock verwendet. */
 .fragen--eingebettet{padding:0;max-width:none;
   margin-block:clamp(48px,4.5vw,86px)}
-.fragen--eingebettet + *{margin-top:0}
+/* Zwei Klassen, damit die Regel die Ueberschriften-Regel der
+   Textstrecke schlaegt (.seo-prose h2 bringt sonst 79 Punkte mit). */
+.seo-prose .fragen--eingebettet + *{margin-top:0}
 /* Die Breite bleibt die der Startseite. Vorher hob max-width:none sie auf:
    der Rahmen bricht mit negativen Raendern auf die volle Fensterbreite aus,
    und die Fragen wurden mit 1648 Punkten doppelt so breit wie der Fliesstext
