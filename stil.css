@@ -3479,13 +3479,8 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 
 .fragen__liste{display:grid;gap:20px;max-width:1200px;
   margin:clamp(26px,2.6vw,42px) auto 0}
-/* Keine Flaechenfarbe mehr beim Oeffnen. Beim Wandern durch die Liste
-   entscheidet fragen.js bei jeder Zeigerbewegung neu, welche Frage offen
-   ist: gemessen zehn Zustandswechsel in 69 Millisekunden. Jeder startete
-   eine 505-ms-Animation von Weiss nach Amber, fuenf liefen uebereinander
-   und loesten sich alle zehn Millisekunden ab — das war das Flackern.
-   Der Kasten bleibt jetzt weiss, markiert wird ueber den Knopf. */
-.frage{background:var(--creme-3);border-radius:24px}
+.frage{background:var(--creme-3);border-radius:24px;
+  transition:background var(--f-dauer) var(--f-kurve)}
 .frage__kopf{display:flex;align-items:center;justify-content:space-between;gap:20px;
   width:100%;padding:24px;border:0;background:none;font:inherit;text-align:left;
   cursor:pointer;color:var(--tinte);
@@ -3516,12 +3511,10 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    zu — beim Wandern durch die Liste flackerte es dauernd. Jetzt
    entscheidet fragen.js fuer die ganze Liste, welche Frage offen ist,
    und setzt .offen. In der Luecke bleibt die bisherige offen. */
-/* .offen aendert die Flaeche nicht mehr — siehe oben. */
+.frage.offen,.frage:focus-within{background:var(--violett)}
 .frage.offen .frage__huelle,.frage:focus-within .frage__huelle{grid-template-rows:1fr}
 .frage.offen .frage__leib p,.frage:focus-within .frage__leib p{color:rgb(14 13 11 / .78)}
-.frage.offen .frage__kreis,.frage:focus-within .frage__kreis{
-  background:var(--violett);transform:rotate(90deg)}
-.frage.offen .frage__kreis i,.frage:focus-within .frage__kreis i{background:var(--tinte)}
+.frage.offen .frage__kreis,.frage:focus-within .frage__kreis{background:var(--tinte);transform:rotate(90deg)}
 .frage.offen .frage__kreis b,.frage:focus-within .frage__kreis b{opacity:0}
 .frage[hidden]{display:none}
 
