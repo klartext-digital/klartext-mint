@@ -269,7 +269,7 @@
     document.body.appendChild(anzeige);
   }
 
-  /* Schalter zum Eingrenzen: ?ohne=korn | film | mac | glas | alles
+  /* Schalter zum Eingrenzen: ?ohne=korn | film | mac | glas | leben | lenis | zeiger | alles
      Damit laesst sich einzeln abschalten, was Bilder kosten koennte,
      ohne dass ich raten muss, welcher Verdaechtige es ist. */
   (function () {
@@ -284,7 +284,11 @@
     if (aus('glas')) {
       const st = document.createElement('style');
       /* Grosse weiche Schatten und Verlaeufe kosten beim Neuzeichnen. */
-      st.textContent = '*{box-shadow:none!important;filter:none!important}';
+      /* backdrop-filter MUSS mit: ohne ihn blieben die Milchglas-
+         Flaechen (Leiste, Pruef-Karte, Ruf-Karte) bei jedem Test aktiv,
+         und der Schalter zeigte nie etwas an. */
+      st.textContent = '*{box-shadow:none!important;filter:none!important;' +
+        'backdrop-filter:none!important;-webkit-backdrop-filter:none!important}';
       document.head.appendChild(st);
     }
     if (aus('lenis') && window.__lenis) {
@@ -293,6 +297,13 @@
       try { window.__lenis.destroy(); } catch (x) {}
       document.documentElement.classList.remove('lenis');
       document.documentElement.style.scrollBehavior = 'auto';
+    }
+    if (aus('leben') && window.gsap) {
+      /* Haelt die Dauerbewegung der Handschrift an, ohne sonst etwas
+         zu veraendern — zum Eingrenzen, ob sie die Unruhe verursacht. */
+      gsap.globalTimeline.getChildren(true, true, false)
+        .filter((t) => t.repeat && t.repeat() === -1)
+        .forEach((t) => t.pause());
     }
     if (aus('zeiger')) { wurzel.remove(); }
   })();
