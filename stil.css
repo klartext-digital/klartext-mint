@@ -2365,7 +2365,11 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .unter__motiv img{display:block;width:100%;height:auto;object-fit:cover}
 /* Blocksatz braucht Silbentrennung, sonst reisst das Deutsche Luecken
    in die Zeilen. */
+/* Der Text fuellt hier seine Spalte. Die uebliche Begrenzung auf 60
+   Zeichen liess ihn nur 496 von 709 Punkten nutzen — im Blocksatz
+   faellt eine halbleere Spalte sofort auf. */
 .unter__text--satz{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.hero .unter__leib--portraet .unter__text--satz p{max-width:none}
 .unter__text--satz > p + p{margin-top:1.05em}
 @media(max-width:860px){
   .hero .unter__leib--portraet{grid-template-columns:minmax(0,1fr)}
