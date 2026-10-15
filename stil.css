@@ -2345,18 +2345,20 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Eigene Modifier, damit die uebrigen Leistungsseiten unberuehrt
    bleiben, solange der Stil erst auf Branding erprobt wird. */
 .hero--portraet{min-height:auto}
-.unter__leib--portraet{
+/* Zwei Klassen, weil .hero .unter__leib (Zeile 2230) den Block auf
+   eine Spalte setzt und mit einer Klasse nicht zu schlagen ist. */
+.hero .unter__leib--portraet{
   display:grid;
   grid-template-columns:minmax(0,1fr) minmax(0,1fr);
   gap:clamp(28px,3.4vw,64px);
   align-items:start;
   padding-top:clamp(96px,9vw,150px);
   padding-bottom:clamp(40px,4vw,72px)}
-.unter__leib--portraet .unter__kopf{grid-column:1 / -1}
+.hero .unter__leib--portraet .unter__kopf{grid-column:1 / -1}
 /* Titel darf hier die ganze Breite nutzen und wird entsprechend gross. */
 .unter__gross{font-size:clamp(56px,9.4vw,152px);line-height:.92;
   letter-spacing:-.04em;margin:18px 0 6px}
-.unter__leib--portraet .brush{font-size:clamp(24px,2.9vw,46px);
+.hero .unter__leib--portraet .brush{font-size:clamp(24px,2.9vw,46px);
   color:var(--violett);margin-bottom:0}
 .unter__motiv{border-radius:var(--r-gross);overflow:hidden;
   background:var(--creme-2);margin:0}
@@ -2366,7 +2368,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .unter__text--satz{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
 .unter__text--satz > p + p{margin-top:1.05em}
 @media(max-width:860px){
-  .unter__leib--portraet{grid-template-columns:minmax(0,1fr)}
+  .hero .unter__leib--portraet{grid-template-columns:minmax(0,1fr)}
   .unter__text--satz{text-align:left;hyphens:manual}
 }
 
