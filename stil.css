@@ -3544,6 +3544,10 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* Zwei Klassen, damit die Regel die Ueberschriften-Regel der
    Textstrecke schlaegt (.seo-prose h2 bringt sonst 79 Punkte mit). */
 .seo-prose .fragen--eingebettet + *{margin-top:0}
+/* Steht die FAQ am Blockende, addierte sich ihr unterer Abstand auf das
+   Polster des Containers: gemessen 142 Punkte Leerraum bis zur
+   Unterkante der Seitenflaeche. Dort traegt das Polster allein. */
+.fragen--eingebettet:last-child{margin-bottom:0}
 /* Die Breite bleibt die der Startseite. Vorher hob max-width:none sie auf:
    der Rahmen bricht mit negativen Raendern auf die volle Fensterbreite aus,
    und die Fragen wurden mit 1648 Punkten doppelt so breit wie der Fliesstext
