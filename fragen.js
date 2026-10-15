@@ -12,6 +12,15 @@ f.classList.toggle('offen', offen);
 f.querySelector('.frage__kopf').setAttribute('aria-expanded', offen ? 'true' : 'false');
 });
 }
+const SCHWELLE = 110;
+let uhr = 0, vorgemerkt = null;
+const warte = (ziel) => {
+if (ziel === vorgemerkt) return;
+vorgemerkt = ziel;
+clearTimeout(uhr);
+uhr = setTimeout(() => { if (vorgemerkt === ziel && !ziel.hidden) setze(ziel); }, SCHWELLE);
+};
+const abbrechen = () => { clearTimeout(uhr); vorgemerkt = null; };
 reiter.forEach((r) => {
 r.addEventListener('click', () => {
 const thema = r.dataset.thema;
@@ -44,14 +53,15 @@ const d = y < r.top ? r.top - y : y - r.bottom;
 if (d < kleinster) { kleinster = d; ziel = f; }
 });
 }
-if (ziel && !ziel.classList.contains('offen')) setze(ziel);
+if (ziel && !ziel.classList.contains('offen')) warte(ziel);
 };
 liste.addEventListener('pointerenter', waehle, { passive: true });
 liste.addEventListener('pointermove', waehle, { passive: true });
-liste.addEventListener('pointerleave', () => setze(null));
+liste.addEventListener('pointerleave', () => { abbrechen(); setze(null); });
 }
 fragen.forEach((f) => {
 f.querySelector('.frage__kopf').addEventListener('click', () => {
+abbrechen();
 setze(f.classList.contains('offen') ? null : f);
 });
 });
