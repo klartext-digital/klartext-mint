@@ -4391,13 +4391,18 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
      Prozent deckend, der Weichzeichner bearbeitete nur den Rest. Die
      Deckkraft ist leicht angehoben, damit ohne Weichzeichner nichts
      scharf durchscheint. */
+  /* Deckend in genau den Farben, die die Karte MIT Weichzeichner hatte.
+     Gemessen am alten Zustand: oben rgb(251 242 231), Mitte
+     rgb(251 235 215), unten rgb(248 233 204) — die Waerme kam vom
+     durchscheinenden Grund. Mit blossem Weiss wurde die Karte um 6,4
+     Helligkeitsstufen zu hell und verlor ihre Tiefe. */
   background:
     radial-gradient(120% 180% at 12% -40%,
-      rgb(255 255 255 / .95) 0%, rgb(255 255 255 / 0) 58%),
+      rgb(253 248 243) 0%, rgb(253 248 243 / 0) 58%),
     linear-gradient(176deg,
-      rgb(255 255 255 / .975) 0%,
-      rgb(252 251 249 / .96) 52%,
-      rgb(245 243 239 / .95) 100%);
+      rgb(251 242 231) 0%,
+      rgb(251 235 215) 52%,
+      rgb(248 233 204) 100%);
   box-shadow:0 0 44px -8px rgb(245 165 36 / .45),
     0 40px 90px -30px rgb(0 0 0 / .5)}
 
