@@ -110,9 +110,16 @@
      EINE Inhaltsbreite fuer die ganze Seite. Die aeusseren Huellen
      rechnen sich daraus, damit Rand und Inhalt nie auseinanderlaufen.
      Der Rand waechst fliessend mit dem Fenster: auf dem Handy 24 px,
-     am grossen Schirm 72 px — vorher sprang er in Stufen. */
-  --maxw:1680px;
-  --pad:clamp(24px,4.4vw,40px);
+     am grossen Schirm 64 px — vorher sprang er in Stufen. */
+  /* 15.10.2026: Rand zurueck. Am 17.08. wurde die Inhaltsbreite in zwei
+     Schritten von 1380 auf 1680 gezogen und der Rand von 72 auf 40
+     gesenkt — der Kommentar darueber sprach weiter von 72, die Werte
+     waren auseinandergelaufen. Auf einem 1600er Fenster griff der
+     Deckel dadurch gar nicht mehr und alles stand auf dem Minimalrand.
+     Jetzt 1520 Inhalt, Rand bis 64: auf 1600 ergibt das 64 statt 40,
+     auf 1905 wieder 192. */
+  --maxw:1520px;
+  --pad:clamp(24px,4.4vw,64px);
   --sec:clamp(90px,9vw,170px);
 }
 
