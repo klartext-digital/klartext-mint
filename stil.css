@@ -3322,6 +3322,16 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   width:100%;aspect-ratio:1672 / 941}
 @media (max-aspect-ratio:1672 / 941){ .kopfbild__rahmen{width:auto;height:100%} }
 .mona__grund{position:absolute;inset:0;background:var(--bild) center/100% 100% no-repeat}
+/* 15.10.2026: Die Medienabfrage oben misst das FENSTER, nicht die Buehne.
+   Zwischen ca. 1000 und 1100 px ist die Buehne (min-height:auto) breiter
+   als das Fenster im Verhaeltnis; der Rahmen nahm 100% Hoehe und wurde zu
+   schmal, links und rechts blieben 5 bis 31 px dunkler Grund stehen
+   (gemessen bei 1000/1024/1100). Mit Containermassen deckt der Rahmen
+   die Buehne bei jeder Breite ab, wie background-size:cover. */
+@supports (container-type:size){
+  .kopfbild{container-type:size}
+  .kopfbild__rahmen{width:max(100cqw, calc(100cqh * 1672 / 941));height:auto}
+}
 
 /* Die Lachstufen liegen im Gesichtsfeld und sind auf eine weiche
    Ellipse beschnitten — sonst saehe man die Kante des Feldes. */
