@@ -185,12 +185,34 @@ function zeileHalten(el, dauerMs) {
      sonst überschreiben sich die beiden Transformationen. */
   const leben = (el, i) => {
     const t = einwickeln(el);
-    gsap.fromTo(t, { y: -2.5 },
-      { y: 2.5, duration: 3.4 + (i % 3) * 0.9, ease: 'sine.inOut',
-        repeat: -1, yoyo: true, delay: i * 0.4 });
-    gsap.fromTo(t, { x: -1.6 },
-      { x: 1.6, duration: 4.7 + (i % 4) * 0.8, ease: 'sine.inOut',
-        repeat: -1, yoyo: true, delay: i * 0.55 });
+    const laeufe = [
+      gsap.fromTo(t, { y: -2.5 },
+        { y: 2.5, duration: 3.4 + (i % 3) * 0.9, ease: 'sine.inOut',
+          repeat: -1, yoyo: true, delay: i * 0.4 }),
+      gsap.fromTo(t, { x: -1.6 },
+        { x: 1.6, duration: 4.7 + (i % 4) * 0.8, ease: 'sine.inOut',
+          repeat: -1, yoyo: true, delay: i * 0.55 }),
+    ];
+
+    /* Nur laufen, solange das Wort im Bild ist.
+
+       Diese zwei Laeufe sind endlos (repeat: -1). Ohne die Bremse
+       liefen sie auf JEDER Seite dauerhaft weiter, auch fuer Woerter
+       weit unterhalb des Falzes, die niemand sieht. Gemessen im
+       voelligen Leerlauf, ohne Maus und ohne Scrollen: 1909
+       Stilaenderungen in vier Sekunden, das sind rund 480 in der
+       Sekunde. Die Rechnung dazu geht genau auf — vier Woerter mal
+       zwei Laeufe mal sechzig Bilder mal vier Sekunden sind 1920.
+       Das war die Grundlast, die die Seite zaeh und unruhig machte.
+
+       Am Aussehen aendert sich nichts: Solange das Wort zu sehen ist,
+       bewegt es sich genau wie vorher. */
+    if (!('IntersectionObserver' in window)) return;
+    laeufe.forEach((l) => l.pause());
+    new IntersectionObserver((eintraege) => {
+      const sichtbar = eintraege[0].isIntersecting;
+      laeufe.forEach((l) => (sichtbar ? l.play() : l.pause()));
+    }, { rootMargin: '150px' }).observe(el);
   };
 
   const driften = (el, von, bis, wo) => {
