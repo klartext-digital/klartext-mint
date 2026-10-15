@@ -396,29 +396,14 @@ for source,route in ROUTES.items():
  # Startseite" die einzige Navigation, keine Dopplung.
  s=s.replace('<p class="fuss__kopf">Leistungen</p>','<p class="fuss__kopf">Leistungen</p><a href="'+route_link('marketing-abo')+'">Marketing im Abo</a><a href="'+route_link('projektarbeit')+'">Projektarbeit</a><a href="'+route_link('seo')+'">SEO-Betreuung</a><a href="'+route_link('website-betreuung')+'">Website-Betreuung</a>')
  # References retain their source presentation per the confirmed project rules.
- s=s.replace('<h2 class="mitte">Die Mannschaft</h2>','<h2 class="mitte">Die Mannschaft</h2><p class="seo-pruefhinweis">Teamdarstellung im Entwurf: Namen, Rollen und Zugehörigkeit sind noch zu bestätigen.</p>')
- s=s.replace('<section class="vref">','<section class="vref"><p class="seo-pruefhinweis">Kundenstimmen im Entwurf: Zitate und Zuordnung sind noch nicht bestätigt.</p>')
  # Preise sind vom Auftraggeber bestaetigt (16.09.2026): kein Entwurfshinweis mehr.
  # Die Angaben zur Mehrwertsteuer stehen sichtbar unter den Paketen.
  # Firmierung und Adresse bestätigt (14.10.2026). "in Gründung" entfällt mit dem
  # Handelsregistereintrag. Telefon bewusst leer (Dusan, 14.10.2026).
  s=s.replace('<p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p>','<p>2026 Klartext Digital GmbH (in Gründung) · Alle Rechte vorbehalten</p>')
- s=s.replace('<h2 data-rein-zeilen><span>Die Mannschaft</span></h2>','<h2 data-rein-zeilen><span>Die Mannschaft</span></h2><p class="seo-pruefhinweis">Teamdarstellung im Entwurf. Namen, Rollen und Zugehörigkeit sind noch nicht bestätigt.</p>')
- if route=='ueber-uns/':
-  # Der Hinweis stand hinter <main> und damit VOR dem Hero. Zusammen mit
-  # .seo-freigabe (margin-top:120px in seo.css) ergab das 192px Versatz:
-  # gemessen 120 + 16 Aussenabstand + 56 Hoehe. Dadurch fiel die Dauer-Pille
-  # auf JEDER Desktop-Breite unter die Bildschirmkante (+18 bis +134px),
-  # waehrend die acht anderen Heros bei y=0 beginnen. Gleicher Text, gleiche
-  # Seite, nur hinter dem Hero statt davor; .seo-freigabe entfaellt, weil es
-  # nur dazu diente, die feste Kopfzeile am Seitenanfang freizuhalten.
-  vorher=s.count('seo-pruefhinweis')
-  s=s.replace('<section class="unter__block"','<p class="seo-pruefhinweis">Entwurf: Team- und Unternehmensangaben sind noch zu bestätigen.</p><section class="unter__block"',1)
-  if s.count('seo-pruefhinweis')!=vorher+1:
-   raise SystemExit('ueber-uns: Entwurfshinweis nicht eingesetzt — Anker <section class="unter__block" fehlt')
- # Entwurfs-Hinweis unten rechts: faellt automatisch weg, sobald die Seite
- # indexierbar ist. So kann er beim Livegang nicht vergessen werden.
- if indexable:s=re.sub(r'<div class="demo">[^<]*</div>\s*','',s)
+ # Entwurfs-Hinweis unten rechts entfernt (Dusan 15.10.2026: keine Hinweise
+ # auf der Seite, die nicht hingehoeren). Steht noch in den Quelldateien.
+ s=re.sub(r'<div class="demo">[^<]*</div>\s*','',s)
  prefix=posixpath.relpath('.',route_dir or '.')+'/'
  schema_json=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False).replace('</','<\\/')
  head=f'''\n<meta name="description" content="{escape(desc,quote=True)}">\n<meta name="robots" content="{robots}">\n<link rel="canonical" href="{canonical}">\n<meta property="og:title" content="{escape(title,quote=True)}">\n<meta property="og:description" content="{escape(desc,quote=True)}">\n<meta property="og:url" content="{canonical}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="de_CH">\n<meta property="og:image" content="{BASE}marke/favicon-180.png">\n<link rel="stylesheet" href="{prefix}seo.css?v={stempel("seo.css") or ""}">\n<script type="application/ld+json">{schema_json}</script>\n'''
