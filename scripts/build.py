@@ -3,7 +3,7 @@
 from pathlib import Path
 from html import escape, unescape
 from urllib.parse import urljoin, urlsplit, urlunsplit
-import json, re, shutil, posixpath, struct, os
+import json, re, shutil, posixpath, struct, os, hashlib
 from release_policy import validate_preview
 import verkleinern
 
@@ -213,6 +213,21 @@ def size_of(path):
   sizes[path]=(int(w),int(h));return sizes[path]
  except (OSError,ValueError,AttributeError,struct.error):return None
 
+stempel_cache={}
+def stempel(path):
+ """Kurzer Fingerabdruck einer Datei fuer die Adresse.
+
+ Browser halten Skripte und Stylesheets zehn Minuten fest. Nach einem
+ Deploy sieht man deshalb den alten Stand und haelt eine Aenderung fuer
+ wirkungslos — das ist uns mehrfach passiert. Haengt der Fingerabdruck
+ an der Adresse, bekommt jeder sofort die neue Datei, ohne hart neu zu
+ laden. Aendert sich die Datei nicht, bleibt die Adresse gleich und der
+ Cache greift weiter."""
+ if path in stempel_cache:return stempel_cache[path]
+ try:h=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()[:8]
+ except OSError:h=None
+ stempel_cache[path]=h;return h
+
 def resolved(value, source):
  u=urlsplit(unescape(value))
  if u.scheme or u.netloc or not u.path:return None
@@ -341,7 +356,16 @@ for source,route in ROUTES.items():
    # Hero-Hintergruende tragen fetchpriority="high" und duerfen NICHT lazy laden —
    # sonst poppt das erste Bild der Seite verzoegert nach und widerspricht der Prioritaet.
    if 'dienst-' in src.group(1) and 'loading=' not in tag and 'fetchpriority="high"' not in tag:tag=tag[:-1]+' loading="lazy">'
-  tag=re.sub(r'\b(href|src|poster)="([^"]*)"',lambda x:x.group(1)+'="'+rewrite_url(x.group(2),source,route)+'"',tag)
+  def _mit_stempel(x):
+   attr,wert=x.group(1),x.group(2)
+   neu=rewrite_url(wert,source,route)
+   if attr in ('href','src'):
+    item=resolved(wert,source)
+    if item and item[0].endswith(('.js','.css')) and not item[1].query:
+     h=stempel(item[0])
+     if h:neu+=('&amp;' if '?' in neu else '?')+'v='+h
+   return attr+'="'+neu+'"'
+  tag=re.sub(r'\b(href|src|poster)="([^"]*)"',_mit_stempel,tag)
   if variants:
    candidates=', '.join(posixpath.relpath(v['path'],route_dir or '.')+' '+str(v['width'])+'w' for v in variants)
    # Ein im Markup gesetztes sizes bleibt stehen: dieselbe Bilddatei dient
@@ -394,12 +418,12 @@ for source,route in ROUTES.items():
    raise SystemExit('ueber-uns: Entwurfshinweis nicht eingesetzt — Anker <section class="unter__block" fehlt')
  prefix=posixpath.relpath('.',route_dir or '.')+'/'
  schema_json=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False).replace('</','<\\/')
- head=f'''\n<meta name="description" content="{escape(desc,quote=True)}">\n<meta name="robots" content="{robots}">\n<link rel="canonical" href="{canonical}">\n<meta property="og:title" content="{escape(title,quote=True)}">\n<meta property="og:description" content="{escape(desc,quote=True)}">\n<meta property="og:url" content="{canonical}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="de_CH">\n<meta property="og:image" content="{BASE}marke/favicon-180.png">\n<link rel="stylesheet" href="{prefix}seo.css">\n<script type="application/ld+json">{schema_json}</script>\n'''
+ head=f'''\n<meta name="description" content="{escape(desc,quote=True)}">\n<meta name="robots" content="{robots}">\n<link rel="canonical" href="{canonical}">\n<meta property="og:title" content="{escape(title,quote=True)}">\n<meta property="og:description" content="{escape(desc,quote=True)}">\n<meta property="og:url" content="{canonical}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="de_CH">\n<meta property="og:image" content="{BASE}marke/favicon-180.png">\n<link rel="stylesheet" href="{prefix}seo.css?v={stempel("seo.css") or ""}">\n<script type="application/ld+json">{schema_json}</script>\n'''
  if route=='':head+='<link rel="preload" as="image" href="kopf/grund.webp" type="image/webp" fetchpriority="high">\n'
  # A real landscape image replaces the tiny app icon in link previews.
  head=head.replace(BASE+'marke/favicon-180.png',preview_image)
  head=head.replace('property="og:type" content="website"','property="og:type" content="'+('article' if is_article else 'website')+'"')
- head+=f'<meta property="og:image:alt" content="Klartext Digital – Webdesign und Marketing">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="{escape(title,quote=True)}">\n<meta name="twitter:description" content="{escape(desc,quote=True)}">\n<meta name="twitter:image" content="{preview_image}">\n<script defer src="{prefix}messung.js"></script>\n'
+ head+=f'<meta property="og:image:alt" content="Klartext Digital – Webdesign und Marketing">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="{escape(title,quote=True)}">\n<meta name="twitter:description" content="{escape(desc,quote=True)}">\n<meta name="twitter:image" content="{preview_image}">\n<script defer src="{prefix}messung.js?v={stempel("messung.js") or ""}"></script>\n'
  for key,name in [('google','google-site-verification'),('bing','msvalidate.01')]:
   token=CONFIG.get('verification',{}).get(key)
   if token:head+=f'<meta name="{name}" content="{escape(token,quote=True)}">\n'
