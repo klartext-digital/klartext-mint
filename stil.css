@@ -2369,6 +2369,10 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Zeichen liess ihn nur 496 von 709 Punkten nutzen — im Blocksatz
    faellt eine halbleere Spalte sofort auf. */
 .unter__text--satz{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+/* .hero .unter__text (Zeile 2244) rechnet die Breite aus der alten
+   Hero-Geometrie: 100vw minus Bildspalte minus Rand ergab hier 496 von
+   709 Punkten. In der Portraet-Fassung traegt die Rasterspalte. */
+.hero .unter__leib--portraet .unter__text--satz{max-width:none}
 .hero .unter__leib--portraet .unter__text--satz p{max-width:none}
 .unter__text--satz > p + p{margin-top:1.05em}
 @media(max-width:860px){
