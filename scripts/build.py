@@ -149,7 +149,7 @@ META = {
  'projekte/': ('Projekte und Referenzen | Klartext Digital', 'Einblicke in die Referenzen von Klartext Digital: Projekte aus Branding, Content und digitalem Marketing.'),
  'blog/': ('Gedanken zu Marke und Marketing | klartext.', 'Artikel und Perspektiven zu Markenaufbau, Websites, Social Media und Strategie. Entdeckt den Blog von klartext.'),
  'impressum/': ('Impressum | Klartext Digital', 'Impressum der Klartext Digital GmbH (in Gründung), Lohagstrasse 15, 4133 Pratteln.'),
- 'datenschutz/': ('Datenschutzhinweise – Entwurf | klartext.', 'Datenschutzhinweise zum klartext.-Website-Entwurf. Die Angaben müssen vor dem Produktivstart mit den eingesetzten Diensten abgeglichen werden.')
+ 'datenschutz/': ('Datenschutz | Klartext Digital', 'Datenschutzerklärung der Klartext Digital GmbH, Pratteln: Hosting, E-Mail, keine Cookies und keine Besuchermessung.')
 }
 # Unternehmensangaben: eine Quelle (seo.config.json → business), dieselben
 # Daten wie im Google-Unternehmensprofil und in der Fusszeile. Google und
@@ -416,6 +416,9 @@ for source,route in ROUTES.items():
   s=s.replace('<section class="unter__block"','<p class="seo-pruefhinweis">Entwurf: Team- und Unternehmensangaben sind noch zu bestätigen.</p><section class="unter__block"',1)
   if s.count('seo-pruefhinweis')!=vorher+1:
    raise SystemExit('ueber-uns: Entwurfshinweis nicht eingesetzt — Anker <section class="unter__block" fehlt')
+ # Entwurfs-Hinweis unten rechts: faellt automatisch weg, sobald die Seite
+ # indexierbar ist. So kann er beim Livegang nicht vergessen werden.
+ if indexable:s=re.sub(r'<div class="demo">[^<]*</div>\s*','',s)
  prefix=posixpath.relpath('.',route_dir or '.')+'/'
  schema_json=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False).replace('</','<\\/')
  head=f'''\n<meta name="description" content="{escape(desc,quote=True)}">\n<meta name="robots" content="{robots}">\n<link rel="canonical" href="{canonical}">\n<meta property="og:title" content="{escape(title,quote=True)}">\n<meta property="og:description" content="{escape(desc,quote=True)}">\n<meta property="og:url" content="{canonical}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="de_CH">\n<meta property="og:image" content="{BASE}marke/favicon-180.png">\n<link rel="stylesheet" href="{prefix}seo.css?v={stempel("seo.css") or ""}">\n<script type="application/ld+json">{schema_json}</script>\n'''
@@ -441,7 +444,14 @@ for old,target in {**ROUTES,**ALIASES}.items():
 paths=[p for p in ROUTES.values() if CONFIG['indexable'] and p in CONFIG['approved_paths']]
 xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join('<url><loc>'+escape(BASE+p)+'</loc></url>\n' for p in paths)+'</urlset>\n'
 (OUT/'sitemap.xml').write_text(xml)
-(OUT/'robots.txt').write_text('# Effective only when served at the host root. Draft noindex is in HTML.\nUser-agent: *\nAllow: /\nSitemap: '+BASE+'sitemap.xml\n')
+# KI-Suchen ausdruecklich zulassen (Entscheid 15.10.2026, Sichtbarkeit in
+# ChatGPT, Perplexity, Gemini, Claude, Copilot). Allow: / gilt zwar schon ueber
+# den Stern; eigene Bloecke verhindern, dass ein Hoster- oder Vorlagen-Default
+# einzelne Crawler sperrt, und machen die Absicht lesbar.
+KI_CRAWLER=['GPTBot','OAI-SearchBot','ChatGPT-User','PerplexityBot','Perplexity-User','ClaudeBot','Claude-SearchBot','Claude-User','Google-Extended','Applebot-Extended','Bingbot']
+robots='# Effective only when served at the host root. Draft noindex is in HTML.\nUser-agent: *\nAllow: /\n\n'
+robots+=''.join('User-agent: '+c+'\nAllow: /\n\n' for c in KI_CRAWLER)
+(OUT/'robots.txt').write_text(robots+'Sitemap: '+BASE+'sitemap.xml\n')
 # llms.txt: Kurzsteckbrief für KI-Suchen (ChatGPT, Perplexity, Gemini), aus
 # denselben Titeln und Beschreibungen erzeugt wie die Seiten selbst. Wirkt wie
 # robots.txt erst an der Wurzel der Produktivdomain.
