@@ -42,7 +42,8 @@
      Inhalt wechselt. Akzent ist jetzt Gelb, die zarte Fläche Mint. */
   --violett:#F5A524;          /* Akzent: Knöpfe, Handschrift, Punkte */
   --violett-hell:#FFC65C;     /* Akzent auf dunklem Grund */
-  --violett-tief:#8A5504;     /* Akzent auf hellem Grund: 5.1:1 auf der Chip-Flaeche */
+  /* --violett-tief (#8A5504) entfernt: liest als Braun, dreimal geruegt.
+     Wer auf hellem Grund Kontrast braucht, nimmt --tinte. */
   --violett-zart:#E9E8E4;     /* zarte Fläche: Pillen, Hinterlegungen */
 
   /* Türkis-Skala, gemessen */
@@ -1519,8 +1520,8 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* Nur die offene Frage traegt die Akzentfarbe. Beim Ueberfahren
    wandert allein das Pluszeichen mit — sonst sehen zwei Zeilen
    gleichzeitig aus wie geoeffnet. */
-.fr.ist .fr__kopf{color:var(--violett-tief)}
-.fr:hover .fr__kopf i,.fr:focus-within .fr__kopf i{color:var(--violett-tief)}
+.fr.ist .fr__kopf{color:var(--violett)}
+.fr:hover .fr__kopf i,.fr:focus-within .fr__kopf i{color:var(--violett)}
 .fr__kopf i{position:relative;width:20px;height:20px;flex:none;
   transition:transform var(--t-knopf) var(--kurve-rein)}
 .fr:hover .fr__kopf i,.fr:focus-within .fr__kopf i{transform:scale(1.16)}
@@ -1549,7 +1550,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* Handschriftliche Zaehlzeile — Zierde ueber dem Titel. */
 .beitrag .datum{font-family:'Rock Salt',cursive;font-size:15px;color:var(--violett)}
 .beitrag h3{transition:color var(--t-farbe) var(--kurve)}
-.beitrag:hover h3{color:var(--violett-tief)}
+.beitrag:hover h3{color:var(--violett)}
 
 /* ── 13 · Kontakt ──────────────────────────────────────────────
    Ein breiter violetter Block: oben die Ansage, darunter das
@@ -2441,7 +2442,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--creme)}
 .vorteile li::after{content:"";position:absolute;left:8px;top:50%;
   width:10px;height:6px;margin-top:-4px;
-  border-left:2.2px solid var(--violett-tief);border-bottom:2.2px solid var(--violett-tief);
+  border-left:2.2px solid var(--tinte);border-bottom:2.2px solid var(--tinte);
   transform:rotate(-45deg)}
 @media(max-width:900px){
   .ruf__karte.ruf__karte--vorteile{grid-template-columns:minmax(0,1fr);gap:26px}
@@ -3102,7 +3103,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* Die Herkunft steht als Wort da, nicht als Farbe allein — Farbe
    allein unterscheidet fuer niemanden, der sie nicht sieht. */
 .fzk__marke{font-family:'Rock Salt',cursive;font-size:15px;
-  color:var(--violett-tief,var(--violett))}
+  color:var(--violett)}
 .fzk__karte--frage .fzk__marke{color:var(--grau)}
 .fzk__karte h3{font-size:clamp(20px,1.7vw,27px);letter-spacing:-.03em;
   line-height:1.15;margin:0}
@@ -3533,8 +3534,14 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Frage-Karte — gemessen 0px auf acht Seiten. Wo ein h2 folgt, bringt
    dieses seinen eigenen Abstand mit; benachbarte Abstaende fallen
    zusammen, der groessere gewinnt, dort aendert sich also nichts. */
+/* Gleicher Abstand oben wie unten, und der Nachbar bringt keinen
+   eigenen mehr mit. Gemessen war es vorher 34 oben, unten je nach
+   Folgeelement 44, 79 oder gar nichts — die FAQ sass auf jeder Seite
+   anders. Der Wert ist der halbe Sektionsabstand, den das System
+   schon fuer den Block hinter dem Kontaktblock verwendet. */
 .fragen--eingebettet{padding:0;max-width:none;
-  margin:clamp(22px,2.4vw,34px) 0 clamp(28px,3vw,44px)}
+  margin-block:clamp(48px,4.5vw,86px)}
+.fragen--eingebettet + *{margin-top:0}
 /* Die Breite bleibt die der Startseite. Vorher hob max-width:none sie auf:
    der Rahmen bricht mit negativen Raendern auf die volle Fensterbreite aus,
    und die Fragen wurden mit 1648 Punkten doppelt so breit wie der Fliesstext
@@ -3899,7 +3906,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .bzeile__meta i{font-style:normal;color:var(--grau-2)}
 .bzeile__titel{font-size:16.5px;font-weight:800;letter-spacing:-.015em;
   line-height:1.25}
-.bzeile:hover .bzeile__titel{color:var(--violett-tief)}
+.bzeile:hover .bzeile__titel{color:var(--violett)}
 .bzeile__pfeil{display:grid;place-items:center;width:34px;height:34px;flex:0 0 auto;
   border-radius:var(--r-pille);color:var(--tinte);
   transition:background var(--t-knopf) var(--kurve-rein),
@@ -4372,8 +4379,11 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   width:100vw;max-width:100vw;
   padding:clamp(48px,5vw,88px) max(var(--pad),calc((100vw - var(--maxw)) / 2));
   border-radius:var(--r-seite);
+  /* Kein Braun mehr. --violett-tief (#8A5504) liest als Braun und war
+     hier als Flaeche ueber die volle Breite sichtbar — zum dritten Mal
+     geruegt. Der Verlauf laeuft jetzt rein in der Markenfarbe. */
   background:linear-gradient(168deg,
-    var(--violett-tief) 0%, #C97A10 34%, var(--violett) 72%, #FFB63E 100%)}
+    #E08A0C 0%, #EE9D18 34%, var(--violett) 72%, #FFB63E 100%)}
 
 .pruef__karte{max-width:1240px;margin:0 auto;
   display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
