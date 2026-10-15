@@ -2098,9 +2098,13 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Gleicher Kopf, gleicher Fuss, gleiche Bewegung wie die Startseite.
    Eigen ist nur der Anfang: kein Bühnenbild, sondern Rücklink, Chip,
    Titel und ein handgeschriebener Einzeiler. */
-.unter{max-width:var(--maxw);margin:0 auto;
+/* Gleiches Muster wie .buehne und die uebrigen Bloecke: der Deckel
+   schliesst das Polster ein. Ohne das stand die Brotkrume auf 104 und
+   der Blog-Titel auf 104, waehrend der Titel aller anderen Seiten auf
+   64 steht — .unter war der letzte Block mit dem alten Muster. */
+.unter{max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto;
   padding:clamp(120px,11vw,180px) var(--pad) clamp(24px,2.6vw,44px)}
-.unter--eng{max-width:1400px}
+.unter--eng{max-width:calc(1400px + var(--pad) * 2)}
 /* Seit dem Hero-Umbau steht die Ueberschrift in .unter__text, das in
    .unter__leib liegt — .unter h1 greift dort nicht mehr. Ohne den zweiten
    Selektor sprang eine globale Grundregel ein: 106,56px statt 92,16px,
