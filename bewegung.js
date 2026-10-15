@@ -102,12 +102,20 @@ scrollTrigger: { trigger: el, start: 'top 90%' } });
 };
 const leben = (el, i) => {
 const t = einwickeln(el);
+const laeufe = [
 gsap.fromTo(t, { y: -2.5 },
 { y: 2.5, duration: 3.4 + (i % 3) * 0.9, ease: 'sine.inOut',
-repeat: -1, yoyo: true, delay: i * 0.4 });
+repeat: -1, yoyo: true, delay: i * 0.4 }),
 gsap.fromTo(t, { x: -1.6 },
 { x: 1.6, duration: 4.7 + (i % 4) * 0.8, ease: 'sine.inOut',
-repeat: -1, yoyo: true, delay: i * 0.55 });
+repeat: -1, yoyo: true, delay: i * 0.55 }),
+];
+if (!('IntersectionObserver' in window)) return;
+laeufe.forEach((l) => l.pause());
+new IntersectionObserver((eintraege) => {
+const sichtbar = eintraege[0].isIntersecting;
+laeufe.forEach((l) => (sichtbar ? l.play() : l.pause()));
+}, { rootMargin: '150px' }).observe(el);
 };
 const driften = (el, von, bis, wo) => {
 gsap.fromTo(el, { y: von },
