@@ -3550,12 +3550,12 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 
    Hier also: kein Ausbruch, kein eigener Grund, keine eigene Breite —
    die FAQ fluchtet mit der Ueberschrift und dem Text darueber. */
-.fragen--eingebettet{
+.fragen.fragen--eingebettet{
   margin-inline:0;width:auto;max-width:none;
   padding-inline:0;padding-top:0;
   background:none;
   margin-block:clamp(48px,4.5vw,86px)}
-.fragen--eingebettet .fragen__liste{max-width:none}
+.fragen.fragen--eingebettet .fragen__liste{max-width:none}
 /* Zwei Klassen, damit die Regel die Ueberschriften-Regel der
    Textstrecke schlaegt (.seo-prose h2 bringt sonst 79 Punkte mit). */
 .seo-prose .fragen--eingebettet + *{margin-top:0}
