@@ -3539,8 +3539,23 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Folgeelement 44, 79 oder gar nichts — die FAQ sass auf jeder Seite
    anders. Der Wert ist der halbe Sektionsabstand, den das System
    schon fuer den Block hinter dem Kontaktblock verwendet. */
-.fragen--eingebettet{padding:0;max-width:none;
+/* Eingebettet heisst: Teil der Textstrecke, kein eigener Abschnitt.
+
+   .blog,.fragen reisst sich randlos auf 100vw auf und bringt einen
+   eigenen Foto-Grund mit — richtig fuer die Startseite, wo die FAQ ein
+   eigener Abschnitt ist. In einer Unterseite sitzt sie aber IM Text:
+   gemessen stand die Ueberschrift darueber auf 430 und 740 breit, die
+   Kaesten darunter auf 200 und 1200 breit, mit Stadtbild dahinter.
+   Genau das wirkte wie ein Kasten im Kasten.
+
+   Hier also: kein Ausbruch, kein eigener Grund, keine eigene Breite —
+   die FAQ fluchtet mit der Ueberschrift und dem Text darueber. */
+.fragen--eingebettet{
+  margin-inline:0;width:auto;max-width:none;
+  padding-inline:0;padding-top:0;
+  background:none;
   margin-block:clamp(48px,4.5vw,86px)}
+.fragen--eingebettet .fragen__liste{max-width:none}
 /* Zwei Klassen, damit die Regel die Ueberschriften-Regel der
    Textstrecke schlaegt (.seo-prose h2 bringt sonst 79 Punkte mit). */
 .seo-prose .fragen--eingebettet + *{margin-top:0}
