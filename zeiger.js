@@ -208,13 +208,19 @@ v.pause(); v.removeAttribute('src'); v.load(); v.style.display = 'none';
 if (aus('mac')) document.querySelectorAll('.mac').forEach(e => e.remove());
 if (aus('glas')) {
 const st = document.createElement('style');
-st.textContent = '*{box-shadow:none!important;filter:none!important}';
+st.textContent = '*{box-shadow:none!important;filter:none!important;' +
+'backdrop-filter:none!important;-webkit-backdrop-filter:none!important}';
 document.head.appendChild(st);
 }
 if (aus('lenis') && window.__lenis) {
 try { window.__lenis.destroy(); } catch (x) {}
 document.documentElement.classList.remove('lenis');
 document.documentElement.style.scrollBehavior = 'auto';
+}
+if (aus('leben') && window.gsap) {
+gsap.globalTimeline.getChildren(true, true, false)
+.filter((t) => t.repeat && t.repeat() === -1)
+.forEach((t) => t.pause());
 }
 if (aus('zeiger')) { wurzel.remove(); }
 })();
