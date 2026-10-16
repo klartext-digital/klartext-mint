@@ -2352,7 +2352,11 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   grid-template-columns:minmax(0,1fr) minmax(0,1fr);
   gap:clamp(28px,3.4vw,64px);
   align-items:start;
-  padding-top:clamp(96px,9vw,150px);
+  /* Oben KEIN eigener Abstand: den bringt die Kopfzone mit, genau wie
+     auf den uebrigen Leistungsseiten. Mit eigenem Polster klaffte hier
+     eine Luecke von 168 Punkten zwischen Brotkrume und Pille, auf den
+     anderen Seiten sind es 24. */
+  padding-top:0;
   padding-bottom:clamp(40px,4vw,72px)}
 .hero .unter__leib--portraet .unter__kopf{grid-column:1 / -1}
 /* Titel darf hier die ganze Breite nutzen und wird entsprechend gross. */
