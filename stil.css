@@ -668,7 +668,11 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    zwar rechnerisch, liest aber als Braun. Amber wie ueberall sonst;
    die Ueberschrift darunter traegt die Aussage in Schwarz. */
 .dienste__kopf .brush{color:var(--violett);margin-bottom:14px}
-.dienste__kopf h2{max-width:16ch}
+/* 16ch waren 834 Punkte, "Der Umfang im Ueberblick." braucht 897 fuer
+   eine Zeile — es fehlten 63. Bei 19ch sind es 990, der Platz betraegt
+   1344. Laengere Ueberschriften brechen weiterhin um, sonst laufen sie
+   aus dem Raster. */
+.dienste__kopf h2{max-width:19ch}
 
 /* 19.09.2026, Dusan: "seitlich abgehakt … die einzelnen sections branding
    etc. ebenso abgerundet". Die Zeilen sassen als scharfkantige Baender im
