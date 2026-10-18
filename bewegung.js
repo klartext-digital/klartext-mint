@@ -387,9 +387,7 @@ function zeileHalten(el, dauerMs) {
      sonst die naechstgelegene. */
   const liste = document.querySelector('#lzliste');
   if (liste && matchMedia('(hover:hover) and (pointer:fine)').matches) {
-    const waehle = (e) => {
-      if (e.pointerType === 'touch') return;
-      const y = e.clientY;
+    const finde = (y) => {
       let ziel = zeilen.find((lz) => {
         const r = lz.getBoundingClientRect();
         return y >= r.top && y <= r.bottom;
@@ -402,7 +400,33 @@ function zeileHalten(el, dauerMs) {
           if (d < kleinster) { kleinster = d; ziel = lz; }
         });
       }
-      if (ziel && !ziel.classList.contains('ist')) setze(ziel);
+      return ziel;
+    };
+    /* 18.10.2026: Gezieltes Zeigen oeffnet sofort, schnelles Durchfahren
+       oeffnet nur die Zeile, auf der der Zeiger stehen bleibt (60 ms nach
+       der letzten Bewegung). Sonst begannen beim Darueberwischen mehrere
+       Zeilen gleichzeitig aufzugehen und die Seite sprang um Hunderte
+       Punkte. Gleiche Regel wie bei den Fragen (fragen.js). */
+    const SCHNELL = 1.5;   /* px pro ms */
+    let zx = 0, zy = 0, zt = 0, tempo = 0, uhr = 0;
+    addEventListener('pointermove', (e) => {
+      /* Erstes Signal nach einer Ruhepause: das Tempo ist noch
+         unbekannt (der Vergleich laege beim letzten Halt). Dann
+         entscheidet das naechste Signal, 8 bis 16 ms spaeter. */
+      const dt = e.timeStamp - zt;
+      tempo = dt > 50 ? Infinity : Math.hypot(e.clientX - zx, e.clientY - zy) / Math.max(1, dt);
+      zx = e.clientX; zy = e.clientY; zt = e.timeStamp;
+    }, { passive: true, capture: true });
+    const waehle = (e) => {
+      if (e.pointerType === 'touch') return;
+      clearTimeout(uhr);
+      const ziel = finde(e.clientY);
+      if (!ziel || ziel.classList.contains('ist')) return;
+      if (tempo < SCHNELL) { setze(ziel); return; }
+      uhr = setTimeout(() => {
+        const z = finde(zy);
+        if (z && !z.classList.contains('ist')) setze(z);
+      }, 60);
     };
     liste.addEventListener('pointerenter', waehle, { passive: true });
     liste.addEventListener('pointermove', waehle, { passive: true });
@@ -411,6 +435,7 @@ function zeileHalten(el, dauerMs) {
        bisher alles zu: die Sektion schrumpfte um rund 440 px und alles
        darunter sprang hoch. Jetzt bleibt die zuletzt gewaehlte Zeile offen,
        bis eine andere uebernimmt. Zuklappen geht weiter per Klick. */
+    liste.addEventListener('pointerleave', () => clearTimeout(uhr));
   }
 })();
 

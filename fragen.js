@@ -49,11 +49,9 @@
 
   /* ── Öffnen beim Überfahren ─────────────────────────────────── */
   if (schweben) {
-    const waehle = (e) => {
-      if (e.pointerType === 'touch') return;
+    const finde = (y) => {
       const sichtbar = fragen.filter((f) => !f.hidden);
-      if (!sichtbar.length) return;
-      const y = e.clientY;
+      if (!sichtbar.length) return null;
 
       /* 1 · Steht der Zeiger in einem Kasten? Der gewinnt. */
       let ziel = sichtbar.find((f) => {
@@ -72,7 +70,38 @@
           if (d < kleinster) { kleinster = d; ziel = f; }
         });
       }
-      if (ziel && !ziel.classList.contains('offen')) setze(ziel);
+      return ziel;
+    };
+
+    /* 18.10.2026: Tempo statt Wartezeit. Die Schwelle von 110 ms galt fuer
+       JEDE Bewegung und fuehlte sich deshalb traege an. Gegen das Flackern
+       (13.10.: beim schnellen Hoch und Runter gingen gestreifte Fragen
+       reihenweise gelb auf und zu) reicht es, das DURCHFAHREN zu erkennen:
+       Wer gezielt auf eine Frage zeigt, bewegt die Maus langsamer als
+       1,5 px pro ms - die Frage oeffnet sofort. Wer schneller darueber
+       faehrt, oeffnet nur die Frage, auf der der Zeiger stehen bleibt,
+       60 ms nach der letzten Bewegung. */
+    const SCHNELL = 1.5;
+    let zx = 0, zy = 0, zt = 0, tempo = 0, uhr = 0;
+    addEventListener('pointermove', (e) => {
+      /* Erstes Signal nach einer Ruhepause: das Tempo ist noch
+         unbekannt (der Vergleich laege beim letzten Halt). Dann
+         entscheidet das naechste Signal, 8 bis 16 ms spaeter. */
+      const dt = e.timeStamp - zt;
+      tempo = dt > 50 ? Infinity : Math.hypot(e.clientX - zx, e.clientY - zy) / Math.max(1, dt);
+      zx = e.clientX; zy = e.clientY; zt = e.timeStamp;
+    }, { passive: true, capture: true });
+
+    const waehle = (e) => {
+      if (e.pointerType === 'touch') return;
+      clearTimeout(uhr);
+      const ziel = finde(e.clientY);
+      if (!ziel || ziel.classList.contains('offen')) return;
+      if (tempo < SCHNELL) { setze(ziel); return; }
+      uhr = setTimeout(() => {
+        const z = finde(zy);
+        if (z && !z.classList.contains('offen')) setze(z);
+      }, 60);
     };
 
     /* 18.10.2026, Dusan: "bei den FAQs ist ein verzoegerter Hover-Effekt ...
@@ -88,7 +117,7 @@
     liste.addEventListener('pointerenter', waehle, { passive: true });
     liste.addEventListener('pointermove', waehle, { passive: true });
 
-    liste.addEventListener('pointerleave', () => setze(null));
+    liste.addEventListener('pointerleave', () => { clearTimeout(uhr); setze(null); });
   }
 
   /* ── Tippen und Tastatur ────────────────────────────────────── */
