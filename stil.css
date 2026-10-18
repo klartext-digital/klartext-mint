@@ -1326,14 +1326,20 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      offen, weil dort die Karten liegen, die ihren eigenen Grund mitbringen.
      Zusaetzlich ein dunklerer Markenton beigemischt (--violett-tief), der
      abdunkelt statt aufzuhellen. */
+  /* 18.10.2026, Dusan: "den hintergrund etwas an das cd anpassen, er ist
+     etwas zu kraeftig und zu dunkel". Oben und unten lag Braun (#8A5504,
+     das gestrichene --violett-tief) ueber dem Foto, damit weisse Schrift
+     traegt; dazwischen volles Amber. Jetzt nur noch die beiden CD-Toene,
+     heller und ruhiger: --violett-hell oben und unten, --violett in der
+     Mitte hinter den Karten. Weisse Schrift kaeme darauf nur auf rund
+     2 : 1 - darum steht der Kopf jetzt schwarz auf Amber, wie die Knoepfe
+     und die Fusszeile im CD. */
   background:linear-gradient(180deg,
-      rgb(138 85 4 / .52) 0%,
-      rgb(138 85 4 / .34) 9%,
-      rgb(138 85 4 / .30) 14%,
-      rgb(245 165 36 / .72) 20%,
-      rgb(245 165 36 / .48) 42%,
-      rgb(245 165 36 / .58) 62%,
-      rgb(138 85 4 / .46) 100%),
+      rgb(255 198 92 / .86) 0%,
+      rgb(255 198 92 / .76) 20%,
+      rgb(245 165 36 / .56) 48%,
+      rgb(255 198 92 / .68) 78%,
+      rgb(255 198 92 / .80) 100%),
     /* 19.09.2026, Dusan: verschieben. Kamera, Display und der Kopf davor
        lagen im linken Fuenftel (bis x=340 von 1536); das Gesicht auf dem
        Display war nur 35x40 Pixel gross — zu wenig fuer Augen, Nase, Mund.
@@ -1348,7 +1354,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
        exakt derselbe ist wie vor dem Schnitt. */
     url("bilder/preis-grund.jpg") right center/cover no-repeat,
     var(--violett);
-  color:var(--creme);border-radius:0;
+  color:var(--tinte);border-radius:0;
   padding:clamp(20px,1.8vw,32px) clamp(26px,4vw,72px)
     calc(clamp(28px,2.6vw,46px) + var(--voll-ueber));
   --voll-ueber:clamp(14px,1.4vw,26px)}
@@ -1372,7 +1378,11 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 /* Der Vorspann mass auf der Amberflaeche 3.08 : 1. Voll deckendes
    Weiss traegt dort; die Groesse wandert mit dem Titel mit. */
 .preise__lead{max-width:66ch;margin-top:10px;font-size:clamp(15px,1.1vw,18px);
-  line-height:1.55;color:#FFFFFF}
+  line-height:1.55;color:rgb(14 13 11 / .8)}
+/* Heller Grund, dunkle Schrift: Chip und Laufzeit-Schalter tragen jetzt
+   die dunkle Fassung statt der hellen. */
+.preise .chip--hell{background:rgb(255 255 255 / .55);color:var(--tinte)}
+.preise .schalter{border-color:rgb(14 13 11 / .16)}
 .schalter{display:flex;margin-top:14px;border:2px solid var(--linie-hell);
   border-radius:var(--r-pille);padding:4px;gap:4px}
 /* 21.09.2026: die nicht gewaehlte Taste mass auf Amber 1.67 : 1 — die
@@ -4503,6 +4513,22 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   border-radius:var(--r-seite);
   margin-bottom:calc(-1 * var(--r-seite))}
 .blog,.fragen{border-radius:0}
+
+/* 18.10.2026, Dusan: "beim schnellen hover ueber faqs ... springt der
+   hintergrund hin und her". Die Fragen-Sektion ist hoeher als breit
+   (1626 x 1905 px), cover rechnete die Bildgroesse darum aus der HOEHE:
+   jede offene Frage machte die Sektion rund 105 px hoeher, das Foto
+   zoomte um 6,5 Prozent und rutschte zur Mitte - beim Zuklappen zurueck.
+   Jetzt feste Bildgroesse (reicht fuer die hoechste gemessene Sektion:
+   1731 px am Desktop, 1917 px am Handy, Format 16:9) und oben verankert:
+   die wachsende Sektion deckt unten nur mehr Foto auf. Ausschnitt bei
+   1905 px praktisch wie vorher (61 statt 66 Prozent der Bildbreite).
+   .blog behaelt cover: seine Hoehe aendert sich nie. */
+.fragen{background-size:auto,max(100%, 3130px) auto;
+  background-position:0 0,center top}
+@media (max-width:1100px){
+  .fragen{background-size:auto,max(100%, 3470px) auto}
+}
 
 
 /* ══ Check-Sektion (Lead-Magnet) ══ 22.09.2026, Dusan: "ich will bei den
