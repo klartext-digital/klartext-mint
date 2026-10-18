@@ -366,13 +366,27 @@ function zeileHalten(el, dauerMs) {
   const zeilen = [...document.querySelectorAll('#lzliste .lz')];
   if (!zeilen.length) return;
 
+  /* 18.10.2026, Dusan: "die faqs fuehlen sich viel smoother an als die
+     leistungskarten" - auch mit laengerer Dauer "exakt gleich". Ursache:
+     Wer von einer offenen Karte zur naechsten UNTEN wechselt, schliesst
+     die obere (503 -> 112 px). Die Karte unter dem Zeiger sprang dadurch
+     rund 390 px nach oben weg; bei den Fragen sind es rund 70 px. Bis zum
+     13.10. hielt zeileHalten() die Zeile fest, beim Umbau auf die
+     FAQ-Technik fiel das weg. Jetzt wieder: liegt die bisher offene Karte
+     ueber der neuen, bleibt der Kopf der neuen still unter dem Zeiger und
+     klappt nach unten auf, waehrend die obere zusammenfaellt. */
+  const dauer = (parseFloat(getComputedStyle(document.querySelector('#lzliste'))
+    .getPropertyValue('--f-dauer')) || 450) + 120;
   const setze = (ziel) => {
+    const vorher = zeilen.find((lz) => lz.classList.contains('ist'));
+    const halten = ziel && vorher && zeilen.indexOf(vorher) < zeilen.indexOf(ziel);
     zeilen.forEach((lz) => {
       const offen = lz === ziel;
       lz.classList.toggle('ist', offen);
       lz.querySelector('.lz__kopf')
         .setAttribute('aria-expanded', offen ? 'true' : 'false');
     });
+    if (halten) zeileHalten(ziel.querySelector('.lz__kopf'), dauer);
   };
 
   zeilen.forEach((lz) => {
