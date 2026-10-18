@@ -202,18 +202,13 @@ setze(false);
 (function leistungen() {
 const zeilen = [...document.querySelectorAll('#lzliste .lz')];
 if (!zeilen.length) return;
-const dauer = (parseFloat(getComputedStyle(document.querySelector('#lzliste'))
-.getPropertyValue('--f-dauer')) || 450) + 120;
 const setze = (ziel) => {
-const vorher = zeilen.find((lz) => lz.classList.contains('ist'));
-const halten = ziel && vorher && zeilen.indexOf(vorher) < zeilen.indexOf(ziel);
 zeilen.forEach((lz) => {
 const offen = lz === ziel;
 lz.classList.toggle('ist', offen);
 lz.querySelector('.lz__kopf')
 .setAttribute('aria-expanded', offen ? 'true' : 'false');
 });
-if (halten) zeileHalten(ziel.querySelector('.lz__kopf'), dauer);
 };
 zeilen.forEach((lz) => {
 lz.querySelector('.lz__kopf').addEventListener('click', () => {
