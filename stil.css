@@ -82,12 +82,14 @@
   /* 18.10.2026, Dusan: "sehr smooth aufgehen und relativ rasch ... eine
      Zusatzbewegung, die es nicht braucht". Die Feder lief 505 ms und
      schoss 1,6 Prozent ueber das Ziel hinaus, bevor sie zurueckfederte -
-     bei einer 580 px hohen Zeile ein Nachwippen von rund 9 px. Jetzt
-     eine reine Abbremskurve ohne Ueberschwingen: nach 170 ms sind 94
-     Prozent erreicht, nach 250 ms steht die Zeile. Gilt fuer beide
+     bei einer 580 px hohen Zeile ein Nachwippen von rund 9 px.
+     Danach, Dusan: "stells so ein wie beim Menue". Also dieselbe Kurve
+     wie das Leistungen-Menue oben (--kurve-rein), ohne Ueberschwingen,
+     auf 250 ms gekuerzt. Das Menue selbst blendet nur ein (130 ms); die
+     Zeilen legen dagegen bis zu 440 px Hoehe zurueck. Gilt fuer beide
      Aufklapper, Leistungen und Fragen. */
-  --f-dauer:340ms;
-  --f-kurve:cubic-bezier(.25,1,.5,1);  /* ease-out-quart; Redondo braucht 265 ms */
+  --f-dauer:250ms;
+  --f-kurve:var(--kurve-rein);
   /* Menü-Hover: an Shinta gemessen t98 155 ms — also RUND DREIMAL
      schneller als eine Text-Rolle. Das war der spürbare Unterschied. */
   --t-menue:.13s;   /* wie die Knöpfe — ein Tempo für alle Bedienelemente */
@@ -3561,16 +3563,13 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    24 px Innenabstand, 20 px Abstand untereinander, Reiter 44 px hoch
    mit rundem Rand. Geoeffnet faerbt sich der ganze Kasten.
 
-   Das Oeffnen ist eine Feder mit kleinem Ueberschwinger: 505 ms, in
-   der Mitte 1,6 Prozent ueber dem Ziel. Kein cubic-bezier trifft das
-   auf besser als vier Prozent — deshalb steht hier die gemessene
-   Kurve selbst als linear(). */
+   18.10.2026: Hier stand eine eigene Feder (505 ms, 1,6 Prozent
+   Ueberschwinger). Sie hat die gemeinsamen Werte an der Wurzel fuer
+   alle Fragen ueberschrieben - die Fragen liefen dadurch weiter
+   langsam, waehrend die Leistungen schon die neue Kurve hatten. Jetzt
+   erben beide dieselben Werte (--f-dauer, --f-kurve in :root). */
 .fragen{padding:var(--sec) var(--pad) 0;
-  max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto;
-  --f-dauer:505ms;
-  --f-kurve:linear(0 0%,.109 7.1%,.339 13.3%,.591 20.2%,.767 26.5%,.892 33.3%,
-            .965 39.8%,.999 46.5%,1.013 52.9%,1.016 59.6%,1.013 66.3%,1.009 72.7%,
-            1.006 79.2%,1.003 85.9%,1.001 92.5%,1 100%)}
+  max-width:calc(var(--maxw) + var(--pad) * 2);margin:0 auto}
 .fragen__kopf{text-align:center;max-width:var(--maxw);margin:0 auto}
 .fragen__kopf .fuehrung{margin:18px auto 0}
 .fragen__reiter{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;
