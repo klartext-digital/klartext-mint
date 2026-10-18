@@ -31,16 +31,6 @@
     });
   }
 
-  const SCHWELLE = 110;
-  let uhr = 0, vorgemerkt = null;
-  const warte = (ziel) => {
-    if (ziel === vorgemerkt) return;
-    vorgemerkt = ziel;
-    clearTimeout(uhr);
-    uhr = setTimeout(() => { if (vorgemerkt === ziel && !ziel.hidden) setze(ziel); }, SCHWELLE);
-  };
-  const abbrechen = () => { clearTimeout(uhr); vorgemerkt = null; };
-
   /* ── Filter nach Thema ──────────────────────────────────────── */
   reiter.forEach((r) => {
     r.addEventListener('click', () => {
@@ -82,36 +72,28 @@
           if (d < kleinster) { kleinster = d; ziel = f; }
         });
       }
-      if (ziel && !ziel.classList.contains('offen')) warte(ziel);
+      if (ziel && !ziel.classList.contains('offen')) setze(ziel);
     };
 
-    /* Kurze Verweilschwelle gegen das Flackern.
-
-       Ohne sie oeffnet jede Frage, die der Zeiger nur streift. Beim
-       schnellen Hoch und Runter sind das gemessen ZEHN Wechsel in 69
-       Millisekunden: jeder startet eine Animation ueber eine halbe
-       Sekunde, fuenf laufen uebereinander und loesen sich alle zehn
-       Millisekunden ab. Genau das sieht man als Flackern — die
-       Bildrate ist dabei einwandfrei, Messungen daran gehen fehl.
-
-       Jetzt muss der Zeiger kurz bei derselben Frage bleiben. Wer
-       durchrauscht, oeffnet nichts. Wer stehen bleibt, merkt die
-       Schwelle nicht: 110 ms liegen unter der Schwelle, ab der eine
-       Reaktion als verzoegert empfunden wird. Gestaltung und Farben
-       bleiben unveraendert. */
+    /* 18.10.2026, Dusan: "bei den FAQs ist ein verzoegerter Hover-Effekt ...
+       ich moechte, dass es schnell ist wie vorher, wie bei den Leistungen".
+       Die Verweilschwelle von 110 ms (13.10., gegen Flackern) ist wieder
+       raus: die Frage unter dem Zeiger oeffnet sofort, wie bei den
+       Leistungszeilen. Das Flackern von damals kam vor allem von der
+       langen Federbewegung (505 ms, mehrere liefen uebereinander); die
+       Bewegung ist jetzt kurz und ohne Ueberschwingen. */
 
     /* Auch beim Eintreten sofort greifen, nicht erst nach der
        ersten Bewegung innerhalb der Liste. */
     liste.addEventListener('pointerenter', waehle, { passive: true });
     liste.addEventListener('pointermove', waehle, { passive: true });
 
-    liste.addEventListener('pointerleave', () => { abbrechen(); setze(null); });
+    liste.addEventListener('pointerleave', () => setze(null));
   }
 
   /* ── Tippen und Tastatur ────────────────────────────────────── */
   fragen.forEach((f) => {
     f.querySelector('.frage__kopf').addEventListener('click', () => {
-      abbrechen();
       setze(f.classList.contains('offen') ? null : f);
     });
   });
