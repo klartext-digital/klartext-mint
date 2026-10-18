@@ -236,7 +236,6 @@ if (ziel && !ziel.classList.contains('ist')) setze(ziel);
 };
 liste.addEventListener('pointerenter', waehle, { passive: true });
 liste.addEventListener('pointermove', waehle, { passive: true });
-liste.addEventListener('pointerleave', () => setze(null));
 }
 })();
 (function vollbreiteBloecke() {
