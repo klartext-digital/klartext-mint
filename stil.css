@@ -4684,3 +4684,24 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 @media (max-width:980px){
   .pruef__karte{grid-template-columns:minmax(0,1fr)}
 }
+
+
+/* ── Links im Text: Textmarker von Hand ───────────────────────
+   19.10.2026, Dusan: "alle hyperlinks in diesem marker stil ohne
+   unterstreichung" (Variante "Von Hand"). Ein unregelmaessiger
+   Pinselstrich in Amber liegt hinter dem Wort, keine Unterstreichung.
+   Gilt fuer Textlinks im Inhalt; Knoepfe, Menue, Brotkrume und
+   Fusszeile bleiben, wie sie sind. Bricht ein Link um, bekommt jede
+   Zeile ihren eigenen Strich (box-decoration-break). */
+body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not(.knopf),
+body main :is(p, li, dd, dt, td, blockquote):not(nav *):not(.seo-breadcrumb *) > a:not([class]),
+body .wege__karte .wege__mehr, body .wege__mehr{
+  color:var(--tinte);font-weight:700;text-decoration:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 48' preserveAspectRatio='none'%3E%3Cpath fill='%23F5A524' d='M6 12 Q30 6 70 8 T150 7 T234 9 L230 15 L237 20 L231 26 L236 32 L229 38 Q160 42 100 40 T8 41 L12 35 L4 29 L10 23 L3 17 Z'/%3E%3Cpath fill='%23FFC65C' opacity='.55' d='M12 11 Q90 5 226 9 L224 13 Q120 10 14 15 Z'/%3E%3Cpath fill='%23E08A0C' opacity='.35' d='M10 37 Q110 33 228 35 L226 38 Q120 40 12 40 Z'/%3E%3C/svg%3E") 0 55% / 100% 100% no-repeat;
+  padding:.02em .3em .06em;margin:0 -.06em;border-radius:2px;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+  transition:filter var(--t-knopf) var(--kurve-rein)}
+body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not(.knopf):hover,
+body main :is(p, li, dd, dt, td, blockquote):not(nav *):not(.seo-breadcrumb *) > a:not([class]):hover,
+body .wege__mehr:hover{filter:saturate(1.25) brightness(.96)}
+
