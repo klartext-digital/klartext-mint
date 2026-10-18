@@ -2417,6 +2417,21 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Am Handy 40 statt 56 px Minimum, sonst stuende er bei 390 px auf
    vier Zeilen; so sind es zwei. */
 .unter__gross--satz{font-size:clamp(40px,8.4vw,140px)}
+/* 18.10.2026, Dusan: "blog artikel genauso gestalten wie titel bei den
+   leistungsseiten". Artikeltitel sind ganze Saetze, darum eine kleinere
+   Stufe; das Satzzeichen am Ende traegt das Amber wie der Punkt. */
+.unter__gross--artikel{font-size:clamp(36px,5.2vw,92px)!important;line-height:.98!important;
+  letter-spacing:-.035em}
+.unter__gross--artikel,.unter--eng .unter__gross--artikel{max-width:none!important}
+/* Standpunkte: Bild und Artikel sitzen jetzt in den beiden Spalten des
+   Portraet-Kopfs. Ihre alten Masse (Bild 1400 px quer, Text 820 px
+   mittig, erster Absatz groesser) gelten dort nicht. */
+.unter__leib--portraet .artikel__bild{max-width:none;margin:0;padding:0}
+.unter__leib--portraet .artikel__bild img{width:100%;max-width:none;height:auto}
+.unter__leib--portraet .artikel{max-width:none;margin:0;padding:0}
+.unter__leib--portraet .artikel p,
+.unter__leib--portraet .artikel p:first-child{font-size:clamp(17px,1.35vw,21px);
+  line-height:1.62;color:var(--grau);margin:0 0 1em}
 .hero .unter__leib--portraet .brush{font-size:clamp(24px,2.9vw,46px);
   color:var(--violett);margin-bottom:0}
 .unter__motiv{border-radius:var(--r-gross);overflow:hidden;
