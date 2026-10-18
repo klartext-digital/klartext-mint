@@ -406,7 +406,11 @@ function zeileHalten(el, dauerMs) {
     };
     liste.addEventListener('pointerenter', waehle, { passive: true });
     liste.addEventListener('pointermove', waehle, { passive: true });
-    liste.addEventListener('pointerleave', () => setze(null));
+    /* 18.10.2026, Dusan: "dieser Freiraum soll nicht leer bleiben ... es soll
+       von einem ins Naechste gehen". Verlaesst der Zeiger die Liste, klappte
+       bisher alles zu: die Sektion schrumpfte um rund 440 px und alles
+       darunter sprang hoch. Jetzt bleibt die zuletzt gewaehlte Zeile offen,
+       bis eine andere uebernimmt. Zuklappen geht weiter per Klick. */
   }
 })();
 

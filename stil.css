@@ -79,10 +79,15 @@
      fuer die Leistungszeilen unsichtbar - deren Uebergang hatte keine
      gueltige Dauer und sprang hart, statt zu animieren. Jetzt an der
      Wurzel, damit beide Aufklapper dieselbe Bewegung haben. */
-  --f-dauer:505ms;
-  --f-kurve:linear(0 0%,.109 7.1%,.339 13.3%,.591 20.2%,.767 26.5%,.892 33.3%,
-            .965 39.8%,.999 46.5%,1.013 52.9%,1.016 59.6%,1.013 66.3%,1.009 72.7%,
-            1.006 79.2%,1.003 85.9%,1.001 92.5%,1 100%);  /* Akkordeon: Redondo braucht 265 ms, nicht 400 */
+  /* 18.10.2026, Dusan: "sehr smooth aufgehen und relativ rasch ... eine
+     Zusatzbewegung, die es nicht braucht". Die Feder lief 505 ms und
+     schoss 1,6 Prozent ueber das Ziel hinaus, bevor sie zurueckfederte -
+     bei einer 580 px hohen Zeile ein Nachwippen von rund 9 px. Jetzt
+     eine reine Abbremskurve ohne Ueberschwingen: nach 170 ms sind 94
+     Prozent erreicht, nach 250 ms steht die Zeile. Gilt fuer beide
+     Aufklapper, Leistungen und Fragen. */
+  --f-dauer:340ms;
+  --f-kurve:cubic-bezier(.25,1,.5,1);  /* ease-out-quart; Redondo braucht 265 ms */
   /* Menü-Hover: an Shinta gemessen t98 155 ms — also RUND DREIMAL
      schneller als eine Text-Rolle. Das war der spürbare Unterschied. */
   --t-menue:.13s;   /* wie die Knöpfe — ein Tempo für alle Bedienelemente */
@@ -771,7 +776,15 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
       rgb(14 13 11 / .46) 60%,
       rgb(14 13 11 / .20) 82%,
       rgb(14 13 11 / .14) 100%),
-    var(--lz-grund) center/cover no-repeat;
+    /* 18.10.2026: NICHT mehr cover. cover rechnet die Bildgroesse aus der
+       aktuellen Hoehe der Zeile - beim Aufklappen wuchs das Foto deshalb
+       mit, sobald die Zeile hoeher als das Bildformat wurde (bei 1440 px
+       Fensterbreite um 17 Prozent, bei 1100 um 33). Das war der Zoom.
+       Jetzt eine feste Breite, die fuer jede gemessene Oeffnungshoehe
+       reicht (bis 1,34-fache Zeilenbreite, hoechstens 1740 px = 600 px
+       Hoehe bei Format 2,9), oben verankert: die Zeile deckt das Foto
+       beim Oeffnen nur auf, das Foto selbst bewegt sich nicht. */
+    var(--lz-grund) center top / max(100%, min(134%, 1740px)) auto no-repeat;
   opacity:0;pointer-events:none;
   /* 13.10.2026, Dusan: "flackert immer noch gleich".
      GESEHEN im Standbild 70 ms nach dem Oeffnen: der Zeilentitel steht
@@ -878,12 +891,15 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    senkrecht und deutlich dichter — das Foto bleibt als Stimmung da, traegt
    aber nicht mehr die Schrift. */
 @media (max-width:1100px){
+  /* Schmal und hoch: offen bis 771 px (gemessen bei 360). 2262 px Breite
+     ergeben bei Format 2,9 genau 780 px Hoehe - auch hier feste Groesse
+     statt cover, damit das Foto beim Aufklappen nicht mitwaechst. */
   .lz::before{background:
     linear-gradient(180deg,
       rgb(14 13 11 / .92) 0%,
       rgb(14 13 11 / .88) 48%,
       rgb(14 13 11 / .74) 100%),
-    var(--lz-grund) center/cover no-repeat}
+    var(--lz-grund) center top / max(100%, 2262px) auto no-repeat}
 }
 .lz[data-i="0"]{--lz-grund:url("bilder/dienst-grund-1.jpg")}
 .lz[data-i="1"]{--lz-grund:url("bilder/dienst-grund-2.jpg")}
@@ -3816,9 +3832,17 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* Die Referenzen bekommen dieselben Masse, aber die dunkle Flaeche.
    Diese Regel steht bewusst NACH der hellen: sie stand vorher mit
    .blog zusammen und hat die dunkle Fassung ueberschrieben. */
-.werke{--einzug:max(var(--pad),calc((100% - var(--maxw)) / 2));
-  margin-top:var(--sec);background:#0B0A09;border-radius:var(--r-seite);
-  padding:clamp(40px,4.4vw,80px) var(--einzug) clamp(44px,4vw,72px)}
+/* 18.10.2026, Dusan: "warum sind jetzt alle boxen so schmal?"
+   --einzug ist fuer VOLLE Baender gedacht: dort zieht es den Inhalt
+   von der Fensterkante auf die Inhaltsspalte. .werke ist aber eine BOX,
+   ihr Deckel (max-width weiter oben) steht schon auf der Inhaltsspalte.
+   Mit --einzug wurde der Rand innen ein zweites Mal abgezogen: bei 1905
+   Fensterbreite 193 px je Seite, der Inhalt schrumpfte auf 1135 px.
+   Seit dem Seitenraster vom 15.10. (1520/64) fiel das deutlich auf.
+   Jetzt ein Innenrand wie bei jeder anderen Box. Gescannt: sonst hat
+   keine Box auf der Seite dieses Muster. */
+.werke{margin-top:var(--sec);background:#0B0A09;border-radius:var(--r-seite);
+  padding:clamp(40px,4.4vw,80px) clamp(22px,3vw,54px) clamp(44px,4vw,72px)}
 /* Die Kartenfuesse tragen die dunkle Fassung mit — heller Text auf
    heller Kachel waere unsichtbar. */
 .werke .werk__leiste{background:rgb(247 247 245 / .06);
