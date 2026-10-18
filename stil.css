@@ -687,7 +687,17 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    jede Zeile eine eigene abgerundete Flaeche mit Luft dazwischen; die
    trennenden Haarlinien entfallen dafuer, sonst schneidet eine gerade
    Linie durch eine runde Ecke. */
-.lzliste{display:grid;gap:clamp(6px,.6vw,12px)}
+.lzliste{display:grid;gap:clamp(6px,.6vw,12px);
+  /* 18.10.2026, Dusan: "die faqs fuehlen sich viel smoother an als die
+     leistungskarten". Gleiche Kurve und Dauer, aber eine Karte legt rund
+     440 px zurueck, eine Frage rund 70 px: in 250 ms sprang die Karte am
+     Anfang 66 px pro Bild, die Frage 10 px. Am Rechenaufwand lag es
+     nicht (gemessen: kein ausgelassenes Bild, rund 1 ms pro Bild).
+     Darum hier mehr Zeit fuer die lange Strecke, gleiche Kurve wie das
+     Menue (--f-kurve aus :root). Gilt fuer alles in der Liste: Hoehe,
+     Polster, Schein und Plus-Zeichen laufen weiter im selben Takt.
+     Die Fragen behalten 250 ms aus :root. */
+  --f-dauer:450ms}
 /* 19.09.2026, Dusan: "leistungs section im gleichen stil wie preis section,
    glass style, inhaltlich bleibt alles gleich." Also dieselbe Sprache wie
    dort — Foto, Verlauf darueber, Glas darauf — aber JE ZEILE statt einmal
