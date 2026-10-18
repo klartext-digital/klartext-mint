@@ -127,7 +127,10 @@
      auf 1905 wieder 192. */
   --maxw:1520px;
   --pad:clamp(24px,4.4vw,64px);
-  --sec:clamp(90px,9vw,170px);
+  /* 18.10.2026, Dusan: "warum so viel abstand, ueberall verringern".
+     Sektionsabstand vorher clamp(90px,9vw,170px): 130 px bei 1440,
+     170 px bei 1905. Jetzt rund ein Drittel weniger, ueberall gleich. */
+  --sec:clamp(60px,6vw,112px);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
