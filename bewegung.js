@@ -217,9 +217,7 @@ setze(lz.classList.contains('ist') ? null : lz);
 });
 const liste = document.querySelector('#lzliste');
 if (liste && matchMedia('(hover:hover) and (pointer:fine)').matches) {
-const waehle = (e) => {
-if (e.pointerType === 'touch') return;
-const y = e.clientY;
+const finde = (y) => {
 let ziel = zeilen.find((lz) => {
 const r = lz.getBoundingClientRect();
 return y >= r.top && y <= r.bottom;
@@ -232,10 +230,29 @@ const d = y < r.top ? r.top - y : y - r.bottom;
 if (d < kleinster) { kleinster = d; ziel = lz; }
 });
 }
-if (ziel && !ziel.classList.contains('ist')) setze(ziel);
+return ziel;
+};
+const SCHNELL = 1.5;   /* px pro ms */
+let zx = 0, zy = 0, zt = 0, tempo = 0, uhr = 0;
+addEventListener('pointermove', (e) => {
+const dt = e.timeStamp - zt;
+tempo = dt > 50 ? Infinity : Math.hypot(e.clientX - zx, e.clientY - zy) / Math.max(1, dt);
+zx = e.clientX; zy = e.clientY; zt = e.timeStamp;
+}, { passive: true, capture: true });
+const waehle = (e) => {
+if (e.pointerType === 'touch') return;
+clearTimeout(uhr);
+const ziel = finde(e.clientY);
+if (!ziel || ziel.classList.contains('ist')) return;
+if (tempo < SCHNELL) { setze(ziel); return; }
+uhr = setTimeout(() => {
+const z = finde(zy);
+if (z && !z.classList.contains('ist')) setze(z);
+}, 60);
 };
 liste.addEventListener('pointerenter', waehle, { passive: true });
 liste.addEventListener('pointermove', waehle, { passive: true });
+liste.addEventListener('pointerleave', () => clearTimeout(uhr));
 }
 })();
 (function vollbreiteBloecke() {
