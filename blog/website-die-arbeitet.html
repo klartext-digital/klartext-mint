@@ -120,23 +120,27 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 
 <main>
   <!-- ══ Kopf ══ -->
+  <div class="hero hero--portraet" data-hero>
   <section class="unter unter--eng">
-    <a class="zurueck" href="../index.html#blog" data-rein>
-      <i aria-hidden="true">←</i><span>Alle Artikel</span></a>
-    <span class="chip" data-rein><time datetime="2026-01-28">28. Jan 2026</time></span>
-    <h1 data-rein-zeilen><span>Woran man eine Website misst</span></h1>
-    <p class="brush" data-rein>Nicht daran, ob sie gefällt, sondern ob sie etwas auslöst.</p>
   </section>
-
-  <figure class="artikel__bild" data-rein>
-    <img src="../bilder/hero-2.jpg" alt="" loading="lazy">
-  </figure>
-
-  <article class="artikel" data-rein>
+  <section class="unter__leib unter__leib--portraet">
+    <div class="unter__kopf" data-rein>
+      <a class="zurueck" href="../index.html#blog">
+        <i aria-hidden="true">←</i><span>Alle Artikel</span></a>
+      <span class="chip"><time datetime="2026-01-28">28. Jan 2026</time></span>
+      <h1 class="unter__gross unter__gross--artikel">Woran man eine Website misst<i class="punkt">.</i></h1>
+      <p class="brush">Nicht daran, ob sie gefällt, sondern ob sie etwas auslöst.</p>
+    </div>
+    <figure class="unter__motiv artikel__bild" data-rein>
+      <img src="../bilder/hero-2.jpg" alt="" loading="lazy">
+    </figure>
+    <article class="artikel unter__text unter__text--satz" data-rein>
       <p>Die häufigste Frage nach einem Relaunch ist "Wie findet ihr sie?". Die nützlichere wäre: "Was soll hier passieren, und passiert es?"</p>
       <p>Eine Website hat eine Aufgabe. Anfragen, Buchungen, Bewerbungen, Downloads. Irgendetwas soll danach anders sein als davor. Wer diese Aufgabe nicht benennt, kann die Seite auch nicht beurteilen und diskutiert am Ende über Farben.</p>
       <p>Zwei Zahlen genügen für den Anfang: Wie viele Leute kommen an, und wie viele tun das Gewünschte. Alles Weitere ist Feinarbeit.</p>
-  </article>
+    </article>
+  </section>
+  </div>
 
 
   <section class="ruf">
