@@ -2417,6 +2417,9 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Am Handy 40 statt 56 px Minimum, sonst stuende er bei 390 px auf
    vier Zeilen; so sind es zwei. */
 .unter__gross--satz{font-size:clamp(40px,8.4vw,140px)}
+/* Titel aus zwei Saetzen oder mit Doppelpunkt brechen an der Satzgrenze
+   (Dusan: "zeilenumbruch mit einem wort intelligent?"). */
+.unter__gross > .satz{display:block}
 /* 18.10.2026, Dusan: "blog artikel genauso gestalten wie titel bei den
    leistungsseiten". Artikeltitel sind ganze Saetze, darum eine kleinere
    Stufe; das Satzzeichen am Ende traegt das Amber wie der Punkt. */
@@ -3712,6 +3715,28 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    daneben (820). Der Rahmen darf vollbreit bleiben, die Liste darin steht
    zentriert in 1200 Punkten — wie auf der Startseite. */
 .fragen--eingebettet .fragen__liste{margin-top:0}
+
+/* 19.10.2026, Dusan: "gestalte die faqs am ende der unterseiten genauso
+   wie auf der hauptseite". Die eingebettete FAQ stand bisher in der
+   Textspalte: kleine Ueberschrift links, ohne Foto. Jetzt dieselbe Form
+   wie auf der Startseite: vollbreit mit Foto, FAQ-Pille, grosser
+   zentrierter Titel, Vorspann, Liste in 1200 px. Ohne Themenfilter -
+   die Unterseiten haben nur drei bis fuenf Fragen. */
+.fragen.fragen--wie-start{
+  margin-inline:calc(50% - 50vw);width:100vw;max-width:100vw;
+  padding:clamp(56px,5.4vw,104px) max(var(--pad),calc((100vw - var(--maxw)) / 2));
+  background:
+    linear-gradient(rgb(255 255 255 / .42), rgb(255 255 255 / .50)),
+    url("bilder/blog-grund.jpg") center top / max(100%, 3130px) auto no-repeat;
+  margin-block:var(--sec) 0}
+.fragen--wie-start .fragen__kopf{text-align:center;max-width:var(--maxw);margin:0 auto}
+.fragen--wie-start .fragen__kopf .chip{margin-bottom:22px}
+.seo-prose .fragen--wie-start .fragen__kopf h2,
+.fragen--wie-start .fragen__kopf h2{font-size:clamp(38px,5vw,86px);line-height:1.05;
+  letter-spacing:-.032em;margin:0;max-width:none;text-wrap:balance}
+.seo-prose .fragen--wie-start .fuehrung,
+.fragen--wie-start .fuehrung{margin:18px auto 0;text-align:center}
+.fragen.fragen--wie-start .fragen__liste{max-width:1200px;margin:clamp(26px,2.6vw,42px) auto 0}
 
 /* ── Preiszeile mit Erstgespräch ───────────────────────────
    Die beiden Pakete ruecken nach links und werden schmaler; rechts
