@@ -120,20 +120,27 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 
 <main>
   <!-- ══ Kopf ══ -->
-  <div class="hero" data-hero>
-  <div class="hero__grund" aria-hidden="true"><img sizes="(max-width: 1100px) 1px, 62vw" src="../bilder/wd-barriere.jpg" alt="" fetchpriority="high" decoding="async"></div>
+  <div class="hero hero--portraet" data-hero>
   <section class="unter">
   </section>
 
   <!-- ══ Text und Bild ══ -->
-  <section class="unter__leib">
-    <div class="unter__text" data-rein>
+  <!-- 18.10.2026: Kopf wie Branding. Der Titel bleibt der SEO-Satz
+       (zwei Zeilen); die Nummer 03 entspricht Menue und Startseite. -->
+  <section class="unter__leib unter__leib--portraet">
+    <div class="unter__kopf" data-rein>
+      <a class="zurueck" href="../index.html#leistungen">
+        <i aria-hidden="true">←</i><span>Alle Leistungen</span></a>
+      <span class="chip">Leistung 03</span>
+      <h1 class="unter__gross unter__gross--satz"><span>Webdesign für</span><span>Schweizer KMU<i class="punkt">.</i></span></h1>
+      <p class="brush">Eine Website ist kein Prospekt.</p>
+    </div>
 
-    <a class="zurueck" href="../index.html#leistungen" data-rein>
-      <i aria-hidden="true">←</i><span>Alle Leistungen</span></a>
+    <figure class="unter__motiv" data-rein>
+      <img sizes="(max-width: 1100px) 1px, 62vw" src="../bilder/wd-barriere.jpg" alt="" fetchpriority="high" decoding="async">
+    </figure>
 
-    <h1 class="seo-h1"><span>Webdesign für</span><span>Schweizer KMU</span></h1>
-    <p class="brush" data-rein>Eine Website ist kein Prospekt.</p>
+    <div class="unter__text unter__text--satz" data-rein>
       <p>Webdesign beginnt mit dem Ziel eures Unternehmens. Eine Website hat eine Aufgabe: Anfragen, Buchungen oder Bewerbungen. Wir legen diese Aufgabe zu Beginn fest und richten Struktur, Texte und Gestaltung darauf aus. Alles, was nicht darauf einzahlt, kommt nicht auf die Seite. Aus Pratteln für Unternehmen in der Region Basel, im Aargau und in der ganzen Deutschschweiz.</p>
       <p>Gebaut wird schnell und auffindbar. Saubere Überschriftenstruktur, sprechende Adressen, Meta-Angaben, komprimierte Bilder und kurze Ladezeiten gehören zur Arbeit und kosten keinen Aufpreis. Auf dem Handy zählt jede Zehntelsekunde, im Zug mit halbem Empfang erst recht.</p>
       <p>Nach dem Start könnt ihr Inhalte selbst pflegen. Ihr bekommt eine Einführung und eine kurze Anleitung, damit ihr für eine neue Referenz nicht anrufen müsst.</p>

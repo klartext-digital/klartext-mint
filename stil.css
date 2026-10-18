@@ -2382,6 +2382,16 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 /* Titel darf hier die ganze Breite nutzen und wird entsprechend gross. */
 .unter__gross{font-size:clamp(56px,9.4vw,152px);line-height:.92;
   letter-spacing:-.04em;margin:18px 0 6px}
+/* 18.10.2026: Ab jetzt tragen alle Leistungsseiten diesen Kopf. Nur
+   "Performance Marketing." ist zu lang fuer eine Zeile (10,47 em: bei
+   1905 px Fenster 1592 statt 1520 px Platz, bei 1440 1418 statt 1313).
+   Dusans Regel: einzeilig, wo Platz ist. Darum etwas kleiner, mit
+   rund 3 Prozent Reserve auf jeder Breite ab 861 px. */
+.unter__gross--lang{font-size:clamp(56px,8.4vw,140px)}
+/* Ganzer Satz als Titel (Websites: "Webdesign für Schweizer KMU.").
+   Am Handy 40 statt 56 px Minimum, sonst stuende er bei 390 px auf
+   vier Zeilen; so sind es zwei. */
+.unter__gross--satz{font-size:clamp(40px,8.4vw,140px)}
 .hero .unter__leib--portraet .brush{font-size:clamp(24px,2.9vw,46px);
   color:var(--violett);margin-bottom:0}
 .unter__motiv{border-radius:var(--r-gross);overflow:hidden;
