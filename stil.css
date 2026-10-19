@@ -3162,7 +3162,12 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   /* Grad und Spaltenbreite haengen an der laengsten Zeile: bei
      74 px braucht "Kompetenz reicht nicht," 775 Punkte, die Spalte
      hatte 704 — die Zeile brach mitten im Satz. */
-  .buehne h1{font-size:clamp(44px,4.75vw,85px)}
+  /* 19.10.2026, Dusan: "wieso hier untereinander?" Jede Satzhaelfte
+     braucht 10,5 em. Ab ~1650 px wuchs die Schrift auf 85 px (893 px),
+     die Textspalte blieb bei 851 - jede Haelfte brach. Jetzt hoechstens
+     80 px (840 px) und 4,6vw darunter: zwei Zeilen auf jeder Breite. */
+  .buehne h1{font-size:clamp(44px,4.6vw,80px)}
+  .buehne h1 > span{white-space:nowrap}
 }
 @media (max-width:520px){
   .geraete .handy{--b:min(150px,40vw);right:-2%}
