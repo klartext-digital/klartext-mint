@@ -419,10 +419,7 @@ for source,route in ROUTES.items():
   token=CONFIG.get('verification',{}).get(key)
   if token:head+=f'<meta name="{name}" content="{escape(token,quote=True)}">\n'
  head+=f'<link rel="preload" href="{prefix}fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>\n'
- # Caprizant Bold kommt aus dem Adobe-Fonts-Web-Projekt "Klartext Website"
- # (Lizenz ueber Dusans Creative-Cloud-Abo). Die Datei selbst darf nicht
- # auf unseren Server, Adobe liefert sie aus.
- head+='<link rel="preconnect" href="https://use.typekit.net" crossorigin>\n<link rel="stylesheet" href="https://use.typekit.net/ymt6jvd.css">\n'
+ head+=f'<link rel="preload" href="{prefix}fonts/klartext-hand.woff2" as="font" type="font/woff2" crossorigin>\n'
  s=s.replace('</head>',head+'</head>')
  dest=OUT/(route if route.endswith('.html') else route+'index.html');dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(s)
 
@@ -466,7 +463,7 @@ def llms_txt():
 (OUT/'.nojekyll').touch()
 # GitHub Pages serves this document with HTTP 404 at any missing path.
 # Absolute asset/navigation URLs also work when that path is deeply nested.
-error_html=f'''<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seite nicht gefunden | Klartext Digital</title><meta name="robots" content="noindex, follow"><meta name="description" content="Diese Seite wurde nicht gefunden. Zur Startseite oder zu den Leistungen von Klartext Digital."><link rel="canonical" href="{BASE}404.html"><link rel="stylesheet" href="https://use.typekit.net/ymt6jvd.css"><link rel="stylesheet" href="{BASE}stil.css"><link rel="stylesheet" href="{BASE}seo.css"></head><body><main><section class="unter unter--eng"><p class="brush">404</p><h1 class="seo-h1">Hier geht es nicht weiter.</h1><p>Die Adresse stimmt nicht oder die Seite wurde verschoben.</p><p><a class="knopf knopf--akzent" href="{BASE}">Zur Startseite</a></p><nav class="seo-offer-nav" aria-label="Weitere Seiten"><a href="{BASE}marketing-abo/">Marketing im Abo</a><a href="{BASE}projektarbeit/">Projektarbeit</a><a href="{BASE}blog/">Blog</a></nav></section></main></body></html>'''
+error_html=f'''<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seite nicht gefunden | Klartext Digital</title><meta name="robots" content="noindex, follow"><meta name="description" content="Diese Seite wurde nicht gefunden. Zur Startseite oder zu den Leistungen von Klartext Digital."><link rel="canonical" href="{BASE}404.html"><link rel="stylesheet" href="{BASE}stil.css"><link rel="stylesheet" href="{BASE}seo.css"></head><body><main><section class="unter unter--eng"><p class="brush">404</p><h1 class="seo-h1">Hier geht es nicht weiter.</h1><p>Die Adresse stimmt nicht oder die Seite wurde verschoben.</p><p><a class="knopf knopf--akzent" href="{BASE}">Zur Startseite</a></p><nav class="seo-offer-nav" aria-label="Weitere Seiten"><a href="{BASE}marketing-abo/">Marketing im Abo</a><a href="{BASE}projektarbeit/">Projektarbeit</a><a href="{BASE}blog/">Blog</a></nav></section></main></body></html>'''
 (OUT/'404.html').write_text(error_html)
 (OUT/'build-manifest.json').write_text(json.dumps(sorted(str(p.relative_to(OUT)) for p in OUT.rglob('*') if p.is_file()),indent=2)+'\n')
 (ROOT/'docs/URL-MAP.json').write_text(json.dumps({k:BASE+v for k,v in {**ROUTES,**ALIASES}.items()},ensure_ascii=False,indent=2)+'\n')
