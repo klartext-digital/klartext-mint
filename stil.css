@@ -16,9 +16,10 @@
     U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:'Rock Salt';src:url(fonts/rocksalt.woff2) format('woff2');
   font-weight:400;font-display:swap}
-/* Klartext Hand: eigene Schreibschrift, gebaut am 23.10.2026 aus dem
-   Logo-Schriftzug "digital" (KI-Lettering, Kleinbuchstaben und Versalien
-   per GPT Image im selben Stil ergaenzt, nachgezeichnet, fontTools).
+/* Klartext Hand: eigene Schreibschrift, gebaut am 23.10.2026 aus Dusans
+   Schriftmuster "Stilableitung aus dem Logo" (A–Z, a–z, ÄÖÜäöüß, 0–9),
+   Satzzeichen aus einem zweiten Blatt im selben Stil; nachgezeichnet,
+   mit fontTools gebaut.
    Gehoert Klartext Digital, liegt darum auf dem eigenen Server. */
 @font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand.woff2) format('woff2');
   font-weight:400 900;font-display:swap}
@@ -4745,48 +4746,48 @@ body .wege__mehr:hover{filter:saturate(1.25) brightness(.96)}
 
 
 /* ── Pinselstrich: Handschrift auf orangem Dry Brush ──────────
-   23.10.2026, Dusan: alle Schreibschrift-Stellen und die orangen Woerter
-   in Caprizant Bold, dunkle Schrift auf einem trockenen Pinselstrich in
-   Amber (Vorlagen: "Projekte.", "niemand", "Budget, das arbeitet.").
-   Der Strich ist ein Bild (bilder/pinsel.webp), gesetzt als border-image:
-   Anfang und trockener Auslauf behalten ihre Groesse, nur die Mitte
-   waechst mit dem Wort. Mit background-size:100% lief der Auslauf bei
-   langen Zeilen unter die letzten Buchstaben. Er sitzt auf dem inneren Traeger .brush__t, sobald
-   das Skript ihn angelegt hat: dann malt der Schreib-Reveal Strich und
-   Wort zusammen von links nach rechts. Ohne Skript sitzt er aussen. */
+   23.10.2026, Dusan, nach seinen Vorlagen "Projekte." und "niemand":
+   dunkle Schrift (Klartext Hand) GROESSER als der orange Strich, sie ragt
+   oben und unten heraus; die Tinte selbst hat trockene Pinselstreifen.
+   Aufbau in zwei Ebenen, weil eine Maske alles im Element trifft:
+     aussen (.brush/.wort)  der Strich als border-image (bilder/pinsel.webp):
+                            Anfang und Auslauf behalten ihre Groesse, nur die
+                            Mitte waechst mit dem Wort.
+     innen  (.brush__t)     die Schrift mit Streifenmaske (bilder/tinte.png).
+                            Der Build legt den Traeger immer an, nicht erst
+                            das Skript. Polster + Minus-Rand geben der Maske
+                            Platz fuer Ober- und Unterlaengen. */
 .brush,.wort,.fall__daten dt,.beitrag .datum,.fuss__kopf,.fzk__marke,.lese__zeit{
   font-family:var(--hand),cursive;font-weight:700;font-style:normal;
   color:var(--tinte)!important;letter-spacing:0}
 .brush,.wort{
   border:0 solid transparent;border-image:url(bilder/pinsel.webp) 0 230 0 110 fill / 0 1.05em 0 .5em stretch;
-  padding:.18em .62em .2em .38em;
+  padding:.02em .7em 0 .42em;line-height:.78;
   -webkit-box-decoration-break:clone;box-decoration-break:clone}
-.brush:has(> .brush__t){border-image:none;padding:0}
-.brush > .brush__t{border:0 solid transparent;border-image:url(bilder/pinsel.webp) 0 230 0 110 fill / 0 1.05em 0 .5em stretch;
-  padding:.18em .62em .2em .38em;margin:0}
+.brush > .brush__t,.wort > .brush__t{display:inline-block;font:inherit;color:inherit;
+  padding:.42em .12em .4em;margin:-.42em -.12em -.4em;
+  -webkit-mask:url(bilder/tinte.png) 0 0 / 3em auto repeat;
+          mask:url(bilder/tinte.png) 0 0 / 3em auto repeat}
 /* Zeilen-Brush: so breit wie ihr Text, linke Textkante bleibt auf der
    Kante der Ueberschrift — der Strich ragt links heraus wie im Entwurf. */
 p.brush,.referenzen .brush,.weiter .brush{display:block;width:fit-content;max-width:100%}
-p.brush{margin-left:-.38em}
+p.brush{margin-left:-.42em}
 p.brush.mitte,.referenzen .brush,.weiter .brush,.mitte > p.brush{margin-left:auto;margin-right:auto}
-/* Zeilen-Brush: Klartext Hand laeuft breit, darum etwas kleiner als Rock Salt */
-p.brush{font-size:clamp(26px,2.9vw,48px);line-height:1.15}
-.unter .brush,.unter__text > .brush{font-size:clamp(22px,2.3vw,38px)}
-/* Klartext Hand ist so hoch und breit wie die Figtree daneben: 1em reicht.
-   (Caprizant brauchte wegen ihrer kleinen x-Hoehe 1.5em.) */
-h1 .brush,h2 .brush,h1 .wort,h2 .wort{font-size:1.02em;font-weight:700;margin:0 .02em;
-  display:inline-block;line-height:.95;letter-spacing:0;padding:.16em .55em .16em .3em;
-  margin:-.14em 0;vertical-align:-.04em}
-.buehne h1 .wort{font-weight:700;color:var(--tinte);font-size:.86em;
-  padding-right:.55em;margin-right:-.16em}
+p.brush{font-size:clamp(34px,3.7vw,60px)}
+.unter .brush,.unter__text > .brush{font-size:clamp(30px,3vw,50px)}
+/* In Ueberschriften steht das Wort so gross wie die Figtree daneben und
+   ueberragt den Strich, wie in den Vorlagen. */
+h1 .brush,h2 .brush,h1 .wort,h2 .wort{font-size:1.3em;font-weight:700;
+  display:inline-block;line-height:.66;letter-spacing:0;padding:.04em .55em .02em .32em;
+  margin:0 .02em;vertical-align:-.02em}
+.buehne h1 .wort{font-size:1.04em;padding-right:.44em;margin-right:-.2em}
 /* Die Bühne hat zwei feste Zeilen (nowrap). Mit Strich darf die zweite
    Zeile nicht breiter werden als die erste, sonst ragt sie ab 1280 px
    aus der Spalte. */
 /* Kleine Marken (Datum, Fusskoepfe, "/Monat"): unter rund 24 px wird der
-   Strich zum Fleck und das Wort darauf unleserlich. Dort nur die Schrift,
-   dunkel und eine Stufe groesser als vorher in Rock Salt. */
+   Strich zum Fleck und das Wort darauf unleserlich. Dort nur die Schrift. */
 .fall__daten dt,.beitrag .datum,.fuss__kopf,.fzk__marke,.lese__zeit,
 .paket__preis .brush,.blog__hand .brush,.brief__hand .brush{
   font-size:20px;line-height:1.35;border-image:none;padding:0}
-.paket__preis .brush:has(> .brush__t),.blog__hand .brush > .brush__t,
-.brief__hand .brush > .brush__t,.paket__preis .brush > .brush__t{border-image:none;padding:0}
+.paket__preis .brush > .brush__t,.blog__hand .brush > .brush__t,
+.brief__hand .brush > .brush__t{-webkit-mask:none;mask:none}
