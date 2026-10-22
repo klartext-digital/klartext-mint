@@ -20,7 +20,7 @@
 .lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
 .lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
 .lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
-.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:var(--hand,'Rock Salt'),cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
 .lader__zahl--geist{visibility:hidden}
 .lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
 @media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
@@ -28,7 +28,7 @@
 </style>
 <title>Nordlicht: Markenidentität &amp; Website | Klartext Digital</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%230F4C55'/></svg>">
-<link rel="stylesheet" href="../../stil.css?v=efa59a17">
+<link rel="stylesheet" href="../../stil.css?v=4157afe6">
 <script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
    Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
    eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
@@ -63,6 +63,8 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 <meta name="twitter:image" content="https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg">
 <script defer src="../../messung.js?v=d9a35c72"></script>
 <link rel="preload" href="../../fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/ymt6jvd.css">
 </head>
 <body>
 
