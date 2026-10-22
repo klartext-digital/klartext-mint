@@ -25,7 +25,18 @@
   const zahl  = l.querySelector('.lader__zahl:not(.lader__zahl--geist)');
   const wort  = l.querySelector('.lader__wort');
 
-  const SAETZE = [
+  /* Die französischen Sätze sind eigene Formulierungen, keine Wort-für-
+     Wort-Übersetzung: ein Sprichwort muss in seiner Sprache sitzen. */
+  const SAETZE = document.documentElement.lang.indexOf('fr') === 0 ? [
+    'Le bon marketing prend du temps.',
+    'Rapide ne veut pas dire bien.',
+    'À vouloir parler à tout le monde, on ne touche personne.',
+    'Se démarquer n’est jamais un hasard.',
+    'Une marque ne se construit pas en une nuit.',
+    'La clarté l’emporte sur le volume.',
+    'Qui n’a rien à dire le dit souvent fort.',
+    'De la visibilité sans conviction ne mène nulle part.'
+  ] : [
     'Gutes Marketing braucht Zeit.',
     'Schnell ist nicht immer gut.',
     'Wer alle meint, erreicht niemanden.',
