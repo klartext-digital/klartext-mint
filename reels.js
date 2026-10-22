@@ -5,13 +5,14 @@
   const reels = [].slice.call(document.querySelectorAll('.reel'));
   if (!reels.length) return;
   const sanft = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const fr = document.documentElement.lang.indexOf('fr') === 0;
 
   function stumm(r) {
     const v = r.querySelector('video');
     v.muted = true;
     r.classList.remove('tont');
     const k = r.querySelector('.reel__ton');
-    if (k) k.setAttribute('aria-label', 'Ton einschalten');
+    if (k) k.setAttribute('aria-label', fr ? 'Activer le son' : 'Ton einschalten');
   }
 
   function laut(r) {
@@ -24,7 +25,7 @@
     if (p && p.catch) p.catch(function () {});
     r.classList.add('tont');
     const k = r.querySelector('.reel__ton');
-    if (k) k.setAttribute('aria-label', 'Ton ausschalten');
+    if (k) k.setAttribute('aria-label', fr ? 'Couper le son' : 'Ton ausschalten');
   }
 
   reels.forEach(function (r) {

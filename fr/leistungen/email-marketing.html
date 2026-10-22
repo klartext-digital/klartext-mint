@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<title>Newsletter &amp; e-mail marketing à Bâle | Klartext Digital</title>
+<meta name="description" content="Campagnes newsletter, modèles et séquences automatisées. Conception, mise en œuvre et analyse en suivi continu ou en renfort de votre équipe.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%230F4C55'/></svg>">
+<link rel="stylesheet" href="../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../marke/favicon-180.png">
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../marke/wortmarke-negativ.svg" alt="KLARTEXT" width="4105" height="859"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../index.html" aria-label="KLARTEXT : vers la page d’accueil"><img src="../marke/wortmarke.svg" alt="KLARTEXT" width="4105" height="859"></a>
+    <nav class="nav__wege" aria-label="Navigation principale">
+      <a class="mlink" href="../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Réalisations</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Réalisations</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../index.html#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Prestations<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Prestations<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">À propos</span><span class="mlink__t mlink__t--neu" aria-hidden="true">À propos</span></a>
+      <a class="mlink" href="../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Tarifs</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Tarifs</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../index.html#kontakt">
+      <span class="rolle"><span>Prendre rendez-vous</span><span aria-hidden="true">Prendre rendez-vous</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Aperçu des prestations" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../leistungen/branding.html" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marque &amp; stratégie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../leistungen/social-media.html" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Réseaux sociaux &amp; contenu</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../leistungen/websites.html" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Sites web</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../leistungen/performance.html" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../leistungen/email-marketing.html" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-mail marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../seo/index.html" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../leistungen/index.html" tabindex="-1">Toutes les prestations <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../bilder/dienst-1.jpg" alt="" class="ist">
+          <img src="../bilder/dienst-2.jpg" alt="">
+          <img src="../bilder/dienst-3.jpg" alt="">
+          <img src="../bilder/dienst-4.jpg" alt="">
+          <img src="../bilder/dienst-5.jpg" alt="">
+          <img src="../bilder/dienst-6.jpg" alt="">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Un positionnement qui tient</b><span>Stratégie de marque, logotype, système de couleurs et de typographies, langage visuel et un guide de marque avec lequel votre équipe avance en autonomie.</span></div>
+          <div class="ndd__satz"><b>Régulier plutôt que sporadique</b><span>Planning éditorial pour Instagram, TikTok et LinkedIn, production à un rythme fixe et une communauté suivie de près.</span></div>
+          <div class="ndd__satz"><b>Des sites qui vendent</b><span>Concept, design et réalisation. Rapides, faciles à trouver et conçus pour que vous puissiez gérer vos contenus vous-mêmes.</span></div>
+          <div class="ndd__satz"><b>Un budget qui travaille</b><span>Google Ads, Meta Ads, TikTok Ads et LinkedIn Ads avec un suivi propre et une optimisation continue.</span></div>
+          <div class="ndd__satz"><b>Le canal qui vous appartient</b><span>Newsletters, séquences automatisées et segmentation. Aucune plateforme entre vous et vos clients, aucune audience en location.</span></div>
+          <div class="ndd__satz"><b>Trouvé quand on vous cherche</b><span>Audit technique, contenus compréhensibles et analyse continue. En projet à part entière ou dans le cadre de l’abonnement.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ══ Kopf ══ -->
+  <div class="hero hero--portraet" data-hero>
+  <section class="unter">
+  </section>
+
+  <!-- ══ Text und Bild ══ -->
+  <section class="unter__leib unter__leib--portraet">
+    <div class="unter__kopf" data-rein>
+      <a class="zurueck" href="../index.html#leistungen">
+        <i aria-hidden="true">←</i><span>Toutes les prestations</span></a>
+      <span class="chip">E-mail marketing</span>
+      <h1 class="unter__gross">E-mail marketing<i class="punkt">.</i></h1>
+      <p class="brush">Le seul canal qui vous appartient.</p>
+    </div>
+
+    <figure class="unter__motiv" data-rein>
+      <img sizes="(max-width: 1100px) 1px, 62vw" src="../bilder/em-newsletter.jpg" alt="" fetchpriority="high" decoding="async">
+    </figure>
+
+    <div class="unter__text unter__text--satz" data-rein>
+      <p>Sur les réseaux sociaux, la portée est louée. Une liste de diffusion, non. Qui possède une liste atteint ses contacts même quand l’algorithme change les règles ou que le coût par clic augmente. Depuis Pratteln, pour les entreprises de la région bâloise, d’Argovie et de toute la Suisse alémanique.</p>
+      <p>Nous construisons proprement la liste de diffusion, avec inscription, consentement et séquence de bienvenue, et rédigeons des newsletters qu’on lit jusqu’au bout. S’y ajoutent des séquences automatisées pour les paniers abandonnés, la reconquête et la relance après une demande.</p>
+      <p>Objet, heure d’envoi et segment sont testés, pas devinés. Nous vérifions aussi les prérequis techniques d’envoi convenus et les signes de problèmes de délivrabilité. Un placement dans un dossier précis de la boîte de réception ne peut pas être garanti.</p>
+      <p class="unter__dauer"><span>Durée typique</span><b>en continu, résiliable chaque mois après la durée minimale</b></p>
+    </div>
+  </section>
+</div>
+
+  <!-- ══ Was drin ist ══ -->
+  <section class="unter__block">
+    <div class="dienste__block">
+      <div class="dienste__kopf">
+        <p class="brush">Ce qui est inclus</p>
+        <h2 data-rein-zeilen><span>Le périmètre en un coup d’œil.</span></h2>
+      </div>
+      <ul class="umfang">
+          <li class="umfang__karte">
+            <img class="umfang__bild" src="../bilder/em-newsletter.jpg" alt="" loading="lazy" decoding="async">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5h18v11H3z"/><path d="M3.6 7l8.4 6 8.4-6"/></svg></span>
+            <h3>Concept et textes de newsletter</h3>
+            <p>Un rythme fixe, des thèmes tirés de votre quotidien.</p>
+          </li>
+          <li class="umfang__karte">
+            <img class="umfang__bild" src="../bilder/em-verteiler.jpg" alt="" loading="lazy" decoding="async">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg></span>
+            <h3>Liste, inscription et consentement</h3>
+            <p>Mise en place, origine traçable, compte et modèles configurés.</p>
+          </li>
+          <li class="umfang__karte">
+            <img class="umfang__bild" src="../bilder/em-strecken.jpg" alt="" loading="lazy" decoding="async">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h6a4 4 0 014 4v2a4 4 0 004 4h2"/><path d="M17 14l3 3-3 3"/><circle cx="4" cy="7" r="1.6"/></svg></span>
+            <h3>Séquences automatisées</h3>
+            <p>Bienvenue, panier et reconquête, automatiquement.</p>
+          </li>
+          <li class="umfang__karte">
+            <img class="umfang__bild" src="../bilder/em-segment.jpg" alt="" loading="lazy" decoding="async">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 5h17l-6.5 7.5V20l-4-2.5v-5z"/></svg></span>
+            <h3>Segmentation et tests A/B</h3>
+            <p>Le bon groupe de destinataires, une seule variable testée à la fois.</p>
+          </li>
+          <li class="umfang__karte">
+            <img class="umfang__bild" src="../bilder/em-zustellung.jpg" alt="" loading="lazy" decoding="async">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3.5L10.5 14"/><path d="M21 3.5l-6.8 17-3.7-6.5L4 10.3z"/></svg></span>
+            <h3>Délivrabilité</h3>
+            <p>Prérequis techniques d’envoi convenus vérifiés.</p>
+          </li>
+          <li class="umfang__karte">
+            <img class="umfang__bild" src="../bilder/em-report.jpg" alt="" loading="lazy" decoding="async">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 108.5 8.5H12z"/><path d="M14.5 3.9A8.5 8.5 0 0120.1 9.5h-5.6z"/></svg></span>
+            <h3>Analyse et rapport mensuel</h3>
+            <p>L’offre a-t-elle été consultée ? Des demandes pertinentes sont-elles arrivées ?</p>
+          </li>
+        </ul>
+    </div>
+  </section>
+
+  <!-- ══ Ablauf ══ -->
+
+<section class="unter__block seo-prose">
+<h2>Une newsletter a besoin d’une occasion concrète</h2>
+<p>Une nouvelle offre, un cas d’usage utile, une invitation ou un rappel opportun : le contenu doit correspondre au groupe de destinataires et à l’étape suivante. Pour chaque campagne, nous clarifions donc d’abord pourquoi le message est pertinent pour ces personnes. C’est de là que naissent l’objet, le contenu et la page d’atterrissage.</p>
+<p>Une équipe marketing existante peut fournir les thèmes et l’expertise. Nous complétons par la conception, la rédaction, le graphisme, la mise en œuvre technique ou l’analyse. Si vous souhaitez externaliser le travail de campagne courant, il peut, dans le périmètre convenu, être intégré à votre <a href="../marketing-abo/">abonnement marketing</a>.</p>
+<h2>Newsletter ou séquence automatisée ?</h2>
+<dl class="angebot-liste">
+<div><dt>Campagne newsletter ponctuelle</dt><dd>Un message pour une occasion concrète et une liste de diffusion définie. Cela comprend le contenu, le graphisme, la validation, la préparation de l’envoi et l’analyse. Une campagne peut aussi se composer de plusieurs messages coordonnés.</dd></div>
+<div><dt>Suivi continu de la newsletter</dt><dd>Un plan thématique relie nouveautés produits, savoir et offres adaptées. Le volume dépend de vos thèmes, de vos groupes de destinataires et de vos possibilités de validation. Des modèles récurrents facilitent la mise en œuvre.</dd></div>
+<div><dt>Messages automatisés</dt><dd>Un déclencheur convenu lance une séquence, par exemple une inscription ou une action pertinente dans la boutique en ligne. Avant la configuration, nous clarifions la source des données, les conditions, le contenu et la sortie. Quel message peut partir quand et vers qui ? Cela doit être défini de façon traçable.</dd></div>
+</dl>
+<h2>Ce qui est clarifié avant le premier envoi</h2>
+<ul><li><strong>Destinataires :</strong> l’origine des contacts, les consentements existants et l’utilisation autorisée sont vérifiés avec vos responsables.</li><li><strong>Système :</strong> plateforme d’envoi existante, accès, connexions nécessaires et frais courants.</li><li><strong>Expéditeur :</strong> informations d’expéditeur identifiables et personne responsable des réponses et questions.</li><li><strong>Contenu :</strong> messages à jour, pages d’atterrissage adaptées et validation sur le fond.</li><li><strong>Contrôle :</strong> affichage, liens, inscription, désinscription et, le cas échéant, conditions d’une séquence automatisée.</li></ul>
+<p>Pour une liste de diffusion existante, la taille du fichier n’est pas un gage de qualité. Ce qui compte, c’est que les contacts soient utilisables de façon traçable et que les contenus leur conviennent. Les listes non clarifiées passent donc d’abord par un contrôle, avant toute préparation de campagne.</p>
+<h2>Que se passe-t-il après l’envoi ?</h2>
+<p>L’analyse part de la mission du message : l’offre en lien a-t-elle été consultée ? Des demandes, inscriptions ou commandes pertinentes en ont-elles découlé ? Les désinscriptions et problèmes de délivrabilité donnent aussi des indications. Les indicateurs isolés doivent toujours être lus en lien avec l’objectif, le groupe de destinataires et les possibilités de mesure.</p>
+<p>Pour la campagne suivante, nous consignons ce qui doit changer. Une accroche plus claire, un groupe de destinataires mieux ciblé ou une page d’atterrissage plus compréhensible peuvent être de bons leviers. Qui modifie plusieurs éléments à la fois aura ensuite plus de mal à savoir ce qui a fait la différence.</p>
+
+<p>Pour une nouvelle orientation des contenus, nous commençons par la <a href="../branding/">stratégie de communication</a>. Pour une configuration ou une campagne ponctuelle, optez pour un <a href="../projektarbeit/">mandat de projet</a>.</p>
+<p><a class="knopf knopf--akzent" href="../#kontakt">Discuter de votre newsletter</a></p>
+</section>
+  <!-- ══ Weiter ══ -->
+
+  <!-- ══ Ruf ══ -->
+  <section class="ruf">
+    <div class="ruf__karte ruf__karte--knapp ruf__karte--vorteile" data-rein>
+      <div class="ruf__wort">
+        <p class="brush">Parlons-en</p>
+        <h2>Est-ce adapté<br>à votre projet ?</h2>
+        <p class="ruf__text">Quinze minutes suffisent pour une évaluation
+          honnête, même si rien n’en découle au final.</p>
+        <a class="knopf knopf--akzent gross" href="../index.html#kontakt">
+          <span class="rolle"><span>Prendre rendez-vous</span><span aria-hidden="true">Prendre rendez-vous</span></span>
+        </a>
+      </div>
+      <ul class="vorteile">
+        <li>Le canal vous appartient, pas à une plateforme</li>
+        <li>Un rythme fixe plutôt que des envois au hasard</li>
+        <li>Les séquences automatisées tournent sans vous</li>
+        <li>On teste, on ne devine pas</li>
+        <li>Rapport mensuel avec des prochaines étapes concrètes</li>
+      </ul>
+    </div>
+  </section>
+    <section class="unter__block seo-prose">
+      <div class="fragen fragen--eingebettet fragen--wie-start">
+  <div class="fragen__kopf">
+    <span class="chip">FAQ</span>
+    <h2>Questions fréquentes sur l’e-mail marketing.</h2>
+    <p class="fuehrung">Encore une question ? <a href="../index.html#kontakt">Écrivez-nous</a>. Nous répondons en général le même jour ouvrable.</p>
+  </div>
+  <div class="fragen__liste">
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Pouvons-nous continuer avec notre système actuel ?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Nous le vérifions à partir des fonctions nécessaires et des accès existants. Un nouveau système n’a de sens que si les exigences le justifient. La reprise des données, les modèles et les coûts courants font partie de cette décision.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Prenez-vous en charge uniquement le graphisme et la technique ?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Oui, les tâches peuvent être délimitées. Votre équipe peut fournir les thèmes et les textes, pendant que nous assurons le graphisme, la configuration et le contrôle convenus. Nous fixons dès le départ les responsabilités et la validation finale.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Quels coûts devons-nous prévoir ?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>En plus du travail de campagne, des frais de plateforme d’envoi et des coûts pour les modèles, la préparation des données ou les connexions système peuvent s’ajouter. Le suivi récurrent et la configuration unique devraient figurer séparément dans l’offre. Pour une planification complète, consultez le <a href="../blog/marketingbudget-kmu/">guide du budget marketing</a>.</p></div></div>
+    </div>
+  </div>
+</div>
+    </section>
+</main>
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <p class="brush">Un mot ?</p>
+      <h2>Parlons<br>ensemble.</h2>
+      <div class="fuss__kontakt">
+        <a class="fuss__gross" href="mailto:hallo@klartext-digital.ch">
+          <span>hallo@klartext-digital.ch</span><i aria-hidden="true">↗</i></a>
+      </div>
+      <p class="fuss__ort">Lohagstrasse 15, 4133 Pratteln<br>
+        Priorité à la région de Bâle et à l’Argovie,<br>
+        actifs dans toute la Suisse alémanique<br>
+        Du lundi au vendredi, de 08:00 à 20:00</p>
+    </div>
+
+    <div class="fuss__spalten">
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Site</p>
+        <a class="mlink" href="../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Réalisations</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Réalisations</span></a>
+        <a class="mlink" href="../leistungen/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Prestations</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Prestations</span></a>
+        <a class="mlink" href="../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">À propos</span><span class="mlink__t mlink__t--neu" aria-hidden="true">À propos</span></a>
+        <a class="mlink" href="../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Tarifs</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Tarifs</span></a>
+        <a class="mlink" href="../index.html#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Contact</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Contact</span></a>
+      </nav>
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Prestations</p>
+        <a class="mlink" href="../leistungen/branding.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a>
+        <a class="mlink" href="../leistungen/social-media.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Réseaux sociaux</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Réseaux sociaux</span></a>
+        <a class="mlink" href="../leistungen/websites.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Sites web</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Sites web</span></a>
+        <a class="mlink" href="../leistungen/performance.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance marketing</span></a>
+        <a class="mlink" href="../leistungen/email-marketing.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-mail marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-mail marketing</span></a>
+        <a class="mlink" href="../seo/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">SEO</span><span class="mlink__t mlink__t--neu" aria-hidden="true">SEO</span></a>
+      </nav>
+      <div class="fuss__spalte">
+        <p class="fuss__kopf">Suivre</p>
+        <div class="fuss__sozial">
+          <a href="../index.html" aria-label="Instagram"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+          <a href="../index.html" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.4 10.4v6.2M7.4 7.6v.1M11.4 16.6v-3.4a2.4 2.4 0 0 1 4.8 0v3.4M11.4 16.6v-6.2"/></svg><span>LinkedIn</span></a>
+          <a href="../index.html" aria-label="TikTok"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M14.2 3.5v10.9a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14.2 3.5a5 5 0 0 0 5 5"/></svg><span>TikTok</span></a>
+          <a href="../index.html" aria-label="Behance"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3 6h5.2a2.6 2.6 0 0 1 0 5.2H3zM3 11.2h5.6a2.9 2.9 0 0 1 0 5.8H3zM14.6 13.4h6.4a3.2 3.2 0 0 0-6.4 0 3.2 3.2 0 0 0 5.9 1.7M15.6 7.4h4.4"/></svg><span>Behance</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH · Tous droits réservés</p>
+    <nav>
+      <a href="../recht/impressum.html">Mentions légales</a>
+      <a href="../recht/datenschutz.html">Protection des données</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../marke/wortmarke-negativ.svg" alt="" width="4105" height="859"></div>
+</footer>
+
+<div class="demo">Ébauche · textes, noms et chiffres provisoires</div>
+
+<script src="../js/lenis.min.js"></script>
+<script src="../js/gsap.min.js"></script>
+<script src="../js/ScrollTrigger.min.js"></script>
+<script src="../lader.js"></script>
+<script src="../bewegung.js"></script>
+<script src="../fragen.js"></script>
+<script src="../zeiger.js"></script>
+</body>
+</html>
