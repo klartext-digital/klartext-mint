@@ -20,7 +20,7 @@
 .lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
 .lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
 .lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
-.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:var(--hand,'Rock Salt'),cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
 .lader__zahl--geist{visibility:hidden}
 .lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
 @media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
@@ -123,7 +123,7 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
     <a class="zurueck" href="../index.html" data-rein>
       <i aria-hidden="true">←</i><span>Zur Startseite</span></a>
     <span class="chip" data-rein>Arbeiten</span>
-    <h1 data-rein-zeilen><span>Ausgewählte Projekte.</span></h1>
+    <h1 data-rein-zeilen><span>Ausgewählte</span><span><em class="wort">Projekte.</em></span></h1>
     <p class="brush" data-rein>Drei Marken, drei Ausgangslagen.</p>
   </section>
 
