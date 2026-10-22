@@ -700,7 +700,14 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      Menue (--f-kurve aus :root). Gilt fuer alles in der Liste: Hoehe,
      Polster, Schein und Plus-Zeichen laufen weiter im selben Takt.
      Die Fragen behalten 250 ms aus :root. */
-  --f-dauer:450ms}
+  --f-dauer:450ms;
+  /* 22.10.2026, Dusan: "aufklappen der leistungssections schneller und
+     fluessiger". 320 ms statt 450, dazu ease-out-cubic statt der Menue-
+     Kurve: die Menue-Kurve startet mit Steigung 2,3 und warf die Karte im
+     ersten Bild 37 px weit; ease-out-cubic startet mit 1,5 - trotz
+     kuerzerer Dauer nur rund 34 px. Kein Ueberschwingen. */
+  --f-dauer:320ms;
+  --f-kurve:cubic-bezier(.33,1,.68,1)}
 /* 19.09.2026, Dusan: "leistungs section im gleichen stil wie preis section,
    glass style, inhaltlich bleibt alles gleich." Also dieselbe Sprache wie
    dort — Foto, Verlauf darueber, Glas darauf — aber JE ZEILE statt einmal
