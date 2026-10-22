@@ -22,7 +22,7 @@
      eines davon flog beim Aufblenden sichtbar heran. */
   const wort = document.createElement('span');
   wort.className = 'zeiger__wort';
-  wort.textContent = 'Projekt ansehen';
+  wort.textContent = document.documentElement.lang.indexOf('fr') === 0 ? 'Voir le projet' : 'Projekt ansehen';
   ring.appendChild(wort);
   wurzel.appendChild(punkt);
   wurzel.appendChild(ring);

@@ -437,6 +437,51 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
   opacity:1;transform:none}
 .nav__cta{font-size:17px;padding:14px 26px}
 
+/* ── Sprachwahl DE/FR ──────────────────────────────────────────
+   22.10.2026, Dusan: Französisch als Option oben rechts. Der Build
+   setzt sie vor den Knopf (scripts/build.py, .nav__rechts), damit
+   space-between der Leiste die beiden als EINE Gruppe behandelt.
+   Formensprache der Menüpunkte: Pille, gleiche Kurve, gleiches Tempo.
+   Die aktive Sprache ist gefüllt, die andere bleibt leise. */
+.nav__rechts{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.sprache{display:flex;align-items:center;gap:2px;padding:3px;
+  border-radius:var(--r-pille);border:1px solid rgb(14 13 11 / .12)}
+.sprache__wahl{position:relative;display:grid;place-items:center;
+  min-width:40px;min-height:40px;padding:0 10px;border-radius:var(--r-pille);
+  font-size:14px;font-weight:700;letter-spacing:.04em;line-height:1;
+  /* .66 statt .5: bei .5 nur 3,6:1 auf der Glasleiste, 14 px fett gilt
+     nach WCAG nicht als grosse Schrift. .66 ergibt rund 6:1. */
+  color:rgb(14 13 11 / .66);
+  transition:color var(--t-menue) var(--kurve-rein),
+             background-color var(--t-menue) var(--kurve-rein)}
+.sprache__wahl:hover,.sprache__wahl:focus-visible{color:var(--tinte);
+  background-color:rgb(14 13 11 / .07)}
+.sprache__wahl.ist{background-color:var(--tinte);color:var(--creme)}
+/* Schmal: nur die ANDERE Sprache als einzelner Schalter. Zwei Pillen
+   neben „Prendre rendez-vous" sprengen die Leiste bei 390 px. */
+@media (max-width:560px){
+  .nav__rechts{gap:6px}
+  .sprache{padding:0;border:0}
+  .sprache__wahl.ist{display:none}
+  .sprache__wahl{border:1px solid rgb(14 13 11 / .14)}
+}
+/* Unter 360 px (ältere kleine Handys) passen Marke, Sprachwahl und
+   „Prendre rendez-vous" nur mit engeren Abständen in die Leiste.
+   Gemessen bei 320 px: vorher ragte der Knopf 29 px über die Pille. */
+/* .nav davor: die Regel fuer schmale Schirme weiter unten setzt
+   padding-left:22px und stuende sonst ueber dieser. Auf Franzoesisch
+   tauscht der Build den Knopftext gegen „Rendez-vous" (.nav__cta-kurz),
+   „Prendre rendez-vous" passt bei 320 px auch eng gesetzt nicht. */
+.nav__cta-kurz{display:none}
+@media (max-width:359px){
+  .nav .nav__pille{padding-left:16px;gap:8px}
+  .nav__rechts{gap:5px}
+  .sprache__wahl{min-width:34px;min-height:34px;padding:0 8px;font-size:13px}
+  .nav__cta{font-size:14px;padding:12px 14px}
+  .nav__cta-lang{display:none}
+  .nav__cta-kurz{display:inline}
+}
+
 /* ── Leistungs-Dropdown ─────────────────────────────────────────
    Mechanik aus der ersten KLARTEXT-Seite (130 ms Verweilen zum
    Öffnen, 180 ms Nachlauf, Panel hält nur, öffnet nie selbst).
