@@ -13,7 +13,7 @@ Selbstbewusste, bildgetragene Agentur für Schweizer KMU. Bestehenden Premium-Au
 - Türkiswerte im Bestand nicht neu als zusätzliche Palette aktivieren.
 
 ## 3. Typography Rules
-Figtree lokal, 400–900; Handschrift = Caprizant Bold über Adobe Fonts (Web-Projekt „Klartext Website“, Kit ymt6jvd), dunkle Schrift auf orangem Dry-Brush-Strich (bilder/pinsel.webp); unter rund 24 px nur die Schrift ohne Strich. Rock Salt bleibt lokale Ausweichschrift. Wortmarke als bestehendes SVG. Neue lange Überschriften mit begrenzter Grösse und natürlichem Umbruch. Lesetexte maximal 70 Zeichen breit.
+Figtree lokal, 400–900; Handschrift = Klartext Hand (eigene Schrift aus dem Logo-Schriftzug „digital“, fonts/klartext-hand.woff2), dunkle Schrift auf orangem Dry-Brush-Strich (bilder/pinsel.webp); unter rund 24 px nur die Schrift ohne Strich. Rock Salt bleibt lokale Ausweichschrift. Wortmarke als bestehendes SVG. Neue lange Überschriften mit begrenzter Grösse und natürlichem Umbruch. Lesetexte maximal 70 Zeichen breit.
 
 ## 4. Component Stylings
 Bestehende schwebende Navigation, pillenförmige Aktionen, grosszügige Radien (16/24/36 px), Seitenrahmen 56 px. Neue Artikel nutzen bestehende unter-/artikel-Bausteine. Breadcrumbs sind unaufdringliche Textnavigation. Hinweise bleiben direkt bei betroffenen Inhalten.
