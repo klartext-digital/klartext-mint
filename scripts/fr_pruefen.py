@@ -21,6 +21,8 @@ class Geruest(HTMLParser):
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
         meta_text = tag == 'meta' and any(k in (a.get('name', '') + a.get('property', '')) for k in ('description', 'title'))
+        # Google-Hilfelinks duerfen die Sprache wechseln (hl=de zu hl=fr).
+        attrs = [(k, re.sub(r'([?&]hl=)fr\b', r'\1de', v) if k == 'href' and v else v) for k, v in attrs]
         fest = tuple(sorted((k, v) for k, v in attrs if k not in FREI and not (meta_text and k == 'content')))
         self.tags.append((tag, fest, self.getpos()[0]))
         for k in FREI & a.keys():
