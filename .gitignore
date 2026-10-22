@@ -3,3 +3,5 @@ server.log
 .DS_Store
 _site/
 __pycache__/
+# iCloud-Konfliktkopien ("datei 2.html") nie einchecken
+* 2.*
