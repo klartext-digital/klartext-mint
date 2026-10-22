@@ -16,11 +16,17 @@
     U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:'Rock Salt';src:url(fonts/rocksalt.woff2) format('woff2');
   font-weight:400;font-display:swap}
+/* Klartext Hand: eigene Schreibschrift, gebaut am 23.10.2026 aus dem
+   Logo-Schriftzug "digital" (KI-Lettering, Kleinbuchstaben und Versalien
+   per GPT Image im selben Stil ergaenzt, nachgezeichnet, fontTools).
+   Gehoert Klartext Digital, liegt darum auf dem eigenen Server. */
+@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand.woff2) format('woff2');
+  font-weight:400 900;font-display:swap}
 
 :root{
-  /* 23.10.2026: Schreibschrift = Caprizant Bold (Adobe Fonts, Web-Projekt
-     "Klartext Website", Kit ymt6jvd). Rock Salt bleibt Ausweichschrift. */
-  --hand:'caprizant','Rock Salt';
+  /* Schreibschrift: Klartext Hand (eigene Schrift aus dem Logo, seit
+     23.10.2026; vorher kurz Caprizant Bold ueber Adobe Fonts). */
+  --hand:'Klartext Hand','Rock Salt';
   /* ── Farbe: KLARTEXT-Marke auf heller Bühne ── */
   /* Fast-Weiss statt Creme — die Bühne bleibt minimal warm, damit
      Violett und Schwarz nicht kalt kippen, liest sich aber als Weiss. */
@@ -4763,16 +4769,16 @@ body .wege__mehr:hover{filter:saturate(1.25) brightness(.96)}
 p.brush,.referenzen .brush,.weiter .brush{display:block;width:fit-content;max-width:100%}
 p.brush{margin-left:-.38em}
 p.brush.mitte,.referenzen .brush,.weiter .brush,.mitte > p.brush{margin-left:auto;margin-right:auto}
-/* Caprizant ist zierlicher als Rock Salt: eine Stufe groesser */
-p.brush{font-size:clamp(38px,4.2vw,70px);line-height:1.1}
-.unter .brush,.unter__text > .brush{font-size:clamp(30px,3.3vw,54px)}
-/* Caprizant hat eine sehr kleine x-Hoehe: auf 1em wirkt das Wort neben
-   der fetten Figtree wie eine Fussnote. Bei 1.5em steht es gleich hoch. */
-h1 .brush,h2 .brush,h1 .wort,h2 .wort{font-size:1.5em;font-weight:700;margin:0 .02em;
+/* Zeilen-Brush: Klartext Hand laeuft breit, darum etwas kleiner als Rock Salt */
+p.brush{font-size:clamp(26px,2.9vw,48px);line-height:1.15}
+.unter .brush,.unter__text > .brush{font-size:clamp(22px,2.3vw,38px)}
+/* Klartext Hand ist so hoch und breit wie die Figtree daneben: 1em reicht.
+   (Caprizant brauchte wegen ihrer kleinen x-Hoehe 1.5em.) */
+h1 .brush,h2 .brush,h1 .wort,h2 .wort{font-size:1.02em;font-weight:700;margin:0 .02em;
   display:inline-block;line-height:.95;letter-spacing:0;padding:.16em .55em .16em .3em;
   margin:-.14em 0;vertical-align:-.04em}
-.buehne h1 .wort{font-weight:700;color:var(--tinte);font-size:1.2em;
-  padding-right:.38em;margin-right:-.1em}
+.buehne h1 .wort{font-weight:700;color:var(--tinte);font-size:.86em;
+  padding-right:.55em;margin-right:-.16em}
 /* Die Bühne hat zwei feste Zeilen (nowrap). Mit Strich darf die zweite
    Zeile nicht breiter werden als die erste, sonst ragt sie ab 1280 px
    aus der Spalte. */
@@ -4781,6 +4787,6 @@ h1 .brush,h2 .brush,h1 .wort,h2 .wort{font-size:1.5em;font-weight:700;margin:0 .
    dunkel und eine Stufe groesser als vorher in Rock Salt. */
 .fall__daten dt,.beitrag .datum,.fuss__kopf,.fzk__marke,.lese__zeit,
 .paket__preis .brush,.blog__hand .brush,.brief__hand .brush{
-  font-size:21px;line-height:1.25;border-image:none;padding:0}
+  font-size:20px;line-height:1.35;border-image:none;padding:0}
 .paket__preis .brush:has(> .brush__t),.blog__hand .brush > .brush__t,
 .brief__hand .brush > .brush__t,.paket__preis .brush > .brush__t{border-image:none;padding:0}
