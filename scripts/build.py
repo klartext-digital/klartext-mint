@@ -358,6 +358,9 @@ for source,route in ROUTES.items():
    if 'dienst-' in src.group(1) and 'loading=' not in tag and 'fetchpriority="high"' not in tag:tag=tag[:-1]+' loading="lazy">'
   def _mit_stempel(x):
    attr,wert=x.group(1),x.group(2)
+   # srcset mit EINER Adresse (z. B. <source> im Kopf-Logo) wie src
+   # umschreiben; Listen mit Breitenangaben baut der Build selbst.
+   if attr=='srcset' and (',' in wert or ' ' in wert.strip()):return x.group(0)
    neu=rewrite_url(wert,source,route)
    if attr in ('href','src'):
     item=resolved(wert,source)
@@ -365,7 +368,7 @@ for source,route in ROUTES.items():
      h=stempel(item[0])
      if h:neu+=('&amp;' if '?' in neu else '?')+'v='+h
    return attr+'="'+neu+'"'
-  tag=re.sub(r'\b(href|src|poster)="([^"]*)"',_mit_stempel,tag)
+  tag=re.sub(r'\b(href|src|poster|srcset)="([^"]*)"',_mit_stempel,tag)
   if variants:
    candidates=', '.join(posixpath.relpath(v['path'],route_dir or '.')+' '+str(v['width'])+'w' for v in variants)
    # Ein im Markup gesetztes sizes bleibt stehen: dieselbe Bilddatei dient
