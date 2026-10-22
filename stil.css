@@ -413,8 +413,17 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 /* 23.10.2026: neues Logo "klartext. digital" (quer). Die Unterlaenge von
    digital frisst Hoehe: bei gleicher Bildhoehe waere klartext. kleiner als
    vorher. 1.27x haelt die Wortmarke auf ihrer bisherigen Groesse. */
+.nav__mark picture{display:block;line-height:0;flex:none}
+/* max-width:100% (Grundregel fuer Bilder) stauchte das Zeichen im Bild-Rahmen
+   des <picture> auf 23 px. */
+.nav__mark picture img{max-width:none}
 .nav__mark img{height:clamp(33px,3.55vw,46px);width:auto;
   flex:0 0 auto;display:block}
+/* Dusan, 23.10.2026: "nimm das andere logo untereinander bzw nur das K".
+   Ab 700 px die gestapelte Fassung (klartext. ueber digital), darunter nur
+   das Zeichen k. — die gestapelte Fassung waere auf dem Handy zu klein. */
+@media (min-width:700px){.nav__mark img{height:clamp(50px,4vw,60px)}}
+@media (max-width:699px){.nav__mark img{height:48px;margin:-6px 0 -6px -8px}}
 .nav__wege{display:flex;gap:6px;font-size:17px;font-weight:500}
 
 /* ── Menü-Hover: Pille poppt auf, Wort kippt durch ──────────────
