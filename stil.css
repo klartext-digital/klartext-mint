@@ -18,6 +18,9 @@
   font-weight:400;font-display:swap}
 
 :root{
+  /* 23.10.2026: Schreibschrift = Caprizant Bold (Adobe Fonts, Web-Projekt
+     "Klartext Website", Kit ymt6jvd). Rock Salt bleibt Ausweichschrift. */
+  --hand:'caprizant','Rock Salt';
   /* ── Farbe: KLARTEXT-Marke auf heller Bühne ── */
   /* Fast-Weiss statt Creme — die Bühne bleibt minimal warm, damit
      Violett und Schwarz nicht kalt kippen, liest sich aber als Weiss. */
@@ -175,7 +178,7 @@ h1 span,h2 span{display:block}
    Auf 15 px war das eine Bildunterschrift, kein Akzent; jetzt trägt
    sie so weit, dass man sie als eigene Stimme liest. Inline im Satz
    (<span>, <em>) bleibt sie an ihrer Umgebung gemessen. */
-.brush{font-family:'Rock Salt',cursive;font-weight:400;font-size:15px;
+.brush{font-family:var(--hand,'Rock Salt'),cursive;font-weight:400;font-size:15px;
   letter-spacing:0;line-height:1.6;color:var(--violett);font-style:normal}
 p.brush{font-size:clamp(28px,3.1vw,50px);line-height:1.25;
   letter-spacing:-.015em;margin-bottom:.3em}
@@ -1119,7 +1122,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .fall__liste li.ist{background:var(--violett);color:#fff}
 .fall__inhalt{display:grid;gap:22px}
 .fall__daten{display:flex;gap:44px}
-.fall__daten dt{font-family:'Rock Salt',cursive;font-size:15px;color:var(--violett);
+.fall__daten dt{font-family:var(--hand,'Rock Salt'),cursive;font-size:15px;color:var(--violett);
   margin-bottom:4px}
 .fall__daten dd{font-size:18px;font-weight:700}
 .pillen{display:flex;gap:8px;flex-wrap:wrap}
@@ -1212,7 +1215,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    auf einem 600 px hohen Bild war eine Bildunterschrift. */
 .lamelle__schild b{font-size:clamp(26px,2.3vw,42px);font-weight:800;
   letter-spacing:-.04em;line-height:1.05}
-.lamelle__schild i{font-family:'Rock Salt',cursive;font-style:normal;
+.lamelle__schild i{font-family:var(--hand,'Rock Salt'),cursive;font-style:normal;
   font-size:clamp(15px,1.15vw,21px);color:var(--violett-hell);line-height:1.5}
 
 /* ── 9 · Preise ────────────────────────────────────────────── */
@@ -1607,7 +1610,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   transition:transform var(--t-bild) var(--kurve)}
 .beitrag:hover img{transform:scale(1.06)}
 /* Handschriftliche Zaehlzeile — Zierde ueber dem Titel. */
-.beitrag .datum{font-family:'Rock Salt',cursive;font-size:15px;color:var(--violett)}
+.beitrag .datum{font-family:var(--hand,'Rock Salt'),cursive;font-size:15px;color:var(--violett)}
 .beitrag h3{transition:color var(--t-farbe) var(--kurve)}
 .beitrag:hover h3{color:var(--violett)}
 
@@ -2020,7 +2023,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 
 .fuss__spalten{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .fuss__spalte{display:grid;gap:2px;align-content:start;justify-items:start}
-.fuss__kopf{font-family:'Rock Salt',cursive;font-size:16px;color:rgb(14 13 11 / .72);
+.fuss__kopf{font-family:var(--hand,'Rock Salt'),cursive;font-size:16px;color:rgb(14 13 11 / .72);
   margin:0 0 14px 16px}
 .fuss__spalte .mlink{font-size:18px;font-weight:500;padding:8px 16px}
 
@@ -2606,7 +2609,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .schritt:hover{box-shadow:inset 0 0 0 2px var(--violett-zart);
   transform:translateY(-3px)}
 /* Handschriftliche Schrittnummer — Zierde neben dem Titel. */
-.schritt > b{font-family:'Rock Salt',cursive;font-size:15px;color:var(--violett);
+.schritt > b{font-family:var(--hand,'Rock Salt'),cursive;font-size:15px;color:var(--violett);
   line-height:1.5;flex:none}
 .schritt h3{font-size:20px;letter-spacing:-.025em;margin-bottom:5px}
 .schritt p{font-size:16px;line-height:1.5;color:var(--grau)}
@@ -2636,7 +2639,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   background:var(--linie)}
 .schritte--linie .schritt > b{display:grid;place-items:center;width:54px;height:54px;
   border-radius:50%;background:var(--creme-2);border:2px solid var(--linie);
-  font-family:'Rock Salt',cursive;font-size:15px;color:var(--violett);
+  font-family:var(--hand,'Rock Salt'),cursive;font-size:15px;color:var(--violett);
   line-height:1;margin-bottom:18px}
 .schritte--linie .schritt h3{font-size:clamp(17px,1.3vw,20px);margin-bottom:6px}
 .schritte--linie .schritt p{font-size:clamp(14px,1.05vw,16px);line-height:1.5}
@@ -2671,7 +2674,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
     transform var(--t-knopf) var(--kurve-rein)}
 .weiter__karte:hover{box-shadow:inset 0 0 0 2px var(--violett-zart);
   transform:translateY(-3px)}
-.weiter__nr{font-family:'Rock Salt',cursive;font-size:14px;color:var(--violett);
+.weiter__nr{font-family:var(--hand,'Rock Salt'),cursive;font-size:14px;color:var(--violett);
   flex:none;line-height:1.5}
 .weiter__name{font-size:19px;font-weight:700;letter-spacing:-.025em;flex:1}
 .weiter__karte i{font-style:normal;color:var(--grau-2);
@@ -3253,7 +3256,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   gap:clamp(8px,.9vw,14px)}
 /* Die Herkunft steht als Wort da, nicht als Farbe allein — Farbe
    allein unterscheidet fuer niemanden, der sie nicht sieht. */
-.fzk__marke{font-family:'Rock Salt',cursive;font-size:15px;
+.fzk__marke{font-family:var(--hand,'Rock Salt'),cursive;font-size:15px;
   color:var(--violett)}
 .fzk__karte--frage .fzk__marke{color:var(--grau)}
 .fzk__karte h3{font-size:clamp(20px,1.7vw,27px);letter-spacing:-.03em;
@@ -3377,7 +3380,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Violett der Marke. In der Bernstein-Fassung waere das Gegenstueck
    ein abgedunkeltes Gold — eine Farbe, die es in der Marke nicht
    gibt. Dort steht die Zeile deshalb in Tinte. */
-.lese__zeit{font-family:'Rock Salt',cursive;font-size:14px;color:var(--tinte);
+.lese__zeit{font-family:var(--hand,'Rock Salt'),cursive;font-size:14px;color:var(--tinte);
   transition:color var(--t-flaeche) var(--kurve)}
 .lese__datum{font-size:14px;color:var(--grau);
   transition:color var(--t-flaeche) var(--kurve)}
@@ -4717,3 +4720,51 @@ body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not
 body main :is(p, li, dd, dt, td, blockquote):not(nav *):not(.seo-breadcrumb *) > a:not([class]):hover,
 body .wege__mehr:hover{filter:saturate(1.25) brightness(.96)}
 
+
+
+/* ── Pinselstrich: Handschrift auf orangem Dry Brush ──────────
+   23.10.2026, Dusan: alle Schreibschrift-Stellen und die orangen Woerter
+   in Caprizant Bold, dunkle Schrift auf einem trockenen Pinselstrich in
+   Amber (Vorlagen: "Projekte.", "niemand", "Budget, das arbeitet.").
+   Der Strich ist ein Bild (bilder/pinsel.webp), gesetzt als border-image:
+   Anfang und trockener Auslauf behalten ihre Groesse, nur die Mitte
+   waechst mit dem Wort. Mit background-size:100% lief der Auslauf bei
+   langen Zeilen unter die letzten Buchstaben. Er sitzt auf dem inneren Traeger .brush__t, sobald
+   das Skript ihn angelegt hat: dann malt der Schreib-Reveal Strich und
+   Wort zusammen von links nach rechts. Ohne Skript sitzt er aussen. */
+.brush,.wort,.fall__daten dt,.beitrag .datum,.fuss__kopf,.fzk__marke,.lese__zeit{
+  font-family:var(--hand),cursive;font-weight:700;font-style:normal;
+  color:var(--tinte)!important;letter-spacing:0}
+.brush,.wort{
+  border:0 solid transparent;border-image:url(bilder/pinsel.webp) 0 230 0 110 fill / 0 1.05em 0 .5em stretch;
+  padding:.18em .62em .2em .38em;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+.brush:has(> .brush__t){border-image:none;padding:0}
+.brush > .brush__t{border:0 solid transparent;border-image:url(bilder/pinsel.webp) 0 230 0 110 fill / 0 1.05em 0 .5em stretch;
+  padding:.18em .62em .2em .38em;margin:0}
+/* Zeilen-Brush: so breit wie ihr Text, linke Textkante bleibt auf der
+   Kante der Ueberschrift — der Strich ragt links heraus wie im Entwurf. */
+p.brush,.referenzen .brush,.weiter .brush{display:block;width:fit-content;max-width:100%}
+p.brush{margin-left:-.38em}
+p.brush.mitte,.referenzen .brush,.weiter .brush,.mitte > p.brush{margin-left:auto;margin-right:auto}
+/* Caprizant ist zierlicher als Rock Salt: eine Stufe groesser */
+p.brush{font-size:clamp(38px,4.2vw,70px);line-height:1.1}
+.unter .brush,.unter__text > .brush{font-size:clamp(30px,3.3vw,54px)}
+/* Caprizant hat eine sehr kleine x-Hoehe: auf 1em wirkt das Wort neben
+   der fetten Figtree wie eine Fussnote. Bei 1.5em steht es gleich hoch. */
+h1 .brush,h2 .brush,h1 .wort,h2 .wort{font-size:1.5em;font-weight:700;margin:0 .02em;
+  display:inline-block;line-height:.95;letter-spacing:0;padding:.16em .55em .16em .3em;
+  margin:-.14em 0;vertical-align:-.04em}
+.buehne h1 .wort{font-weight:700;color:var(--tinte);font-size:1.2em;
+  padding-right:.38em;margin-right:-.1em}
+/* Die Bühne hat zwei feste Zeilen (nowrap). Mit Strich darf die zweite
+   Zeile nicht breiter werden als die erste, sonst ragt sie ab 1280 px
+   aus der Spalte. */
+/* Kleine Marken (Datum, Fusskoepfe, "/Monat"): unter rund 24 px wird der
+   Strich zum Fleck und das Wort darauf unleserlich. Dort nur die Schrift,
+   dunkel und eine Stufe groesser als vorher in Rock Salt. */
+.fall__daten dt,.beitrag .datum,.fuss__kopf,.fzk__marke,.lese__zeit,
+.paket__preis .brush,.blog__hand .brush,.brief__hand .brush{
+  font-size:21px;line-height:1.25;border-image:none;padding:0}
+.paket__preis .brush:has(> .brush__t),.blog__hand .brush > .brush__t,
+.brief__hand .brush > .brush__t,.paket__preis .brush > .brush__t{border-image:none;padding:0}
