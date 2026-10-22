@@ -410,7 +410,10 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 /* 36: 26 war zu klein, 44 zu gross. Die Pille ist innen 56 hoch,
    die Hoehe gibt der Knopf vor — Platz waere fuer mehr, aber
    die Marke soll die Navigation nicht dominieren. */
-.nav__mark img{height:clamp(26px,2.8vw,36px);width:auto;
+/* 23.10.2026: neues Logo "klartext. digital" (quer). Die Unterlaenge von
+   digital frisst Hoehe: bei gleicher Bildhoehe waere klartext. kleiner als
+   vorher. 1.27x haelt die Wortmarke auf ihrer bisherigen Groesse. */
+.nav__mark img{height:clamp(33px,3.55vw,46px);width:auto;
   flex:0 0 auto;display:block}
 .nav__wege{display:flex;gap:6px;font-size:17px;font-weight:500}
 
