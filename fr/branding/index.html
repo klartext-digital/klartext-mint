@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="fr-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<title>Branding &amp; stratégie de marque à Bâle | Klartext Digital</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%230F4C55'/></svg>">
+<link rel="stylesheet" href="../../stil.css?v=e08b3aba">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+
+<meta name="description" content="Positionnement, système de marque et modèles pour votre quotidien. Le branding en projet ou en complément spécialisé de votre service marketing.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://klartext-digital.github.io/klartext-mint/fr/branding/">
+<meta property="og:title" content="Branding &amp; stratégie de marque à Bâle | Klartext Digital">
+<meta property="og:description" content="Positionnement, système de marque et modèles pour votre quotidien. Le branding en projet ou en complément spécialisé de votre service marketing.">
+<meta property="og:url" content="https://klartext-digital.github.io/klartext-mint/fr/branding/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_CH">
+<meta property="og:image" content="https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg">
+<link rel="stylesheet" href="../../seo.css?v=7605753d">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://klartext-digital.github.io/klartext-mint/fr/branding/#webpage", "url": "https://klartext-digital.github.io/klartext-mint/fr/branding/", "name": "Branding & stratégie de marque à Bâle | Klartext Digital", "description": "Positionnement, système de marque et modèles pour votre quotidien. Le branding en projet ou en complément spécialisé de votre service marketing.", "inLanguage": "fr-CH", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "ProfessionalService", "@id": "https://klartext-digital.github.io/klartext-mint/#organization", "name": "Klartext Digital GmbH", "alternateName": ["KLARTEXT.", "Klartext Digital"], "url": "https://klartext-digital.github.io/klartext-mint/", "logo": "https://klartext-digital.github.io/klartext-mint/marke/wortmarke.svg", "image": "https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg", "email": "hallo@klartext-digital.ch", "address": {"@type": "PostalAddress", "streetAddress": "Lohagstrasse 15", "postalCode": "4133", "addressLocality": "Pratteln", "addressRegion": "BL", "addressCountry": "CH"}, "areaServed": [{"@type": "AdministrativeArea", "name": "Aargau"}, {"@type": "AdministrativeArea", "name": "Appenzell Ausserrhoden"}, {"@type": "AdministrativeArea", "name": "Appenzell Innerrhoden"}, {"@type": "AdministrativeArea", "name": "Basel-Landschaft"}, {"@type": "AdministrativeArea", "name": "Basel-Stadt"}, {"@type": "AdministrativeArea", "name": "Bern"}, {"@type": "AdministrativeArea", "name": "Glarus"}, {"@type": "AdministrativeArea", "name": "Graubünden"}, {"@type": "AdministrativeArea", "name": "Luzern"}, {"@type": "AdministrativeArea", "name": "Nidwalden"}, {"@type": "AdministrativeArea", "name": "Obwalden"}, {"@type": "AdministrativeArea", "name": "St. Gallen"}, {"@type": "AdministrativeArea", "name": "Schaffhausen"}, {"@type": "AdministrativeArea", "name": "Schwyz"}, {"@type": "AdministrativeArea", "name": "Solothurn"}, {"@type": "AdministrativeArea", "name": "Thurgau"}, {"@type": "AdministrativeArea", "name": "Uri"}, {"@type": "AdministrativeArea", "name": "Zug"}, {"@type": "AdministrativeArea", "name": "Zürich"}], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "20:00"}], "knowsAbout": ["Webdesign", "Suchmaschinenoptimierung", "Social Media Marketing", "Google Ads", "Meta Ads", "E-Mail-Marketing", "Branding"]}, {"@type": "Service", "@id": "https://klartext-digital.github.io/klartext-mint/fr/branding/#service", "name": "Branding et stratégie de marque", "serviceType": "Branding et stratégie de marque", "provider": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}, "areaServed": [{"@type": "AdministrativeArea", "name": "Aargau"}, {"@type": "AdministrativeArea", "name": "Appenzell Ausserrhoden"}, {"@type": "AdministrativeArea", "name": "Appenzell Innerrhoden"}, {"@type": "AdministrativeArea", "name": "Basel-Landschaft"}, {"@type": "AdministrativeArea", "name": "Basel-Stadt"}, {"@type": "AdministrativeArea", "name": "Bern"}, {"@type": "AdministrativeArea", "name": "Glarus"}, {"@type": "AdministrativeArea", "name": "Graubünden"}, {"@type": "AdministrativeArea", "name": "Luzern"}, {"@type": "AdministrativeArea", "name": "Nidwalden"}, {"@type": "AdministrativeArea", "name": "Obwalden"}, {"@type": "AdministrativeArea", "name": "St. Gallen"}, {"@type": "AdministrativeArea", "name": "Schaffhausen"}, {"@type": "AdministrativeArea", "name": "Schwyz"}, {"@type": "AdministrativeArea", "name": "Solothurn"}, {"@type": "AdministrativeArea", "name": "Thurgau"}, {"@type": "AdministrativeArea", "name": "Uri"}, {"@type": "AdministrativeArea", "name": "Zug"}, {"@type": "AdministrativeArea", "name": "Zürich"}], "url": "https://klartext-digital.github.io/klartext-mint/fr/branding/", "description": "Positionnement, système de marque et modèles pour votre quotidien. Le branding en projet ou en complément spécialisé de votre service marketing."}, {"@type": "FAQPage", "@id": "https://klartext-digital.github.io/klartext-mint/fr/branding/#faq", "inLanguage": "fr-CH", "mainEntity": [{"@type": "Question", "name": "Devons-nous remplacer notre logo actuel ?", "acceptedAnswer": {"@type": "Answer", "text": "C’est l’état des lieux qui le montre. Si le logo reste adapté, le mandat peut se concentrer sur le positionnement, les modèles ou un système cohérent. Les directives de marque existantes en constituent la base."}}, {"@type": "Question", "name": "Qu’est-ce qui influence l’effort et le budget ?", "acceptedAnswer": {"@type": "Answer", "text": "Surtout les questions stratégiques, le nombre de supports nécessaires, les versions linguistiques et les étapes de validation. Pour comparer équitablement des offres, elles doivent inclure les mêmes résultats et formats de fichiers. Notre guide sur la planification du budget marketing aide à réunir projets ponctuels et mise en œuvre continue. Les différents facteurs de coût sont décrits dans l’article Combien coûte un branding ?"}}, {"@type": "Question", "name": "Que se passe-t-il après la remise ?", "acceptedAnswer": {"@type": "Answer", "text": "Un branding clairement délimité se déroule sous forme de projet . Les supports récurrents, le contenu et les campagnes peuvent ensuite être intégrés à votre abonnement marketing . Votre équipe interne peut continuer à travailler elle-même avec les modèles convenus."}}, {"@type": "Question", "name": "Faut-il déjà disposer d’une stratégie de marque élaborée ?", "acceptedAnswer": {"@type": "Answer", "text": "Les bases existantes sont utiles. Lors du briefing, nous clarifions quelles décisions sont déjà prises et lesquelles manquent encore pour la communication. Ainsi, le mandat reste clairement délimité."}}, {"@type": "Question", "name": "L’équipe interne peut-elle prendre en charge la mise en œuvre ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. La stratégie peut servir de base à votre mise en œuvre interne. Les lignes directrices, modèles et introductions dont vous avez besoin pour cela font partie du périmètre du projet."}}]}, {"@type": "BreadcrumbList", "@id": "https://klartext-digital.github.io/klartext-mint/fr/branding/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://klartext-digital.github.io/klartext-mint/fr/"}, {"@type": "ListItem", "position": 2, "name": "Branding & stratégie de marque à Bâle", "item": "https://klartext-digital.github.io/klartext-mint/fr/branding/"}]}]}</script>
+<link rel="alternate" hreflang="de-CH" href="https://klartext-digital.github.io/klartext-mint/branding/">
+<link rel="alternate" hreflang="fr-CH" href="https://klartext-digital.github.io/klartext-mint/fr/branding/">
+<link rel="alternate" hreflang="x-default" href="https://klartext-digital.github.io/klartext-mint/branding/">
+<meta property="og:locale:alternate" content="de_CH">
+<meta property="og:image:alt" content="Klartext Digital, création de sites web et marketing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Branding &amp; stratégie de marque à Bâle | Klartext Digital">
+<meta name="twitter:description" content="Positionnement, système de marque et modèles pour votre quotidien. Le branding en projet ou en complément spécialisé de votre service marketing.">
+<meta name="twitter:image" content="https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg">
+<script defer src="../../messung.js?v=d9a35c72"></script>
+<link rel="preload" href="../../fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/wortmarke-negativ.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../" aria-label="KLARTEXT : vers la page d’accueil"><img src="../../marke/wortmarke.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></a>
+    <nav class="nav__wege" aria-label="Navigation principale">
+      <a class="mlink" href="../realisations/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Réalisations</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Réalisations</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Prestations<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Prestations<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../a-propos/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">À propos</span><span class="mlink__t mlink__t--neu" aria-hidden="true">À propos</span></a>
+      <a class="mlink" href="../blog/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Tarifs</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Tarifs</span></a>
+    </nav>
+    <div class="nav__rechts"><nav class="sprache" aria-label="Langue"><a class="sprache__wahl" href="../../branding/" hreflang="de-CH" lang="de" aria-label="Deutsch"><span>DE</span></a><a class="sprache__wahl ist" href="./" hreflang="fr-CH" lang="fr" aria-current="true" aria-label="Français"><span>FR</span></a></nav><a class="knopf knopf--akzent nav__cta" href="../#kontakt">
+      <span class="rolle"><span><span class="nav__cta-lang">Prendre rendez-vous</span><span class="nav__cta-kurz">Rendez-vous</span></span><span aria-hidden="true">Prendre rendez-vous</span></span>
+    </a></div>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Aperçu des prestations" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="./" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marque &amp; stratégie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../reseaux-sociaux/" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Réseaux sociaux &amp; contenu</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../creation-site-web/" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Sites web</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../performance-marketing/" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../email-marketing/" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-mail marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../seo/" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../prestations/" tabindex="-1">Toutes les prestations <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-1-480.webp 480w, ../../bilder/dienst-1-626.webp 626w, ../../bilder/dienst-1-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-2.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-2-480.webp 480w, ../../bilder/dienst-2-626.webp 626w, ../../bilder/dienst-2-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-3.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-3-480.webp 480w, ../../bilder/dienst-3-626.webp 626w, ../../bilder/dienst-3-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-4.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-4-480.webp 480w, ../../bilder/dienst-4-626.webp 626w, ../../bilder/dienst-4-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-5.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-5-480.webp 480w, ../../bilder/dienst-5-626.webp 626w, ../../bilder/dienst-5-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-6.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-6-480.webp 480w, ../../bilder/dienst-6-626.webp 626w, ../../bilder/dienst-6-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Un positionnement qui tient</b><span>Stratégie de marque, logotype, système de couleurs et de typographies, langage visuel et un guide de marque avec lequel votre équipe avance en autonomie.</span></div>
+          <div class="ndd__satz"><b>Régulier plutôt que sporadique</b><span>Planning éditorial pour Instagram, TikTok et LinkedIn, production à un rythme fixe et une communauté suivie de près.</span></div>
+          <div class="ndd__satz"><b>Des sites qui vendent</b><span>Concept, design et réalisation. Rapides, faciles à trouver et conçus pour que vous puissiez gérer vos contenus vous-mêmes.</span></div>
+          <div class="ndd__satz"><b>Un budget qui travaille</b><span>Google Ads, Meta Ads, TikTok Ads et LinkedIn Ads avec un suivi propre et une optimisation continue.</span></div>
+          <div class="ndd__satz"><b>Le canal qui vous appartient</b><span>Newsletters, séquences automatisées et segmentation. Aucune plateforme entre vous et vos clients, aucune audience en location.</span></div>
+          <div class="ndd__satz"><b>Trouvé quand on vous cherche</b><span>Audit technique, contenus compréhensibles et analyse continue. En projet à part entière ou dans le cadre de l’abonnement.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ══ Kopf ══ -->
+  <div class="hero hero--portraet" data-hero>
+  <section class="unter"><nav class="seo-breadcrumb" aria-label="Fil d’Ariane"><a href="../">Accueil</a> <span aria-hidden="true">/</span> <span aria-current="page">Branding &amp; stratégie de marque à Bâle</span></nav>
+  </section>
+
+  <!-- ══ Text und Bild ══ -->
+  <section class="unter__leib unter__leib--portraet">
+    <div class="unter__kopf" data-rein>
+      <a class="zurueck" href="../#leistungen">
+        <i aria-hidden="true">←</i><span>Toutes les prestations</span></a>
+      <span class="chip">Marque &amp; stratégie</span>
+      <h1 class="unter__gross">Branding<i class="punkt">.</i></h1>
+      <p class="brush">D’abord la position, ensuite le logo.</p>
+    </div>
+
+    <figure class="unter__motiv" data-rein>
+      <img sizes="(max-width: 1100px) 1px, 62vw" src="../../bilder/br-architektur.jpg" alt="" fetchpriority="high" decoding="async" width="1200" height="671" srcset="../../bilder/br-architektur-480.webp 480w, ../../bilder/br-architektur-626.webp 626w, ../../bilder/br-architektur-1200.webp 1200w">
+    </figure>
+
+    <div class="unter__text unter__text--satz" data-rein>
+      <p>La plupart des identités n’échouent pas à cause du graphisme, mais parce que personne ne sait dire en une phrase ce que la marque représente. Nous commençons donc par le marché, la concurrence et le public cible, et nous définissons le message que vous voulez occuper et celui que vous laissez sciemment aux autres. Depuis Pratteln, pour les entreprises de la région bâloise, d’Argovie et de toute la Suisse alémanique.</p>
+      <p>Sur cette position, nous construisons le système : logotype, couleurs, typographies, univers visuel, ton. Pas un logo dans le vide, mais une boîte à outils avec brand guide et modèles, grâce à laquelle votre équipe conçoit elle-même offres, posts et présentations.</p>
+      <p>Pour les entreprises qui ont plusieurs produits, nous clarifions aussi l’architecture de marque : ce qui se range sous l’ombrelle, ce qui reçoit son propre nom, ce qui disparaît.</p>
+      <p class="unter__dauer"><span>Durée typique</span><b>4 à 8 semaines</b></p>
+    </div>
+  </section>
+</div>
+
+  <!-- ══ Was drin ist ══ -->
+  <section class="unter__block">
+    <div class="dienste__block">
+      <div class="dienste__kopf">
+        <p class="brush">Ce qui est inclus</p>
+        <h2 data-rein-zeilen><span>Le périmètre en un coup d’œil.</span></h2>
+      </div>
+      <ul class="umfang">
+          <li class="umfang__karte">
+            <img class="umfang__bild" src="../../bilder/br-markt.jpg" alt="" loading="lazy" decoding="async" width="1200" height="671" srcset="../../bilder/br-markt-480.webp 480w, ../../bilder/br-markt-626.webp 626w, ../../bilder/br-markt-1200.webp 1200w" sizes="(max-width: 900px) 100vw, 30vw">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L21 21"/></svg></span>
+            <h3>Marché, concurrence et publics cibles</h3>
+            <p>Vue du marché, état des lieux, publics cibles et contexte.</p>
+          </li>
+          <li class="umfang__karte">
+            <img class="umfang__bild" src="../../bilder/br-position.jpg" alt="" loading="lazy" decoding="async" width="1200" height="671" srcset="../../bilder/br-position-480.webp 480w, ../../bilder/br-position-626.webp 626w, ../../bilder/br-position-1200.webp 1200w" sizes="(max-width: 900px) 100vw, 30vw">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h9"/></svg></span>
+            <h3>Un positionnement en une phrase</h3>
+            <p>Une phrase qui tient et que tout le monde porte.</p>
+          </li>
+          <li class="umfang__karte">
+            <img class="umfang__bild" src="../../bilder/br-marke.jpg" alt="" loading="lazy" decoding="async" width="1200" height="671" srcset="../../bilder/br-marke-480.webp 480w, ../../bilder/br-marke-626.webp 626w, ../../bilder/br-marke-1200.webp 1200w" sizes="(max-width: 900px) 100vw, 30vw">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.8l6-.8z"/></svg></span>
+            <h3>Logotype et logo</h3>
+            <p>Un signe avec des règles, pas un logo dans le vide.</p>
+          </li>
+          <li class="umfang__karte">
+            <img class="umfang__bild" src="../../bilder/br-sprache.jpg" alt="" loading="lazy" decoding="async" width="1200" height="671" srcset="../../bilder/br-sprache-480.webp 480w, ../../bilder/br-sprache-626.webp 626w, ../../bilder/br-sprache-1200.webp 1200w" sizes="(max-width: 900px) 100vw, 30vw">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 100 17c1.2 0 1.8-.9 1.8-1.7 0-1.6-1.4-1.8-1.4-3 0-.9.8-1.6 1.8-1.6h1.6a4.7 4.7 0 004.7-4.7c0-3.3-3.6-6-8.5-6z"/><circle cx="7.5" cy="10" r="1"/><circle cx="11" cy="7" r="1"/><circle cx="15" cy="9" r="1"/></svg></span>
+            <h3>Couleurs, typographie et univers visuel</h3>
+            <p>Couleur, typographie, image et ton en boîte à outils.</p>
+          </li>
+          <li class="umfang__karte">
+            <img class="umfang__bild" src="../../bilder/br-architektur.jpg" alt="" loading="lazy" decoding="async" width="1200" height="671" srcset="../../bilder/br-architektur-480.webp 480w, ../../bilder/br-architektur-626.webp 626w, ../../bilder/br-architektur-1200.webp 1200w" sizes="(max-width: 900px) 100vw, 30vw">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v4M6 20.5v-4M18 20.5v-4M6 16.5h12v-3H6zM12 7.5v6"/></svg></span>
+            <h3>Architecture de marque</h3>
+            <p>Ce qui se range sous l’ombrelle, ce qui reçoit son propre nom.</p>
+          </li>
+          <li class="umfang__karte">
+            <img class="umfang__bild" src="../../bilder/br-guide.jpg" alt="" loading="lazy" decoding="async" width="1200" height="671" srcset="../../bilder/br-guide-480.webp 480w, ../../bilder/br-guide-626.webp 626w, ../../bilder/br-guide-1200.webp 1200w" sizes="(max-width: 900px) 100vw, 30vw">
+            <span class="umfang__ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h6a2.5 2.5 0 012.5 2.5v11A2 2 0 0010.5 17H4z"/><path d="M20 5.5h-6A2.5 2.5 0 0011.5 8v11A2 2 0 0113.5 17H20z"/></svg></span>
+            <h3>Brand guide et modèles</h3>
+            <p>Brand guide, modèles et une introduction pour l’équipe.</p>
+          </li>
+        </ul>
+    </div>
+  </section>
+
+  <!-- ══ Ablauf ══ -->
+
+<section class="unter__block seo-prose">
+<h2>Qu’est-ce qui doit devenir plus simple après le branding ?</h2>
+<p>Votre équipe de vente doit pouvoir expliquer clairement l’offre. Votre marketing ne doit pas repartir de zéro à chaque présentation ou campagne. Et un nouveau prestataire doit comprendre comment votre marque s’exprime et à quoi elle ressemble. C’est sur ces usages concrets qu’un projet de branding peut s’orienter.</p>
+<p>Tout commence donc par un état des lieux : quels messages sont encore justes ? Quels modèles fonctionnent ? Où le site web, les offres et les réseaux sociaux se contredisent-ils ? C’est de là que découle le périmètre du projet. Un nouveau logotype est une tâche possible ; parfois, ce qui manque surtout, c’est un positionnement clair ou un système graphique applicable de façon fiable.</p>
+<h2>Quels résultats font partie de la remise ?</h2>
+<dl class="angebot-liste">
+<div><dt>Positionnement et messages</dt><dd>Une description compréhensible de l’offre, du public cible et de ce qui vous distingue de la concurrence. Avec des messages que vous pouvez étayer par vos prestations et expériences réelles.</dd></div>
+<div><dt>Design avec règles d’application</dt><dd>Les variantes de logo convenues, les couleurs, les typographies et les règles pour l’univers visuel. Ce qui compte aussi, c’est leur utilisation sur petits écrans, sur fond sombre et dans les documents du quotidien.</dd></div>
+<div><dt>Des modèles pour le quotidien</dt><dd>Les supports dont votre équipe a vraiment besoin : par exemple une présentation, une publication pour les réseaux sociaux ou une page de garde d’offre. Nous définissons ensemble quels modèles font partie du mandat.</dd></div>
+<div><dt>Fichiers organisés et introduction</dt><dd>Un classement clair des fichiers convenus et un brand guide. Les droits d’utilisation, les licences nécessaires et la mise à jour des modèles font partie de la planification de la remise.</dd></div>
+</dl>
+<h2>Le branding avec un service marketing existant</h2>
+<p>Votre équipe connaît les produits, les questions des clients et les circuits de décision internes. Nous complétons cette proximité par l’expérience acquise sur différentes marques et dans la mise en œuvre sur divers canaux. Vous pouvez nous confier le projet entier ou une partie délimitée, par exemple le positionnement, une déclinaison de campagne ou l’extension de modèles existants.</p>
+<p>Pour décider vite, il faut un interlocuteur responsable et des retours regroupés. Au lieu de recueillir des avis de goût isolés, nous évaluons les propositions au regard des objectifs convenus : le public cible comprend-il l’offre ? Le message correspond-il à la prestation ? Les collaborateurs peuvent-ils appliquer le système eux-mêmes ?</p>
+<h2>Relier marque, communication et site web</h2>
+<p>La stratégie de communication définit quels messages doivent atteindre quelles personnes, par quels canaux. Le branding leur donne une identité reconnaissable. La <a href="../creation-site-web/">création de sites web</a> en tire des pages, des contenus et des actions concrètes. Nous planifions aussi les transitions, pour éviter trois concepts séparés les uns des autres.</p>
+<h2>Stratégie de communication : qui vous atteignez et avec quoi</h2>
+<p>Quand chaque campagne repart de zéro, il manque souvent une base commune. Une stratégie part de votre situation : quelle offre doit croître ? Quels publics cibles sont pertinents ? Quelles questions ou réticences freinent une décision ? C’est de là que découlent les messages et les canaux. Le choix d’un réseau social ne vient donc pas en premier.</p>
+<ul><li><strong>Situation initiale :</strong> communication existante, contenus disponibles et enseignements acquis.</li><li><strong>Publics cibles :</strong> décideurs, codécideurs et leurs besoins d’information.</li><li><strong>Messages :</strong> bénéfices, arguments et preuves solides.</li><li><strong>Canaux :</strong> quel rôle jouent le site web, les réseaux sociaux, les ads et la newsletter.</li><li><strong>Mise en œuvre :</strong> priorités, responsabilités et contenus nécessaires.</li><li><strong>Critères de succès :</strong> quel changement vous voulez observer et comment il est mesuré.</li></ul>
+<p>Le savoir existant reste le point de départ. Nous impliquons vos responsables et condensons leurs points de vue en une direction commune. C’est particulièrement utile lorsque plusieurs services, partenaires externes ou marchés sont concernés. Une stratégie applicable répond aussi à des questions pratiques : quel message va sur la page d’accueil ? Quels thèmes méritent leurs propres contenus ? Que doit expliquer l’équipe de vente ?</p>
+
+<p><a class="knopf knopf--akzent" href="../#kontakt">Décrire votre projet de branding</a></p>
+</section>
+  <!-- ══ Weiter ══ -->
+
+  <!-- ══ Check ══ 22.09.2026: Lead-Magnet. Texte sind Vorschlaege. -->
+  <section class="pruef" aria-labelledby="pruefTitel">
+    <div class="pruef__karte" data-rein>
+      <div class="pruef__wort">
+        <span class="pruef__marke">Gratuit · sans engagement</span>
+        <h2 class="pruef__titel" id="pruefTitel">Votre diagnostic de marque.
+          <i>En 10 minutes.</i></h2>
+        <p class="pruef__lead">Montrez-nous où votre marque est visible. Nous l’examinons et enregistrons dix minutes d’écran : ce qui est cohérent, ce qui diverge et ce que nous mettrions en ordre en premier.</p>
+        <ul class="pruef__punkte">
+          <li>Si votre identité dit en une phrase ce que vous incarnez</li>
+          <li>Signes, couleurs et typographies : cohérents ou accumulés</li>
+          <li>L’effet que vous produisez face à la concurrence</li>
+          <li>Ce qui manque à votre équipe au quotidien</li>
+        </ul>
+      </div>
+      <div>
+        <form class="pruef__form" data-endpunkt-fehlt
+          onsubmit="return false">
+          <label class="feld">
+            <span>Site web, profil ou document</span>
+            <input type="text" name="Auftritt"
+              placeholder="Lien vers votre site ou profil" required>
+          </label>
+          <label class="feld">
+            <span>E-mail pour l’enregistrement</span>
+            <input type="email" name="E-Mail"
+              placeholder="nom@votre-entreprise.ch" required>
+          </label>
+          <button class="knopf knopf--akzent gross pruef__knopf" type="submit" disabled><span class="rolle"><span>Demander le diagnostic</span><span aria-hidden="true">Demander le diagnostic</span></span></button>
+          <p class="pruef__recht">Nous utilisons vos données uniquement pour ce diagnostic.
+            Plus d’informations dans la <a href="../protection-des-donnees/">déclaration de protection des données</a>.</p>
+          <p class="pruef__warnung">Pas encore activé : dès que l’adresse du formulaire sera renseignée, la demande nous parviendra directement. D’ici là, le champ ne transmet rien.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Ruf ══ -->
+  <section class="ruf">
+    <div class="ruf__karte ruf__karte--knapp ruf__karte--vorteile" data-rein>
+      <div class="ruf__wort">
+        <p class="brush">Parlons-en</p>
+        <h2>Est-ce adapté<br>à votre projet ?</h2>
+        <p class="ruf__text">Quinze minutes suffisent pour une évaluation
+          honnête, même si rien n’en découle au final.</p>
+        <a class="knopf knopf--akzent gross" href="../#kontakt">
+          <span class="rolle"><span>Prendre rendez-vous</span><span aria-hidden="true">Prendre rendez-vous</span></span>
+        </a>
+      </div>
+      <ul class="vorteile">
+        <li>Une position qui tient en une phrase</li>
+        <li>Une boîte à outils plutôt que des pièces isolées</li>
+        <li>Des modèles pour le quotidien de votre équipe</li>
+        <li>Des fichiers organisés et une introduction</li>
+        <li>L’architecture de marque clarifiée s’il y a plusieurs produits</li>
+      </ul>
+    </div>
+  </section>
+    <section class="unter__block seo-prose">
+      <div class="fragen fragen--eingebettet fragen--wie-start">
+  <div class="fragen__kopf">
+    <span class="chip">FAQ</span>
+    <h2>Questions fréquentes sur le projet de branding.</h2>
+    <p class="fuehrung">Encore une question ? <a href="../#kontakt">Écrivez-nous</a>. Nous répondons en général le même jour ouvrable.</p>
+  </div>
+  <div class="fragen__liste">
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Devons-nous remplacer notre logo actuel ?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>C’est l’état des lieux qui le montre. Si le logo reste adapté, le mandat peut se concentrer sur le positionnement, les modèles ou un système cohérent. Les directives de marque existantes en constituent la base.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Qu’est-ce qui influence l’effort et le budget ?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Surtout les questions stratégiques, le nombre de supports nécessaires, les versions linguistiques et les étapes de validation. Pour comparer équitablement des offres, elles doivent inclure les mêmes résultats et formats de fichiers. Notre guide sur la <a href="../blog/budget-marketing-pme/">planification du budget marketing</a> aide à réunir projets ponctuels et mise en œuvre continue. Les différents facteurs de coût sont décrits dans l’article <a href="../blog/cout-branding/">Combien coûte un branding ?</a></p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Que se passe-t-il après la remise ?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Un branding clairement délimité se déroule sous forme de <a href="../projets/">projet</a>. Les supports récurrents, le contenu et les campagnes peuvent ensuite être intégrés à votre <a href="../marketing-abonnement/">abonnement marketing</a>. Votre équipe interne peut continuer à travailler elle-même avec les modèles convenus.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Faut-il déjà disposer d’une stratégie de marque élaborée ?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Les bases existantes sont utiles. Lors du briefing, nous clarifions quelles décisions sont déjà prises et lesquelles manquent encore pour la communication. Ainsi, le mandat reste clairement délimité.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">L’équipe interne peut-elle prendre en charge la mise en œuvre ?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Oui. La stratégie peut servir de base à votre mise en œuvre interne. Les lignes directrices, modèles et introductions dont vous avez besoin pour cela font partie du périmètre du projet.</p></div></div>
+    </div>
+  </div>
+</div>
+    </section>
+</main>
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <p class="brush">Un mot ?</p>
+      <h2>Parlons<br>ensemble.</h2>
+      <div class="fuss__kontakt">
+        <a class="fuss__gross" href="mailto:hallo@klartext-digital.ch">
+          <span>hallo@klartext-digital.ch</span><i aria-hidden="true">↗</i></a>
+      </div>
+      <p class="fuss__ort">Lohagstrasse 15, 4133 Pratteln<br>
+        Priorité à la région de Bâle et à l’Argovie,<br>
+        actifs dans toute la Suisse alémanique<br>
+        Du lundi au vendredi, de 08:00 à 20:00</p>
+    </div>
+
+    <div class="fuss__spalten">
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Site</p>
+        <a class="mlink" href="../realisations/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Réalisations</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Réalisations</span></a>
+        <a class="mlink" href="../prestations/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Prestations</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Prestations</span></a>
+        <a class="mlink" href="../a-propos/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">À propos</span><span class="mlink__t mlink__t--neu" aria-hidden="true">À propos</span></a>
+        <a class="mlink" href="../blog/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Tarifs</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Tarifs</span></a>
+        <a class="mlink" href="../#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Contact</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Contact</span></a>
+      </nav>
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Prestations</p><a href="../marketing-abonnement/">Marketing par abonnement</a><a href="../projets/">Projets</a><a href="../seo/">Suivi SEO</a><a href="../maintenance-site-web/">Maintenance de site web</a>
+        <a class="mlink" href="./"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a>
+        <a class="mlink" href="../reseaux-sociaux/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Réseaux sociaux</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Réseaux sociaux</span></a>
+        <a class="mlink" href="../creation-site-web/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Sites web</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Sites web</span></a>
+        <a class="mlink" href="../performance-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance marketing</span></a>
+        <a class="mlink" href="../email-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-mail marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-mail marketing</span></a>
+        <a class="mlink" href="../seo/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">SEO</span><span class="mlink__t mlink__t--neu" aria-hidden="true">SEO</span></a>
+      </nav>
+      <div class="fuss__spalte">
+        <p class="fuss__kopf">Suivre</p>
+        <div class="fuss__sozial">
+          <a href="../" aria-label="Instagram"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+          <a href="../" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.4 10.4v6.2M7.4 7.6v.1M11.4 16.6v-3.4a2.4 2.4 0 0 1 4.8 0v3.4M11.4 16.6v-6.2"/></svg><span>LinkedIn</span></a>
+          <a href="../" aria-label="TikTok"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M14.2 3.5v10.9a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14.2 3.5a5 5 0 0 0 5 5"/></svg><span>TikTok</span></a>
+          <a href="../" aria-label="Behance"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3 6h5.2a2.6 2.6 0 0 1 0 5.2H3zM3 11.2h5.6a2.9 2.9 0 0 1 0 5.8H3zM14.6 13.4h6.4a3.2 3.2 0 0 0-6.4 0 3.2 3.2 0 0 0 5.9 1.7M15.6 7.4h4.4"/></svg><span>Behance</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH (en cours de constitution) · Tous droits réservés</p>
+    <nav>
+      <a href="../mentions-legales/">Mentions légales</a>
+      <a href="../protection-des-donnees/">Protection des données</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859" decoding="async"></div>
+</footer>
+
+<script defer src="../../js/lenis.min.js?v=d3cf4de4"></script>
+<script defer src="../../js/gsap.min.js?v=92bb9a96"></script>
+<script defer src="../../js/ScrollTrigger.min.js?v=b0b14d67"></script>
+<script defer src="../../lader.js?v=7c31a3dc"></script>
+<script defer src="../../bewegung.js?v=ba47bc95"></script>
+<script defer src="../../fragen.js?v=ef9ab451"></script>
+<script defer src="../../zeiger.js?v=39fc1eac"></script>
+</body>
+</html>
