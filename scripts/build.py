@@ -378,6 +378,10 @@ for source,route in ROUTES.items():
    sizes=IMAGE_SIZES.get(item[0],'(max-width: 700px) 100vw, 50vw') if item else '(max-width: 700px) 100vw, 50vw'
    tag=tag[:-1]+' srcset="'+candidates+'"'+('' if hat_sizes else ' sizes="'+sizes+'"')+'>'
   return tag
+ # Handschrift: der innere Traeger .brush__t steht immer im Markup (Strich
+ # aussen, Schrift mit Pinselmaske innen), nicht erst, wenn das Skript laeuft.
+ s=re.sub(r'(<(p|span|em|b|i)\b[^>]*class="[^"]*\b(?:brush|wort)\b[^"]*"[^>]*>)(?!<span class="brush__t">)(.*?)(</\2>)',
+  r'\1<span class="brush__t">\3</span>\4',s,flags=re.S)
  s=re.sub(r'<(?:a|link|img|script|video|source)\b[^>]*>',tagfix,s)
  if route and route not in ['marke.html','laune.html','takt.html']:
   markup,bc=breadcrumb(route,title);graph.append(bc)
