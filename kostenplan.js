@@ -8,16 +8,13 @@ function calculateBudget(project, monthly, months) {
 if (typeof module !== 'undefined') module.exports = {calculateBudget};
 if (typeof document !== 'undefined') {
   const form = document.getElementById('budget-form');
-  const fr = document.documentElement.lang.indexOf('fr') === 0;
   form?.addEventListener('submit', event => {
     event.preventDefault();
     if (!form.reportValidity()) return;
     const total = calculateBudget(Number(form.elements.projekt.value), Number(form.elements.betrieb.value), Number(form.elements.monate.value));
-    const money = new Intl.NumberFormat(fr ? 'fr-CH' : 'de-CH', {style: 'currency', currency: 'CHF'}).format(total);
-    document.getElementById('budget-ergebnis').textContent = fr
-      ? 'Coût total de ' + money + ' sur ' + form.elements.monate.value + ' mois, sur la base de vos données.'
-      : money + ' Gesamtkosten über ' + form.elements.monate.value + ' Monate auf Basis eurer Eingaben.';
+    const money = new Intl.NumberFormat('de-CH', {style: 'currency', currency: 'CHF'}).format(total);
+    document.getElementById('budget-ergebnis').textContent = money + ' Gesamtkosten über ' + form.elements.monate.value + ' Monate auf Basis eurer Eingaben.';
     window.dispatchEvent(new CustomEvent('klartext:interaction', {detail: {event: 'budget_calculated', path: location.pathname}}));
   });
-  form?.addEventListener('input', () => { document.getElementById('budget-ergebnis').textContent = fr ? 'Données modifiées. Veuillez recalculer.' : 'Eingaben geändert. Bitte neu berechnen.'; });
+  form?.addEventListener('input', () => { document.getElementById('budget-ergebnis').textContent = 'Eingaben geändert. Bitte neu berechnen.'; });
 }
