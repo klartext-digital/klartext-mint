@@ -12,13 +12,6 @@
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* Sprache und Wurzel der Seite. Die französische Fassung liegt unter fr/,
-   eine Ebene tiefer. Bild-, Video- und Seitenpfade in den Daten unten
-   gelten deshalb ab der Wurzel, und die kommt aus der Adresse dieses
-   Skripts — die liegt immer an der Wurzel. */
-const KT_FR = document.documentElement.lang.indexOf('fr') === 0;
-const KT_WURZEL = new URL('./', (document.currentScript && document.currentScript.src) || location.href).href;
-
 /* Kubische Bézier als GSAP-Ease (Newton, wie im Browser) */
 function bezier(x1, y1, x2, y2) {
   const A = (a, b) => 1 - 3 * b + 3 * a;
@@ -493,14 +486,7 @@ function zeileHalten(el, dauerMs) {
    Guillemets, Chip-Leiste zum Umschalten. Das Video startet erst im
    Sichtbereich und läuft stumm — nie Ton, nie ausserhalb dekodieren. */
 (function videoReferenzen() {
-  const DATEN = KT_FR ? [
-    { zitat: 'Ils ont transformé des idées encore floues en une marque claire et sûre d’elle.',
-      rolle: 'Direction', firma: 'Nordlicht', film: 'video/testimonial-01' },
-    { zitat: 'Pour la première fois, quelqu’un nous explique non seulement ce qui est fait, mais pourquoi.',
-      rolle: 'Marketing', firma: 'Volta', film: 'video/testimonial-02' },
-    { zitat: 'Rapide, direct, sans brouillard d’agence. Et l’équipe peut tout gérer elle-même.',
-      rolle: 'Fondation', firma: 'Meridian', film: 'video/testimonial-03' },
-  ] : [
+  const DATEN = [
     { zitat: 'Sie haben aus groben Ideen eine Marke gemacht, die klar und selbstbewusst wirkt.',
       rolle: 'Geschäftsführung', firma: 'Nordlicht', film: 'video/testimonial-01' },
     { zitat: 'Zum ersten Mal erklärt uns jemand nicht nur, was gemacht wird, sondern warum.',
@@ -526,7 +512,7 @@ function zeileHalten(el, dauerMs) {
     gsap.to([zitat, '.vref__wer'], {
       opacity: 0, y: 12, duration: T_FLAECHE, ease: KURVE,
       onComplete: () => {
-        zitat.textContent = KT_FR ? '«\u00a0' + d.zitat + '\u00a0»' : '«' + d.zitat + '»';
+        zitat.textContent = '«' + d.zitat + '»';
         rolle.textContent = d.rolle; firma.textContent = d.firma;
         gsap.to([zitat, '.vref__wer'], { opacity: 1, y: 0, duration: T_FARBE, ease: KURVE });
       },
@@ -534,8 +520,8 @@ function zeileHalten(el, dauerMs) {
     gsap.to(film, {
       opacity: 0, duration: T_FLAECHE, ease: KURVE,
       onComplete: () => {
-        film.poster = KT_WURZEL + d.film + '-poster.jpg';
-        film.src = KT_WURZEL + d.film + '.mp4';
+        film.poster = d.film + '-poster.jpg';
+        film.src = d.film + '.mp4';
         if (!sanft) film.play().catch(() => {});
         gsap.to(film, { opacity: 1, duration: T_BILD, ease: KURVE });
       },
@@ -553,26 +539,16 @@ function zeileHalten(el, dauerMs) {
 
 /* ── Fall-Studien: Inhalt wechselt beim Scrollen ────────────── */
 (function faelle() {
-  const FAELLE = KT_FR ? [
-    { titel: 'Une identité de marque claire pour une jeune plateforme énergétique',
-      jahr: '2025', dauer: '6 semaines', pillen: ['Branding', 'Site web', '3D'],
-      bild: 'bilder/fall-1.jpg', link: 'fr/realisations/nordlicht/' },
-    { titel: 'Une présence qui rend la technique complexe compréhensible',
-      jahr: '2024', dauer: '9 semaines', pillen: ['Branding', 'Contenu', 'Réseaux sociaux'],
-      bild: 'bilder/fall-2.jpg', link: 'fr/realisations/volta/' },
-    { titel: 'D’un produit de niche à une marque qui a du caractère',
-      jahr: '2024', dauer: '12 semaines', pillen: ['Stratégie', 'Site web', 'Performance'],
-      bild: 'bilder/fall-3.jpg', link: 'fr/realisations/meridian/' },
-  ] : [
+  const FAELLE = [
     { titel: 'Eine klare Markenidentität für eine junge Energieplattform',
       jahr: '2025', dauer: '6 Wochen', pillen: ['Branding', 'Website', '3D'],
-      bild: 'bilder/fall-1.jpg', link: 'projekte/nordlicht/' },
+      bild: 'bilder/fall-1.jpg', link: 'arbeiten/nordlicht.html' },
     { titel: 'Ein Auftritt, der komplexe Technik verständlich macht',
       jahr: '2024', dauer: '9 Wochen', pillen: ['Branding', 'Content', 'Social Media'],
-      bild: 'bilder/fall-2.jpg', link: 'projekte/volta/' },
+      bild: 'bilder/fall-2.jpg', link: 'arbeiten/volta.html' },
     { titel: 'Vom Nischenprodukt zur Marke mit Haltung',
       jahr: '2024', dauer: '12 Wochen', pillen: ['Strategie', 'Website', 'Performance'],
-      bild: 'bilder/fall-3.jpg', link: 'projekte/meridian/' },
+      bild: 'bilder/fall-3.jpg', link: 'arbeiten/meridian.html' },
   ];
   const inhalt = document.getElementById('fallInhalt');
   const bild = document.getElementById('fallBild');
@@ -595,14 +571,14 @@ function zeileHalten(el, dauerMs) {
           f.pillen.map((p) => `<span>${p}</span>`).join('');
         /* Der Knopf muss mitwandern — sonst zeigt er beim zweiten Fall
            noch auf die Fallstudie des ersten. */
-        inhalt.querySelector('[data-feld="link"]').href = KT_WURZEL + f.link;
+        inhalt.querySelector('[data-feld="link"]').href = f.link;
         gsap.to(inhalt, { opacity: 1, y: 0, duration: T_FARBE, ease: KURVE });
       },
     });
     gsap.to(bild, {
       opacity: 0, scale: 1.04, duration: T_FLAECHE, ease: KURVE,
       onComplete: () => {
-        bild.src = KT_WURZEL + f.bild;
+        bild.src = f.bild;
         gsap.to(bild, { opacity: 1, scale: 1, duration: T_BILD, ease: KURVE });
       },
     });
@@ -714,11 +690,8 @@ function zeileHalten(el, dauerMs) {
   const form = document.getElementById('fm');
   if (!kal || !form) return;
 
-  const MONATE = KT_FR
-    ? ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet',
-      'août', 'septembre', 'octobre', 'novembre', 'décembre']
-    : ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli',
-      'August', 'September', 'Oktober', 'November', 'Dezember'];
+  const MONATE = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli',
+    'August', 'September', 'Oktober', 'November', 'Dezember'];
   const ZEITEN = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00'];
 
   const raster = document.getElementById('kalRaster');
@@ -735,16 +708,11 @@ function zeileHalten(el, dauerMs) {
   let tag = null, zeit = null;
 
   const gleich = (a, b) => a && b && a.getTime() === b.getTime();
-  const lesbar = (d) => d.getDate() + (KT_FR ? ' ' : '. ') + MONATE[d.getMonth()] + ' ' + d.getFullYear();
-  const titel = (t) => KT_FR ? t.charAt(0).toUpperCase() + t.slice(1) : t;
+  const lesbar = (d) => d.getDate() + '. ' + MONATE[d.getMonth()] + ' ' + d.getFullYear();
 
   const melden = () => {
     const fertig = tag && zeit;
-    zusammen.textContent = KT_FR
-      ? (fertig ? 'Le ' + lesbar(tag) + ' à ' + zeit
-        : tag ? 'Le ' + lesbar(tag) + ' : choisissez encore une heure'
-              : 'Aucun rendez-vous choisi')
-      : fertig
+    zusammen.textContent = fertig
       ? lesbar(tag) + ' um ' + zeit + ' Uhr'
       : tag ? lesbar(tag) + ' — noch eine Uhrzeit wählen'
             : 'Noch kein Termin gewählt';
@@ -771,7 +739,7 @@ function zeileHalten(el, dauerMs) {
   };
 
   const zeichne = () => {
-    monatFeld.textContent = titel(MONATE[monat.getMonth()]) + ' ' + monat.getFullYear();
+    monatFeld.textContent = MONATE[monat.getMonth()] + ' ' + monat.getFullYear();
     /* getDay() zählt ab Sonntag — wir starten die Woche am Montag. */
     const versatz = (new Date(monat.getFullYear(), monat.getMonth(), 1).getDay() + 6) % 7;
     const letzter = new Date(monat.getFullYear(), monat.getMonth() + 1, 0).getDate();
@@ -815,14 +783,7 @@ function zeileHalten(el, dauerMs) {
        ersten leeren Pflichtfeld UND sagt, was fehlt. Vorher wurde nur
        stumm fokussiert — wer nicht hinsah, klickte ins Leere. */
     if (!form.reportValidity()) return;
-    const zeilen = KT_FR ? [
-      'Nom : ' + w('name'),
-      'Entreprise : ' + w('firma'),
-      'E-mail : ' + w('mail'),
-      'Téléphone : ' + w('tel'),
-      'Rendez-vous souhaité : ' + (tag && zeit ? lesbar(tag) + ', ' + zeit : 'à convenir'),
-      '', w('text') || '',
-    ] : [
+    const zeilen = [
       'Name: ' + w('name'),
       'Unternehmen: ' + w('firma'),
       'E-Mail: ' + w('mail'),
@@ -831,7 +792,7 @@ function zeileHalten(el, dauerMs) {
       '', w('text') || '',
     ];
     location.href = 'mailto:hallo@klartext-digital.ch'
-      + '?subject=' + encodeURIComponent((KT_FR ? 'Demande via le site web : ' : 'Anfrage über die Website — ') + w('name'))
+      + '?subject=' + encodeURIComponent('Anfrage über die Website — ' + w('name'))
       + '&body=' + encodeURIComponent(zeilen.join('\n'));
   });
 
