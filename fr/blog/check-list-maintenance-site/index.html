@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="fr-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<title>Maintenance de site web : check-list | Klartext Digital</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../../stil.css?v=e08b3aba">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../../marke/favicon-180.png">
+
+<meta name="description" content="Organiser la maintenance du site : vérifier contenus, contacts, affichage et responsabilités techniques. Une check-list pratique pour les équipes marketing.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://klartext-digital.github.io/klartext-mint/fr/blog/check-list-maintenance-site/">
+<meta property="og:title" content="Maintenance de site web : check-list | Klartext Digital">
+<meta property="og:description" content="Organiser la maintenance du site : vérifier contenus, contacts, affichage et responsabilités techniques. Une check-list pratique pour les équipes marketing.">
+<meta property="og:url" content="https://klartext-digital.github.io/klartext-mint/fr/blog/check-list-maintenance-site/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_CH">
+<meta property="og:image" content="https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg">
+<link rel="stylesheet" href="../../../seo.css?v=7605753d">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://klartext-digital.github.io/klartext-mint/fr/blog/check-list-maintenance-site/#webpage", "url": "https://klartext-digital.github.io/klartext-mint/fr/blog/check-list-maintenance-site/", "name": "Maintenance de site web : check-list | Klartext Digital", "description": "Organiser la maintenance du site : vérifier contenus, contacts, affichage et responsabilités techniques. Une check-list pratique pour les équipes marketing.", "inLanguage": "fr-CH", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "ProfessionalService", "@id": "https://klartext-digital.github.io/klartext-mint/#organization", "name": "Klartext Digital GmbH", "alternateName": ["KLARTEXT.", "Klartext Digital"], "url": "https://klartext-digital.github.io/klartext-mint/", "logo": "https://klartext-digital.github.io/klartext-mint/marke/wortmarke.svg", "image": "https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg", "email": "hallo@klartext-digital.ch", "address": {"@type": "PostalAddress", "streetAddress": "Lohagstrasse 15", "postalCode": "4133", "addressLocality": "Pratteln", "addressRegion": "BL", "addressCountry": "CH"}, "areaServed": [{"@type": "AdministrativeArea", "name": "Aargau"}, {"@type": "AdministrativeArea", "name": "Appenzell Ausserrhoden"}, {"@type": "AdministrativeArea", "name": "Appenzell Innerrhoden"}, {"@type": "AdministrativeArea", "name": "Basel-Landschaft"}, {"@type": "AdministrativeArea", "name": "Basel-Stadt"}, {"@type": "AdministrativeArea", "name": "Bern"}, {"@type": "AdministrativeArea", "name": "Glarus"}, {"@type": "AdministrativeArea", "name": "Graubünden"}, {"@type": "AdministrativeArea", "name": "Luzern"}, {"@type": "AdministrativeArea", "name": "Nidwalden"}, {"@type": "AdministrativeArea", "name": "Obwalden"}, {"@type": "AdministrativeArea", "name": "St. Gallen"}, {"@type": "AdministrativeArea", "name": "Schaffhausen"}, {"@type": "AdministrativeArea", "name": "Schwyz"}, {"@type": "AdministrativeArea", "name": "Solothurn"}, {"@type": "AdministrativeArea", "name": "Thurgau"}, {"@type": "AdministrativeArea", "name": "Uri"}, {"@type": "AdministrativeArea", "name": "Zug"}, {"@type": "AdministrativeArea", "name": "Zürich"}], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "20:00"}], "knowsAbout": ["Webdesign", "Suchmaschinenoptimierung", "Social Media Marketing", "Google Ads", "Meta Ads", "E-Mail-Marketing", "Branding"]}, {"@type": "Article", "@id": "https://klartext-digital.github.io/klartext-mint/fr/blog/check-list-maintenance-site/#article", "headline": "Maintenance de site web : que faut-il vérifier régulièrement ?", "description": "Organiser la maintenance du site : vérifier contenus, contacts, affichage et responsabilités techniques. Une check-list pratique pour les équipes marketing.", "mainEntityOfPage": {"@id": "https://klartext-digital.github.io/klartext-mint/fr/blog/check-list-maintenance-site/#webpage"}, "inLanguage": "fr-CH", "image": "https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "BreadcrumbList", "@id": "https://klartext-digital.github.io/klartext-mint/fr/blog/check-list-maintenance-site/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://klartext-digital.github.io/klartext-mint/fr/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://klartext-digital.github.io/klartext-mint/fr/blog/"}, {"@type": "ListItem", "position": 3, "name": "Maintenance de site web : check-list", "item": "https://klartext-digital.github.io/klartext-mint/fr/blog/check-list-maintenance-site/"}]}]}</script>
+<link rel="alternate" hreflang="de-CH" href="https://klartext-digital.github.io/klartext-mint/blog/website-pflege-checkliste/">
+<link rel="alternate" hreflang="fr-CH" href="https://klartext-digital.github.io/klartext-mint/fr/blog/check-list-maintenance-site/">
+<link rel="alternate" hreflang="x-default" href="https://klartext-digital.github.io/klartext-mint/blog/website-pflege-checkliste/">
+<meta property="og:locale:alternate" content="de_CH">
+<meta property="og:image:alt" content="Klartext Digital, création de sites web et marketing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Maintenance de site web : check-list | Klartext Digital">
+<meta name="twitter:description" content="Organiser la maintenance du site : vérifier contenus, contacts, affichage et responsabilités techniques. Une check-list pratique pour les équipes marketing.">
+<meta name="twitter:image" content="https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg">
+<script defer src="../../../messung.js?v=d9a35c72"></script>
+<link rel="preload" href="../../../fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../../marke/wortmarke-negativ.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../" aria-label="KLARTEXT : vers la page d’accueil"><img src="../../../marke/wortmarke.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></a>
+    <nav class="nav__wege" aria-label="Navigation principale">
+      <a class="mlink" href="../../realisations/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Réalisations</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Réalisations</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Prestations<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Prestations<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../a-propos/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">À propos</span><span class="mlink__t mlink__t--neu" aria-hidden="true">À propos</span></a>
+      <a class="mlink" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Tarifs</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Tarifs</span></a>
+    </nav>
+    <div class="nav__rechts"><nav class="sprache" aria-label="Langue"><a class="sprache__wahl" href="../../../blog/website-pflege-checkliste/" hreflang="de-CH" lang="de" aria-label="Deutsch"><span>DE</span></a><a class="sprache__wahl ist" href="./" hreflang="fr-CH" lang="fr" aria-current="true" aria-label="Français"><span>FR</span></a></nav><a class="knopf knopf--akzent nav__cta" href="../../#kontakt">
+      <span class="rolle"><span><span class="nav__cta-lang">Prendre rendez-vous</span><span class="nav__cta-kurz">Rendez-vous</span></span><span aria-hidden="true">Prendre rendez-vous</span></span>
+    </a></div>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Aperçu des prestations" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../branding/" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marque &amp; stratégie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../reseaux-sociaux/" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Réseaux sociaux &amp; contenu</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../creation-site-web/" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Sites web</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../performance-marketing/" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../email-marketing/" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-mail marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../seo/" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../prestations/" tabindex="-1">Toutes les prestations <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../../bilder/dienst-1.jpg" alt="" class="ist" width="1200" height="671" decoding="async" loading="lazy" srcset="../../../bilder/dienst-1-480.webp 480w, ../../../bilder/dienst-1-626.webp 626w, ../../../bilder/dienst-1-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../../bilder/dienst-2.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../../bilder/dienst-2-480.webp 480w, ../../../bilder/dienst-2-626.webp 626w, ../../../bilder/dienst-2-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../../bilder/dienst-3.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../../bilder/dienst-3-480.webp 480w, ../../../bilder/dienst-3-626.webp 626w, ../../../bilder/dienst-3-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../../bilder/dienst-4.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../../bilder/dienst-4-480.webp 480w, ../../../bilder/dienst-4-626.webp 626w, ../../../bilder/dienst-4-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../../bilder/dienst-5.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../../bilder/dienst-5-480.webp 480w, ../../../bilder/dienst-5-626.webp 626w, ../../../bilder/dienst-5-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../../bilder/dienst-6.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../../bilder/dienst-6-480.webp 480w, ../../../bilder/dienst-6-626.webp 626w, ../../../bilder/dienst-6-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Un positionnement qui tient</b><span>Stratégie de marque, logotype, système de couleurs et de typographies, langage visuel et un guide de marque avec lequel votre équipe avance en autonomie.</span></div>
+          <div class="ndd__satz"><b>Régulier plutôt que sporadique</b><span>Planning éditorial pour Instagram, TikTok et LinkedIn, production à un rythme fixe et une communauté suivie de près.</span></div>
+          <div class="ndd__satz"><b>Des sites qui vendent</b><span>Concept, design et réalisation. Rapides, faciles à trouver et conçus pour que vous puissiez gérer vos contenus vous-mêmes.</span></div>
+          <div class="ndd__satz"><b>Un budget qui travaille</b><span>Google Ads, Meta Ads, TikTok Ads et LinkedIn Ads avec un suivi propre et une optimisation continue.</span></div>
+          <div class="ndd__satz"><b>Le canal qui vous appartient</b><span>Newsletters, séquences automatisées et segmentation. Aucune plateforme entre vous et vos clients, aucune audience en location.</span></div>
+          <div class="ndd__satz"><b>Trouvé quand on vous cherche</b><span>Audit technique, contenus compréhensibles et analyse continue. En projet à part entière ou dans le cadre de l’abonnement.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main><div class="hero hero--portraet" data-hero>
+  <section class="unter unter--eng"><nav class="seo-breadcrumb" aria-label="Fil d’Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">/</span> <a href="../">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">Maintenance de site web : check-list</span></nav>
+  </section>
+<section class="unter__leib unter__leib--portraet">
+    <div class="unter__kopf" data-rein>
+      <a class="zurueck" href="../">
+        <i aria-hidden="true">←</i><span>Tous les articles</span></a>
+      <h1 class="seo-h1 unter__gross unter__gross--artikel"><span class="satz">Maintenance de site web :</span> <span class="satz">que faut-il vérifier régulièrement <i class="punkt">?</i></span></h1>
+      <p class="brush">Rester à jour. Fonctionner. Avancer.</p>
+    </div>
+    <figure class="unter__motiv" data-rein>
+      <img sizes="(max-width: 1100px) 1px, 62vw" src="../../../bilder/wd-pflege.jpg" alt="" fetchpriority="high" decoding="async" width="1200" height="671" srcset="../../../bilder/wd-pflege-480.webp 480w, ../../../bilder/wd-pflege-626.webp 626w, ../../../bilder/wd-pflege-1200.webp 1200w">
+    </figure>
+    <div class="unter__text unter__text--satz" data-rein>
+      <p>Un site web évolue avec votre entreprise. Des offres s’ajoutent, les interlocuteurs changent et les campagnes mènent vers de nouvelles pages d’atterrissage. Cette check-list vous aide à organiser la maintenance courante et à répartir clairement les tâches entre le marketing, le partenaire web et l’hébergeur.</p></div></section>
+    </div>
+  </section>
+</div>
+<article class="artikel seo-prose">
+<p class="seo-antwort"><strong>En bref :</strong> Six points relèvent d’un rythme fixe : les contenus et les liens sont-ils encore justes, les demandes arrivent-elles réellement, les pages modifiées fonctionnent-elles sur les petits écrans, qui assure la maintenance technique, à quelle fréquence vérifier et de quoi un partenaire externe a besoin pour cela.</p>
+<nav class="seo-inhalt" aria-label="Table des matières"><h2>La maintenance en un coup d’œil</h2><ul><li><a href="#inhalte">Contenus et liens</a></li><li><a href="#kontaktwege">Moyens de contact et fonctions</a></li><li><a href="#darstellung">Affichage sur mobile et ordinateur</a></li><li><a href="#technik">Technique et responsabilités</a></li><li><a href="#rhythmus">Rythme de contrôle et liste de tâches</a></li><li><a href="#uebergabe">Confier la maintenance</a></li></ul></nav>
+<h2 id="inhalte">1. Les contenus et les liens sont-ils encore justes ?</h2>
+<p>Commencez par les pages importantes pour les offres et campagnes en cours. Comparez-les avec le périmètre réel de vos prestations. Un détail obsolète dans l’offre peut susciter plus de questions qu’un nouvel article de blog manquant.</p>
+<ul><li>Les prestations, les interlocuteurs et les coordonnées validées sont-ils à jour ?</li><li>Les dates, les disponibilités et les prix publiés sont-ils exacts ?</li><li>Les liens et les appels à l’action mènent-ils à la bonne destination ?</li><li>Les images, légendes et téléchargements correspondent-ils à l’état actuel ?</li><li>Sur chaque page importante, voit-on quelle prochaine étape les visiteurs peuvent franchir ?</li></ul>
+<p>Lors d’une correction, notez qui confirme l’information sur le fond. Vérifiez aussi les pages qui répètent la même information. Une prestation modifiée peut par exemple apparaître sur la page d’offre, dans une question fréquente et dans une brochure téléchargeable.</p>
+<h2 id="kontaktwege">2. Une demande arrive-t-elle vraiment ?</h2>
+<p>Un bouton de contact visible ne prouve pas encore que l’envoi fonctionne. Vérifiez le parcours convenu, du point d’entrée jusqu’à la réception. Coordonnez les tests au préalable avec les personnes responsables et utilisez des données de test clairement identifiables.</p>
+<ol><li>Ouvrir la page concernée et suivre le parcours de contact prévu.</li><li>Vérifier les champs obligatoires, les messages d’erreur et la confirmation après l’envoi.</li><li>Faire confirmer la réception effective par le destinataire prévu.</li><li>Si d’autres systèmes interviennent, vérifier aussi la transmission convenue vers ceux-ci.</li><li>Documenter la date, le résultat et les éventuels écarts.</li></ol>
+<p>Un lien qui ouvre simplement un programme de messagerie produit d’abord un brouillon. C’est un autre parcours qu’un formulaire avec son propre envoi. Votre vérification doit correspondre à la solution réellement utilisée. Les commandes, paiements et réservations devraient être testés via un parcours de test prévu à cet effet, afin d’éviter toute opération réelle involontaire.</p>
+<h2 id="darstellung">3. La page modifiée fonctionne-t-elle sur les petits écrans ?</h2>
+<p>Contrôlez les modifications sur mobile et sur ordinateur. Ne regardez pas seulement le haut de la page : les longs titres, listes, tableaux et formulaires peuvent révéler des problèmes plus bas.</p>
+<ul><li>Les textes restent-ils lisibles sans défilement horizontal ?</li><li>La navigation, les boutons de contact et les champs de formulaire sont-ils accessibles ?</li><li>Les images se chargent-elles entièrement et s’affichent-elles correctement ?</li><li>Des éléments fixes masquent-ils des contenus ou des commandes importants ?</li><li>Le parcours principal est-il aussi utilisable au clavier et la sélection actuelle est-elle visible ?</li></ul>
+<p>Après un changement d’image, vérifiez aussi le temps de chargement. Un fichier très lourd peut ralentir inutilement l’affichage de la page. Une mesure isolée ne remplace pas l’observation sur différents appareils et connexions. Documentez les différences notables afin de pouvoir les examiner de manière ciblée.</p>
+<h2 id="technik">4. Qui s’occupe de la maintenance technique ?</h2>
+<p>Les tâches dépendent du système. Un site statique, un système de gestion de contenu et une boutique ont des exigences différentes. Clarifiez donc d’abord ce que couvre l’hébergeur et ce que votre partenaire web ou votre équipe interne doit prendre en charge.</p>
+<dl class="angebot-liste"><div><dt>Système et modifications</dt><dd>Désigner les responsables des logiciels utilisés, des extensions et des services connectés. Avant des modifications importantes, convenir d’une procédure de test et de retour en arrière adaptée.</dd></div><div><dt>Sauvegardes</dt><dd>Clarifier ce qui est sauvegardé, à quel point la sauvegarde est récente et qui peut vérifier une restauration. Une sauvegarde existante et une restauration testée avec succès sont deux preuves différentes.</dd></div><div><dt>Domaine et hébergement</dt><dd>Documenter la responsabilité, la disponibilité et les renouvellements de contrat. Les identifiants d’accès ont leur place dans un gestionnaire sécurisé prévu à cet effet, pas dans une liste de tâches partagée avec tout le monde.</dd></div><div><dt>Incidents</dt><dd>Noter la procédure de signalement, l’interlocuteur et les délais de réaction convenus. Préciser en outre qui contacter en cas de problème avec des services externes.</dd></div></dl>
+<h2 id="rhythmus">5. Quel rythme de contrôle est pertinent ?</h2>
+<p>Déduisez le rythme des modifications et de l’importance du site. Vérifiez une page concernée directement après une adaptation. Avant le lancement d’une campagne, tout le parcours, de l’annonce jusqu’à la demande, doit être contrôlé. Pour les contenus inchangés et les tâches techniques, convenez d’un rythme régulier avec les responsables concernés.</p>
+<p>Une simple liste de tâches suffit comme point de départ : <strong>Page ou fonction · motif · tâche · personne responsable · échéance · résultat du contrôle.</strong> En cas de problème ouvert, ajoutez l’étape suivante. « Vérifié » devrait indiquer ce qui a réellement été vérifié.</p>
+<p>Exemple : une nouvelle offre est intégrée. Le marketing confirme les informations, le partenaire web les met en place dans l’aperçu et une personne désignée vérifie l’affichage et le parcours de contact. Après la publication, la page concernée est à nouveau contrôlée. Ainsi, chaque tâche a une conclusion claire.</p>
+<h2 id="uebergabe">6. De quoi un partenaire externe a-t-il besoin ?</h2>
+<p>Rassemblez le système, les tâches souhaitées, les responsabilités existantes et les demandes de modification typiques. Séparez la maintenance courante des projets plus importants. Une nouvelle arborescence ou une application supplémentaire peut nécessiter un projet à part.</p>
+<p>Notre offre de <a href="../../maintenance-site-web/">maintenance de site web</a> décrit les tâches possibles et la collaboration. Pour être plus facile à trouver, le <a href="../../seo/">suivi SEO</a> complète le travail sur les contenus et la technique. Pour un changement complet, la <a href="../check-list-refonte-site/">check-list de refonte</a> vous aide.</p>
+<p><a class="knopf knopf--akzent" href="../../#kontakt">Parler de vos besoins de maintenance</a></p>
+</article></main>
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <p class="brush">Un mot ?</p>
+      <h2>Parlons<br>ensemble.</h2>
+      <div class="fuss__kontakt">
+        <a class="fuss__gross" href="mailto:hallo@klartext-digital.ch">
+          <span>hallo@klartext-digital.ch</span><i aria-hidden="true">↗</i></a>
+      </div>
+      <p class="fuss__ort">Lohagstrasse 15, 4133 Pratteln<br>
+        Priorité à la région de Bâle et à l’Argovie,<br>
+        actifs dans toute la Suisse alémanique<br>
+        Du lundi au vendredi, de 08:00 à 20:00</p>
+    </div>
+
+    <div class="fuss__spalten">
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Site</p>
+        <a class="mlink" href="../../realisations/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Réalisations</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Réalisations</span></a>
+        <a class="mlink" href="../../prestations/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Prestations</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Prestations</span></a>
+        <a class="mlink" href="../../a-propos/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">À propos</span><span class="mlink__t mlink__t--neu" aria-hidden="true">À propos</span></a>
+        <a class="mlink" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Tarifs</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Tarifs</span></a>
+        <a class="mlink" href="../../#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Contact</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Contact</span></a>
+      </nav>
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Prestations</p><a href="../../marketing-abonnement/">Marketing par abonnement</a><a href="../../projets/">Projets</a><a href="../../seo/">Suivi SEO</a><a href="../../maintenance-site-web/">Maintenance de site web</a>
+        <a class="mlink" href="../../branding/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a>
+        <a class="mlink" href="../../reseaux-sociaux/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Réseaux sociaux</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Réseaux sociaux</span></a>
+        <a class="mlink" href="../../creation-site-web/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Sites web</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Sites web</span></a>
+        <a class="mlink" href="../../performance-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance marketing</span></a>
+        <a class="mlink" href="../../email-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-mail marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-mail marketing</span></a>
+        <a class="mlink" href="../../seo/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">SEO</span><span class="mlink__t mlink__t--neu" aria-hidden="true">SEO</span></a>
+      </nav>
+      <div class="fuss__spalte">
+        <p class="fuss__kopf">Suivre</p>
+        <div class="fuss__sozial">
+          <a href="../../" aria-label="Instagram"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+          <a href="../../" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.4 10.4v6.2M7.4 7.6v.1M11.4 16.6v-3.4a2.4 2.4 0 0 1 4.8 0v3.4M11.4 16.6v-6.2"/></svg><span>LinkedIn</span></a>
+          <a href="../../" aria-label="TikTok"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M14.2 3.5v10.9a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14.2 3.5a5 5 0 0 0 5 5"/></svg><span>TikTok</span></a>
+          <a href="../../" aria-label="Behance"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3 6h5.2a2.6 2.6 0 0 1 0 5.2H3zM3 11.2h5.6a2.9 2.9 0 0 1 0 5.8H3zM14.6 13.4h6.4a3.2 3.2 0 0 0-6.4 0 3.2 3.2 0 0 0 5.9 1.7M15.6 7.4h4.4"/></svg><span>Behance</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH (en cours de constitution) · Tous droits réservés</p>
+    <nav>
+      <a href="../../mentions-legales/">Mentions légales</a>
+      <a href="../../protection-des-donnees/">Protection des données</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859" decoding="async"></div>
+</footer>
+
+<script defer src="../../../js/lenis.min.js?v=d3cf4de4"></script>
+<script defer src="../../../js/gsap.min.js?v=92bb9a96"></script>
+<script defer src="../../../js/ScrollTrigger.min.js?v=b0b14d67"></script>
+<script defer src="../../../lader.js?v=7c31a3dc"></script>
+<script defer src="../../../bewegung.js?v=ba47bc95"></script>
+<script defer src="../../../zeiger.js?v=39fc1eac"></script>
+<script defer src="../../../rechner.js?v=03b3b976"></script>
+</body>
+</html>

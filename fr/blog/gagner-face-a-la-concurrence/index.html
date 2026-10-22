@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="fr-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:'Rock Salt',cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<title>Comment les grandes marques s’imposent face à la concurrence | klartext.</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%230F4C55'/></svg>">
+<link rel="stylesheet" href="../../../stil.css?v=e08b3aba">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../../marke/favicon-180.png">
+
+<meta name="description" content="Comment les grandes marques s’imposent face à la concurrence. Un article sur la marque et le marketing, sur le blog de klartext.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://klartext-digital.github.io/klartext-mint/fr/blog/gagner-face-a-la-concurrence/">
+<meta property="og:title" content="Comment les grandes marques s’imposent face à la concurrence | klartext.">
+<meta property="og:description" content="Comment les grandes marques s’imposent face à la concurrence. Un article sur la marque et le marketing, sur le blog de klartext.">
+<meta property="og:url" content="https://klartext-digital.github.io/klartext-mint/fr/blog/gagner-face-a-la-concurrence/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_CH">
+<meta property="og:image" content="https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg">
+<link rel="stylesheet" href="../../../seo.css?v=7605753d">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://klartext-digital.github.io/klartext-mint/fr/blog/gagner-face-a-la-concurrence/#webpage", "url": "https://klartext-digital.github.io/klartext-mint/fr/blog/gagner-face-a-la-concurrence/", "name": "Comment les grandes marques s’imposent face à la concurrence | klartext.", "description": "Comment les grandes marques s’imposent face à la concurrence. Un article sur la marque et le marketing, sur le blog de klartext.", "inLanguage": "fr-CH", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "ProfessionalService", "@id": "https://klartext-digital.github.io/klartext-mint/#organization", "name": "Klartext Digital GmbH", "alternateName": ["KLARTEXT.", "Klartext Digital"], "url": "https://klartext-digital.github.io/klartext-mint/", "logo": "https://klartext-digital.github.io/klartext-mint/marke/wortmarke.svg", "image": "https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg", "email": "hallo@klartext-digital.ch", "address": {"@type": "PostalAddress", "streetAddress": "Lohagstrasse 15", "postalCode": "4133", "addressLocality": "Pratteln", "addressRegion": "BL", "addressCountry": "CH"}, "areaServed": [{"@type": "AdministrativeArea", "name": "Aargau"}, {"@type": "AdministrativeArea", "name": "Appenzell Ausserrhoden"}, {"@type": "AdministrativeArea", "name": "Appenzell Innerrhoden"}, {"@type": "AdministrativeArea", "name": "Basel-Landschaft"}, {"@type": "AdministrativeArea", "name": "Basel-Stadt"}, {"@type": "AdministrativeArea", "name": "Bern"}, {"@type": "AdministrativeArea", "name": "Glarus"}, {"@type": "AdministrativeArea", "name": "Graubünden"}, {"@type": "AdministrativeArea", "name": "Luzern"}, {"@type": "AdministrativeArea", "name": "Nidwalden"}, {"@type": "AdministrativeArea", "name": "Obwalden"}, {"@type": "AdministrativeArea", "name": "St. Gallen"}, {"@type": "AdministrativeArea", "name": "Schaffhausen"}, {"@type": "AdministrativeArea", "name": "Schwyz"}, {"@type": "AdministrativeArea", "name": "Solothurn"}, {"@type": "AdministrativeArea", "name": "Thurgau"}, {"@type": "AdministrativeArea", "name": "Uri"}, {"@type": "AdministrativeArea", "name": "Zug"}, {"@type": "AdministrativeArea", "name": "Zürich"}], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "20:00"}], "knowsAbout": ["Webdesign", "Suchmaschinenoptimierung", "Social Media Marketing", "Google Ads", "Meta Ads", "E-Mail-Marketing", "Branding"]}, {"@type": "Article", "@id": "https://klartext-digital.github.io/klartext-mint/fr/blog/gagner-face-a-la-concurrence/#article", "headline": "Comment les grandes marques s’imposent face à la concurrence.", "description": "Comment les grandes marques s’imposent face à la concurrence. Un article sur la marque et le marketing, sur le blog de klartext.", "mainEntityOfPage": {"@id": "https://klartext-digital.github.io/klartext-mint/fr/blog/gagner-face-a-la-concurrence/#webpage"}, "inLanguage": "fr-CH", "image": "https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg", "datePublished": "2025-12-16", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "BreadcrumbList", "@id": "https://klartext-digital.github.io/klartext-mint/fr/blog/gagner-face-a-la-concurrence/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://klartext-digital.github.io/klartext-mint/fr/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://klartext-digital.github.io/klartext-mint/fr/blog/"}, {"@type": "ListItem", "position": 3, "name": "Comment les grandes marques s’imposent face à la concurrence", "item": "https://klartext-digital.github.io/klartext-mint/fr/blog/gagner-face-a-la-concurrence/"}]}]}</script>
+<link rel="alternate" hreflang="de-CH" href="https://klartext-digital.github.io/klartext-mint/blog/wettbewerb-gewinnen/">
+<link rel="alternate" hreflang="fr-CH" href="https://klartext-digital.github.io/klartext-mint/fr/blog/gagner-face-a-la-concurrence/">
+<link rel="alternate" hreflang="x-default" href="https://klartext-digital.github.io/klartext-mint/blog/wettbewerb-gewinnen/">
+<meta property="og:locale:alternate" content="de_CH">
+<meta property="og:image:alt" content="Klartext Digital, création de sites web et marketing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Comment les grandes marques s’imposent face à la concurrence | klartext.">
+<meta name="twitter:description" content="Comment les grandes marques s’imposent face à la concurrence. Un article sur la marque et le marketing, sur le blog de klartext.">
+<meta name="twitter:image" content="https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg">
+<script defer src="../../../messung.js?v=d9a35c72"></script>
+<link rel="preload" href="../../../fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../../marke/wortmarke-negativ.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../" aria-label="KLARTEXT : vers la page d’accueil"><img src="../../../marke/wortmarke.svg" alt="KLARTEXT" width="4105" height="859" decoding="async"></a>
+    <nav class="nav__wege" aria-label="Navigation principale">
+      <a class="mlink" href="../../realisations/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Réalisations</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Réalisations</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Prestations<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Prestations<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../a-propos/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">À propos</span><span class="mlink__t mlink__t--neu" aria-hidden="true">À propos</span></a>
+      <a class="mlink" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Tarifs</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Tarifs</span></a>
+    </nav>
+    <div class="nav__rechts"><nav class="sprache" aria-label="Langue"><a class="sprache__wahl" href="../../../blog/wettbewerb-gewinnen/" hreflang="de-CH" lang="de" aria-label="Deutsch"><span>DE</span></a><a class="sprache__wahl ist" href="./" hreflang="fr-CH" lang="fr" aria-current="true" aria-label="Français"><span>FR</span></a></nav><a class="knopf knopf--akzent nav__cta" href="../../#kontakt">
+      <span class="rolle"><span><span class="nav__cta-lang">Prendre rendez-vous</span><span class="nav__cta-kurz">Rendez-vous</span></span><span aria-hidden="true">Prendre rendez-vous</span></span>
+    </a></div>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Aperçu des prestations" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../branding/" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marque &amp; stratégie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../reseaux-sociaux/" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Réseaux sociaux &amp; contenu</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../creation-site-web/" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Sites web</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../performance-marketing/" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../email-marketing/" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-mail marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../seo/" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../prestations/" tabindex="-1">Toutes les prestations <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../../bilder/dienst-1.jpg" alt="" class="ist" width="1200" height="671" decoding="async" loading="lazy" srcset="../../../bilder/dienst-1-480.webp 480w, ../../../bilder/dienst-1-626.webp 626w, ../../../bilder/dienst-1-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../../bilder/dienst-2.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../../bilder/dienst-2-480.webp 480w, ../../../bilder/dienst-2-626.webp 626w, ../../../bilder/dienst-2-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../../bilder/dienst-3.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../../bilder/dienst-3-480.webp 480w, ../../../bilder/dienst-3-626.webp 626w, ../../../bilder/dienst-3-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../../bilder/dienst-4.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../../bilder/dienst-4-480.webp 480w, ../../../bilder/dienst-4-626.webp 626w, ../../../bilder/dienst-4-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../../bilder/dienst-5.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../../bilder/dienst-5-480.webp 480w, ../../../bilder/dienst-5-626.webp 626w, ../../../bilder/dienst-5-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../../bilder/dienst-6.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../../bilder/dienst-6-480.webp 480w, ../../../bilder/dienst-6-626.webp 626w, ../../../bilder/dienst-6-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Un positionnement qui tient</b><span>Stratégie de marque, logotype, système de couleurs et de typographies, langage visuel et un guide de marque avec lequel votre équipe avance en autonomie.</span></div>
+          <div class="ndd__satz"><b>Régulier plutôt que sporadique</b><span>Planning éditorial pour Instagram, TikTok et LinkedIn, production à un rythme fixe et une communauté suivie de près.</span></div>
+          <div class="ndd__satz"><b>Des sites qui vendent</b><span>Concept, design et réalisation. Rapides, faciles à trouver et conçus pour que vous puissiez gérer vos contenus vous-mêmes.</span></div>
+          <div class="ndd__satz"><b>Un budget qui travaille</b><span>Google Ads, Meta Ads, TikTok Ads et LinkedIn Ads avec un suivi propre et une optimisation continue.</span></div>
+          <div class="ndd__satz"><b>Le canal qui vous appartient</b><span>Newsletters, séquences automatisées et segmentation. Aucune plateforme entre vous et vos clients, aucune audience en location.</span></div>
+          <div class="ndd__satz"><b>Trouvé quand on vous cherche</b><span>Audit technique, contenus compréhensibles et analyse continue. En projet à part entière ou dans le cadre de l’abonnement.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ══ Kopf ══ -->
+  <div class="hero hero--portraet" data-hero>
+  <section class="unter unter--eng"><nav class="seo-breadcrumb" aria-label="Fil d’Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">/</span> <a href="../">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">Comment les grandes marques s’imposent face à la concurrence</span></nav>
+  </section>
+  <section class="unter__leib unter__leib--portraet">
+    <div class="unter__kopf" data-rein>
+      <a class="zurueck" href="../../#blog">
+        <i aria-hidden="true">←</i><span>Tous les articles</span></a>
+      <span class="chip"><time datetime="2025-12-16">16 déc. 2025</time></span>
+      <h1 class="unter__gross unter__gross--artikel">Comment les grandes marques s’imposent face à la concurrence<i class="punkt">.</i></h1>
+      <p class="brush">Pas avec plus de publicité, mais en étant moins interchangeables.</p>
+    </div>
+    <figure class="unter__motiv artikel__bild" data-rein>
+      <img src="../../../bilder/blog-1.jpg" alt="" loading="lazy" width="1600" height="1067" decoding="async">
+    </figure>
+    <article class="artikel unter__text unter__text--satz" data-rein>
+      <p>Qui veut tout être pour tout le monde ne marque personne. Les marques en tête n’ont généralement pas le plus gros budget, mais la réponse la plus claire à la question de ce qu’elles représentent.</p>
+      <p>Cela paraît banal, mais c’est inconfortable : prendre position, c’est renoncer à quelque chose. C’est précisément ce renoncement qui fait la différence entre une marque et un prestataire.</p>
+      <p>Concrètement : une phrase que tout le monde dans l’équipe formulerait de la même façon. Si trois personnes donnent trois réponses, c’est là que le travail commence, pas au logo.</p>
+    </article>
+  </section>
+  </div>
+
+
+  <section class="ruf">
+    <div class="ruf__karte ruf__karte--knapp" data-rein>
+      <div class="ruf__wort">
+        <p class="brush">Un mot</p>
+        <h2>Parlons de<br>votre projet.</h2>
+        <p class="ruf__text">Quinze minutes, un avis honnête, sans engagement.</p>
+        <a class="knopf knopf--akzent gross" href="../../#kontakt">
+          <span class="rolle"><span>Prendre rendez-vous</span><span aria-hidden="true">Prendre rendez-vous</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <p class="brush">Un mot ?</p>
+      <h2>Parlons<br>ensemble.</h2>
+      <div class="fuss__kontakt">
+        <a class="fuss__gross" href="mailto:hallo@klartext-digital.ch">
+          <span>hallo@klartext-digital.ch</span><i aria-hidden="true">↗</i></a>
+      </div>
+      <p class="fuss__ort">Lohagstrasse 15, 4133 Pratteln<br>
+        Priorité à la région de Bâle et à l’Argovie,<br>
+        actifs dans toute la Suisse alémanique<br>
+        Du lundi au vendredi, de 08:00 à 20:00</p>
+    </div>
+
+    <div class="fuss__spalten">
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Site</p>
+        <a class="mlink" href="../../realisations/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Réalisations</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Réalisations</span></a>
+        <a class="mlink" href="../../prestations/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Prestations</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Prestations</span></a>
+        <a class="mlink" href="../../a-propos/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">À propos</span><span class="mlink__t mlink__t--neu" aria-hidden="true">À propos</span></a>
+        <a class="mlink" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Tarifs</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Tarifs</span></a>
+        <a class="mlink" href="../../#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Contact</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Contact</span></a>
+      </nav>
+      <nav class="fuss__spalte">
+        <p class="fuss__kopf">Prestations</p><a href="../../marketing-abonnement/">Marketing par abonnement</a><a href="../../projets/">Projets</a><a href="../../seo/">Suivi SEO</a><a href="../../maintenance-site-web/">Maintenance de site web</a>
+        <a class="mlink" href="../../branding/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a>
+        <a class="mlink" href="../../reseaux-sociaux/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Réseaux sociaux</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Réseaux sociaux</span></a>
+        <a class="mlink" href="../../creation-site-web/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Sites web</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Sites web</span></a>
+        <a class="mlink" href="../../performance-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance marketing</span></a>
+        <a class="mlink" href="../../email-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-mail marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-mail marketing</span></a>
+        <a class="mlink" href="../../seo/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">SEO</span><span class="mlink__t mlink__t--neu" aria-hidden="true">SEO</span></a>
+      </nav>
+      <div class="fuss__spalte">
+        <p class="fuss__kopf">Suivre</p>
+        <div class="fuss__sozial">
+          <a href="../../" aria-label="Instagram"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+          <a href="../../" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.4 10.4v6.2M7.4 7.6v.1M11.4 16.6v-3.4a2.4 2.4 0 0 1 4.8 0v3.4M11.4 16.6v-6.2"/></svg><span>LinkedIn</span></a>
+          <a href="../../" aria-label="TikTok"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M14.2 3.5v10.9a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14.2 3.5a5 5 0 0 0 5 5"/></svg><span>TikTok</span></a>
+          <a href="../../" aria-label="Behance"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3 6h5.2a2.6 2.6 0 0 1 0 5.2H3zM3 11.2h5.6a2.9 2.9 0 0 1 0 5.8H3zM14.6 13.4h6.4a3.2 3.2 0 0 0-6.4 0 3.2 3.2 0 0 0 5.9 1.7M15.6 7.4h4.4"/></svg><span>Behance</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH (en cours de constitution) · Tous droits réservés</p>
+    <nav>
+      <a href="../../mentions-legales/">Mentions légales</a>
+      <a href="../../protection-des-donnees/">Protection des données</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859" decoding="async"></div>
+</footer>
+
+<script defer src="../../../js/lenis.min.js?v=d3cf4de4"></script>
+<script defer src="../../../js/gsap.min.js?v=92bb9a96"></script>
+<script defer src="../../../js/ScrollTrigger.min.js?v=b0b14d67"></script>
+<script defer src="../../../lader.js?v=7c31a3dc"></script>
+<script defer src="../../../bewegung.js?v=ba47bc95"></script>
+<script defer src="../../../zeiger.js?v=39fc1eac"></script>
+</body>
+</html>
