@@ -1,8 +1,6 @@
 (function () {
 const R = document.getElementById('rechner');
 if (!R) return;
-const fr = document.documentElement.lang.indexOf('fr') === 0;
-const AB = fr ? 'dès CHF ' : 'ab CHF ';
 const PREISE = {
 art: { landingpage: 3000, mehrseitig: 4200, shop: 4990 },
 sprachen: { eine: 0, mehrere: 1500 }
@@ -18,7 +16,7 @@ if (laeuft) cancelAnimationFrame(laeuft);
 (function schritt(t) {
 const p = Math.min(1, (t - t0) / dauer);
 const e = 1 - Math.pow(1 - p, 3);
-feld.textContent = AB + chf(start + (ziel - start) * e);
+feld.textContent = 'ab CHF ' + chf(start + (ziel - start) * e);
 if (p < 1) laeuft = requestAnimationFrame(schritt);
 else feld.dataset.wert = ziel;
 })(t0);
@@ -37,11 +35,8 @@ return '<li><span>' + p[0] + '</span><b>+ CHF ' + chf(p[1]) + '</b></li>';
 }).join('') : '';
 const zeilen = posten.map((p) => '\u2022 ' + p[0]).join('\n');
 R.querySelector('#rAnfrage').href = 'mailto:hallo@klartext-digital.ch?subject=' +
-encodeURIComponent(fr ? 'Demande site web' : 'Anfrage Website') + '&body=' +
-encodeURIComponent(fr
-? 'Bonjour\n\nVia le calculateur de votre site, j’ai fait la sélection suivante :\n\n' +
-zeilen + '\n\nPrix de départ : dès CHF ' + chf(summe) + '\n\nMeilleures salutations\n'
-: 'Guten Tag\n\nüber den Rechner auf eurer Seite habe ich folgende Auswahl getroffen:\n\n' +
+encodeURIComponent('Anfrage Website') + '&body=' +
+encodeURIComponent('Guten Tag\n\nüber den Rechner auf eurer Seite habe ich folgende Auswahl getroffen:\n\n' +
 zeilen + '\n\nStartwert: ab CHF ' + chf(summe) + '\n\nFreundliche Grüsse\n');
 }
 R.addEventListener('change', rechne);
