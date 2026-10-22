@@ -36,6 +36,22 @@ for filename in ['marke.html', 'laune.html', 'takt.html']: ROUTES[filename] = fi
 PAGE_META = json.loads((ROOT/'page-meta.json').read_text())
 for route in PAGE_META:
  ROUTES[route+'index.html'] = route
+# ── Französische Fassung ──────────────────────────────────────────────
+# fr/ spiegelt die deutschen Quellen Datei für Datei (fr/seo/index.html zu
+# seo/index.html). Die Adressen sind eigene, französische: fr/routen.json.
+# Links in den fr-Quellen stehen genau wie im Deutschen; MAP lenkt sie auf
+# die fr-Seiten um, und Bilder, Skripte und Stile kommen weiter von der
+# Wurzel (siehe resolved). So bleibt jede fr-Datei Tag für Tag mit ihrer
+# deutschen Quelle vergleichbar (scripts/fr_pruefen.py).
+FR_ROUTEN = {k:v for k,v in json.loads((ROOT/'fr/routen.json').read_text()).items() if not k.startswith('_')}
+GEGENSTUECK = {}
+for source, route in list(ROUTES.items()):
+ if not (ROOT/'fr'/source).is_file(): continue
+ assert route in FR_ROUTEN, f'fr/{source}: Adresse fehlt in fr/routen.json'
+ ROUTES['fr/'+source] = FR_ROUTEN[route]
+ GEGENSTUECK[route] = FR_ROUTEN[route]; GEGENSTUECK[FR_ROUTEN[route]] = route
+def sprache(route): return 'fr' if route.startswith('fr/') else 'de'
+def de_route(route): return GEGENSTUECK.get(route, route) if sprache(route)=='fr' else route
 IMAGE_VARIANTS = json.loads((ROOT/'bild-varianten.json').read_text())
 IMAGE_SIZES = json.loads((ROOT/'bild-groessen.json').read_text()) if (ROOT/'bild-groessen.json').exists() else {}
 # ── Blogübersicht: aus den Artikeln erzeugt, nicht von Hand gepflegt ──────────
@@ -46,8 +62,10 @@ IMAGE_SIZES = json.loads((ROOT/'bild-groessen.json').read_text()) if (ROOT/'bild
 # dort gelesen, die Personenzuordnung kommt aus blog-autoren.json.
 BLOG_AUTOREN = json.loads((ROOT/'blog-autoren.json').read_text()) if (ROOT/'blog-autoren.json').exists() else {}
 MONATE = {'Jan':1,'Feb':2,'Mär':3,'Maer':3,'Apr':4,'Mai':5,'Jun':6,'Jul':7,'Aug':8,'Sep':9,'Okt':10,'Nov':11,'Dez':12}
+MOIS = {'janv':1,'févr':2,'mars':3,'avr':4,'mai':5,'juin':6,'juil':7,'août':8,'sept':9,'oct':10,'nov':11,'déc':12}
+ROLLEN_FR = {'Gründer':'Fondateur'}
 
-def blog_beitraege():
+def blog_beitraege(ordner='blog'):
  """Liest jeden Blogartikel und gibt die Angaben für seine Karte zurück.
 
  Zwei Bauformen: die kurzen Standpunkte liegen flach als blog/<x>.html und
@@ -57,9 +75,10 @@ def blog_beitraege():
  kommen Anriss und Bild aus page-meta.json. Gemessen am 17.09.2026: eine
  Karte ohne Datum und ohne Person haelt — die Hoehe kommt aus dem Raster.
  """
+ fr=ordner.startswith('fr/')
  aus=[]
- kandidaten=[(p,p.name,False) for p in sorted((ROOT/'blog').glob('*.html'))]
- kandidaten+=[(p,p.parent.name+'/',True) for p in sorted((ROOT/'blog').glob('*/index.html'))]
+ kandidaten=[(p,p.name,False) for p in sorted((ROOT/ordner).glob('*.html'))]
+ kandidaten+=[(p,p.parent.name+'/',True) for p in sorted((ROOT/ordner).glob('*/index.html'))]
  for p,ziel,ordner in kandidaten:
   if not ordner and p.name=='index.html': continue
   if re.search(r' \d+$',p.stem) or ' ' in p.as_posix(): continue
@@ -72,25 +91,26 @@ def blog_beitraege():
   meta=PAGE_META.get('blog/'+ziel,{}) if ordner else {}
   chip=re.search(r'<span class="chip"[^>]*>([\s\S]*?)</span>',k)
   datum=re.sub(r'<[^>]*>','',chip.group(1)).strip() if chip else ''
-  t=re.match(r'(\d{1,2})\.\s*([A-Za-zäöüÄÖÜ]+)\s*(\d{4})',datum) if datum else None
+  t=re.match(r'(\d{1,2})\.?\s*([A-Za-zäöüÄÖÜéû]+)\.?\s*(\d{4})',datum) if datum else None
   bild=re.search(r'artikel__bild"[\s\S]*?src="(?:\.\./)+([^"]+)"',k)
   bildpfad=bild.group(1) if bild else meta.get('image','')
   absatz=re.search(r'<article class="artikel[^"]*"[^>]*>\s*<p>([\s\S]*?)</p>',k)
-  anriss=absatz.group(1).strip() if absatz else escape(meta.get('description',''))
+  beschreibung=re.search(r'<meta name="description" content="([^"]*)"',s) if fr else None
+  anriss=absatz.group(1).strip() if absatz else (beschreibung.group(1) if beschreibung else escape(meta.get('description','')))
   if not (bildpfad and anriss): continue
   minuten=max(1,round(len(re.sub(r'<[^>]*>',' ',k).split())/200))
   aus.append({
    'datei':ziel,'stamm':stamm,
    'titel':re.sub(r'<[^>]*>','',h1.group(1)).strip(),
    'datum':datum,
-   'sortierung':(1,int(t.group(3)),MONATE.get(t.group(2)[:3],0),int(t.group(1))) if t else (0,0,0,0),
+   'sortierung':(1,int(t.group(3)),(MOIS.get(t.group(2).lower()) if fr else MONATE.get(t.group(2)[:3])) or 0,int(t.group(1))) if t else (0,0,0,0),
    'bild':bildpfad,'anriss':anriss,'minuten':minuten,
-   'person':BLOG_AUTOREN.get(stamm),
+   'person':({**BLOG_AUTOREN[stamm],'rolle':ROLLEN_FR.get(BLOG_AUTOREN[stamm]['rolle'],BLOG_AUTOREN[stamm]['rolle'])} if fr and stamm in BLOG_AUTOREN else BLOG_AUTOREN.get(stamm)),
   })
  aus.sort(key=lambda b:b['sortierung'],reverse=True)
  return aus
 
-def blog_karten_html(beitraege):
+def blog_karten_html(beitraege,fr=False):
  teile=[]
  for b in beitraege:
   person=''
@@ -102,7 +122,7 @@ def blog_karten_html(beitraege):
   teile.append(
    f'\n      <a class="lese" href="{b["datei"]}" data-rein>'
    '\n        <div class="lese__oben">'
-   f'\n          <p class="lese__meta"><span class="lese__zeit">*{b["minuten"]} Min Lesezeit</span>'
+   f'\n          <p class="lese__meta"><span class="lese__zeit">*{b["minuten"]} {"min de lecture" if fr else "Min Lesezeit"}</span>'
    + (f'<span class="lese__datum">{escape(b["datum"])}</span>' if b['datum'] else '')
    + '</p>'
    f'\n          <h3 class="lese__titel">{escape(b["titel"])}</h3>'
@@ -129,6 +149,10 @@ MAP = {**ROUTES, **ALIASES}
 for target in list(MAP.values()):
  MAP[target] = target
  if not target.endswith('.html'): MAP[target+'index.html'] = target
+# Ein Link in einer fr-Quelle zeigt nach fr/<deutscher Pfad>. Gibt es die
+# Seite französisch, führt er dorthin. Gilt auch für alte Adressen (ALIASES).
+for alt, ziel in list(MAP.items()):
+ if not alt.startswith('fr/') and ziel in GEGENSTUECK and sprache(ziel)=='de': MAP.setdefault('fr/'+alt, GEGENSTUECK[ziel])
 
 META = {
  '': ('Marketingagentur Basel, Baselland & Aargau | Klartext Digital', 'Marketingagentur aus Pratteln, Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: SEO, Webdesign, Social Media, Google und Meta Ads.'),
@@ -166,6 +190,9 @@ if BUSINESS:
   'openingHoursSpecification':[{'@type':'OpeningHoursSpecification','dayOfWeek':['Monday','Tuesday','Wednesday','Thursday','Friday'],'opens':BUSINESS['opens'],'closes':BUSINESS['closes']}] if BUSINESS.get('opens') else [],
   'knowsAbout':['Webdesign','Suchmaschinenoptimierung','Social Media Marketing','Google Ads','Meta Ads','E-Mail-Marketing','Branding']}
 LEISTUNGEN={'webdesign/':'Webdesign','seo/':'Suchmaschinenoptimierung (SEO)','social-media/':'Social-Media-Betreuung','performance-marketing/':'Google Ads und Meta Ads','branding/':'Branding und Markenstrategie','email-marketing/':'E-Mail-Marketing und Newsletter','website-betreuung/':'Website-Betreuung','marketing-abo/':'Marketing im Abo','projektarbeit/':'Marketing-Projekte'}
+FUSS_DE={'Seite':'Seite','Leistungen':'Leistungen','Marketing im Abo':'Marketing im Abo','Projektarbeit':'Projektarbeit','SEO-Betreuung':'SEO-Betreuung','Website-Betreuung':'Website-Betreuung'}
+FUSS_FR={'Seite':'Site','Leistungen':'Prestations','Marketing im Abo':'Marketing par abonnement','Projektarbeit':'Projets','SEO-Betreuung':'Suivi SEO','Website-Betreuung':'Maintenance de site web'}
+LEISTUNGEN_FR={'webdesign/':'Création de sites web','seo/':'Référencement naturel (SEO)','social-media/':'Gestion des réseaux sociaux','performance-marketing/':'Google Ads et Meta Ads','branding/':'Branding et stratégie de marque','email-marketing/':'E-mail marketing et newsletters','website-betreuung/':'Maintenance de site web','marketing-abo/':'Marketing par abonnement','projektarbeit/':'Projets marketing'}
 LABELS={'':'Startseite','webdesign/':'Webdesign','leistungen/':'Leistungen','branding/':'Branding','social-media/':'Social Media','performance-marketing/':'Performance Marketing','email-marketing/':'E-Mail Marketing','ueber-uns/':'Über uns','projekte/':'Projekte','blog/':'Blog','impressum/':'Impressum','datenschutz/':'Datenschutz'}
 for route, meta in PAGE_META.items():
  META[route] = (meta['title'], meta['description'])
@@ -231,7 +258,11 @@ def stempel(path):
 def resolved(value, source):
  u=urlsplit(unescape(value))
  if u.scheme or u.netloc or not u.path:return None
- return posixpath.normpath(posixpath.join(posixpath.dirname(source),u.path)).lstrip('/'),u
+ path=posixpath.normpath(posixpath.join(posixpath.dirname(source),u.path)).lstrip('/')
+ # fr-Quellen liegen eine Ebene tiefer, schreiben Pfade aber wie die
+ # deutschen. Alles, was keine Seite ist, gibt es nur einmal an der Wurzel.
+ if path.startswith('fr/') and path not in MAP and path+'/' not in MAP:path=path[3:]
+ return path,u
 
 def rewrite_url(value, source, route):
  item=resolved(value,source)
@@ -264,17 +295,22 @@ def faq_paare(text):
  return sauber
 
 def breadcrumb(route,title):
- crumbs=[('', 'Startseite')]
- 
- if route.startswith('blog/') and route!='blog/':crumbs.append(('blog/','Blog'))
- if route.startswith('projekte/') and route!='projekte/':crumbs.append(('projekte/','Projekte'))
- crumbs.append((route,LABELS.get(route,title.split('|')[0].strip())))
+ if sprache(route)=='fr':
+  crumbs=[('fr/','Accueil')]
+  if route.startswith('fr/blog/') and route!='fr/blog/':crumbs.append(('fr/blog/','Blog'))
+  if route.startswith('fr/realisations/') and route!='fr/realisations/':crumbs.append(('fr/realisations/','Réalisations'))
+  crumbs.append((route,title.split('|')[0].strip()))
+ else:
+  crumbs=[('', 'Startseite')]
+  if route.startswith('blog/') and route!='blog/':crumbs.append(('blog/','Blog'))
+  if route.startswith('projekte/') and route!='projekte/':crumbs.append(('projekte/','Projekte'))
+  crumbs.append((route,LABELS.get(route,title.split('|')[0].strip())))
  graph={'@type':'BreadcrumbList','@id':BASE+route+'#breadcrumb','itemListElement':[{'@type':'ListItem','position':i+1,'name':name,'item':BASE+path} for i,(path,name) in enumerate(crumbs)]}
  links=[]
  for i,(path,name) in enumerate(crumbs):
   rel=posixpath.relpath(path or '.',route or '.')
   links.append('<span aria-current="page">'+escape(name)+'</span>' if i==len(crumbs)-1 else '<a href="'+rel+'/">'+escape(name)+'</a>')
- return '<nav class="seo-breadcrumb" aria-label="Brotkrumennavigation">'+' <span aria-hidden="true">/</span> '.join(links)+'</nav>',graph
+ return '<nav class="seo-breadcrumb" aria-label="'+('Fil d’Ariane' if sprache(route)=='fr' else 'Brotkrumennavigation')+'">'+' <span aria-hidden="true">/</span> '.join(links)+'</nav>',graph
 
 for source,route in ROUTES.items():
  route_dir=route if route.endswith('/') else posixpath.dirname(route)
@@ -286,34 +322,41 @@ for source,route in ROUTES.items():
  desc_match=re.search(r'<meta name="description" content="([^"]*)"',s)
  desc=unescape(desc_match.group(1)) if desc_match else 'Gestaltungsstudie von klartext. Nicht zur Veröffentlichung in Suchmaschinen vorgesehen.'
  if route.startswith('blog/') and route!='blog/':desc=default_title.split('|')[0].strip()+'. Ein Beitrag über Marke und Marketing im klartext.-Blog.'
- title,desc=META.get(route,(default_title,desc))
- s=re.sub(r'<html lang="de">','<html lang="de-CH">',s,count=1)
+ lang=sprache(route);dr=de_route(route)
+ # Französisch: Titel und Beschreibung stehen übersetzt in der fr-Quelle.
+ if lang=='fr':
+  if not desc_match and route.startswith('fr/blog/'):desc=default_title.split('|')[0].strip()+'. Un article sur la marque et le marketing, sur le blog de klartext.'
+  title=default_title
+ else:title,desc=META.get(route,(default_title,desc))
+ sprachcode='fr-CH' if lang=='fr' else 'de-CH'
+ s=re.sub(r'<html lang="(?:de|fr)">','<html lang="'+sprachcode+'">',s,count=1)
  s=re.sub(r'<title>.*?</title>','<title>'+escape(title)+'</title>',s,flags=re.S)
  s=re.sub(r'<meta name="(?:description|robots)"[^>]*>\s*','',s)
  indexable=CONFIG['indexable'] and route in CONFIG['approved_paths']
  robots='index, follow, max-image-preview:large' if indexable else 'noindex, follow'
  canonical=BASE+route
- graph=[{'@type':'WebPage','@id':canonical+'#webpage','url':canonical,'name':title,'description':desc,'inLanguage':'de-CH'}]
+ graph=[{'@type':'WebPage','@id':canonical+'#webpage','url':canonical,'name':title,'description':desc,'inLanguage':sprachcode}]
  if CONFIG['organization_verified']:
   graph.append(ORGANISATION)
   graph[0]['publisher']={'@id':BASE+'#organization'}
  veroeffentlicht=re.search(r'<time datetime="(\d{4}-\d{2}-\d{2})"',s)
- is_article=PAGE_META.get(route,{}).get('article',False) or bool(veroeffentlicht)
- preview_image=BASE+PAGE_META.get(route,{}).get('image','bilder/dienst-3.jpg')
+ is_article=PAGE_META.get(dr,{}).get('article',False) or bool(veroeffentlicht)
+ preview_image=BASE+PAGE_META.get(dr,{}).get('image','bilder/dienst-3.jpg')
  if is_article:
   headline=unescape(re.sub('<[^>]+>','',re.search(r'<h1\b[^>]*>(.*?)</h1>',s,re.S).group(1)))
-  article={'@type':'Article','@id':canonical+'#article','headline':headline,'description':desc,'mainEntityOfPage':{'@id':canonical+'#webpage'},'inLanguage':'de-CH','image':preview_image}
+  article={'@type':'Article','@id':canonical+'#article','headline':headline,'description':desc,'mainEntityOfPage':{'@id':canonical+'#webpage'},'inLanguage':sprachcode,'image':preview_image}
   if veroeffentlicht:article['datePublished']=veroeffentlicht.group(1)
   if CONFIG['organization_verified']:article['publisher']={'@id':BASE+'#organization'}
   graph.append(article)
  # Leistungsseiten: Service mit Anbieter und Einzugsgebiet. Hilft Google
  # und KI-Suchen, Leistung, Firma und Region zusammenzubringen.
- if route in LEISTUNGEN and BUSINESS:
-  graph.append({'@type':'Service','@id':canonical+'#service','name':LEISTUNGEN[route],'serviceType':LEISTUNGEN[route],
+ if dr in LEISTUNGEN and BUSINESS:
+  dienst=(LEISTUNGEN_FR if lang=='fr' else LEISTUNGEN)[dr]
+  graph.append({'@type':'Service','@id':canonical+'#service','name':dienst,'serviceType':dienst,
    'provider':{'@id':BASE+'#organization'},'areaServed':ORGANISATION['areaServed'],'url':canonical,'description':desc})
  fragen=faq_paare(s)
  if len(fragen)>=2:
-  graph.append({'@type':'FAQPage','@id':canonical+'#faq','inLanguage':'de-CH','mainEntity':[
+  graph.append({'@type':'FAQPage','@id':canonical+'#faq','inLanguage':sprachcode,'mainEntity':[
    {'@type':'Question','name':f,'acceptedAnswer':{'@type':'Answer','text':a}} for f,a in fragen]})
  person=CONFIG.get('person')
  if person and person.get('verified') and source=='ueber-uns.html':
@@ -330,10 +373,10 @@ for source,route in ROUTES.items():
  # das Layout, und die Verweise zeigten auf die alten .html-Adressen.
  # Der assert ist Absicht — ein stiller Fehlschlag wuerde die Uebersicht
  # einfrieren, ohne dass es jemand merkt.
- if route=='blog/':
+ if dr=='blog/':
   raster=re.search(r'(<div class="lesegitter">)([\s\S]*?)(\n    </div>\n  </section>)',s)
-  assert raster, 'Kartenraster in blog/index.html nicht gefunden — Aufbau geaendert?'
-  karten=blog_karten_html(blog_beitraege())
+  assert raster, source+': Kartenraster nicht gefunden — Aufbau geaendert?'
+  karten=blog_karten_html(blog_beitraege('fr/blog' if lang=='fr' else 'blog'),lang=='fr')
   assert karten.count('<a class="lese"')>=1, 'Keine Blogbeitraege gelesen'
   s=s[:raster.start(2)]+karten+s[raster.end(2):]
  # Defer external scripts in document order. They still run before DOMContentLoaded.
@@ -375,18 +418,23 @@ for source,route in ROUTES.items():
    sizes=IMAGE_SIZES.get(item[0],'(max-width: 700px) 100vw, 50vw') if item else '(max-width: 700px) 100vw, 50vw'
    tag=tag[:-1]+' srcset="'+candidates+'"'+('' if hat_sizes else ' sizes="'+sizes+'"')+'>'
   return tag
- s=re.sub(r'<(?:a|link|img|script|video|source)\b[^>]*>',tagfix,s)
- if route and route not in ['marke.html','laune.html','takt.html']:
+ # image: SVG-Grafiken binden Bilder per <image href> ein (Arbeitsweise-Grafik).
+ s=re.sub(r'<(?:a|link|img|image|script|video|source)\b[^>]*>',tagfix,s)
+ if dr and route not in ['marke.html','laune.html','takt.html']:  # dr: auch fr/ ist eine Startseite, ohne Brotkrumen
   markup,bc=breadcrumb(route,title);graph.append(bc)
   # Breadcrumb sits inside existing page intro, beneath floating nav.
   s=re.sub(r'(<section class="unter[^"\n]*">)',lambda m:m.group(1)+markup,s,count=1)
   if markup not in s:s=s.replace('<main>','<main>'+markup,1)
+ # Ziel in der Sprache dieser Seite; target ist die deutsche Adresse ohne Schrägstrich.
+ def route_link(target):
+  ziel=GEGENSTUECK.get(target+'/',target+'/') if lang=='fr' else target+'/'
+  return posixpath.relpath(ziel.rstrip('/') or '.',route_dir or '.')+'/'
+ T=FUSS_FR if lang=='fr' else FUSS_DE
  # All standard footers expose the new knowledge hub.
- spalte=re.search(r'<p class="fuss__kopf">Seite</p>[\s\S]*?</nav>',s)
+ spalte=re.search(r'<p class="fuss__kopf">'+T['Seite']+'</p>[\s\S]*?</nav>',s)
  if spalte and 'mlink__t">Blog<' not in spalte.group(0):
-  s=s.replace('<p class="fuss__kopf">Seite</p>','<p class="fuss__kopf">Seite</p><a href="'+posixpath.relpath('blog',route_dir or '.')+'/">Blog</a>')
+  s=s.replace('<p class="fuss__kopf">'+T['Seite']+'</p>','<p class="fuss__kopf">'+T['Seite']+'</p><a href="'+route_link('blog')+'">Blog</a>')
  # Offer navigation is shared; keep the existing visual menu and interactions.
- def route_link(target):return posixpath.relpath(target,route_dir or '.')+'/'
  offer_nav='<nav class="seo-offer-nav" aria-label="Zusammenarbeit"><a href="'+route_link('marketing-abo')+'">Marketing im Abo</a><a href="'+route_link('projektarbeit')+'">Projektarbeit</a></nav>'
  # Entfernt 18.09.2026 (Dusan: "brauchen wir das" - nein). Die beiden Links
  # standen als schlichte unterstrichene Textlinks ueber den nummerierten
@@ -394,24 +442,45 @@ for source,route in ROUTES.items():
  # Fusszeile fuehrt Marketing im Abo und Projektarbeit ohnehin schon.
  # Die 404-Seite behaelt ihre seo-offer-nav: dort ist sie neben "Zur
  # Startseite" die einzige Navigation, keine Dopplung.
- s=s.replace('<p class="fuss__kopf">Leistungen</p>','<p class="fuss__kopf">Leistungen</p><a href="'+route_link('marketing-abo')+'">Marketing im Abo</a><a href="'+route_link('projektarbeit')+'">Projektarbeit</a><a href="'+route_link('seo')+'">SEO-Betreuung</a><a href="'+route_link('website-betreuung')+'">Website-Betreuung</a>')
+ kopf='<p class="fuss__kopf">'+T['Leistungen']+'</p>'
+ s=s.replace(kopf,kopf+'<a href="'+route_link('marketing-abo')+'">'+T['Marketing im Abo']+'</a><a href="'+route_link('projektarbeit')+'">'+T['Projektarbeit']+'</a><a href="'+route_link('seo')+'">'+T['SEO-Betreuung']+'</a><a href="'+route_link('website-betreuung')+'">'+T['Website-Betreuung']+'</a>')
  # References retain their source presentation per the confirmed project rules.
  # Preise sind vom Auftraggeber bestaetigt (16.09.2026): kein Entwurfshinweis mehr.
  # Die Angaben zur Mehrwertsteuer stehen sichtbar unter den Paketen.
  # Firmierung und Adresse bestätigt (14.10.2026). "in Gründung" entfällt mit dem
  # Handelsregistereintrag. Telefon bewusst leer (Dusan, 14.10.2026).
  s=s.replace('<p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p>','<p>2026 Klartext Digital GmbH (in Gründung) · Alle Rechte vorbehalten</p>')
+ s=s.replace('<p>2026 Klartext Digital GmbH · Tous droits réservés</p>','<p>2026 Klartext Digital GmbH (en cours de constitution) · Tous droits réservés</p>')
+ # Sprachumschalter oben rechts, direkt vor dem Knopf „Gespräch buchen".
+ # Er führt auf dieselbe Seite in der anderen Sprache, nicht zur Startseite.
+ if route in GEGENSTUECK:
+  def hin(ziel):return posixpath.relpath(ziel.rstrip('/') or '.',route_dir or '.')+'/'
+  de_ziel,fr_ziel=(GEGENSTUECK[route],route) if lang=='fr' else (route,GEGENSTUECK[route])
+  def wahl(code,ziel,name):
+   ist=code==lang
+   return (f'<a class="sprache__wahl{" ist" if ist else ""}" href="{hin(ziel)}" hreflang="{code}-CH" lang="{code}"'
+           +(' aria-current="true"' if ist else '')+f' aria-label="{name}"><span>{code.upper()}</span></a>')
+  umschalter=('<nav class="sprache" aria-label="'+('Langue' if lang=='fr' else 'Sprache')+'">'
+              +wahl('de',de_ziel,'Deutsch')+wahl('fr',fr_ziel,'Français')+'</nav>')
+  s,n=re.subn(r'(<a class="knopf knopf--akzent nav__cta"[\s\S]*?</a>)',lambda m:'<div class="nav__rechts">'+umschalter+m.group(1)+'</div>',s,count=1)
+  if lang=='fr':s=s.replace('<span>Prendre rendez-vous</span><span aria-hidden="true">','<span><span class="nav__cta-lang">Prendre rendez-vous</span><span class="nav__cta-kurz">Rendez-vous</span></span><span aria-hidden="true">',1)
  # Entwurfs-Hinweis unten rechts entfernt (Dusan 15.10.2026: keine Hinweise
  # auf der Seite, die nicht hingehoeren). Steht noch in den Quelldateien.
  s=re.sub(r'<div class="demo">[^<]*</div>\s*','',s)
  prefix=posixpath.relpath('.',route_dir or '.')+'/'
+ locale=sprachcode.replace('-','_')
+ bild_alt='Klartext Digital, création de sites web et marketing' if lang=='fr' else 'Klartext Digital – Webdesign und Marketing'
  schema_json=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False).replace('</','<\\/')
- head=f'''\n<meta name="description" content="{escape(desc,quote=True)}">\n<meta name="robots" content="{robots}">\n<link rel="canonical" href="{canonical}">\n<meta property="og:title" content="{escape(title,quote=True)}">\n<meta property="og:description" content="{escape(desc,quote=True)}">\n<meta property="og:url" content="{canonical}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="de_CH">\n<meta property="og:image" content="{BASE}marke/favicon-180.png">\n<link rel="stylesheet" href="{prefix}seo.css?v={stempel("seo.css") or ""}">\n<script type="application/ld+json">{schema_json}</script>\n'''
- if route=='':head+='<link rel="preload" as="image" href="kopf/grund.webp" type="image/webp" fetchpriority="high">\n'
+ head=f'''\n<meta name="description" content="{escape(desc,quote=True)}">\n<meta name="robots" content="{robots}">\n<link rel="canonical" href="{canonical}">\n<meta property="og:title" content="{escape(title,quote=True)}">\n<meta property="og:description" content="{escape(desc,quote=True)}">\n<meta property="og:url" content="{canonical}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="{locale}">\n<meta property="og:image" content="{BASE}marke/favicon-180.png">\n<link rel="stylesheet" href="{prefix}seo.css?v={stempel("seo.css") or ""}">\n<script type="application/ld+json">{schema_json}</script>\n'''
+ if route in GEGENSTUECK:
+  de_ziel,fr_ziel=(GEGENSTUECK[route],route) if lang=='fr' else (route,GEGENSTUECK[route])
+  head+=f'<link rel="alternate" hreflang="de-CH" href="{BASE+de_ziel}">\n<link rel="alternate" hreflang="fr-CH" href="{BASE+fr_ziel}">\n<link rel="alternate" hreflang="x-default" href="{BASE+de_ziel}">\n'
+  head+=f'<meta property="og:locale:alternate" content="{"de_CH" if lang=="fr" else "fr_CH"}">\n'
+ if route in ('','fr/'):head+='<link rel="preload" as="image" href="'+prefix+'kopf/grund.webp" type="image/webp" fetchpriority="high">\n'
  # A real landscape image replaces the tiny app icon in link previews.
  head=head.replace(BASE+'marke/favicon-180.png',preview_image)
  head=head.replace('property="og:type" content="website"','property="og:type" content="'+('article' if is_article else 'website')+'"')
- head+=f'<meta property="og:image:alt" content="Klartext Digital – Webdesign und Marketing">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="{escape(title,quote=True)}">\n<meta name="twitter:description" content="{escape(desc,quote=True)}">\n<meta name="twitter:image" content="{preview_image}">\n<script defer src="{prefix}messung.js?v={stempel("messung.js") or ""}"></script>\n'
+ head+=f'<meta property="og:image:alt" content="{bild_alt}">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="{escape(title,quote=True)}">\n<meta name="twitter:description" content="{escape(desc,quote=True)}">\n<meta name="twitter:image" content="{preview_image}">\n<script defer src="{prefix}messung.js?v={stempel("messung.js") or ""}"></script>\n'
  for key,name in [('google','google-site-verification'),('bing','msvalidate.01')]:
   token=CONFIG.get('verification',{}).get(key)
   if token:head+=f'<meta name="{name}" content="{escape(token,quote=True)}">\n'

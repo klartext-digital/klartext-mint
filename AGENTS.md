@@ -70,6 +70,18 @@ Nicht zwei Werkzeuge gleichzeitig auf `main`.
 - **Verlinkungsregel je Artikel:** einer nach oben zum Hauptartikel, zwei bis vier
   seitwärts zu Geschwistern, ein bis zwei zur passenden Leistung.
 
+## Französische Fassung (seit 22.10.2026)
+
+Jede Seite gibt es auch auf Französisch, erreichbar über die Sprachwahl DE/FR oben rechts.
+
+- **`fr/` spiegelt die deutschen Quellen Datei für Datei** (`fr/seo/index.html` zu `seo/index.html`). Links, Bild- und Skriptpfade stehen in der fr-Datei **genau wie im Deutschen**; der Build lenkt Seitenlinks auf die französischen Adressen um und holt Bilder, Skripte und Stile von der Wurzel.
+- **Französische Adressen** stehen in `fr/routen.json` (deutsche Adresse → französische). Eine fr-Quelle ohne Eintrag bricht den Build ab.
+- **Titel und Beschreibung** der französischen Seiten kommen aus `<title>` und `<meta name="description">` der fr-Datei selbst, nicht aus `META`/`page-meta.json`.
+- **Wer eine deutsche Seite ändert oder neu anlegt, zieht die fr-Datei im selben Zug nach** (inklusive Klappmenü und Fusszeile). Danach `python3 scripts/fr_pruefen.py`: vergleicht das Tag-Gerüst DE/FR (muss identisch sein), meldet deutsche Reste und Gedankenstriche.
+- **Skripttexte** (Ladeschirm, Kalender, Rechner, Zitate, Mauszeiger) wählen die Sprache über `<html lang>`; neue Texte in JS immer zweisprachig anlegen.
+- Sprachwahl, `hreflang` und der kurze Knopftext „Rendez-vous" unter 360 px setzt der Build (`nav__rechts`), nicht die Quelldateien.
+- Französisch: Vouvoiement, Schweizer Französisch, keine Gedankenstriche, geschütztes Leerzeichen vor `: ; ? !`.
+
 ## Technische Fallen
 
 - `scripts/build.py` kopiert nur diese Ordner in die Ausgabe: `bilder fonts js kopf laune logos marke video` sowie `.js/.css/.png` im Hauptordner. Neue Asset-Ordner dort eintragen, sonst fehlen sie live.
