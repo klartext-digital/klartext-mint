@@ -128,7 +128,7 @@ function zeileHalten(el, dauerMs) {
         scrollTrigger: { trigger: ausloeser, start: 'top 92%' },
       });
   };
-  document.querySelectorAll('[data-rein]').forEach((el) => rein(el, el));
+  document.querySelectorAll('[data-rein]:not(.brush)').forEach((el) => rein(el, el));
   document.querySelectorAll('[data-rein-zeilen]').forEach((block) => {
     const zeilen = [...block.children];
     zeilen.forEach((z) => (z.style.display = 'block'));
@@ -136,115 +136,10 @@ function zeileHalten(el, dauerMs) {
   });
 })();
 
-/* ── Handschrift: Schreib-Reveal und Drift ──────────────────────
-   Die Brush-Akzente sind die zweite Stimme der Seite und standen
-   bisher stumm da. Zwei Bewegungen, bewusst auf ZWEI Knoten verteilt,
-   damit sich die Transformationen nicht gegenseitig überschreiben:
-     · innen  Schreib-Reveal — das Wort wird von links nach rechts
-              freigelegt, als würde es geschrieben (clip-path, .85 s)
-     · aussen Drift mit dem Scroll, jede Zeile mit eigenem Ausschlag —
-              dasselbe Muster wie beim Team-Morph. Driften alle gleich
-              weit, wirkt es wie eine Tabelle, nicht wie Handschrift.
-   Am Ende räumt GSAP den clip-path wieder weg: im Ruhezustand darf
-   nichts beschnitten sein, sonst rasiert die Maske Unterlängen ab. */
-(function handschrift() {
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const einwickeln = (el) => {
-    const da = el.querySelector('.brush__t');
-    if (da) return da;
-    const t = document.createElement('span');
-    t.className = 'brush__t';
-    while (el.firstChild) t.appendChild(el.firstChild);
-    el.appendChild(t);
-    return t;
-  };
-
-  const schreiben = (el, verzug = 0) => {
-    /* ZENTRIERTE Zeilen von der Mitte nach aussen freilegen. Ein
-       Wischer von links legt bei zentriertem Text erst die linke
-       Hälfte frei — die Zeile steht dann die ganze Animation lang
-       sichtbar schief neben der Mitte und rutscht erst im letzten
-       Bild hinein. Bei linksbündigen Zeilen ist der Wischer richtig,
-       da wächst der Text aus seiner eigenen Kante. */
-    const mittig = getComputedStyle(el).textAlign === 'center';
-    gsap.fromTo(einwickeln(el),
-      { clipPath: mittig ? 'inset(0% 50% 0% 50%)' : 'inset(0% 100% 0% 0%)' },
-      { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.85, ease: KURVE_REIN,
-        delay: verzug, clearProps: 'clipPath',
-        scrollTrigger: { trigger: el, start: 'top 90%' } });
-  };
-
-  /* Dauerbewegung. Auf rama.framer.media — von dort stammt unser Rock
-     Salt — hat die Graffiti-Schrift KEINE eigene Dauerbewegung, sie
-     hängt nur am Scroll. Dusan will sie durchgehend leicht in Bewegung,
-     also bauen wir es: winzige Ausschläge (2–3 px) über mehrere
-     Sekunden, jedes Wort mit eigenem Takt und eigenem Start. Laufen
-     alle gleich, wirkt es wie Wackeln statt wie Leben.
-     Sitzt auf dem INNEREN Träger — die Scroll-Drift sitzt aussen,
-     sonst überschreiben sich die beiden Transformationen. */
-  const leben = (el, i) => {
-    const t = einwickeln(el);
-    const laeufe = [
-      gsap.fromTo(t, { y: -2.5 },
-        { y: 2.5, duration: 3.4 + (i % 3) * 0.9, ease: 'sine.inOut',
-          repeat: -1, yoyo: true, delay: i * 0.4 }),
-      gsap.fromTo(t, { x: -1.6 },
-        { x: 1.6, duration: 4.7 + (i % 4) * 0.8, ease: 'sine.inOut',
-          repeat: -1, yoyo: true, delay: i * 0.55 }),
-    ];
-
-    /* Nur laufen, solange das Wort im Bild ist.
-
-       Diese zwei Laeufe sind endlos (repeat: -1). Ohne die Bremse
-       liefen sie auf JEDER Seite dauerhaft weiter, auch fuer Woerter
-       weit unterhalb des Falzes, die niemand sieht. Gemessen im
-       voelligen Leerlauf, ohne Maus und ohne Scrollen: 1909
-       Stilaenderungen in vier Sekunden, das sind rund 480 in der
-       Sekunde. Die Rechnung dazu geht genau auf — vier Woerter mal
-       zwei Laeufe mal sechzig Bilder mal vier Sekunden sind 1920.
-       Das war die Grundlast, die die Seite zaeh und unruhig machte.
-
-       Am Aussehen aendert sich nichts: Solange das Wort zu sehen ist,
-       bewegt es sich genau wie vorher. */
-    if (!('IntersectionObserver' in window)) return;
-    laeufe.forEach((l) => l.pause());
-    new IntersectionObserver((eintraege) => {
-      const sichtbar = eintraege[0].isIntersecting;
-      laeufe.forEach((l) => (sichtbar ? l.play() : l.pause()));
-    }, { rootMargin: '150px' }).observe(el);
-  };
-
-  const driften = (el, von, bis, wo) => {
-    gsap.fromTo(el, { y: von },
-      { y: bis, ease: 'none',
-        scrollTrigger: wo || { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 0.6 } });
-  };
-
-  /* Die Zeile im Dropdown bleibt aussen vor: sie sitzt in der festen
-     Kopfleiste, scrollt also nie — eine Scroll-Bindung würde dort auf
-     einem willkürlichen Zwischenwert hängen bleiben. */
-  [...document.querySelectorAll('p.brush')]
-    .filter((el) => !el.closest('.nav'))
-    .forEach((el, i) => {
-      schreiben(el);
-      leben(el, i);
-      const w = i % 2 ? 11 : 17;
-      driften(el, w, -w);
-    });
-
-  /* Das Wort in der Bühnenüberschrift steht schon beim Laden da — es
-     wird erst geschrieben, wenn seine Zeile eingeblendet ist. Seine
-     Drift hängt an der Bühne und startet bei null, sonst sässe es
-     beim Laden schon verschoben in der Überschrift. */
-  const heroWort = document.querySelector('h1 .brush');
-  if (heroWort) {
-    schreiben(heroWort, 0.4);
-    leben(heroWort, 2);
-    driften(heroWort, 0, -18,
-      { trigger: '.buehne', start: 'top top', end: 'bottom top', scrub: 0.6 });
-  }
-})();
+/* ── Handschrift: steht still ──────────────────────────────────
+   23.10.2026, Dusan: "entferne die Bewegungen bei der Schrift gaenzlich".
+   Kein Schreib-Reveal, keine Drift, kein Wackeln mehr; die Handschrift
+   ist auch von der allgemeinen Einblendung ausgenommen (siehe oben). */
 
 /* ── Leistungs-Dropdown ─────────────────────────────────────────
    Mechanik 1:1 aus der ersten KLARTEXT-Seite. Die drei Punkte, die

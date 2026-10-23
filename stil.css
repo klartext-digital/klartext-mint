@@ -21,7 +21,7 @@
    Satzzeichen aus einem zweiten Blatt im selben Stil; nachgezeichnet,
    mit fontTools gebaut.
    Gehoert Klartext Digital, liegt darum auf dem eigenen Server. */
-@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand.woff2) format('woff2');
+@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-3.woff2) format('woff2');
   font-weight:400 900;font-display:swap}
 
 :root{
@@ -4773,14 +4773,14 @@ body .wege__mehr:hover{filter:saturate(1.25) brightness(.96)}
 p.brush,.referenzen .brush,.weiter .brush{display:block;width:fit-content;max-width:100%}
 p.brush{margin-left:-.42em}
 p.brush.mitte,.referenzen .brush,.weiter .brush,.mitte > p.brush{margin-left:auto;margin-right:auto}
-p.brush{font-size:clamp(34px,3.7vw,60px)}
-.unter .brush,.unter__text > .brush{font-size:clamp(30px,3vw,50px)}
+p.brush{font-size:clamp(38px,4.2vw,68px)}
+.unter .brush,.unter__text > .brush{font-size:clamp(34px,3.4vw,56px)}
 /* In Ueberschriften steht das Wort so gross wie die Figtree daneben und
    ueberragt den Strich, wie in den Vorlagen. */
-h1 .brush,h2 .brush,h1 .wort,h2 .wort{font-size:1.3em;font-weight:700;
+h1 .brush,h2 .brush,h1 .wort,h2 .wort{font-size:1.45em;font-weight:700;
   display:inline-block;line-height:.66;letter-spacing:0;padding:.04em .55em .02em .32em;
   margin:0 .02em;vertical-align:-.02em}
-.buehne h1 .wort{font-size:1.04em;padding-right:.44em;margin-right:-.2em}
+.buehne h1 .wort{font-size:.98em;padding-right:.4em;margin-right:-.2em}
 /* Die Bühne hat zwei feste Zeilen (nowrap). Mit Strich darf die zweite
    Zeile nicht breiter werden als die erste, sonst ragt sie ab 1280 px
    aus der Spalte. */
@@ -4791,3 +4791,8 @@ h1 .brush,h2 .brush,h1 .wort,h2 .wort{font-size:1.3em;font-weight:700;
   font-size:20px;line-height:1.35;border-image:none;padding:0}
 .paket__preis .brush > .brush__t,.blog__hand .brush > .brush__t,
 .brief__hand .brush > .brush__t{-webkit-mask:none;mask:none}
+/* Leistungsseiten-Kopf: die Zeile unter dem Titel ("Budget, das arbeitet.")
+   steht fast so gross wie der Titel selbst, wie in Dusans Vorlage vom
+   23.10.2026. Die alte Regel .hero .unter__leib--portraet .brush hielt sie
+   bei 42 px. */
+.hero .unter__leib--portraet p.brush{font-size:clamp(34px,6.4vw,94px);margin-top:.12em}
