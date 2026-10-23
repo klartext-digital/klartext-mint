@@ -423,7 +423,7 @@ for source,route in ROUTES.items():
   token=CONFIG.get('verification',{}).get(key)
   if token:head+=f'<meta name="{name}" content="{escape(token,quote=True)}">\n'
  head+=f'<link rel="preload" href="{prefix}fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>\n'
- head+=f'<link rel="preload" href="{prefix}fonts/klartext-hand-4.woff2" as="font" type="font/woff2" crossorigin>\n'
+ head+=f'<link rel="preload" href="{prefix}fonts/klartext-hand-5.woff2" as="font" type="font/woff2" crossorigin>\n'
  s=s.replace('</head>',head+'</head>')
  dest=OUT/(route if route.endswith('.html') else route+'index.html');dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(s)
 
