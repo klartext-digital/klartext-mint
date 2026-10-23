@@ -4847,3 +4847,16 @@ p.brush,.referenzen .brush,.weiter .brush{line-height:.66;padding-top:.04em;padd
 
 /* Spaltenkoepfe im Fussbereich deutlich groesser (Dusan, 23.10.2026). */
 .fuss .fuss__kopf{font-size:clamp(28px,2.6vw,40px);line-height:1.1;margin-bottom:.5em}
+/* Brush-Stil auch im Fussbereich (Dusan, 23.10.2026). Auf dem orangen
+   Grund waere der orange Strich unsichtbar: hier ein schwarzer Strich
+   mit heller Schrift, sonst dieselbe Form wie ueberall. */
+.fuss .fuss__kopf,.fuss__reden .brush > .brush__t{color:var(--creme)!important}
+.fuss .fuss__kopf{display:inline-block;width:fit-content;font-size:clamp(26px,2.3vw,36px);
+  line-height:.66;padding:.06em .55em .04em .32em;margin:0 0 .7em -.32em;
+  background:url(bilder/pinsel-dunkel.webp) center/100% 100% no-repeat}
+.fuss__reden .brush{background-image:url(bilder/pinsel-dunkel.webp)}
+.fuss__reden .brush,.fuss__reden .brush *{color:var(--creme)!important}
+/* Erster Buchstabe der Kopfzeile auf der Linie der Eintraege darunter
+   (gemessen: Seite +16 px, Folgen +14 px Einzug der Links). */
+.fuss__spalte:nth-child(1) .fuss__kopf{margin-left:calc(-.32em + 16px)}
+.fuss__spalte:nth-child(3) .fuss__kopf{margin-left:calc(-.32em + 14px)}
