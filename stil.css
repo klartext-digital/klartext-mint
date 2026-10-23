@@ -21,7 +21,7 @@
    Satzzeichen aus einem zweiten Blatt im selben Stil; nachgezeichnet,
    mit fontTools gebaut.
    Gehoert Klartext Digital, liegt darum auf dem eigenen Server. */
-@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-5.woff2) format('woff2');
+@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-6.woff2) format('woff2');
   font-weight:400 900;font-display:swap}
 
 :root{
@@ -4786,7 +4786,7 @@ p.brush{font-size:clamp(38px,4.2vw,68px)}
 h1 .brush,h2 .brush,h1 .wort,h2 .wort{font-size:1.45em;font-weight:700;
   display:inline-block;line-height:.66;letter-spacing:0;padding:.04em .55em .02em .32em;
   margin:0 .02em;vertical-align:-.02em}
-.buehne h1 .wort{font-size:.88em;padding-right:.36em;margin-right:-.06em}
+.buehne h1 .wort{font-size:.84em;padding-right:.36em;margin-right:-.06em}
 /* Die Bühne hat zwei feste Zeilen (nowrap). Mit Strich darf die zweite
    Zeile nicht breiter werden als die erste, sonst ragt sie ab 1280 px
    aus der Spalte. */
@@ -4860,3 +4860,11 @@ p.brush,.referenzen .brush,.weiter .brush{line-height:.66;padding-top:.04em;padd
    (gemessen: Seite +16 px, Folgen +14 px Einzug der Links). */
 .fuss__spalte:nth-child(1) .fuss__kopf{margin-left:calc(-.32em + 16px)}
 .fuss__spalte:nth-child(3) .fuss__kopf{margin-left:calc(-.32em + 14px)}
+/* Massstab "Zusammenspiel." (Dusan, 23.10.2026): hoeherer Strich mit
+   trockenen, ausgefransten Enden, das Ganze leicht schraeg gestellt; die
+   Schrift duenner und geneigter (klartext-hand-6). Gilt ueberall. */
+.brush,.wort{line-height:1;transform:rotate(-1.6deg);transform-origin:left center}
+p.brush,.referenzen .brush,.weiter .brush{line-height:1;padding-top:.02em;padding-bottom:.02em}
+h1 .brush,h2 .brush,h1 .wort,h2 .wort{line-height:.96;padding-top:.02em;padding-bottom:.02em}
+.fuss .fuss__kopf{line-height:1;transform:rotate(-1.6deg);transform-origin:left center}
+.paket__preis .brush,.blog__hand .brush,.brief__hand .brush{transform:none}
