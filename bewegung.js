@@ -769,3 +769,20 @@ function zeileHalten(el, dauerMs) {
 })();
 
 addEventListener('load', () => ScrollTrigger.refresh());
+
+/* ── Foto auf der Trennlinie ────────────────────────────────────
+   Die Copyright-Zeile bricht je nach Breite ein- oder zweizeilig um.
+   Ihre echte Hoehe ab der Linie geht als --fuss-zeile an die Fusszeile,
+   damit das Foto immer genau auf der Linie steht (23.10.2026). */
+(function fussLinie() {
+  const fuss = document.querySelector('.fuss');
+  const recht = fuss && fuss.querySelector('.fuss__recht');
+  if (!recht) return;
+  const setzen = () => {
+    const h = recht.getBoundingClientRect().height;
+    fuss.style.setProperty('--fuss-zeile', h + 'px');
+  };
+  setzen();
+  if ('ResizeObserver' in window) new ResizeObserver(setzen).observe(recht);
+  document.fonts && document.fonts.ready.then(setzen);
+})();

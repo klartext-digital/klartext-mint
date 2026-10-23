@@ -4832,3 +4832,18 @@ p.brush,.referenzen .brush,.weiter .brush{line-height:.66;padding-top:.04em;padd
   .fuss__oben{grid-template-columns:minmax(420px,.85fr) minmax(0,1.6fr);gap:clamp(40px,4vw,80px)}
   .fuss__spalten{padding-right:0}
 }
+/* Foto steht auf der Trennlinie, Copyright-Zeile hat Luft nach unten
+   (Dusan, 23.10.2026). --fuss-ub = Abstand unter der Copyright-Zeile,
+   --fuss-zeile = Hoehe der Copyright-Zeile ab der Linie; der Startwert
+   gilt fuer eine Zeile, bewegung.js (fussLinie) setzt den gemessenen. */
+.fuss{--fuss-ub:clamp(26px,2.6vw,44px);--fuss-zeile:49px}
+@media (min-width:901px){
+  .fuss{padding-bottom:var(--fuss-ub)}
+  .fuss::after{bottom:calc(var(--fuss-ub) + var(--fuss-zeile))}
+}
+@media (max-width:900px){
+  .fuss__recht{padding-bottom:var(--fuss-ub)}
+}
+
+/* Spaltenkoepfe im Fussbereich deutlich groesser (Dusan, 23.10.2026). */
+.fuss .fuss__kopf{font-size:clamp(28px,2.6vw,40px);line-height:1.1;margin-bottom:.5em}
