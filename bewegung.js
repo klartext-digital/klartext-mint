@@ -74,69 +74,12 @@ clearProps: 'transform,opacity,filter',
 scrollTrigger: { trigger: ausloeser, start: 'top 92%' },
 });
 };
-document.querySelectorAll('[data-rein]').forEach((el) => rein(el, el));
+document.querySelectorAll('[data-rein]:not(.brush)').forEach((el) => rein(el, el));
 document.querySelectorAll('[data-rein-zeilen]').forEach((block) => {
 const zeilen = [...block.children];
 zeilen.forEach((z) => (z.style.display = 'block'));
 rein(zeilen, block);            // ein Auslöser, keine Staffel
 });
-})();
-(function handschrift() {
-if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-const einwickeln = (el) => {
-const da = el.querySelector('.brush__t');
-if (da) return da;
-const t = document.createElement('span');
-t.className = 'brush__t';
-while (el.firstChild) t.appendChild(el.firstChild);
-el.appendChild(t);
-return t;
-};
-const schreiben = (el, verzug = 0) => {
-const mittig = getComputedStyle(el).textAlign === 'center';
-gsap.fromTo(einwickeln(el),
-{ clipPath: mittig ? 'inset(0% 50% 0% 50%)' : 'inset(0% 100% 0% 0%)' },
-{ clipPath: 'inset(0% 0% 0% 0%)', duration: 0.85, ease: KURVE_REIN,
-delay: verzug, clearProps: 'clipPath',
-scrollTrigger: { trigger: el, start: 'top 90%' } });
-};
-const leben = (el, i) => {
-const t = einwickeln(el);
-const laeufe = [
-gsap.fromTo(t, { y: -2.5 },
-{ y: 2.5, duration: 3.4 + (i % 3) * 0.9, ease: 'sine.inOut',
-repeat: -1, yoyo: true, delay: i * 0.4 }),
-gsap.fromTo(t, { x: -1.6 },
-{ x: 1.6, duration: 4.7 + (i % 4) * 0.8, ease: 'sine.inOut',
-repeat: -1, yoyo: true, delay: i * 0.55 }),
-];
-if (!('IntersectionObserver' in window)) return;
-laeufe.forEach((l) => l.pause());
-new IntersectionObserver((eintraege) => {
-const sichtbar = eintraege[0].isIntersecting;
-laeufe.forEach((l) => (sichtbar ? l.play() : l.pause()));
-}, { rootMargin: '150px' }).observe(el);
-};
-const driften = (el, von, bis, wo) => {
-gsap.fromTo(el, { y: von },
-{ y: bis, ease: 'none',
-scrollTrigger: wo || { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 0.6 } });
-};
-[...document.querySelectorAll('p.brush')]
-.filter((el) => !el.closest('.nav'))
-.forEach((el, i) => {
-schreiben(el);
-leben(el, i);
-const w = i % 2 ? 11 : 17;
-driften(el, w, -w);
-});
-const heroWort = document.querySelector('h1 .brush');
-if (heroWort) {
-schreiben(heroWort, 0.4);
-leben(heroWort, 2);
-driften(heroWort, 0, -18,
-{ trigger: '.buehne', start: 'top top', end: 'bottom top', scrub: 0.6 });
-}
 })();
 (function dropdown() {
 const wurzel = document.querySelector('.ndd');
