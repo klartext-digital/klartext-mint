@@ -527,3 +527,15 @@ addEventListener('resize', pruefe);
 knopf.addEventListener('click', () => lenis.scrollTo(0, { duration: 1.1 }));
 })();
 addEventListener('load', () => ScrollTrigger.refresh());
+(function fussLinie() {
+const fuss = document.querySelector('.fuss');
+const recht = fuss && fuss.querySelector('.fuss__recht');
+if (!recht) return;
+const setzen = () => {
+const h = recht.getBoundingClientRect().height;
+fuss.style.setProperty('--fuss-zeile', h + 'px');
+};
+setzen();
+if ('ResizeObserver' in window) new ResizeObserver(setzen).observe(recht);
+document.fonts && document.fonts.ready.then(setzen);
+})();
