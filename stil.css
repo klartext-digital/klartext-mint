@@ -21,7 +21,7 @@
    Satzzeichen aus einem zweiten Blatt im selben Stil; nachgezeichnet,
    mit fontTools gebaut.
    Gehoert Klartext Digital, liegt darum auf dem eigenen Server. */
-@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-4.woff2) format('woff2');
+@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-5.woff2) format('woff2');
   font-weight:400 900;font-display:swap}
 
 :root{
@@ -4795,3 +4795,13 @@ h1 .brush,h2 .brush,h1 .wort,h2 .wort{font-size:1.45em;font-weight:700;
    23.10.2026. Die alte Regel .hero .unter__leib--portraet .brush hielt sie
    bei 42 px. */
 .hero .unter__leib--portraet p.brush{font-size:clamp(34px,6.4vw,94px);margin-top:.12em}
+/* Der grosse Titel (Figtree, bis 121 px) hat links einen eigenen Leerraum
+   von rund 7 % seiner Groesse; die Schrift darunter rueckt um dasselbe Mass
+   nach, damit erster Buchstabe auf ersten Buchstaben steht. */
+.hero .unter__leib--portraet p.brush{margin-left:calc(-.42em + .075em)}
+/* Buendig nach dem ersten Buchstaben (Dusan, 23.10.2026): steht das
+   Schriftwort allein in seiner Titelzeile, sitzt sein erster Buchstabe
+   auf der Kante der Ueberschrift, nur der orange Strich ragt links heraus.
+   Der Minus-Rand hebt genau das linke Polster (.32em) auf. */
+h1 > span > .wort:only-child,h2 > span > .wort:only-child,
+h1 > span > .brush:only-child,h2 > span > .brush:only-child{margin-left:-.32em}
