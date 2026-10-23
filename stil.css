@@ -2019,7 +2019,10 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
      dieselbe Sprache wie Box und Kopfleiste. */
   /* KEIN filter mehr: Kontur UND Schein stecken seit dem
      20.09.2026 in Dusans fertiger Bilddatei. Ein CSS-Schein kaeme
-     hier obendrauf und wuerde den vorhandenen zuziehen. */margin:0 auto;display:grid;
+     hier obendrauf und wuerde den vorhandenen zuziehen. */}
+/* 23.10.2026: diese Regel war beim Portrait-Umbau in .fuss::after
+   gerutscht, das Raster fiel aus und alles stand untereinander. */
+.fuss__oben{max-width:var(--maxw);margin:0 auto;display:grid;
   grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,90px);align-items:start}
 
 .fuss__reden .brush{color:var(--tinte)}
@@ -4815,7 +4818,17 @@ p.brush,.referenzen .brush,.weiter .brush{line-height:.66;padding-top:.04em;padd
    faelschlich (Text zaehlt nicht als Kind). Abstand zum Wort davor. */
 .buehne h1 > span > .wort{margin-left:.22em}
 
-/* Logo im Fussbereich (Dusan, 23.10.2026). Einfarbig schwarz: auf dem
-   orangen Grund waere das orange "digital" unsichtbar. */
+/* Logo im Fussbereich (Dusan, 23.10.2026). Nicht einfarbig: klartext.
+   schwarz, "digital" und Punkt weiss, weil Orange auf dem orangen Grund
+   verschwindet. */
 .fuss__logo{display:block;width:clamp(150px,13vw,210px);margin-bottom:clamp(28px,3vw,48px);line-height:0}
 .fuss__logo img{width:100%;height:auto;display:block}
+
+/* Fusszeile kompakter (Dusan, 23.10.2026: "so viel Freiraum rechts").
+   Linke Spalte breit genug fuer Mail-Pille und "Auf ein Wort" in einer
+   Zeile; die Spalten rechts brauchen keinen Platzhalter fuer die Person
+   mehr, sie sitzt unterhalb der Listen. */
+@media (min-width:1101px){
+  .fuss__oben{grid-template-columns:minmax(420px,.85fr) minmax(0,1.6fr);gap:clamp(40px,4vw,80px)}
+  .fuss__spalten{padding-right:0}
+}
