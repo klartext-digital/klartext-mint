@@ -21,7 +21,7 @@
    Satzzeichen aus einem zweiten Blatt im selben Stil; nachgezeichnet,
    mit fontTools gebaut.
    Gehoert Klartext Digital, liegt darum auf dem eigenen Server. */
-@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-6.woff2) format('woff2');
+@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-7.woff2) format('woff2');
   font-weight:400 900;font-display:swap}
 
 :root{
@@ -4868,3 +4868,13 @@ p.brush,.referenzen .brush,.weiter .brush{line-height:1;padding-top:.02em;paddin
 h1 .brush,h2 .brush,h1 .wort,h2 .wort{line-height:.96;padding-top:.02em;padding-bottom:.02em}
 .fuss .fuss__kopf{line-height:1;transform:rotate(-1.6deg);transform-origin:left center}
 .paket__preis .brush,.blog__hand .brush,.brief__hand .brush{transform:none}
+/* Massstab "Rhythmus schlaegt Zufall." (Dusan, 23.10.2026, ersetzt
+   "Zusammenspiel."): Schrift gross und kraeftig, Strich flach, gerade und
+   nur hinter der unteren Haelfte der Buchstaben; oben ragt die Schrift
+   weit heraus. Keine Schraegstellung mehr. */
+.brush,.wort,.fuss .fuss__kopf{transform:none;line-height:1.08;
+  background-size:100% 58%;background-position:center 82%;background-repeat:no-repeat}
+p.brush,.referenzen .brush,.weiter .brush{line-height:1.08;padding-top:0;padding-bottom:.02em}
+h1 .brush,h2 .brush,h1 .wort,h2 .wort{line-height:1.02;padding-top:0;padding-bottom:0}
+.hero .unter__leib--portraet p.brush{font-size:clamp(38px,7.4vw,108px)}
+p.brush{font-size:clamp(38px,4.4vw,72px)}
