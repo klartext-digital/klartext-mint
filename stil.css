@@ -4814,3 +4814,8 @@ p.brush,.referenzen .brush,.weiter .brush{line-height:.66;padding-top:.04em;padd
 /* Im Kopfbereich steht "niemand" mitten im Satz: :only-child trifft hier
    faelschlich (Text zaehlt nicht als Kind). Abstand zum Wort davor. */
 .buehne h1 > span > .wort{margin-left:.22em}
+
+/* Logo im Fussbereich (Dusan, 23.10.2026). Einfarbig schwarz: auf dem
+   orangen Grund waere das orange "digital" unsichtbar. */
+.fuss__logo{display:block;width:clamp(150px,13vw,210px);margin-bottom:clamp(28px,3vw,48px);line-height:0}
+.fuss__logo img{width:100%;height:auto;display:block}
