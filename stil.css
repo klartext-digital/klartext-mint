@@ -21,7 +21,7 @@
    Satzzeichen aus einem zweiten Blatt im selben Stil; nachgezeichnet,
    mit fontTools gebaut.
    Gehoert Klartext Digital, liegt darum auf dem eigenen Server. */
-@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-9.woff2) format('woff2');
+@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-10.woff2) format('woff2');
   font-weight:400 900;font-display:swap}
 
 :root{
@@ -4019,7 +4019,9 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .ruf__text{color:rgb(247 247 245 / .74)}
 .ruf__weg{border-color:rgb(247 247 245 / .28)}
 .ruf__weg:hover{background:var(--creme);border-color:var(--creme);color:var(--tinte)}
-.ruf__karte--knapp .knopf--akzent{background:var(--tinte);color:var(--creme)}
+/* 25.10.2026: der Knopf war schwarz auf der schwarzen Karte und damit
+   unsichtbar. Orange wie jeder Hauptknopf, Hover fuellt creme. */
+.ruf__karte--knapp .knopf--akzent{background:var(--violett);color:var(--tinte);--knopf-fuell:var(--creme)}
 /* Der Absendeknopf ist die letzte Handlung der Seite und muss die
    staerkste sein — Creme auf Gelb kaeme nur auf 1,9:1. */
 .ruf .fm__fuss .knopf--akzent{background:var(--violett);color:var(--tinte)}
@@ -4969,3 +4971,16 @@ p.brush{font-size:clamp(38px,4.4vw,72px)}
    einem Textblock enden, bekamen 8 bis 63 px statt rund 100 px. */
 main > .unter__block.seo-prose:last-child{padding-bottom:calc(var(--sec) + 20px)}
 main > .artikel--recht:last-child{padding-bottom:var(--sec)}
+/* Ruf-Karte: "Auf ein Wort" war 19 px und oben abgeschnitten. Gross wie
+   die anderen Zeilen-Brushes, zentriert ueber dem Titel. */
+.ruf__wort p.brush{font-size:clamp(30px,2.6vw,44px);display:block;width:fit-content;
+  margin:0 auto .35em;overflow:visible}
+.ruf__karte.ruf__karte--vorteile .ruf__wort p.brush{margin-left:-.32em}
+.ruf__wort{overflow:visible}
+/* Schreibschrift auf DUNKLEM Grund (25.10.2026): die schwarze Schrift ragt
+   oben aus dem Strich und verschwand dort im Dunkel ("abgeschnitten").
+   Hier deckt der Strich die ganze Schrifthoehe. */
+.ruf .brush,.vref .brush,.werke .wort,.werke .brush,.team .brush,.paket .brush:not(.paket__preis .brush),
+.kopfzeile .wort{
+  background-size:100% 100%;background-position:center;padding-top:.08em;padding-bottom:.1em;line-height:1.05}
+.paket__preis .brush{color:inherit!important}
