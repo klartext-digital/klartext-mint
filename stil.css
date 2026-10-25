@@ -4999,3 +4999,6 @@ main li,main dd,main blockquote,main figcaption,
    16 bis 17,5 px) rueckt eine Stufe hoch, sonst wird er duenn und blass. */
 .hero .unter__text p:not(.brush):not(.unter__dauer){font-size:clamp(17px,1.3vw,19.5px)}
 main p strong,main p b,main li strong,main li b,.frage__leib strong{font-family:var(--text);font-weight:400}
+/* Menue in der Kopfleiste: Trade Gothic Next Soft Rounded Bold (Dusan,
+   25.10.2026), Adobe-Kit ymt6jvd. Knopf "Gespraech buchen" bleibt Figtree. */
+.nav__wege,.nav__wege .mlink__t,.nav__wege a,.nav__wege button{font-family:'tgn-soft-round',Figtree,system-ui,sans-serif;font-weight:700;letter-spacing:.005em}
