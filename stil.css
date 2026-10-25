@@ -4943,3 +4943,7 @@ p.brush{font-size:clamp(38px,4.4vw,72px)}
    Grund. Hier fuellt er sich creme, Schrift bleibt dunkel. */
 .fuss .fuss__cta{--knopf-fuell:var(--creme)}
 .fuss .fuss__cta:hover,.fuss .fuss__cta:focus-visible{color:var(--tinte)}
+
+/* 25.10.2026: Querlogo "klartext digital." in der Kopfleiste (Dusans
+   Loesung). Hoehe so, dass klartext gleich gross bleibt wie vorher. */
+@media (min-width:700px){.nav__mark img{height:clamp(36px,3vw,44px)}}
