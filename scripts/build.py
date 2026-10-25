@@ -422,6 +422,9 @@ for source,route in ROUTES.items():
   token=CONFIG.get('verification',{}).get(key)
   if token:head+=f'<meta name="{name}" content="{escape(token,quote=True)}">\n'
  head+=f'<link rel="preload" href="{prefix}fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>\n'
+ # Fliesstext: Trade Gothic Next Light/Regular aus dem Adobe-Fonts-Web-Projekt
+ # "Klartext Website" (Kit ymt6jvd, Lizenz ueber Dusans Creative Cloud).
+ head+='<link rel="preconnect" href="https://use.typekit.net" crossorigin>\n<link rel="stylesheet" href="https://use.typekit.net/ymt6jvd.css">\n'
  head+=f'<link rel="preload" href="{prefix}fonts/klartext-hand-10.woff2" as="font" type="font/woff2" crossorigin>\n'
  s=s.replace('</head>',head+'</head>')
  dest=OUT/(route if route.endswith('.html') else route+'index.html');dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(s)

@@ -4984,3 +4984,18 @@ main > .artikel--recht:last-child{padding-bottom:var(--sec)}
 .kopfzeile .wort{
   background-size:100% 100%;background-position:center;padding-top:.08em;padding-bottom:.1em;line-height:1.05}
 .paket__preis .brush{color:inherit!important}
+
+/* ══ Fliesstext: Trade Gothic Next Light (Dusan, 25.10.2026) ══════════
+   Ueber Adobe Fonts (Kit ymt6jvd). Nur LESETEXT: Absaetze, Listen,
+   Lead-Saetze, Antworten. Ueberschriften, Knoepfe, Menue, Etiketten und
+   Zahlen bleiben Figtree. Trade Gothic laeuft kleiner als Figtree, darum
+   +6 % Groesse; Hervorhebungen im Text in Regular statt fett. */
+:root{--text:'trade-gothic-next',Figtree,system-ui,sans-serif}
+main p:not(.brush):not(.chip):not([class*="kopf"]):not([class*="zahl"]):not([class*="preis"]),
+main li,main dd,main blockquote,main figcaption,
+.fuehrung,.ruf__text,.fuss__ort,.frage__leib,.frage__leib p,.artikel p,.seo-prose p,.seo-prose li{
+  font-family:var(--text);font-weight:300;letter-spacing:.01em}
+/* Light ist zierlicher als Figtree: der kleinste Lesetext (Leistungsseiten,
+   16 bis 17,5 px) rueckt eine Stufe hoch, sonst wird er duenn und blass. */
+.hero .unter__text p:not(.brush):not(.unter__dauer){font-size:clamp(17px,1.3vw,19.5px)}
+main p strong,main p b,main li strong,main li b,.frage__leib strong{font-family:var(--text);font-weight:400}
