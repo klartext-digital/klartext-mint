@@ -5034,3 +5034,15 @@ h1,h2{letter-spacing:-.01em}
 /* "Nach oben"-Knopf: Hover war orange und verschwand ueber dem orangen
    Fussbereich. Jetzt creme mit dunklem Pfeil, auf jedem Grund sichtbar. */
 .hoch:hover,.hoch:focus-visible{background:var(--creme);color:var(--tinte)}
+/* Stichwort-Listen in den Leistungskarten (Dusan, 25.10.2026: "kleiner,
+   geht im Hintergrund"). Trade Gothic in Versalien wirkte gross und
+   aufdringlich; jetzt klein, leicht und zurueckgenommen. */
+.lz__tags li,[class*="__tags"] li{font-size:11.5px;font-weight:400;letter-spacing:.12em;line-height:1.5}
+.lz__tags li{color:rgb(247 247 245 / .5)}
+.lz__tags ul{gap:6px}
+/* Haken-Punkte: Kreis und Haken sassen versetzt (Kreis tiefer, Haken oben
+   links), seit die Listen in Trade Gothic laufen. Beide jetzt an der ersten
+   Textzeile zentriert, gleiche Bezugsgroesse (1lh). */
+.haken li::before,.wege__karte .haken li::before{top:calc((1lh - 18px) / 2);left:0}
+.haken li::after,.wege__karte .haken li::after{top:calc((1lh - 18px) / 2 + 6px);left:5px}
+.wege__karte .haken li{padding-left:30px}
