@@ -4951,3 +4951,17 @@ p.brush{font-size:clamp(38px,4.4vw,72px)}
    wird deshalb der Schriftzug klartext auf die Mitte der Pille und der
    Menueschrift, nicht der Bildrahmen (gemessen 25.10.2026). */
 @media (min-width:700px){.nav__mark img{height:clamp(42px,3.4vw,50px);transform:translateY(17%)}}
+
+/* 25.10.2026, Dusan: "Folgen auch als Spalte". Vier Spalten nebeneinander,
+   Leistungen zweispaltig (je vier Eintraege). */
+@media (min-width:1101px){
+  .fuss__mitte{grid-template-columns:minmax(220px,1.1fr) minmax(0,1.7fr) minmax(0,.8fr) minmax(0,.8fr);
+    grid-template-areas:"adr leist seiten folgen"}
+}
+@media (min-width:601px) and (max-width:1100px){
+  .fuss__mitte{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
+    grid-template-areas:"adr adr adr" "leist seiten folgen"}
+}
+.fuss__folgen .fuss__sozial{display:grid;justify-items:start;gap:0;margin-left:-12px}
+.fuss__zwei > div{align-content:start}
+.fuss__folgen .fuss__sozial a{font-size:clamp(16px,1.2vw,18px);padding:6px 12px;gap:10px}
