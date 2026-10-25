@@ -4939,3 +4939,7 @@ p.brush{font-size:clamp(38px,4.4vw,72px)}
 @media (min-width:901px){.fuss .fuss__recht{max-width:var(--maxw);margin-left:auto;margin-right:auto;justify-content:space-between}}
 .fuss__folgen .fuss__sozial{margin-left:-12px}
 .fuss__recht p,.fuss__recht a{color:var(--tinte)}
+/* Fussknopf: Orange als Hover-Fuellung verschwindet auf dem orangen
+   Grund. Hier fuellt er sich creme, Schrift bleibt dunkel. */
+.fuss .fuss__cta{--knopf-fuell:var(--creme)}
+.fuss .fuss__cta:hover,.fuss .fuss__cta:focus-visible{color:var(--tinte)}
