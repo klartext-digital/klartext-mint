@@ -145,21 +145,31 @@ setze(false);
 (function leistungen() {
 const zeilen = [...document.querySelectorAll('#lzliste .lz')];
 if (!zeilen.length) return;
-const insBild = (lz) => {
+const obenKante = () => {
 const nav = document.querySelector('.nav__pille');
-const oben = (nav ? nav.getBoundingClientRect().bottom : 0) + 16;
+return (nav ? nav.getBoundingClientRect().bottom : 0) + 16;
+};
+let lauf = 0;
+const imBild = (lz) => {
+const id = ++lauf;
+const ende = performance.now() + 460;
+const schritt = (jetzt) => {
+if (id !== lauf) return;
+const oben = obenKante();
 const r = lz.getBoundingClientRect();
-let d = 0;
-if (r.top < oben) d = r.top - oben;
-else if (r.bottom > innerHeight - 16) d = Math.min(r.bottom - (innerHeight - 16), r.top - oben);
-if (Math.abs(d) > 2) lenis.scrollTo(lenis.animatedScroll + d, { duration: 0.6 });
+if (r.top < oben - 0.5) lenis.scrollTo(lenis.animatedScroll + (r.top - oben), { immediate: true });
+if (jetzt < ende) { requestAnimationFrame(schritt); return; }
+const r2 = lz.getBoundingClientRect();
+const unten = innerHeight - 16;
+if (r2.bottom > unten + 2) {
+const d = Math.min(r2.bottom - unten, r2.top - oben);
+if (d > 2) lenis.scrollTo(lenis.animatedScroll + d, { duration: 0.55 });
+}
+};
+requestAnimationFrame(schritt);
 };
 const setze = (ziel) => {
-const vorher = zeilen.find((lz) => lz.classList.contains('ist'));
-if (ziel && vorher && zeilen.indexOf(vorher) < zeilen.indexOf(ziel)) {
-zeileHalten(ziel, 420);
-}
-if (ziel) setTimeout(() => insBild(ziel), 440);
+if (ziel) imBild(ziel);
 zeilen.forEach((lz) => {
 const offen = lz === ziel;
 lz.classList.toggle('ist', offen);
@@ -196,8 +206,11 @@ const dt = e.timeStamp - zt;
 tempo = dt > 50 ? Infinity : Math.hypot(e.clientX - zx, e.clientY - zy) / Math.max(1, dt);
 zx = e.clientX; zy = e.clientY; zt = e.timeStamp;
 }, { passive: true, capture: true });
+let wx = -1, wy = -1;
 const waehle = (e) => {
 if (e.pointerType === 'touch') return;
+if (e.type === 'pointermove' && e.clientX === wx && e.clientY === wy) return;
+wx = e.clientX; wy = e.clientY;
 clearTimeout(uhr);
 const ziel = finde(e.clientY);
 if (!ziel || ziel.classList.contains('ist')) return;
