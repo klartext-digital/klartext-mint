@@ -5030,3 +5030,7 @@ h1,h2{letter-spacing:-.01em}
 .fuss__mitte .mlink,.fuss__sozial a,.fuss__recht p,.fuss__recht a{font-family:var(--text);font-weight:400}
 .fuss .fuss__kopf{font-family:'tgn-soft-round',Figtree,system-ui,sans-serif!important;font-weight:700}
 .fuss__recht a{background:none;padding:0;margin:0}
+
+/* "Nach oben"-Knopf: Hover war orange und verschwand ueber dem orangen
+   Fussbereich. Jetzt creme mit dunklem Pfeil, auf jedem Grund sichtbar. */
+.hoch:hover,.hoch:focus-visible{background:var(--creme);color:var(--tinte)}
