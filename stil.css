@@ -21,7 +21,7 @@
    Satzzeichen aus einem zweiten Blatt im selben Stil; nachgezeichnet,
    mit fontTools gebaut.
    Gehoert Klartext Digital, liegt darum auf dem eigenen Server. */
-@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-7.woff2) format('woff2');
+@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-8.woff2) format('woff2');
   font-weight:400 900;font-display:swap}
 
 :root{
@@ -432,8 +432,11 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 /* Dusan, 23.10.2026: "nutz die volle hoehe, zentrier es". Das Logo fuellt
    die Pille fast von Rand zu Rand: es greift mit -8 px in die Polsterung
    (10 px) und laesst 2 px Luft. align-self haelt es mittig. */
-@media (min-width:700px){.nav__mark{align-self:stretch}
-  .nav__mark img{height:clamp(58px,4.7vw,70px);margin:-8px 0}}
+@media (min-width:700px){.nav__mark{align-self:center}
+  .nav__mark img{height:clamp(48px,3.8vw,56px);margin:0}}
+/* 25.10.2026, Dusan: "richtig positionieren das Logo im Balken". Vorher
+   fuellte es die Pille bis auf 6 px; jetzt mittig mit gleichem Luftraum
+   oben und unten (gemessen an der Tinte, nicht am Bildrahmen). */
 @media (max-width:699px){.nav__mark img{height:48px;margin:-6px 0 -6px -8px}}
 .nav__wege{display:flex;gap:6px;font-size:19px;font-weight:500}
 
@@ -4786,7 +4789,7 @@ p.brush{font-size:clamp(38px,4.2vw,68px)}
 h1 .brush,h2 .brush,h1 .wort,h2 .wort{font-size:1.45em;font-weight:700;
   display:inline-block;line-height:.66;letter-spacing:0;padding:.04em .55em .02em .32em;
   margin:0 .02em;vertical-align:-.02em}
-.buehne h1 .wort{font-size:.84em;padding-right:.36em;margin-right:-.06em}
+.buehne h1 .wort{font-size:.8em;padding-right:.36em;margin-right:-.06em}
 /* Die Bühne hat zwei feste Zeilen (nowrap). Mit Strich darf die zweite
    Zeile nicht breiter werden als die erste, sonst ragt sie ab 1280 px
    aus der Spalte. */
@@ -4876,5 +4879,5 @@ h1 .brush,h2 .brush,h1 .wort,h2 .wort{line-height:.96;padding-top:.02em;padding-
   background-size:100% 58%;background-position:center 82%;background-repeat:no-repeat}
 p.brush,.referenzen .brush,.weiter .brush{line-height:1.08;padding-top:0;padding-bottom:.02em}
 h1 .brush,h2 .brush,h1 .wort,h2 .wort{line-height:1.02;padding-top:0;padding-bottom:0}
-.hero .unter__leib--portraet p.brush{font-size:clamp(38px,7.4vw,108px)}
+.hero .unter__leib--portraet p.brush{font-size:clamp(34px,6.2vw,92px)}
 p.brush{font-size:clamp(38px,4.4vw,72px)}
