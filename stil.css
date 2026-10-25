@@ -21,7 +21,7 @@
    Satzzeichen aus einem zweiten Blatt im selben Stil; nachgezeichnet,
    mit fontTools gebaut.
    Gehoert Klartext Digital, liegt darum auf dem eigenen Server. */
-@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-8.woff2) format('woff2');
+@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-9.woff2) format('woff2');
   font-weight:400 900;font-display:swap}
 
 :root{
@@ -4965,3 +4965,7 @@ p.brush{font-size:clamp(38px,4.4vw,72px)}
 .fuss__folgen .fuss__sozial{display:grid;justify-items:start;gap:0;margin-left:-12px}
 .fuss__zwei > div{align-content:start}
 .fuss__folgen .fuss__sozial a{font-size:clamp(16px,1.2vw,18px);padding:6px 12px;gap:10px}
+/* Abstand zum Fussbereich einheitlich (Dusan, 25.10.2026): Seiten, die mit
+   einem Textblock enden, bekamen 8 bis 63 px statt rund 100 px. */
+main > .unter__block.seo-prose:last-child{padding-bottom:calc(var(--sec) + 20px)}
+main > .artikel--recht:last-child{padding-bottom:var(--sec)}
