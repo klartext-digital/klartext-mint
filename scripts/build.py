@@ -401,7 +401,6 @@ for source,route in ROUTES.items():
  # Fusszeile fuehrt Marketing im Abo und Projektarbeit ohnehin schon.
  # Die 404-Seite behaelt ihre seo-offer-nav: dort ist sie neben "Zur
  # Startseite" die einzige Navigation, keine Dopplung.
- s=s.replace('<p class="fuss__kopf">Leistungen</p>','<p class="fuss__kopf">Leistungen</p><a href="'+route_link('marketing-abo')+'">Marketing im Abo</a><a href="'+route_link('projektarbeit')+'">Projektarbeit</a><a href="'+route_link('seo')+'">SEO-Betreuung</a><a href="'+route_link('website-betreuung')+'">Website-Betreuung</a>')
  # References retain their source presentation per the confirmed project rules.
  # Preise sind vom Auftraggeber bestaetigt (16.09.2026): kein Entwurfshinweis mehr.
  # Die Angaben zur Mehrwertsteuer stehen sichtbar unter den Paketen.
