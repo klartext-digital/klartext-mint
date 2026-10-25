@@ -4881,3 +4881,61 @@ p.brush,.referenzen .brush,.weiter .brush{line-height:1.08;padding-top:0;padding
 h1 .brush,h2 .brush,h1 .wort,h2 .wort{line-height:1.02;padding-top:0;padding-bottom:0}
 .hero .unter__leib--portraet p.brush{font-size:clamp(34px,6.2vw,92px)}
 p.brush{font-size:clamp(38px,4.4vw,72px)}
+
+/* ══ Fussbereich neu (Dusan, 25.10.2026, nach Entwurf) ═══════════════
+   Oben: Auf ein Wort / Reden wir. / dunkler Knopf + Mail, Foto rechts
+   steht auf der Trennlinie. Mitte: Logo + Adresse | Leistungen zweispaltig
+   | Seiten, darunter Folgen als Reihe. Unten: Rechtszeile. Spaltenkoepfe
+   in Figtree fett statt Handschrift. */
+.fuss{padding:clamp(70px,7vw,120px) var(--pad) clamp(26px,2.6vw,40px)}
+.fuss::after{content:none}
+.fuss__oben{display:block;max-width:var(--maxw);margin:0 auto;position:relative;
+  padding-bottom:clamp(40px,4vw,64px);border-bottom:1px solid rgb(14 13 11 / .22);min-height:clamp(260px,25vw,380px)}
+.fuss__oben::after{content:"";position:absolute;right:0;bottom:0;z-index:-1;pointer-events:none;
+  width:clamp(260px,32vw,500px);aspect-ratio:900 / 750;
+  background:url("bilder/fuss-person-900.webp") bottom right/contain no-repeat}
+.fuss__reden{position:relative;z-index:1;max-width:min(760px,62%)}
+.fuss__reden h2{font-size:clamp(46px,7.2vw,124px);line-height:.92;margin:clamp(10px,1vw,18px) 0 clamp(26px,2.6vw,40px);white-space:nowrap}
+.fuss__aktion{display:flex;align-items:center;flex-wrap:wrap;gap:clamp(18px,2.4vw,40px)}
+.fuss__cta{font-size:clamp(17px,1.3vw,20px);padding:18px 30px;box-shadow:0 12px 30px -10px rgb(14 13 11 / .55)}
+.fuss__cta i{font-style:normal;margin-left:.5em;color:var(--violett)}
+.fuss__mail{font-size:clamp(18px,1.5vw,24px);font-weight:700;color:var(--tinte)}
+.fuss__mail:hover{text-decoration:underline;text-underline-offset:.2em}
+.fuss__mitte{max-width:var(--maxw);margin:0 auto;padding:clamp(40px,4vw,64px) 0;
+  display:grid;grid-template-columns:minmax(220px,1.1fr) minmax(0,1.9fr) minmax(0,.9fr);
+  grid-template-areas:"adr leist seiten" "adr folgen folgen";gap:clamp(24px,3vw,48px) clamp(30px,4vw,70px);align-items:start}
+.fuss__adresse{grid-area:adr}
+.fuss__spalte--leistungen{grid-area:leist}
+.fuss__mitte > .fuss__spalte:not(.fuss__spalte--leistungen){grid-area:seiten}
+.fuss__folgen{grid-area:folgen}
+.fuss .fuss__logo{width:clamp(170px,15vw,230px);margin-bottom:clamp(20px,2vw,30px)}
+.fuss .fuss__ort{font-size:clamp(15px,1.1vw,17px);line-height:1.75;color:var(--tinte)}
+.fuss .fuss__kopf{font-family:Figtree,system-ui,sans-serif!important;font-weight:800;
+  font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-.01em;
+  color:var(--tinte)!important;background:none;transform:none;
+  padding:0;margin:0 0 .7em;display:block;width:auto}
+.fuss__spalte:nth-child(1) .fuss__kopf,.fuss__spalte:nth-child(3) .fuss__kopf{margin-left:0}
+.fuss__zwei{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(20px,3vw,50px)}
+.fuss__zwei > div,.fuss__mitte > .fuss__spalte:not(.fuss__spalte--leistungen){display:grid;justify-items:start}
+.fuss__mitte .mlink{font-size:clamp(16px,1.2vw,18px);font-weight:500;padding:6px 0;place-items:start}
+.fuss__mitte .mlink__bg{inset:-2px -10px}
+.fuss__folgen .fuss__sozial{display:flex;flex-wrap:wrap;gap:8px 26px}
+.fuss__recht{margin-top:0;border-top:1px solid rgb(14 13 11 / .22);padding-top:22px;justify-content:space-between}
+@media (min-width:901px){.fuss__recht{justify-content:space-between}}
+@media (max-width:1100px){
+  .fuss__mitte{grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    grid-template-areas:"adr adr" "leist seiten" "folgen folgen"}
+}
+@media (max-width:900px){
+  .fuss{padding-bottom:clamp(26px,2.6vw,40px)}
+  .fuss__oben{padding-bottom:clamp(220px,58vw,340px)}
+  .fuss__oben::after{width:clamp(240px,70vw,380px);right:-4px}
+  .fuss__reden{max-width:none}
+  .fuss__reden h2{white-space:normal}
+}
+@media (max-width:600px){
+  .fuss__mitte{grid-template-columns:minmax(0,1fr);grid-template-areas:"adr" "leist" "seiten" "folgen"}
+}
+@media (min-width:901px){.fuss .fuss__recht{max-width:var(--maxw);margin-left:auto;margin-right:auto;justify-content:space-between}}
+.fuss__folgen .fuss__sozial{margin-left:-12px}
+.fuss__recht p,.fuss__recht a{color:var(--tinte)}
