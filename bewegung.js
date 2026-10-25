@@ -261,7 +261,26 @@ function zeileHalten(el, dauerMs) {
   const zeilen = [...document.querySelectorAll('#lzliste .lz')];
   if (!zeilen.length) return;
 
+  /* 25.10.2026, Dusan: "wenn es nach oben klappt, seh ich nix".
+     Geht eine Karte UNTERHALB der offenen auf, schrumpft der Bereich
+     darueber und die neue Karte rutschte unter die Kopfleiste. Darum:
+     die Karte bleibt waehrend des Aufklappens stehen (zeileHalten) und
+     wird danach, nur falls noetig, sanft ganz ins Bild geholt. */
+  const insBild = (lz) => {
+    const nav = document.querySelector('.nav__pille');
+    const oben = (nav ? nav.getBoundingClientRect().bottom : 0) + 16;
+    const r = lz.getBoundingClientRect();
+    let d = 0;
+    if (r.top < oben) d = r.top - oben;
+    else if (r.bottom > innerHeight - 16) d = Math.min(r.bottom - (innerHeight - 16), r.top - oben);
+    if (Math.abs(d) > 2) lenis.scrollTo(lenis.animatedScroll + d, { duration: 0.6 });
+  };
   const setze = (ziel) => {
+    const vorher = zeilen.find((lz) => lz.classList.contains('ist'));
+    if (ziel && vorher && zeilen.indexOf(vorher) < zeilen.indexOf(ziel)) {
+      zeileHalten(ziel, 420);
+    }
+    if (ziel) setTimeout(() => insBild(ziel), 440);
     zeilen.forEach((lz) => {
       const offen = lz === ziel;
       lz.classList.toggle('ist', offen);
