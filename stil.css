@@ -21,7 +21,7 @@
    Satzzeichen aus einem zweiten Blatt im selben Stil; nachgezeichnet,
    mit fontTools gebaut.
    Gehoert Klartext Digital, liegt darum auf dem eigenen Server. */
-@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-10.woff2) format('woff2');
+@font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-11.woff2) format('woff2');
   font-weight:400 900;font-display:swap}
 
 :root{
@@ -1373,12 +1373,15 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
      Mitte hinter den Karten. Weisse Schrift kaeme darauf nur auf rund
      2 : 1 - darum steht der Kopf jetzt schwarz auf Amber, wie die Knoepfe
      und die Fusszeile im CD. */
+  /* 25.10.2026, Dusan: "Hintergrund dunkler, anpassen an unser Orange".
+     Statt hellem Gelb (FFC65C) jetzt reines Marken-Orange F5A524,
+     satter gedeckt; die Schrift bleibt schwarz. */
   background:linear-gradient(180deg,
-      rgb(255 198 92 / .86) 0%,
-      rgb(255 198 92 / .76) 20%,
-      rgb(245 165 36 / .56) 48%,
-      rgb(255 198 92 / .68) 78%,
-      rgb(255 198 92 / .80) 100%),
+      rgb(245 165 36 / .92) 0%,
+      rgb(245 165 36 / .84) 30%,
+      rgb(232 150 28 / .72) 55%,
+      rgb(245 165 36 / .84) 80%,
+      rgb(245 165 36 / .92) 100%),
     /* 19.09.2026, Dusan: verschieben. Kamera, Display und der Kopf davor
        lagen im linken Fuenftel (bis x=340 von 1536); das Gesicht auf dem
        Display war nur 35x40 Pixel gross — zu wenig fuer Augen, Nase, Mund.
