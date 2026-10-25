@@ -5049,3 +5049,15 @@ h1,h2{letter-spacing:-.01em}
 .haken li::before,.wege__karte .haken li::before{top:calc((1lh - 18px) / 2);left:0}
 .haken li::after,.wege__karte .haken li::after{top:calc((1lh - 18px) / 2 + 6px);left:5px}
 .wege__karte .haken li{padding-left:30px}
+/* Menue genau in der Mitte der Kopfleiste (Dusan, 25.10.2026): Logo und
+   Knopf sind unterschiedlich breit, mit space-between rutschte das Menue
+   aus der Mitte. Drei Spalten, die beiden aeusseren gleich breit.
+   Erst ab 1240 px: darunter wuerde das Menue ans Logo stossen. */
+@media (min-width:1240px){
+  .nav__pille{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center}
+  /* Polster links 30, rechts 10 px: Mitte um die Haelfte der Differenz korrigieren */
+  .nav__pille > .nav__wege{transform:translateX(-10px)}
+  .nav__pille > .nav__mark{justify-self:start}
+  .nav__pille > .nav__wege{justify-self:center}
+  .nav__pille > .nav__cta,.nav__pille > :last-child{justify-self:end}
+}
