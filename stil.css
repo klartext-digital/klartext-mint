@@ -4947,3 +4947,7 @@ p.brush{font-size:clamp(38px,4.4vw,72px)}
 /* 25.10.2026: Querlogo "klartext digital." in der Kopfleiste (Dusans
    Loesung). Hoehe so, dass klartext gleich gross bleibt wie vorher. */
 @media (min-width:700px){.nav__mark img{height:clamp(36px,3vw,44px)}}
+/* Optische Mitte: "digital" haengt mit dem g weit nach unten. Zentriert
+   wird deshalb der Schriftzug klartext auf die Mitte der Pille und der
+   Menueschrift, nicht der Bildrahmen (gemessen 25.10.2026). */
+@media (min-width:700px){.nav__mark img{height:clamp(42px,3.4vw,50px);transform:translateY(17%)}}
