@@ -152,7 +152,7 @@ body{
   /* Scheint an den abgerundeten unteren Ecken des Inhalts durch und
    muss deshalb die Farbe der Fusszeile tragen. */
   background:var(--violett);color:var(--tinte);
-  font-family:Figtree,system-ui,sans-serif;font-weight:400;font-size:19px;
+  font-family:'tgn-soft-round',Figtree,system-ui,sans-serif;font-weight:400;font-size:19px;
   line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
 /* overflow:CLIP, nicht hidden — hidden macht aus main einen Scroll-
@@ -2957,7 +2957,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    ganz unten die Navigationsleiste. Ein Merkzeichen gibt es in der
    Leiste nicht — Speichern liegt im Menue hinter den drei Punkten. */
 .ig{position:absolute;inset:0;z-index:3;color:#fff;
-  font-family:Figtree,system-ui,sans-serif;letter-spacing:-.01em;
+  font-family:'tgn-soft-round',Figtree,system-ui,sans-serif;letter-spacing:-.01em;
   text-shadow:0 1px 3px rgb(0 0 0 / .42)}
 /* Zwei Schleier: oben fuer Statusleiste und Titel, unten fuer Name,
    Text und Navigation. Ohne sie verschwindet weisse Schrift auf
@@ -4248,7 +4248,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .wiewir__bild{margin:clamp(20px,2vw,34px) auto 0;line-height:0;
   max-width:min(100%, calc(76vh * 1.800))}
 .ag{width:100%;height:auto;display:block;overflow:visible;
-  font-family:Figtree,system-ui,sans-serif}
+  font-family:'tgn-soft-round',Figtree,system-ui,sans-serif}
 .ag__gross,.ag__unter{transition:opacity .34s var(--raus)}
 .ag__gross{font-size:50px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
 .ag__unter{font-size:25px;font-weight:400;text-anchor:middle;opacity:.78}
@@ -4912,7 +4912,7 @@ p.brush{font-size:clamp(38px,4.4vw,72px)}
 .fuss__folgen{grid-area:folgen}
 .fuss .fuss__logo{width:clamp(170px,15vw,230px);margin-bottom:clamp(20px,2vw,30px)}
 .fuss .fuss__ort{font-size:clamp(15px,1.1vw,17px);line-height:1.75;color:var(--tinte)}
-.fuss .fuss__kopf{font-family:Figtree,system-ui,sans-serif!important;font-weight:800;
+.fuss .fuss__kopf{font-family:'tgn-soft-round',Figtree,system-ui,sans-serif!important;font-weight:800;
   font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-.01em;
   color:var(--tinte)!important;background:none;transform:none;
   padding:0;margin:0 0 .7em;display:block;width:auto}
@@ -5002,3 +5002,31 @@ main p strong,main p b,main li strong,main li b,.frage__leib strong{font-family:
 /* Menue in der Kopfleiste: Trade Gothic Next Soft Rounded Bold (Dusan,
    25.10.2026), Adobe-Kit ymt6jvd. Knopf "Gespraech buchen" bleibt Figtree. */
 .nav__wege,.nav__wege .mlink__t,.nav__wege a,.nav__wege button{font-family:'tgn-soft-round',Figtree,system-ui,sans-serif;font-weight:700;letter-spacing:.005em}
+
+/* ══ Soft Rounded Bold ueberall (Dusan, 25.10.2026: "alles so uebernehmen")
+   Ueberschriften, Knoepfe, Etiketten, Menue, Zahlen: Trade Gothic Next
+   Soft Rounded Bold. Lesetext bleibt Trade Gothic Next Light (--text).
+   Die Schrift hat nur den Schnitt 700; alles Fettere faellt darauf zurueck. */
+h1,h2,h3,h4,h5,h6,.knopf,button,.chip,.nav__cta,.fuss__kopf,.fuss__mail,label,
+dt,th,.nav__wege .mlink,.lz__titel,.zahl,[class*="__zahl"],[class*="__preis"],.unter__dauer span,.unter__dauer b{
+  font-family:'tgn-soft-round',Figtree,system-ui,sans-serif;font-weight:700}
+h1,h2{letter-spacing:-.01em}
+
+/* Textmarker auf ORANGEM Grund (Antworten in den Fragen, Preis- und
+   Fussbereich): Amber auf Amber war unsichtbar. Dort ein cremefarbener
+   Strich in derselben Form (25.10.2026). */
+.frage__leib a:not(.knopf):not([class]),.preise a:not(.knopf):not([class]){
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 48' preserveAspectRatio='none'%3E%3Cpath fill='%23FBF7EE' d='M6 12 Q30 6 70 8 T150 7 T234 9 L230 15 L237 20 L231 26 L236 32 L229 38 Q160 42 100 40 T8 41 L12 35 L4 29 L10 23 L3 17 Z'/%3E%3Cpath fill='%23FFFFFF' opacity='.55' d='M12 11 Q90 5 226 9 L224 13 Q120 10 14 15 Z'/%3E%3Cpath fill='%23E9E1D2' opacity='.35' d='M10 37 Q110 33 228 35 L226 38 Q120 40 12 40 Z'/%3E%3C/svg%3E")}
+
+/* Leistungen im Fussbereich als EINE Liste (Dusan, 25.10.2026): zwei
+   ungleich lange Unterspalten sahen neben Seiten und Folgen unruhig aus. */
+.fuss__liste{display:grid;justify-items:start;align-content:start}
+@media (min-width:1101px){
+  .fuss__mitte{grid-template-columns:minmax(220px,1.3fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)}
+}
+
+/* Fussbereich: Eintraege und Rechtszeile in Trade Gothic Regular, Koepfe
+   in Soft Rounded Bold. */
+.fuss__mitte .mlink,.fuss__sozial a,.fuss__recht p,.fuss__recht a{font-family:var(--text);font-weight:400}
+.fuss .fuss__kopf{font-family:'tgn-soft-round',Figtree,system-ui,sans-serif!important;font-weight:700}
+.fuss__recht a{background:none;padding:0;margin:0}
