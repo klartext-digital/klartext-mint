@@ -5187,3 +5187,7 @@ body .fragen:not(.fragen--wie-start)::before{content:"";position:absolute;z-inde
 /* Die Fliesstextregel "main p:not(...)" hat fuenf :not-Stufen und
    schlug die Titelregel. :not(#x) hebt sie gezielt darueber. */
 main p.wege__panel-titel:not(#x){font-family:'tgn-soft-round',Figtree,system-ui,sans-serif;font-weight:700;letter-spacing:-.02em}
+/* Dusan: "Schon ein Team?" bleibt als orange Pille hervorgehoben wie vorher. */
+.wege__label--frage{background:var(--violett);color:var(--tinte);
+  border-radius:var(--r-pille);padding:8px 16px;font-size:12px;font-weight:700;
+  letter-spacing:.09em;margin:0 0 12px}
