@@ -5205,3 +5205,5 @@ body .fragen:not(.fragen--wie-start)::before{content:none}
 .fragen .frage{background:rgb(247 244 239)}
 .fragen .frage.offen,.fragen .frage:focus-within{background:var(--violett)}
 .fragen.fragen--wie-start{background:#fff}
+/* Dusan: engerer Radius um die Maus (vorher 170 bis 300 px). */
+.kopfbild__rahmen.schaerfe{--r:clamp(95px,9vw,160px)}
