@@ -5191,3 +5191,17 @@ main p.wege__panel-titel:not(#x){font-family:'tgn-soft-round',Figtree,system-ui,
 .wege__label--frage{background:var(--violett);color:var(--tinte);
   border-radius:var(--r-pille);padding:8px 16px;font-size:12px;font-weight:700;
   letter-spacing:.09em;margin:0 0 12px}
+/* 26.10.2026, Dusan: "hintergrund weg bei faqs, dort nur weiss mit den
+   orange akzenten". Kein Foto mehr hinter den Fragen, reines Weiss; die
+   orangen Akzente (Linien, Chips, Marker) bleiben. Damit entfaellt auch
+   die feste Fotoebene gegen das Aufblitzen. */
+body .fragen:not(.fragen--wie-start),.fragen,.fragen--wie-start{background:#fff}
+body .fragen:not(.fragen--wie-start)::before{content:none}
+/* Newsletter-Kasten klebte am unteren Rand der Blog-Flaeche: dieselbe
+   Luft darunter wie zwischen allen Abschnitten. */
+.blog{padding-bottom:var(--sec)}
+/* Auf dem weissen Grund verschwanden die weissen Fragekarten. Geschlossen
+   ein Hauch warmes Grau, offen wie bisher Orange. */
+.fragen .frage{background:rgb(247 244 239)}
+.fragen .frage.offen,.fragen .frage:focus-within{background:var(--violett)}
+.fragen.fragen--wie-start{background:#fff}
