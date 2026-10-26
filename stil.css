@@ -5061,3 +5061,24 @@ h1,h2{letter-spacing:-.01em}
   .nav__pille > .nav__wege{justify-self:center}
   .nav__pille > .nav__cta,.nav__pille > :last-child{justify-self:end}
 }
+/* FAQ Startseite (Dusan, 26.10.2026): (1) die letzte Frage ragte 15 px
+   ueber die Sektion hinaus, unten fehlte jeder Abstand. (2) Beim schnellen
+   Auf- und Zuklappen blitzte kurz Weiss auf: die Sektion aendert in jedem
+   Bild ihre Hoehe, Chrome malte das 3130 px grosse Hintergrundfoto dabei
+   jedes Mal neu und zeigte noch nicht gemalte Kacheln weiss. Jetzt liegt
+   das Foto auf einer eigenen, festen Ebene, die beim Aufklappen gleich
+   gross bleibt; darunter ein Grundton in der Mischfarbe des Fotos, falls
+   doch eine Kachel nachkommt. */
+body .fragen:not(.fragen--wie-start){padding-bottom:var(--sec);
+  position:relative;isolation:isolate;overflow:clip;
+  background:rgb(230 224 219)}
+body .fragen:not(.fragen--wie-start)::before{content:"";position:absolute;z-index:-1;
+  left:0;right:0;top:0;height:2200px;pointer-events:none;
+  background:linear-gradient(rgb(255 255 255 / .42), rgb(255 255 255 / .50)),
+    url("bilder/blog-grund.jpg") center top / max(100%, 3130px) auto no-repeat;
+  will-change:transform;transform:translateZ(0)}
+.fragen--wie-start{background-color:rgb(230 224 219)}
+@media (max-width:1100px){
+  body .fragen:not(.fragen--wie-start)::before{height:3000px;
+    background-size:auto,max(100%, 3470px) auto}
+}
