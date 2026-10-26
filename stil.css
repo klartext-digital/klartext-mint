@@ -5108,3 +5108,12 @@ body .fragen:not(.fragen--wie-start)::before{content:"";position:absolute;z-inde
    "Gespraech buchen" im Fussbereich (Dusans Wunsch). Auf der hellen Pille
    etwas weicher, damit er nicht schwer wirkt. */
 .nav__cta{box-shadow:0 10px 24px -10px rgb(14 13 11 / .5)}
+/* 26.10.2026: ALLE gefuellten CTAs mit dem leichten 3D-Schatten wie
+   "Gespraech buchen" im Fussbereich. Randknoepfe (transparent) bleiben
+   flach, ein Schatten unter Luft sieht aus wie ein Fleck. */
+.knopf--akzent,.knopf--dunkel{box-shadow:0 10px 24px -10px rgb(14 13 11 / .5)}
+.fuss__cta{box-shadow:0 12px 30px -10px rgb(14 13 11 / .55)}
+/* "Anfrage senden" fuellte beim Hover Orange auf Orange: nichts zu
+   sehen. Wie jeder Knopf auf dunklem Grund fuellt er jetzt creme. */
+.ruf .fm__fuss .knopf--akzent{--knopf-fuell:var(--creme)}
+.ruf .fm__fuss .knopf--akzent:hover,.ruf .fm__fuss .knopf--akzent:focus-visible{color:var(--tinte)}
