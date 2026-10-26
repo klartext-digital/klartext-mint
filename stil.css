@@ -5104,3 +5104,7 @@ body .fragen:not(.fragen--wie-start)::before{content:"";position:absolute;z-inde
    (Chrome blitzte gelegentlich weiss). Vorher-Nachher gemessen: nur
    0,3-0,4 % der Bildpunkte weichen merklich ab, von Auge nicht sichtbar. */
 .erst__karte,.ruf__karte{-webkit-backdrop-filter:none;backdrop-filter:none}
+/* 26.10.2026: Kopfleisten-Knopf mit demselben leichten 3D-Schatten wie
+   "Gespraech buchen" im Fussbereich (Dusans Wunsch). Auf der hellen Pille
+   etwas weicher, damit er nicht schwer wirkt. */
+.nav__cta{box-shadow:0 10px 24px -10px rgb(14 13 11 / .5)}
