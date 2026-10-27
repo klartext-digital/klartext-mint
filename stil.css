@@ -5207,16 +5207,3 @@ body .fragen:not(.fragen--wie-start)::before{content:none}
 .fragen.fragen--wie-start{background:#fff}
 /* Dusan: engerer Radius um die Maus (vorher 170 bis 300 px). */
 .kopfbild__rahmen.schaerfe{--r:clamp(95px,9vw,160px)}
-/* 26.10.2026, Dusan: "gib mir mal diese schrift fuer alle titel" (die
-   Wortmarke klartext.). Die Wortmarke wurde als Vektorgrafik geliefert,
-   die Originalschrift ist nicht dokumentiert. Naechste freie Schrift:
-   DM Serif Display (OFL, Google Fonts), 67 % Flaechendeckung mit der
-   Wortmarke, bester Wert unter Abril, Rozha, Playfair, Gloock, Yeseva.
-   Nur Titel; Knoepfe, Menue, Etiketten bleiben Soft Rounded. Die Schrift
-   hat nur einen Schnitt (400), darum keine kuenstliche Fettung. */
-@font-face{font-family:'DM Serif Display';src:url(fonts/dm-serif-display.woff2) format('woff2');
-  font-weight:400;font-style:normal;font-display:swap}
-:root{--titel:'DM Serif Display',Georgia,serif}
-h1,h2,h3,h4,h5,h6,.lz__titel,main p.wege__panel-titel:not(#x){
-  font-family:var(--titel);font-weight:400;font-synthesis:none;letter-spacing:-.012em}
-h1 .wort,h2 .wort,h1 .brush,h2 .brush,h3 .brush{font-family:var(--hand)}
