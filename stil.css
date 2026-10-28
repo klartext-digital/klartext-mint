@@ -5308,3 +5308,7 @@ main p strong,main p b,main li strong,main li b,.frage__leib strong{font-weight:
    und ueberlappte zwischen 1280 und 1536 die Preiskarten darueber (bis
    14 px, gemessen). Mehr Abstand oben, mindestens rund 40 px Luft. */
 .erst{margin-top:clamp(130px,13vw,200px)}
+/* Menue in Fields Semi Bold (Dusan, 28.10.2026, Variante C aus dem
+   Vergleich); Knopf "Gespraech buchen" ist schon 600. */
+.nav__wege,.nav__wege .mlink__t,.nav__wege a,.nav__wege button{font-family:'fields',Georgia,serif;font-weight:600}
+.nav__wege .mlink,.nav__wege .mlink *{font-weight:600}
