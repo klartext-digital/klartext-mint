@@ -138,8 +138,8 @@ META = {
  'social-media/': ('Social-Media-Agentur Basel & Aargau | Klartext Digital', 'Social Media für Unternehmen in der Region Basel und im Aargau: Redaktionsplan, Reels und Auswertung. Laufend, als Kampagne oder für euer Team.'),
  'performance-marketing/': ('Google & Meta Ads Agentur Basel | Klartext Digital', 'Google und Meta Ads mit passenden Zielseiten, Messung und laufender Betreuung. Werbeetat und Umsetzung klar planen, Anfragen nach Qualität beurteilen.'),
  'email-marketing/': ('Newsletter & E-Mail-Marketing Basel | Klartext Digital', 'Newsletter-Kampagnen, Vorlagen und automatisierte Strecken. Konzeption, Umsetzung und Auswertung als laufende Betreuung oder Ergänzung eures Teams.'),
- 'leistungen/': ('Marketing-Leistungen für KMU, Region Basel | klartext.', 'Branding, Social Media, Webdesign, Performance Marketing und E-Mail Marketing für Unternehmen in Basel, Baselland und im Aargau: die Leistungen im Überblick.'),
- 'ueber-uns/': ('Über klartext. | Marketingagentur aus Pratteln', 'Marketingagentur aus Pratteln, Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: wer wir sind und wie wir arbeiten.'),
+ 'leistungen/': ('Marketing-Leistungen für KMU, Region Basel | Klartext Digital', 'Branding, Social Media, Webdesign, Performance Marketing und E-Mail Marketing für Unternehmen in Basel, Baselland und im Aargau: die Leistungen im Überblick.'),
+ 'ueber-uns/': ('Über Klartext Digital | Marketingagentur aus Pratteln', 'Marketingagentur aus Pratteln, Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: wer wir sind und wie wir arbeiten.'),
  "projekte/grand-casino-baden/": ("Grand Casino Baden: Social Media | Klartext Digital", "Laufende Social-Media-Betreuung und Content-Produktion für das Grand Casino Baden seit 2024: Präsenz am Markt, organisch gewachsen."),
  "projekte/red-bull/": ("Red Bull × Grand Casino Baden | Klartext Digital", "Content und Fotografie für zwei Drinks zur Winter Edition, umgesetzt in der Bar im Grand Casino Baden."),
  "projekte/aesthetics-medical/": ("Aesthetics Medical: Social Media | Klartext Digital", "Social Media und Reels für die Aesthetics Medical AG am Utoquai in Zürich: Behandlungen verständlich zeigen statt erklären müssen."),
@@ -147,7 +147,7 @@ META = {
  "projekte/volta/": ("Volta: Auftritt für komplexe Technik | Klartext Digital", "Branding und 3D-Bildsprache für Volta: ein Auftritt, der komplexe Technik verständlich macht. Umgesetzt in neun Wochen (2024)."),
  "projekte/meridian/": ("Meridian: vom Nischenprodukt zur Marke | Klartext Digital", "Branding und Kampagne für Meridian: vom Nischenprodukt zur Marke mit Haltung, entwickelt in zwölf Wochen (2024)."),
  'projekte/': ('Projekte und Referenzen | Klartext Digital', 'Einblicke in die Referenzen von Klartext Digital: Projekte aus Branding, Content und digitalem Marketing.'),
- 'blog/': ('Gedanken zu Marke und Marketing | klartext.', 'Artikel und Perspektiven zu Markenaufbau, Websites, Social Media und Strategie. Entdeckt den Blog von klartext.'),
+ 'blog/': ('Gedanken zu Marke und Marketing | Klartext Digital', 'Artikel und Perspektiven zu Markenaufbau, Websites, Social Media und Strategie. Entdeckt den Blog von Klartext Digital.'),
  'impressum/': ('Impressum | Klartext Digital', 'Impressum der Klartext Digital GmbH (in Gründung), Lohagstrasse 15, 4133 Pratteln.'),
  'datenschutz/': ('Datenschutz | Klartext Digital', 'Datenschutzerklärung der Klartext Digital GmbH, Pratteln: Hosting, E-Mail, keine Cookies und keine Besuchermessung.')
 }
@@ -282,9 +282,9 @@ for source,route in ROUTES.items():
  if '</head>' not in s:
   s='<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'+s.replace('</style>','</style></head><body>',1)+'</body></html>'
  title_old=unescape(re.search(r'<title>(.*?)</title>',s,re.S).group(1))
- default_title=title_old.replace(' | KLARTEXT. Werbeagentur Zürich',' | klartext.').replace(' | KLARTEXT.',' | klartext.')
+ default_title=title_old.replace(' | KLARTEXT. Werbeagentur Zürich',' | Klartext Digital').replace(' | KLARTEXT.',' | Klartext Digital')
  desc_match=re.search(r'<meta name="description" content="([^"]*)"',s)
- desc=unescape(desc_match.group(1)) if desc_match else 'Gestaltungsstudie von klartext. Nicht zur Veröffentlichung in Suchmaschinen vorgesehen.'
+ desc=unescape(desc_match.group(1)) if desc_match else 'Gestaltungsstudie von Klartext Digital. Nicht zur Veröffentlichung in Suchmaschinen vorgesehen.'
  if route.startswith('blog/') and route!='blog/':desc=default_title.split('|')[0].strip()+'. Ein Beitrag über Marke und Marketing im klartext.-Blog.'
  title,desc=META.get(route,(default_title,desc))
  s=re.sub(r'<html lang="de">','<html lang="de-CH">',s,count=1)
@@ -435,7 +435,7 @@ for old,target in {**ROUTES,**ALIASES}.items():
  if old==canonical_file:continue
  dest.parent.mkdir(parents=True,exist_ok=True)
  rel=posixpath.relpath(target or '.',posixpath.dirname(old) or '.')+'/'
- dest.write_text(f'<!doctype html>\n<html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seite verschoben | klartext.</title><meta name="robots" content="noindex, follow"><link rel="canonical" href="{BASE+target}"><meta http-equiv="refresh" content="0;url={rel}"></head><body><p>Diese Seite hat eine neue Adresse: <a href="{rel}">Weiter zur Seite</a>.</p></body></html>')
+ dest.write_text(f'<!doctype html>\n<html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seite verschoben | Klartext Digital</title><meta name="robots" content="noindex, follow"><link rel="canonical" href="{BASE+target}"><meta http-equiv="refresh" content="0;url={rel}"></head><body><p>Diese Seite hat eine neue Adresse: <a href="{rel}">Weiter zur Seite</a>.</p></body></html>')
 paths=[p for p in ROUTES.values() if CONFIG['indexable'] and p in CONFIG['approved_paths']]
 xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join('<url><loc>'+escape(BASE+p)+'</loc></url>\n' for p in paths)+'</urlset>\n'
 (OUT/'sitemap.xml').write_text(xml)
