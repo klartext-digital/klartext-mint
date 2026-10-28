@@ -34,6 +34,6 @@ Einzugsgebiet: ganze Deutschschweiz (Aargau, Appenzell Ausserrhoden, Appenzell I
 - [Website-Relaunch: SEO-Checkliste](https://klartext-digital.github.io/klartext-mint/blog/website-relaunch-checkliste/): Website-Relaunch planen: bestehende URLs sichern, Weiterleitungen vorbereiten, Inhalte prüfen und den Start kontrollieren. Checkliste für Marketingteams.
 
 ## Über uns
-- [Über klartext.](https://klartext-digital.github.io/klartext-mint/ueber-uns/): Marketingagentur aus Pratteln, Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: wer wir sind und wie wir arbeiten.
+- [Über Klartext Digital](https://klartext-digital.github.io/klartext-mint/ueber-uns/): Marketingagentur aus Pratteln, Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: wer wir sind und wie wir arbeiten.
 - [Projekte und Referenzen](https://klartext-digital.github.io/klartext-mint/projekte/): Einblicke in die Referenzen von Klartext Digital: Projekte aus Branding, Content und digitalem Marketing.
 - [Impressum](https://klartext-digital.github.io/klartext-mint/impressum/): Impressum der Klartext Digital GmbH (in Gründung), Lohagstrasse 15, 4133 Pratteln.
