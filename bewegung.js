@@ -386,6 +386,12 @@ function zeileHalten(el, dauerMs) {
     .getPropertyValue('--r-seite')) || 56;
 
   document.querySelectorAll('[data-zug]').forEach((block) => {
+    /* Team: fest auf voller Breite, keine Aenderung beim Scrollen
+       (Dusan, 28.10.2026). Nur die runden Ecken bleiben. */
+    if (block.closest('.team')) {
+      block.style.clipPath = 'inset(0 round ' + ecke + 'px)';
+      return;
+    }
     const sekt = block.parentElement;
     const stand = { t: 0 };
     const zeichne = () => {

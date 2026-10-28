@@ -5325,3 +5325,29 @@ main li,main dd,main blockquote,main figcaption,
 .fuss__mitte .mlink,.fuss__sozial a,.fuss__recht p,.fuss__recht a,input,textarea,select{
   font-family:var(--text);font-weight:400;letter-spacing:0}
 main p strong,main p b,main li strong,main li b,.frage__leib strong{font-family:var(--text);font-weight:600}
+/* Video-Referenzen: unten links schaute eine eckige Flaeche hinter der
+   Rundung hervor. Chrome schneidet ein Video (eigene Grafikebene) bei
+   overflow:hidden + border-radius nicht immer mit, vor allem waehrend
+   der Einblendung. Rundung darum zusaetzlich als harte Schnittmaske und
+   direkt an Film und Schleier. */
+.vref__karte{clip-path:inset(0 round 56px);-webkit-mask-image:-webkit-radial-gradient(white,black)}
+.vref__film,.vref__film video,.vref__schleier{border-radius:56px}
+/* Hover auf DUNKLEN Karten (Dusan, 28.10.2026): die Grundregel fuellt
+   orange Knoepfe beim Hover schwarz und dreht die Schrift auf creme.
+   Auf dunklem Grund wird daraus Schwarz auf Schwarz (Wege-Karte "Marketing
+   im Abo"), und wo die Fuellung schon creme war, Creme auf Creme
+   (Preiskarte "Wachstum", Ruf-Karte auf Unterseiten). Auf dunklen Karten
+   gilt darum immer: creme Fuellung, dunkle Schrift. */
+.wege__karte:not(.wege__karte--hell) .knopf--akzent,
+.paket--voll .knopf--akzent,
+.ruf__karte--knapp .knopf--akzent{--knopf-fuell:var(--creme)}
+.wege__karte:not(.wege__karte--hell) .knopf--akzent:hover,.wege__karte:not(.wege__karte--hell) .knopf--akzent:focus-visible,
+.paket--voll .knopf--akzent:hover,.paket--voll .knopf--akzent:focus-visible,
+.ruf__karte--knapp .knopf--akzent:hover,.ruf__karte--knapp .knopf--akzent:focus-visible{color:var(--tinte)}
+.wege__karte:not(.wege__karte--hell) .knopf--akzent:hover .rolle,
+.paket--voll .knopf--akzent:hover .rolle,
+.ruf__karte--knapp .knopf--akzent:hover .rolle{color:var(--tinte)}
+/* Fliesstext-Luecken (Scan ueber alle Seiten, 28.10.2026): Beschreibungen
+   im Leistungs-Aufklappmenue (ausserhalb von main) und der Preis-Vorspann
+   (fiel durch die Ausnahme [class*="preis"]). */
+.ndd__satz span,main p.preise__lead{font-family:var(--text);font-weight:400;letter-spacing:0}
