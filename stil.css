@@ -5384,3 +5384,32 @@ main p.ruf__lead:not(#x){max-width:58ch;margin-left:auto;margin-right:auto;font-
    Foto-Versatz MUSS mitwandern, sonst schwebt das Motiv ueber der Kante. */
 .erst__karte{--erst-pad:clamp(30px,3.4vw,56px);padding:var(--erst-pad)}
 .erst__foto{bottom:calc(-1 * var(--erst-pad))}
+/* ══ Standard-Abstaende (Dusan, 28.10.2026: "auf der ganzen Seite
+   standardisierte Abstaende, keine Abweichungen") ═══════════════════
+   Zwei Masse, sonst keine:
+     --sec        Luecke zwischen zwei Bloecken (Kante zu Kante)
+     --block-in   Innenabstand farbiger Bloecke, oben GLEICH unten
+   Gemessen vorher bei 1440: innen 26/58 (Preise), 63/58 (Leistungen,
+   Projekte, Team), 69/63 (Termin), 72/72 (Haltung); Luecken 66 bis 125.
+   Bewusst ausgenommen: Preise legt sich ueber den Blog, Blog und FAQ
+   stossen aneinander, Kopfbild und Fussbereich haben eigene Masse.
+   (--innen ist im Leistungsblock schon anders belegt, darum --block-in.) */
+:root{--block-in:clamp(48px,5vw,88px)}
+.dienste__block,.team__block{padding-top:var(--block-in);padding-bottom:var(--block-in)}
+.werke,.haltung,.ruf__karte-huelle{padding-top:var(--block-in);padding-bottom:var(--block-in)}
+.ruf{padding-top:var(--block-in);padding-bottom:var(--block-in)}
+.preise{padding-top:var(--block-in)}
+.blog,.fragen:not(.fragen--wie-start),.fragen.fragen--wie-start{padding-top:var(--block-in);padding-bottom:var(--block-in)}
+/* Luecken: jeder Block steht --sec unter dem vorigen */
+.dienste,.vref,.team{padding-top:var(--sec)}
+.wiewir{padding-top:var(--sec)}
+.haltung{margin-top:0;margin-bottom:0}
+.werke{margin-top:var(--sec)}
+body .fragen:not(.fragen--wie-start),body .fragen.fragen--wie-start{padding-bottom:var(--block-in)}
+.preise{padding-bottom:var(--block-in)}
+/* Letzter Block vor dem Fussbereich: Standardluecke --sec (war 106 bei
+   Unterseiten, die mit Text oder FAQ enden). Termin-Karte: --block-in. */
+main > .unter__block:last-child,main > section:last-child.unter__block,main > .artikel:last-child,main > article:last-child{padding-bottom:var(--sec)}
+.ruf__karte{margin-bottom:0}
+main > .unter__block.seo-prose:last-child{padding-bottom:var(--sec)}
+main > :last-child > p:last-child,main > :last-child > :last-child > p:last-child{margin-bottom:0}
