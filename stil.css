@@ -21,6 +21,8 @@
    Satzzeichen aus einem zweiten Blatt im selben Stil; nachgezeichnet,
    mit fontTools gebaut.
    Gehoert Klartext Digital, liegt darum auf dem eigenen Server. */
+@font-face{font-family:'DM Sans';src:url(fonts/dm-sans.woff2) format('woff2');
+  font-weight:100 1000;font-style:normal;font-display:swap}
 @font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-11.woff2) format('woff2');
   font-weight:400 900;font-display:swap}
 
@@ -5312,3 +5314,14 @@ main p strong,main p b,main li strong,main li b,.frage__leib strong{font-weight:
    Vergleich); Knopf "Gespraech buchen" ist schon 600. */
 .nav__wege,.nav__wege .mlink__t,.nav__wege a,.nav__wege button{font-family:'fields',Georgia,serif;font-weight:600}
 .nav__wege .mlink,.nav__wege .mlink *{font-weight:600}
+/* ══ Fliesstext in DM Sans (Dusan, 28.10.2026, Variante E) ══════════
+   Titel bleiben Fields Display, Menue/Knoepfe/Etiketten Fields. Nur
+   Lesetext und alles, was vom Koerper erbt, laeuft in DM Sans (OFL,
+   selbst gehostet, variabel). Regular 400, Hervorhebung 600. */
+:root{--text:'DM Sans',system-ui,sans-serif}
+main p:not(.brush):not(.chip):not([class*="kopf"]):not([class*="zahl"]):not([class*="preis"]),
+main li,main dd,main blockquote,main figcaption,
+.fuehrung,.ruf__text,.fuss__ort,.frage__leib,.frage__leib p,.artikel p,.seo-prose p,.seo-prose li,
+.fuss__mitte .mlink,.fuss__sozial a,.fuss__recht p,.fuss__recht a,input,textarea,select{
+  font-family:var(--text);font-weight:400;letter-spacing:0}
+main p strong,main p b,main li strong,main li b,.frage__leib strong{font-family:var(--text);font-weight:600}
