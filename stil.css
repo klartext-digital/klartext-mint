@@ -5246,3 +5246,9 @@ main .haltung__fuss p:not(#x){margin:0;font-size:clamp(16px,1.25vw,20px);line-he
 .haltung h2{font-size:clamp(34px,6.4vw,112px)}
 .haltung .brush{font-size:clamp(24px,3.7vw,58px)}
 @media (max-width:420px){ .haltung h2{font-size:clamp(34px,10.4vw,44px)} .haltung .brush{font-size:clamp(24px,7.4vw,30px)} }
+/* Hover wie "Gespraech buchen" im Fussbereich: auf Orange fuellt der
+   dunkle Knopf creme, Schrift und Pfeil werden dunkel. */
+.haltung .knopf--dunkel{--knopf-fuell:var(--creme)}
+.haltung .knopf--dunkel:hover,.haltung .knopf--dunkel:focus-visible{color:var(--tinte)}
+.haltung__fuss .knopf:hover i,.haltung__fuss .knopf:focus-visible i{color:var(--tinte)}
+.haltung__fuss .knopf:hover i,.haltung__fuss .knopf:focus-visible i{color:var(--violett)}
