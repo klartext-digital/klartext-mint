@@ -230,6 +230,10 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 const ecke = parseFloat(getComputedStyle(document.documentElement)
 .getPropertyValue('--r-seite')) || 56;
 document.querySelectorAll('[data-zug]').forEach((block) => {
+if (block.closest('.team')) {
+block.style.clipPath = 'inset(0 round ' + ecke + 'px)';
+return;
+}
 const sekt = block.parentElement;
 const stand = { t: 0 };
 const zeichne = () => {
