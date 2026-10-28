@@ -5207,3 +5207,42 @@ body .fragen:not(.fragen--wie-start)::before{content:none}
 .fragen.fragen--wie-start{background:#fff}
 /* Dusan: engerer Radius um die Maus (vorher 170 bis 300 px). */
 .kopfbild__rahmen.schaerfe{--r:clamp(95px,9vw,160px)}
+/* ── Haltung (28.10.2026, Dusans Vorlage "Unsere Haltung") ──────────
+   Oranger Block am Anfang von "Wie wir arbeiten": Pinselwort, grosse
+   Aussage ueber drei Zeilen, rechts die glaesernen Anfuehrungszeichen,
+   unten zwei kurze Absaetze und der dunkle Knopf. Danach folgt der
+   bisherige Teil mit der Grafik. Die Anfuehrungszeichen stammen aus
+   der Vorlage, Grund auf #F5A524 angeglichen und weich ausgeblendet. */
+.haltung{position:relative;max-width:var(--maxw);margin:0 auto clamp(56px,6vw,110px);
+  display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
+  grid-template-areas:"wort bild" "fuss fuss";align-items:center;
+  column-gap:clamp(20px,3vw,56px);row-gap:clamp(28px,3.4vw,60px);
+  padding:clamp(34px,5vw,84px) clamp(26px,4.6vw,80px);
+  background:var(--violett);border-radius:var(--r-seite);color:var(--tinte);overflow:hidden;
+  box-shadow:0 40px 90px -40px rgb(140 80 0 / .45)}
+.haltung__wort{grid-area:wort;position:relative;z-index:1}
+.haltung .brush{background-image:url(bilder/pinsel-dunkel.webp);background-size:100% 100%;background-position:center}
+.haltung .brush,.haltung .brush *{color:var(--creme)!important}
+.haltung h2{font-size:clamp(44px,6.4vw,112px);line-height:.98;letter-spacing:-.04em;
+  margin-top:clamp(14px,1.6vw,26px);color:var(--tinte)}
+.haltung h2 > span{display:block}
+.haltung__bild{grid-area:bild;justify-self:end;width:min(100%,520px);height:auto;
+  -webkit-mask-image:radial-gradient(closest-side,#000 72%,transparent 100%);
+          mask-image:radial-gradient(closest-side,#000 72%,transparent 100%)}
+.haltung__fuss{grid-area:fuss;display:grid;align-items:center;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:clamp(20px,3vw,56px)}
+main .haltung__fuss p:not(#x){margin:0;font-size:clamp(16px,1.25vw,20px);line-height:1.5;
+  color:rgb(14 13 11 / .86);max-width:34ch}
+.haltung__fuss .knopf{white-space:nowrap;gap:12px}
+.haltung__fuss .knopf i{font-style:normal;color:var(--violett);position:relative;z-index:1}
+.haltung__fuss .knopf:hover i{color:var(--tinte)}
+@media (max-width:899px){
+  .haltung{grid-template-columns:minmax(0,1fr);grid-template-areas:"wort" "bild" "fuss"}
+  .haltung__bild{justify-self:center;width:min(70%,360px);margin-block:-10px}
+  .haltung__fuss{grid-template-columns:minmax(0,1fr)}
+  .haltung__fuss .knopf{justify-self:start}
+}
+.haltung .brush{white-space:nowrap;font-size:clamp(30px,3.7vw,58px)}
+.haltung h2{font-size:clamp(34px,6.4vw,112px)}
+.haltung .brush{font-size:clamp(24px,3.7vw,58px)}
+@media (max-width:420px){ .haltung h2{font-size:clamp(34px,10.4vw,44px)} .haltung .brush{font-size:clamp(24px,7.4vw,30px)} }
