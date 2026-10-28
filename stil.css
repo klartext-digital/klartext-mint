@@ -21,8 +21,6 @@
    Satzzeichen aus einem zweiten Blatt im selben Stil; nachgezeichnet,
    mit fontTools gebaut.
    Gehoert Klartext Digital, liegt darum auf dem eigenen Server. */
-@font-face{font-family:'Source Sans 3';src:url(fonts/source-sans-3.woff2) format('woff2');
-  font-weight:200 900;font-style:normal;font-display:swap}
 @font-face{font-family:'Klartext Hand';src:url(fonts/klartext-hand-11.woff2) format('woff2');
   font-weight:400 900;font-display:swap}
 
@@ -154,7 +152,7 @@ body{
   /* Scheint an den abgerundeten unteren Ecken des Inhalts durch und
    muss deshalb die Farbe der Fusszeile tragen. */
   background:var(--violett);color:var(--tinte);
-  font-family:'Source Sans 3',Figtree,system-ui,sans-serif;font-weight:400;font-size:19px;
+  font-family:'fields',Figtree,system-ui,sans-serif;font-weight:400;font-size:19px;
   line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
 /* overflow:CLIP, nicht hidden — hidden macht aus main einen Scroll-
@@ -2962,7 +2960,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    ganz unten die Navigationsleiste. Ein Merkzeichen gibt es in der
    Leiste nicht — Speichern liegt im Menue hinter den drei Punkten. */
 .ig{position:absolute;inset:0;z-index:3;color:#fff;
-  font-family:'Source Sans 3',Figtree,system-ui,sans-serif;letter-spacing:-.01em;
+  font-family:'fields',Figtree,system-ui,sans-serif;letter-spacing:-.01em;
   text-shadow:0 1px 3px rgb(0 0 0 / .42)}
 /* Zwei Schleier: oben fuer Statusleiste und Titel, unten fuer Name,
    Text und Navigation. Ohne sie verschwindet weisse Schrift auf
@@ -4253,7 +4251,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .wiewir__bild{margin:clamp(20px,2vw,34px) auto 0;line-height:0;
   max-width:min(100%, calc(76vh * 1.800))}
 .ag{width:100%;height:auto;display:block;overflow:visible;
-  font-family:'Source Sans 3',Figtree,system-ui,sans-serif}
+  font-family:'fields',Figtree,system-ui,sans-serif}
 .ag__gross,.ag__unter{transition:opacity .34s var(--raus)}
 .ag__gross{font-size:50px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
 .ag__unter{font-size:25px;font-weight:400;text-anchor:middle;opacity:.78}
@@ -4917,7 +4915,7 @@ p.brush{font-size:clamp(38px,4.4vw,72px)}
 .fuss__folgen{grid-area:folgen}
 .fuss .fuss__logo{width:clamp(170px,15vw,230px);margin-bottom:clamp(20px,2vw,30px)}
 .fuss .fuss__ort{font-size:clamp(15px,1.1vw,17px);line-height:1.75;color:var(--tinte)}
-.fuss .fuss__kopf{font-family:'Source Sans 3',Figtree,system-ui,sans-serif!important;font-weight:800;
+.fuss .fuss__kopf{font-family:'fields',Figtree,system-ui,sans-serif!important;font-weight:800;
   font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-.01em;
   color:var(--tinte)!important;background:none;transform:none;
   padding:0;margin:0 0 .7em;display:block;width:auto}
@@ -4995,7 +4993,7 @@ main > .artikel--recht:last-child{padding-bottom:var(--sec)}
    Lead-Saetze, Antworten. Ueberschriften, Knoepfe, Menue, Etiketten und
    Zahlen bleiben Figtree. Trade Gothic laeuft kleiner als Figtree, darum
    +6 % Groesse; Hervorhebungen im Text in Regular statt fett. */
-:root{--text:'Source Sans 3',Figtree,system-ui,sans-serif}
+:root{--text:'fields',Figtree,system-ui,sans-serif}
 main p:not(.brush):not(.chip):not([class*="kopf"]):not([class*="zahl"]):not([class*="preis"]),
 main li,main dd,main blockquote,main figcaption,
 .fuehrung,.ruf__text,.fuss__ort,.frage__leib,.frage__leib p,.artikel p,.seo-prose p,.seo-prose li{
@@ -5006,7 +5004,7 @@ main li,main dd,main blockquote,main figcaption,
 main p strong,main p b,main li strong,main li b,.frage__leib strong{font-family:var(--text);font-weight:400}
 /* Menue in der Kopfleiste: Trade Gothic Next Soft Rounded Bold (Dusan,
    25.10.2026), Adobe-Kit ymt6jvd. Knopf "Gespraech buchen" bleibt Figtree. */
-.nav__wege,.nav__wege .mlink__t,.nav__wege a,.nav__wege button{font-family:'Source Sans 3',Figtree,system-ui,sans-serif;font-weight:700;letter-spacing:.005em}
+.nav__wege,.nav__wege .mlink__t,.nav__wege a,.nav__wege button{font-family:'fields',Figtree,system-ui,sans-serif;font-weight:700;letter-spacing:.005em}
 
 /* ══ Soft Rounded Bold ueberall (Dusan, 25.10.2026: "alles so uebernehmen")
    Ueberschriften, Knoepfe, Etiketten, Menue, Zahlen: Trade Gothic Next
@@ -5014,7 +5012,7 @@ main p strong,main p b,main li strong,main li b,.frage__leib strong{font-family:
    Die Schrift hat nur den Schnitt 700; alles Fettere faellt darauf zurueck. */
 h1,h2,h3,h4,h5,h6,.knopf,button,.chip,.nav__cta,.fuss__kopf,.fuss__mail,label,
 dt,th,.nav__wege .mlink,.lz__titel,.zahl,[class*="__zahl"],[class*="__preis"],.unter__dauer span,.unter__dauer b{
-  font-family:'Source Sans 3',Figtree,system-ui,sans-serif;font-weight:700}
+  font-family:'fields',Figtree,system-ui,sans-serif;font-weight:700}
 h1,h2{letter-spacing:-.01em}
 
 /* Textmarker auf ORANGEM Grund (Antworten in den Fragen, Preis- und
@@ -5033,7 +5031,7 @@ h1,h2{letter-spacing:-.01em}
 /* Fussbereich: Eintraege und Rechtszeile in Trade Gothic Regular, Koepfe
    in Soft Rounded Bold. */
 .fuss__mitte .mlink,.fuss__sozial a,.fuss__recht p,.fuss__recht a{font-family:var(--text);font-weight:400}
-.fuss .fuss__kopf{font-family:'Source Sans 3',Figtree,system-ui,sans-serif!important;font-weight:700}
+.fuss .fuss__kopf{font-family:'fields',Figtree,system-ui,sans-serif!important;font-weight:700}
 .fuss__recht a{background:none;padding:0;margin:0}
 
 /* "Nach oben"-Knopf: Hover war orange und verschwand ueber dem orangen
@@ -5185,10 +5183,10 @@ body .fragen:not(.fragen--wie-start)::before{content:"";position:absolute;z-inde
 .wege__panel-titel{font-size:clamp(24px,2.2vw,38px);line-height:1.08;letter-spacing:-.03em}
 .wege__panel-titel i,.brief__wort h3 i{font-style:normal;color:var(--violett)}
 .wege__panel-text,.brief__wort p{color:rgb(14 13 11 / .7)}
-.wege__panel-titel{font-family:'Source Sans 3',Figtree,system-ui,sans-serif;font-weight:700}
+.wege__panel-titel{font-family:'fields',Figtree,system-ui,sans-serif;font-weight:700}
 /* Die Fliesstextregel "main p:not(...)" hat fuenf :not-Stufen und
    schlug die Titelregel. :not(#x) hebt sie gezielt darueber. */
-main p.wege__panel-titel:not(#x){font-family:'Source Sans 3',Figtree,system-ui,sans-serif;font-weight:700;letter-spacing:-.02em}
+main p.wege__panel-titel:not(#x){font-family:'fields',Figtree,system-ui,sans-serif;font-weight:700;letter-spacing:-.02em}
 /* Dusan: "Schon ein Team?" bleibt als orange Pille hervorgehoben wie vorher. */
 .wege__label--frage{background:var(--violett);color:var(--tinte);
   border-radius:var(--r-pille);padding:8px 16px;font-size:12px;font-weight:700;
@@ -5276,3 +5274,23 @@ h1,h2{letter-spacing:-.025em}
 .chip,.wege__label,.erst__marke,.pruef__marke,.brief__marke{font-weight:700}
 .fuss .fuss__kopf{font-weight:700}
 .fuss__mitte .mlink,.fuss__sozial a,.fuss__recht p,.fuss__recht a{font-weight:400}
+/* ══ Fields ueberall (Dusan, 28.10.2026) ═══════════════════════════
+   Fields von Adam Ladd ueber Adobe Fonts (Kit ymt6jvd, Projekt
+   "Klartext Website"). Zwei Familien:
+     fields-display  600, 700  hoher Kontrast, nur fuer Titel
+     fields          400, 500, 600  Fliesstext, Menue, Knoepfe, Etiketten
+   Die Schreibschrift (--hand) bleibt. Andere Staerken liegen nicht im
+   Kit; kuenstliche Fettung ist abgeschaltet, damit der Browser nichts
+   verbreitert. Ersetzt Source Sans 3 vom selben Tag. */
+:root{--titel:'fields-display','fields',Georgia,serif}
+body{font-synthesis-weight:none;font-size-adjust:none}
+h1,h2{font-family:var(--titel);font-weight:700;letter-spacing:-.018em}
+h3,h4,h5,h6,.lz__titel,main p.wege__panel-titel:not(#x),.erst__titel,.pruef__titel{
+  font-family:var(--titel);font-weight:600;letter-spacing:-.01em}
+h1 .wort,h2 .wort,h1 .brush,h2 .brush,h3 .brush{font-family:var(--hand)}
+.ag{font-family:var(--titel)}
+.ag__titel,.ag__gross{font-weight:600}
+.nav__wege,.nav__wege .mlink__t,.nav__wege a,.nav__wege button{font-weight:500}
+.knopf,button,.nav__cta{font-weight:600}
+.chip,.wege__label,.erst__marke,.pruef__marke,.brief__marke,.fuss .fuss__kopf{font-weight:600}
+main p strong,main p b,main li strong,main li b,.frage__leib strong{font-weight:600}
