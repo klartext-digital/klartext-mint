@@ -382,7 +382,7 @@ for source,route in ROUTES.items():
  # aussen, Schrift mit Pinselmaske innen), nicht erst, wenn das Skript laeuft.
  s=re.sub(r'(<(p|span|em|b|i)\b[^>]*class="[^"]*\b(?:brush|wort)\b[^"]*"[^>]*>)(?!<span class="brush__t">)(.*?)(</\2>)',
   r'\1<span class="brush__t">\3</span>\4',s,flags=re.S)
- s=re.sub(r'<(?:a|link|img|script|video|source)\b[^>]*>',tagfix,s)
+ s=re.sub(r'<(?:a|link|img|image|script|video|source)\b[^>]*>',tagfix,s)  # image: SVG-Bild in der Arbeitsweise-Grafik
  if route and route not in ['marke.html','laune.html','takt.html']:
   markup,bc=breadcrumb(route,title);graph.append(bc)
   # Breadcrumb sits inside existing page intro, beneath floating nav.
