@@ -5469,3 +5469,6 @@ h2 + .brush{margin-top:clamp(10px,1vw,16px)!important;margin-bottom:0!important}
 .team .brush.wort--zug,.vref .brush.wort--zug{padding:.32em 1em .32em .2em;
   background-size:90% 100%!important;background-position:100% 50%!important}
 .team .brush.wort--zug,.vref .brush.wort--zug{padding:.3em 1.15em .34em .32em;background-size:100% 100%!important;background-position:center!important}
+/* Strich beginnt IM ersten Buchstaben (Dusan: "das L gar nicht
+   abgedeckt"), Ueberstand bleibt rechts. */
+.brush.wort--zug{padding-right:.6em;background-size:97% 40%!important;background-position:100% 66%!important}
