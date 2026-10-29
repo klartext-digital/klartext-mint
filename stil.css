@@ -5413,3 +5413,16 @@ main > .unter__block:last-child,main > section:last-child.unter__block,main > .a
 .ruf__karte{margin-bottom:0}
 main > .unter__block.seo-prose:last-child{padding-bottom:var(--sec)}
 main > :last-child > p:last-child,main > :last-child > :last-child > p:last-child{margin-bottom:0}
+/* "niemand" im Kopf als gezeichnete Schrift (Dusan, 29.10.2026, Datei
+   Marke/niemand-2026-10-29/niemand-original-schrift.svg, fill-rule evenodd).
+   Marker bleibt unser ueblicher Pinselstrich (Hintergrund von .wort), nicht
+   der gezackte aus der Lieferung. Die SVG-Grundlinie liegt bei 89,6 %
+   der Bildhoehe, x-Hoehe = 51 %: Hoehe 1.12em setzt die Kleinbuchstaben
+   auf Titelgroesse, vertical-align holt die Grundlinie auf die Textlinie. */
+.buehne h1 .wort--bild{font-size:1em;padding:0 .2em 0 .14em;line-height:1}
+.wort__bild{display:inline-block;height:1.12em;width:auto;vertical-align:-.12em}
+/* Dunkler Grund: Strich deckt die ganze Schrifthoehe (Hausregel), sonst
+   verschwinden schwarze Ober- und Unterlaengen im Dunkeln. */
+.buehne h1 .wort--bild{padding:.06em .16em .04em .12em;margin-left:.1em;
+  background-size:100% 100%;background-position:center;background-repeat:no-repeat}
+.wort__bild{height:1.18em;vertical-align:-.16em}
