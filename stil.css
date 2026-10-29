@@ -4763,7 +4763,7 @@ body .wege__mehr:hover{filter:saturate(1.25) brightness(.96)}
    dunkle Schrift (Klartext Hand) GROESSER als der orange Strich, sie ragt
    oben und unten heraus; die Tinte selbst hat trockene Pinselstreifen.
    Aufbau in zwei Ebenen, weil eine Maske alles im Element trifft:
-     aussen (.brush/.wort)  der Strich als Hintergrund (bilder/pinsel.webp),
+     aussen (.brush/.wort)  der Strich als Hintergrund (bilder/marker.webp),
                             aus einem Stueck gestreckt. border-image (drei
                             Teile) zeigte feine senkrechte Naehte; seit der
                             Strich durchgehend ist, braucht es die Teile nicht.
@@ -4776,7 +4776,7 @@ body .wege__mehr:hover{filter:saturate(1.25) brightness(.96)}
   font-family:var(--hand),cursive;font-weight:700;font-style:normal;
   color:var(--tinte)!important;letter-spacing:0}
 .brush,.wort{
-  background:url(bilder/pinsel.webp) center/100% 100% no-repeat;
+  background:url(bilder/marker.webp) center/100% 100% no-repeat;
   padding:.04em .55em .02em .32em;line-height:.66;
   -webkit-box-decoration-break:clone;box-decoration-break:clone}
 .brush > .brush__t,.wort > .brush__t{display:inline-block;font:inherit;color:inherit;
@@ -4863,8 +4863,8 @@ p.brush,.referenzen .brush,.weiter .brush{line-height:.66;padding-top:.04em;padd
 .fuss .fuss__kopf,.fuss__reden .brush > .brush__t{color:var(--creme)!important}
 .fuss .fuss__kopf{display:inline-block;width:fit-content;font-size:clamp(26px,2.3vw,36px);
   line-height:.66;padding:.06em .55em .04em .32em;margin:0 0 .7em -.32em;
-  background:url(bilder/pinsel-dunkel.webp) center/100% 100% no-repeat}
-.fuss__reden .brush{background-image:url(bilder/pinsel-dunkel.webp)}
+  background:url(bilder/marker-dunkel.webp) center/100% 100% no-repeat}
+.fuss__reden .brush{background-image:url(bilder/marker-dunkel.webp)}
 .fuss__reden .brush,.fuss__reden .brush *{color:var(--creme)!important}
 /* Erster Buchstabe der Kopfzeile auf der Linie der Eintraege darunter
    (gemessen: Seite +16 px, Folgen +14 px Einzug der Links). */
@@ -5223,7 +5223,7 @@ body .fragen:not(.fragen--wie-start)::before{content:none}
   background:var(--violett);border-radius:var(--r-seite);color:var(--tinte);overflow:hidden;
   box-shadow:0 40px 90px -40px rgb(140 80 0 / .45)}
 .haltung__wort{grid-area:wort;position:relative;z-index:1}
-.haltung .brush{background-image:url(bilder/pinsel-dunkel.webp);background-size:100% 100%;background-position:center}
+.haltung .brush{background-image:url(bilder/marker-dunkel.webp);background-size:100% 100%;background-position:center}
 .haltung .brush,.haltung .brush *{color:var(--creme)!important}
 .haltung h2{font-size:clamp(44px,6.4vw,112px);line-height:.98;letter-spacing:-.04em;
   margin-top:clamp(14px,1.6vw,26px);color:var(--tinte)}
@@ -5426,3 +5426,16 @@ main > :last-child > p:last-child,main > :last-child > :last-child > p:last-chil
 .buehne h1 .wort--bild{padding:.06em .16em .04em .12em;margin-left:.1em;
   background-size:100% 100%;background-position:center;background-repeat:no-repeat}
 .wort__bild{height:1.18em;vertical-align:-.16em}
+/* Neuer Marker (Dusan, 29.10.2026, Marke/marker-entwurf-2026-10-29):
+   breiter, weicher Strich mit runden, unregelmaessigen Enden. Die Enden
+   sind ausladender als beim alten, darum etwas mehr Seitenpolster, damit
+   der erste und letzte Buchstabe nicht auf der Wellenkante sitzen. */
+.brush,.wort{padding-left:.42em;padding-right:.5em}
+/* Hoehe des neuen Markers: hell = untere zwei Drittel (vorher 58 %, das
+   quetschte die runde Form zur Linie); auf dunklem und orangem Grund
+   volle Hoehe mit etwas Luft oben und unten. */
+.brush,.wort{background-size:100% 74%;background-position:center 82%}
+.ruf .brush,.vref .brush,.werke .wort,.werke .brush,.team .brush,.paket .brush,.kopfzeile .brush,
+.buehne h1 .wort,.haltung .brush,.fuss__reden .brush{background-size:100% 100%;background-position:center;padding-top:.1em;padding-bottom:.08em}
+.brush:not(.ruf .brush,.vref .brush,.werke .brush,.team .brush,.paket .brush,.kopfzeile .brush,.haltung .brush,.fuss__reden .brush),
+.wort:not(.buehne h1 .wort,.werke .wort){background-size:100% 92%;background-position:center 85%;padding-bottom:.12em}
