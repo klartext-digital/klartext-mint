@@ -5447,3 +5447,17 @@ h2 + .brush{margin-top:clamp(10px,1vw,16px)!important;margin-bottom:0!important}
 .dienste__kopf > h2:first-child,.haltung__wort > h2:first-child,.team__block > h2:first-child,
 .ruf__wort > h2:first-child,.fuss__reden > h2:first-child{margin-top:0}
 .fuss__reden h2 + .brush{margin-bottom:clamp(18px,2vw,30px)!important}
+/* Gezeichnete Schriftzuege (Dusan, 29.10.2026, Marke/marker-entwurf-
+   2026-10-29): Leistungen, Team, Kunden, Referenzen als SVG, Marker ist
+   unser Pinselstrich als Band durch die Mitte wie in der Vorlage. Auf
+   dunklem Grund volle Hoehe, sonst verschwindet die schwarze Schrift. */
+.brush.wort--zug{display:inline-block;font-size:1rem;line-height:0;padding:0 .7em;
+  background-size:100% 46%!important;background-position:center 64%!important}
+.wort--zug .wort__bild{height:clamp(58px,6vw,92px);width:auto;vertical-align:0;margin:0}
+.team .brush.wort--zug,.vref .brush.wort--zug{background-size:100% 100%!important;background-position:center!important;padding:.5em .9em}
+.team .wort--zug .wort__bild,.vref .wort--zug .wort__bild{height:clamp(46px,4.6vw,72px)}
+.brush.wort--zug{padding:0 .5em;background-size:100% 38%!important;background-position:center 66%!important}
+.wort--zug .wort__bild{height:clamp(80px,8.6vw,132px)}
+.brush.mitte.wort--zug{display:table;margin-left:auto!important;margin-right:auto!important}
+.team .brush.wort--zug,.vref .brush.wort--zug{padding:.35em .7em}
+.team .wort--zug .wort__bild,.vref .wort--zug .wort__bild{height:clamp(64px,6.4vw,100px)}
