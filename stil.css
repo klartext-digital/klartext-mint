@@ -5439,3 +5439,11 @@ main > :last-child > p:last-child,main > :last-child > :last-child > p:last-chil
 .buehne h1 .wort,.haltung .brush,.fuss__reden .brush{background-size:100% 100%;background-position:center;padding-top:.1em;padding-bottom:.08em}
 .brush:not(.ruf .brush,.vref .brush,.werke .brush,.team .brush,.paket .brush,.kopfzeile .brush,.haltung .brush,.fuss__reden .brush),
 .wort:not(.buehne h1 .wort,.werke .wort){background-size:100% 92%;background-position:center 85%;padding-bottom:.12em}
+/* Abschnittskoepfe (Dusan, 29.10.2026): Titel immer oben, darunter das
+   Pinselwort, so kurz wie moeglich (Leistungen, Team, Umfang, Kontakt...).
+   Abstand Titel -> Pinselwort einheitlich; der Titel beginnt ohne Abstand
+   oben, weil vorher das Pinselwort darueber stand. */
+h2 + .brush{margin-top:clamp(10px,1vw,16px)!important;margin-bottom:0!important}
+.dienste__kopf > h2:first-child,.haltung__wort > h2:first-child,.team__block > h2:first-child,
+.ruf__wort > h2:first-child,.fuss__reden > h2:first-child{margin-top:0}
+.fuss__reden h2 + .brush{margin-bottom:clamp(18px,2vw,30px)!important}
