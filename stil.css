@@ -5472,3 +5472,14 @@ h2 + .brush{margin-top:clamp(10px,1vw,16px)!important;margin-bottom:0!important}
 /* Strich beginnt IM ersten Buchstaben (Dusan: "das L gar nicht
    abgedeckt"), Ueberstand bleibt rechts. */
 .brush.wort--zug{padding-right:.6em;background-size:97% 40%!important;background-position:100% 66%!important}
+/* Abschnitts-Etiketten als Pinselwort unter dem Titel (Dusan, 29.10.2026:
+   ein System statt Pillen ueber und Pinsel unter dem Titel). Pillen
+   bleiben nur fuer Seitenkategorie und Projektangaben. */
+.brush.etikett{display:inline-block;font-size:clamp(30px,3.2vw,50px);
+  background-size:97% 42%;background-position:100% 70%;padding:0 .55em 0 .05em}
+.brush.etikett.mitte{display:table;margin-left:auto!important;margin-right:auto!important;padding-left:.4em}
+.preise .brush.etikett,.ruf .brush.etikett,.werke .brush.etikett{background-size:100% 100%;background-position:center;padding:.12em .7em .1em .3em}
+body .brush.etikett{font-family:var(--hand)!important;font-size:clamp(30px,3.2vw,50px)!important;line-height:1.05!important;font-weight:700}
+.preise .brush.etikett{background-image:url(bilder/marker-dunkel.webp)}
+.preise .brush.etikett,.preise .brush.etikett *{color:var(--creme)!important}
+body .brush.etikett{font-size:clamp(34px,3.8vw,58px)!important}
