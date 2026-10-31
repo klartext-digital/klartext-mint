@@ -5514,12 +5514,9 @@ body .brush.etikett{font-size:clamp(34px,3.8vw,58px)!important}
 /* Preise ueberlappt den Blog um --r-seite: der sichtbare Abstand zum
    Blog-Titel war nur 16 px. Ueberlappung dazurechnen. */
 .blog{padding-top:calc(var(--block-in) + var(--r-seite))}
-/* 30.10.2026, Dusan: Unterueberschriften wieder als Pille UEBER dem
-   Titel; die Schreibschrift nur noch fuer einzelne betonte Woerter IM
-   Titel. Einheitlicher Abstand Pille -> Titel. */
-.chip + h2,.chip + h1{margin-top:clamp(12px,1.2vw,18px)!important}
-.chip{margin-bottom:0}
-.team .chip,.ruf .chip,.vref .chip,.haltung .chip,.fuss .chip{background:rgb(247 247 245 / .14);color:var(--creme)}
-.haltung .chip{background:rgb(14 13 11 / .12);color:var(--tinte)}
-.fuss__reden .chip{background:rgb(14 13 11 / .12);color:var(--tinte)}
-.mitte > .chip,.referenzen > .chip,.team__block > .chip,.fragen__kopf > .chip,.ruf__kopfzeile > .chip,.wege__kopf > .chip,.preise__kopf > .chip{display:table;margin-left:auto;margin-right:auto}
+/* niemand: splashy statt Block (Dusan, 30.10.2026). Helle Schrift, der
+   Strich nur als schraeges, schmales Band durch die untere Haelfte,
+   setzt im ersten Buchstaben an und schiesst rechts hinaus. */
+.buehne h1 .wort--bild{padding:0 .55em 0 0!important;margin-left:.12em;
+  background-size:96% 46%!important;background-position:100% 78%!important;
+  transform:rotate(-2.5deg);transform-origin:left center}
