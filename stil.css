@@ -5486,3 +5486,11 @@ body .brush.etikett{font-size:clamp(34px,3.8vw,58px)!important}
 /* Leitsatz unter dem Seitentitel als Schriftzug (Branding: "mehr als ein Logo"). */
 .wort--leit{margin-top:clamp(8px,1vw,16px)}
 .wort--leit .wort__bild{height:clamp(70px,8vw,128px);max-width:100%}
+/* Kontakt (Fussbereich: helle Schrift auf dunklem Strich ueber Orange;
+   Kontakt-Karten und Termin: dunkle Schrift auf orangem Strich ueber
+   Dunkel). Auf farbigem Grund deckt der Strich die ganze Schrift,
+   unregelmaessig: links knapp, rechts weit. */
+.fuss__reden .brush.wort--zug,.ruf .brush.wort--zug{padding:.28em 1.1em .32em .3em;
+  background-size:100% 100%!important;background-position:center!important}
+.fuss__reden .wort--zug .wort__bild,.ruf .wort--zug .wort__bild{height:clamp(54px,5.4vw,84px)}
+.ruf__kopfzeile .brush.wort--zug{display:table}
