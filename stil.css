@@ -5548,3 +5548,8 @@ body .brush.etikett{font-size:clamp(34px,3.8vw,58px)!important}
    sich, z. B. "Referenzen" im Video-Block). */
 .chip{width:fit-content;max-width:100%;align-self:flex-start;justify-self:start}
 .mitte > .chip,.referenzen > .chip,.team__block > .chip,.fragen__kopf > .chip,.ruf__kopfzeile > .chip,.wege__kopf > .chip,.preise__kopf > .chip{align-self:center;justify-self:center}
+
+/* Kunden-Pille: Abstand zu den Logo-Karten (sonst klebt sie an der Kartenreihe) */
+.referenzen > .chip{margin-bottom:clamp(28px,2.6vw,40px)}
+/* Q-Punkt ist sehr breit: eng zugeschnitten + mehr Breite, sonst wirkt es kleiner (Dusan, 02.11.2026) */
+.ref .lg--qp{max-width:min(206px,100%);max-height:60px}
