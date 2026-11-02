@@ -5553,3 +5553,8 @@ body .brush.etikett{font-size:clamp(34px,3.8vw,58px)!important}
 .referenzen > .chip{margin-bottom:clamp(28px,2.6vw,40px)}
 /* Q-Punkt ist sehr breit: eng zugeschnitten + mehr Breite, sonst wirkt es kleiner (Dusan, 02.11.2026) */
 .ref .lg--qp{max-width:min(206px,100%);max-height:60px}
+/* Unvollstaendige letzte Logo-Reihe mittig statt linksbuendig (Dusan, 02.11.2026).
+   Grid kann eine Restreihe nicht zentrieren, Flex mit fester Kartenbreite schon. */
+.ref__reihe{display:flex;flex-wrap:wrap;justify-content:center;--sp:6}
+.ref__reihe > .ref{flex:0 0 calc((100% - (var(--sp) - 1) * 14px) / var(--sp));min-width:0}
+@media (max-width:1100px){.ref__reihe{--sp:2}}
