@@ -954,11 +954,11 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
       rgb(14 13 11 / .74) 100%),
     var(--lz-grund) center top / max(100%, 2262px) auto no-repeat}
 }
-.lz[data-i="0"]{--lz-grund:url("bilder/dienst-grund-1.jpg")}
-.lz[data-i="1"]{--lz-grund:url("bilder/dienst-grund-2.jpg")}
-.lz[data-i="2"]{--lz-grund:url("bilder/dienst-grund-3.jpg")}
-.lz[data-i="3"]{--lz-grund:url("bilder/dienst-grund-4.jpg")}
-.lz[data-i="4"]{--lz-grund:url("bilder/dienst-grund-5.jpg")}
+.lz[data-i="0"]{--lz-grund:url("bilder/dienst-grund-1-1920.webp")}
+.lz[data-i="1"]{--lz-grund:url("bilder/dienst-grund-2-1920.webp")}
+.lz[data-i="2"]{--lz-grund:url("bilder/dienst-grund-3-1920.webp")}
+.lz[data-i="3"]{--lz-grund:url("bilder/dienst-grund-4-1920.webp")}
+.lz[data-i="4"]{--lz-grund:url("bilder/dienst-grund-5-1920.webp")}
 
 /* Die Polsterung sitzt jetzt IM Balken, nicht mehr aussen: ein Balken mit
    randbuendiger Schrift sieht aus wie ein Fehler. Dadurch ruecken Nummer
@@ -1396,7 +1396,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
        DER DATEI geschnitten: 1176x1024. Kamera bei jeder Breite weg.
        Rechtsbuendig bleibt, weil der Ausschnitt bei 1440 damit rechnerisch
        exakt derselbe ist wie vor dem Schnitt. */
-    url("bilder/preis-grund.jpg") right center/cover no-repeat,
+    url("bilder/preis-grund-1176.webp") right center/cover no-repeat,
     var(--violett);
   color:var(--tinte);border-radius:0;
   padding:clamp(20px,1.8vw,32px) clamp(26px,4vw,72px)
@@ -3782,7 +3782,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   padding:clamp(56px,5.4vw,104px) max(var(--pad),calc((100vw - var(--maxw)) / 2));
   background:
     linear-gradient(rgb(255 255 255 / .42), rgb(255 255 255 / .50)),
-    url("bilder/blog-grund.jpg") center top / max(100%, 3130px) auto no-repeat;
+    url("bilder/blog-grund-1600.webp") center top / max(100%, 3130px) auto no-repeat;
   margin-block:var(--sec) 0}
 .fragen--wie-start .fragen__kopf{text-align:center;max-width:var(--maxw);margin:0 auto}
 .fragen--wie-start .fragen__kopf .chip{margin-bottom:22px}
@@ -3999,7 +3999,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
       rgb(14 13 11 / .70) 32%,
       rgb(14 13 11 / .64) 62%,
       rgb(14 13 11 / .88) 100%),
-    url("bilder/termin-grund.jpg") center/cover no-repeat,
+    url("bilder/termin-grund-1672.webp") center/cover no-repeat,
     var(--tinte);
   border-radius:var(--r-seite)}
 /* Glas statt gelber Flaeche (des Auftraggebers Entwurf). Damit faellt die
@@ -4598,7 +4598,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
   padding-right:max(var(--pad),calc((100vw - var(--maxw)) / 2));
   background:
     linear-gradient(rgb(255 255 255 / .42), rgb(255 255 255 / .50)),
-    url("bilder/blog-grund.jpg") center/cover no-repeat}
+    url("bilder/blog-grund-1600.webp") center/cover no-repeat}
 
 
 /* 20.09.2026, Auftraggeber: "ecken abrunden oben und unten. blog section
@@ -5083,7 +5083,7 @@ body .fragen:not(.fragen--wie-start){padding-bottom:var(--sec);
 body .fragen:not(.fragen--wie-start)::before{content:"";position:absolute;z-index:-1;
   left:0;right:0;top:0;height:2200px;pointer-events:none;
   background:linear-gradient(rgb(255 255 255 / .42), rgb(255 255 255 / .50)),
-    url("bilder/blog-grund.jpg") center top / max(100%, 3130px) auto no-repeat;
+    url("bilder/blog-grund-1600.webp") center top / max(100%, 3130px) auto no-repeat;
 }
 .fragen--wie-start{background-color:rgb(230 224 219)}
 @media (max-width:1100px){
