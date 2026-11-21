@@ -426,19 +426,15 @@ function zeileHalten(el, dauerMs) {
    Sichtbereich und läuft stumm — nie Ton, nie ausserhalb dekodieren. */
 (function videoReferenzen() {
   const DATEN = [
-    { zitat: 'Sie haben aus groben Ideen eine Marke gemacht, die klar und selbstbewusst wirkt.',
-      rolle: 'Geschäftsführung', firma: 'Nordlicht', film: 'video/testimonial-01' },
-    { zitat: 'Zum ersten Mal erklärt uns jemand nicht nur, was gemacht wird, sondern warum.',
-      rolle: 'Marketing', firma: 'Volta', film: 'video/testimonial-02' },
-    { zitat: 'Schnell, direkt, ohne Agentur-Nebel — und das Team kann alles selbst pflegen.',
-      rolle: 'Gründung', firma: 'Meridian', film: 'video/testimonial-03' },
+    /* Leer bis die echten Referenzvideos fertig sind (21.11.2026).
+       Eintraege: { zitat, rolle, firma, film } */
   ];
   const film = document.getElementById('vrefVideo');
   const zitat = document.getElementById('vrefZitat');
   const rolle = document.getElementById('vrefRolle');
   const firma = document.getElementById('vrefFirma');
   const chips = [...document.querySelectorAll('#vrefChips button')];
-  if (!film || !chips.length) return;
+  if (!film || !chips.length || !DATEN.length) return;
 
   const sanft = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let ist = -1;
@@ -478,17 +474,7 @@ function zeileHalten(el, dauerMs) {
 
 /* ── Fall-Studien: Inhalt wechselt beim Scrollen ────────────── */
 (function faelle() {
-  const FAELLE = [
-    { titel: 'Eine klare Markenidentität für eine junge Energieplattform',
-      jahr: '2025', dauer: '6 Wochen', pillen: ['Branding', 'Website', '3D'],
-      bild: 'bilder/fall-1.jpg', link: 'arbeiten/nordlicht.html' },
-    { titel: 'Ein Auftritt, der komplexe Technik verständlich macht',
-      jahr: '2024', dauer: '9 Wochen', pillen: ['Branding', 'Content', 'Social Media'],
-      bild: 'bilder/fall-2.jpg', link: 'arbeiten/volta.html' },
-    { titel: 'Vom Nischenprodukt zur Marke mit Haltung',
-      jahr: '2024', dauer: '12 Wochen', pillen: ['Strategie', 'Website', 'Performance'],
-      bild: 'bilder/fall-3.jpg', link: 'arbeiten/meridian.html' },
-  ];
+  const FAELLE = [];
   const inhalt = document.getElementById('fallInhalt');
   const bild = document.getElementById('fallBild');
   const liste = [...document.querySelectorAll('#fallListe li')];

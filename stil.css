@@ -1440,6 +1440,10 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
    Ton steht klar, ohne lauter zu sein als der Preis selbst. */
 .schalter em{font-style:normal;font-size:13px;font-weight:700;color:var(--violett)}
 .schalter button.ist em{color:var(--violett)}
+/* Vertragsbedingungen unter den Paketen (21.11.2026): Laufzeit, Rabatt,
+   automatisches Ende. Klein, gedämpft, mittig wie der Kopf der Sektion. */
+.preise__fuss{max-width:72ch;margin:clamp(18px,2vw,28px) auto 0;text-align:center;
+  font-size:clamp(13px,.95vw,15px);line-height:1.6;color:rgb(14 13 11 / .78)}
 .preise__raster{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,2vw,34px);
   max-width:1060px;margin:calc(clamp(12px,1.2vw,18px) + var(--voll-ueber)) auto 0}
 
