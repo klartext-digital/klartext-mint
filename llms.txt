@@ -2,7 +2,7 @@
 
 > Marketingagentur aus Pratteln. Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: Webdesign, SEO, Social Media, Google und Meta Ads, Branding und Newsletter, im Abo oder als Projekt.
 
-Firma: Klartext Digital GmbH (in Gründung)
+Firma: Klartext Digital GmbH, UID CHE-210.244.987
 Adresse: Lohagstrasse 15, 4133 Pratteln, Schweiz
 E-Mail: hallo@klartext-digital.ch
 Öffnungszeiten: Montag bis Freitag, 08:00 bis 20:00 Uhr
@@ -36,4 +36,4 @@ Einzugsgebiet: ganze Deutschschweiz (Aargau, Appenzell Ausserrhoden, Appenzell I
 ## Über uns
 - [Über Klartext Digital](https://klartext-digital.github.io/klartext-mint/ueber-uns/): Marketingagentur aus Pratteln, Schwerpunkt Region Basel und Aargau, tätig in der ganzen Deutschschweiz: wer wir sind und wie wir arbeiten.
 - [Projekte und Referenzen](https://klartext-digital.github.io/klartext-mint/projekte/): Einblicke in die Referenzen von Klartext Digital: Projekte aus Branding, Content und digitalem Marketing.
-- [Impressum](https://klartext-digital.github.io/klartext-mint/impressum/): Impressum der Klartext Digital GmbH (in Gründung), Lohagstrasse 15, 4133 Pratteln.
+- [Impressum](https://klartext-digital.github.io/klartext-mint/impressum/): Impressum der Klartext Digital GmbH, Lohagstrasse 15, 4133 Pratteln, UID CHE-210.244.987.
