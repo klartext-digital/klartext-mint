@@ -69,16 +69,6 @@
       "width": 1200
     }
   ],
-  "bilder/portrait-1.jpg": [
-    {
-      "path": "bilder/portrait-1-420.webp",
-      "width": 420
-    },
-    {
-      "path": "bilder/portrait-1-840.webp",
-      "width": 840
-    }
-  ],
   "bilder/portrait-2.jpg": [
     {
       "path": "bilder/portrait-2-420.webp",

@@ -23,7 +23,7 @@ Grundregel: Ein Punkt gilt erst als erledigt, wenn der **Nachweis** vorliegt
 
 | Punkt | Status | Nachweis |
 |---|---|---|
-| Google-Unternehmensprofil angelegt (Konto hallo@klartext-digital.ch) | erledigt 14.10. | Status „Bestätigung erforderlich“ |
+| Google-Unternehmensprofil angelegt (Konto Firmenkonto bei Google Workspace) | erledigt 14.10. | Status „Bestätigung erforderlich“ |
 | Profil per Video bestätigen (Briefkastenschild) | offen: Auftraggeber, sobald Schild hängt | Profil „Bestätigt“ |
 | Website-Adresse im Profil eintragen | nach Livegang | |
 | Nebenkategorien: Marketingbüro, Werbeagentur, Webdesigner | offen | |
