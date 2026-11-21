@@ -1334,5 +1334,23 @@
       "path": "bilder/rb-orange-7-935.webp",
       "width": 935
     }
+  ],
+  "bilder/kopf-person.png": [
+    {
+      "path": "bilder/kopf-person-700.webp",
+      "width": 700
+    },
+    {
+      "path": "bilder/kopf-person-1100.webp",
+      "width": 1100
+    },
+    {
+      "path": "bilder/kopf-person-1600.webp",
+      "width": 1600
+    },
+    {
+      "path": "bilder/kopf-person-1704.webp",
+      "width": 1704
+    }
   ]
 }
