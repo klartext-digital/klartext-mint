@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:var(--hand,'Rock Salt'),cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<title>SEO für KMU: bei Google gefunden werden | Klartext Digital</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css?v=a89d0b0d">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+
+<meta name="description" content="SEO für KMU in der Schweiz: wie Google Seiten findet und bewertet, Keywords, Inhalte, Technik und Search Console. Was ihr selbst machen könnt.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://klartext-digital.github.io/klartext-mint/blog/seo-fuer-kmu/">
+<meta property="og:title" content="SEO für KMU: bei Google gefunden werden | Klartext Digital">
+<meta property="og:description" content="SEO für KMU in der Schweiz: wie Google Seiten findet und bewertet, Keywords, Inhalte, Technik und Search Console. Was ihr selbst machen könnt.">
+<meta property="og:url" content="https://klartext-digital.github.io/klartext-mint/blog/seo-fuer-kmu/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_CH">
+<meta property="og:image" content="https://klartext-digital.github.io/klartext-mint/bilder/wd-technik.jpg">
+<link rel="stylesheet" href="../../seo.css?v=9e04ee18">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://klartext-digital.github.io/klartext-mint/blog/seo-fuer-kmu/#webpage", "url": "https://klartext-digital.github.io/klartext-mint/blog/seo-fuer-kmu/", "name": "SEO für KMU: bei Google gefunden werden | Klartext Digital", "description": "SEO für KMU in der Schweiz: wie Google Seiten findet und bewertet, Keywords, Inhalte, Technik und Search Console. Was ihr selbst machen könnt.", "inLanguage": "de-CH", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "ProfessionalService", "@id": "https://klartext-digital.github.io/klartext-mint/#organization", "name": "Klartext Digital GmbH", "alternateName": ["Klartext Digital"], "url": "https://klartext-digital.github.io/klartext-mint/", "logo": "https://klartext-digital.github.io/klartext-mint/marke/wortmarke.svg", "image": "https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg", "email": "hallo@klartext-digital.ch", "legalName": "Klartext Digital GmbH", "identifier": "CHE-210.244.987", "taxID": "CHE-210.244.987", "address": {"@type": "PostalAddress", "streetAddress": "Lohagstrasse 15", "postalCode": "4133", "addressLocality": "Pratteln", "addressRegion": "BL", "addressCountry": "CH"}, "areaServed": [{"@type": "AdministrativeArea", "name": "Aargau"}, {"@type": "AdministrativeArea", "name": "Appenzell Ausserrhoden"}, {"@type": "AdministrativeArea", "name": "Appenzell Innerrhoden"}, {"@type": "AdministrativeArea", "name": "Basel-Landschaft"}, {"@type": "AdministrativeArea", "name": "Basel-Stadt"}, {"@type": "AdministrativeArea", "name": "Bern"}, {"@type": "AdministrativeArea", "name": "Glarus"}, {"@type": "AdministrativeArea", "name": "Graubünden"}, {"@type": "AdministrativeArea", "name": "Luzern"}, {"@type": "AdministrativeArea", "name": "Nidwalden"}, {"@type": "AdministrativeArea", "name": "Obwalden"}, {"@type": "AdministrativeArea", "name": "St. Gallen"}, {"@type": "AdministrativeArea", "name": "Schaffhausen"}, {"@type": "AdministrativeArea", "name": "Schwyz"}, {"@type": "AdministrativeArea", "name": "Solothurn"}, {"@type": "AdministrativeArea", "name": "Thurgau"}, {"@type": "AdministrativeArea", "name": "Uri"}, {"@type": "AdministrativeArea", "name": "Zug"}, {"@type": "AdministrativeArea", "name": "Zürich"}], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "20:00"}], "sameAs": ["https://www.instagram.com/klartextdigital/"], "knowsAbout": ["Webdesign", "Suchmaschinenoptimierung", "Social Media Marketing", "Google Ads", "Meta Ads", "E-Mail-Marketing", "Branding"]}, {"@type": "Article", "@id": "https://klartext-digital.github.io/klartext-mint/blog/seo-fuer-kmu/#article", "headline": "SEO für KMU: So findet euch Google.", "description": "SEO für KMU in der Schweiz: wie Google Seiten findet und bewertet, Keywords, Inhalte, Technik und Search Console. Was ihr selbst machen könnt.", "mainEntityOfPage": {"@id": "https://klartext-digital.github.io/klartext-mint/blog/seo-fuer-kmu/#webpage"}, "inLanguage": "de-CH", "image": "https://klartext-digital.github.io/klartext-mint/bilder/wd-technik.jpg", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "FAQPage", "@id": "https://klartext-digital.github.io/klartext-mint/blog/seo-fuer-kmu/#faq", "inLanguage": "de-CH", "mainEntity": [{"@type": "Question", "name": "Wie lange dauert es, bis SEO wirkt?", "acceptedAnswer": {"@type": "Answer", "text": "Das hängt von der Änderung ab. Google schreibt, dass manche Anpassungen nach Stunden sichtbar werden und andere erst nach Monaten. Ein geänderter Titel wird sichtbar, sobald Google die Seite erneut erfasst. Eine neue Leistungsseite muss dagegen erst gefunden und eingeordnet werden. Eine seriöse Zusage auf ein Datum gibt es nicht."}}, {"@type": "Question", "name": "Ist Suchmaschinenoptimierung in der Schweiz anders?", "acceptedAnswer": {"@type": "Answer", "text": "Die Regeln von Google sind dieselben. Der Unterschied liegt in der Sprache eurer Kundschaft: Sie sucht nach „Offerte“ statt „Angebot“ und nach „Velo“ statt „Fahrrad“. Schreibt so, wie eure Kunden suchen, und prüft im Leistungsbericht mit dem Filter nach Ländern, wie ihr in der Schweiz abschneidet."}}, {"@type": "Question", "name": "Kann eine Agentur Platz 1 bei Google garantieren?", "acceptedAnswer": {"@type": "Answer", "text": "Nein. Google schreibt selbst, dass niemand einen ersten Platz garantieren kann. Seriös ist, wenn ein Anbieter erklärt, was er tut, woran er Fortschritt misst und in welchem Zeitraum ihr mit ersten Ergebnissen rechnen könnt."}}, {"@type": "Question", "name": "Brauchen wir für SEO einen Blog?", "acceptedAnswer": {"@type": "Answer", "text": "Nicht zwingend. Für viele KMU bringen gute Leistungsseiten mehr als regelmässige Beiträge. Ein Ratgeberbereich lohnt sich, wenn eure Kundschaft vor dem Kauf viele Fragen hat und ihr diese aus eigener Erfahrung beantworten könnt. Lieber wenige gründliche Artikel als viele dünne."}}]}, {"@type": "BreadcrumbList", "@id": "https://klartext-digital.github.io/klartext-mint/blog/seo-fuer-kmu/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://klartext-digital.github.io/klartext-mint/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://klartext-digital.github.io/klartext-mint/blog/"}, {"@type": "ListItem", "position": 3, "name": "SEO für KMU: So werdet ihr bei Google gefunden", "item": "https://klartext-digital.github.io/klartext-mint/blog/seo-fuer-kmu/"}]}]}</script>
+<meta property="og:image:alt" content="Klartext Digital – Webdesign und Marketing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SEO für KMU: bei Google gefunden werden | Klartext Digital">
+<meta name="twitter:description" content="SEO für KMU in der Schweiz: wie Google Seiten findet und bewertet, Keywords, Inhalte, Technik und Search Console. Was ihr selbst machen könnt.">
+<meta name="twitter:image" content="https://klartext-digital.github.io/klartext-mint/bilder/wd-technik.jpg">
+<script defer src="../../messung.js?v=d9a35c72"></script>
+<link rel="preload" href="../../fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/ymt6jvd.css">
+<link rel="preload" href="../../fonts/klartext-hand-11.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/logo-negativ.svg" alt="klartext. digital" width="766" height="314" decoding="async"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../" aria-label="Klartext Digital: zur Startseite"><picture><source media="(max-width: 699px)" srcset="../../marke/zeichen.svg" width="1010" height="916"><img src="../../marke/logo-quer.svg" alt="klartext digital" width="1350" height="259" decoding="async"></picture></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../projekte/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../branding/" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marke &amp; Strategie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../social-media/" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media &amp; Content</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../webdesign/" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../performance-marketing/" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../email-marketing/" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../seo/" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-1-480.webp 480w, ../../bilder/dienst-1-626.webp 626w, ../../bilder/dienst-1-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-2.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-2-480.webp 480w, ../../bilder/dienst-2-626.webp 626w, ../../bilder/dienst-2-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-3.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-3-480.webp 480w, ../../bilder/dienst-3-626.webp 626w, ../../bilder/dienst-3-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-4.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-4-480.webp 480w, ../../bilder/dienst-4-626.webp 626w, ../../bilder/dienst-4-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-5.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-5-480.webp 480w, ../../bilder/dienst-5-626.webp 626w, ../../bilder/dienst-5-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-6.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-6-480.webp 480w, ../../bilder/dienst-6-626.webp 626w, ../../bilder/dienst-6-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+          <div class="ndd__satz"><b>Gefunden, wenn gesucht wird</b><span>Technische Prüfung, verständliche Inhalte und laufende Auswertung. Als eigenes Projekt oder als Teil des Abos.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main><div class="hero hero--portraet" data-hero>
+  <section class="unter unter--eng"><nav class="seo-breadcrumb" aria-label="Brotkrumennavigation"><a href="../../">Startseite</a> <span aria-hidden="true">/</span> <a href="../">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">SEO für KMU: So werdet ihr bei Google gefunden</span></nav>
+  </section>
+<section class="unter__leib unter__leib--portraet">
+    <div class="unter__kopf" data-rein>
+      <a class="zurueck" href="../">
+        <i aria-hidden="true">←</i><span>Alle Artikel</span></a>
+      <h1 class="seo-h1 unter__gross unter__gross--artikel"><span class="satz">SEO für KMU:</span> <span class="satz">So findet euch Google<i class="punkt">.</i></span></h1>
+      <p class="brush"><span class="brush__t">Gefunden werden, ohne Tricks.</span></p>
+    </div>
+    <figure class="unter__motiv" data-rein>
+      <img sizes="(max-width: 1100px) 1px, 62vw" src="../../bilder/wd-technik.jpg" alt="" fetchpriority="high" decoding="async" width="1200" height="671" srcset="../../bilder/wd-technik-480.webp 480w, ../../bilder/wd-technik-626.webp 626w, ../../bilder/wd-technik-1200.webp 1200w">
+    </figure>
+    <div class="unter__text unter__text--satz" data-rein>
+      <p>SEO für KMU heisst nicht, Google auszutricksen. Es heisst, eine Website so zu bauen und zu schreiben, dass Google sie findet, versteht und bei den richtigen Suchen zeigt. Dieser Leitfaden erklärt, wie Google dabei vorgeht, was ihr selbst erledigen könnt und wann sich Hilfe lohnt. Er gilt für das Treuhandbüro in Basel genauso wie für den Handwerksbetrieb im Aargau.</p></div></section>
+    </div>
+  </section>
+</div>
+<article class="artikel seo-prose">
+<p class="seo-antwort"><strong>Kurze Antwort:</strong> Suchmaschinenoptimierung für KMU hat drei Teile. Google muss eure Seiten technisch erfassen können, jede wichtige Seite muss eine konkrete Suchfrage gut beantworten, und euer Unternehmen muss auch ausserhalb der eigenen Website als echt und vertrauenswürdig erkennbar sein. Vieles davon könnt ihr selbst machen, mit der Google Search Console als wichtigstem Werkzeug. Rechnet mit Wochen bis Monaten, nicht mit Tagen.</p>
+<nav class="seo-inhalt" aria-label="Inhaltsverzeichnis"><h2>Worum es geht</h2><ul><li><a href="#google">Wie Google Seiten findet, versteht und bewertet</a></li><li><a href="#keywords">Suchabsicht und Keywords</a></li><li><a href="#struktur">Seitenstruktur, Titel und interne Links</a></li><li><a href="#inhalte">Hilfreiche Inhalte</a></li><li><a href="#technik">Technische Grundlagen</a></li><li><a href="#lokal">Lokale Suche und KI-Suche</a></li><li><a href="#search-console">Search Console einrichten und lesen</a></li><li><a href="#selber">Selber machen oder Hilfe holen</a></li><li><a href="#fragen">Häufige Fragen</a></li></ul></nav>
+
+<h2 id="google">Wie Google Seiten findet, versteht und bewertet</h2>
+<p>Wer bei Google besser gefunden werden will, sollte wissen, wie Google arbeitet. Google beschreibt in seiner Dokumentation für Website-Betreiber drei Phasen:</p>
+<ol><li><strong>Crawling.</strong> Programme von Google, sogenannte Crawler, rufen Seiten ab und folgen den Links darauf zu weiteren Seiten. Eine Seite, auf die nirgends ein Link zeigt, wird nur schwer entdeckt.</li><li><strong>Indexierung.</strong> Google analysiert Text, Bilder und Aufbau einer Seite und speichert sie im Index, einer grossen Datenbank. Google schreibt ausdrücklich, dass nicht jede verarbeitete Seite dort landet.</li><li><strong>Bereitstellung.</strong> Bei einer Suche wählt Google aus dem Index die Ergebnisse, die am besten passen. Dabei zählen laut Google Hunderte Faktoren, etwa Standort, Sprache und Gerät der suchenden Person.</li></ol>
+<p>Daraus ergibt sich eine klare Reihenfolge für die Arbeit. Zuerst muss Google eure Seiten erreichen können. Dann muss für jede Seite klar sein, worum es geht. Erst danach lohnt die Frage, warum andere weiter oben stehen. Wer beim dritten Schritt beginnt, übersieht leicht, dass eine wichtige Seite gar nicht im Index ist.</p>
+<p>Zwei Punkte stellt Google selbst klar: Es nimmt kein Geld dafür, eine Website häufiger zu crawlen oder höher einzustufen. Und es garantiert nicht, dass eine Seite erfasst oder gezeigt wird, auch wenn sie alle Grundlagen erfüllt.</p>
+
+<h2 id="keywords">Suchabsicht und Keywords: wonach eure Kundschaft sucht</h2>
+<p>Hinter jeder Suche steht ein Ziel. Jemand will etwas wissen („Was kostet ein Heizungsersatz?“), eine bestimmte Firma finden oder etwas erledigen, etwa eine Offerte anfragen. Eine Seite sollte zu genau einer dieser Absichten passen. Eine Seite, die zugleich Ratgeber, Preisliste und Firmenporträt sein will, passt zu keiner.</p>
+<p>Bei allgemeinen Begriffen wie „Steuern“ oder „Heizung“ stehen Portale, Behörden und grosse Anbieter. Die Chance für KMU liegt bei konkreten Suchen: „Treuhand für Einzelfirma Basel“, „Wärmepumpe statt Ölheizung Aargau“, „Physiotherapie Liestal Termin“. Solche Suchen sind seltener, aber wer so sucht, hat meistens ein konkretes Anliegen.</p>
+<p>Für die Keyword-Recherche braucht ihr keine teuren Werkzeuge:</p>
+<ul><li><strong>Kundenfragen sammeln.</strong> Notiert zwei Wochen lang, was am Telefon, per E-Mail und im Erstgespräch gefragt wird. Kundinnen und Kunden benutzen oft andere Wörter als der Betrieb: „Steuererklärung machen lassen“ statt „Steuerdeklaration“.</li><li><strong>Die Suche selbst ansehen.</strong> Gebt eure Leistung bei Google ein und schaut, welche Ergänzungen vorgeschlagen werden und welche Seiten oben stehen. Sind es Ratgeber, Verzeichnisse oder Firmenseiten? Das zeigt, welche Art Seite für diese Suche gefragt ist.</li><li><strong>Search Console auswerten.</strong> Läuft eure Website schon eine Weile, zeigt der Leistungsbericht, bei welchen Suchanfragen ihr bereits erscheint. Oft tauchen dort Begriffe auf, für die es noch keine passende Seite gibt.</li><li><strong>Keyword-Planer von Google.</strong> Er schätzt Suchvolumen und schlägt verwandte Begriffe vor, setzt aber ein eingerichtetes Google-Ads-Konto voraus. Kleine Zahlen bei regionalen Begriffen sind kein Grund zum Verzicht, wenn eine einzelne Anfrage viel wert ist.</li></ul>
+<p>Prüft auch, ob eure Kundschaft eher nach dem Ort sucht („Sanitär Muttenz“) oder nach der Region („Sanitär Baselland“). Am Ende steht eine kurze Liste: je Absicht eine Seite.</p>
+
+<h2 id="struktur">Seitenstruktur, Titel und interne Links</h2>
+<p>Die Struktur folgt den Themen eurer Kundschaft. Jede Leistung bekommt eine eigene Seite, die für sich verständlich ist, denn Besucher aus der Suche landen direkt dort und sehen die Startseite nie. Beantworten zwei Seiten dieselbe Frage, stehen sie sich gegenseitig im Weg. Den Aufbau der ganzen Website erklärt der <a href="../unternehmenswebsite-leitfaden/">Leitfaden zur Unternehmenswebsite</a>.</p>
+<p>Pro Seite gehören diese Elemente sauber gesetzt:</p>
+<ul><li><strong>Seitentitel.</strong> Das title-Element erscheint oft als blaue Überschrift im Suchergebnis. Google empfiehlt einen eigenen, beschreibenden und knappen Titel für jede Seite, ohne Wortwiederholungen, den Firmennamen kurz am Anfang oder Ende. „Heizungsersatz im Aargau | Firmenname“ sagt mehr als „Home“ oder „Leistungen“. Google kann den angezeigten Titel selbst anpassen, wenn der eigene unpassend ist.</li><li><strong>Beschreibung.</strong> Die Meta-Beschreibung ist eine kurze Zusammenfassung der Seite. Google nutzt sie laut eigener Dokumentation nur manchmal als Textausschnitt, meist stammt er aus dem Seiteninhalt. Schreibt trotzdem für jede wichtige Seite eine eigene: Identische Beschreibungen helfen laut Google nicht.</li><li><strong>Überschriften, Adressen, Bilder.</strong> Eine klare Hauptüberschrift, lesbare Wörter in der URL wie /leistungen/heizungsersatz/ und ein kurzer Alternativtext, der beschreibt, was auf dem Bild zu sehen ist.</li></ul>
+<p>Interne Links sind die Wege, auf denen Menschen und Crawler durch eure Website gehen. Google empfiehlt, jede wichtige Seite von mindestens einer anderen Seite der eigenen Website aus zu verlinken. Der Linktext sollte sagen, wohin er führt: „Ablauf beim Heizungsersatz“ statt „hier klicken“ oder „mehr lesen“. Verlinkt vom Ratgeber auf die passende Leistung, von der Leistung auf Referenzen und zwischen Artikeln, die zusammengehören.</p>
+<p>Sparen könnt ihr euch das Meta-Tag „keywords“: Google nutzt es nicht. Auch die Wortzahl ist laut Google kein Rankingkriterium.</p>
+
+<h2 id="inhalte">Hilfreiche Inhalte: was Google unter Qualität versteht</h2>
+<p>Google hat Leitlinien veröffentlicht, wie es hilfreiche, zuverlässige Inhalte erkennt. Der Kern: Inhalte sollen für Menschen geschrieben sein, nicht in erster Linie für Suchmaschinen. Google stellt dazu Fragen, mit denen ihr eure eigenen Seiten prüfen könnt, unter anderem diese:</p>
+<ul><li>Bietet die Seite eigene Informationen, Erfahrungen oder Einschätzungen, oder fasst sie nur zusammen, was anderswo schon steht?</li><li>Beantwortet sie die Frage vollständig, sodass niemand danach weitersuchen muss?</li><li>Ist erkennbar, wer den Inhalt geschrieben hat und warum man ihm vertrauen kann?</li><li>Würde jemand die Seite speichern oder weiterempfehlen?</li></ul>
+<p>Als Warnsignale nennt Google unter anderem Texte, die vor allem Suchbesucher anlocken sollen, das blosse Umformulieren fremder Inhalte und ein Datum, das ohne echte Änderung aktualisiert wird. Wer KI oder Automatisierung nutzt, um Rankings zu manipulieren, verstösst laut Google gegen die Spam-Richtlinien.</p>
+<p>Oft fällt dazu der Begriff E-E-A-T: Erfahrung, Expertise, Autorität und Vertrauenswürdigkeit. Laut Google ist Vertrauen davon am wichtigsten, ein einzelner Rankingfaktor ist E-E-A-T aber nicht.</p>
+<p>Hier haben KMU einen echten Vorteil: Sie haben Erfahrung, die sich nicht abschreiben lässt. Eine Schreinerei kann zeigen, warum sie für eine Küchenfront ein bestimmtes Holz wählt, mit Fotos aus der eigenen Werkstatt. Ein Treuhandbüro kann die Fragen beantworten, die jedes Jahr vor der Steuerfrist kommen. Zeigt dazu die Menschen, die dahinterstehen, etwa auf einer Teamseite.</p>
+<p class="seo-lesetipp">Lest eure wichtigste Leistungsseite, als hättet ihr nur zwei Minuten. Steht da, was ihr anbietet, für wen, wo, wie es abläuft und wie man euch erreicht? Fehlt eine Antwort, ist das eure nächste Aufgabe.</p>
+
+<h2 id="technik">Technische Grundlagen: Handy, Ladezeit, HTTPS, Sitemap</h2>
+<p>Technik macht eine schwache Seite nicht stark, kann aber eine gute ausbremsen. Diese Punkte gehören geprüft:</p>
+<ul><li><strong>Handy zuerst.</strong> Google verwendet für Indexierung und Ranking die mobile Version einer Website. Alles, was auf dem Computer steht, muss also auch auf dem Handy vorhanden und lesbar sein. Google empfiehlt dafür responsives Design, also eine Seite, die sich der Bildschirmgrösse anpasst.</li><li><strong>Ladezeit und Core Web Vitals.</strong> Google misst die Nutzererfahrung mit drei Werten: wie schnell der Hauptinhalt erscheint (LCP, gut bis 2,5 Sekunden), wie schnell die Seite auf Eingaben reagiert (INP, gut unter 200 Millisekunden) und wie stark Inhalte beim Laden springen (CLS, gut unter 0,1). Die Search Console zeigt diese Werte für eure Seiten. Google sagt aber auch: Gute Werte garantieren keinen Platz oben, und relevante Inhalte werden auch bei schwächerer Seitenerfahrung gezeigt.</li><li><strong>HTTPS.</strong> Die Website sollte vollständig verschlüsselt ausgeliefert werden. Google führt das als Teil einer guten Seitenerfahrung auf.</li><li><strong>Sitemap.</strong> Eine Sitemap ist eine Liste eurer Seiten für Suchmaschinen. Laut Google brauchen kleine, gut verlinkte Websites sie oft nicht, bei neuen Websites mit wenigen Links von aussen hilft sie. Eine Garantie für die Aufnahme in den Index ist sie nicht.</li><li><strong>Keine Sperren.</strong> Prüft, dass keine wichtige Seite versehentlich auf „noindex“ steht oder per robots.txt gesperrt ist. Das passiert leicht, wenn eine Testversion live geht.</li></ul>
+<p>Ein häufiger Bremsklotz bei der Ladezeit sind Bilder: zu gross, im falschen Format, ohne feste Masse. Das lässt sich meist beheben, ohne die ganze Website umzubauen.</p>
+
+<h2 id="lokal">Lokal und in der KI-Suche gefunden werden</h2>
+<p>Kommt eure Kundschaft aus der Region, spielt die lokale Suche eine eigene Rolle. Bei Suchen wie „Elektriker Pratteln“ zeigt Google oft eine Karte mit Einträgen aus Unternehmensprofilen. Für diese Ergebnisse nennt Google drei Faktoren: Relevanz, Entfernung und Bekanntheit.</p>
+<p>Wie ihr das Profil einrichtet, zeigt der Leitfaden <a href="../google-unternehmensprofil/">Google-Unternehmensprofil</a>. Wie ihr darüber hinaus in Basel, Baselland oder im Aargau sichtbar werdet, etwa mit Verzeichnissen und Standortseiten, erklärt der Artikel <a href="../lokale-seo/">Lokale SEO</a>.</p>
+<p>Ein zweiter Kanal sind KI-Assistenten wie ChatGPT, Perplexity oder die KI-Übersichten in der Google-Suche. Für die KI-Funktionen der Google-Suche gibt es laut Google keine zusätzlichen Anforderungen: Eine Seite muss indexiert sein und mit Textausschnitt gezeigt werden dürfen. Die SEO-Grundlagen aus diesem Leitfaden sind also auch die Grundlage für KI-Sichtbarkeit. Was darüber hinaus zählt, steht im Leitfaden <a href="../in-chatgpt-gefunden-werden/">In ChatGPT gefunden werden</a>.</p>
+
+<h2 id="search-console">Search Console einrichten und richtig lesen</h2>
+<p>Die Google Search Console ist kostenlos und das wichtigste SEO-Werkzeug für KMU, weil sie zeigt, wie Google selbst eure Website sieht.</p>
+<p><strong>Einrichten.</strong> Ihr meldet eure Website als sogenannte Property an und bestätigt, dass sie euch gehört. Für eine Domain-Property, die alle Unterdomains und Varianten umfasst, geht das nur über einen Eintrag in den DNS-Einstellungen bei eurem Domain-Anbieter. Für eine einzelne Adresse funktionieren auch eine hochgeladene HTML-Datei, ein Meta-Tag oder ein bestehendes Google-Analytics- oder Tag-Manager-Konto. Danach könnt ihr eine Sitemap einreichen. Das ist freiwillig, kann aber die Entdeckung neuer Seiten beschleunigen.</p>
+<p><strong>Lesen.</strong> Drei Bereiche reichen für den Anfang:</p>
+<ul><li><strong>Leistung.</strong> Klicks, Impressionen, Klickrate und durchschnittliche Position, aufschlüsselbar nach Suchanfragen, Seiten, Ländern und Geräten. Viele Impressionen bei wenigen Klicks deuten oft auf unpassende Titel und Beschreibungen hin.</li><li><strong>Seiten (Indexierung).</strong> Welche Seiten im Index sind und warum andere fehlen. Fehlt hier eine wichtige Leistungsseite, hat das Vorrang vor allem anderen.</li><li><strong>URL-Prüfung.</strong> Zeigt für eine einzelne Adresse, ob sie indexiert ist. Nach grösseren Änderungen könnt ihr hier eine erneute Prüfung anstossen.</li></ul>
+<p>Lest Zeiträume, nicht Tage. Die durchschnittliche Position ist ein Mittelwert über viele Suchen, kein fester Platz. Vergleicht drei Monate mit den drei Monaten davor. Ein fester Termin pro Monat genügt.</p>
+
+<h2 id="selber">SEO für KMU selber machen oder Hilfe holen?</h2>
+<p>Ein grosser Teil der Suchmaschinenoptimierung ist Handwerk, das ihr selbst übernehmen könnt: Search Console einrichten, Kundenfragen sammeln, Titel schreiben, Leistungsseiten verbessern, das Unternehmensprofil pflegen. Den Unterschied macht dabei weniger das Fachwissen als die Regelmässigkeit.</p>
+<p>Hilfe lohnt sich vor allem in diesen Fällen:</p>
+<ul><li>Ein Relaunch steht an, und bestehende Adressen dürfen nicht verloren gehen.</li><li>Wichtige Seiten fehlen im Index, und die Ursache ist technisch.</li><li>Ihr wisst, was zu tun wäre, aber im Alltag fehlt die Zeit.</li><li>Ihr wollt eine Einschätzung von aussen, welche Themen sich lohnen.</li></ul>
+<p>Google gibt selbst Hinweise, worauf ihr bei der Wahl achten solltet. Niemand kann einen ersten Platz garantieren. Vorsicht ist laut Google geboten bei Garantien, angeblichen Sonderbeziehungen zu Google, unaufgeforderten SEO-E-Mails und Anbietern, die nicht erklären, was sie tun. Für eine Prüfung genügt Lesezugriff auf die Search Console. Wie wir diese Arbeit für KMU übernehmen, steht auf der Seite <a href="../../seo/">SEO-Betreuung</a>.</p>
+<p>Zum Zeitrahmen: Laut Google wirken manche Änderungen nach wenigen Stunden, andere erst nach mehreren Monaten. Google empfiehlt, nach einer Änderung einige Wochen abzuwarten, bevor ihr die Wirkung beurteilt. Ein neuer Seitentitel wird erst sichtbar, wenn Google die Seite erneut erfasst hat. Wer nach einer Woche alles umstellt, sieht nie, was gewirkt hat. Wie ihr danach dranbleibt, beschreibt der Artikel <a href="../vorne-bleiben/">Laufende SEO</a>.</p>
+
+<h2>Checkliste</h2>
+<ul><li>Search Console eingerichtet und Inhaberschaft bestätigt</li><li>Alle wichtigen Seiten im Index, keine versehentlichen Sperren</li><li>Je Leistung eine eigene Seite, je Seite eine Suchabsicht</li><li>Eigener, beschreibender Titel und eigene Beschreibung je Seite</li><li>Wichtige Seiten intern verlinkt, mit sprechendem Linktext</li><li>Inhalte aus eigener Erfahrung, Verfasser erkennbar</li><li>Mobile Version vollständig, Core Web Vitals im grünen Bereich</li><li>HTTPS auf allen Seiten</li><li>Google-Unternehmensprofil gepflegt, Firmenangaben überall gleich</li><li>Fester monatlicher Termin für den Blick in den Leistungsbericht</li></ul>
+
+<div class="fragen fragen--eingebettet fragen--wie-start">
+  <div class="fragen__kopf">
+    <span class="chip" data-rein>FAQ</span>
+    <h2 id="fragen">Häufige Fragen.</h2>
+    <p class="fuehrung">Noch etwas offen? <a href="../../#kontakt">Schreib uns</a>. Wir antworten meist am selben Arbeitstag.</p>
+  </div>
+  <div class="fragen__liste">
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Wie lange dauert es, bis SEO wirkt?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Das hängt von der Änderung ab. Google schreibt, dass manche Anpassungen nach Stunden sichtbar werden und andere erst nach Monaten. Ein geänderter Titel wird sichtbar, sobald Google die Seite erneut erfasst. Eine neue Leistungsseite muss dagegen erst gefunden und eingeordnet werden. Eine seriöse Zusage auf ein Datum gibt es nicht.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Ist Suchmaschinenoptimierung in der Schweiz anders?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Die Regeln von Google sind dieselben. Der Unterschied liegt in der Sprache eurer Kundschaft: Sie sucht nach „Offerte“ statt „Angebot“ und nach „Velo“ statt „Fahrrad“. Schreibt so, wie eure Kunden suchen, und prüft im Leistungsbericht mit dem Filter nach Ländern, wie ihr in der Schweiz abschneidet.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Kann eine Agentur Platz 1 bei Google garantieren?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Nein. Google schreibt selbst, dass niemand einen ersten Platz garantieren kann. Seriös ist, wenn ein Anbieter erklärt, was er tut, woran er Fortschritt misst und in welchem Zeitraum ihr mit ersten Ergebnissen rechnen könnt.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Brauchen wir für SEO einen Blog?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Nicht zwingend. Für viele KMU bringen gute Leistungsseiten mehr als regelmässige Beiträge. Ein Ratgeberbereich lohnt sich, wenn eure Kundschaft vor dem Kauf viele Fragen hat und ihr diese aus eigener Erfahrung beantworten könnt. Lieber wenige gründliche Artikel als viele dünne.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<h2>Quellen und Vertiefung</h2>
+<p>Google erklärt in der Search-Central-Dokumentation, <a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=de">wie die Google-Suche funktioniert</a>, und gibt im <a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=de">SEO-Startleitfaden</a> einen Überblick samt Zeitrahmen. Die Leitlinien zu <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=de">hilfreichen, zuverlässigen Inhalten</a> enthalten die Fragen zur Selbstprüfung. Zu Titeln und Beschreibungen gibt es eigene Seiten über <a href="https://developers.google.com/search/docs/appearance/title-link?hl=de">Title-Links</a> und <a href="https://developers.google.com/search/docs/appearance/snippet?hl=de">Snippets</a>, zu Links die Seite über <a href="https://developers.google.com/search/docs/crawling-indexing/links-crawlable?hl=de">crawlbare Links und Linktexte</a>.</p>
+<p>Technik: <a href="https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing?hl=de">Mobile-First-Indexierung</a>, <a href="https://developers.google.com/search/docs/appearance/core-web-vitals?hl=de">Core Web Vitals</a>, <a href="https://developers.google.com/search/docs/appearance/page-experience?hl=de">Seitenerfahrung</a>, <a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview?hl=de">Sitemaps</a>. Search Console: <a href="https://developers.google.com/search/docs/monitor-debug/search-console-start?hl=de">Einstieg</a>, <a href="https://support.google.com/webmasters/answer/9008080?hl=de">Bestätigung</a>, <a href="https://support.google.com/webmasters/answer/7576553?hl=de">Leistungsbericht</a>. Weiter: <a href="https://support.google.com/business/answer/7091?hl=de">lokales Ranking</a>, <a href="https://developers.google.com/search/docs/appearance/ai-features?hl=de">KI-Funktionen der Suche</a>, <a href="https://developers.google.com/search/docs/fundamentals/do-i-need-seo?hl=de">Auswahl eines SEO-Dienstleisters</a> und der <a href="https://support.google.com/google-ads/answer/7337243?hl=de">Keyword-Planer</a>.</p>
+
+<h2>Euer nächster Schritt</h2>
+<p>Richtet die Search Console ein, falls sie noch fehlt, und prüft im Bericht „Seiten“, ob eure fünf wichtigsten Seiten im Index sind. Lest danach jede dieser Seiten mit den Fragen aus dem Abschnitt über hilfreiche Inhalte. So entsteht eine Liste, sortiert nach Wirkung statt Bauchgefühl.</p>
+<p>Wenn ihr diese Arbeit lieber abgebt oder eine Einschätzung von aussen wollt, findet ihr unseren Ansatz auf der Seite <a href="../../seo/">SEO-Betreuung für KMU</a>.</p>
+<nav class="weiterlesen" aria-label="Weiterlesen"><a class="weiter__karte" href="../lokale-seo/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Lokale SEO</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../google-unternehmensprofil/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Google-Unternehmensprofil einrichten</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../in-chatgpt-gefunden-werden/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">In ChatGPT gefunden werden</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a></nav>
+</article></main>
+
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <span class="chip chip--hell" data-rein>Kontakt</span>
+      <h2>Reden wir.</h2>
+      <div class="fuss__aktion">
+        <a class="knopf knopf--dunkel fuss__cta" href="../../#kontakt">Gespräch buchen <i aria-hidden="true">→</i></a>
+        <a class="fuss__mail" href="mailto:hallo@klartext-digital.ch">hallo@klartext-digital.ch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__mitte">
+    <div class="fuss__adresse">
+      <a class="fuss__logo" href="../../" aria-label="Klartext Digital: zur Startseite"><img src="../../marke/logo-fuss.svg" alt="klartext. digital" loading="lazy" width="766" height="314" decoding="async"></a>
+      <p class="fuss__ort">Lohagstrasse 15, 4133 Pratteln<br>
+        Schwerpunkt Region Basel und Aargau<br>
+        Mo bis Fr, 08:00 bis 20:00</p>
+    </div>
+    <nav class="fuss__spalte fuss__spalte--leistungen" aria-label="Leistungen">
+      <p class="fuss__kopf">Leistungen</p>
+      <div class="fuss__liste"><a class="mlink" href="../../marketing-abo/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Marketing im Abo</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Marketing im Abo</span></a><a class="mlink" href="../../projektarbeit/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Projektarbeit</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Projektarbeit</span></a><a class="mlink" href="../../branding/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a><a class="mlink" href="../../social-media/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a><a class="mlink" href="../../webdesign/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a><a class="mlink" href="../../performance-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a><a class="mlink" href="../../email-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a><a class="mlink" href="../../seo/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">SEO</span><span class="mlink__t mlink__t--neu" aria-hidden="true">SEO</span></a></div>
+    </nav>
+    <nav class="fuss__spalte" aria-label="Seiten">
+      <p class="fuss__kopf">Seiten</p>
+      <a class="mlink" href="../../projekte/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a><a class="mlink" href="../../ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a><a class="mlink" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a><a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a><a class="mlink" href="../../#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+    </nav>
+    <div class="fuss__folgen">
+      <p class="fuss__kopf">Folgen</p>
+      <div class="fuss__sozial">
+          <a href="https://www.instagram.com/klartextdigital/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH&nbsp;· <span class="untrennbar">UID CHE-210.244.987</span>&nbsp;· Alle Rechte vorbehalten</p>
+    <nav>
+      <a href="../../impressum/">Impressum</a>
+      <a href="../../datenschutz/">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859" decoding="async"></div>
+</footer>
+
+<script defer src="../../js/lenis.min.js?v=d3cf4de4"></script>
+<script defer src="../../js/gsap.min.js?v=92bb9a96"></script>
+<script defer src="../../js/ScrollTrigger.min.js?v=b0b14d67"></script>
+<script defer src="../../lader.js?v=5e0d8715"></script>
+<script defer src="../../bewegung.js?v=5cd22369"></script>
+<script defer src="../../fragen.js?v=4413f503"></script>
+<script defer src="../../zeiger.js?v=043d1932"></script>
+<script defer src="../../rechner.js?v=165369a6"></script>
+</body>
+</html>

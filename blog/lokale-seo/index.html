@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:var(--hand,'Rock Salt'),cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<title>Lokale SEO: in der Region gefunden werden | Klartext Digital</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css?v=a89d0b0d">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+
+<meta name="description" content="Lokale SEO für KMU: wie Google lokale Ergebnisse ordnet, einheitliche Firmenangaben, Verzeichnisse, Bewertungen und Standortseiten in der Region Basel.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://klartext-digital.github.io/klartext-mint/blog/lokale-seo/">
+<meta property="og:title" content="Lokale SEO: in der Region gefunden werden | Klartext Digital">
+<meta property="og:description" content="Lokale SEO für KMU: wie Google lokale Ergebnisse ordnet, einheitliche Firmenangaben, Verzeichnisse, Bewertungen und Standortseiten in der Region Basel.">
+<meta property="og:url" content="https://klartext-digital.github.io/klartext-mint/blog/lokale-seo/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_CH">
+<meta property="og:image" content="https://klartext-digital.github.io/klartext-mint/bilder/pf-google.jpg">
+<link rel="stylesheet" href="../../seo.css?v=9e04ee18">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://klartext-digital.github.io/klartext-mint/blog/lokale-seo/#webpage", "url": "https://klartext-digital.github.io/klartext-mint/blog/lokale-seo/", "name": "Lokale SEO: in der Region gefunden werden | Klartext Digital", "description": "Lokale SEO für KMU: wie Google lokale Ergebnisse ordnet, einheitliche Firmenangaben, Verzeichnisse, Bewertungen und Standortseiten in der Region Basel.", "inLanguage": "de-CH", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "ProfessionalService", "@id": "https://klartext-digital.github.io/klartext-mint/#organization", "name": "Klartext Digital GmbH", "alternateName": ["Klartext Digital"], "url": "https://klartext-digital.github.io/klartext-mint/", "logo": "https://klartext-digital.github.io/klartext-mint/marke/wortmarke.svg", "image": "https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg", "email": "hallo@klartext-digital.ch", "legalName": "Klartext Digital GmbH", "identifier": "CHE-210.244.987", "taxID": "CHE-210.244.987", "address": {"@type": "PostalAddress", "streetAddress": "Lohagstrasse 15", "postalCode": "4133", "addressLocality": "Pratteln", "addressRegion": "BL", "addressCountry": "CH"}, "areaServed": [{"@type": "AdministrativeArea", "name": "Aargau"}, {"@type": "AdministrativeArea", "name": "Appenzell Ausserrhoden"}, {"@type": "AdministrativeArea", "name": "Appenzell Innerrhoden"}, {"@type": "AdministrativeArea", "name": "Basel-Landschaft"}, {"@type": "AdministrativeArea", "name": "Basel-Stadt"}, {"@type": "AdministrativeArea", "name": "Bern"}, {"@type": "AdministrativeArea", "name": "Glarus"}, {"@type": "AdministrativeArea", "name": "Graubünden"}, {"@type": "AdministrativeArea", "name": "Luzern"}, {"@type": "AdministrativeArea", "name": "Nidwalden"}, {"@type": "AdministrativeArea", "name": "Obwalden"}, {"@type": "AdministrativeArea", "name": "St. Gallen"}, {"@type": "AdministrativeArea", "name": "Schaffhausen"}, {"@type": "AdministrativeArea", "name": "Schwyz"}, {"@type": "AdministrativeArea", "name": "Solothurn"}, {"@type": "AdministrativeArea", "name": "Thurgau"}, {"@type": "AdministrativeArea", "name": "Uri"}, {"@type": "AdministrativeArea", "name": "Zug"}, {"@type": "AdministrativeArea", "name": "Zürich"}], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "20:00"}], "sameAs": ["https://www.instagram.com/klartextdigital/"], "knowsAbout": ["Webdesign", "Suchmaschinenoptimierung", "Social Media Marketing", "Google Ads", "Meta Ads", "E-Mail-Marketing", "Branding"]}, {"@type": "Article", "@id": "https://klartext-digital.github.io/klartext-mint/blog/lokale-seo/#article", "headline": "Lokale SEO: So findet man euch in der Region.", "description": "Lokale SEO für KMU: wie Google lokale Ergebnisse ordnet, einheitliche Firmenangaben, Verzeichnisse, Bewertungen und Standortseiten in der Region Basel.", "mainEntityOfPage": {"@id": "https://klartext-digital.github.io/klartext-mint/blog/lokale-seo/#webpage"}, "inLanguage": "de-CH", "image": "https://klartext-digital.github.io/klartext-mint/bilder/pf-google.jpg", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "FAQPage", "@id": "https://klartext-digital.github.io/klartext-mint/blog/lokale-seo/#faq", "inLanguage": "de-CH", "mainEntity": [{"@type": "Question", "name": "Wie komme ich in Google Maps weiter nach oben?", "acceptedAnswer": {"@type": "Answer", "text": "Über Relevanz und Bekanntheit: ein vollständiges Profil mit passender Kategorie, gleiche Angaben überall, regelmässig echte Bewertungen und Verweise von anderen Websites. Die Entfernung zur suchenden Person könnt ihr nicht beeinflussen. Ein bestimmter Platz lässt sich weder kaufen noch garantieren."}}, {"@type": "Question", "name": "Brauche ich für jeden Ort eine eigene Seite?", "acceptedAnswer": {"@type": "Answer", "text": "Nur für echte Standorte oder wenn ihr zu einem Ort wirklich Eigenes zu sagen habt. Seiten, die sich nur im Ortsnamen unterscheiden, fallen schnell unter das, was Google als Missbrauch von Brückenseiten beschreibt. Besser ist eine starke Leistungsseite mit klar genanntem Einzugsgebiet."}}, {"@type": "Question", "name": "Bringt ein Eintrag auf local.ch etwas für Google?", "acceptedAnswer": {"@type": "Answer", "text": "Er hilft vor allem, weil Menschen dort suchen und weil korrekte, gleichlautende Angaben euer Bild im Netz stimmig machen. Google nennt Websites, die auf euch verweisen, als einen Teil der Bekanntheit. Ein falscher alter Eintrag schadet mehr, als ein zusätzlicher nützt."}}, {"@type": "Question", "name": "Darf ich Kunden um eine Google-Bewertung bitten?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Google erklärt selbst, wie ihr um Rezensionen bitten könnt. Verboten sind Gegenleistungen wie Rabatte oder Geschenke und das gezielte Einholen nur positiver Rezensionen. Fragt alle Kundinnen und Kunden auf dieselbe Weise."}}]}, {"@type": "BreadcrumbList", "@id": "https://klartext-digital.github.io/klartext-mint/blog/lokale-seo/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://klartext-digital.github.io/klartext-mint/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://klartext-digital.github.io/klartext-mint/blog/"}, {"@type": "ListItem", "position": 3, "name": "Lokale SEO: So findet man euch in der Region", "item": "https://klartext-digital.github.io/klartext-mint/blog/lokale-seo/"}]}]}</script>
+<meta property="og:image:alt" content="Klartext Digital – Webdesign und Marketing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lokale SEO: in der Region gefunden werden | Klartext Digital">
+<meta name="twitter:description" content="Lokale SEO für KMU: wie Google lokale Ergebnisse ordnet, einheitliche Firmenangaben, Verzeichnisse, Bewertungen und Standortseiten in der Region Basel.">
+<meta name="twitter:image" content="https://klartext-digital.github.io/klartext-mint/bilder/pf-google.jpg">
+<script defer src="../../messung.js?v=d9a35c72"></script>
+<link rel="preload" href="../../fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/ymt6jvd.css">
+<link rel="preload" href="../../fonts/klartext-hand-11.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/logo-negativ.svg" alt="klartext. digital" width="766" height="314" decoding="async"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../" aria-label="Klartext Digital: zur Startseite"><picture><source media="(max-width: 699px)" srcset="../../marke/zeichen.svg" width="1010" height="916"><img src="../../marke/logo-quer.svg" alt="klartext digital" width="1350" height="259" decoding="async"></picture></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../projekte/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../branding/" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marke &amp; Strategie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../social-media/" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media &amp; Content</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../webdesign/" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../performance-marketing/" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../email-marketing/" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../seo/" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-1-480.webp 480w, ../../bilder/dienst-1-626.webp 626w, ../../bilder/dienst-1-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-2.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-2-480.webp 480w, ../../bilder/dienst-2-626.webp 626w, ../../bilder/dienst-2-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-3.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-3-480.webp 480w, ../../bilder/dienst-3-626.webp 626w, ../../bilder/dienst-3-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-4.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-4-480.webp 480w, ../../bilder/dienst-4-626.webp 626w, ../../bilder/dienst-4-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-5.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-5-480.webp 480w, ../../bilder/dienst-5-626.webp 626w, ../../bilder/dienst-5-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-6.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-6-480.webp 480w, ../../bilder/dienst-6-626.webp 626w, ../../bilder/dienst-6-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+          <div class="ndd__satz"><b>Gefunden, wenn gesucht wird</b><span>Technische Prüfung, verständliche Inhalte und laufende Auswertung. Als eigenes Projekt oder als Teil des Abos.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main><div class="hero hero--portraet" data-hero>
+  <section class="unter unter--eng"><nav class="seo-breadcrumb" aria-label="Brotkrumennavigation"><a href="../../">Startseite</a> <span aria-hidden="true">/</span> <a href="../">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">Lokale SEO: So findet man euch in der Region</span></nav>
+  </section>
+<section class="unter__leib unter__leib--portraet">
+    <div class="unter__kopf" data-rein>
+      <a class="zurueck" href="../">
+        <i aria-hidden="true">←</i><span>Alle Artikel</span></a>
+      <h1 class="seo-h1 unter__gross unter__gross--artikel"><span class="satz">Lokale SEO:</span> <span class="satz">So findet man euch in der Region<i class="punkt">.</i></span></h1>
+      <p class="brush"><span class="brush__t">Gefunden werden, wo ihr arbeitet.</span></p>
+    </div>
+    <figure class="unter__motiv" data-rein>
+      <img sizes="(max-width: 1100px) 1px, 62vw" src="../../bilder/pf-google.jpg" alt="" fetchpriority="high" decoding="async" width="1200" height="671" srcset="../../bilder/pf-google-480.webp 480w, ../../bilder/pf-google-626.webp 626w, ../../bilder/pf-google-1200.webp 1200w">
+    </figure>
+    <div class="unter__text unter__text--satz" data-rein>
+      <p>Lokale SEO entscheidet, ob euch findet, wer in Liestal einen Elektriker, in Aarau ein Treuhandbüro oder in Basel eine Physiotherapie sucht. Dieser Artikel zeigt, wie Google lokale Ergebnisse ordnet und was ihr über das Unternehmensprofil hinaus tun könnt, um in der Region gefunden zu werden.</p></div></section>
+    </div>
+  </section>
+</div>
+<article class="artikel seo-prose">
+<p class="seo-antwort"><strong>Kurze Antwort:</strong> Lokale SEO sorgt dafür, dass Google euch bei Suchen mit Ortsbezug und in Google Maps zeigt. Google ordnet lokale Ergebnisse nach Relevanz, Entfernung und Bekanntheit. Beeinflussen könnt ihr vor allem Relevanz und Bekanntheit: mit einem vollständigen Unternehmensprofil, überall gleichen Firmenangaben, echten Bewertungen und einer Website mit klaren Leistungs- und Standortseiten.</p>
+
+<h2>Lokale SEO: wie Google lokale Ergebnisse ordnet</h2>
+<p>Sucht jemand „Coiffeur Rheinfelden“ oder „Garage in der Nähe“, zeigt Google oft eine Karte mit mehreren Einträgen über den normalen Ergebnissen. Dieselben Einträge erscheinen in Google Maps. Laut der Hilfe zum Unternehmensprofil beruhen diese lokalen Ergebnisse hauptsächlich auf drei Faktoren:</p>
+<ul><li><strong>Relevanz:</strong> Wie gut passt euer Profil zur Suche? Vollständige und ausführliche Angaben helfen Google, euch den passenden Suchanfragen zuzuordnen.</li><li><strong>Entfernung:</strong> Wie weit ist euer Standort von der suchenden Person oder vom gesuchten Ort entfernt? Daran könnt ihr wenig ändern.</li><li><strong>Bekanntheit:</strong> Wie bekannt ist euer Unternehmen? Google nennt hier unter anderem die Anzahl der Websites, die auf euch verweisen, und die Anzahl der Rezensionen. Je mehr Rezensionen und positive Bewertungen, desto besser kann das lokale Ranking ausfallen.</li></ul>
+<p>Google stellt ausserdem klar, dass sich ein besseres lokales Ranking nicht kaufen lässt. Für das Google-Maps-Ranking heisst das: Wer euch gegen Bezahlung einen Platz in der Karte verspricht, meint Werbung oder verspricht etwas, das niemand halten kann.</p>
+<p>Lokale SEO ist ein Teil der Suchmaschinenoptimierung, kein Ersatz dafür. Eure Website muss die Grundlagen erfüllen, die der Leitfaden <a href="../seo-fuer-kmu/">SEO für KMU</a> beschreibt. Dieser Artikel ergänzt, was bei Suchen mit Ortsbezug dazukommt.</p>
+
+<h2>Das Unternehmensprofil als Fundament</h2>
+<p>Die Einträge in der Karte stammen aus den Unternehmensprofilen. Ohne eigenes, bestätigtes Profil habt ihr keinen Einfluss darauf, was dort über euch steht. Das Profil ist kostenlos. Entscheidend sind der echte Firmenname ohne Zusätze, eine passende Hauptkategorie, die richtige Adresse oder ein Einzugsgebiet, aktuelle Öffnungszeiten und echte Fotos.</p>
+<p>Wie ihr das Schritt für Schritt einrichtet und bestätigt, steht im Leitfaden <a href="../google-unternehmensprofil/">Google-Unternehmensprofil einrichten</a>. Hier geht es um das, was über das Profil hinaus zählt.</p>
+
+<h2>Einheitliche Firmenangaben: überall derselbe Name, dieselbe Adresse, dieselbe Nummer</h2>
+<p>Laut den Richtlinien für Unternehmensprofile soll der Name im Profil dem entsprechen, was Kundinnen und Kunden auch ausserhalb von Google sehen, etwa auf Schild und Website. Als Telefonnummer verlangt Google eine Nummer, unter der der Standort direkt erreichbar ist, nach Möglichkeit eine örtliche statt einer Hotline.</p>
+<p>Daraus folgt eine einfache Regel: Name, Adresse und Telefonnummer stehen überall gleich. Gemeint ist nicht nur sinngemäss gleich, sondern gleich geschrieben. Prüft dafür diese Stellen:</p>
+<ul><li>Fusszeile, Kontaktseite und Impressum eurer Website</li><li>Google-Unternehmensprofil, Bing Places und Apple Business Connect</li><li>Verzeichnisse wie local.ch und search.ch</li><li>Social-Media-Profile, Branchenverbände, Gewerbeverein</li><li>Rechnungsvorlagen, E-Mail-Signaturen, Offerten</li></ul>
+<p>Typische Abweichungen entstehen nach einem Umzug, etwa von Basel nach Pratteln, oder nach einem Namenswechsel. Die Website ist schnell angepasst, aber ein alter Verzeichniseintrag nennt noch Jahre später die frühere Adresse. Für die Kundschaft ist das ärgerlich, und euer Bild im Netz wird widersprüchlich.</p>
+<p class="seo-lesetipp">Legt ein kurzes Dokument mit euren verbindlichen Firmenangaben an: exakter Name, Adresse, Telefonnummer, Website, Öffnungszeiten. Jede Person, die irgendwo einen Eintrag anlegt, kopiert von dort.</p>
+
+<h2>Verzeichnisse in der Schweiz: local.ch, search.ch und Branchenverbände</h2>
+<p>Für die Schweiz wichtig sind local.ch und search.ch, das sich selbst als Telefonbuch der Schweiz bezeichnet. Einträge verwaltet ihr über localsearch. Laut localsearch erscheint ein Firmeneintrag auf local.ch, search.ch und localcities.ch, und es gibt einen kostenlosen Grundeintrag. Zusätzliche Werbeprodukte sind optional. Ob sie sich für euch lohnen, ist eine eigene Rechnung und keine Voraussetzung für korrekte Angaben.</p>
+<p>Wichtiger als die Zahl der Einträge ist ihre Richtigkeit. Prüft zuerst, ob es euch dort schon gibt, und korrigiert veraltete Angaben. Danach lohnen sich Einträge dort, wo eure Kundschaft tatsächlich sucht: im Verzeichnis eures Branchenverbands, beim Gewerbeverein eurer Gemeinde oder auf Plattformen eurer Branche. Ein Eintrag mit Link auf eure Website ist zugleich ein Verweis, den Google bei der Bekanntheit berücksichtigen kann.</p>
+<p>Finger weg von Angeboten, die Einträge in Hunderten unbekannter Verzeichnisse versprechen. Sie verteilen eure Angaben an Orte, die niemand besucht, und lassen sich später kaum noch korrigieren.</p>
+
+<h2>Bewertungen: so, wie Google sie erlaubt</h2>
+<p>Bewertungen wirken doppelt. Google berücksichtigt Anzahl und Qualität für das lokale Ranking, und Menschen lesen sie, bevor sie anrufen. Die Regeln dafür sind klar:</p>
+<ul><li><strong>Fragen ist erlaubt.</strong> Google beschreibt selbst, wie ihr Kundinnen und Kunden um eine Rezension bittet, etwa mit einem Link oder QR-Code aus dem Profil.</li><li><strong>Keine Gegenleistung.</strong> Rabatte, Geschenke oder Gratisleistungen für eine Rezension sind laut Google-Richtlinien verboten. Dasselbe gilt für eine Gegenleistung dafür, eine negative Rezension zu ändern oder zu löschen.</li><li><strong>Nicht nur die Zufriedenen fragen.</strong> Die Richtlinien untersagen es, gezielt nur positive Rezensionen einzuholen oder negative zu verhindern.</li><li><strong>Keine Bewertungen aus dem eigenen Umfeld.</strong> Rezensionen von Mitarbeitenden oder Personen mit Interessenkonflikt gelten als manipuliert und werden entfernt.</li></ul>
+<p>Beantwortet Rezensionen kurz, freundlich und sachlich, auch die kritischen. Google rät, nicht zu verkaufen, keine privaten Daten zu nennen und bei Problemen eine direkte Kontaktaufnahme anzubieten. Ein guter Moment für die Bitte ist direkt nach einem abgeschlossenen Auftrag, etwa mit der Schlussrechnung oder nach dem letzten Termin.</p>
+
+<h2>Standort- und Leistungsseiten ohne Brückenseiten</h2>
+<p>Viele Betriebe arbeiten in einem Gebiet, nicht nur an ihrer Adresse. Die naheliegende Idee: für jeden Ort eine eigene Seite, „Elektriker Muttenz“, „Elektriker Allschwil“, „Elektriker Binningen“, jeweils mit demselben Text und ausgetauschtem Ortsnamen. Genau solche Seiten beschreibt Google als Problem.</p>
+<p>In den Spam-Richtlinien beschreibt Google den Missbrauch von Brückenseiten: Seiten, die für ähnliche Suchanfragen erstellt werden und weniger hilfreich sind als das eigentliche Ziel. Als Beispiel nennt Google ausdrücklich mehrere Seiten, die auf bestimmte Regionen oder Städte ausgerichtet sind und Nutzer auf eine Seite leiten. Auch Textblöcke, die Städte und Regionen aufzählen, für die eine Seite gefunden werden soll, führt Google als Keyword-Stuffing auf.</p>
+<p>Was stattdessen funktioniert:</p>
+<ul><li><strong>Eine Seite pro echtem Standort.</strong> Habt ihr Filialen in Aarau und Baden, bekommt jede eine eigene Seite mit Adresse, Öffnungszeiten, Anfahrt, Team und dem, was dort angeboten wird.</li><li><strong>Eine starke Seite pro Leistung.</strong> Nennt darauf euer Einzugsgebiet natürlich im Text, zum Beispiel „Wir arbeiten in Basel-Stadt, im unteren Baselbiet und im Fricktal“.</li><li><strong>Echte Belege aus der Region.</strong> Ein Projektbericht über eine Badsanierung in Rheinfelden mit Fotos und Ablauf ist für Menschen und Google mehr wert als eine Ortsseite ohne Inhalt.</li></ul>
+
+<h2>Strukturierte Daten: LocalBusiness</h2>
+<p>Strukturierte Daten sind ein maschinenlesbarer Steckbrief im Code eurer Website. Für lokale Unternehmen beschreibt Google den Typ LocalBusiness nach schema.org. Erforderlich sind Name und Adresse. Empfohlen sind unter anderem Telefonnummer, Website-Adresse, Öffnungszeiten und Geokoordinaten.</p>
+<p>Google rät, den spezifischsten passenden Untertyp zu verwenden. Schema.org kennt zum Beispiel Plumber für Sanitärbetriebe oder AccountingService für Treuhandbüros. Laut Google darf das Markup nur beschreiben, was auf der Seite auch sichtbar ist. Haltet die Angaben ausserdem gleich wie im Profil. Prüfen lässt sich das Markup mit dem Test für Rich-Suchergebnisse. Eine Garantie, dass Google die Daten in der Suche anzeigt, gibt es laut Google nicht. Sie machen eure Angaben aber maschinenlesbar und eindeutig. Was das für KI-Assistenten bedeutet, steht im Leitfaden <a href="../in-chatgpt-gefunden-werden/">In ChatGPT gefunden werden</a>.</p>
+
+<h2>Drei Beispiele aus Basel, Baselland und dem Aargau</h2>
+<p>Die folgenden Fälle sind typische Ausgangslagen, keine Kundenprojekte. Sie zeigen, wie sich die Schwerpunkte verschieben.</p>
+<ul><li><strong>Treuhandbüro in Basel-Stadt.</strong> Auf engem Raum gibt es viele Anbieter, die Entfernung hilft kaum. Der Hebel liegt bei der Relevanz: präzise Kategorie, eigene Seiten für Schwerpunkte wie Buchhaltung für Gastrobetriebe oder Steuererklärungen für Selbstständige, dazu regelmässig Bewertungen.</li><li><strong>Sanitärbetrieb in Liestal mit Einsätzen im ganzen Baselbiet.</strong> Das Profil mit Einzugsgebiet, eine starke Seite je Leistung und Projektberichte aus verschiedenen Gemeinden. Keine dreissig Ortsseiten mit gleichem Text.</li><li><strong>Physiotherapie mit zwei Praxen in Aarau und Baden.</strong> Zwei bestätigte Profile, zwei Standortseiten mit eigener Adresse, eigenen Öffnungszeiten und eigenem Team, auf beiden Seiten dieselbe Schreibweise des Praxisnamens.</li></ul>
+<p>Wenn ihr diese Arbeit nicht selbst machen wollt, findet ihr unseren Ansatz unter <a href="../../seo/">SEO-Betreuung für KMU</a>.</p>
+
+<h2>Checkliste</h2>
+<ul><li>Google-Unternehmensprofil bestätigt, Hauptkategorie passend</li><li>Verbindliche Firmenangaben schriftlich festgehalten</li><li>Name, Adresse und Telefon auf Website, Profilen und Verzeichnissen identisch</li><li>Einträge auf local.ch und search.ch geprüft und korrigiert</li><li>Einträge bei Branchenverband und Gewerbeverein</li><li>Fester Ablauf für Bewertungsanfragen, ohne Gegenleistung</li><li>Rezensionen beantwortet, auch kritische</li><li>Eine Seite pro echtem Standort, keine Ortsseiten mit Kopiertext</li><li>LocalBusiness-Markup mit spezifischem Untertyp, getestet</li></ul>
+
+<div class="fragen fragen--eingebettet fragen--wie-start">
+  <div class="fragen__kopf">
+    <span class="chip" data-rein>FAQ</span>
+    <h2 id="fragen">Häufige Fragen.</h2>
+    <p class="fuehrung">Noch etwas offen? <a href="../../#kontakt">Schreib uns</a>. Wir antworten meist am selben Arbeitstag.</p>
+  </div>
+  <div class="fragen__liste">
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Wie komme ich in Google Maps weiter nach oben?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Über Relevanz und Bekanntheit: ein vollständiges Profil mit passender Kategorie, gleiche Angaben überall, regelmässig echte Bewertungen und Verweise von anderen Websites. Die Entfernung zur suchenden Person könnt ihr nicht beeinflussen. Ein bestimmter Platz lässt sich weder kaufen noch garantieren.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Brauche ich für jeden Ort eine eigene Seite?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Nur für echte Standorte oder wenn ihr zu einem Ort wirklich Eigenes zu sagen habt. Seiten, die sich nur im Ortsnamen unterscheiden, fallen schnell unter das, was Google als Missbrauch von Brückenseiten beschreibt. Besser ist eine starke Leistungsseite mit klar genanntem Einzugsgebiet.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Bringt ein Eintrag auf local.ch etwas für Google?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Er hilft vor allem, weil Menschen dort suchen und weil korrekte, gleichlautende Angaben euer Bild im Netz stimmig machen. Google nennt Websites, die auf euch verweisen, als einen Teil der Bekanntheit. Ein falscher alter Eintrag schadet mehr, als ein zusätzlicher nützt.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Darf ich Kunden um eine Google-Bewertung bitten?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Ja. Google erklärt selbst, wie ihr um Rezensionen bitten könnt. Verboten sind Gegenleistungen wie Rabatte oder Geschenke und das gezielte Einholen nur positiver Rezensionen. Fragt alle Kundinnen und Kunden auf dieselbe Weise.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<h2>Quellen und Vertiefung</h2>
+<p>Google erklärt in der Hilfe zum Unternehmensprofil, <a href="https://support.google.com/business/answer/7091?hl=de">wie das lokale Ranking entsteht</a>, und nennt in den <a href="https://support.google.com/business/answer/3038177?hl=de">Richtlinien für Unternehmensprofile</a> die Regeln für Name, Adresse und Telefonnummer. Zu Bewertungen gibt es die <a href="https://support.google.com/contributionpolicy/answer/7400114?hl=de">Richtlinien zu gefälschten Interaktionen</a> und <a href="https://support.google.com/business/answer/3474122?hl=de">Tipps zum Erhalten und Beantworten von Rezensionen</a>.</p>
+<p>Die Brückenseiten beschreibt Google in den <a href="https://developers.google.com/search/docs/essentials/spam-policies?hl=de">Spam-Richtlinien</a>, das Markup in der Dokumentation zu <a href="https://developers.google.com/search/docs/appearance/structured-data/local-business?hl=de">strukturierten Daten für lokale Unternehmen</a> und in den <a href="https://developers.google.com/search/docs/appearance/structured-data/sd-policies?hl=de">allgemeinen Richtlinien für strukturierte Daten</a>. Die Untertypen stehen auf <a href="https://schema.org/LocalBusiness">schema.org</a>. Wie ihr euren Eintrag auf local.ch und search.ch prüft, erklärt <a href="https://www.localsearch.ch/de/ihr-eintrag">localsearch</a>.</p>
+
+<h2>Euer nächster Schritt</h2>
+<p>Sucht eure eigene Leistung mit Ortsnamen, zum Beispiel „Schreinerei Muttenz“, und notiert, wo ihr erscheint und mit welchen Angaben. Prüft danach eure Einträge auf Google, local.ch und search.ch gegen die verbindlichen Firmenangaben. Jede Abweichung, die ihr korrigiert, macht euer Bild eindeutiger.</p>
+<nav class="weiterlesen" aria-label="Weiterlesen"><a class="weiter__karte" href="../seo-fuer-kmu/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">SEO für KMU</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../google-unternehmensprofil/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Google-Unternehmensprofil einrichten</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../in-chatgpt-gefunden-werden/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">In ChatGPT gefunden werden</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a></nav>
+</article></main>
+
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <span class="chip chip--hell" data-rein>Kontakt</span>
+      <h2>Reden wir.</h2>
+      <div class="fuss__aktion">
+        <a class="knopf knopf--dunkel fuss__cta" href="../../#kontakt">Gespräch buchen <i aria-hidden="true">→</i></a>
+        <a class="fuss__mail" href="mailto:hallo@klartext-digital.ch">hallo@klartext-digital.ch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__mitte">
+    <div class="fuss__adresse">
+      <a class="fuss__logo" href="../../" aria-label="Klartext Digital: zur Startseite"><img src="../../marke/logo-fuss.svg" alt="klartext. digital" loading="lazy" width="766" height="314" decoding="async"></a>
+      <p class="fuss__ort">Lohagstrasse 15, 4133 Pratteln<br>
+        Schwerpunkt Region Basel und Aargau<br>
+        Mo bis Fr, 08:00 bis 20:00</p>
+    </div>
+    <nav class="fuss__spalte fuss__spalte--leistungen" aria-label="Leistungen">
+      <p class="fuss__kopf">Leistungen</p>
+      <div class="fuss__liste"><a class="mlink" href="../../marketing-abo/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Marketing im Abo</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Marketing im Abo</span></a><a class="mlink" href="../../projektarbeit/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Projektarbeit</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Projektarbeit</span></a><a class="mlink" href="../../branding/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a><a class="mlink" href="../../social-media/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a><a class="mlink" href="../../webdesign/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a><a class="mlink" href="../../performance-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a><a class="mlink" href="../../email-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a><a class="mlink" href="../../seo/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">SEO</span><span class="mlink__t mlink__t--neu" aria-hidden="true">SEO</span></a></div>
+    </nav>
+    <nav class="fuss__spalte" aria-label="Seiten">
+      <p class="fuss__kopf">Seiten</p>
+      <a class="mlink" href="../../projekte/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a><a class="mlink" href="../../ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a><a class="mlink" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a><a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a><a class="mlink" href="../../#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+    </nav>
+    <div class="fuss__folgen">
+      <p class="fuss__kopf">Folgen</p>
+      <div class="fuss__sozial">
+          <a href="https://www.instagram.com/klartextdigital/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH&nbsp;· <span class="untrennbar">UID CHE-210.244.987</span>&nbsp;· Alle Rechte vorbehalten</p>
+    <nav>
+      <a href="../../impressum/">Impressum</a>
+      <a href="../../datenschutz/">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859" decoding="async"></div>
+</footer>
+
+<script defer src="../../js/lenis.min.js?v=d3cf4de4"></script>
+<script defer src="../../js/gsap.min.js?v=92bb9a96"></script>
+<script defer src="../../js/ScrollTrigger.min.js?v=b0b14d67"></script>
+<script defer src="../../lader.js?v=5e0d8715"></script>
+<script defer src="../../bewegung.js?v=5cd22369"></script>
+<script defer src="../../fragen.js?v=4413f503"></script>
+<script defer src="../../zeiger.js?v=043d1932"></script>
+<script defer src="../../rechner.js?v=165369a6"></script>
+</body>
+</html>
