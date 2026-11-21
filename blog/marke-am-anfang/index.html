@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:var(--hand,'Rock Salt'),cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<title>Markenaufbau für Startups: das Minimum | Klartext Digital</title>
+<meta name="description" content="Markenaufbau für Startups: Namen in der Schweiz prüfen, Farbe, Schrift und Positionierungssatz festlegen. Was der Start braucht und was warten kann.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/logo-negativ.svg" alt="klartext. digital" width="766" height="314"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../index.html" aria-label="Klartext Digital: zur Startseite"><picture><source media="(max-width: 699px)" srcset="../../marke/zeichen.svg" width="1010" height="916"><img src="../../marke/logo-quer.svg" alt="klartext digital" width="1350" height="259"></picture></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../index.html#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../index.html#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../leistungen/branding.html" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marke &amp; Strategie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/social-media.html" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media &amp; Content</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/websites.html" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/performance.html" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/email-marketing.html" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../seo/index.html" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/index.html" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist">
+          <img src="../../bilder/dienst-2.jpg" alt="">
+          <img src="../../bilder/dienst-3.jpg" alt="">
+          <img src="../../bilder/dienst-4.jpg" alt="">
+          <img src="../../bilder/dienst-5.jpg" alt="">
+          <img src="../../bilder/dienst-6.jpg" alt="">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+          <div class="ndd__satz"><b>Gefunden, wenn gesucht wird</b><span>Technische Prüfung, verständliche Inhalte und laufende Auswertung. Als eigenes Projekt oder als Teil des Abos.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main><div class="hero hero--portraet" data-hero>
+  <section class="unter unter--eng">
+  </section>
+<section class="unter__leib unter__leib--portraet">
+    <div class="unter__kopf" data-rein>
+      <a class="zurueck" href="../">
+        <i aria-hidden="true">←</i><span>Alle Artikel</span></a>
+      <h1 class="seo-h1 unter__gross unter__gross--artikel"><span class="satz">Markenaufbau für Startups:</span> <span class="satz">Wie viel Marke braucht der Start?</span></h1>
+      <p class="brush">Weniger. Aber das Wenige richtig.</p>
+    </div>
+    <figure class="unter__motiv" data-rein>
+      <img sizes="(max-width: 1100px) 1px, 62vw" src="../../bilder/br-marke.jpg" alt="" fetchpriority="high" decoding="async">
+    </figure>
+    <div class="unter__text unter__text--satz" data-rein>
+      <p>Beim Markenaufbau im Startup stecken viele Gründerinnen und Gründer Monate in ein Erscheinungsbild, bevor sie wissen, was sie eigentlich verkaufen. Das ist teuer, und meistens ändert sich in den ersten zwei Jahren ohnehin noch vieles. Dieser Leitfaden zeigt, was eine Marke am Anfang wirklich braucht, wie ihr Namen in der Schweiz prüft und was getrost warten kann.</p></div></section>
+    </div>
+  </section>
+</div>
+<article class="artikel seo-prose">
+<p class="seo-antwort"><strong>Kurze Antwort:</strong> Zum Start braucht eine Marke vier Dinge: einen Namen, den man am Telefon buchstabieren kann, eine Farbe, eine Schrift und einen Satz, der sagt, für wen ihr da seid. Bevor ihr den Namen verwendet, prüft ihr ihn im Handelsregister, im Markenregister und bei den Domains. Das grosse Markensystem mit Styleguide und Vorlagen kommt erst, wenn das Angebot steht.</p>
+<nav class="seo-inhalt" aria-label="Inhaltsverzeichnis"><h2>Worum es geht</h2><ul><li><a href="#minimum">Das Minimum einer Marke</a></li><li><a href="#name">Firmenname finden und prüfen</a></li><li><a href="#firma-marke-domain">Firma, Marke, Domain</a></li><li><a href="#gestaltung">Farbe, Schrift, Logo</a></li><li><a href="#satz">Ein Satz, für wen ihr da seid</a></li><li><a href="#warten">Was warten kann</a></li><li><a href="#markensystem">Wann das volle Markensystem dran ist</a></li><li><a href="#fehler">Typische Fehler</a></li><li><a href="#fragen">Häufige Fragen</a></li></ul></nav>
+
+<h2 id="minimum">Markenaufbau im Startup: das Minimum</h2>
+<p>Eine Marke ist am Anfang kein Handbuch, sondern eine Handvoll Entscheidungen, die ihr nicht jede Woche neu treffen wollt. Vier davon reichen, um sichtbar, wiedererkennbar und glaubwürdig zu starten:</p>
+<ol><li><strong>Ein Name</strong>, den man hört, versteht und am Telefon buchstabieren kann, ohne zweimal nachzufragen.</li><li><strong>Eine Farbe</strong>, die ihr überall gleich verwendet: auf der Website, im Profilbild, auf der Offerte.</li><li><strong>Eine Schrift</strong>, die gut lesbar ist und die ihr auf allen Geräten und in allen Programmen nutzen dürft.</li><li><strong>Ein Satz</strong>, der erklärt, für wen ihr da seid und was ihr für diese Menschen löst.</li></ol>
+<p>Das lässt sich in kurzer Zeit festlegen und hält oft länger als jedes aufwendige Logo. Diese vier Dinge braucht ihr ab dem ersten Tag: im Gespräch, auf der Visitenkarte, im ersten Social-Media-Beitrag. Alles Weitere entsteht besser aus der Erfahrung mit echten Kundinnen und Kunden.</p>
+
+<h2 id="name">Firmenname finden und prüfen</h2>
+<p>Ein guter Name ist kurz, eindeutig in der Schreibweise und lässt Raum für Wachstum. Ein Treuhandbüro, das sich nach einem Quartier benennt, hat ein Problem, sobald es eine zweite Filiale eröffnet.</p>
+<p>Testet Kandidaten deshalb nicht am Bildschirm, sondern laut: Sagt den Namen am Telefon und lasst ihn aufschreiben. Wenn die Hälfte der Leute ihn falsch schreibt, wird er auch in der Suche falsch eingetippt.</p>
+<p>Dann folgt die formale Prüfung. Wer in der Schweiz ein Unternehmen und eine Marke gründet, prüft den Namen an drei Stellen: im Handelsregister, im Markenregister und bei den Domains. Alle Einträge im Handelsregister sind über den zentralen Firmenindex <a href="https://www.zefix.ch/">Zefix</a> abrufbar. Je nach Rechtsform gelten unterschiedliche Regeln:</p>
+<ul><li><strong>Einzelunternehmen</strong> müssen den Familiennamen der Inhaberin oder des Inhabers im Firmennamen führen.</li><li><strong>GmbH und AG</strong> können den Namen frei wählen, der Zusatz zur Rechtsform gehört aber dazu. Der Name muss sich laut KMU-Portal des Bundes deutlich von allen in der Schweiz bereits eingetragenen Firmen unterscheiden.</li></ul>
+<p>Wichtig für die Praxis: Laut KMU-Portal prüft das Handelsregisteramt, ob bereits ein identischer Eintrag besteht. Ob ein Name einem bestehenden zum Verwechseln ähnlich ist, prüft es nicht. Das kann aber das ältere Unternehmen später auf dem Gerichtsweg durchsetzen. Sucht in Zefix deshalb nicht nur nach eurem Wunschnamen, sondern auch nach ähnlichen Schreibweisen.</p>
+
+<h2 id="firma-marke-domain">Firma, Marke, Domain: drei verschiedene Dinge</h2>
+<p>Viele halten einen eingetragenen Firmennamen für geschützt. Das Eidgenössische Institut für Geistiges Eigentum (IGE) hält ausdrücklich fest, dass der Handelsregistereintrag den Namen nicht automatisch auch als Marke schützt. Es lohnt sich, die drei Begriffe auseinanderzuhalten:</p>
+<dl class="angebot-liste"><div><dt>Die Firma</dt><dd>Der Name eures Unternehmens im Handelsregister. Er ist geschützt, aber begrenzt: bei Einzelunternehmen am Ort des Geschäftssitzes, bei GmbH und AG in der ganzen Schweiz.</dd></div><div><dt>Die Marke</dt><dd>Ein Zeichen, mit dem ihr eure Produkte oder Dienstleistungen kennzeichnet. Markenschutz entsteht laut IGE erst mit der Eintragung im Markenregister.</dd></div><div><dt>Die Domain</dt><dd>Eure Adresse im Internet. Sie wird über einen Registrar gekauft und sagt nichts darüber aus, ob ihr den Namen für eure Leistungen verwenden dürft.</dd></div></dl>
+<p>Diese drei können miteinander in Konflikt geraten. Das IGE weist darauf hin, dass eine Marke, die bestehenden Marken, Domain- oder Firmennamen verwechselbar ähnlich ist, Probleme bekommen kann. Bei einer Markenanmeldung prüft das IGE nicht, ob ähnliche ältere Marken existieren. Für eine erste eigene Suche eignet sich die Datenbank <a href="https://www.swissreg.ch/">Swissreg</a>. Das IGE empfiehlt aber, vor einer Anmeldung eine professionelle Recherche machen zu lassen, weil eine eigene Suche ähnliche Schreibweisen leicht übersieht.</p>
+<p>Für die Domain gilt: Die Registry für .ch-Adressen führt Switch im Auftrag des Bundesamts für Kommunikation. Ob eine Adresse frei ist, seht ihr über die Abfrage auf <a href="https://www.nic.ch/de/">nic.ch</a>, registriert wird sie bei einem der Registrare. Prüft gleichzeitig, ob der Name auf den Plattformen frei ist, die ihr nutzen wollt, etwa Instagram, LinkedIn oder Facebook. Ein einheitlicher Name über alle Kanäle macht es leichter, euch zu finden.</p>
+<p>Diese Hinweise ersetzen keine Rechtsberatung. Wenn ihr in eine Marke investieren wollt oder auf einen ähnlichen Namen stosst, klärt das im Zweifel mit einer Fachperson.</p>
+
+<h2 id="gestaltung">Farbe, Schrift, Logo für ein neues Unternehmen</h2>
+<p>Beim Start geht es nicht um ein ausgefeiltes Erscheinungsbild, sondern um Wiedererkennung und Lesbarkeit. Drei pragmatische Regeln reichen:</p>
+<ul><li><strong>Eine Hauptfarbe, dazu Neutraltöne.</strong> Eine Farbe, die ihr konsequent einsetzt, prägt sich eher ein als fünf, die abwechselnd auftauchen. Legt die genauen Farbwerte einmal fest und schreibt sie auf.</li><li><strong>Eine Schrift für alles.</strong> Wählt eine Schrift, die in Texten gut lesbar ist und deren Lizenz Website, Druck und Präsentationen abdeckt. Eine zweite Schrift für Titel kann später dazukommen.</li><li><strong>Ein Logo, das klein funktioniert.</strong> Für den Anfang genügt oft ein sauber gesetzter Schriftzug. Er muss als Profilbild, in der Browserleiste und auf der Rechnung lesbar bleiben.</li></ul>
+<p>Prüft eure Farbe früh auf Kontrast, denn sie landet auch auf Knöpfen und in Texten. Die Web-Richtlinien WCAG des W3C verlangen für normalen Text ein Kontrastverhältnis von mindestens 4,5:1 zum Hintergrund, für grosse Schrift mindestens 3:1. Text, der Teil eines Logos ist, ist davon ausgenommen. Eine helle Wunschfarbe als Textfarbe auf Weiss fällt oft durch. Dann verwendet ihr sie für Flächen und Akzente und setzt Text in einem dunkleren Ton.</p>
+
+<h2 id="satz">Ein Satz, für wen ihr da seid</h2>
+<p>Der wichtigste Teil der Marke ist kein Bild, sondern ein Satz. Er beantwortet drei Fragen: Für wen arbeitet ihr? Welches Problem löst ihr? Was ist an euch anders? Zum Beispiel: „Wir übernehmen die Buchhaltung für Gastrobetriebe in der Region Basel, damit die Wirtinnen und Wirte abends nicht noch Belege sortieren.“</p>
+<p>Dieser Satz ist kein Werbeslogan, sondern ein Arbeitswerkzeug: Er steht oben auf der Website und in der ersten Minute jedes Gesprächs. Stimmt er nicht mehr, ändert ihr ihn. Das ist günstiger, als ein ganzes Erscheinungsbild umzubauen.</p>
+<p>Wie ihr den Unterschied zum Wettbewerb sauber herausarbeitet, beschreibt der Leitfaden <a href="../wettbewerb-gewinnen/">Positionierung</a>.</p>
+
+<h2 id="warten">Was warten kann</h2>
+<p>Vieles, was in einem vollständigen Markenauftritt steckt, ist beim Start schlicht noch nicht nötig. Es wird erst sinnvoll, wenn ihr wisst, welche Anwendungen ihr wirklich braucht:</p>
+<ul><li>ein ausführlicher Styleguide mit Regeln für jeden Sonderfall</li><li>eine eigene Bildwelt mit aufwendigem Fotoshooting</li><li>Vorlagen für Broschüren, Messestand und Fahrzeugbeschriftung</li><li>mehrere Logo-Varianten für Formate, die ihr noch gar nicht verwendet</li></ul>
+<p>Diese Dinge sind nicht unwichtig. Sie taugen aber erst, wenn das Angebot sich im Markt bewährt hat. Vorher baut ihr ein Fundament unter ein Haus, das noch umzieht.</p>
+<p class="seo-lesetipp">Haltet eure vier Grundentscheidungen auf einer einzigen Seite fest: Name, Farbwerte, Schrift, Satz. Diese Seite ist euer erster Styleguide. Sie reicht, damit auch eine Aushilfe oder eine Druckerei alles richtig umsetzt.</p>
+
+<h2 id="markensystem">Wann das volle Markensystem dran ist</h2>
+<p>Der richtige Zeitpunkt für den nächsten Schritt hängt nicht am Kalender, sondern an Signalen aus dem Alltag. Typische Anzeichen sind:</p>
+<ul><li>Das Angebot ist stabil, und ihr erklärt es Kundinnen und Kunden seit Monaten gleich.</li><li>Mehrere Personen erstellen Inhalte, und jede macht es ein bisschen anders.</li><li>Ihr verliert Zeit, weil jede Präsentation und jeder Beitrag bei null beginnt.</li><li>Eine neue Website, ein Ladenlokal oder eine grössere Kampagne steht an.</li></ul>
+<p>Dann lohnt sich ein Markensystem mit Logo-Varianten, Bildsprache, Vorlagen und klaren Regeln. Was dazugehört und wie ihr es schlank haltet, erklärt der Leitfaden <a href="../kluge-marken-wachsen/">Corporate Design für KMU</a>. Mit welchem Aufwand ihr dafür rechnen müsst, zeigt <a href="../branding-kosten/">Was kostet ein Branding?</a>. Steht eine neue Website an, hilft der Leitfaden <a href="../website-erstellen-lassen/">Website erstellen lassen</a>, die Marke sauber zu übertragen.</p>
+
+<h2 id="fehler">Typische Fehler beim Markenaufbau</h2>
+<ul><li><strong>Den Namen nur bei der Domain prüfen.</strong> Eine freie .ch-Adresse sagt nichts über ähnliche Firmen oder Marken. Prüft Zefix, Swissreg und Domain zusammen.</li><li><strong>Zu früh zu viel festlegen.</strong> Ein umfangreiches Markenhandbuch für ein Angebot, das sich noch ändert, wird zur Altlast.</li><li><strong>Lesbarkeit für Stil opfern.</strong> Zarte Schriften und blasse Farben sehen auf dem Entwurf gut aus und scheitern auf dem Handy.</li><li><strong>Jedes Mal neu entscheiden.</strong> Wer bei jedem Beitrag eine andere Farbe wählt, baut keine Wiedererkennung auf.</li></ul>
+
+<h2>Checkliste</h2>
+<ul><li>Name laut getestet und am Telefon buchstabiert</li><li>Name in Zefix geprüft, auch ähnliche Schreibweisen</li><li>Erste Suche in Swissreg gemacht, bei Bedarf professionelle Recherche geplant</li><li>Domain auf nic.ch geprüft und bei einem Registrar gesichert</li><li>Benutzernamen auf den geplanten Plattformen geprüft</li><li>Eine Hauptfarbe mit genauen Werten festgelegt</li><li>Kontrast für Text geprüft (mindestens 4,5:1 bei normaler Schrift)</li><li>Eine Schrift mit passender Lizenz gewählt</li><li>Schriftzug oder Logo, das auch klein lesbar ist</li><li>Ein Satz, für wen ihr da seid, schriftlich festgehalten</li></ul>
+
+<div class="fragen fragen--eingebettet fragen--wie-start">
+  <div class="fragen__kopf">
+    <span class="chip" data-rein>FAQ</span>
+    <h2 id="fragen">Häufige Fragen.</h2>
+    <p class="fuehrung">Noch etwas offen? <a href="../../index.html#kontakt">Schreib uns</a>. Wir antworten meist am selben Arbeitstag.</p>
+  </div>
+  <div class="fragen__liste">
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Brauchen wir zum Start ein professionelles Logo?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Nicht zwingend. Für den Anfang genügt oft ein sauber gesetzter Schriftzug in eurer Schrift und Farbe. Wichtiger als ein aufwendiges Zeichen ist, dass ihr es überall gleich verwendet und dass es auch klein lesbar bleibt.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Ist unser Firmenname durch den Handelsregistereintrag geschützt?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Nur begrenzt. Laut IGE ist ein Firmenname mit dem Eintrag nicht automatisch auch als Marke geschützt. Markenschutz entsteht erst mit der Eintragung im Markenregister. Ob sich das für euch lohnt, klärt ihr im Zweifel mit einer Fachperson.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Reicht es, wenn die .ch-Domain noch frei ist?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Nein. Eine freie Domain zeigt nur, dass die Adresse noch niemand registriert hat. Ähnliche Firmen im Handelsregister oder eingetragene Marken findet ihr über Zefix und Swissreg. Prüft alle drei, bevor ihr Geld in Gestaltung und Drucksachen steckt.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Wie finden wir einen guten Firmennamen?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Sammelt zuerst viele Kandidaten und streicht dann hart: zu lang, schwer zu schreiben, zu eng an einen Ort oder ein einzelnes Produkt gebunden. Die übrigen testet ihr laut am Telefon und prüft sie in Zefix, Swissreg und bei den Domains. Was alle Prüfungen besteht, ist ein guter Kandidat.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<h2>Quellen und Vertiefung</h2>
+<p>Die Regeln zum Firmennamen erklärt das KMU-Portal des Bundes in den Beiträgen zur <a href="https://www.kmu.admin.ch/de/anmeldung-eines-unternehmens-im-handelsregister">Anmeldung im Handelsregister</a>, zur <a href="https://www.kmu.admin.ch/de/rechtsform-gesellschaft-mit-beschraenkter-haftung-gmbh">Rechtsform GmbH</a> und zu den <a href="https://www.kmu.admin.ch/de/handelsregister-rechte-und-pflichten-fuer-kmu">Rechten und Pflichten im Handelsregister</a>. Eingetragene Firmen findet ihr in <a href="https://www.zefix.ch/">Zefix</a>.</p>
+<p>Zum Verhältnis von Firmenname und Marke informiert das IGE auf den Seiten zur <a href="https://www.ige.ch/de/uebersicht-geistiges-eigentum/ein-leitfaden-fuer-innovative-und-kreative/produktentwicklung/unternehmensgruendung">Unternehmensgründung</a>, zur <a href="https://www.ige.ch/de/etwas-schuetzen/marken/vor-der-anmeldung/ihre-schutzstrategie">Schutzstrategie</a>, zur <a href="https://www.ige.ch/de/uebersicht-geistiges-eigentum/ein-leitfaden-fuer-innovative-und-kreative/marken/zuerst-recherchieren">Recherche vor der Anmeldung</a> und in den <a href="https://www.ige.ch/de/etwas-schuetzen/marken/faq">häufigen Fragen zu Marken</a>. Die Markendatenbank ist <a href="https://www.ige.ch/de/uebersicht-dienstleistungen/digitales-angebot/datenbanken-und-verzeichnisse/swissreg">Swissreg</a>.</p>
+<p>Freie .ch-Domains prüft ihr auf <a href="https://www.nic.ch/de/">nic.ch</a>. Die Kontrastregeln stehen beim W3C unter <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html">Contrast (Minimum)</a>, auf Englisch.</p>
+
+<h2>Euer nächster Schritt</h2>
+<p>Nehmt euch einen halben Tag und haltet die vier Grundentscheidungen fest: Name, Farbe, Schrift, Satz. Prüft den Namen in Zefix, Swissreg und bei den Domains, bevor ihr etwas druckt. Damit habt ihr eine Marke, mit der ihr starten könnt, ob in Basel, im Baselbiet oder im Aargau.</p>
+<p>Wenn ihr dabei Unterstützung wollt oder später den Schritt zum vollständigen Markensystem macht, findet ihr unseren Ansatz auf der Seite <a href="../../branding/">Branding und Markenstrategie</a>.</p>
+<nav class="weiterlesen" aria-label="Weiterlesen"><a class="weiter__karte" href="../branding-kosten/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Was kostet ein Branding?</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../kluge-marken-wachsen/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Corporate Design für KMU</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../wettbewerb-gewinnen/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Positionierung</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a></nav>
+</article></main>
+
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <span class="chip chip--hell" data-rein>Kontakt</span>
+      <h2>Reden wir.</h2>
+      <div class="fuss__aktion">
+        <a class="knopf knopf--dunkel fuss__cta" href="../../index.html#kontakt">Gespräch buchen <i aria-hidden="true">→</i></a>
+        <a class="fuss__mail" href="mailto:hallo@klartext-digital.ch">hallo@klartext-digital.ch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__mitte">
+    <div class="fuss__adresse">
+      <a class="fuss__logo" href="../../index.html" aria-label="Klartext Digital: zur Startseite"><img src="../../marke/logo-fuss.svg" alt="klartext. digital" width="766" height="314" loading="lazy"></a>
+      <p class="fuss__ort">Lohagstrasse 15, 4133 Pratteln<br>
+        Schwerpunkt Region Basel und Aargau<br>
+        Mo bis Fr, 08:00 bis 20:00</p>
+    </div>
+    <nav class="fuss__spalte fuss__spalte--leistungen" aria-label="Leistungen">
+      <p class="fuss__kopf">Leistungen</p>
+      <div class="fuss__liste"><a class="mlink" href="../../marketing-abo/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Marketing im Abo</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Marketing im Abo</span></a><a class="mlink" href="../../projektarbeit/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Projektarbeit</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Projektarbeit</span></a><a class="mlink" href="../../leistungen/branding.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a><a class="mlink" href="../../leistungen/social-media.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a><a class="mlink" href="../../leistungen/websites.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a><a class="mlink" href="../../leistungen/performance.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a><a class="mlink" href="../../leistungen/email-marketing.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a><a class="mlink" href="../../seo/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">SEO</span><span class="mlink__t mlink__t--neu" aria-hidden="true">SEO</span></a></div>
+    </nav>
+    <nav class="fuss__spalte" aria-label="Seiten">
+      <p class="fuss__kopf">Seiten</p>
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a><a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a><a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a><a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a><a class="mlink" href="../../index.html#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+    </nav>
+    <div class="fuss__folgen">
+      <p class="fuss__kopf">Folgen</p>
+      <div class="fuss__sozial">
+          <a href="https://www.instagram.com/klartextdigital/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH&nbsp;· <span class="untrennbar">UID CHE-210.244.987</span>&nbsp;· Alle Rechte vorbehalten</p>
+    <nav>
+      <a href="../../recht/impressum.html">Impressum</a>
+      <a href="../../recht/datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859"></div>
+</footer>
+
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script src="../../js/lenis.min.js"></script>
+<script src="../../js/gsap.min.js"></script>
+<script src="../../js/ScrollTrigger.min.js"></script>
+<script src="../../lader.js"></script>
+<script src="../../bewegung.js"></script>
+<script src="../../fragen.js"></script>
+<script src="../../zeiger.js"></script>
+<script src="../../rechner.js"></script>
+</body>
+</html>

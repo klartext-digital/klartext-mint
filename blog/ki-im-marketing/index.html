@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:var(--hand,'Rock Salt'),cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<title>KI im Marketing: Leitfaden für KMU | Klartext Digital</title>
+<meta name="description" content="KI im Marketing für KMU: wo ChatGPT hilft und wo nicht, was Google zu KI-Texten sagt und was das Schweizer Datenschutzgesetz verlangt.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/logo-negativ.svg" alt="klartext. digital" width="766" height="314"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../index.html" aria-label="Klartext Digital: zur Startseite"><picture><source media="(max-width: 699px)" srcset="../../marke/zeichen.svg" width="1010" height="916"><img src="../../marke/logo-quer.svg" alt="klartext digital" width="1350" height="259"></picture></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../index.html#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../index.html#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../leistungen/branding.html" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marke &amp; Strategie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/social-media.html" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media &amp; Content</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/websites.html" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/performance.html" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/email-marketing.html" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../seo/index.html" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/index.html" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist">
+          <img src="../../bilder/dienst-2.jpg" alt="">
+          <img src="../../bilder/dienst-3.jpg" alt="">
+          <img src="../../bilder/dienst-4.jpg" alt="">
+          <img src="../../bilder/dienst-5.jpg" alt="">
+          <img src="../../bilder/dienst-6.jpg" alt="">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+          <div class="ndd__satz"><b>Gefunden, wenn gesucht wird</b><span>Technische Prüfung, verständliche Inhalte und laufende Auswertung. Als eigenes Projekt oder als Teil des Abos.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main><div class="hero hero--portraet" data-hero>
+  <section class="unter unter--eng">
+  </section>
+<section class="unter__leib unter__leib--portraet">
+    <div class="unter__kopf" data-rein>
+      <a class="zurueck" href="../">
+        <i aria-hidden="true">←</i><span>Alle Artikel</span></a>
+      <h1 class="seo-h1 unter__gross unter__gross--artikel"><span class="satz">KI im Marketing:</span> <span class="satz">Wo sie KMU wirklich hilft<i class="punkt">.</i></span></h1>
+      <p class="brush">Werkzeug, nicht Absender.</p>
+    </div>
+    <figure class="unter__motiv" data-rein>
+      <img sizes="(max-width: 1100px) 1px, 62vw" src="../../bilder/wd-konzept.jpg" alt="" fetchpriority="high" decoding="async">
+    </figure>
+    <div class="unter__text unter__text--satz" data-rein>
+      <p>Werkzeuge wie ChatGPT sind mit wenigen Klicks eingerichtet. Für KI im Marketing eines KMU heisst das: Die Frage ist weniger, ob ihr sie nutzt, sondern wofür und nach welchen Regeln. Dieser Leitfaden zeigt, wo KI euch Zeit spart und wo nicht, was Google zu KI-Texten sagt, was das Schweizer Datenschutzgesetz verlangt und wie eine einfache interne Leitlinie aussieht.</p></div></section>
+    </div>
+  </section>
+</div>
+<article class="artikel seo-prose">
+<p class="seo-antwort"><strong>Kurze Antwort:</strong> KI hilft im Marketing von KMU vor allem bei der Vorarbeit: Entwürfe, Ideen, Zusammenfassungen, Übersetzungshilfe, Bildvarianten und erste Auswertungen. Fakten, Haltung, Kundenkenntnis und rechtlich heikle Aussagen bleiben Aufgabe von Menschen. Google bewertet Inhalte nach ihrer Qualität und nicht danach, wie sie entstanden sind, geht aber gegen massenhaft erzeugte Seiten ohne Mehrwert vor. Personendaten gehören nicht in öffentliche KI-Tools, denn das Datenschutzgesetz gilt auch hier.</p>
+
+<h2>Wo KI im Marketing von KMU echt hilft</h2>
+<p>KI ist dort am stärksten, wo ihr Rohmaterial braucht, das ein Mensch danach prüft und fertig macht. Typische Einsätze im Alltag eines KMU:</p>
+<ul><li><strong>Entwürfe:</strong> eine erste Fassung für einen Social-Media-Beitrag, eine Stellenanzeige oder eine Produktbeschreibung, die ihr danach in eure Sprache bringt.</li><li><strong>Ideen:</strong> zehn mögliche Betreffzeilen für den Newsletter, Themen für die nächsten drei Monate, Fragen, die Kunden zu einer Leistung stellen könnten.</li><li><strong>Zusammenfassungen:</strong> ein langes Dokument, eine Gesetzesänderung oder ein Gesprächsprotokoll in Stichworten, als Einstieg, nicht als Ersatz fürs Lesen.</li><li><strong>Übersetzungshilfe:</strong> ein Rohentwurf auf Französisch oder Englisch, etwa für Kundschaft in der Romandie. Das Gegenlesen durch eine sprachkundige Person ersetzt er nicht.</li><li><strong>Bildvarianten:</strong> Formate, Ausschnitte und Hintergründe für verschiedene Kanäle, auf Basis eurer eigenen Fotos.</li><li><strong>Auswertung:</strong> Kommentare, Bewertungen oder Umfrageantworten nach Themen sortieren, Zahlen aus einem Bericht in verständliche Sätze fassen.</li></ul>
+<p>Gemeinsam ist allen Beispielen: Die KI spart den Schritt vom leeren Blatt zum ersten Entwurf. Den Schritt vom Entwurf zum fertigen Inhalt spart sie nicht.</p>
+
+<h2>Wo KI nicht weiterhilft</h2>
+<p>Sprachmodelle sagen wahrscheinliche Wortfolgen voraus. Deshalb klingen ihre Antworten sicher, auch wenn sie falsch sind. Google nennt solche Fehler in seiner Anleitung zu KI-Inhalten ausdrücklich Halluzinationen. Daraus ergeben sich vier Grenzen:</p>
+<ul><li><strong>Fakten:</strong> Zahlen, Fristen, Preise, Gesetzesartikel und Zitate prüft ihr an der Quelle. Eine KI liefert im Zweifel eine plausible, aber erfundene Antwort.</li><li><strong>Haltung:</strong> Wofür euer Betrieb steht und was ihr anders macht, kann nur aus dem Betrieb kommen. Ohne diese Vorgabe schreibt die KI, was alle schreiben.</li><li><strong>Kundenkenntnis:</strong> Welche Fragen eure Kundschaft im Laden, in der Praxis oder am Telefon stellt, wisst nur ihr. Genau das macht einen Text glaubwürdig.</li><li><strong>Rechtlich heikle Aussagen:</strong> Heilversprechen, Garantien, Vergleiche mit Mitbewerbern oder Preisangaben gehören nicht ungeprüft in eine Veröffentlichung.</li></ul>
+
+<h2>KI-Texte und SEO: Was Google dazu sagt</h2>
+<p>Google hat seine Haltung im Search Central Blog und in einer eigenen Anleitung festgehalten. Zusammengefasst: Google achtet auf die Qualität eines Inhalts, nicht darauf, ob ein Mensch oder eine Maschine ihn geschrieben hat. Belohnt werden Inhalte, die Erfahrung, Fachwissen, Autorität und Vertrauenswürdigkeit zeigen.</p>
+<p>Die Grenze ziehen die Spamrichtlinien. Als Missbrauch gilt dort ausdrücklich, mit generativer KI oder ähnlichen Werkzeugen viele Seiten zu erzeugen, ohne Nutzern einen Mehrwert zu bieten. Ein Beispiel wären fast gleiche Ortsseiten für jede Gemeinde im Aargau, die sich nur im Ortsnamen unterscheiden. Google empfiehlt ausserdem, KI-Inhalte vor der Veröffentlichung auf Richtigkeit zu prüfen, auch Seitentitel, Beschreibungen und Alternativtexte von Bildern.</p>
+<p>Für KMU heisst das: KI-Texte sind für SEO weder verboten noch ein Vorteil. Es zählt, was immer zählt: eine echte Frage gründlich beantworten, mit eigenem Wissen und Belegen. Wie das im Ganzen aussieht, steht im Leitfaden <a href="../seo-fuer-kmu/">SEO für KMU</a>; wer die laufende Arbeit abgeben will, findet sie unter <a href="../../seo/">SEO-Betreuung</a>. Wie KI-Suchen wie ChatGPT Inhalte auswählen und zitieren, behandelt der Beitrag <a href="../in-chatgpt-gefunden-werden/">In ChatGPT gefunden werden</a>.</p>
+
+<h2>KI für KMU und Datenschutz in der Schweiz</h2>
+<p>Der Eidgenössische Datenschutz- und Öffentlichkeitsbeauftragte (EDÖB) hält fest, dass das geltende Datenschutzgesetz auf KI-gestützte Datenbearbeitungen direkt anwendbar ist. Es braucht also kein neues Gesetz, damit Regeln gelten: Sobald ihr Personendaten in ein KI-Tool eingebt, bearbeitet ihr sie im Sinne des DSG.</p>
+<p>Das Bundesamt für Cybersicherheit (BACS) hat zusammen mit dem EDÖB Empfehlungen für den Arbeitsalltag veröffentlicht. Für ein KMU lassen sie sich so zusammenfassen:</p>
+<ul><li>Keine Kundendaten, Personendaten oder Geschäftsgeheimnisse ungeprüft in KI-Tools eingeben. Wenn ein Beispiel nötig ist, Namen und Details vorher entfernen.</li><li>Von der Firma freigegebene Geschäftskonten statt privater Konten nutzen.</li><li>In den Einstellungen prüfen, ob Eingaben zum Training verwendet werden, und Opt-out-Möglichkeiten nutzen.</li><li>Ergebnisse kritisch prüfen, bevor sie weiterverwendet werden.</li></ul>
+<p>Prüft zudem die Verträge. Bearbeitet ein Anbieter Personendaten in eurem Auftrag, gelten die Regeln zur Auftragsbearbeitung (Art. 9 DSG). Werden Daten ins Ausland übermittelt, kommen die Regeln zur Bekanntgabe ins Ausland dazu (Art. 16 DSG). Ob ein bestimmtes Tool für euren Zweck geeignet ist, klärt im Zweifel mit einer Fachperson.</p>
+
+<h2>Urheberrecht und Bildrechte</h2>
+<p>Beim Urheberrecht sind in der Schweiz noch Fragen offen, deshalb lohnt sich Vorsicht. Das Eidgenössische Institut für Geistiges Eigentum (IGE) schreibt in einem Blogbeitrag, dass urheberrechtlich nur geschützt ist, was von einem Menschen stammt. Ein rein maschinell erzeugter Text oder ein solches Bild ist demnach als solches nicht geschützt. Wer KI nur als Werkzeug einsetzt und die kreative Leistung selbst erbringt, kann dagegen Schutz erlangen.</p>
+<p>Umgekehrt kann ein KI-Ergebnis fremde Rechte verletzen, wenn darin geschützte Werke erkennbar sind. Für die Praxis heisst das:</p>
+<ul><li>Keine Texte oder Bilder anfordern, die gezielt ein bestimmtes Werk, eine fremde Marke oder Figur nachahmen.</li><li>Die Nutzungsbedingungen des Tools lesen. Manche schränken die kommerzielle Nutzung der Ergebnisse ein.</li><li>Für Menschen, Räume und Produkte eigene Fotos verwenden und KI höchstens zur Bearbeitung einsetzen.</li></ul>
+
+<h2>Transparenz gegenüber Kundinnen und Kunden</h2>
+<p>Ob und wann ihr KI-Unterstützung offenlegen müsst, hängt vom Einzelfall ab. Zwei Punkte nennt der EDÖB aber klar: Wer mit einem Chatbot schreibt oder spricht, hat ein Recht zu erfahren, dass auf der anderen Seite eine Maschine ist. Und Inhalte, die Gesichter, Bilder oder Stimmen erkennbarer Personen verfälschen, müssen deutlich als solche erkennbar sein.</p>
+<p>Darüber hinaus ist Offenheit eine Frage des Vertrauens. Google empfiehlt, Angaben zur Entstehung dort zu machen, wo sich Leser fragen könnten, wie ein Inhalt erstellt wurde. Eine einfache Regel: Wo KI etwas zeigt, das so nicht stattgefunden hat, sagt ihr es. Ein KI-Bild einer Werkstatt, die es so nicht gibt, kostet mehr Vertrauen, als es Arbeit spart.</p>
+
+<h2>ChatGPT im Marketing nutzen: ein Ablauf in vier Schritten</h2>
+<p>Ein fester Ablauf verhindert, dass ungeprüfte Texte veröffentlicht werden. Er passt für einen Social-Media-Beitrag genauso wie für einen Newsletter oder eine Seite auf der Website.</p>
+<ol><li><strong>Briefing:</strong> Ziel, Zielgruppe, Kernaussage, Tonalität und die Fakten, die vorkommen müssen. Je genauer das Briefing, desto brauchbarer der Entwurf.</li><li><strong>Entwurf:</strong> Die KI liefert eine oder mehrere Fassungen. Personendaten bleiben draussen.</li><li><strong>Prüfung durch einen Menschen:</strong> Fakten an der Quelle prüfen, Haltung und Beispiele aus dem eigenen Betrieb ergänzen, Sprache auf Schweizer Hochdeutsch und euren Ton bringen, rechtliche Aussagen kontrollieren.</li><li><strong>Freigabe:</strong> Eine verantwortliche Person gibt frei. Wer freigibt, steht für den Inhalt ein, egal wie er entstanden ist.</li></ol>
+<p>Wie dieser Ablauf in einen regelmässigen Plan passt, zeigt der Beitrag zum <a href="../rhythmus-statt-kampagne/">Redaktionsplan für Social Media</a>; für E-Mails gilt dasselbe, siehe <a href="../newsletter-kmu/">Newsletter für KMU</a>. Wer Planung und Umsetzung in feste Hände geben will, findet beides im <a href="../../marketing-abo/">Marketing im Abo</a>.</p>
+
+<h2>Eure interne KI-Leitlinie in fünf Punkten</h2>
+<p>Eine Leitlinie muss nicht lang sein. Eine Seite reicht, wenn sie klar ist und alle im Team sie kennen. Diese fünf Punkte decken das Wichtigste ab:</p>
+<ol><li><strong>Erlaubte Werkzeuge:</strong> welche KI-Tools mit welchem Konto genutzt werden dürfen.</li><li><strong>Verbotene Eingaben:</strong> keine Kundendaten, Personendaten, Passwörter oder Geschäftsgeheimnisse.</li><li><strong>Prüfpflicht:</strong> Nichts wird ungeprüft veröffentlicht oder an Kunden geschickt.</li><li><strong>Rechte:</strong> keine Nachahmung fremder Werke, Marken oder Personen; eigene Fotos haben Vorrang.</li><li><strong>Transparenz:</strong> Chatbots geben sich als Maschine zu erkennen, veränderte Bilder von Personen werden gekennzeichnet.</li></ol>
+<p class="seo-lesetipp">Legt die Leitlinie nicht nur in einem Ordner ab. Geht sie einmal gemeinsam durch, mit einem echten Beispiel aus eurem Alltag. Auch das BACS empfiehlt Unternehmen neben klaren internen Regeln Schulungen für die Mitarbeitenden.</p>
+
+<h2>Checkliste</h2>
+<ul><li>Einsatzbereiche festgelegt: Entwurf, Ideen, Zusammenfassung, Auswertung</li><li>Freigegebene Tools mit Geschäftskonto</li><li>Training mit euren Eingaben in den Einstellungen geprüft</li><li>Keine Personendaten in öffentlichen Tools</li><li>Verträge und Datenstandort der Anbieter geprüft</li><li>Jeder Inhalt vor der Veröffentlichung von einem Menschen geprüft</li><li>Fakten, Zahlen und Rechtsaussagen an der Quelle kontrolliert</li><li>Keine massenhaft erzeugten Seiten ohne Mehrwert</li><li>Chatbots und veränderte Personenbilder gekennzeichnet</li><li>Interne Leitlinie im Team besprochen</li></ul>
+
+<div class="fragen fragen--eingebettet fragen--wie-start">
+  <div class="fragen__kopf">
+    <span class="chip" data-rein>FAQ</span>
+    <h2>Häufige Fragen.</h2>
+    <p class="fuehrung">Noch etwas offen? <a href="../../index.html#kontakt">Schreib uns</a>. Wir antworten meist am selben Arbeitstag.</p>
+  </div>
+  <div class="fragen__liste">
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Straft Google KI-generierte Texte ab?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Nicht deshalb, weil sie mit KI entstanden sind. Google bewertet die Qualität des Inhalts. Gegen die Spamrichtlinien verstösst aber, wer mit KI viele Seiten ohne Mehrwert für Nutzer erzeugt, um das Ranking zu beeinflussen.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Dürfen wir Kundendaten in ChatGPT eingeben?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Das Datenschutzgesetz gilt auch für KI. BACS und EDÖB empfehlen, Kunden- und Personendaten vor der Eingabe zu entfernen oder zu anonymisieren und Geschäftskonten statt privater Konten zu nutzen. Prüft ausserdem die Vertragsbedingungen des Anbieters und klärt Einzelfälle mit einer Fachperson.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Müssen KI-Texte gekennzeichnet werden?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Das hängt vom Einzelfall ab. Laut EDÖB müssen Menschen erfahren, wenn sie mit einem Chatbot kommunizieren, und verfälschte Bilder oder Stimmen erkennbarer Personen müssen deutlich erkennbar sein. Für normale Texte, die ein Mensch geprüft und freigegeben hat, empfiehlt Google Angaben dort, wo Leser sie erwarten würden.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Gehören uns die Bilder, die eine KI erzeugt?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Nach der Einschätzung des IGE ist in der Schweiz urheberrechtlich nur geschützt, was von einem Menschen stammt. Ein rein maschinell erzeugtes Bild ist als solches also nicht geschützt. Was ihr damit tun dürft, regeln zusätzlich die Nutzungsbedingungen des Tools.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<h2>Quellen und Vertiefung</h2>
+<p>Googles Haltung steht im Beitrag <a href="https://developers.google.com/search/blog/2023/02/google-search-and-ai-content?hl=de">Leitfaden der Google Suche zu KI-generierten Inhalten</a>, in der <a href="https://developers.google.com/search/docs/fundamentals/using-gen-ai-content?hl=de">Anleitung zur Verwendung von KI-generierten Inhalten</a> und in den <a href="https://developers.google.com/search/docs/essentials/spam-policies?hl=de">Spamrichtlinien für die Google Websuche</a>, Abschnitt zum Missbrauch mit in grossem Umfang generierten Inhalten.</p>
+<p>Die Einschätzung des EDÖB lest ihr in <a href="https://www.edoeb.admin.ch/de/update-geltendes-datenschutzgesetz-ist-auf-ki-direkt-anwendbar">Geltendes Datenschutzgesetz ist auf KI direkt anwendbar</a>, die Empfehlungen für den Arbeitsalltag auf der BACS-Seite <a href="https://www.bacs.admin.ch/de/csm26-s3-de">KI im Berufsalltag</a>. Der Gesetzestext steht im <a href="https://www.fedlex.admin.ch/eli/cc/2022/491/de">Datenschutzgesetz (DSG)</a>. Zum Urheberrecht: der IGE-Beitrag <a href="https://www.ige.ch/de/blog/blog-artikel/kuenstliche-intelligenz-koennen-ki-tools-urheberrecht-verletzen">Können KI-Tools Urheberrecht verletzen?</a></p>
+
+<h2>Euer nächster Schritt</h2>
+<p>Nehmt euch eine Stunde und schreibt die fünf Punkte der Leitlinie für euren Betrieb auf. Danach wählt ihr einen Einsatz, der regelmässig wiederkehrt, zum Beispiel die Entwürfe für Social-Media-Beiträge, und testet den Ablauf aus Briefing, Entwurf, Prüfung und Freigabe einen Monat lang.</p>
+<p>Ob eure Inhalte danach auch in der Suche wirken, prüft ihr mit den Grundlagen aus dem Leitfaden <a href="../seo-fuer-kmu/">SEO für KMU</a>.</p>
+<nav class="weiterlesen" aria-label="Weiterlesen"><a class="weiter__karte" href="../seo-fuer-kmu/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">SEO für KMU</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../in-chatgpt-gefunden-werden/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">In ChatGPT gefunden werden</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../newsletter-kmu/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Newsletter für KMU</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a></nav>
+</article></main>
+
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <span class="chip chip--hell" data-rein>Kontakt</span>
+      <h2>Reden wir.</h2>
+      <div class="fuss__aktion">
+        <a class="knopf knopf--dunkel fuss__cta" href="../../index.html#kontakt">Gespräch buchen <i aria-hidden="true">→</i></a>
+        <a class="fuss__mail" href="mailto:hallo@klartext-digital.ch">hallo@klartext-digital.ch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__mitte">
+    <div class="fuss__adresse">
+      <a class="fuss__logo" href="../../index.html" aria-label="Klartext Digital: zur Startseite"><img src="../../marke/logo-fuss.svg" alt="klartext. digital" width="766" height="314" loading="lazy"></a>
+      <p class="fuss__ort">Lohagstrasse 15, 4133 Pratteln<br>
+        Schwerpunkt Region Basel und Aargau<br>
+        Mo bis Fr, 08:00 bis 20:00</p>
+    </div>
+    <nav class="fuss__spalte fuss__spalte--leistungen" aria-label="Leistungen">
+      <p class="fuss__kopf">Leistungen</p>
+      <div class="fuss__liste"><a class="mlink" href="../../marketing-abo/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Marketing im Abo</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Marketing im Abo</span></a><a class="mlink" href="../../projektarbeit/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Projektarbeit</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Projektarbeit</span></a><a class="mlink" href="../../leistungen/branding.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a><a class="mlink" href="../../leistungen/social-media.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a><a class="mlink" href="../../leistungen/websites.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a><a class="mlink" href="../../leistungen/performance.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a><a class="mlink" href="../../leistungen/email-marketing.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a><a class="mlink" href="../../seo/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">SEO</span><span class="mlink__t mlink__t--neu" aria-hidden="true">SEO</span></a></div>
+    </nav>
+    <nav class="fuss__spalte" aria-label="Seiten">
+      <p class="fuss__kopf">Seiten</p>
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a><a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a><a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a><a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a><a class="mlink" href="../../index.html#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+    </nav>
+    <div class="fuss__folgen">
+      <p class="fuss__kopf">Folgen</p>
+      <div class="fuss__sozial">
+          <a href="https://www.instagram.com/klartextdigital/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH&nbsp;· <span class="untrennbar">UID CHE-210.244.987</span>&nbsp;· Alle Rechte vorbehalten</p>
+    <nav>
+      <a href="../../recht/impressum.html">Impressum</a>
+      <a href="../../recht/datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859"></div>
+</footer>
+
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script src="../../js/lenis.min.js"></script>
+<script src="../../js/gsap.min.js"></script>
+<script src="../../js/ScrollTrigger.min.js"></script>
+<script src="../../lader.js"></script>
+<script src="../../bewegung.js"></script>
+<script src="../../fragen.js"></script>
+<script src="../../zeiger.js"></script>
+<script src="../../rechner.js"></script>
+</body>
+</html>

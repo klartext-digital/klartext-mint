@@ -75,4 +75,12 @@
 .anfrage :focus-visible{outline:2px solid var(--tinte);outline-offset:5px}
 .seo-offer-nav{display:flex;flex-wrap:wrap;gap:12px 24px;padding:16px 0 0;font-size:16px;line-height:1.5}
 .seo-offer-nav a{padding:8px 0;text-decoration:underline;text-underline-offset:4px}
-.fuss__spalte>a:not(.mlink){max-width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere;hyphens:auto;padding:8px 0;line-height:1.5}
+.fuss__spalte>a:not(.mlink){max-width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere;hyphens:auto;padding:8px 0;line-height:1.5}/* Tabellen in Leitfaeden (z. B. Redaktionsplan-Vorlage). Linien nur zwischen
+   gleichrangigen Zeilen, Akzent 1,5 px, keine Linie unter der Kopfzeile.
+   Auf dem Handy seitlich wischbar statt gequetscht. */
+.seo-tabelle{overflow-x:auto;margin:1.2em 0 2em;-webkit-overflow-scrolling:touch}
+.seo-tabelle table{width:100%;min-width:620px;border-collapse:collapse;text-align:left;font-size:16px;line-height:1.45}
+.seo-tabelle th{padding:0 14px 10px 0;font-weight:700;vertical-align:bottom}
+.seo-tabelle td{padding:10px 14px 10px 0;vertical-align:top}
+.seo-tabelle th:last-child,.seo-tabelle td:last-child{padding-right:0}
+.seo-tabelle tbody tr+tr td{border-top:1.5px solid var(--violett)}

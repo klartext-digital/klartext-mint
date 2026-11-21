@@ -88,20 +88,103 @@
     "description": "Unternehmenswebsite planen: Aufgabe, Struktur, Inhalte, Technik und Betrieb. Die sechs Entscheidungen, die vor dem ersten Entwurf stehen.",
     "label": "Die Unternehmenswebsite: der Leitfaden",
     "article": true,
-    "image": "bilder/dienst-5.jpg"
+    "image": "bilder/dienst-5.jpg",
+    "rang": 88
   },
   "blog/in-chatgpt-gefunden-werden/": {
     "title": "In ChatGPT gefunden werden: GEO für KMU | Klartext Digital",
     "description": "Wie KMU in ChatGPT, Perplexity und den KI-Antworten von Google auftauchen: Technik, Firmenangaben, Inhalte, Erwähnungen und Messung. Der Leitfaden zu GEO.",
     "label": "In ChatGPT gefunden werden: Wie funktioniert GEO?",
     "article": true,
-    "image": "bilder/dienst-6.jpg"
+    "image": "bilder/dienst-6.jpg",
+    "rang": 93
   },
   "blog/google-unternehmensprofil/": {
     "title": "Google-Unternehmensprofil einrichten | Klartext Digital",
     "description": "Google-Unternehmensprofil richtig einrichten: Name, Kategorie, Bestätigung, Fotos und Bewertungen. Der Leitfaden für KMU in der Schweiz, mit Checkliste.",
     "label": "Google-Unternehmensprofil: So richtet ihr es richtig ein",
     "article": true,
-    "image": "bilder/gbp-profil.jpg"
+    "image": "bilder/gbp-profil.jpg",
+    "rang": 92
+  },
+  "blog/seo-fuer-kmu/": {
+    "title": "SEO für KMU: bei Google gefunden werden | Klartext Digital",
+    "description": "SEO für KMU in der Schweiz: wie Google Seiten findet und bewertet, Keywords, Inhalte, Technik und Search Console. Was ihr selbst machen könnt.",
+    "label": "SEO für KMU: So werdet ihr bei Google gefunden",
+    "article": true,
+    "image": "bilder/wd-technik.jpg",
+    "rang": 100
+  },
+  "blog/lokale-seo/": {
+    "title": "Lokale SEO: in der Region gefunden werden | Klartext Digital",
+    "description": "Lokale SEO für KMU: wie Google lokale Ergebnisse ordnet, einheitliche Firmenangaben, Verzeichnisse, Bewertungen und Standortseiten in der Region Basel.",
+    "label": "Lokale SEO: So findet man euch in der Region",
+    "article": true,
+    "image": "bilder/pf-google.jpg",
+    "rang": 99
+  },
+  "blog/vorne-bleiben/": {
+    "title": "Laufende SEO: bei Google vorne bleiben | Klartext Digital",
+    "description": "Laufende SEO für KMU: warum sich Rankings verändern, welcher Monats- und Quartalsrhythmus reicht und was ihr nach einem Google Update tut und lasst.",
+    "label": "Laufende SEO: Wie ihr bei Google vorne bleibt",
+    "article": true,
+    "image": "bilder/wd-pflege.jpg",
+    "rang": 94
+  },
+  "blog/website-die-arbeitet/": {
+    "title": "Website-Erfolg messen: Kennzahlen für KMU | Klartext Digital",
+    "description": "Website-Erfolg messen: welche Kennzahlen für KMU reichen, wie ihr Anfragen und Anrufe zählt, was das DSG verlangt und wie ein Monatsbericht aussieht.",
+    "label": "Website-Erfolg messen: Welche Kennzahlen zählen?",
+    "article": true,
+    "image": "bilder/pf-tracking.jpg",
+    "rang": 95
+  },
+  "blog/newsletter-kmu/": {
+    "title": "Newsletter für KMU: Leitfaden Schweiz | Klartext Digital",
+    "description": "Newsletter für KMU in der Schweiz: wann er sich lohnt, was UWG und DSG verlangen, wie Mails im Posteingang landen und welche Kennzahlen zählen.",
+    "label": "Newsletter für KMU: Was sich lohnt und was gilt",
+    "article": true,
+    "image": "bilder/em-newsletter.jpg",
+    "rang": 97
+  },
+  "blog/ki-im-marketing/": {
+    "title": "KI im Marketing: Leitfaden für KMU | Klartext Digital",
+    "description": "KI im Marketing für KMU: wo ChatGPT hilft und wo nicht, was Google zu KI-Texten sagt und was das Schweizer Datenschutzgesetz verlangt.",
+    "label": "KI im Marketing: Wo sie KMU wirklich hilft",
+    "article": true,
+    "image": "bilder/wd-konzept.jpg",
+    "rang": 98
+  },
+  "blog/rhythmus-statt-kampagne/": {
+    "title": "Redaktionsplan Social Media für KMU | Klartext Digital",
+    "description": "Redaktionsplan für Social Media: Kanäle wählen, realistischen Rhythmus festlegen, Beiträge vorplanen und monatlich auswerten. Mit Vorlage für KMU.",
+    "label": "Redaktionsplan Social Media: Rhythmus statt Kampagne",
+    "article": true,
+    "image": "bilder/sm-plan.jpg",
+    "rang": 96
+  },
+  "blog/wettbewerb-gewinnen/": {
+    "title": "Positionierung für KMU: Wofür steht ihr? | Klartext Digital",
+    "description": "Positionierung für KMU: Wettbewerbsanalyse ohne Budget, Lücke finden, Positionierungssatz formulieren und prüfen. Mit Vorlage und Beispielen.",
+    "label": "Positionierung für KMU: Wofür steht ihr?",
+    "article": true,
+    "image": "bilder/br-position.jpg",
+    "rang": 91
+  },
+  "blog/marke-am-anfang/": {
+    "title": "Markenaufbau für Startups: das Minimum | Klartext Digital",
+    "description": "Markenaufbau für Startups: Namen in der Schweiz prüfen, Farbe, Schrift und Positionierungssatz festlegen. Was der Start braucht und was warten kann.",
+    "label": "Markenaufbau für Startups: Was der Start wirklich braucht",
+    "article": true,
+    "image": "bilder/br-marke.jpg",
+    "rang": 90
+  },
+  "blog/kluge-marken-wachsen/": {
+    "title": "Corporate Design für KMU: der Leitfaden | Klartext Digital",
+    "description": "Corporate Design für KMU: was ein Markensystem umfasst, wie ihr einen schlanken Styleguide erstellt und welche Vorlagen im Alltag Zeit sparen.",
+    "label": "Corporate Design für KMU: Markensystem und Styleguide",
+    "article": true,
+    "image": "bilder/br-guide.jpg",
+    "rang": 89
   }
 }

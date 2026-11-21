@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:var(--hand,'Rock Salt'),cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<title>Website-Erfolg messen: Kennzahlen für KMU | Klartext Digital</title>
+<meta name="description" content="Website-Erfolg messen: welche Kennzahlen für KMU reichen, wie ihr Anfragen und Anrufe zählt, was das DSG verlangt und wie ein Monatsbericht aussieht.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/logo-negativ.svg" alt="klartext. digital" width="766" height="314"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../index.html" aria-label="Klartext Digital: zur Startseite"><picture><source media="(max-width: 699px)" srcset="../../marke/zeichen.svg" width="1010" height="916"><img src="../../marke/logo-quer.svg" alt="klartext digital" width="1350" height="259"></picture></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../index.html#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../index.html#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../leistungen/branding.html" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marke &amp; Strategie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/social-media.html" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media &amp; Content</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/websites.html" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/performance.html" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/email-marketing.html" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../seo/index.html" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/index.html" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist">
+          <img src="../../bilder/dienst-2.jpg" alt="">
+          <img src="../../bilder/dienst-3.jpg" alt="">
+          <img src="../../bilder/dienst-4.jpg" alt="">
+          <img src="../../bilder/dienst-5.jpg" alt="">
+          <img src="../../bilder/dienst-6.jpg" alt="">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+          <div class="ndd__satz"><b>Gefunden, wenn gesucht wird</b><span>Technische Prüfung, verständliche Inhalte und laufende Auswertung. Als eigenes Projekt oder als Teil des Abos.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main><div class="hero hero--portraet" data-hero>
+  <section class="unter unter--eng">
+  </section>
+<section class="unter__leib unter__leib--portraet">
+    <div class="unter__kopf" data-rein>
+      <a class="zurueck" href="../">
+        <i aria-hidden="true">←</i><span>Alle Artikel</span></a>
+      <h1 class="seo-h1 unter__gross unter__gross--artikel">Website-Erfolg messen: woran man eine Website misst<i class="punkt">.</i></h1>
+      <p class="brush">Was sie auslöst, zählt.</p>
+    </div>
+    <figure class="unter__motiv" data-rein>
+      <img sizes="(max-width: 1100px) 1px, 62vw" src="../../bilder/pf-tracking.jpg" alt="" fetchpriority="high" decoding="async">
+    </figure>
+    <div class="unter__text unter__text--satz" data-rein>
+      <p>Die häufigste Frage nach einem Relaunch ist „Wie findet ihr sie?“. Die nützlichere wäre: „Was soll hier passieren, und passiert es?“ Wer den Website-Erfolg messen will, beginnt nicht bei einem Werkzeug, sondern bei der Aufgabe der Seite. Dieser Leitfaden zeigt, welche Kennzahlen für ein KMU wirklich reichen, wie ihr Anfragen und Anrufe sauber zählt, was der Datenschutz in der Schweiz dabei verlangt und wie ein Monatsbericht in fünf Zeilen aussieht.</p></div></section>
+    </div>
+  </section>
+</div>
+<article class="artikel seo-prose">
+<p class="seo-antwort"><strong>Kurze Antwort:</strong> Eine Website misst man nicht daran, ob sie gefällt, sondern ob sie etwas auslöst: Anfragen, Anrufe, Buchungen. Für den Anfang genügen zwei Zahlen: wie viele Leute ankommen und wie viele davon das Gewünschte tun. Dazu kommen die Herkunft der Besuche und die Suchanfragen aus der Google Search Console. Alles Weitere ist Feinarbeit.</p>
+<nav class="seo-inhalt" aria-label="Inhaltsverzeichnis"><h2>Worum es geht</h2><ul><li><a href="#aufgabe">Erst die Aufgabe, dann die Zahl</a></li><li><a href="#zielhandlungen">Zielhandlungen festlegen</a></li><li><a href="#kennzahlen">Die Kennzahlen, die reichen</a></li><li><a href="#werkzeuge">Search Console und Google Analytics 4</a></li><li><a href="#datenschutz">Datenschutz in der Schweiz</a></li><li><a href="#core-web-vitals">Core Web Vitals</a></li><li><a href="#bericht">Der Monatsbericht in fünf Zeilen</a></li><li><a href="#messfehler">Typische Messfehler</a></li><li><a href="#fragen">Häufige Fragen</a></li></ul></nav>
+
+<h2 id="aufgabe">Website-Erfolg messen: erst die Aufgabe, dann die Zahl</h2>
+<p>Eine Website hat eine Aufgabe. Irgendetwas soll danach anders sein als davor. Wer diese Aufgabe nicht benennt, kann die Seite auch nicht beurteilen und diskutiert am Ende über Farben.</p>
+<p>Die Aufgabe hängt vom Geschäft ab. Eine Physiotherapiepraxis in Basel will Terminbuchungen. Ein Elektroinstallateur im Fricktal will Anrufe und Offertanfragen. Ein Treuhandbüro will Erstgespräche mit passenden Firmenkunden. Ein Restaurant will Reservationen und vielleicht Anfragen für Firmenanlässe. Erst wenn diese Aufgabe in einem Satz steht, ist klar, was gezählt werden muss.</p>
+<p>Wie die Aufgabe auch Struktur und Inhalte der Website bestimmt, beschreibt der Hauptartikel <a href="../unternehmenswebsite-leitfaden/">Die Unternehmenswebsite: der Leitfaden</a>.</p>
+
+<h2 id="zielhandlungen">Zielhandlungen festlegen: Anfrage, Anruf, Buchung</h2>
+<p>Aus der Aufgabe werden Zielhandlungen: konkrete Dinge, die ein Besucher auf der Seite tut und die sich zählen lassen. Für die meisten KMU sind es diese:</p>
+<ul><li><strong>Anfrage:</strong> ein abgeschicktes Kontakt- oder Offertformular.</li><li><strong>Anruf:</strong> ein Tippen auf die Telefonnummer in der mobilen Ansicht.</li><li><strong>E-Mail:</strong> ein Klick auf die E-Mail-Adresse.</li><li><strong>Buchung:</strong> ein abgeschlossener Termin im Buchungssystem.</li><li><strong>Download:</strong> eine Preisliste, ein Prospekt, ein Stellenbeschrieb als PDF.</li></ul>
+<p>Haltet die Liste kurz. Zwei bis drei Zielhandlungen, die wirklich zum Geschäft beitragen, sind aussagekräftiger als zehn, von denen niemand weiss, was sie bedeuten. Ein Scrollen bis ans Seitenende ist zum Beispiel keine Zielhandlung, sondern höchstens ein Hinweis darauf, dass jemand gelesen hat.</p>
+
+<h2 id="kennzahlen">Website-Kennzahlen, die für KMU reichen</h2>
+<p>Für einen ehrlichen Blick auf die eigene Website reichen fünf Werte. Mehr Zahlen erzeugen selten mehr Erkenntnis, sondern mehr Diskussion.</p>
+<ol><li><strong>Besuche:</strong> Wie viele Leute kommen auf die Seite? Wichtiger als der absolute Wert ist die Entwicklung über mehrere Monate.</li><li><strong>Zielhandlungen:</strong> Wie viele Anfragen, Anrufe und Buchungen hat die Seite ausgelöst?</li><li><strong>Conversion Rate:</strong> der Anteil der Besuche, die zu einer Zielhandlung führen. Die Rechnung ist einfach: Zielhandlungen geteilt durch Besuche. Vergleicht diesen Wert vor allem mit euren eigenen Vormonaten, nicht mit Durchschnittswerten aus dem Internet, die selten zu eurer Branche und Region passen.</li><li><strong>Herkunft:</strong> Kommen die Leute über die Google-Suche, über Google Maps, über Social Media, über Werbung oder direkt? Daraus seht ihr, welcher Kanal trägt.</li><li><strong>Suchanfragen:</strong> Mit welchen Begriffen findet man euch bei Google? Das zeigt, ob ihr für eure wichtigsten Leistungen sichtbar seid.</li></ol>
+<p>Eine Conversion Rate der Website ist nur so gut wie die Zählung dahinter. Wenn Anrufe nicht erfasst werden, sieht ein Handwerksbetrieb mit vielen Telefonaufträgen schlechter aus, als er ist.</p>
+
+<h2 id="werkzeuge">Werkzeuge: Search Console und Google Analytics 4 für KMU</h2>
+<p><strong>Die Google Search Console</strong> ist laut Google ein kostenloser Dienst. Ihr Leistungsbericht zeigt Klicks, Impressionen, Klickrate und durchschnittliche Position und lässt sich nach Suchanfragen, Seiten, Ländern und Geräten aufschlüsseln. Sie misst, was vor dem Besuch passiert: ob und wie ihr in der Google-Suche erscheint. Was danach auf der Seite geschieht, sieht sie nicht.</p>
+<p><strong>Google Analytics 4</strong> misst, was auf der Website passiert. Alles wird dort als Ereignis erfasst. Laut Google-Hilfe gibt es automatisch erfasste Ereignisse, Ereignisse für optimierte Analysen, empfohlene und benutzerdefinierte Ereignisse. Die optimierten Analysen erfassen unter anderem Scrollen, ausgehende Klicks, Formularinteraktionen und Dateidownloads, wenn sie aktiviert sind.</p>
+<p>Wichtig für KMU ist ein Begriff: das Schlüsselereignis. Google Analytics bezeichnet besonders wichtige Ereignisse heute als Schlüsselereignisse, der Begriff „Conversion“ bezieht sich laut Google-Hilfe nun auf Werbekampagnen. Jedes erfasste Ereignis lässt sich in der Verwaltung als Schlüsselereignis markieren. Genau dort gehören eure Zielhandlungen hin: das abgeschickte Formular, der Klick auf die Telefonnummer, die Buchung.</p>
+<p>Google Analytics ist nicht das einzige Werkzeug. Es gibt datensparsame Alternativen, die ohne Cookies auskommen, nur zusammengefasste Werte zeigen oder in der Schweiz oder der EU betrieben werden. Für viele kleine Websites reichen Besuche, Herkunft und Zielhandlungen vollkommen aus. Welche Lösung passt, hängt davon ab, ob ihr Werbung schaltet und wie viel Auswertung ihr wirklich nutzt.</p>
+
+<h2 id="datenschutz">Datenschutz in der Schweiz: was beim Messen gilt</h2>
+<p>Wer misst, bearbeitet in vielen Fällen Personendaten. Das revidierte Datenschutzgesetz (DSG) ist seit dem 1. September 2023 in Kraft. Es verlangt unter anderem, dass Daten nur zu einem erkennbaren Zweck beschafft werden und dass die Bearbeitung verhältnismässig ist (Art. 6). Nach Art. 19 informiert der Verantwortliche die betroffenen Personen angemessen über die Beschaffung, mindestens über Identität und Kontaktdaten, den Zweck und gegebenenfalls die Empfänger.</p>
+<p>Für Cookies und ähnliche Technologien verweist der Eidgenössische Datenschutz- und Öffentlichkeitsbeauftragte (EDÖB) in seinem Merkblatt zusätzlich auf Art. 45c des Fernmeldegesetzes. Laut EDÖB legt das Schweizer Recht den Schwerpunkt auf transparente Information und das Recht, die Bearbeitung abzulehnen. In bestimmten Fällen, etwa bei unerwarteten oder risikoreichen Bearbeitungen, kann eine ausdrückliche Einwilligung nötig sein. Der Leitfaden des EDÖB hält ausserdem fest, dass sich personenbezogene Auswertungen der Besucherströme nicht rechtfertigen lassen, wenn der Zweck auch mit einer anonymisierten Auswertung erreicht werden kann.</p>
+<p>Praktisch heisst das: Die Datenschutzerklärung nennt jedes Messwerkzeug, seinen Zweck und die Anbieter. Ein Cookie-Hinweis informiert über nicht notwendige Cookies und zeigt, wie man sie ablehnt. Wer auch Besucher aus der EU anspricht, sollte zusätzlich die dortigen Regeln prüfen. Das ist keine Rechtsberatung: Klärt die Einzelheiten im Zweifel mit einer Fachperson.</p>
+
+<h2 id="core-web-vitals">Core Web Vitals: das Nutzererlebnis als Kennzahl</h2>
+<p>Neben Besuchen und Anfragen gibt es eine dritte Sorte Kennzahl: wie sich die Seite für Besucher anfühlt. Google fasst das in den Core Web Vitals zusammen. Laut web.dev gelten diese Werte als gut:</p>
+<ul><li><strong>Largest Contentful Paint (LCP):</strong> Der Hauptinhalt ist nach höchstens 2,5 Sekunden sichtbar.</li><li><strong>Interaction to Next Paint (INP):</strong> Die Seite reagiert in 200 Millisekunden oder weniger auf Eingaben.</li><li><strong>Cumulative Layout Shift (CLS):</strong> Der Wert für verrutschende Elemente liegt bei 0,1 oder weniger.</li></ul>
+<p>Gemessen wird am 75. Perzentil echter Seitenaufrufe, getrennt nach Handy und Desktop. Den Stand eurer Seite zeigt der Bericht „Core Web Vitals“ in der Search Console. Google empfiehlt gute Werte, hält aber auch fest, dass gute Ergebnisse im Bericht nicht automatisch zu Spitzenplätzen in der Suche führen. Seht sie als Hygiene: Eine langsame Seite verliert Anfragen, bevor jemand den ersten Satz gelesen hat.</p>
+
+<h2 id="bericht">Der Monatsbericht in fünf Zeilen</h2>
+<p>Zwei Zahlen genügen für den Anfang. Mit der Zeit wird daraus ein kurzer Bericht, den die Geschäftsleitung in einer Minute liest. Fünf Zeilen reichen:</p>
+<ol><li><strong>Besuche</strong> im Monat, mit dem Vormonat und dem Vorjahresmonat daneben.</li><li><strong>Zielhandlungen</strong> nach Art: Formulare, Anrufe, Buchungen.</li><li><strong>Conversion Rate</strong> im Vergleich zum Vormonat.</li><li><strong>Wichtigste Herkunft</strong> und eine auffällige Veränderung, falls es eine gibt.</li><li><strong>Eine Massnahme</strong> für den nächsten Monat, abgeleitet aus den vier Zeilen davor.</li></ol>
+<p class="seo-lesetipp">Die fünfte Zeile ist die wichtigste. Ein Bericht ohne Massnahme ist ein Ritual. Ein Bericht mit einer Massnahme ist ein Werkzeug.</p>
+<p>Wie dieser Monatstermin mit der Pflege der Suchsichtbarkeit zusammenpasst, beschreibt der Leitfaden <a href="../vorne-bleiben/">Laufende SEO: bei Google vorne bleiben</a>.</p>
+
+<h2 id="messfehler">Typische Messfehler</h2>
+<p>Die meisten falschen Schlüsse entstehen nicht durch falsche Interpretation, sondern durch eine Zählung, die nie richtig funktioniert hat.</p>
+<ul><li><strong>Das Formular wird nicht gezählt.</strong> Die Danke-Seite nach dem Absenden ist nicht als Schlüsselereignis markiert, oder das automatische Formularereignis löst bei eurem Formular nicht zuverlässig aus. Testet es mit einer eigenen Anfrage.</li><li><strong>Anrufe werden vergessen.</strong> Gerade bei Handwerk und Praxen kommt ein grosser Teil der Kontakte per Telefon. Prüft, ob Klicks auf die Telefonnummer überhaupt als Ereignis ankommen. Falls nicht, richtet sie als eigenes Ereignis ein und markiert es, sonst fehlen sie im Bericht.</li><li><strong>Eigene Besuche zählen mit.</strong> Wer täglich die eigene Seite öffnet, verzerrt die Zahlen kleiner Websites spürbar.</li><li><strong>Messung geht beim Relaunch verloren.</strong> Nach einem Wechsel fehlt das Messskript oder die Ereignisse heissen anders. Was beim Wechsel gesichert werden muss, steht in der <a href="../website-relaunch-checkliste/">Relaunch-Checkliste</a>.</li><li><strong>Einzelne Tage deuten.</strong> Ein schwacher Montag ist kein Trend. Vergleicht immer gleich lange Zeiträume.</li></ul>
+<p>Wer die Messung einmal pro Quartal mit einem Testklick überprüft, findet diese Fehler früh. Die übrigen regelmässigen Kontrollen fasst die <a href="../website-pflege-checkliste/">Checkliste zur Website-Pflege</a> zusammen.</p>
+
+<h2 id="checkliste">Checkliste</h2>
+<ul><li>Die Aufgabe der Website steht in einem Satz.</li><li>Zwei bis drei Zielhandlungen sind festgelegt: Anfrage, Anruf, Buchung oder Download.</li><li>Die Search Console ist eingerichtet und bestätigt.</li><li>Die Zielhandlungen sind im Messwerkzeug als Schlüsselereignisse markiert und mit einem Test geprüft.</li><li>Klicks auf Telefonnummer und E-Mail-Adresse werden gezählt.</li><li>Die Datenschutzerklärung nennt alle Messwerkzeuge, ihren Zweck und die Anbieter.</li><li>Die Core Web Vitals werden in der Search Console beobachtet.</li><li>Jeden Monat entsteht ein Bericht in fünf Zeilen mit einer Massnahme.</li></ul>
+
+<div class="fragen fragen--eingebettet fragen--wie-start">
+  <div class="fragen__kopf">
+    <span class="chip" data-rein>FAQ</span>
+    <h2 id="fragen">Häufige Fragen.</h2>
+    <p class="fuehrung">Noch etwas offen? <a href="../../index.html#kontakt">Schreib uns</a>. Wir antworten meist am selben Arbeitstag.</p>
+  </div>
+  <div class="fragen__liste">
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Wie misst man den Erfolg einer Website?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Zuerst legt ihr fest, was die Website auslösen soll, zum Beispiel Anfragen, Anrufe oder Buchungen. Dann zählt ihr, wie viele Besuche kommen und wie viele davon zu dieser Handlung führen. Ergänzt um Herkunft und Suchanfragen ergibt das ein klares Bild, ohne dass ihr in Zahlen untergeht.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Was ist eine gute Conversion Rate für eine Website?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Eine allgemeingültige Zahl gibt es nicht. Sie hängt von Branche, Angebot, Preis und Herkunft der Besuche ab. Aussagekräftig ist der Vergleich mit euren eigenen Vormonaten: Steigt der Anteil nach einer Änderung, hat sie gewirkt. Wichtig ist, dass alle Zielhandlungen gezählt werden, auch Anrufe.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Brauchen wir Google Analytics 4 als KMU?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Nicht zwingend. Google Analytics 4 lohnt sich vor allem, wenn ihr Werbung auf Google schaltet oder detaillierte Auswertungen nutzt. Für viele kleine Websites reicht die Search Console zusammen mit einem schlanken, datensparsamen Statistikwerkzeug. Entscheidend ist, dass eure Zielhandlungen sauber gezählt werden.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Brauchen wir in der Schweiz einen Cookie-Banner?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Laut EDÖB legt das Schweizer Recht den Schwerpunkt auf transparente Information und die Möglichkeit, nicht notwendige Cookies abzulehnen. In bestimmten Fällen kann eine Einwilligung nötig sein. Ob und in welcher Form ein Banner nötig ist, hängt von euren Werkzeugen und eurem Publikum ab. Klärt das im Zweifel mit einer Fachperson.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<h2>Quellen und Vertiefung</h2>
+<ul><li><a href="https://support.google.com/webmasters/answer/9128668?hl=de" target="_blank" rel="noopener">Search Console-Hilfe: Informationen zur Search Console</a></li><li><a href="https://support.google.com/webmasters/answer/7576553?hl=de" target="_blank" rel="noopener">Search Console-Hilfe: Leistungsbericht</a></li><li><a href="https://support.google.com/analytics/answer/9322688?hl=de" target="_blank" rel="noopener">Google Analytics-Hilfe: Ereignisse</a></li><li><a href="https://support.google.com/analytics/answer/9216061?hl=de" target="_blank" rel="noopener">Google Analytics-Hilfe: Ereignisse für optimierte Analysen</a></li><li><a href="https://support.google.com/analytics/answer/13965727?hl=de" target="_blank" rel="noopener">Google Analytics-Hilfe: Conversions im Vergleich zu Schlüsselereignissen</a></li><li><a href="https://support.google.com/analytics/answer/13128484?hl=de" target="_blank" rel="noopener">Google Analytics-Hilfe: Ereignisse als Schlüsselereignisse markieren</a></li><li><a href="https://web.dev/articles/vitals?hl=de" target="_blank" rel="noopener">web.dev: Web Vitals</a></li><li><a href="https://developers.google.com/search/docs/appearance/core-web-vitals?hl=de" target="_blank" rel="noopener">Google Search Central: Core Web Vitals und Google-Suchergebnisse</a></li><li><a href="https://developers.google.com/search/docs/appearance/page-experience?hl=de" target="_blank" rel="noopener">Google Search Central: Nutzerfreundlichkeit von Seiten bei Google</a></li><li><a href="https://www.fedlex.admin.ch/eli/cc/2022/491/de" target="_blank" rel="noopener">Fedlex: Bundesgesetz über den Datenschutz (DSG), SR 235.1</a></li><li><a href="https://www.edoeb.admin.ch/dam/de/sd-web/ByXs53ExpIEy/20260327%20Merkblatt%20Cookies_DE.pdf" target="_blank" rel="noopener">EDÖB: Merkblatt Cookies (PDF)</a></li><li><a href="https://www.edoeb.admin.ch/dam/de/sd-web/brLL9rM3ny9d/Leitfaden%20des%20ED%C3%96B%20betreffend%20Datenbearbeitungen%20mittels%20Cookies%20und%20%C3%A4hnlichen%20Technologien%20V.%201.1%20vom%2006.10.2025_DE.pdf" target="_blank" rel="noopener">EDÖB: Leitfaden zu Datenbearbeitungen mittels Cookies und ähnlichen Technologien (PDF)</a></li></ul>
+
+<h2>Euer nächster Schritt</h2>
+<p>Schreibt die Aufgabe eurer Website in einen Satz und leitet daraus zwei bis drei Zielhandlungen ab. Dann prüft mit einer eigenen Testanfrage und einem Testanruf, ob beides tatsächlich gezählt wird. Erst danach lohnt es sich, Zahlen zu vergleichen.</p>
+<p>Wenn sich zeigt, dass die Seite Besucher hat, aber kaum etwas auslöst, liegt die Ursache meist in Aufbau und Inhalt. Darum geht es auf der Seite <a href="../../webdesign/">Webdesign</a>. Fehlen dagegen schon die Besucher aus der Suche, ist <a href="../../seo/">SEO</a> der bessere Ansatzpunkt.</p>
+<nav class="weiterlesen" aria-label="Weiterlesen"><a class="weiter__karte" href="../unternehmenswebsite-leitfaden/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Die Unternehmenswebsite</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../vorne-bleiben/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Laufende SEO: bei Google vorne bleiben</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../website-pflege-checkliste/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Website-Pflege: Checkliste</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a></nav>
+</article></main>
+
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <span class="chip chip--hell" data-rein>Kontakt</span>
+      <h2>Reden wir.</h2>
+      <div class="fuss__aktion">
+        <a class="knopf knopf--dunkel fuss__cta" href="../../index.html#kontakt">Gespräch buchen <i aria-hidden="true">→</i></a>
+        <a class="fuss__mail" href="mailto:hallo@klartext-digital.ch">hallo@klartext-digital.ch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__mitte">
+    <div class="fuss__adresse">
+      <a class="fuss__logo" href="../../index.html" aria-label="Klartext Digital: zur Startseite"><img src="../../marke/logo-fuss.svg" alt="klartext. digital" width="766" height="314" loading="lazy"></a>
+      <p class="fuss__ort">Lohagstrasse 15, 4133 Pratteln<br>
+        Schwerpunkt Region Basel und Aargau<br>
+        Mo bis Fr, 08:00 bis 20:00</p>
+    </div>
+    <nav class="fuss__spalte fuss__spalte--leistungen" aria-label="Leistungen">
+      <p class="fuss__kopf">Leistungen</p>
+      <div class="fuss__liste"><a class="mlink" href="../../marketing-abo/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Marketing im Abo</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Marketing im Abo</span></a><a class="mlink" href="../../projektarbeit/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Projektarbeit</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Projektarbeit</span></a><a class="mlink" href="../../leistungen/branding.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a><a class="mlink" href="../../leistungen/social-media.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a><a class="mlink" href="../../leistungen/websites.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a><a class="mlink" href="../../leistungen/performance.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a><a class="mlink" href="../../leistungen/email-marketing.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a><a class="mlink" href="../../seo/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">SEO</span><span class="mlink__t mlink__t--neu" aria-hidden="true">SEO</span></a></div>
+    </nav>
+    <nav class="fuss__spalte" aria-label="Seiten">
+      <p class="fuss__kopf">Seiten</p>
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a><a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a><a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a><a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a><a class="mlink" href="../../index.html#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+    </nav>
+    <div class="fuss__folgen">
+      <p class="fuss__kopf">Folgen</p>
+      <div class="fuss__sozial">
+          <a href="https://www.instagram.com/klartextdigital/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH&nbsp;· <span class="untrennbar">UID CHE-210.244.987</span>&nbsp;· Alle Rechte vorbehalten</p>
+    <nav>
+      <a href="../../recht/impressum.html">Impressum</a>
+      <a href="../../recht/datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859"></div>
+</footer>
+
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script src="../../js/lenis.min.js"></script>
+<script src="../../js/gsap.min.js"></script>
+<script src="../../js/ScrollTrigger.min.js"></script>
+<script src="../../lader.js"></script>
+<script src="../../bewegung.js"></script>
+<script src="../../fragen.js"></script>
+<script src="../../zeiger.js"></script>
+<script src="../../rechner.js"></script>
+</body>
+</html>

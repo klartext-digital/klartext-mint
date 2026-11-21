@@ -83,7 +83,8 @@ def blog_beitraege():
    'datei':ziel,'stamm':stamm,
    'titel':re.sub(r'<[^>]*>','',h1.group(1)).strip(),
    'datum':datum,
-   'sortierung':(1,int(t.group(3)),MONATE.get(t.group(2)[:3],0),int(t.group(1))) if t else (0,0,0,0),
+   # Ohne Datum entscheidet 'rang' aus page-meta.json (hoeher = weiter vorne).
+   'sortierung':(1,int(t.group(3)),MONATE.get(t.group(2)[:3],0),int(t.group(1))) if t else (0,meta.get('rang',0),0,0),
    'bild':bildpfad,'anriss':anriss,'minuten':minuten,
    'person':BLOG_AUTOREN.get(stamm),
   })
