@@ -5662,3 +5662,38 @@ body .brush.etikett{font-size:clamp(34px,3.8vw,58px)!important}
   .amber__person{width:62vw;right:2vw}
   .amber__wort{font-size:23.5vw;bottom:24vw}
 }
+
+/* ══ Schrift nach ZYNQ-Vorlage (Auftraggeber, 21.11.2026: "welche fonts sind
+   das? uebernimm sie") ════════════════════════════════════════════════════
+   Aus der Live-Vorlage ausgelesen: Inter (Titel 700 bis 900, eng gesetzt;
+   Text 500 leicht eng) und Fira Mono 500 in Versalien fuer kleine
+   Etiketten. Beide OFL, selbst gehostet (fonts/, Lizenzen daneben).
+   Bleiben: Pinselwoerter (Klartext Hand), Logo-SVGs und die Riesen-
+   Wortmarke "Klartext." im Kopfbereich (fields-display, Markenzeichen). */
+@font-face{font-family:'Inter';src:url(fonts/inter-latin.woff2) format('woff2');font-weight:100 900;font-style:normal;font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';src:url(fonts/inter-latin-ext.woff2) format('woff2');font-weight:100 900;font-style:normal;font-display:swap;
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Fira Mono';src:url(fonts/fira-mono-500-latin.woff2) format('woff2');font-weight:500;font-style:normal;font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Fira Mono';src:url(fonts/fira-mono-500-latin-ext.woff2) format('woff2');font-weight:500;font-style:normal;font-display:swap;
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+:root{--titel:'Inter',system-ui,sans-serif;--text:'Inter',system-ui,sans-serif;--label:'Fira Mono',ui-monospace,monospace}
+body,.lader,.lader *:not(.brush):not(.brush *){font-family:var(--text)}
+body{letter-spacing:-.02em}
+h1,h2{font-family:var(--titel);font-weight:800;letter-spacing:-.05em}
+h3,h4,h5,h6,.lz__titel,main p.wege__panel-titel:not(#x),.erst__titel,.pruef__titel,.ag,.weiter__titel{
+  font-family:var(--titel);font-weight:700;letter-spacing:-.035em}
+h1 .wort,h2 .wort,h1 .brush,h2 .brush,h3 .brush{font-family:var(--hand);letter-spacing:0}
+main p:not(.brush):not(.chip):not([class*="kopf"]):not([class*="zahl"]):not([class*="preis"]),
+main li,main dd,main blockquote,main figcaption,
+.fuehrung,.ruf__text,.fuss__ort,.frage__leib,.frage__leib p,.artikel p,.seo-prose p,.seo-prose li,
+.fuss__mitte .mlink,.fuss__sozial a,.fuss__recht p,.fuss__recht a,input,textarea,select,
+.ndd__satz span,main p.preise__lead{font-family:var(--text);font-weight:450;letter-spacing:-.02em}
+main p strong,main p b,main li strong,main li b,.frage__leib strong{font-family:var(--text);font-weight:650}
+.nav__wege,.nav__wege .mlink__t,.nav__wege a,.nav__wege button,.knopf,button,.nav__cta,
+.fuss .fuss__kopf,.wege__panel-titel,.frage__text{font-family:var(--text)!important;letter-spacing:-.03em}
+.knopf,button,.nav__cta,.nav__wege a,.nav__wege .mlink__t{font-weight:600}
+.chip,.wege__label,.erst__marke,.pruef__marke,.brief__marke,.blog__marke,.blog__seitentitel,.bzeile__meta{
+  font-family:var(--label);font-weight:500;text-transform:uppercase;letter-spacing:.01em}
+.amber__wort{font-family:'fields-display','Outfit',serif;letter-spacing:-.045em}
