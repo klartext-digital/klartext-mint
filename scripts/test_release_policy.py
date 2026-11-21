@@ -1,6 +1,6 @@
 """Regression checks for the user's explicit hold on the production launch."""
 import unittest
-from release_policy import PREVIEW_URL, validate_preview
+from release_policy import PREVIEW_URL, PRODUCTION_URL, validate_preview
 
 
 class PreviewPolicyTest(unittest.TestCase):
@@ -32,6 +32,26 @@ class PreviewPolicyTest(unittest.TestCase):
             with self.subTest(key=key):
                 with self.assertRaises(ValueError):
                     validate_preview(incomplete)
+
+
+class LaunchPolicyTest(unittest.TestCase):
+    def setUp(self):
+        self.config = dict(base_url=PRODUCTION_URL, indexable=True, approved_paths=[''], launch_approved=True)
+
+    def test_explicit_launch_allowed(self):
+        validate_preview(self.config)
+
+    def test_launch_flag_must_be_exactly_true(self):
+        for value in ['true', 1, 'yes', None, False]:
+            with self.subTest(value=value):
+                with self.assertRaises(ValueError):
+                    validate_preview({**self.config, 'launch_approved': value})
+
+    def test_launch_needs_production_url_and_paths(self):
+        for change in [dict(base_url=PREVIEW_URL), dict(indexable=False), dict(approved_paths=[])]:
+            with self.subTest(change=change):
+                with self.assertRaises(ValueError):
+                    validate_preview({**self.config, **change})
 
 
 if __name__ == '__main__':
