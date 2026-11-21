@@ -491,7 +491,13 @@ error_html=f'''<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><me
 (OUT/'404.html').write_text(error_html)
 # Testseite fuer die Schriftwahl (nur Vorschau, noindex)
 import importlib.util as _iu
-_sp=_iu.spec_from_file_location('schrifttest',ROOT/'scripts'/'schrifttest.py');_m=_iu.module_from_spec(_sp);_sp.loader.exec_module(_m);_m.baue(OUT)
+# Beim Livegang: Domain-Datei fuer GitHub Pages schreiben (publish.py leert
+# gh-pages vor jedem Lauf, ohne CNAME waere die Domain sofort weg) und die
+# Schrift-Testseite weglassen (sie ist eine Kopie der Startseite).
+from release_policy import is_launch as _is_launch, PRODUCTION_DOMAIN as _DOMAIN
+if _is_launch(CONFIG):(OUT/'CNAME').write_text(_DOMAIN+'\n')
+else:
+ _sp=_iu.spec_from_file_location('schrifttest',ROOT/'scripts'/'schrifttest.py');_m=_iu.module_from_spec(_sp);_sp.loader.exec_module(_m);_m.baue(OUT)
 (OUT/'build-manifest.json').write_text(json.dumps(sorted(str(p.relative_to(OUT)) for p in OUT.rglob('*') if p.is_file()),indent=2)+'\n')
 (ROOT/'docs/URL-MAP.json').write_text(json.dumps({k:BASE+v for k,v in {**ROUTES,**ALIASES}.items()},ensure_ascii=False,indent=2)+'\n')
 print(f'Built {len(ROUTES)} pages and legacy redirects. Indexable sitemap entries: {len(paths)}. Output: {OUT}')
