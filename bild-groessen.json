@@ -66,5 +66,5 @@
   "bilder/rb-orange-5.jpg": "(max-width: 700px) 85vw, 45vw",
   "bilder/rb-orange-6.jpg": "(max-width: 700px) 85vw, 45vw",
   "bilder/rb-orange-7.jpg": "(max-width: 700px) 85vw, 45vw",
-  "bilder/kopf-person.png": "(max-width: 820px) 88vw, min(50.4vw, 930px)"
+  "bilder/kopf-person.png": "(max-width: 820px) 62vw, min(50vw, 900px)"
 }
