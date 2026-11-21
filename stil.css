@@ -5604,3 +5604,47 @@ body .brush.etikett{font-size:clamp(34px,3.8vw,58px)!important}
 
 /* UID nie am Bindestrich trennen */
 .untrennbar{white-space:nowrap}
+
+/* ══ Kopfbereich Amber (Referenz des Auftraggebers, 21.11.2026) ═════════════
+   Ersetzt das dunkle Portraet mit Schaerfe-Effekt. Volle Amber-Flaeche,
+   Titel schwarz links, Text + EIN Knopf rechts, darunter die Riesen-
+   Wortmarke "Klartext." in Creme und eine Person, die von unten knapp
+   ueber die Kante schaut, direkt in die Kamera. Die Kante ist die
+   Unterkante der Buehne; die Haende liegen davor.
+   Fields Display hat im Adobe-Kit keinen Kursivschnitt: die Wortmarke
+   wird per skewX geneigt (keine kuenstliche Kursive des Browsers). */
+.buehne.buehne--amber{display:flex;flex-direction:column;max-width:none;margin:0;
+  min-height:100svh;padding:clamp(128px,10.5vw,168px) var(--pad) 0;
+  background:var(--violett);overflow:hidden;align-content:normal}
+.buehne--amber::before{display:none}
+.amber__kopf{width:100%;max-width:var(--maxw);margin:0 auto;display:grid;
+  grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(24px,4vw,72px);align-items:start}
+.buehne--amber .amber__titel{color:var(--tinte);margin:0;
+  font-size:clamp(40px,5.15vw,82px);line-height:.98;letter-spacing:-.03em}
+.amber__titel > span{display:block}
+.amber__seite{padding-top:clamp(4px,.9vw,14px)}
+.amber__text{color:var(--tinte);font-size:clamp(17px,1.45vw,23px);line-height:1.45;
+  margin:0 0 clamp(18px,1.8vw,28px);max-width:30em}
+.buehne--amber .knopf--dunkel{background:var(--tinte);color:var(--creme)}
+.buehne--amber .knopf--dunkel .rolle,.buehne--amber .knopf--dunkel .rolle span{color:var(--creme)}
+.amber__knopf{display:inline-flex;align-items:center;gap:.6em}
+.amber__knopf svg{flex:none}
+.amber__buehne{position:relative;width:100%;margin-top:auto;
+  height:clamp(330px,39vw,760px)}
+.amber__wort{position:absolute;left:50%;bottom:20.6vw;z-index:1;
+  transform:translateX(-50%) skewX(-10deg);
+  font-family:var(--titel);font-weight:700;font-size:23vw;line-height:.74;
+  letter-spacing:-.045em;color:#FBF8F1;white-space:nowrap;pointer-events:none;user-select:none}
+.amber__person{position:absolute;left:50%;bottom:0;z-index:2;display:block;
+  width:min(50.4vw,930px);height:auto;transform:translateX(-50%);
+  filter:drop-shadow(0 6px 10px rgb(120 60 0 / .18))}
+@media (min-width:1844px){ .amber__wort{bottom:380px;font-size:424px} .amber__buehne{height:720px} }
+@media (max-width:820px){
+  .amber__kopf{grid-template-columns:1fr;gap:18px}
+  .buehne--amber .amber__titel{font-size:clamp(38px,10.5vw,64px)}
+  .buehne.buehne--amber{min-height:auto}
+  .amber__text br{display:none}
+  .amber__buehne{height:57vw;margin-top:clamp(28px,8vw,48px)}
+  .amber__person{width:88vw}
+  .amber__wort{font-size:23.5vw;bottom:35vw}
+}

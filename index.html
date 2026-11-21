@@ -122,45 +122,25 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 <main>
 
   <!-- ══ 1 · Bühne ══ -->
-  <section class="buehne">
-    <div class="kopfbild" aria-hidden="true">
-        <div class="kopfbild__rahmen schaerfe" id="schaerfe">
-          <picture><source srcset="kopf/portrait-unscharf.webp" type="image/webp"><img class="schaerfe__ebene" src="kopf/portrait-unscharf.jpg" alt="" fetchpriority="high"></picture>
-          <picture><source srcset="kopf/portrait-scharf.webp" type="image/webp"><img class="schaerfe__ebene schaerfe__scharf" src="kopf/portrait-scharf.jpg" alt=""></picture>
-        </div>
-      </div>
-    <div class="buehne__kopf">
-      <div class="buehne__text">
-      <h1 data-rein-zeilen>
+  <section class="buehne buehne--amber">
+    <div class="amber__kopf">
+      <h1 class="amber__titel" data-rein-zeilen>
         <span>Kompetenz reicht nicht,</span>
-        <span>wenn sie <em class="wort wort--bild"><span class="sr">niemand</span><img class="wort__bild" src="marke/niemand-hell.svg" alt="" aria-hidden="true" width="3533" height="783"></em> sieht.</span>
+        <span>wenn sie niemand sieht.</span>
       </h1>
-      <div class="buehne__unten">
-        <p class="fuehrung" data-rein>Klartext Digital aus Pratteln bringt euer Marketing vorwärts: mit laufenden Leistungen im Abo und klar geplanten Projekten. Für Unternehmen in der Region Basel, im Aargau und in der ganzen Deutschschweiz, die Umsetzung brauchen, und Marketingteams, die Spezialwissen ergänzen wollen.</p>
-        <div class="knopfpaar" data-rein>
-          <a class="knopf knopf--dunkel gross" href="marketing-abo/" data-event="abo_explore">
-            <span class="rolle"><span>Marketing im Abo</span><span aria-hidden="true">Marketing im Abo</span></span>
-          </a>
-          <a class="kreis" href="projektarbeit/" aria-label="Projektarbeit entdecken">
-            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
+      <div class="amber__seite" data-rein>
+        <p class="amber__text">Branding, Social Media, Website oder Werbung? <br>Wir unterstützen euch: im Abo oder als Projekt.</p>
+        <a class="knopf knopf--dunkel gross amber__knopf" href="#kontakt" data-event="hero_gespraech">
+          <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
-      </div>
-
-      
-
     </div>
-
-      <ul class="buehne__stich" data-rein>
-      <li>Branding</li>
-      <li>Social Media</li>
-      <li>Websites</li>
-      <li>Performance</li>
-      <li>E-Mail Marketing</li>
-    </ul>
+    <div class="amber__buehne" aria-hidden="true">
+      <span class="amber__wort">Klartext.</span>
+      <img class="amber__person" src="bilder/kopf-person.png" alt="" fetchpriority="high" decoding="async">
+    </div>
   </section>
-
   <!-- ══ 3 · Referenzen ══ -->
   <section class="referenzen">
     <span class="chip" data-rein>Kunden</span>
@@ -953,7 +933,6 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 <script src="lader.js"></script>
 <script src="bewegung.js"></script>
 <script src="zeiger.js"></script>
-  <script src="schaerfe.js"></script>
 <script src="fragen.js"></script>
   <script src="leseband.js"></script>
 </body>
