@@ -148,7 +148,7 @@ META = {
  "projekte/meridian/": ("Meridian: vom Nischenprodukt zur Marke | Klartext Digital", "Branding und Kampagne für Meridian: vom Nischenprodukt zur Marke mit Haltung, entwickelt in zwölf Wochen (2024)."),
  'projekte/': ('Projekte und Referenzen | Klartext Digital', 'Einblicke in die Referenzen von Klartext Digital: Projekte aus Branding, Content und digitalem Marketing.'),
  'blog/': ('Gedanken zu Marke und Marketing | Klartext Digital', 'Artikel und Perspektiven zu Markenaufbau, Websites, Social Media und Strategie. Entdeckt den Blog von Klartext Digital.'),
- 'impressum/': ('Impressum | Klartext Digital', 'Impressum der Klartext Digital GmbH (in Gründung), Lohagstrasse 15, 4133 Pratteln.'),
+ 'impressum/': ('Impressum | Klartext Digital', 'Impressum der Klartext Digital GmbH, Lohagstrasse 15, 4133 Pratteln, UID CHE-210.244.987.'),
  'datenschutz/': ('Datenschutz | Klartext Digital', 'Datenschutzerklärung der Klartext Digital GmbH, Pratteln: Hosting, E-Mail, keine Cookies und keine Besuchermessung.')
 }
 # Unternehmensangaben: eine Quelle (seo.config.json → business), dieselben
@@ -161,6 +161,7 @@ ORGANISATION={'@type':'Organization','@id':BASE+'#organization','name':'Klartext
 if BUSINESS:
  ORGANISATION={'@type':BUSINESS['type'],'@id':BASE+'#organization','name':BUSINESS['name'],'alternateName':BUSINESS['alternateName'],
   'url':BASE,'logo':BASE+'marke/wortmarke.svg','image':BASE+'bilder/dienst-3.jpg','email':BUSINESS['email'],
+  'legalName':BUSINESS.get('legal_name',BUSINESS['name']),'identifier':BUSINESS.get('uid'),
   'address':{'@type':'PostalAddress','streetAddress':BUSINESS['street'],'postalCode':BUSINESS['postal_code'],'addressLocality':BUSINESS['locality'],'addressRegion':BUSINESS['region'],'addressCountry':BUSINESS['country']},
   'areaServed':[{'@type':'AdministrativeArea','name':n} for n in BUSINESS['area_served']],
   'openingHoursSpecification':[{'@type':'OpeningHoursSpecification','dayOfWeek':['Monday','Tuesday','Wednesday','Thursday','Friday'],'opens':BUSINESS['opens'],'closes':BUSINESS['closes']}] if BUSINESS.get('opens') else [],
@@ -404,9 +405,8 @@ for source,route in ROUTES.items():
  # References retain their source presentation per the confirmed project rules.
  # Preise sind vom Auftraggeber bestaetigt (16.09.2026): kein Entwurfshinweis mehr.
  # Die Angaben zur Mehrwertsteuer stehen sichtbar unter den Paketen.
- # Firmierung und Adresse bestätigt (14.10.2026). "in Gründung" entfällt mit dem
- # Handelsregistereintrag. Telefon bewusst leer (Auftraggeber, 14.10.2026).
- s=s.replace('<p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p>','<p>2026 Klartext Digital GmbH (in Gründung) · Alle Rechte vorbehalten</p>')
+ # Firmierung und Adresse bestätigt (14.10.2026). Eingetragen seit 13.11.2026, UID im Impressum.
+ # Telefon bewusst leer (Auftraggeber, 14.10.2026).
  # Entwurfs-Hinweis unten rechts entfernt (Auftraggeber 15.10.2026: keine Hinweise
  # auf der Seite, die nicht hingehoeren). Steht noch in den Quelldateien.
  s=re.sub(r'<div class="demo">[^<]*</div>\s*','',s)
@@ -455,7 +455,7 @@ def llms_txt():
  zeilen=['# Klartext Digital','',
   '> Marketingagentur aus '+b.get('locality','Pratteln')+'. Schwerpunkt '+b.get('focus','Region Basel und Aargau')+', tätig in der ganzen Deutschschweiz: '
   'Webdesign, SEO, Social Media, Google und Meta Ads, Branding und Newsletter, im Abo oder als Projekt.','']
- if b:zeilen+=['Firma: '+b['name']+(' ('+b['legal_status']+')' if b.get('legal_status') else ''),'Adresse: '+b['street']+', '+b['postal_code']+' '+b['locality']+', Schweiz','E-Mail: '+b['email'],'Öffnungszeiten: Montag bis Freitag, '+b.get('opens','')+' bis '+b.get('closes','')+' Uhr','Schwerpunkt: '+b.get('focus',''),'Einzugsgebiet: ganze Deutschschweiz ('+', '.join(b['area_served'])+')','']
+ if b:zeilen+=['Firma: '+b.get('legal_name',b['name'])+(', UID '+b['uid'] if b.get('uid') else ''),'Adresse: '+b['street']+', '+b['postal_code']+' '+b['locality']+', Schweiz','E-Mail: '+b['email'],'Öffnungszeiten: Montag bis Freitag, '+b.get('opens','')+' bis '+b.get('closes','')+' Uhr','Schwerpunkt: '+b.get('focus',''),'Einzugsgebiet: ganze Deutschschweiz ('+', '.join(b['area_served'])+')','']
  gruppen=[('Leistungen',['marketing-abo/','projektarbeit/','webdesign/','seo/','social-media/','performance-marketing/','branding/','email-marketing/','website-betreuung/']),
   ('Leitfäden',sorted(r for r in META if r.startswith('blog/') and r!='blog/')),
   ('Über uns',['ueber-uns/','projekte/','impressum/'])]

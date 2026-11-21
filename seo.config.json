@@ -16,7 +16,6 @@
     "alternateName": [
       "Klartext Digital"
     ],
-    "legal_status": "in Gründung",
     "email": "hallo@klartext-digital.ch",
     "street": "Lohagstrasse 15",
     "postal_code": "4133",
@@ -46,6 +45,8 @@
     ],
     "focus": "Region Basel und Aargau",
     "opens": "08:00",
-    "closes": "20:00"
+    "closes": "20:00",
+    "legal_name": "Klartext Digital GmbH",
+    "uid": "CHE-210.244.987"
   }
 }
