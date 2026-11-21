@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:var(--hand,'Rock Salt'),cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<title>PLÜ Restaurant &amp; Lounge: Foodfotografie | Klartext Digital</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%230F4C55'/></svg>">
+<link rel="stylesheet" href="../../stil.css?v=96ecfdbb">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+
+<meta name="description" content="Foodfotografie für das PLÜ Restaurant &amp; Lounge im Grand Casino Baden: Gerichte am Tisch fotografiert, im Licht des Hauses, für Social Media.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://klartext-digital.github.io/klartext-mint/projekte/plue/">
+<meta property="og:title" content="PLÜ Restaurant &amp; Lounge: Foodfotografie | Klartext Digital">
+<meta property="og:description" content="Foodfotografie für das PLÜ Restaurant &amp; Lounge im Grand Casino Baden: Gerichte am Tisch fotografiert, im Licht des Hauses, für Social Media.">
+<meta property="og:url" content="https://klartext-digital.github.io/klartext-mint/projekte/plue/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_CH">
+<meta property="og:image" content="https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg">
+<link rel="stylesheet" href="../../seo.css?v=fc0f934d">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://klartext-digital.github.io/klartext-mint/projekte/plue/#webpage", "url": "https://klartext-digital.github.io/klartext-mint/projekte/plue/", "name": "PLÜ Restaurant & Lounge: Foodfotografie | Klartext Digital", "description": "Foodfotografie für das PLÜ Restaurant & Lounge im Grand Casino Baden: Gerichte am Tisch fotografiert, im Licht des Hauses, für Social Media.", "inLanguage": "de-CH", "publisher": {"@id": "https://klartext-digital.github.io/klartext-mint/#organization"}}, {"@type": "ProfessionalService", "@id": "https://klartext-digital.github.io/klartext-mint/#organization", "name": "Klartext Digital GmbH", "alternateName": ["Klartext Digital"], "url": "https://klartext-digital.github.io/klartext-mint/", "logo": "https://klartext-digital.github.io/klartext-mint/marke/wortmarke.svg", "image": "https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg", "email": "hallo@klartext-digital.ch", "legalName": "Klartext Digital GmbH", "identifier": "CHE-210.244.987", "address": {"@type": "PostalAddress", "streetAddress": "Lohagstrasse 15", "postalCode": "4133", "addressLocality": "Pratteln", "addressRegion": "BL", "addressCountry": "CH"}, "areaServed": [{"@type": "AdministrativeArea", "name": "Aargau"}, {"@type": "AdministrativeArea", "name": "Appenzell Ausserrhoden"}, {"@type": "AdministrativeArea", "name": "Appenzell Innerrhoden"}, {"@type": "AdministrativeArea", "name": "Basel-Landschaft"}, {"@type": "AdministrativeArea", "name": "Basel-Stadt"}, {"@type": "AdministrativeArea", "name": "Bern"}, {"@type": "AdministrativeArea", "name": "Glarus"}, {"@type": "AdministrativeArea", "name": "Graubünden"}, {"@type": "AdministrativeArea", "name": "Luzern"}, {"@type": "AdministrativeArea", "name": "Nidwalden"}, {"@type": "AdministrativeArea", "name": "Obwalden"}, {"@type": "AdministrativeArea", "name": "St. Gallen"}, {"@type": "AdministrativeArea", "name": "Schaffhausen"}, {"@type": "AdministrativeArea", "name": "Schwyz"}, {"@type": "AdministrativeArea", "name": "Solothurn"}, {"@type": "AdministrativeArea", "name": "Thurgau"}, {"@type": "AdministrativeArea", "name": "Uri"}, {"@type": "AdministrativeArea", "name": "Zug"}, {"@type": "AdministrativeArea", "name": "Zürich"}], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "20:00"}], "sameAs": ["https://www.instagram.com/klartextdigital/"], "knowsAbout": ["Webdesign", "Suchmaschinenoptimierung", "Social Media Marketing", "Google Ads", "Meta Ads", "E-Mail-Marketing", "Branding"]}, {"@type": "BreadcrumbList", "@id": "https://klartext-digital.github.io/klartext-mint/projekte/plue/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://klartext-digital.github.io/klartext-mint/"}, {"@type": "ListItem", "position": 2, "name": "Projekte", "item": "https://klartext-digital.github.io/klartext-mint/projekte/"}, {"@type": "ListItem", "position": 3, "name": "PLÜ Restaurant & Lounge: Foodfotografie", "item": "https://klartext-digital.github.io/klartext-mint/projekte/plue/"}]}]}</script>
+<meta property="og:image:alt" content="Klartext Digital – Webdesign und Marketing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PLÜ Restaurant &amp; Lounge: Foodfotografie | Klartext Digital">
+<meta name="twitter:description" content="Foodfotografie für das PLÜ Restaurant &amp; Lounge im Grand Casino Baden: Gerichte am Tisch fotografiert, im Licht des Hauses, für Social Media.">
+<meta name="twitter:image" content="https://klartext-digital.github.io/klartext-mint/bilder/dienst-3.jpg">
+<script defer src="../../messung.js?v=d9a35c72"></script>
+<link rel="preload" href="../../fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/ymt6jvd.css">
+<link rel="preload" href="../../fonts/klartext-hand-11.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/logo-negativ.svg" alt="klartext. digital" width="766" height="314" decoding="async"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../" aria-label="Klartext Digital: zur Startseite"><picture><source media="(max-width: 699px)" srcset="../../marke/zeichen.svg" width="1010" height="916"><img src="../../marke/logo-quer.svg" alt="klartext digital" width="1350" height="259" decoding="async"></picture></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../../blog/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../branding/" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marke &amp; Strategie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../social-media/" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media &amp; Content</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../webdesign/" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../performance-marketing/" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../email-marketing/" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../seo/" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-1-480.webp 480w, ../../bilder/dienst-1-626.webp 626w, ../../bilder/dienst-1-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-2.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-2-480.webp 480w, ../../bilder/dienst-2-626.webp 626w, ../../bilder/dienst-2-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-3.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-3-480.webp 480w, ../../bilder/dienst-3-626.webp 626w, ../../bilder/dienst-3-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-4.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-4-480.webp 480w, ../../bilder/dienst-4-626.webp 626w, ../../bilder/dienst-4-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-5.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-5-480.webp 480w, ../../bilder/dienst-5-626.webp 626w, ../../bilder/dienst-5-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+          <img src="../../bilder/dienst-6.jpg" alt="" width="1200" height="671" decoding="async" loading="lazy" srcset="../../bilder/dienst-6-480.webp 480w, ../../bilder/dienst-6-626.webp 626w, ../../bilder/dienst-6-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 50vw">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+          <div class="ndd__satz"><b>Gefunden, wenn gesucht wird</b><span>Technische Prüfung, verständliche Inhalte und laufende Auswertung. Als eigenes Projekt oder als Teil des Abos.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ══ Kopf ══ -->
+  <section class="unter"><nav class="seo-breadcrumb" aria-label="Brotkrumennavigation"><a href="../../">Startseite</a> <span aria-hidden="true">/</span> <a href="../">Projekte</a> <span aria-hidden="true">/</span> <span aria-current="page">PLÜ Restaurant &amp; Lounge: Foodfotografie</span></nav>
+    <a class="zurueck" href="../" data-rein>
+      <i aria-hidden="true">←</i><span>Alle Projekte</span></a>
+
+    <figure class="artikel__bild fall__gross" data-rein>
+    <img src="../../bilder/fall-plue.jpg" alt="Gebratener Fisch mit Schaum auf dunklem Teller im PLÜ" sizes="(max-width: 1600px) 100vw, 1520px" fetchpriority="high" width="2000" height="1250" decoding="async" srcset="../../bilder/fall-plue-480.webp 480w, ../../bilder/fall-plue-900.webp 900w, ../../bilder/fall-plue-1600.webp 1600w">
+    </figure>
+    <span class="chip" data-rein>PLÜ Restaurant & Lounge · Baden</span>
+    <h1 data-rein-zeilen><span>Appetit beginnt am Bildschirm.</span></h1>
+    <p class="brush" data-rein><span class="brush__t">Teller für Teller.</span></p>
+  </section>
+
+  <!-- ══ Einstieg und Fakten ══ -->
+  <section class="unter__leib">
+    <div class="unter__text" data-rein>
+      <h2 class="fall__frage">Worum es ging</h2>
+      <p>Das PLÜ ist Restaurant und Lounge im Grand Casino Baden. Wer dort isst, entscheidet sich oft schon vorher: auf Instagram, beim Durchscrollen der Karte, beim Blick auf ein einzelnes Gericht.</p>
+      <p>Wir haben die Gerichte fotografiert, am Tisch im Restaurant, mit dem Geschirr, auf dem sie serviert werden, und in einem Licht, das zur Stimmung des Hauses passt. Daraus entstand Material für Social Media, ergänzt um Bewegtbild.</p>
+    </div>
+    <aside class="fall__fakten" data-rein>
+      <div><dt>Kunde</dt><dd>PLÜ Restaurant & Lounge</dd></div>
+      <div><dt>Ort</dt><dd>Grand Casino Baden</dd></div>
+      <div><dt>Leistungen</dt><dd><span class="pillen"><span>Foodfotografie</span><span>Content</span><span>Social Media</span></span></dd></div>
+    </aside>
+  </section>
+  <section class="galerie">
+    <div class="kopfzeile">
+      <div>
+        <span class="chip" data-rein>Aus dem Shooting</span>
+        <h2 data-rein-zeilen><span>Die Karte, fotografiert.</span></h2>
+      </div>
+      <p class="fuehrung" data-rein>Vom Dessert bis zum Hauptgang: jedes Gericht am Platz, wo es auch serviert wird.</p>
+    </div>
+    <div class="galerie__raster galerie__raster--hoch">
+      <figure class="galerie__bild" data-rein><img src="../../bilder/fall-plue-1.jpg" alt="Dessert mit Glace auf dunklem Teller" loading="lazy" width="1100" height="1375" decoding="async" srcset="../../bilder/fall-plue-1-480.webp 480w, ../../bilder/fall-plue-1-900.webp 900w" sizes="(max-width: 700px) 100vw, 50vw"></figure>
+      <figure class="galerie__bild" data-rein><img src="../../bilder/fall-plue-2.jpg" alt="Vorspeise mit geröstetem Brot und Frucht" loading="lazy" width="1100" height="1375" decoding="async" srcset="../../bilder/fall-plue-2-480.webp 480w, ../../bilder/fall-plue-2-900.webp 900w" sizes="(max-width: 700px) 100vw, 50vw"></figure>
+      <figure class="galerie__bild" data-rein><img src="../../bilder/fall-plue-3.jpg" alt="Fisch mit grüner Creme und Randen auf grauem Teller" loading="lazy" width="1100" height="1375" decoding="async" srcset="../../bilder/fall-plue-3-480.webp 480w, ../../bilder/fall-plue-3-900.webp 900w" sizes="(max-width: 700px) 100vw, 50vw"></figure>
+      <figure class="galerie__bild" data-rein><img src="../../bilder/fall-plue-4.jpg" alt="Thunfisch mit Kräutern und Bohnen" loading="lazy" width="1100" height="1375" decoding="async" srcset="../../bilder/fall-plue-4-480.webp 480w, ../../bilder/fall-plue-4-900.webp 900w" sizes="(max-width: 700px) 100vw, 50vw"></figure>
+      <figure class="galerie__bild" data-rein><img src="../../bilder/fall-plue-5.jpg" alt="Hauptgang mit knuspriger Garnitur in der Schale" loading="lazy" width="1100" height="1375" decoding="async" srcset="../../bilder/fall-plue-5-480.webp 480w, ../../bilder/fall-plue-5-900.webp 900w" sizes="(max-width: 700px) 100vw, 50vw"></figure>
+      <figure class="galerie__bild" data-rein><img src="../../bilder/fall-plue-6.jpg" alt="Rosa gebratenes Fleisch mit Gemüse" loading="lazy" width="1100" height="1375" decoding="async" srcset="../../bilder/fall-plue-6-480.webp 480w, ../../bilder/fall-plue-6-900.webp 900w" sizes="(max-width: 700px) 100vw, 50vw"></figure>
+      <figure class="galerie__bild" data-rein><img src="../../bilder/fall-plue-7.jpg" alt="Rindsfilet mit Kartoffeln auf schwarzem Teller" loading="lazy" width="1100" height="1375" decoding="async" srcset="../../bilder/fall-plue-7-480.webp 480w, ../../bilder/fall-plue-7-900.webp 900w" sizes="(max-width: 700px) 100vw, 50vw"></figure>
+      <figure class="galerie__bild" data-rein><img src="../../bilder/fall-plue-8.jpg" alt="Fisch mit Kräuterkruste, Gemüse und Schaum" loading="lazy" width="1100" height="1375" decoding="async" srcset="../../bilder/fall-plue-8-480.webp 480w, ../../bilder/fall-plue-8-900.webp 900w" sizes="(max-width: 700px) 100vw, 50vw"></figure>
+      <figure class="galerie__bild" data-rein><img src="../../bilder/fall-plue-9.jpg" alt="Gebratener Fisch mit Schaum und Spinat" loading="lazy" width="1100" height="1375" decoding="async" srcset="../../bilder/fall-plue-9-480.webp 480w, ../../bilder/fall-plue-9-900.webp 900w" sizes="(max-width: 700px) 100vw, 50vw"></figure>
+    </div>
+  </section>
+
+  <!-- ══ Vorgehen ══ -->
+  <section class="unter__ablauf">
+    <div class="kopfzeile">
+      <div>
+        <span class="chip" data-rein>Vorgehen</span>
+        <h2 data-rein-zeilen><span>Vom Pass auf den Bildschirm.</span></h2>
+      </div>
+    </div>
+    <ol class="schritte">
+      <li class="schritt"><b>01</b><div><h3>Auswahl</h3><p>Mit der Küche festlegen, welche Gerichte fotografiert werden und in welcher Reihenfolge sie aus der Küche kommen.</p></div></li>
+      <li class="schritt"><b>02</b><div><h3>Set am Tisch</h3><p>Fotografiert wird im Restaurant selbst: Holztisch, Ledersets, das Geschirr des Hauses.</p></div></li>
+      <li class="schritt"><b>03</b><div><h3>Teller für Teller</h3><p>Jedes Gericht frisch angerichtet, aus mehreren Blickwinkeln, solange es aussieht wie beim Servieren.</p></div></li>
+      <li class="schritt"><b>04</b><div><h3>Formate</h3><p>Bearbeitung im warmen Look des Hauses und Zuschnitte für Beiträge und Reels.</p></div></li>
+    </ol>
+  </section>
+
+  <!-- ══ Weiter ══ -->
+
+  <section class="ruf">
+    <div class="ruf__karte ruf__karte--knapp" data-rein>
+      <div class="ruf__wort">
+        <span class="chip chip--hell" data-rein>Kontakt</span>
+        <h2>Ähnliches<br>vor der Brust?</h2>
+        <p class="ruf__text">Fünfzehn Minuten, ehrliche Einschätzung,
+          keine Verpflichtung.</p>
+        <a class="knopf knopf--akzent gross" href="../../#kontakt">
+          <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <span class="chip chip--hell" data-rein>Kontakt</span>
+      <h2>Reden wir.</h2>
+      <div class="fuss__aktion">
+        <a class="knopf knopf--dunkel fuss__cta" href="../../#kontakt">Gespräch buchen <i aria-hidden="true">→</i></a>
+        <a class="fuss__mail" href="mailto:hallo@klartext-digital.ch">hallo@klartext-digital.ch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__mitte">
+    <div class="fuss__adresse">
+      <a class="fuss__logo" href="../../" aria-label="Klartext Digital: zur Startseite"><img src="../../marke/logo-fuss.svg" alt="klartext. digital" loading="lazy" width="766" height="314" decoding="async"></a>
+      <p class="fuss__ort">Lohagstrasse 15, 4133 Pratteln<br>
+        Schwerpunkt Region Basel und Aargau<br>
+        Mo bis Fr, 08:00 bis 20:00</p>
+    </div>
+    <nav class="fuss__spalte fuss__spalte--leistungen" aria-label="Leistungen">
+      <p class="fuss__kopf">Leistungen</p>
+      <div class="fuss__liste"><a class="mlink" href="../../marketing-abo/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Marketing im Abo</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Marketing im Abo</span></a><a class="mlink" href="../../projektarbeit/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Projektarbeit</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Projektarbeit</span></a><a class="mlink" href="../../branding/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a><a class="mlink" href="../../social-media/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a><a class="mlink" href="../../webdesign/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a><a class="mlink" href="../../performance-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a><a class="mlink" href="../../email-marketing/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a><a class="mlink" href="../../seo/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">SEO</span><span class="mlink__t mlink__t--neu" aria-hidden="true">SEO</span></a></div>
+    </nav>
+    <nav class="fuss__spalte" aria-label="Seiten">
+      <p class="fuss__kopf">Seiten</p>
+      <a class="mlink" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a><a class="mlink" href="../../ueber-uns/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a><a class="mlink" href="../../blog/"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a><a class="mlink" href="../../#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a><a class="mlink" href="../../#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+    </nav>
+    <div class="fuss__folgen">
+      <p class="fuss__kopf">Folgen</p>
+      <div class="fuss__sozial">
+          <a href="https://www.instagram.com/klartextdigital/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH · Alle Rechte vorbehalten</p>
+    <nav>
+      <a href="../../impressum/">Impressum</a>
+      <a href="../../datenschutz/">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859" decoding="async"></div>
+</footer>
+
+<script defer src="../../js/lenis.min.js?v=d3cf4de4"></script>
+<script defer src="../../js/gsap.min.js?v=92bb9a96"></script>
+<script defer src="../../js/ScrollTrigger.min.js?v=b0b14d67"></script>
+<script defer src="../../lader.js?v=5e0d8715"></script>
+<script defer src="../../bewegung.js?v=5cd22369"></script>
+<script defer src="../../reels.js?v=f5867321"></script>
+<script defer src="../../zeiger.js?v=043d1932"></script>
+</body>
+</html>
