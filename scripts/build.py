@@ -163,7 +163,7 @@ ORGANISATION={'@type':'Organization','@id':BASE+'#organization','name':'Klartext
 if BUSINESS:
  ORGANISATION={'@type':BUSINESS['type'],'@id':BASE+'#organization','name':BUSINESS['name'],'alternateName':BUSINESS['alternateName'],
   'url':BASE,'logo':BASE+'marke/wortmarke.svg','image':BASE+'bilder/dienst-3.jpg','email':BUSINESS['email'],
-  'legalName':BUSINESS.get('legal_name',BUSINESS['name']),'identifier':BUSINESS.get('uid'),
+  'legalName':BUSINESS.get('legal_name',BUSINESS['name']),'identifier':BUSINESS.get('uid'),'taxID':BUSINESS.get('uid'),
   'address':{'@type':'PostalAddress','streetAddress':BUSINESS['street'],'postalCode':BUSINESS['postal_code'],'addressLocality':BUSINESS['locality'],'addressRegion':BUSINESS['region'],'addressCountry':BUSINESS['country']},
   'areaServed':[{'@type':'AdministrativeArea','name':n} for n in BUSINESS['area_served']],
   'openingHoursSpecification':[{'@type':'OpeningHoursSpecification','dayOfWeek':['Monday','Tuesday','Wednesday','Thursday','Friday'],'opens':BUSINESS['opens'],'closes':BUSINESS['closes']}] if BUSINESS.get('opens') else [],
