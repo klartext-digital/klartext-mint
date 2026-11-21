@@ -387,6 +387,17 @@ for source,route in ROUTES.items():
  s=re.sub(r'(<(p|span|em|b|i)\b[^>]*class="[^"]*\b(?:brush|wort)\b[^"]*"[^>]*>)(?!<span class="brush__t">)(.*?)(</\2>)',
   r'\1<span class="brush__t">\3</span>\4',s,flags=re.S)
  s=re.sub(r'<(?:a|link|img|image|script|video|source)\b[^>]*>',tagfix,s)  # image: SVG-Bild in der Arbeitsweise-Grafik
+ # Titelbild ganz oben im <main> nie lazy laden: es ist das groesste Element im
+ # ersten Bildschirm (LCP). Gemessen 21.11.2026: Blogartikel und Fallstudien
+ # luden ihr Titelbild erst spaet nach. Nur das erste Bild und nur, wenn es nah
+ # am Anfang steht (Red Bull beginnt mit Text, Bild liegt unterhalb).
+ haupt=re.search(r'<main\b[^>]*>',s)
+ if haupt:
+  erstes=re.compile(r'<img\b[^>]*>').search(s,haupt.end())
+  if erstes and erstes.start()-haupt.end()<2000 and 'loading="lazy"' in erstes.group(0):
+   neu=erstes.group(0).replace(' loading="lazy"','')
+   if 'fetchpriority=' not in neu:neu=neu[:-1]+' fetchpriority="high">'
+   s=s[:erstes.start()]+neu+s[erstes.end():]
  if route and route not in ['marke.html','laune.html','takt.html']:
   markup,bc=breadcrumb(route,title);graph.append(bc)
   # Breadcrumb sits inside existing page intro, beneath floating nav.

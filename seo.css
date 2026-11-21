@@ -1,6 +1,11 @@
 /* Sprint 1 additions inherit the existing brand tokens and components. */
 .seo-h1{font-size:clamp(36px,5.3vw,86px)!important;line-height:1.08!important;overflow-wrap:break-word}
-.seo-breadcrumb{display:flex;flex-wrap:wrap;gap:10px;font-size:14px;line-height:1.6;margin:0 0 24px;color:var(--grau);font-weight:500}
+.seo-breadcrumb{display:flex;flex-wrap:nowrap;min-width:0;white-space:nowrap;gap:10px;font-size:14px;line-height:1.6;margin:0 0 24px;color:var(--grau);font-weight:500}
+/* Immer einzeilig: Umbruch mit Ersatzschrift und Rueckfall mit echter Schrift
+   liess die ganze Seite springen (CLS 0.12 auf Red Bull, 21.11.2026).
+   Der lange Seitenname wird gekuerzt, nicht umbrochen. */
+.seo-breadcrumb>*{flex:none}
+.seo-breadcrumb [aria-current]{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}
 .seo-breadcrumb a,.seo-prose a:not(.knopf),.seo-lesetipp a{color:var(--tinte);text-decoration:underline;text-underline-offset:4px}
 .seo-prose{max-width:820px}
 .seo-prose h2{font-size:clamp(28px,3vw,44px);line-height:1.15;margin:1.8em 0 .6em;scroll-margin-top:120px}
