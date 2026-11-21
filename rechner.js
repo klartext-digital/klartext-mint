@@ -59,7 +59,7 @@
     R.querySelector('#rAnfrage').href = 'mailto:hallo@klartext-digital.ch?subject=' +
       encodeURIComponent('Anfrage Website') + '&body=' +
       encodeURIComponent('Guten Tag\n\nüber den Rechner auf eurer Seite habe ich folgende Auswahl getroffen:\n\n' +
-        zeilen + '\n\nStartwert: ab CHF ' + chf(summe) + '\n\nFreundliche Grüsse\n');
+        zeilen + '\n\nStartwert: ab CHF ' + chf(summe) + ' zuzüglich MWST\n\nFreundliche Grüsse\n');
   }
 
   R.addEventListener('change', rechne);
