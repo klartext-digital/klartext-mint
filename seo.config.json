@@ -47,7 +47,10 @@
     "opens": "08:00",
     "closes": "20:00",
     "legal_name": "Klartext Digital GmbH",
-    "uid": "CHE-210.244.987"
+    "uid": "CHE-210.244.987",
+    "same_as": [
+      "https://www.instagram.com/klartextdigital/"
+    ]
   },
   "ausblenden": {
     "referenzen": "Kundenlogos, bis zur Freigabe ausgeblendet (21.11.2026)",

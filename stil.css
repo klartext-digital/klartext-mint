@@ -3615,6 +3615,8 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    lesbar zu machen. */
 .werke__raster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
   gap:clamp(14px,1.6vw,26px);margin-top:clamp(26px,2.6vw,42px)}
+/* Acht Projekte: vier pro Reihe, damit keine Reihe halb leer bleibt. */
+@media (min-width:1081px){ .werke__raster{grid-template-columns:repeat(4,minmax(0,1fr))} }
 @media (max-width:1080px){ .werke__raster{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (max-width:640px){ .werke__raster{grid-template-columns:minmax(0,1fr)} }
 .werk{--w-dauer:760ms;--w-kurve:cubic-bezier(.25,.25,.15,1);
@@ -5562,3 +5564,40 @@ body .brush.etikett{font-size:clamp(34px,3.8vw,58px)!important}
 .ref__reihe{display:flex;flex-wrap:wrap;justify-content:center;--sp:6}
 .ref__reihe > .ref{flex:0 0 calc((100% - (var(--sp) - 1) * 14px) / var(--sp));min-width:0}
 @media (max-width:1100px){.ref__reihe{--sp:2}}
+
+/* ── Fallstudien: Bildergalerie und Farbfelder (21.11.2026) ─────
+   Fuer Website-, Branding- und Foto-Projekte. Gleicher Rahmen wie
+   .reels und .fzk: eine Inhaltsbreite, --sec als Abstand, Ecken
+   --r-mittel. Querformate stehen zu zweit, Hochformate zu dritt. */
+.galerie{max-width:calc(var(--maxw) + var(--pad) * 2);margin:var(--sec) auto 0;padding:0 var(--pad)}
+.galerie__raster{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(12px,1.4vw,24px);margin-top:clamp(26px,3vw,44px)}
+.galerie__raster--hoch{grid-template-columns:repeat(3,minmax(0,1fr))}
+.galerie__bild{margin:0;display:grid;gap:10px}
+.galerie__bild img{display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:cover;
+  border-radius:var(--r-mittel);background:var(--creme-2)}
+.galerie__raster--hoch .galerie__bild img{aspect-ratio:4 / 5}
+.galerie__bild--breit{grid-column:1 / -1}
+.galerie__bild figcaption{font-size:14px;line-height:1.5;color:rgb(14 13 11 / .72)}
+.galerie__bild figcaption b{color:var(--tinte);font-weight:700}
+@media (max-width:900px){ .galerie__raster--hoch{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:640px){ .galerie__raster{grid-template-columns:minmax(0,1fr)}
+  .galerie__raster--hoch{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px} }
+
+.farben{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(10px,1vw,16px);
+  margin-top:clamp(26px,3vw,44px)}
+.farbe{display:grid;gap:10px;margin:0}
+.farbe i{display:block;aspect-ratio:1;border-radius:var(--r-mittel);background:var(--f);
+  box-shadow:inset 0 0 0 1px rgb(14 13 11 / .08)}
+.farbe b{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.farbe span{font-size:13px;color:rgb(14 13 11 / .66);font-variant-numeric:tabular-nums}
+@media (max-width:900px){ .farben{grid-template-columns:repeat(3,minmax(0,1fr))} }
+
+.fall__link{color:inherit;text-decoration:underline;text-decoration-color:var(--violett);
+  text-underline-offset:.22em;text-decoration-thickness:2px}
+
+/* Website-Projekte zeigen Geraete-Mockups mit viel Text im Bild. Dort
+   braucht die Kundenmarke einen dichteren Schleier, sonst liest man den
+   Seitentext dahinter mit. Duenne Wortmarken stehen etwas groesser. */
+.werk--dicht:hover .werk__schleier,.werk--dicht:focus-visible .werk__schleier{opacity:.9}
+.werk__marke--gross{width:min(44%,280px)}

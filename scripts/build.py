@@ -143,9 +143,11 @@ META = {
  "projekte/grand-casino-baden/": ("Grand Casino Baden: Social Media | Klartext Digital", "Laufende Social-Media-Betreuung und Content-Produktion für das Grand Casino Baden seit 2024: Präsenz am Markt, organisch gewachsen."),
  "projekte/red-bull/": ("Red Bull × Grand Casino Baden | Klartext Digital", "Content und Fotografie für zwei Drinks zur Winter Edition, umgesetzt in der Bar im Grand Casino Baden."),
  "projekte/aesthetics-medical/": ("Aesthetics Medical: Social Media | Klartext Digital", "Social Media und Reels für die Aesthetics Medical AG am Utoquai in Zürich: Behandlungen verständlich zeigen statt erklären müssen."),
- "projekte/nordlicht/": ("Nordlicht: Markenidentität & Website | Klartext Digital", "Branding und Website für eine junge Energieplattform: eine klare Markenidentität, entwickelt und umgesetzt in sechs Wochen (2025)."),
- "projekte/volta/": ("Volta: Auftritt für komplexe Technik | Klartext Digital", "Branding und 3D-Bildsprache für Volta: ein Auftritt, der komplexe Technik verständlich macht. Umgesetzt in neun Wochen (2024)."),
- "projekte/meridian/": ("Meridian: vom Nischenprodukt zur Marke | Klartext Digital", "Branding und Kampagne für Meridian: vom Nischenprodukt zur Marke mit Haltung, entwickelt in zwölf Wochen (2024)."),
+ "projekte/plue/": ("PLÜ Restaurant & Lounge: Foodfotografie | Klartext Digital", "Foodfotografie für das PLÜ Restaurant & Lounge im Grand Casino Baden: Gerichte am Tisch fotografiert, im Licht des Hauses, für Social Media."),
+ "projekte/polsterei-janssen/": ("Polsterei Janssen: Website | Klartext Digital", "Neue Website für die Polsterei Janssen in Krefeld: Vorher und Nachher zum Ziehen, sieben Leistungen auf einen Blick, Anfrage in vier Schritten."),
+ "projekte/fabio-soltani/": ("Fabio Soltani Interieur: Website | Klartext Digital", "Website für Fabio Soltani Interieur Manufaktur in Wädenswil: Polsterei und Teppiche in vierter Generation, mit Film, Vorher und Nachher und Terminbuchung."),
+ "projekte/q-punkt/": ("Q Punkt Gebäudetechnik: Website | Klartext Digital", "Website für die Q Punkt Gebäudetechnik AG in Otelfingen: Leistungen von Energiekonzept bis Sanitär, Referenzen, Ratgeber und Fotos vom eigenen Team."),
+ "projekte/markus-amann/": ("Markus Amann: Branding | Klartext Digital", "Markenentwicklung für Markus Amann, Philosophische Praxis in St. Pölten und Wien: zwei Logo-Richtungen mit Raster, Farbwelt, Schrift und Anwendungen."),
  'projekte/': ('Projekte und Referenzen | Klartext Digital', 'Einblicke in die Referenzen von Klartext Digital: Projekte aus Branding, Content und digitalem Marketing.'),
  'blog/': ('Gedanken zu Marke und Marketing | Klartext Digital', 'Artikel und Perspektiven zu Markenaufbau, Websites, Social Media und Strategie. Entdeckt den Blog von Klartext Digital.'),
  'impressum/': ('Impressum | Klartext Digital', 'Impressum der Klartext Digital GmbH, Lohagstrasse 15, 4133 Pratteln, UID CHE-210.244.987.'),
@@ -165,6 +167,7 @@ if BUSINESS:
   'address':{'@type':'PostalAddress','streetAddress':BUSINESS['street'],'postalCode':BUSINESS['postal_code'],'addressLocality':BUSINESS['locality'],'addressRegion':BUSINESS['region'],'addressCountry':BUSINESS['country']},
   'areaServed':[{'@type':'AdministrativeArea','name':n} for n in BUSINESS['area_served']],
   'openingHoursSpecification':[{'@type':'OpeningHoursSpecification','dayOfWeek':['Monday','Tuesday','Wednesday','Thursday','Friday'],'opens':BUSINESS['opens'],'closes':BUSINESS['closes']}] if BUSINESS.get('opens') else [],
+  'sameAs':BUSINESS.get('same_as',[]),
   'knowsAbout':['Webdesign','Suchmaschinenoptimierung','Social Media Marketing','Google Ads','Meta Ads','E-Mail-Marketing','Branding']}
 LEISTUNGEN={'webdesign/':'Webdesign','seo/':'Suchmaschinenoptimierung (SEO)','social-media/':'Social-Media-Betreuung','performance-marketing/':'Google Ads und Meta Ads','branding/':'Branding und Markenstrategie','email-marketing/':'E-Mail-Marketing und Newsletter','website-betreuung/':'Website-Betreuung','marketing-abo/':'Marketing im Abo','projektarbeit/':'Marketing-Projekte'}
 LABELS={'':'Startseite','webdesign/':'Webdesign','leistungen/':'Leistungen','branding/':'Branding','social-media/':'Social Media','performance-marketing/':'Performance Marketing','email-marketing/':'E-Mail Marketing','ueber-uns/':'Über uns','projekte/':'Projekte','blog/':'Blog','impressum/':'Impressum','datenschutz/':'Datenschutz'}

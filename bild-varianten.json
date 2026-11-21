@@ -726,5 +726,333 @@
       "path": "bilder/gbp-profil-1200.webp",
       "width": 1200
     }
+  ],
+  "bilder/fall-janssen.jpg": [
+    {
+      "path": "bilder/fall-janssen-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-janssen-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-janssen-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-qpunkt.jpg": [
+    {
+      "path": "bilder/fall-qpunkt-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-qpunkt-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-qpunkt-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-fabio.jpg": [
+    {
+      "path": "bilder/fall-fabio-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-fabio-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-fabio-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-fabio-2.jpg": [
+    {
+      "path": "bilder/fall-fabio-2-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-fabio-2-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-fabio-2-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-fabio-3.jpg": [
+    {
+      "path": "bilder/fall-fabio-3-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-fabio-3-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-fabio-3-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-janssen-2.jpg": [
+    {
+      "path": "bilder/fall-janssen-2-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-janssen-2-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-janssen-2-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-janssen-3.jpg": [
+    {
+      "path": "bilder/fall-janssen-3-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-janssen-3-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-janssen-3-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-qpunkt-2.jpg": [
+    {
+      "path": "bilder/fall-qpunkt-2-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-qpunkt-2-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-qpunkt-2-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-qpunkt-3.jpg": [
+    {
+      "path": "bilder/fall-qpunkt-3-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-qpunkt-3-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-qpunkt-3-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-amann.jpg": [
+    {
+      "path": "bilder/fall-amann-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-amann-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-amann-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-amann-raster.jpg": [
+    {
+      "path": "bilder/fall-amann-raster-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-amann-raster-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-amann-raster-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-amann-idee.jpg": [
+    {
+      "path": "bilder/fall-amann-idee-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-amann-idee-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-amann-idee-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-amann-anwendung.jpg": [
+    {
+      "path": "bilder/fall-amann-anwendung-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-amann-anwendung-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-amann-anwendung-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-amann-b-logo.jpg": [
+    {
+      "path": "bilder/fall-amann-b-logo-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-amann-b-logo-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-amann-b-logo-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-amann-b-idee.jpg": [
+    {
+      "path": "bilder/fall-amann-b-idee-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-amann-b-idee-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-amann-b-idee-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-amann-b-anwendung.jpg": [
+    {
+      "path": "bilder/fall-amann-b-anwendung-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-amann-b-anwendung-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-amann-b-anwendung-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-plue.jpg": [
+    {
+      "path": "bilder/fall-plue-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-plue-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-plue-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-plue-1.jpg": [
+    {
+      "path": "bilder/fall-plue-1-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-plue-1-900.webp",
+      "width": 900
+    }
+  ],
+  "bilder/fall-plue-2.jpg": [
+    {
+      "path": "bilder/fall-plue-2-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-plue-2-900.webp",
+      "width": 900
+    }
+  ],
+  "bilder/fall-plue-3.jpg": [
+    {
+      "path": "bilder/fall-plue-3-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-plue-3-900.webp",
+      "width": 900
+    }
+  ],
+  "bilder/fall-plue-4.jpg": [
+    {
+      "path": "bilder/fall-plue-4-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-plue-4-900.webp",
+      "width": 900
+    }
+  ],
+  "bilder/fall-plue-5.jpg": [
+    {
+      "path": "bilder/fall-plue-5-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-plue-5-900.webp",
+      "width": 900
+    }
+  ],
+  "bilder/fall-plue-6.jpg": [
+    {
+      "path": "bilder/fall-plue-6-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-plue-6-900.webp",
+      "width": 900
+    }
+  ],
+  "bilder/fall-plue-7.jpg": [
+    {
+      "path": "bilder/fall-plue-7-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-plue-7-900.webp",
+      "width": 900
+    }
+  ],
+  "bilder/fall-plue-8.jpg": [
+    {
+      "path": "bilder/fall-plue-8-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-plue-8-900.webp",
+      "width": 900
+    }
+  ],
+  "bilder/fall-plue-9.jpg": [
+    {
+      "path": "bilder/fall-plue-9-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-plue-9-900.webp",
+      "width": 900
+    }
   ]
 }
