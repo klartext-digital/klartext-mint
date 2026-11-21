@@ -124,6 +124,21 @@ blog/
                          google-ads-budget, rhythmus-statt-kampagne, vorne-bleiben
 ```
 
+**Stand 21.11.2026:** Die sechs Standpunkte sind zu Leitfäden ausgebaut (1700 bis 1900
+Wörter, gleiche Adressen, jetzt als Ordner `blog/<x>/index.html`), dazu vier neue.
+Viertes Dach **SEO, Google & KI** mit Hauptartikel `seo-fuer-kmu`:
+
+```
+├─ SEO, Google & KI ... seo-fuer-kmu (Hauptartikel) + lokale-seo, vorne-bleiben (laufende SEO),
+│                        google-unternehmensprofil, in-chatgpt-gefunden-werden, ki-im-marketing
+├─ Website ............ + website-die-arbeitet (Website-Erfolg messen)
+├─ Marke .............. wettbewerb-gewinnen (Positionierung), marke-am-anfang (Markenaufbau),
+│                        kluge-marken-wachsen (Corporate Design)
+└─ Social & Budget .... rhythmus-statt-kampagne (Redaktionsplan), newsletter-kmu
+```
+
+Reihenfolge in der Blog-Übersicht ohne Datum: Feld `rang` in `page-meta.json` (höher = weiter vorne).
+
 Je Dach ein Hauptartikel von 1500–2500 Wörtern — nicht HubSpots 4992. Ein
 Redaktionsteam gegen eine Person; der Massstab wird nicht übernommen.
 

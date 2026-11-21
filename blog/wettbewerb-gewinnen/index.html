@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:var(--hand,'Rock Salt'),cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<title>Positionierung für KMU: Wofür steht ihr? | Klartext Digital</title>
+<meta name="description" content="Positionierung für KMU: Wettbewerbsanalyse ohne Budget, Lücke finden, Positionierungssatz formulieren und prüfen. Mit Vorlage und Beispielen.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/logo-negativ.svg" alt="klartext. digital" width="766" height="314"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../index.html" aria-label="Klartext Digital: zur Startseite"><picture><source media="(max-width: 699px)" srcset="../../marke/zeichen.svg" width="1010" height="916"><img src="../../marke/logo-quer.svg" alt="klartext digital" width="1350" height="259"></picture></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../index.html#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../index.html#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../leistungen/branding.html" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marke &amp; Strategie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/social-media.html" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media &amp; Content</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/websites.html" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/performance.html" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/email-marketing.html" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../seo/index.html" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/index.html" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist">
+          <img src="../../bilder/dienst-2.jpg" alt="">
+          <img src="../../bilder/dienst-3.jpg" alt="">
+          <img src="../../bilder/dienst-4.jpg" alt="">
+          <img src="../../bilder/dienst-5.jpg" alt="">
+          <img src="../../bilder/dienst-6.jpg" alt="">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+          <div class="ndd__satz"><b>Gefunden, wenn gesucht wird</b><span>Technische Prüfung, verständliche Inhalte und laufende Auswertung. Als eigenes Projekt oder als Teil des Abos.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main><div class="hero hero--portraet" data-hero>
+  <section class="unter unter--eng">
+  </section>
+<section class="unter__leib unter__leib--portraet">
+    <div class="unter__kopf" data-rein>
+      <a class="zurueck" href="../">
+        <i aria-hidden="true">←</i><span>Alle Artikel</span></a>
+      <h1 class="seo-h1 unter__gross unter__gross--artikel"><span class="satz">Positionierung für KMU:</span> <span class="satz">Wofür steht ihr?</span></h1>
+      <p class="brush">Weniger Beliebigkeit, nicht mehr Werbung.</p>
+    </div>
+    <figure class="unter__motiv" data-rein>
+      <img sizes="(max-width: 1100px) 1px, 62vw" src="../../bilder/br-position.jpg" alt="" fetchpriority="high" decoding="async">
+    </figure>
+    <div class="unter__text unter__text--satz" data-rein>
+      <p>Wer alles für alle sein will, bleibt bei niemandem hängen. Die Unternehmen, die im Gedächtnis bleiben, haben selten das grösste Budget, sondern die klarste Antwort auf die Frage, wofür sie stehen. Genau darum geht es bei der Positionierung für KMU. Dieser Leitfaden zeigt, wie ihr mit einer kostenlosen Wettbewerbsanalyse eure Lücke findet, sie in einem Satz festhaltet und prüft, ob dieser Satz trägt.</p></div></section>
+    </div>
+  </section>
+</div>
+<article class="artikel seo-prose">
+<p class="seo-antwort"><strong>Kurze Antwort:</strong> Positionierung ist die Antwort auf drei Fragen: Für wen arbeitet ihr, welches Problem löst ihr, und warum sollte man euch statt eines anderen Anbieters wählen? Für KMU ist sie wichtiger als für Grosse, weil ein kleines Budget nicht laut sein kann, sondern klar sein muss. Positionierung heisst verzichten: auf Zielgruppen, Leistungen oder Versprechen, die nicht zu euch passen. Sie steht, wenn alle im Team sie im selben Satz sagen würden.</p>
+<nav class="seo-inhalt" aria-label="Inhaltsverzeichnis"><h2>Worum es geht</h2><ul><li><a href="#was">Was Positionierung ist</a></li><li><a href="#analyse">Wettbewerbsanalyse, praktisch und kostenlos</a></li><li><a href="#luecke">Die Lücke finden</a></li><li><a href="#satz">Der Positionierungssatz</a></li><li><a href="#beispiele">Beispiele aus KMU-Branchen</a></li><li><a href="#pruefen">Die Positionierung prüfen</a></li><li><a href="#wirkung">Was sich danach ändert</a></li><li><a href="#fehler">Typische Fehler</a></li><li><a href="#fragen">Häufige Fragen</a></li></ul></nav>
+
+<h2 id="was">Positionierung für KMU: was sie ist und warum ihr sie braucht</h2>
+<p>Positionierung ist kein Slogan und kein Logo. Sie ist eine Entscheidung darüber, welchen Platz ihr im Kopf eurer Kundschaft einnehmen wollt.</p>
+<p>Das klingt banal, ist aber unbequem: Eine Position zu beziehen heisst, auf etwas zu verzichten. Genau dieser Verzicht macht den Unterschied zwischen einer Marke und einem Anbieter. Ein Malerbetrieb, der „alle Arbeiten rund ums Haus“ anbietet, ist einer von vielen. Einer, der sich auf Renovationen in bewohnten Wohnungen spezialisiert, ist für genau diese Aufgabe die erste Adresse.</p>
+<p>Für KMU zählt das aus drei Gründen besonders:</p>
+<ul><li><strong>Das Budget reicht nicht für Lautstärke.</strong> Grosse Anbieter können Bekanntheit kaufen. Kleinere müssen mit jedem Franken klarer sein.</li><li><strong>Empfehlungen brauchen einen Satz.</strong> Wer euch weiterempfehlen will, muss in einem Satz sagen können, wofür ihr gut seid. Gibt es diesen Satz nicht, bleibt die Empfehlung aus.</li><li><strong>Wer austauschbar ist, wird über den Preis verglichen.</strong> Wenn drei Offerten gleich klingen, entscheidet die tiefste Zahl.</li></ul>
+
+<h2 id="analyse">Wettbewerbsanalyse: praktisch und kostenlos</h2>
+<p>Bevor ihr festlegt, wofür ihr steht, braucht ihr ein Bild davon, wofür die anderen stehen. Dafür reicht ein Nachmittag und ein Browser.</p>
+<ol><li><strong>Sucht wie eure Kundschaft.</strong> Gebt bei Google ein, was eure Kundinnen und Kunden eingeben würden: „Treuhand Liestal“, „Elektriker Aarau“, „Physiotherapie Basel“. Schaut euch die Karte mit den Unternehmensprofilen und die ersten Ergebnisse an. Notiert fünf bis acht Mitbewerber, die dort regelmässig auftauchen.</li><li><strong>Lest ihre Websites.</strong> Was steht im ersten Satz der Startseite? Welche Zielgruppen werden genannt? Welche Leistungen stehen oben, welche ganz unten? Welche Belege gibt es: Referenzen, Zertifikate, Projekte?</li><li><strong>Lest ihre Google-Profile und Bewertungen.</strong> Wofür werden sie gelobt, worüber beschweren sich Kunden? Bewertungen der Mitbewerber sind kostenlose Marktforschung. Wiederkehrende Klagen, etwa über Erreichbarkeit oder Termintreue, zeigen, was der Markt vermisst.</li><li><strong>Vergleicht die Angebote.</strong> Pakete, öffentlich genannte Preise, Einzugsgebiet, Reaktionszeit, Sprachen, Öffnungszeiten. Was bietet niemand an?</li><li><strong>Schaut auf Social Media.</strong> Welche Themen besetzen die Mitbewerber? LinkedIn bietet für Unternehmensseiten zudem eine eingebaute Mitbewerber-Analyse.</li></ol>
+<p>Haltet alles in einer Tabelle fest: eine Zeile pro Mitbewerber, Spalten für Zielgruppe, Kernleistung, Versprechen, Belege und Bewertungen. Nach fünf Zeilen wiederholen sich die Versprechen meist. Genau das ist die wichtigste Erkenntnis.</p>
+
+<h2 id="luecke">Sich von der Konkurrenz abheben: die Lücke finden</h2>
+<p>Wenn alle „Qualität, Zuverlässigkeit und persönliche Beratung“ versprechen, verspricht niemand etwas. Die Lücke liegt selten in einer besseren Formulierung, sondern in einer anderen Entscheidung. Diese fünf Richtungen helfen bei der Suche:</p>
+<ul><li><strong>Zielgruppe:</strong> Wen spricht niemand ausdrücklich an? Handwerksbetriebe, Praxen, Familienunternehmen, Neugründungen.</li><li><strong>Spezialisierung:</strong> Welche Leistung bieten alle nebenbei an, aber niemand als Hauptsache?</li><li><strong>Arbeitsweise:</strong> Festpreise, feste Termine, ein Ansprechpartner für alles, Arbeit ausserhalb der Bürozeiten.</li><li><strong>Region:</strong> Wer ist in einem bestimmten Tal, Bezirk oder Quartier wirklich zu Hause, nicht nur auf der Liste des Einzugsgebiets?</li><li><strong>Haltung:</strong> Was macht ihr bewusst nicht, obwohl andere es tun?</li></ul>
+<p>Eine Lücke ist nur dann eine Chance, wenn zwei Bedingungen erfüllt sind. Erstens: Es gibt genug Nachfrage dafür. Prüft das an euren bisherigen Anfragen und an den Gesprächen mit bestehenden Kunden. Zweitens: Ihr könnt das Versprechen dauerhaft halten.</p>
+
+<h2 id="satz">Der Positionierungssatz: eine Vorlage</h2>
+<p>Haltet das Ergebnis in einem Satz fest. Er ist für den internen Gebrauch, nicht für die Website. Er darf deshalb sperrig sein, solange er klar ist:</p>
+<p class="seo-lesetipp">Für [Zielgruppe], die [Problem oder Bedürfnis], sind wir [Art des Anbieters], der [Nutzen]. Anders als [übliche Alternative] [Grund, warum man euch das glauben kann].</p>
+<p>Der letzte Teil ist der wichtigste. Ein Versprechen ohne Grund ist eine Behauptung. Gründe sind überprüfbar: eine Spezialisierung, ein Verfahren, ein Werdegang, eine Garantie, die ihr tatsächlich gebt.</p>
+<p>Zum Begriff Alleinstellungsmerkmal: Wirklich einzigartig ist in den meisten Branchen kaum etwas. Das muss es auch nicht sein. Es reicht, dass ihr etwas klarer besetzt als die anderen und es belegen könnt. Vorsicht bei Superlativen und Vergleichen: Das Schweizer Gesetz gegen den unlauteren Wettbewerb (UWG) verbietet unter anderem unrichtige oder irreführende Angaben über die eigenen Leistungen und irreführende Vergleiche mit Mitbewerbern. Wer „die schnellsten“ oder „die günstigsten“ sein will, sollte das belegen können. Klärt im Zweifel mit einer Fachperson, was ihr behaupten dürft.</p>
+
+<h2 id="beispiele">Beispiele aus KMU-Branchen</h2>
+<p>Die folgenden Beispiele sind erfunden. Sie zeigen, wie aus einer allgemeinen Beschreibung eine Position wird.</p>
+<dl class="angebot-liste"><div><dt>Treuhandbüro im Baselbiet</dt><dd>Vorher: „Ihr Partner für Buchhaltung, Steuern und Beratung.“ Nachher: „Für Handwerksbetriebe mit bis zu zwanzig Mitarbeitenden, die keine Zeit für Buchhaltung haben, sind wir das Treuhandbüro, das Belege per Foto vom Handy übernimmt und jeden Monat einen kurzen Stand liefert. Anders als grosse Kanzleien kennen wir die Branche, weil wir nur für sie arbeiten.“</dd></div><div><dt>Malerbetrieb im Aargau</dt><dd>Vorher: „Malerarbeiten aller Art.“ Nachher: „Für Familien, die während der Renovation in der Wohnung bleiben, sind wir der Malerbetrieb, der Raum für Raum arbeitet und jeden Abend aufräumt. Anders als die meisten Betriebe planen wir jeden Auftrag mit einem festen Tagesplan.“</dd></div><div><dt>Physiotherapie-Praxis in Basel</dt><dd>Vorher: „Physiotherapie für alle Beschwerden.“ Nachher: „Für Läuferinnen und Läufer mit wiederkehrenden Verletzungen sind wir die Praxis, die Behandlung mit Laufanalyse verbindet. Anders als allgemeine Praxen behandeln wir fast nur Laufverletzungen und kennen deshalb ihre typischen Muster.“</dd></div><div><dt>Restaurant im Gewerbegebiet</dt><dd>Vorher: „Gutbürgerliche Küche in gemütlicher Atmosphäre.“ Nachher: „Für Berufstätige mit kurzer Mittagspause sind wir das Restaurant, in dem das Menü in zehn Minuten auf dem Tisch steht. Anders als Kantinen kochen wir täglich frisch und saisonal.“</dd></div></dl>
+<p>In jedem Beispiel fällt etwas weg. Das Angebot bleibt meist bestehen, aber die Reihenfolge, in der ihr darüber sprecht, ändert sich.</p>
+
+<h2 id="pruefen">Die Positionierung prüfen</h2>
+<p>Ein Satz auf Papier ist noch keine Positionierung. Vier einfache Tests zeigen, ob er trägt:</p>
+<ul><li><strong>Der Team-Test.</strong> Fragt drei Personen im Team einzeln: „Wofür stehen wir, in einem Satz?“ Wenn drei Leute drei Antworten geben, fängt die Arbeit dort an, nicht beim Logo.</li><li><strong>Der Mitbewerber-Test.</strong> Könnte euer Satz genauso auf der Website eines Mitbewerbers stehen? Dann ist er zu allgemein.</li><li><strong>Der Verzicht-Test.</strong> Nennt eine Anfrage, die ihr wegen der Positionierung künftig ablehnen oder weiterempfehlen würdet. Fällt euch keine ein, habt ihr noch nicht entschieden.</li><li><strong>Der Kunden-Test.</strong> Fragt drei bestehende Kunden, warum sie euch gewählt haben. Wenn ihre Antworten zu eurem Satz passen, seid ihr auf dem richtigen Weg. Wenn nicht, zeigen sie euch eure tatsächliche Stärke.</li></ul>
+
+<h2 id="wirkung">Was die Positionierung auf Website, SEO, Social Media und Angebot verändert</h2>
+<p>Eine Positionierung, die nur im Strategiepapier steht, wirkt nicht. Sie muss dort sichtbar werden, wo Kunden euch begegnen.</p>
+<ul><li><strong>Website:</strong> Der erste Satz der Startseite sagt, für wen ihr was tut. Leistungsseiten beginnen mit dem Problem der Zielgruppe, nicht mit eurer Firmengeschichte.</li><li><strong>SEO:</strong> Die Positionierung legt fest, auf welche Themen ihr bei Google gefunden werden wollt. Ein Treuhandbüro für Handwerksbetriebe schreibt über Fragen von Handwerksbetrieben, nicht über Steuern im Allgemeinen. In der Google Search Console seht ihr im Leistungsbericht, bei welchen Suchanfragen eure Seite bereits erscheint. Passen sie nicht zu eurer Position, fehlen die Inhalte dazu. Für lokale Ergebnisse nennt Google Relevanz, Entfernung und Bekanntheit als wichtigste Faktoren. Ein vollständiges <a href="../google-unternehmensprofil/">Google-Unternehmensprofil</a>, das zu eurer Position passt, hilft bei der Relevanz.</li><li><strong>Social Media:</strong> Die Themenfelder eures Redaktionsplans folgen aus der Positionierung. Wie ihr daraus einen festen Rhythmus macht, zeigt der Leitfaden <a href="../rhythmus-statt-kampagne/">Redaktionsplan Social Media</a>.</li><li><strong>Angebot:</strong> Pakete, Preise und Abläufe werden auf die Zielgruppe zugeschnitten. Und ihr wisst, bei welchen Anfragen ihr freundlich Nein sagt.</li></ul>
+<p>Die Positionierung ist auch die Grundlage für den sichtbaren Auftritt. Wie ihr beim Start eine Marke aufbaut, beschreibt der Leitfaden <a href="../marke-am-anfang/">Markenaufbau beim Start</a>. Wie daraus ein Markensystem wird, das im Alltag hält, steht in <a href="../kluge-marken-wachsen/">Markensystem und Corporate Design</a>.</p>
+
+<h2 id="fehler">Typische Fehler bei der Positionierung</h2>
+<ul><li><strong>Werte statt Entscheidung.</strong> Qualität, Zuverlässigkeit und Kundennähe sind Voraussetzungen, keine Position. Jeder Mitbewerber nimmt sie ebenfalls für sich in Anspruch.</li><li><strong>Mit dem Logo anfangen.</strong> Ein neues Erscheinungsbild löst kein Positionierungsproblem.</li><li><strong>Den Marktführer kopieren.</strong> Wer dieselbe Position wie der Grösste im Markt wählt, verliert gegen dessen Budget.</li><li><strong>Behaupten ohne Beleg.</strong> Ein Versprechen, das sich nicht prüfen lässt, überzeugt niemanden und kann rechtlich heikel werden.</li><li><strong>Zu früh wechseln.</strong> Eine Position braucht Zeit, bis sie bei Kunden ankommt. Wer sie jedes Jahr ändert, beginnt jedes Jahr von vorn.</li></ul>
+
+<h2>Checkliste</h2>
+<ul><li>Fünf bis acht Mitbewerber über die Google-Suche ermittelt</li><li>Websites, Google-Profile und Bewertungen der Mitbewerber gelesen</li><li>Angebote in einer Tabelle verglichen</li><li>Lücke gefunden, die gefragt ist und die ihr halten könnt</li><li>Positionierungssatz mit Zielgruppe, Problem, Nutzen und Grund formuliert</li><li>Superlative und Vergleiche auf Belege geprüft</li><li>Team-Test, Mitbewerber-Test, Verzicht-Test und Kunden-Test bestanden</li><li>Startseite, Leistungsseiten und Google-Profil an die Position angepasst</li><li>Themenfelder für Social Media und SEO aus der Position abgeleitet</li></ul>
+
+<div class="fragen fragen--eingebettet fragen--wie-start">
+  <div class="fragen__kopf">
+    <span class="chip" data-rein>FAQ</span>
+    <h2 id="fragen">Häufige Fragen.</h2>
+    <p class="fuehrung">Noch etwas offen? <a href="../../index.html#kontakt">Schreib uns</a>. Wir antworten meist am selben Arbeitstag.</p>
+  </div>
+  <div class="fragen__liste">
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Was ist der Unterschied zwischen Positionierung und Alleinstellungsmerkmal?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Die Positionierung beschreibt das Ganze: Zielgruppe, Problem, Nutzen und den Grund, euch zu wählen. Das Alleinstellungsmerkmal ist dieser Grund. Es muss nicht einzigartig auf der Welt sein, aber in eurem Markt klarer besetzt als bei anderen.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Verlieren wir Kunden, wenn wir uns spezialisieren?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Meist nicht in dem Mass, wie befürchtet. Die Positionierung bestimmt, worüber ihr sprecht, nicht zwingend, was ihr annehmt. Bestehende Kunden bleiben meist, neue Anfragen werden passender.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Wie macht man eine Wettbewerbsanalyse ohne Budget?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Mit der Google-Suche, den Websites und Google-Profilen der Mitbewerber und deren Bewertungen. Sucht so, wie eure Kunden suchen, notiert fünf bis acht Anbieter und vergleicht Zielgruppe, Kernleistung, Versprechen und Belege in einer Tabelle.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Wie oft sollte man die Positionierung überprüfen?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Ein Blick einmal im Jahr genügt, etwa zusammen mit der Budgetplanung. Ändern solltet ihr sie nur, wenn sich Markt, Angebot oder Zielgruppe tatsächlich verändert haben.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<h2>Quellen und Vertiefung</h2>
+<p>Was in der Werbung unlauter ist, regelt das <a href="https://www.fedlex.admin.ch/eli/cc/1988/223_223_223/de">Bundesgesetz gegen den unlauteren Wettbewerb (UWG)</a>, insbesondere Art. 3. Google erklärt den <a href="https://support.google.com/webmasters/answer/7576553?hl=de">Leistungsbericht der Search Console</a> und die Faktoren für das <a href="https://support.google.com/business/answer/7091?hl=de">Ranking in lokalen Suchergebnissen</a>. LinkedIn beschreibt die <a href="https://www.linkedin.com/help/linkedin/answer/a553615">Mitbewerber-Analysen für Unternehmensseiten</a>.</p>
+<p>Was eine Positionierung als Projekt umfasst und wie ihr Offerten dafür vergleicht, zeigt der Leitfaden <a href="../branding-kosten/">Was kostet ein Branding?</a>.</p>
+
+<h2>Euer nächster Schritt</h2>
+<p>Blockt einen Nachmittag für die Wettbewerbsanalyse und macht danach den Team-Test. Wenn die Antworten auseinandergehen, habt ihr eure wichtigste Marketingaufgabe für die nächsten Wochen gefunden.</p>
+<p>Wenn ihr die Positionierung nicht allein erarbeiten wollt, findet ihr auf der Seite <a href="../../branding/">Branding und Markenstrategie</a>, wie wir das mit KMU in der Region Basel und im Aargau angehen.</p>
+<nav class="weiterlesen" aria-label="Weiterlesen"><a class="weiter__karte" href="../branding-kosten/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Was kostet ein Branding?</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../marke-am-anfang/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Markenaufbau beim Start</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../rhythmus-statt-kampagne/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Redaktionsplan Social Media</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a></nav>
+</article></main>
+
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <span class="chip chip--hell" data-rein>Kontakt</span>
+      <h2>Reden wir.</h2>
+      <div class="fuss__aktion">
+        <a class="knopf knopf--dunkel fuss__cta" href="../../index.html#kontakt">Gespräch buchen <i aria-hidden="true">→</i></a>
+        <a class="fuss__mail" href="mailto:hallo@klartext-digital.ch">hallo@klartext-digital.ch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__mitte">
+    <div class="fuss__adresse">
+      <a class="fuss__logo" href="../../index.html" aria-label="Klartext Digital: zur Startseite"><img src="../../marke/logo-fuss.svg" alt="klartext. digital" width="766" height="314" loading="lazy"></a>
+      <p class="fuss__ort">Lohagstrasse 15, 4133 Pratteln<br>
+        Schwerpunkt Region Basel und Aargau<br>
+        Mo bis Fr, 08:00 bis 20:00</p>
+    </div>
+    <nav class="fuss__spalte fuss__spalte--leistungen" aria-label="Leistungen">
+      <p class="fuss__kopf">Leistungen</p>
+      <div class="fuss__liste"><a class="mlink" href="../../marketing-abo/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Marketing im Abo</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Marketing im Abo</span></a><a class="mlink" href="../../projektarbeit/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Projektarbeit</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Projektarbeit</span></a><a class="mlink" href="../../leistungen/branding.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a><a class="mlink" href="../../leistungen/social-media.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a><a class="mlink" href="../../leistungen/websites.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a><a class="mlink" href="../../leistungen/performance.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a><a class="mlink" href="../../leistungen/email-marketing.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a><a class="mlink" href="../../seo/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">SEO</span><span class="mlink__t mlink__t--neu" aria-hidden="true">SEO</span></a></div>
+    </nav>
+    <nav class="fuss__spalte" aria-label="Seiten">
+      <p class="fuss__kopf">Seiten</p>
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a><a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a><a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a><a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a><a class="mlink" href="../../index.html#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+    </nav>
+    <div class="fuss__folgen">
+      <p class="fuss__kopf">Folgen</p>
+      <div class="fuss__sozial">
+          <a href="https://www.instagram.com/klartextdigital/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH&nbsp;· <span class="untrennbar">UID CHE-210.244.987</span>&nbsp;· Alle Rechte vorbehalten</p>
+    <nav>
+      <a href="../../recht/impressum.html">Impressum</a>
+      <a href="../../recht/datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859"></div>
+</footer>
+
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script src="../../js/lenis.min.js"></script>
+<script src="../../js/gsap.min.js"></script>
+<script src="../../js/ScrollTrigger.min.js"></script>
+<script src="../../lader.js"></script>
+<script src="../../bewegung.js"></script>
+<script src="../../fragen.js"></script>
+<script src="../../zeiger.js"></script>
+<script src="../../rechner.js"></script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:var(--hand,'Rock Salt'),cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<title>Redaktionsplan Social Media für KMU | Klartext Digital</title>
+<meta name="description" content="Redaktionsplan für Social Media: Kanäle wählen, realistischen Rhythmus festlegen, Beiträge vorplanen und monatlich auswerten. Mit Vorlage für KMU.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/logo-negativ.svg" alt="klartext. digital" width="766" height="314"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../index.html" aria-label="Klartext Digital: zur Startseite"><picture><source media="(max-width: 699px)" srcset="../../marke/zeichen.svg" width="1010" height="916"><img src="../../marke/logo-quer.svg" alt="klartext digital" width="1350" height="259"></picture></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../index.html#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../index.html#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../leistungen/branding.html" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marke &amp; Strategie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/social-media.html" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media &amp; Content</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/websites.html" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/performance.html" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/email-marketing.html" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../seo/index.html" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/index.html" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist">
+          <img src="../../bilder/dienst-2.jpg" alt="">
+          <img src="../../bilder/dienst-3.jpg" alt="">
+          <img src="../../bilder/dienst-4.jpg" alt="">
+          <img src="../../bilder/dienst-5.jpg" alt="">
+          <img src="../../bilder/dienst-6.jpg" alt="">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+          <div class="ndd__satz"><b>Gefunden, wenn gesucht wird</b><span>Technische Prüfung, verständliche Inhalte und laufende Auswertung. Als eigenes Projekt oder als Teil des Abos.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main><div class="hero hero--portraet" data-hero>
+  <section class="unter unter--eng">
+  </section>
+<section class="unter__leib unter__leib--portraet">
+    <div class="unter__kopf" data-rein>
+      <a class="zurueck" href="../">
+        <i aria-hidden="true">←</i><span>Alle Artikel</span></a>
+      <h1 class="seo-h1 unter__gross unter__gross--artikel"><span class="satz">Redaktionsplan Social Media:</span> <span class="satz">Rhythmus statt Kampagne<i class="punkt">.</i></span></h1>
+      <p class="brush">Lieber vierzig ordentliche als vier gute.</p>
+    </div>
+    <figure class="unter__motiv" data-rein>
+      <img sizes="(max-width: 1100px) 1px, 62vw" src="../../bilder/sm-plan.jpg" alt="" fetchpriority="high" decoding="async">
+    </figure>
+    <div class="unter__text unter__text--satz" data-rein>
+      <p>Kampagnen fühlen sich nach Fortschritt an. Es gibt einen Start, einen Endtermin und danach eine Auswertung. Was ein Unternehmen auf Social Media sichtbar hält, ist aber der Zwischenraum: die Wochen, in denen nichts Besonderes ansteht und trotzdem etwas erscheint. Ein Redaktionsplan für Social Media sorgt dafür, dass diese Wochen nicht leer bleiben. Dieser Leitfaden zeigt, wie ihr ihn Schritt für Schritt aufbaut und auch in vollen Wochen haltet.</p></div></section>
+    </div>
+  </section>
+</div>
+<article class="artikel seo-prose">
+<p class="seo-antwort"><strong>Kurze Antwort:</strong> Ein Redaktionsplan legt fest, was wann auf welchem Kanal erscheint und wer es vorbereitet. Plant nur so viel, wie ihr auch in einer vollen Woche schafft: ein verlässlicher Beitrag pro Woche bringt mehr als drei geplante, die ausfallen. Arbeitet mit drei bis fünf festen Themenfeldern, produziert vor und plant die Beiträge mit den Werkzeugen der Plattformen im Voraus. Einmal im Monat wird ausgewertet und nachgesteuert.</p>
+<nav class="seo-inhalt" aria-label="Inhaltsverzeichnis"><h2>Worum es geht</h2><ul><li><a href="#rhythmus">Warum Rhythmus mehr bringt als eine Kampagne</a></li><li><a href="#kanaele">Welche Kanäle zu eurem KMU passen</a></li><li><a href="#themen">Themenfelder statt Ideensuche</a></li><li><a href="#wie-oft">Wie oft posten?</a></li><li><a href="#plan">Den Redaktionsplan erstellen</a></li><li><a href="#wiederverwenden">Ein Inhalt, mehrere Formate</a></li><li><a href="#vorplanen">Beiträge vorplanen</a></li><li><a href="#auswerten">Einmal im Monat auswerten</a></li><li><a href="#ausfall">Wenn eine Woche ausfällt</a></li><li><a href="#fragen">Häufige Fragen</a></li></ul></nav>
+
+<h2 id="rhythmus">Warum Rhythmus mehr bringt als eine Kampagne</h2>
+<p>Eine Kampagne hat einen Anlass: das Jubiläum, die Eröffnung, die neue Dienstleistung. Danach wird es still, bis der nächste Anlass kommt. Wer nur zu Anlässen sichtbar ist, ist für den Rest des Jahres abwesend.</p>
+<p>Regelmässigkeit wirkt aus drei Gründen stärker:</p>
+<ul><li><strong>Wiedererkennung entsteht durch Wiederholung.</strong> Ein einzelner Beitrag wird gesehen und vergessen. Wer jede Woche mit denselben Themen auftaucht, bleibt im Gedächtnis, wenn der Bedarf entsteht.</li><li><strong>Ihr lernt nur mit regelmässigen Daten.</strong> Aus vier Beiträgen lässt sich kaum ablesen, was funktioniert. Aus vierzig schon eher.</li><li><strong>Ein fester Takt entlastet intern.</strong> Wenn klar ist, dass jeden Dienstag ein Beitrag erscheint, wird Material nebenbei gesammelt.</li></ul>
+<p>Kampagnen haben trotzdem ihren Platz. Sie wirken aber besser auf einem Kanal, der vorher schon gepflegt wurde.</p>
+
+<h2 id="kanaele">Social-Media-Planung für KMU: Welche Kanäle passen?</h2>
+<p>Die Frage ist nicht, wo man „sein sollte“, sondern wo eure Kundschaft und eure künftigen Mitarbeitenden tatsächlich unterwegs sind. Fragt sie. Für KMU in der Deutschschweiz kommen meist diese fünf in Frage:</p>
+<dl class="angebot-liste"><div><dt>LinkedIn</dt><dd>Für Geschäftskunden, Fachkräfte und Rekrutierung. Passt zu Treuhand, Ingenieurbüros, Beratung und allen, die an Unternehmen verkaufen. Persönliche Profile der Geschäftsleitung tragen oft mehr als die Unternehmensseite.</dd></div><div><dt>Instagram</dt><dd>Für Angebote mit sichtbarem Ergebnis: Gastronomie, Handwerk, Coiffeur, Innenausbau, Produkte. Bild und kurzes Video stehen im Vordergrund.</dd></div><div><dt>Facebook</dt><dd>Sinnvoll, wenn eure Kundschaft dort bereits aktiv ist, etwa in lokalen Gruppen, Vereinen oder Gemeinden.</dd></div><div><dt>TikTok</dt><dd>Nur, wenn ihr regelmässig kurze Videos erstellen könnt und eure Zielgruppe dort nachweislich unterwegs ist. Fragt bei der Lehrstellensuche eure eigenen Lernenden.</dd></div><div><dt>YouTube</dt><dd>Für Erklärvideos, die über lange Zeit gesucht werden: Anleitungen, Produktvorstellungen, Antworten auf wiederkehrende Kundenfragen.</dd></div></dl>
+<p>Die wichtigste Regel: Ein Kanal, der verlässlich gepflegt wird, ist mehr wert als drei, die halb gepflegt werden. Startet mit einem, höchstens zwei Kanälen. Ein weiterer kommt erst dazu, wenn der Rhythmus seit Monaten hält.</p>
+
+<h2 id="themen">Themenfelder statt Ideensuche</h2>
+<p>Der grösste Zeitfresser ist nicht das Posten, sondern die Frage „Was posten wir diese Woche?“. Feste Themenfelder, oft Content-Säulen genannt, beantworten sie im Voraus. Drei bis fünf reichen. Sie sollten aus eurer Positionierung folgen, nicht aus dem, was gerade bei anderen läuft.</p>
+<p>Ein Beispiel für eine Schreinerei im Aargau:</p>
+<ol><li><strong>Projekte:</strong> fertige Küchen, Einbauschränke, vorher und nachher.</li><li><strong>Werkstatt:</strong> Material, Maschinen, Handgriffe, die man sonst nicht sieht.</li><li><strong>Wissen:</strong> Antworten auf Fragen, die Kundinnen und Kunden immer wieder stellen.</li><li><strong>Team und Stellen:</strong> Menschen, Lernende, offene Stellen.</li></ol>
+<p>Ein Treuhandbüro in Basel hätte andere Felder: Fristen, häufige Fragen, Team, Region. Wenn ihr nicht sicher seid, wofür ihr stehen wollt, hilft zuerst der Leitfaden zur <a href="../wettbewerb-gewinnen/">Positionierung für KMU</a>.</p>
+
+<h2 id="wie-oft">Wie oft posten? Ein realistischer Rhythmus</h2>
+<p>Eine allgemeingültige Zahl gibt es nicht. Entscheidend ist, was ihr dauerhaft schafft. Der praktische Test: Nehmt euch vor, was ihr auch in einer vollen Woche schafft. Wenn die Antwort „ein Beitrag“ lautet, dann ist ein Beitrag der Plan. Nicht drei, die dann ausfallen.</p>
+<p>Für die meisten KMU ist ein Beitrag pro Woche und Kanal ein guter Start. Wer das drei Monate ohne Lücke hält, kann auf zwei erhöhen. Wichtiger als die Menge ist der feste Tag: Wenn jede Woche am selben Tag etwas erscheint, wird der Plan zur Routine statt zum Projekt.</p>
+<p>Rechnet ehrlich: Ein Beitrag braucht Idee, Material, Text, Freigabe und danach Zeit für Kommentare.</p>
+
+<h2 id="plan">Den Redaktionsplan für Social Media erstellen: Schritt für Schritt</h2>
+<p>Ein Content-Plan muss kein Programm sein. Eine geteilte Tabelle reicht, solange alle Beteiligten Zugriff haben und sie wirklich benutzen.</p>
+<ol><li><strong>Zeitraum festlegen.</strong> Grob für ein Quartal, im Detail für den nächsten Monat.</li><li><strong>Fixe Termine eintragen.</strong> Saison, Feiertage, Betriebsferien, Messen, Fristen, Lehrstellenbeginn. Sie geben den Rahmen vor.</li><li><strong>Themenfelder verteilen.</strong> Jede Woche ein Feld, im Wechsel. So entsteht Abwechslung, ohne dass jemand sie planen muss.</li><li><strong>Zuständigkeit klären.</strong> Pro Beitrag eine Person, die ihn fertig macht. „Das Team“ ist keine Zuständigkeit.</li><li><strong>Freigabe regeln.</strong> Eine Person gibt frei, mit fester Frist, zum Beispiel bis Donnerstag für die kommende Woche.</li><li><strong>Vorproduzieren.</strong> Fotos und Videos entstehen gebündelt an einem Content-Tag statt jede Woche einzeln.</li></ol>
+<p>Als Vorlage genügen diese Spalten:</p>
+<div class="seo-tabelle"><table>
+<thead><tr><th>Woche</th><th>Kanal</th><th>Themenfeld</th><th>Thema und Format</th><th>Zuständig</th><th>Status</th></tr></thead>
+<tbody><tr><td>KW 1</td><td>Instagram</td><td>Projekte</td><td>Küche in Baden, vorher und nachher, Bildfolge</td><td>Projektleitung</td><td>geplant</td></tr>
+<tr><td>KW 2</td><td>Instagram</td><td>Werkstatt</td><td>Kantenverleimung in 30 Sekunden, kurzes Video</td><td>Werkstattchef</td><td>in Freigabe</td></tr>
+<tr><td>KW 3</td><td>Instagram</td><td>Wissen</td><td>Massivholz oder Furnier? Drei Unterschiede, Bild mit Text</td><td>Verkauf</td><td>Idee</td></tr>
+<tr><td>KW 4</td><td>LinkedIn</td><td>Team und Stellen</td><td>Lernende stellt sich vor, kurzes Video</td><td>Geschäftsleitung</td><td>Idee</td></tr></tbody>
+</table></div>
+<p>Bei Bedarf kommen Spalten für Text und Material dazu. Mehr braucht es zu Beginn nicht.</p>
+<p class="seo-lesetipp">Haltet zwei bis drei zeitlose Beiträge fertig in Reserve. Sie retten die Woche, in der alles andere liegen bleibt.</p>
+
+<h2 id="wiederverwenden">Ein Inhalt, mehrere Formate</h2>
+<p>Wer jeden Beitrag neu erfindet, hält keinen Rhythmus. Ein Inhalt lässt sich mehrfach verwenden, ohne dass es nach Wiederholung aussieht:</p>
+<ul><li>Aus einem Content-Tag in der Werkstatt entstehen Fotos für Projekte, ein kurzes Video und ein Porträt fürs Team.</li><li>Aus einer häufigen Kundenfrage wird ein Beitrag mit Bild und Text, später ein kurzes Video und ein Absatz auf der Website.</li><li>Ein fertiges Projekt erscheint auf Instagram als Bildfolge, auf LinkedIn mit Blick auf die Arbeitsweise und als Update im <a href="../google-unternehmensprofil/">Google-Unternehmensprofil</a>.</li></ul>
+<p>Passt Text und Format jeweils an den Kanal an.</p>
+
+<h2 id="vorplanen">Beiträge vorplanen mit den Werkzeugen der Plattformen</h2>
+<p>Für den Anfang braucht ihr kein kostenpflichtiges Planungsprogramm. Die grossen Plattformen bieten eigene Funktionen:</p>
+<ul><li><strong>Facebook und Instagram:</strong> In der Meta Business Suite lassen sich Beiträge für beide Kanäle erstellen und unter „Planungsoptionen“ mit Datum und Uhrzeit planen. Meta schlägt dort auf Wunsch „Zeiten mit hoher Aktivität“ vor, basierend darauf, wann eure Follower in den letzten sieben Tagen am aktivsten waren. Geplante Beiträge lassen sich im Bereich Content bearbeiten oder neu planen.</li><li><strong>LinkedIn:</strong> Persönliche Beiträge lassen sich über das Uhrsymbol im Beitragsfenster zwischen 10 Minuten und 3 Monaten im Voraus planen. Für Unternehmensseiten können Super-Admins und Inhaltsadministratoren planen, zwischen einer Stunde und drei Monaten im Voraus. Nicht jede Beitragsart lässt sich planen, Umfragen und Veranstaltungen zum Beispiel nicht.</li><li><strong>YouTube:</strong> Ein privates Video lässt sich so einstellen, dass es zu einem gewählten Zeitpunkt veröffentlicht wird.</li></ul>
+<p>Die Funktionen ändern sich regelmässig, prüft die Details in den verlinkten Hilfeseiten. Und: Vorplanen ersetzt nicht das Dabeisein. Am Tag der Veröffentlichung braucht es Zeit für Kommentare und Nachrichten.</p>
+
+<h2 id="auswerten">Einmal im Monat auswerten</h2>
+<p>Eine halbe Stunde pro Monat reicht, wenn ihr die richtigen Fragen stellt:</p>
+<ul><li>Welche drei Beiträge haben am meisten Reaktionen, Kommentare oder Nachrichten ausgelöst, und aus welchem Themenfeld kamen sie?</li><li>Welches Themenfeld läuft dauerhaft schwach? Anders umsetzen oder ersetzen.</li><li>Ist der Rhythmus gehalten worden? Wenn nicht: Wo hat es geklemmt, bei Material, Text oder Freigabe?</li><li>Sind Anfragen oder Bewerbungen gekommen, die sich auf Social Media beziehen? Fragt bei neuen Kontakten nach, wie sie auf euch gekommen sind.</li></ul>
+<p>Die Zahlen liefern die Plattformen selbst. In der Meta Business Suite seht ihr Insights zu jedem Beitrag. LinkedIn zeigt für Unternehmensseiten unter anderem Impressionen, Klicks, Reaktionen, Kommentare, geteilte Beiträge und die Engagement-Rate. Reichweite allein ist kein Ziel: Ein Beitrag, der eine passende Anfrage bringt, zählt mehr als viele Likes.</p>
+<p>Wie viel Zeit und Budget ihr für Social Media insgesamt einplanen solltet, beschreibt der Leitfaden <a href="../marketingbudget-kmu/">Marketingbudget für KMU</a>.</p>
+
+<h2 id="ausfall">Wenn eine Woche ausfällt</h2>
+<p>Sie wird ausfallen: Ferien, Krankheit, ein grosser Auftrag. Entscheidend ist, was danach passiert.</p>
+<ul><li><strong>Nicht nachholen.</strong> Drei Beiträge in einer Woche wirken hektisch und kosten Kraft, die danach fehlt. Macht mit dem nächsten geplanten Beitrag weiter.</li><li><strong>Reserve nutzen.</strong> Dafür sind die zeitlosen Beiträge aus dem Vorrat da.</li><li><strong>Rhythmus senken statt abbrechen.</strong> Wenn es zweimal hintereinander nicht klappt, ist der Plan zu gross. Halbiert ihn, statt ihn aufzugeben.</li><li><strong>Ferien vorplanen.</strong> Betriebsferien stehen lange fest. Plant die Beiträge dafür vorher ein.</li></ul>
+<p>Wenn die Arbeit dauerhaft zu viel wird, lohnt der Blick darauf, welche Teile ihr abgeben könnt: Planung, Produktion oder die laufende Betreuung. Wovon der Aufwand abhängt, zeigt der Leitfaden <a href="../social-media-kosten/">Was kostet Social-Media-Betreuung?</a>.</p>
+
+<h2>Checkliste</h2>
+<ul><li>Ein, höchstens zwei Kanäle ausgewählt, passend zur Zielgruppe</li><li>Drei bis fünf Themenfelder festgelegt</li><li>Rhythmus gewählt, den ihr auch in einer vollen Woche schafft</li><li>Fester Veröffentlichungstag pro Kanal</li><li>Geteilte Tabelle mit Woche, Kanal, Themenfeld, Thema, Zuständigkeit und Status</li><li>Eine Person für die Freigabe, mit fester Frist</li><li>Content-Tag im Kalender, zum Beispiel einmal im Monat</li><li>Zwei bis drei zeitlose Beiträge in Reserve</li><li>Beiträge mit den Planungsfunktionen der Plattformen vorgeplant</li><li>Monatliche Auswertung mit einer halben Stunde im Kalender</li></ul>
+
+<div class="fragen fragen--eingebettet fragen--wie-start">
+  <div class="fragen__kopf">
+    <span class="chip" data-rein>FAQ</span>
+    <h2 id="fragen">Häufige Fragen.</h2>
+    <p class="fuehrung">Noch etwas offen? <a href="../../index.html#kontakt">Schreib uns</a>. Wir antworten meist am selben Arbeitstag.</p>
+  </div>
+  <div class="fragen__liste">
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Wie oft sollte ein KMU auf Social Media posten?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>So oft, wie ihr es dauerhaft schafft. Für die meisten KMU ist ein Beitrag pro Woche und Kanal ein guter Start. Erhöht erst, wenn dieser Takt über mehrere Monate ohne Lücke gehalten hat.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Welche Uhrzeit ist die beste zum Posten?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Das hängt von euren Followern ab, nicht von allgemeinen Tabellen. Die Meta Business Suite schlägt beim Planen Zeiten vor, zu denen eure Follower zuletzt am aktivsten waren. Wählt einen Zeitpunkt, bleibt einige Wochen dabei und vergleicht dann.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Brauchen wir ein kostenpflichtiges Planungstool?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Für den Anfang nicht. Eine geteilte Tabelle als Content-Plan und die Planungsfunktionen von Meta Business Suite, LinkedIn und YouTube reichen für ein oder zwei Kanäle. Ein zusätzliches Programm lohnt sich eher bei mehreren Personen und Kanälen.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Wie weit im Voraus sollten wir planen?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Themen und fixe Termine grob für ein Quartal, die einzelnen Beiträge im Detail für den nächsten Monat. Fertig vorgeplant werden meist die nächsten zwei bis vier Wochen. So bleibt Platz für Aktuelles.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<h2>Quellen und Vertiefung</h2>
+<p>Meta beschreibt das Planen in der <a href="https://www.facebook.com/business/help/942827662903020">Meta Business Suite auf dem Desktop</a> und in der <a href="https://www.facebook.com/business/help/609176706604372">mobilen App</a>. LinkedIn erklärt, wie ihr <a href="https://www.linkedin.com/help/linkedin/answer/a1347212">Beiträge plant</a>, wie das für <a href="https://www.linkedin.com/help/linkedin/answer/a1419179">Unternehmensseiten</a> funktioniert und welche Zahlen die <a href="https://www.linkedin.com/help/linkedin/answer/a564051">Inhaltsanalysen</a> zeigen. Für YouTube gibt es die Anleitung zum <a href="https://support.google.com/youtube/answer/1270709?hl=de">Planen des Veröffentlichungszeitpunkts</a>.</p>
+
+<h2>Euer nächster Schritt</h2>
+<p>Setzt euch eine Stunde hin und beantwortet drei Fragen: Welcher Kanal? Welche drei bis fünf Themenfelder? Was schaffen wir in einer vollen Woche? Tragt danach die nächsten vier Wochen in die Tabelle ein und plant die ersten zwei Beiträge vor. Das ist der ganze Start.</p>
+<p>Wenn ihr Planung, Produktion oder die laufende Betreuung abgeben wollt, findet ihr auf der Seite <a href="../../social-media/">Social Media</a>, wie wir das für Unternehmen in der Region Basel und im Aargau umsetzen.</p>
+<nav class="weiterlesen" aria-label="Weiterlesen"><a class="weiter__karte" href="../marketingbudget-kmu/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Marketingbudget für KMU</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../social-media-kosten/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Was kostet Social-Media-Betreuung?</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../wettbewerb-gewinnen/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Positionierung für KMU</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a></nav>
+</article></main>
+
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <span class="chip chip--hell" data-rein>Kontakt</span>
+      <h2>Reden wir.</h2>
+      <div class="fuss__aktion">
+        <a class="knopf knopf--dunkel fuss__cta" href="../../index.html#kontakt">Gespräch buchen <i aria-hidden="true">→</i></a>
+        <a class="fuss__mail" href="mailto:hallo@klartext-digital.ch">hallo@klartext-digital.ch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__mitte">
+    <div class="fuss__adresse">
+      <a class="fuss__logo" href="../../index.html" aria-label="Klartext Digital: zur Startseite"><img src="../../marke/logo-fuss.svg" alt="klartext. digital" width="766" height="314" loading="lazy"></a>
+      <p class="fuss__ort">Lohagstrasse 15, 4133 Pratteln<br>
+        Schwerpunkt Region Basel und Aargau<br>
+        Mo bis Fr, 08:00 bis 20:00</p>
+    </div>
+    <nav class="fuss__spalte fuss__spalte--leistungen" aria-label="Leistungen">
+      <p class="fuss__kopf">Leistungen</p>
+      <div class="fuss__liste"><a class="mlink" href="../../marketing-abo/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Marketing im Abo</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Marketing im Abo</span></a><a class="mlink" href="../../projektarbeit/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Projektarbeit</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Projektarbeit</span></a><a class="mlink" href="../../leistungen/branding.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a><a class="mlink" href="../../leistungen/social-media.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a><a class="mlink" href="../../leistungen/websites.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a><a class="mlink" href="../../leistungen/performance.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a><a class="mlink" href="../../leistungen/email-marketing.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a><a class="mlink" href="../../seo/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">SEO</span><span class="mlink__t mlink__t--neu" aria-hidden="true">SEO</span></a></div>
+    </nav>
+    <nav class="fuss__spalte" aria-label="Seiten">
+      <p class="fuss__kopf">Seiten</p>
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a><a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a><a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a><a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a><a class="mlink" href="../../index.html#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+    </nav>
+    <div class="fuss__folgen">
+      <p class="fuss__kopf">Folgen</p>
+      <div class="fuss__sozial">
+          <a href="https://www.instagram.com/klartextdigital/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH&nbsp;· <span class="untrennbar">UID CHE-210.244.987</span>&nbsp;· Alle Rechte vorbehalten</p>
+    <nav>
+      <a href="../../recht/impressum.html">Impressum</a>
+      <a href="../../recht/datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859"></div>
+</footer>
+
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script src="../../js/lenis.min.js"></script>
+<script src="../../js/gsap.min.js"></script>
+<script src="../../js/ScrollTrigger.min.js"></script>
+<script src="../../lader.js"></script>
+<script src="../../bewegung.js"></script>
+<script src="../../fragen.js"></script>
+<script src="../../zeiger.js"></script>
+<script src="../../rechner.js"></script>
+</body>
+</html>

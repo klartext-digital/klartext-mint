@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.lader{display:none}
+.laedt{overflow:hidden}.laedt body{overflow:hidden}
+.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
+/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
+   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
+   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
+   der steckt in stil.css. */
+.laedt .korn{z-index:201}
+.lader--weg{opacity:0}
+.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
+.lader--weg .lader__mitte{transform:translateY(-14px)}
+.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
+
+.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
+.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
+.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
+.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:var(--hand,'Rock Salt'),cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
+.lader__zahl--geist{visibility:hidden}
+.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
+@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
+@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+</style>
+<meta name="robots" content="noindex, nofollow">
+<title>Laufende SEO: bei Google vorne bleiben | Klartext Digital</title>
+<meta name="description" content="Laufende SEO für KMU: warum sich Rankings verändern, welcher Monats- und Quartalsrhythmus reicht und was ihr nach einem Google Update tut und lasst.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236A00F4'/></svg>">
+<link rel="stylesheet" href="../../stil.css">
+<script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
+   Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
+   eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
+   Verweis: von der eigenen Seite kommend bleibt er aus. */
+(function(){var n=0,s=null;try{s=localStorage}catch(e){try{s=sessionStorage}catch(e2){}}
+if(s){try{n=parseInt(s.getItem("kt-lader"),10)||0;s.setItem("kt-lader",String((n+1)%1000))}catch(e){}}
+else if(document.referrer&&document.referrer.indexOf(location.origin)===0){return}
+if(n%10)return;document.documentElement.className+=" laedt";
+setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)})();
+(function(){var b=new URLSearchParams(location.search).get("breite");if(b)document.documentElement.style.setProperty("--maxw",parseInt(b,10)+"px")})()</script>
+
+<link rel="icon" href="../../marke/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../marke/favicon-32.png" sizes="32x32">
+<link rel="icon" href="../../marke/favicon-dunkel-32.png" sizes="32x32" media="(prefers-color-scheme:dark)">
+<link rel="apple-touch-icon" href="../../marke/favicon-180.png">
+</head>
+<body>
+
+<div class="lader" id="lader" aria-hidden="true">
+  <div class="lader__mitte">
+    <div class="lader__marke"><img src="../../marke/logo-negativ.svg" alt="klartext. digital" width="766" height="314"></div>
+    <div class="lader__reihe">
+      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
+      <div class="lader__balken"><span class="lader__fuell"></span></div>
+      <span class="lader__zahl">0%</span>
+    </div>
+    <p class="lader__wort"></p>
+  </div>
+</div>
+
+
+
+<header class="nav">
+  <div class="nav__pille">
+    <a class="nav__mark" href="../../index.html" aria-label="Klartext Digital: zur Startseite"><picture><source media="(max-width: 699px)" srcset="../../marke/zeichen.svg" width="1010" height="916"><img src="../../marke/logo-quer.svg" alt="klartext digital" width="1350" height="259"></picture></a>
+    <nav class="nav__wege" aria-label="Hauptnavigation">
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
+      <span class="ndd">
+        <a class="mlink ndd__ausloeser" href="../../index.html#leistungen" aria-expanded="false">
+          <span class="mlink__bg" aria-hidden="true"></span>
+          <span class="mlink__t">Leistungen<i class="ndd__chev" aria-hidden="true"></i></span>
+          <span class="mlink__t mlink__t--neu" aria-hidden="true">Leistungen<i class="ndd__chev"></i></span>
+        </a>
+      </span>
+      <a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a>
+      <a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a>
+        <a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a>
+    </nav>
+    <a class="knopf knopf--akzent nav__cta" href="../../index.html#kontakt">
+      <span class="rolle"><span>Gespräch buchen</span><span aria-hidden="true">Gespräch buchen</span></span>
+    </a>
+  </div>
+    <div class="ndd__panel" role="group" aria-label="Leistungen im Überblick" aria-hidden="true">
+    <div class="ndd__inhalt">
+      <div class="ndd__spalte ndd__spalte--liste">
+        <ol class="ndd__liste">
+            <li><a href="../../leistungen/branding.html" data-i="0"><span class="ndd__nr">01</span><span class="ndd__name">Marke &amp; Strategie</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/social-media.html" data-i="1"><span class="ndd__nr">02</span><span class="ndd__name">Social Media &amp; Content</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/websites.html" data-i="2"><span class="ndd__nr">03</span><span class="ndd__name">Websites</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/performance.html" data-i="3"><span class="ndd__nr">04</span><span class="ndd__name">Performance Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../leistungen/email-marketing.html" data-i="4"><span class="ndd__nr">05</span><span class="ndd__name">E-Mail Marketing</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="../../seo/index.html" data-i="5"><span class="ndd__nr">06</span><span class="ndd__name">SEO</span><i aria-hidden="true">↗</i></a></li>
+            </ol>
+        <a class="ndd__fuss" href="../../leistungen/index.html" tabindex="-1">Alle Leistungen <i aria-hidden="true">↗</i></a>
+      </div>
+      <div class="ndd__vorschau" aria-hidden="true">
+            <div class="ndd__bild">
+          <img src="../../bilder/dienst-1.jpg" alt="" class="ist">
+          <img src="../../bilder/dienst-2.jpg" alt="">
+          <img src="../../bilder/dienst-3.jpg" alt="">
+          <img src="../../bilder/dienst-4.jpg" alt="">
+          <img src="../../bilder/dienst-5.jpg" alt="">
+          <img src="../../bilder/dienst-6.jpg" alt="">
+            </div>
+            <div class="ndd__saetze">
+          <div class="ndd__satz ist"><b>Positionierung, die sitzt</b><span>Markenstrategie, Wortmarke, Farb- und Schriftsystem, Bildsprache und ein Brand Guide, mit dem euer Team selbst weiterarbeitet.</span></div>
+          <div class="ndd__satz"><b>Regelmässig statt sporadisch</b><span>Redaktionsplan für Instagram, TikTok und LinkedIn, Produktion im festen Takt und eine Community, die betreut wird.</span></div>
+          <div class="ndd__satz"><b>Auftritte, die verkaufen</b><span>Konzept, Gestaltung und Umsetzung. Schnell, auffindbar und so gebaut, dass ihr Inhalte selbst pflegen könnt.</span></div>
+          <div class="ndd__satz"><b>Budget, das arbeitet</b><span>Google Ads, Meta Ads, TikTok Ads und LinkedIn Ads mit sauberem Tracking und laufender Optimierung.</span></div>
+          <div class="ndd__satz"><b>Der Kanal, der euch gehört</b><span>Newsletter, automatisierte Strecken und Segmentierung. Keine Plattform dazwischen, keine Reichweite auf Miete.</span></div>
+          <div class="ndd__satz"><b>Gefunden, wenn gesucht wird</b><span>Technische Prüfung, verständliche Inhalte und laufende Auswertung. Als eigenes Projekt oder als Teil des Abos.</span></div>
+            </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main><div class="hero hero--portraet" data-hero>
+  <section class="unter unter--eng">
+  </section>
+<section class="unter__leib unter__leib--portraet">
+    <div class="unter__kopf" data-rein>
+      <a class="zurueck" href="../">
+        <i aria-hidden="true">←</i><span>Alle Artikel</span></a>
+      <h1 class="seo-h1 unter__gross unter__gross--artikel">Bei Google vorne bleiben: laufende SEO als Rhythmus<i class="punkt">.</i></h1>
+      <p class="brush">Konstanz schlägt Kreativität.</p>
+    </div>
+    <figure class="unter__motiv" data-rein>
+      <img sizes="(max-width: 1100px) 1px, 62vw" src="../../bilder/wd-pflege.jpg" alt="" fetchpriority="high" decoding="async">
+    </figure>
+    <div class="unter__text unter__text--satz" data-rein>
+      <p>Die meisten Auftritte scheitern nicht am Konzept, sondern am dritten Monat. Bei der Suchmaschinenoptimierung ist das nicht anders: Der Start ist gut besetzt, dann kommt das Tagesgeschäft, und die Liste mit den Verbesserungen liegt in einer Schublade. Laufende SEO heisst, einen Rhythmus zu haben, den ihr auch in einer vollen Woche einhaltet. Dieser Leitfaden zeigt, warum sich Rankings überhaupt verändern, was ein KMU jeden Monat und jedes Quartal prüfen sollte und wie ihr nach einem Rankingverlust ruhig bleibt.</p></div></section>
+    </div>
+  </section>
+</div>
+<article class="artikel seo-prose">
+<p class="seo-antwort"><strong>Kurze Antwort:</strong> SEO ist kein Projekt mit Enddatum, weil sich Google, eure Mitbewerber und eure eigenen Inhalte laufend verändern. Wer Rankings halten will, braucht keinen grossen Aufwand, sondern einen festen Rhythmus: monatlich die Search Console prüfen und Inhalte pflegen, quartalsweise Technik, Profile und Prioritäten kontrollieren. Entscheidend ist eine Person, die dafür zuständig ist und einen Termin im Kalender hat.</p>
+<nav class="seo-inhalt" aria-label="Inhaltsverzeichnis"><h2>Worum es geht</h2><ul><li><a href="#veraenderung">Warum sich Rankings verändern</a></li><li><a href="#dritter-monat">Laufende SEO scheitert am dritten Monat</a></li><li><a href="#monat">Der Monatsrhythmus</a></li><li><a href="#quartal">Der Quartalsrhythmus</a></li><li><a href="#zustaendigkeit">Wer dranbleibt</a></li><li><a href="#updates">Nach einem Google Update</a></li><li><a href="#messen">Messen mit der Search Console</a></li><li><a href="#checkliste">Checkliste</a></li><li><a href="#fragen">Häufige Fragen</a></li></ul></nav>
+
+<h2 id="veraenderung">Warum sich Rankings verändern</h2>
+<p>Eine gute Position bei Google ist kein Besitz, sondern ein Zwischenstand. Drei Kräfte verschieben ihn, und keine davon könnt ihr abschalten.</p>
+<ul><li><strong>Google selbst.</strong> Laut Google Search Central nimmt Google mehrmals pro Jahr grundlegende Änderungen an seinen Suchsystemen vor, sogenannte Core Updates. Sie richten sich nach Googles eigener Aussage nicht gegen bestimmte Websites, sondern sollen die Ergebnisse insgesamt verbessern. Angekündigt werden sie im Search Status Dashboard.</li><li><strong>Der Wettbewerb.</strong> Wenn ein Mitbewerber in Basel oder im Aargau eine bessere Seite zum selben Thema veröffentlicht, rutscht eure nicht deshalb ab, weil sie schlechter geworden ist. Google erklärt das mit einer Liste von Lieblingsrestaurants: Wer nach unten rutscht, ist nicht unbedingt schlecht, es sind einfach andere dazugekommen.</li><li><strong>Eure eigenen Inhalte.</strong> Preise ändern sich, Ansprechpersonen wechseln, eine Leistung kommt dazu, eine andere fällt weg. Google nennt im SEO-Startleitfaden „aktuell“ ausdrücklich als Merkmal nützlicher Inhalte und empfiehlt, ältere Inhalte zu prüfen und bei Bedarf zu aktualisieren oder zu löschen.</li></ul>
+<p>Dazu kommt die Technik: Ein Plugin-Update bricht ein Formular, eine Seite wird versehentlich auf „noindex“ gesetzt, eine Weiterleitung fehlt. Solche Fehler passieren leise und fallen oft erst auf, wenn die Anfragen ausbleiben.</p>
+
+<h2 id="dritter-monat">Laufende SEO scheitert am dritten Monat</h2>
+<p>Am Anfang gibt es Energie: eine Analyse, eine Liste, ein paar schnelle Verbesserungen. Im ersten Monat wird viel erledigt, im zweiten noch einiges. Im dritten Monat kommt eine volle Auftragslage, die Ferien einer Kollegin oder ein Messeauftritt, und SEO wird verschoben. Danach wird es selten wieder aufgenommen.</p>
+<p>Das Problem ist dabei nicht fehlendes Wissen, sondern fehlende Routine. Wer einmal im Jahr eine grosse Aufräumaktion macht, korrigiert Fehler, die monatelang Besucher gekostet haben. Wer jeden Monat kurz hinschaut, findet sie, bevor sie teuer werden.</p>
+<p>Lieber eine kleine Sache jeden Monat als ein grosser Plan, der nie umgesetzt wird. Ein Treuhandbüro in Liestal muss nicht jede Woche einen Blogartikel schreiben. Aber es sollte merken, wenn die Seite zur Steuererklärung plötzlich weniger Klicks bekommt. Die Grundlagen, auf denen dieser Rhythmus aufbaut, erklärt der Hauptartikel <a href="../seo-fuer-kmu/">SEO für KMU</a>.</p>
+
+<h2 id="monat">Der Monatsrhythmus für KMU</h2>
+<p>Ein fester Termin pro Monat genügt, wenn er wirklich stattfindet. Vier Aufgaben gehören hinein:</p>
+<ol><li><strong>Search Console öffnen.</strong> Klicks und Impressionen der letzten Wochen mit dem Zeitraum davor vergleichen. Auffällig ist nicht jede Schwankung, sondern ein deutlicher Knick bei einer wichtigen Seite.</li><li><strong>Eine bestehende Seite verbessern.</strong> Die Seite mit den meisten Impressionen, aber wenigen Klicks, ist ein guter Kandidat: Titel und Beschreibung schärfen, veraltete Angaben korrigieren, eine fehlende Antwort ergänzen.</li><li><strong>Eine neue Frage beantworten.</strong> Was haben Kundinnen und Kunden diesen Monat am Telefon gefragt? Eine Schreinerei hört vielleicht dreimal dieselbe Frage zu Lieferzeiten. Diese Antwort gehört auf die Website, als neuer Abschnitt oder eigene Seite.</li><li><strong>Kurzer Funktionstest.</strong> Kontaktformular absenden, Telefonnummer auf dem Handy antippen, Startseite mobil laden. Zwei Minuten, die viel Ärger ersparen.</li></ol>
+<p>Ein Hinweis zu Aktualisierungen: Google warnt in seinen Richtlinien zu hilfreichen Inhalten davor, nur das Datum einer Seite zu ändern, damit sie frisch wirkt, obwohl sich am Inhalt kaum etwas geändert hat. Aktualisiert also den Inhalt, nicht den Anschein.</p>
+
+<h2 id="quartal">Der Quartalsrhythmus</h2>
+<p>Einmal pro Quartal lohnt ein etwas längerer Blick. Hier geht es weniger um einzelne Seiten als um das Gesamtbild.</p>
+<ul><li><strong>Technische Kontrolle.</strong> Im Bericht zur Seitenindexierung der Search Console prüfen, ob wichtige Seiten nicht indexiert sind und aus welchem Grund. Nicht jeder Grund ist ein Fehler, aber eine Leistungsseite, die fehlt, ist einer.</li><li><strong>Profile pflegen.</strong> Öffnungszeiten, besondere Öffnungszeiten an Feiertagen, Fotos und Leistungen im Google-Unternehmensprofil abgleichen. Google empfiehlt in seiner Hilfe ausdrücklich, die Zeiten aktuell zu halten. Wie ihr das Profil sauber aufsetzt, zeigt der Leitfaden <a href="../google-unternehmensprofil/">Google-Unternehmensprofil</a>.</li><li><strong>Prioritäten prüfen.</strong> Welche Leistung soll im nächsten Quartal mehr Anfragen bringen? Hat die zugehörige Seite genug Inhalt, Belege und eine klare Kontaktmöglichkeit?</li><li><strong>Lokale Signale.</strong> Stimmen Adresse und Telefonnummer auf Website, Profil und Verzeichnissen überein? Für Betriebe mit Kundschaft vor Ort erklärt <a href="../lokale-seo/">Lokale SEO</a>, was hier zählt.</li></ul>
+<p>Was bei der technischen Pflege sonst noch anfällt, von Updates bis zu Sicherungen, steht in der <a href="../website-pflege-checkliste/">Checkliste zur Website-Pflege</a>.</p>
+
+<h2 id="zustaendigkeit">Wer dranbleibt: Zuständigkeit festlegen</h2>
+<p>SEO dranbleiben scheitert selten an der Methode und fast immer an der Frage, wer es tut. „Das Team schaut mal“ ist keine Zuständigkeit. Es braucht eine Person mit Namen, Termin und der Befugnis, kleine Änderungen selbst umzusetzen oder in Auftrag zu geben.</p>
+<p>Diese Person muss keine SEO-Fachfrau sein. Sie muss die Search Console lesen können, wissen, wer Texte freigibt, und einen kurzen Weg zur Technik haben. In einer Arztpraxis kann das die Praxisleitung sein, in einem Handwerksbetrieb die Person, die ohnehin die Offerten schreibt. Wichtig ist, dass die Aufgabe in ihrer Arbeitszeit eingeplant ist und nicht „nebenbei“ passieren soll.</p>
+<p>Wer intern keine Kapazität hat, kann den Rhythmus abgeben. Dann gilt dasselbe: ein fester Termin, ein kurzer Bericht, eine Ansprechperson auf beiden Seiten. Wie das als laufende Leistung aussieht, beschreibt die Seite <a href="../../seo/">SEO-Betreuung</a>.</p>
+
+<h2 id="updates">Rankings halten nach einem Google Update: was ihr tut und was nicht</h2>
+<p>Ein Rückgang nach einem Core Update fühlt sich bedrohlich an. Google gibt in seiner Dokumentation zu Core Updates klare Empfehlungen, und die meisten davon laufen auf Ruhe hinaus.</p>
+<p><strong>Was ihr tut:</strong></p>
+<ul><li>Im Search Status Dashboard nachsehen, ob das Update abgeschlossen ist. Google empfiehlt, danach mindestens eine Woche zu warten und dann eine Woche nach dem Update mit einer Woche vor Beginn zu vergleichen.</li><li>Die Grösse des Rückgangs einordnen. Google nennt als Beispiel für einen kleinen Rückgang den Sprung von Position 2 auf 4: Drastische Massnahmen seien nicht nötig. Bei einem starken Rückgang, etwa von Position 4 auf 29, empfiehlt Google eine ausführlichere Bewertung.</li><li>Bei einem starken, anhaltenden Rückgang die ganze Website mit Googles Selbsteinschätzung zu hilfreichen Inhalten prüfen, nicht nur einzelne Seiten. Ein Blick von aussen hilft dabei.</li></ul>
+<p><strong>Was ihr nicht tut:</strong></p>
+<ul><li>Keine „schnellen Lösungen“. Google rät ausdrücklich davon ab, Elemente zu entfernen oder umzubauen, nur weil man vermutet, dass sie aus SEO-Sicht schaden.</li><li>Keine Inhalte ändern, die gut funktionieren. Bei kleinen Rückgängen empfiehlt Google sogar, solche Inhalte in Ruhe zu lassen.</li><li>Nicht vorschnell löschen. Laut Google ist das Löschen von Inhalten die letzte Option.</li></ul>
+<p class="seo-lesetipp">Erholung braucht Zeit. Laut Google können manche Änderungen in wenigen Tagen wirken, es kann aber auch mehrere Monate dauern, bis die Systeme eine Verbesserung bestätigen. Eine Garantie gibt es nicht. Wer in diesen Monaten seinen Rhythmus hält, ist besser aufgestellt als jemand, der hektisch umbaut.</p>
+
+<h2 id="messen">Messen mit der Search Console</h2>
+<p>Die Google Search Console ist kostenlos und zeigt, wie eure Website in der Google-Suche abschneidet. Der Leistungsbericht enthält vier Werte: Klicks, Impressionen, die Klickrate (Klicks geteilt durch Impressionen) und die durchschnittliche Position. Gruppieren lässt sich nach Suchanfragen, Seiten, Ländern und Geräten.</p>
+<p>Für den Monatsrhythmus reichen drei Blicke:</p>
+<ul><li><strong>Seiten:</strong> Welche Seiten bringen die meisten Klicks, und hat sich eine davon deutlich verändert?</li><li><strong>Suchanfragen:</strong> Bei welchen Begriffen erscheint ihr oft, werdet aber selten angeklickt? Dort lohnt sich ein besserer Titel.</li><li><strong>Vergleich:</strong> immer zwei gleich lange Zeiträume nebeneinander, nie einen einzelnen Tag deuten.</li></ul>
+<p>Die Search Console misst Sichtbarkeit, nicht Geschäft. Ob aus Klicks auch Anfragen werden, ist eine eigene Frage. Wie ihr das sauber messt, erklärt der Leitfaden <a href="../website-die-arbeitet/">Website-Erfolg messen</a>.</p>
+
+<h2 id="checkliste">Checkliste</h2>
+<ul><li>Eine zuständige Person mit Namen und festem Monatstermin ist bestimmt.</li><li>Die Search Console ist eingerichtet, und die zuständige Person hat Zugriff.</li><li>Jeden Monat: Leistungsbericht vergleichen, eine Seite verbessern, eine neue Kundenfrage beantworten, Formular und Telefonlink testen.</li><li>Jedes Quartal: Seitenindexierung prüfen, Unternehmensprofil abgleichen, Prioritäten für das nächste Quartal festlegen.</li><li>Aktualisierungen ändern den Inhalt, nicht nur das Datum.</li><li>Bei einem Core Update: Abschluss abwarten, eine Woche warten, Zeiträume vergleichen, erst dann entscheiden.</li><li>Keine schnellen Umbauten aus Verdacht, kein vorschnelles Löschen.</li></ul>
+
+<div class="fragen fragen--eingebettet fragen--wie-start">
+  <div class="fragen__kopf">
+    <span class="chip" data-rein>FAQ</span>
+    <h2 id="fragen">Häufige Fragen.</h2>
+    <p class="fuehrung">Noch etwas offen? <a href="../../index.html#kontakt">Schreib uns</a>. Wir antworten meist am selben Arbeitstag.</p>
+  </div>
+  <div class="fragen__liste">
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Ist SEO irgendwann fertig?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Die Grundlagen sind irgendwann gelegt: saubere Technik, klare Seitenstruktur, gute Texte. Fertig ist SEO trotzdem nicht, weil Google seine Systeme mehrmals im Jahr anpasst, Mitbewerber nachziehen und eure eigenen Angaben veralten. Der Aufwand sinkt nach dem Aufbau aber deutlich, und genau dafür ist ein fester Rhythmus da.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Wie oft gibt es Google Updates?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Grundlegende Updates, sogenannte Core Updates, gibt es laut Google mehrmals pro Jahr. Sie werden im Google Search Status Dashboard angekündigt. Dazwischen nimmt Google laufend kleinere Anpassungen vor, die nicht einzeln angekündigt werden.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Wie viel Zeit braucht laufende SEO pro Monat?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Das hängt von der Grösse der Website und vom Wettbewerb ab. Für eine typische KMU-Website mit wenigen Leistungsseiten reicht oft ein fester Termin pro Monat für Kontrolle und eine kleine Verbesserung. Wichtiger als die Dauer ist, dass der Termin nicht ausfällt.</p></div></div>
+    </div>
+    <div class="frage">
+      <button class="frage__kopf" type="button" aria-expanded="false">
+        <span class="frage__text">Unsere Rankings sind gefallen. Sollen wir sofort alles umbauen?</span>
+        <span class="frage__kreis" aria-hidden="true"><i></i><b></b></span>
+      </button>
+      <div class="frage__huelle"><div class="frage__leib"><p>Nein. Prüft zuerst, ob ein Core Update läuft, und wartet nach dessen Abschluss mindestens eine Woche. Vergleicht dann gleich lange Zeiträume in der Search Console. Bei kleinen Verschiebungen rät Google von drastischen Massnahmen ab. Erst bei einem starken, anhaltenden Rückgang lohnt eine gründliche Prüfung der ganzen Website.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<h2>Quellen und Vertiefung</h2>
+<ul><li><a href="https://developers.google.com/search/docs/appearance/core-updates?hl=de" target="_blank" rel="noopener">Google Search Central: Grundlegende Updates an der Google Suche</a></li><li><a href="https://status.search.google.com/" target="_blank" rel="noopener">Google Search Status Dashboard</a></li><li><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=de" target="_blank" rel="noopener">Google Search Central: Hilfreiche, vertrauenswürdige, nutzerorientierte Inhalte erstellen</a></li><li><a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=de" target="_blank" rel="noopener">Google Search Central: Startleitfaden zur Suchmaschinenoptimierung</a></li><li><a href="https://support.google.com/webmasters/answer/9128668?hl=de" target="_blank" rel="noopener">Search Console-Hilfe: Informationen zur Search Console</a></li><li><a href="https://support.google.com/webmasters/answer/7576553?hl=de" target="_blank" rel="noopener">Search Console-Hilfe: Leistungsbericht</a></li><li><a href="https://support.google.com/webmasters/answer/7440203?hl=de" target="_blank" rel="noopener">Search Console-Hilfe: Bericht zur Seitenindexierung</a></li><li><a href="https://support.google.com/business/answer/3039617?hl=de" target="_blank" rel="noopener">Google Unternehmensprofil-Hilfe: Unternehmensprofil bearbeiten</a></li></ul>
+
+<h2>Euer nächster Schritt</h2>
+<p>Tragt euch noch diese Woche einen wiederkehrenden Monatstermin ein und schreibt den Namen der zuständigen Person dazu. Beim ersten Termin genügt es, die Search Console zu öffnen und die drei wichtigsten Seiten anzusehen. Der Rest kommt mit der Routine.</p>
+<p>Marken, die vorne bleiben, sind selten die lautesten. Sie sind die, die noch da sind, wenn die anderen aufgehört haben. Wenn ihr diesen Rhythmus nicht selbst tragen wollt, übernimmt ihn die <a href="../../website-betreuung/">Website-Betreuung</a> als festen Teil der Pflege.</p>
+<nav class="weiterlesen" aria-label="Weiterlesen"><a class="weiter__karte" href="../seo-fuer-kmu/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">SEO für KMU</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../lokale-seo/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Lokale SEO</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a><a class="weiter__karte" href="../website-die-arbeitet/"><span class="weiter__wort"><span class="weiter__art">Leitfaden</span><span class="weiter__titel">Website-Erfolg messen</span></span><span class="weiter__pfeil" aria-hidden="true">→</span></a></nav>
+</article></main>
+
+
+<footer class="fuss">
+  <div class="fuss__oben">
+    <div class="fuss__reden">
+      <span class="chip chip--hell" data-rein>Kontakt</span>
+      <h2>Reden wir.</h2>
+      <div class="fuss__aktion">
+        <a class="knopf knopf--dunkel fuss__cta" href="../../index.html#kontakt">Gespräch buchen <i aria-hidden="true">→</i></a>
+        <a class="fuss__mail" href="mailto:hallo@klartext-digital.ch">hallo@klartext-digital.ch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__mitte">
+    <div class="fuss__adresse">
+      <a class="fuss__logo" href="../../index.html" aria-label="Klartext Digital: zur Startseite"><img src="../../marke/logo-fuss.svg" alt="klartext. digital" width="766" height="314" loading="lazy"></a>
+      <p class="fuss__ort">Lohagstrasse 15, 4133 Pratteln<br>
+        Schwerpunkt Region Basel und Aargau<br>
+        Mo bis Fr, 08:00 bis 20:00</p>
+    </div>
+    <nav class="fuss__spalte fuss__spalte--leistungen" aria-label="Leistungen">
+      <p class="fuss__kopf">Leistungen</p>
+      <div class="fuss__liste"><a class="mlink" href="../../marketing-abo/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Marketing im Abo</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Marketing im Abo</span></a><a class="mlink" href="../../projektarbeit/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Projektarbeit</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Projektarbeit</span></a><a class="mlink" href="../../leistungen/branding.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Branding</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Branding</span></a><a class="mlink" href="../../leistungen/social-media.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Social Media</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Social Media</span></a><a class="mlink" href="../../leistungen/websites.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Websites</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Websites</span></a><a class="mlink" href="../../leistungen/performance.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Performance Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Performance Marketing</span></a><a class="mlink" href="../../leistungen/email-marketing.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">E-Mail Marketing</span><span class="mlink__t mlink__t--neu" aria-hidden="true">E-Mail Marketing</span></a><a class="mlink" href="../../seo/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">SEO</span><span class="mlink__t mlink__t--neu" aria-hidden="true">SEO</span></a></div>
+    </nav>
+    <nav class="fuss__spalte" aria-label="Seiten">
+      <p class="fuss__kopf">Seiten</p>
+      <a class="mlink" href="../../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a><a class="mlink" href="../../ueber-uns.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Über uns</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Über uns</span></a><a class="mlink" href="../../blog/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Blog</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Blog</span></a><a class="mlink" href="../../index.html#preise"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Preise</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Preise</span></a><a class="mlink" href="../../index.html#kontakt"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Kontakt</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Kontakt</span></a>
+    </nav>
+    <div class="fuss__folgen">
+      <p class="fuss__kopf">Folgen</p>
+      <div class="fuss__sozial">
+          <a href="https://www.instagram.com/klartextdigital/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss__recht">
+    <p>2026 Klartext Digital GmbH&nbsp;· <span class="untrennbar">UID CHE-210.244.987</span>&nbsp;· Alle Rechte vorbehalten</p>
+    <nav>
+      <a href="../../recht/impressum.html">Impressum</a>
+      <a href="../../recht/datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+
+  <!-- Riesige Wortmarke als Grafik, unten angeschnitten -->
+  <div class="fuss__wortmarke" aria-hidden="true"><img src="../../marke/wortmarke-negativ.svg" alt="" width="4105" height="859"></div>
+</footer>
+
+<div class="demo">Entwurf · Texte, Namen und Zahlen sind Platzhalter</div>
+
+<script src="../../js/lenis.min.js"></script>
+<script src="../../js/gsap.min.js"></script>
+<script src="../../js/ScrollTrigger.min.js"></script>
+<script src="../../lader.js"></script>
+<script src="../../bewegung.js"></script>
+<script src="../../fragen.js"></script>
+<script src="../../zeiger.js"></script>
+<script src="../../rechner.js"></script>
+</body>
+</html>
