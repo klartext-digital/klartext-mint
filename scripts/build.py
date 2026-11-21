@@ -73,6 +73,9 @@ def blog_beitraege():
   chip=re.search(r'<span class="chip"[^>]*>([\s\S]*?)</span>',k)
   datum=re.sub(r'<[^>]*>','',chip.group(1)).strip() if chip else ''
   t=re.match(r'(\d{1,2})\.\s*([A-Za-zäöüÄÖÜ]+)\s*(\d{4})',datum) if datum else None
+  # Nur ein echtes Datum zaehlt. Sonst griff das FAQ-Etikett im Artikel und
+  # die Karte zeigte "FAQ" an Stelle des Datums (gefunden 21.11.2026).
+  if not t: datum=''
   bild=re.search(r'artikel__bild"[\s\S]*?src="(?:\.\./)+([^"]+)"',k)
   bildpfad=bild.group(1) if bild else meta.get('image','')
   absatz=re.search(r'<article class="artikel[^"]*"[^>]*>\s*<p>([\s\S]*?)</p>',k)
