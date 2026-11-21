@@ -410,6 +410,10 @@ for source,route in ROUTES.items():
  # Entwurfs-Hinweis unten rechts entfernt (Auftraggeber 15.10.2026: keine Hinweise
  # auf der Seite, die nicht hingehoeren). Steht noch in den Quelldateien.
  s=re.sub(r'<div class="demo">[^<]*</div>\s*','',s)
+ # Abschnitte, die bis zur Freigabe nicht erscheinen (seo.config.json -> ausblenden).
+ # Die Quelle bleibt unveraendert; Eintrag entfernen und neu bauen = wieder sichtbar.
+ for klasse in CONFIG.get('ausblenden',{}):
+  s=re.sub(r'\s*<section class="'+re.escape(klasse)+r'"[\s\S]*?</section>','',s)
  prefix=posixpath.relpath('.',route_dir or '.')+'/'
  schema_json=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False).replace('</','<\\/')
  head=f'''\n<meta name="description" content="{escape(desc,quote=True)}">\n<meta name="robots" content="{robots}">\n<link rel="canonical" href="{canonical}">\n<meta property="og:title" content="{escape(title,quote=True)}">\n<meta property="og:description" content="{escape(desc,quote=True)}">\n<meta property="og:url" content="{canonical}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="de_CH">\n<meta property="og:image" content="{BASE}marke/favicon-180.png">\n<link rel="stylesheet" href="{prefix}seo.css?v={stempel("seo.css") or ""}">\n<script type="application/ld+json">{schema_json}</script>\n'''
