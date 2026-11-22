@@ -154,7 +154,7 @@ body{
   /* Scheint an den abgerundeten unteren Ecken des Inhalts durch und
    muss deshalb die Farbe der Fusszeile tragen. */
   background:var(--violett);color:var(--tinte);
-  font-family:'Outfit',Figtree,system-ui,sans-serif;font-weight:400;font-size:19px;
+  font-family:'Inter','Outfit',Figtree,system-ui,sans-serif;font-weight:400;font-size:19px;
   line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
 /* overflow:CLIP, nicht hidden — hidden macht aus main einen Scroll-
@@ -2966,7 +2966,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    ganz unten die Navigationsleiste. Ein Merkzeichen gibt es in der
    Leiste nicht — Speichern liegt im Menue hinter den drei Punkten. */
 .ig{position:absolute;inset:0;z-index:3;color:#fff;
-  font-family:'Outfit',Figtree,system-ui,sans-serif;letter-spacing:-.01em;
+  font-family:'Inter','Outfit',Figtree,system-ui,sans-serif;letter-spacing:-.01em;
   text-shadow:0 1px 3px rgb(0 0 0 / .42)}
 /* Zwei Schleier: oben fuer Statusleiste und Titel, unten fuer Name,
    Text und Navigation. Ohne sie verschwindet weisse Schrift auf
@@ -4259,7 +4259,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
 .wiewir__bild{margin:clamp(20px,2vw,34px) auto 0;line-height:0;
   max-width:min(100%, calc(76vh * 1.800))}
 .ag{width:100%;height:auto;display:block;overflow:visible;
-  font-family:'Outfit',Figtree,system-ui,sans-serif}
+  font-family:'Inter','Outfit',Figtree,system-ui,sans-serif}
 .ag__gross,.ag__unter{transition:opacity .34s var(--raus)}
 .ag__gross{font-size:50px;font-weight:800;letter-spacing:-.03em;text-anchor:middle}
 .ag__unter{font-size:25px;font-weight:400;text-anchor:middle;opacity:.78}
@@ -4923,7 +4923,7 @@ p.brush{font-size:clamp(38px,4.4vw,72px)}
 .fuss__folgen{grid-area:folgen}
 .fuss .fuss__logo{width:clamp(170px,15vw,230px);margin-bottom:clamp(20px,2vw,30px)}
 .fuss .fuss__ort{font-size:clamp(15px,1.1vw,17px);line-height:1.75;color:var(--tinte)}
-.fuss .fuss__kopf{font-family:'Outfit',Figtree,system-ui,sans-serif!important;font-weight:800;
+.fuss .fuss__kopf{font-family:'Inter','Outfit',Figtree,system-ui,sans-serif!important;font-weight:800;
   font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-.01em;
   color:var(--tinte)!important;background:none;transform:none;
   padding:0;margin:0 0 .7em;display:block;width:auto}
@@ -5012,7 +5012,7 @@ main li,main dd,main blockquote,main figcaption,
 main p strong,main p b,main li strong,main li b,.frage__leib strong{font-family:var(--text);font-weight:400}
 /* Menue in der Kopfleiste: Trade Gothic Next Soft Rounded Bold (Auftraggeber,
    25.10.2026), Adobe-Kit ymt6jvd. Knopf "Gespraech buchen" bleibt Figtree. */
-.nav__wege,.nav__wege .mlink__t,.nav__wege a,.nav__wege button{font-family:'Outfit',Figtree,system-ui,sans-serif;font-weight:700;letter-spacing:.005em}
+.nav__wege,.nav__wege .mlink__t,.nav__wege a,.nav__wege button{font-family:'Inter','Outfit',Figtree,system-ui,sans-serif;font-weight:700;letter-spacing:.005em}
 
 /* ══ Soft Rounded Bold ueberall (Auftraggeber, 25.10.2026: "alles so uebernehmen")
    Ueberschriften, Knoepfe, Etiketten, Menue, Zahlen: Trade Gothic Next
@@ -5020,7 +5020,7 @@ main p strong,main p b,main li strong,main li b,.frage__leib strong{font-family:
    Die Schrift hat nur den Schnitt 700; alles Fettere faellt darauf zurueck. */
 h1,h2,h3,h4,h5,h6,.knopf,button,.chip,.nav__cta,.fuss__kopf,.fuss__mail,label,
 dt,th,.nav__wege .mlink,.lz__titel,.zahl,[class*="__zahl"],[class*="__preis"],.unter__dauer span,.unter__dauer b{
-  font-family:'Outfit',Figtree,system-ui,sans-serif;font-weight:700}
+  font-family:'Inter','Outfit',Figtree,system-ui,sans-serif;font-weight:700}
 h1,h2{letter-spacing:-.01em}
 
 /* Textmarker auf ORANGEM Grund (Antworten in den Fragen, Preis- und
@@ -5039,7 +5039,7 @@ h1,h2{letter-spacing:-.01em}
 /* Fussbereich: Eintraege und Rechtszeile in Trade Gothic Regular, Koepfe
    in Soft Rounded Bold. */
 .fuss__mitte .mlink,.fuss__sozial a,.fuss__recht p,.fuss__recht a{font-family:var(--text);font-weight:400}
-.fuss .fuss__kopf{font-family:'Outfit',Figtree,system-ui,sans-serif!important;font-weight:700}
+.fuss .fuss__kopf{font-family:'Inter','Outfit',Figtree,system-ui,sans-serif!important;font-weight:700}
 .fuss__recht a{background:none;padding:0;margin:0}
 
 /* "Nach oben"-Knopf: Hover war orange und verschwand ueber dem orangen
@@ -5191,10 +5191,10 @@ body .fragen:not(.fragen--wie-start)::before{content:"";position:absolute;z-inde
 .wege__panel-titel{font-size:clamp(24px,2.2vw,38px);line-height:1.08;letter-spacing:-.03em}
 .wege__panel-titel i,.brief__wort h3 i{font-style:normal;color:var(--violett)}
 .wege__panel-text,.brief__wort p{color:rgb(14 13 11 / .7)}
-.wege__panel-titel{font-family:'Outfit',Figtree,system-ui,sans-serif;font-weight:700}
+.wege__panel-titel{font-family:'Inter','Outfit',Figtree,system-ui,sans-serif;font-weight:700}
 /* Die Fliesstextregel "main p:not(...)" hat fuenf :not-Stufen und
    schlug die Titelregel. :not(#x) hebt sie gezielt darueber. */
-main p.wege__panel-titel:not(#x){font-family:'Outfit',Figtree,system-ui,sans-serif;font-weight:700;letter-spacing:-.02em}
+main p.wege__panel-titel:not(#x){font-family:'Inter','Outfit',Figtree,system-ui,sans-serif;font-weight:700;letter-spacing:-.02em}
 /* Auftraggeber: "Schon ein Team?" bleibt als orange Pille hervorgehoben wie vorher. */
 .wege__label--frage{background:var(--violett);color:var(--tinte);
   border-radius:var(--r-pille);padding:8px 16px;font-size:12px;font-weight:700;
@@ -5318,7 +5318,7 @@ main p strong,main p b,main li strong,main li b,.frage__leib strong{font-weight:
 .erst{margin-top:clamp(130px,13vw,200px)}
 /* Menue in Fields Semi Bold (Auftraggeber, 28.10.2026, Variante C aus dem
    Vergleich); Knopf "Gespraech buchen" ist schon 600. */
-.nav__wege,.nav__wege .mlink__t,.nav__wege a,.nav__wege button{font-family:'Outfit',system-ui,sans-serif;font-weight:600}
+.nav__wege,.nav__wege .mlink__t,.nav__wege a,.nav__wege button{font-family:'Inter','Outfit',system-ui,sans-serif;font-weight:600}
 .nav__wege .mlink,.nav__wege .mlink *{font-weight:600}
 /* ══ Fliesstext (frueher DM Sans, seit 28.10.2026 abends Outfit) ═════
    Titel bleiben Fields Display, Menue/Knoepfe/Etiketten Fields. Nur
@@ -5362,8 +5362,8 @@ main p strong,main p b,main li strong,main li b,.frage__leib strong{font-family:
    Auswahl auf schrifttest.html). Fliesstext, Menue, Knoepfe, Etiketten,
    FAQ-Fragen: Outfit (OFL, selbst gehostet, variabel 100 bis 900).
    Titel bleiben fields-display, Pinselwoerter Klartext Hand. */
-body{font-family:'Outfit',system-ui,sans-serif}
-.lader,.lader *:not(.brush):not(.brush *){font-family:'Outfit',system-ui,sans-serif}
+body{font-family:'Inter','Outfit',system-ui,sans-serif}
+.lader,.lader *:not(.brush):not(.brush *){font-family:'Inter','Outfit',system-ui,sans-serif}
 /* Erstgespraech-Karte (Auftraggeber, 28.10.2026: "abstaende passen nicht, text
    auch nicht"). Gemessen: 26 px Innenrand, 9/10/17 px zwischen Marke,
    Titel, Text und Knopf, Text 15 px in hellem Grau. Jetzt wie die anderen
@@ -5697,3 +5697,42 @@ main p strong,main p b,main li strong,main li b,.frage__leib strong{font-family:
 .chip,.wege__label,.erst__marke,.pruef__marke,.brief__marke,.blog__marke,.blog__seitentitel,.bzeile__meta{
   font-family:var(--label);font-weight:500;text-transform:uppercase;letter-spacing:.01em}
 .amber__wort{font-family:'fields-display','Outfit',serif;letter-spacing:-.045em}
+
+/* ══ Feinschliff 22.11.2026 (Auftraggeber, Screenshots) ════════════════════ */
+/* Rabatt im Schalter war Amber auf Amber: jetzt eine dunkle Pille. */
+.schalter em,.schalter button.ist em{display:inline-block;margin-left:.45em;padding:.18em .55em;
+  border-radius:var(--r-pille);background:var(--tinte);color:#FBF8F1;font-size:12px;line-height:1.2;font-weight:700}
+/* Preis-Hinweis linksbuendig mit den Abo-Boxen, Stern am Preis. */
+.preise__fuss{max-width:1060px;width:100%;text-align:left;margin-left:auto;margin-right:auto}
+.preis__stern{font-size:.42em;font-weight:700;vertical-align:top;margin-left:.08em;line-height:1;position:relative;top:.15em}
+/* Abstand Titel zu Fuehrungstext: Inter hat tiefere Unterlaengen, der
+   Text klebte am "g" der Ueberschrift. */
+:is(h1,h2) + :is(.fuehrung,.preise__lead,p.lead){margin-top:clamp(18px,1.8vw,28px)}
+.kopfzeile h2 + .fuehrung{margin-top:clamp(18px,1.8vw,28px)}
+/* Ablauf-Nummern 01 bis 04: gross und klar statt kleiner Handschrift. */
+.schritt > b{font-family:var(--titel);font-size:clamp(26px,2.3vw,36px);font-weight:800;letter-spacing:-.04em;line-height:1}
+/* Ueber uns, Haltung: acht Punkte als 4 x 2 statt 5 + 3. */
+@media (min-width:1100px){ .drin--vier{grid-template-columns:repeat(4,minmax(0,1fr))} }
+@media (min-width:700px) and (max-width:1099px){ .drin--vier{grid-template-columns:repeat(2,minmax(0,1fr))} }
+/* Artikel: Lesetipp als ruhige Hinweisbox statt Abschnittsabstand
+   (padding-bottom:var(--sec) war fuer Lesetipp-BLOECKE gedacht und riss
+   im Fliesstext eine Luecke von rund 200 px). */
+p.seo-lesetipp{padding:18px 22px;margin:1.6em 0;background:var(--creme-2);border-radius:var(--r-mittel);max-width:70ch}
+/* Inhaltsverzeichnis: keine Marker-Striche, ruhige Liste. */
+body .seo-prose .seo-inhalt a{background:none;padding:5px 0;margin:0;font-weight:600;color:var(--tinte);text-decoration:none;border-radius:0}
+body .seo-prose .seo-inhalt a:hover{color:#B86A00;filter:none}
+body .seo-prose .seo-inhalt a::after{content:" →";color:var(--violett);font-weight:700}
+/* Fusszeile: die Trennlinie lief ueber das Foto. Das Foto liegt jetzt
+   darueber und deckt die Linie unter sich ab. */
+.fuss__oben::after{z-index:0}
+.fuss__reden{z-index:2}
+/* Erstgespraech (Auftraggeber 22.11.2026: "box hochziehen, frau groesser,
+   nur oberkoerper quasi in der box, rest gleich"). Die Karte wird hoeher,
+   die Person groesser und an der Kartenunterkante abgeschnitten. */
+@media (min-width:1100px){
+  .erst .erst__karte{min-height:clamp(400px,33vw,500px);overflow:hidden;align-items:center}
+  .erst .erst__seite{position:static}
+  .erst .erst__foto{left:auto;bottom:auto;right:clamp(0px,2vw,40px);
+    top:clamp(26px,2.6vw,44px);width:clamp(430px,40vw,620px);
+    background-position:top center;background-size:100% auto}
+}
