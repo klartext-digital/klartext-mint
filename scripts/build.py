@@ -443,11 +443,23 @@ for source,route in ROUTES.items():
  for key,name in [('google','google-site-verification'),('bing','msvalidate.01')]:
   token=CONFIG.get('verification',{}).get(key)
   if token:head+=f'<meta name="{name}" content="{escape(token,quote=True)}">\n'
- head+=f'<link rel="preload" href="{prefix}fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>\n'
+ head+=f'<link rel="preload" href="{prefix}fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>\n'
  # Fliesstext: Trade Gothic Next Light/Regular aus dem Adobe-Fonts-Web-Projekt
  # "Klartext Website" (Kit ymt6jvd, Lizenz ueber des Auftraggebers Creative Cloud).
  head+='<link rel="preconnect" href="https://use.typekit.net" crossorigin>\n<link rel="stylesheet" href="https://use.typekit.net/ymt6jvd.css">\n'
  head+=f'<link rel="preload" href="{prefix}fonts/klartext-hand-11.woff2" as="font" type="font/woff2" crossorigin>\n'
+ # Hover wie in der Fusszeile, ueberall (Auftraggeber 22.11.2026): einzeln
+ # stehende Textlinks bekommen den Pillen-Baustein (.mlink): dunkle Pille
+ # poppt auf, Wort wechselt auf Creme. --fein haelt das Layout unveraendert
+ # (Polster wird mit negativem Rand ausgeglichen). Knoepfe und Karten nicht.
+ def _ml(m):
+  attrs,inner=m.group(1),m.group(2)
+  if 'mlink' in attrs or 'knopf' in attrs:return m.group(0)
+  attrs=attrs.replace('class="','class="mlink mlink--fein ',1) if 'class="' in attrs else ' class="mlink mlink--fein"'+attrs
+  return f'<a{attrs}><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">{inner}</span><span class="mlink__t mlink__t--neu" aria-hidden="true">{inner}</span></a>'
+ for _rx in (r'<nav class="seo-breadcrumb"[\s\S]*?</nav>',r'<nav class="seo-inhalt"[\s\S]*?</nav>',r'<div class="fuss__recht">[\s\S]*?</nav>',r'<div class="fuss__sozial"[\s\S]*?</div>'):
+  s=re.sub(_rx,lambda r:re.sub(r'<a\b([^>]*)>([\s\S]*?)</a>',_ml,r.group(0)),s)
+ s=re.sub(r'<a\b([^>]*class="(?:fuss__mail|blog__alle|fall__link|ruf__weg|ndd__fuss)\b[^"]*"[^>]*)>([\s\S]*?)</a>',_ml,s)
  s=s.replace('</head>',head+'</head>')
  dest=OUT/(route if route.endswith('.html') else route+'index.html');dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(s)
 
