@@ -5773,3 +5773,49 @@ body .seo-prose .seo-inhalt a.mlink--fein{padding:.3em .7em;margin:-.3em -.7em}
 .seo-breadcrumb .mlink--fein{padding:.28em .6em;margin:-.28em -.6em}
 .fuss__recht a.mlink--fein,.fuss__recht nav a.mlink--fein{padding:.34em .75em;margin:-.34em -.75em}
 .fuss__sozial .mlink__t{display:inline-flex;align-items:center;gap:10px}
+
+/* ══ CTAs mit demselben Hover wie die Fusszeile (Auftraggeber 22.11.2026:
+   "ueberall", "CTAs haben ihn noch nicht") ═══════════════════════════════
+   Statt drei aufsteigender Kreise und Kippen: die Fuellfarbe des Knopfs
+   (--knopf-fuell) poppt als Pille auf (Skala .25 -> 1, Deckkraft 0 -> 1),
+   die Schrift wechselt wie beim Menue (altes Wort waechst weg, neues kommt
+   aus .88). Gleiches Tempo (--t-menue). Farben bleiben je Knopf. */
+.knopf::after{content:"";position:absolute;inset:0;z-index:0;border-radius:inherit;pointer-events:none;
+  background:var(--knopf-fuell,var(--tinte));transform:scale(.25);opacity:0;
+  transition:transform var(--t-menue) var(--kurve-rein),opacity var(--t-menue) var(--kurve-rein)}
+.knopf:hover::after,.knopf:focus-visible::after{transform:scale(1);opacity:1}
+.knopf .knopf__punkt{display:none!important}
+.knopf:hover,.knopf:focus-visible{transform:none}
+.knopf .rolle{display:inline-grid;overflow:visible;vertical-align:baseline}
+.knopf .rolle > span,.knopf .rolle > span:nth-child(2){grid-area:1/1;display:block;position:static;width:auto;
+  transition:transform var(--t-menue) var(--kurve-rein),opacity var(--t-menue) var(--kurve-rein)}
+.knopf .rolle > span:nth-child(2){opacity:0;transform:scale(.88)}
+.knopf:hover .rolle > span:first-child,.knopf:focus-visible .rolle > span:first-child{opacity:0;transform:scale(1.14)}
+.knopf:hover .rolle > span:nth-child(2),.knopf:focus-visible .rolle > span:nth-child(2){opacity:1;transform:none}
+/* Runder Pfeil-Knopf: dunkle Pille poppt auf, Pfeil wird hell. */
+.kreis{position:relative;isolation:isolate;overflow:hidden}
+.kreis > *{position:relative;z-index:1}
+.kreis::after{content:"";position:absolute;inset:0;z-index:0;border-radius:inherit;pointer-events:none;
+  background:var(--tinte);transform:scale(.25);opacity:0;
+  transition:transform var(--t-menue) var(--kurve-rein),opacity var(--t-menue) var(--kurve-rein)}
+.kreis:hover,.kreis:focus-visible{transform:none;color:var(--creme)}
+.kreis:hover::after,.kreis:focus-visible::after{transform:scale(1);opacity:1}
+.buehne .kreis:hover,.kreis--hell:hover{color:var(--creme)}
+/* Zurueck-Pille: gleiche Pille statt Flaechenwechsel. */
+.zurueck{position:relative;isolation:isolate;overflow:hidden}
+.zurueck > *{position:relative;z-index:1}
+.zurueck::after{content:"";position:absolute;inset:0;z-index:0;border-radius:inherit;pointer-events:none;
+  background:var(--tinte);transform:scale(.25);opacity:0;
+  transition:transform var(--t-menue) var(--kurve-rein),opacity var(--t-menue) var(--kurve-rein)}
+.zurueck:hover{background:transparent;transform:none}
+.zurueck:hover::after,.zurueck:focus-visible::after{transform:scale(1);opacity:1}
+.kreis:hover,.kreis:focus-visible{background:var(--violett)}
+.kreis--hell:hover,.kreis--hell:focus-visible{background:var(--creme)}
+.kreis--rand:hover,.kreis--rand:focus-visible{background:none}
+.buehne--amber .amber__kreis:hover,.buehne--amber .amber__kreis:focus-visible{background:#FBF8F1}
+.kreis:hover svg{transform:translate(3px,-3px)}
+/* Kopfbereich Orange: dunkler Knopf auf Orange bekommt eine helle Pille
+   (Orange auf Orange waere unsichtbar), Schrift wechselt auf Tinte. */
+.buehne--amber .knopf--dunkel{--knopf-fuell:#FBF8F1}
+.buehne--amber .knopf--dunkel:hover .rolle span:nth-child(2),
+.buehne--amber .knopf--dunkel:focus-visible .rolle span:nth-child(2){color:var(--tinte)}
