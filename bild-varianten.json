@@ -739,6 +739,10 @@
     {
       "path": "bilder/fall-janssen-1600.webp",
       "width": 1600
+    },
+    {
+      "path": "bilder/fall-janssen-2000.webp",
+      "width": 2000
     }
   ],
   "bilder/fall-qpunkt.jpg": [
@@ -753,6 +757,10 @@
     {
       "path": "bilder/fall-qpunkt-1600.webp",
       "width": 1600
+    },
+    {
+      "path": "bilder/fall-qpunkt-2000.webp",
+      "width": 2000
     }
   ],
   "bilder/fall-fabio.jpg": [
@@ -767,6 +775,10 @@
     {
       "path": "bilder/fall-fabio-1600.webp",
       "width": 1600
+    },
+    {
+      "path": "bilder/fall-fabio-2000.webp",
+      "width": 2000
     }
   ],
   "bilder/fall-fabio-2.jpg": [
@@ -865,6 +877,10 @@
     {
       "path": "bilder/fall-amann-1600.webp",
       "width": 1600
+    },
+    {
+      "path": "bilder/fall-amann-1920.webp",
+      "width": 1920
     }
   ],
   "bilder/fall-amann-raster.jpg": [
@@ -1351,6 +1367,96 @@
     {
       "path": "bilder/kopf-person-1912.webp",
       "width": 1912
+    }
+  ],
+  "bilder/collage-web.jpg": [
+    {
+      "path": "bilder/collage-web-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/collage-web-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/collage-web-1600.webp",
+      "width": 1600
+    },
+    {
+      "path": "bilder/collage-web-2400.webp",
+      "width": 2400
+    }
+  ],
+  "bilder/collage-marke.jpg": [
+    {
+      "path": "bilder/collage-marke-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/collage-marke-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/collage-marke-1600.webp",
+      "width": 1600
+    },
+    {
+      "path": "bilder/collage-marke-2400.webp",
+      "width": 2400
+    }
+  ],
+  "bilder/fall-janssen-breit.jpg": [
+    {
+      "path": "bilder/fall-janssen-breit-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-janssen-breit-1600.webp",
+      "width": 1600
+    },
+    {
+      "path": "bilder/fall-janssen-breit-2400.webp",
+      "width": 2400
+    },
+    {
+      "path": "bilder/fall-janssen-breit-3000.webp",
+      "width": 3000
+    }
+  ],
+  "bilder/fall-fabio-breit.jpg": [
+    {
+      "path": "bilder/fall-fabio-breit-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-fabio-breit-1600.webp",
+      "width": 1600
+    },
+    {
+      "path": "bilder/fall-fabio-breit-2400.webp",
+      "width": 2400
+    },
+    {
+      "path": "bilder/fall-fabio-breit-3000.webp",
+      "width": 3000
+    }
+  ],
+  "bilder/fall-qpunkt-breit.jpg": [
+    {
+      "path": "bilder/fall-qpunkt-breit-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-qpunkt-breit-1600.webp",
+      "width": 1600
+    },
+    {
+      "path": "bilder/fall-qpunkt-breit-2400.webp",
+      "width": 2400
+    },
+    {
+      "path": "bilder/fall-qpunkt-breit-3000.webp",
+      "width": 3000
     }
   ]
 }
