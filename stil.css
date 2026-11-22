@@ -5739,3 +5739,12 @@ body .seo-prose .seo-inhalt a::after{content:" →";color:var(--violett);font-we
     width:clamp(460px,40vw,640px);height:calc(clamp(460px,40vw,640px) * .78);
     background-position:top center;background-size:100% auto}
 }
+/* Agentur-Vermerk wie auf den Kundenseiten (Auftraggeber 22.11.2026: "auch
+   bei dieser seite"): eigene Zeile links unten, "Website von" + einfarbiges
+   Logo, 22 px hoch, schwarz auf der orangen Fusszeile. */
+.fuss__recht{flex-wrap:wrap}
+.kd-credit{flex-basis:100%;display:flex;justify-content:flex-start;padding-top:0;margin-top:-6px}
+.kd-credit a{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:rgb(14 13 11 / .62);
+  font-size:13px;line-height:1;background:none;padding:0;font-weight:500}
+.kd-credit a:hover{color:var(--tinte)}
+.kd-credit img{height:22px;width:auto;display:block}
