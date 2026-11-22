@@ -4750,7 +4750,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
    Gilt fuer Textlinks im Inhalt; Knoepfe, Menue, Brotkrume und
    Fusszeile bleiben, wie sie sind. Bricht ein Link um, bekommt jede
    Zeile ihren eigenen Strich (box-decoration-break). */
-body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not(.knopf),
+body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not(.knopf):not(.mlink),
 body main :is(p, li, dd, dt, td, blockquote):not(nav *):not(.seo-breadcrumb *) > a:not([class]),
 body .wege__karte .wege__mehr, body .wege__mehr{
   color:var(--tinte);font-weight:700;text-decoration:none;
@@ -4758,7 +4758,7 @@ body .wege__karte .wege__mehr, body .wege__mehr{
   padding:.02em .3em .06em;margin:0 -.06em;border-radius:2px;
   -webkit-box-decoration-break:clone;box-decoration-break:clone;
   transition:filter var(--t-knopf) var(--kurve-rein)}
-body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not(.knopf):hover,
+body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not(.knopf):not(.mlink):hover,
 body main :is(p, li, dd, dt, td, blockquote):not(nav *):not(.seo-breadcrumb *) > a:not([class]):hover,
 body .wege__mehr:hover{filter:saturate(1.25) brightness(.96)}
 
@@ -5721,7 +5721,6 @@ p.seo-lesetipp{padding:18px 22px;margin:1.6em 0;background:var(--creme-2);border
 /* Inhaltsverzeichnis: keine Marker-Striche, ruhige Liste. */
 body .seo-prose .seo-inhalt a{background:none;padding:5px 0;margin:0;font-weight:600;color:var(--tinte);text-decoration:none;border-radius:0}
 body .seo-prose .seo-inhalt a:hover{color:#B86A00;filter:none}
-body .seo-prose .seo-inhalt a::after{content:" →";color:var(--violett);font-weight:700}
 /* Fusszeile: die Trennlinie lief ueber das Foto. Das Foto liegt jetzt
    darueber und deckt die Linie unter sich ab. */
 .fuss__oben::after{z-index:0}
@@ -5748,3 +5747,29 @@ body .seo-prose .seo-inhalt a::after{content:" →";color:var(--violett);font-we
   font-size:13px;line-height:1;background:none;padding:0;font-weight:500}
 .kd-credit a:hover{color:var(--tinte)}
 .kd-credit img{height:22px;width:auto;display:block}
+
+/* ══ Hover wie in der Fusszeile, ueberall (Auftraggeber 22.11.2026) ═══════ */
+.mlink--fein{padding:.2em .5em;margin:-.2em -.5em;line-height:inherit;font:inherit;color:inherit;
+  text-decoration:none;background:none}
+.mlink--fein .mlink__t{white-space:nowrap}
+body .seo-prose .seo-inhalt a.mlink--fein{padding:.2em .5em;margin:-.2em -.5em}
+.seo-inhalt li{margin:.35em 0}
+/* Links im Fliesstext: Marker bleibt, beim Ueberfahren wird er zur
+   dunklen Pille mit heller Schrift (gleiche Farben wie der Baustein). */
+body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not(.knopf):not(.mlink),
+body main :is(p, li, dd, dt, td, blockquote):not(nav *):not(.seo-breadcrumb *) > a:not([class]){
+  transition:background-color var(--t-menue) var(--kurve-rein),color var(--t-menue) var(--kurve-rein)}
+body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not(.knopf):not(.mlink):hover,
+body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not(.knopf):not(.mlink):focus-visible,
+body main :is(p, li, dd, dt, td, blockquote):not(nav *):not(.seo-breadcrumb *) > a:not([class]):hover,
+body main :is(p, li, dd, dt, td, blockquote):not(nav *):not(.seo-breadcrumb *) > a:not([class]):focus-visible{
+  background:var(--tinte);color:var(--creme);border-radius:var(--r-pille);filter:none}
+.seo-inhalt .mlink--fein{place-items:start;text-align:left}
+.seo-inhalt .mlink--fein .mlink__t{white-space:normal}
+.seo-inhalt .mlink--fein .mlink__bg{border-radius:14px}
+body .seo-prose .seo-inhalt a.mlink,body .seo-inhalt a.mlink{display:inline-grid}
+.mlink--fein{padding:.34em .75em;margin:-.34em -.75em}
+body .seo-prose .seo-inhalt a.mlink--fein{padding:.3em .7em;margin:-.3em -.7em}
+.seo-breadcrumb .mlink--fein{padding:.28em .6em;margin:-.28em -.6em}
+.fuss__recht a.mlink--fein,.fuss__recht nav a.mlink--fein{padding:.34em .75em;margin:-.34em -.75em}
+.fuss__sozial .mlink__t{display:inline-flex;align-items:center;gap:10px}
