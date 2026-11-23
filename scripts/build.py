@@ -459,7 +459,7 @@ for source,route in ROUTES.items():
   return f'<a{attrs}><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">{inner}</span><span class="mlink__t mlink__t--neu" aria-hidden="true">{inner}</span></a>'
  for _rx in (r'<nav class="seo-breadcrumb"[\s\S]*?</nav>',r'<nav class="seo-inhalt"[\s\S]*?</nav>',r'<div class="fuss__recht">[\s\S]*?</nav>',r'<div class="fuss__sozial"[\s\S]*?</div>'):
   s=re.sub(_rx,lambda r:re.sub(r'<a\b([^>]*)>([\s\S]*?)</a>',_ml,r.group(0)),s)
- s=re.sub(r'<a\b([^>]*class="(?:fuss__mail|blog__alle|fall__link|ruf__weg|ndd__fuss)\b[^"]*"[^>]*)>([\s\S]*?)</a>',_ml,s)
+ s=re.sub(r'<a\b([^>]*class="(?:fuss__mail|blog__alle|fall__link|ndd__fuss)\b[^"]*"[^>]*)>([\s\S]*?)</a>',_ml,s)
  s=s.replace('</head>',head+'</head>')
  dest=OUT/(route if route.endswith('.html') else route+'index.html');dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(s)
 
