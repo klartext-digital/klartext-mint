@@ -5995,3 +5995,6 @@ h1.kf__titel em{font-style:normal;color:var(--violett)}
 }
 /* Runde 5: mehr Text unten rechts, breiterer Block. */
 .kf__satz{max-width:34em;font-size:clamp(12.5px,.98vw,15.5px);line-height:1.5}
+/* Navigation kuerzer (Auftraggeber 23.11.2026: "viel leer"). Gilt auf
+   allen Seiten; Raster Logo | Links | Knopf bleibt. */
+.nav__pille{max-width:min(var(--maxw), 1200px)}
