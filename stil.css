@@ -5993,3 +5993,5 @@ h1.kf__titel em{font-style:normal;color:var(--violett)}
   .kf__zeile--unten{margin-top:26px;flex-direction:column-reverse;align-items:flex-start;gap:22px}
   .kf__satz{font-size:13.5px;max-width:none}
 }
+/* Runde 5: mehr Text unten rechts, breiterer Block. */
+.kf__satz{max-width:34em;font-size:clamp(12.5px,.98vw,15.5px);line-height:1.5}
