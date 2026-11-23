@@ -5895,3 +5895,33 @@ body .seo-prose .seo-inhalt a.mlink--fein{padding:.3em .7em;margin:-.3em -.7em}
 }
 /* Alter Schleier der fruehen Buehne (::before, 97deg dunkel) gilt hier nicht. */
 .buehne.buehne--foto::before{content:none;display:none}
+/* Runde 2 (Auftraggeber 23.11.2026): mittig das ORIGINAL-Logo (Datei, kein
+   Nachbau), Leistungen links kleiner, rechts unten "Kompetenz reicht nicht,
+   wenn sie niemand sieht." als Einstieg. */
+.foto__logo{display:block;position:relative;margin:auto;height:auto;
+  width:min(64vw, 1000px, calc((100svh - 430px) * 2.44));
+  filter:drop-shadow(0 .4vw 1.6vw rgb(18 10 5 / .28));pointer-events:none;user-select:none}
+.buehne.buehne--foto{justify-content:flex-start}
+.foto__fuss{margin-top:clamp(28px,3vw,56px);grid-template-columns:minmax(0,1fr) minmax(0,600px);align-items:end}
+.foto__links{justify-content:flex-start;gap:10px;align-self:end}
+.foto__leistungen{font-size:clamp(12px,.88vw,14px);letter-spacing:.1em;font-weight:500}
+.foto__ort{font-size:clamp(12px,.85vw,13.5px)}
+.buehne--foto h1.foto__titel{font-family:var(--titel);font-weight:800;color:#FBF8F1;
+  font-size:clamp(28px,2.7vw,46px);line-height:1.06;letter-spacing:-.035em;margin:0 0 clamp(12px,1.1vw,18px);text-wrap:balance}
+.buehne--foto h1.foto__titel > span{display:block}
+.foto__text{margin:0 0 clamp(16px,1.5vw,22px);font-size:clamp(15px,1.1vw,17.5px);line-height:1.5;
+  color:rgb(251 248 241 / .9);max-width:34em}
+@media (max-width:820px){
+  .foto__logo{width:min(86vw, 520px);margin:auto auto 0}
+  .foto__fuss{grid-template-columns:1fr;align-items:start;margin-top:10vw}
+  .foto__links{order:2}
+  .buehne--foto h1.foto__titel{font-size:clamp(28px,8.4vw,40px)}
+}
+/* Breit: Original-Logo quer, tief ueber der Linie (Gesicht bleibt frei).
+   Handy: Original-Logo gestapelt. */
+.foto__logo{width:auto;filter:none;margin:auto auto 0;display:block;line-height:0}
+.foto__logo img{display:block;height:auto;width:min(80vw, 1240px, calc((100svh - 470px) * 6.2));
+  filter:drop-shadow(0 .4vw 1.6vw rgb(18 10 5 / .28))}
+@media (max-width:820px){
+  .foto__logo img{width:min(86vw, 520px)}
+}
