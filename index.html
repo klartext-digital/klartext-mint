@@ -66,7 +66,7 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 <!-- ══ Navigation: schwebende Pille ══ -->
 <header class="nav">
   <div class="nav__pille">
-    <a class="nav__mark" href="index.html" aria-label="Klartext Digital: zur Startseite"><picture><source media="(max-width: 699px)" srcset="marke/zeichen.svg" width="1010" height="916"><img src="marke/logo-quer.svg" alt="klartext digital" width="1350" height="259"></picture></a>
+    <a class="nav__mark nav__mark--zeichen" href="index.html" aria-label="Klartext Digital: zur Startseite"><img src="marke/zeichen.svg" alt="klartext digital" width="1010" height="916"></a>
     <nav class="nav__wege" aria-label="Hauptnavigation">
       <a class="mlink" href="arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
       <span class="ndd">
@@ -121,29 +121,24 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 
 <main>
 
-  <!-- ══ 1 · Bühne ══ -->
-  <section class="buehne buehne--amber">
-    <div class="amber__kopf">
-      <h1 class="amber__titel" data-rein-zeilen>
-        <span>Kompetenz reicht nicht,</span>
-        <span>wenn sie <em class="wort wort--bild amber__wortbild"><span class="sr">niemand</span><img class="wort__bild" src="marke/niemand-hell.svg" alt="" aria-hidden="true" width="3533" height="783"></em> sieht.</span>
-      </h1>
-      <div class="amber__seite" data-rein>
-        <p class="amber__text">Klartext Digital aus Pratteln bringt euer Marketing vorwärts: mit laufenden Leistungen im Abo und klar geplanten Projekten. Für Unternehmen in der Region Basel, im Aargau und in der ganzen Deutschschweiz, die Umsetzung brauchen, und Marketingteams, die Spezialwissen ergänzen wollen.</p>
-        <div class="knopfpaar">
-          <a class="knopf knopf--dunkel gross" href="marketing-abo/" data-event="abo_explore">
-            <span class="rolle"><span>Marketing im Abo</span><span aria-hidden="true">Marketing im Abo</span></span>
-          </a>
-          <a class="kreis amber__kreis" href="projektarbeit/" aria-label="Projektarbeit entdecken">
-            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
+  <!-- ══ 1 · Bühne: Foto (Auftraggeber 23.11.2026) ══ -->
+  <section class="buehne buehne--foto">
+    <picture class="foto__bild">
+      <source type="image/webp" srcset="bilder/kopf-haar-900.webp 900w, bilder/kopf-haar-1600.webp 1600w, bilder/kopf-haar-2400.webp 2400w, bilder/kopf-haar-3200.webp 3200w" sizes="100vw">
+      <img src="bilder/kopf-haar.jpg" alt="" width="3200" height="2009" fetchpriority="high" decoding="async">
+    </picture>
+    <p class="foto__marke" aria-hidden="true"><span class="foto__klartext">klartext</span><span class="foto__digital">digital.</span></p>
+    <div class="foto__fuss" data-rein>
+      <div class="foto__links">
+        <p class="foto__leistungen"><a class="foto__weg" href="leistungen/branding.html">Branding</a><i aria-hidden="true">/</i><a class="foto__weg" href="leistungen/social-media.html">Social Media</a><i aria-hidden="true">/</i><a class="foto__weg" href="leistungen/websites.html">Web</a><i aria-hidden="true">/</i><a class="foto__weg" href="leistungen/performance.html">Werbung</a></p>
+        <p class="foto__ort">Pratteln <i aria-hidden="true">·</i> Deutschschweiz</p>
       </div>
-    </div>
-    <div class="amber__buehne" aria-hidden="true">
-      <span class="amber__wort">Klartext.</span>
-      <span class="amber__mauer"></span>
-      <img class="amber__person" src="bilder/kopf-person.png" alt="" fetchpriority="high" decoding="async">
+      <div class="foto__rechts">
+        <h1 class="foto__titel">Marketing im Abo und klar geplante Projekte. <span>Branding, Social Media, Websites und Werbung.</span></h1>
+        <a class="knopf knopf--akzent foto__knopf" href="#kontakt" data-event="kopf_gespraech">
+          <span class="rolle"><span>Reden wir Klartext ↗</span><span aria-hidden="true">Reden wir Klartext ↗</span></span>
+        </a>
+      </div>
     </div>
   </section>
   <!-- ══ 3 · Referenzen ══ -->
