@@ -5950,3 +5950,46 @@ body .seo-prose .seo-inhalt a.mlink--fein{padding:.3em .7em;margin:-.3em -.7em}
   .foto__rechts{flex-direction:column;align-items:flex-start;gap:18px}
   .foto__rechts .foto__text{font-size:16px}
 }
+
+/* ══ Kopfbereich Runde 4 (Auftraggeber 23.11.2026, Vorlage MEGUS) ═════════
+   Logo gross als Titel, keine Linie. Kleine Texte rund um das Logo:
+   oben links/rechts je eine kleine Zeile, unter dem Logo die Leistungen,
+   unten links Etikett + Knopf, unten rechts der Einstiegssatz in Versalien,
+   zweifarbig (Satz hell, Erklaerung gedaempft). */
+.buehne.buehne--foto{justify-content:flex-end;padding-top:clamp(110px,9vw,140px);padding-bottom:clamp(26px,2.6vw,44px)}
+.kf__zeile{width:100%;max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.kf__klein{margin:0;font-family:var(--text);font-size:clamp(12px,.95vw,15px);font-weight:500;
+  letter-spacing:.01em;text-transform:uppercase;color:#FBF8F1}
+.kf__klein i,.kf__leistungen i{font-style:normal;color:rgb(251 248 241 / .5)}
+.kf__zeile--oben{margin-bottom:clamp(10px,1.1vw,18px);padding:0 .3%}
+.buehne--foto .kf__logo{margin:0 auto;width:100%;max-width:var(--maxw);display:block;line-height:0;filter:none}
+.buehne--foto .kf__logo img{display:block;margin:0 auto;height:auto;
+  width:min(100%, calc((100svh - 470px) * 6.18));filter:drop-shadow(0 .4vw 1.6vw rgb(18 10 5 / .28))}
+.kf__zeile--mitte{margin-top:clamp(18px,2vw,34px);padding:0 .3%}
+.kf__leistungen{margin:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:.2em .7em;
+  font-family:var(--text);font-size:clamp(15px,1.3vw,22px);font-weight:500;letter-spacing:-.005em;text-transform:uppercase}
+.buehne--foto .kf__leistungen a.foto__weg{color:#FBF8F1;text-decoration:none;background:none;box-shadow:none;
+  border-radius:var(--r-pille);padding:.1em .35em;margin:-.1em -.35em;
+  transition:background-color var(--t-menue) var(--kurve-rein),color var(--t-menue) var(--kurve-rein)}
+.buehne--foto .kf__leistungen a.foto__weg:hover,.buehne--foto .kf__leistungen a.foto__weg:focus-visible{background:#FBF8F1;color:var(--tinte)}
+.kf__zeile--unten{margin-top:clamp(30px,4.2vw,72px);align-items:flex-end}
+.kf__start{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.kf__etikett{margin:0;font-size:clamp(11px,.8vw,13px);font-weight:500;letter-spacing:.06em;
+  text-transform:uppercase;color:rgb(251 248 241 / .6)}
+.kf__satz{max-width:27em;font-family:var(--text);font-size:clamp(12.5px,.95vw,15px);line-height:1.45;
+  font-weight:500;letter-spacing:.005em;text-transform:uppercase;text-align:left}
+.kf__satz h1.kf__titel,.kf__satz .kf__leise{display:inline;margin:0;font:inherit;letter-spacing:inherit;line-height:inherit}
+h1.kf__titel{color:#FBF8F1}
+h1.kf__titel em{font-style:normal;color:var(--violett)}
+.kf__leise{color:rgb(251 248 241 / .55)}
+@media (max-width:820px){
+  .buehne.buehne--foto{padding-top:110px}
+  .kf__zeile{flex-direction:column;align-items:flex-start;gap:6px}
+  .kf__zeile--oben{flex-direction:row;justify-content:space-between;gap:12px;margin-bottom:14px}
+  .kf__klein{font-size:11px}
+  .buehne--foto .kf__logo img{width:min(86vw, 520px);margin:0}
+  .kf__zeile--mitte{margin-top:20px}
+  .kf__leistungen{font-size:14px;gap:.2em .5em}
+  .kf__zeile--unten{margin-top:26px;flex-direction:column-reverse;align-items:flex-start;gap:22px}
+  .kf__satz{font-size:13.5px;max-width:none}
+}
