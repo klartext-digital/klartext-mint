@@ -435,7 +435,7 @@ for source,route in ROUTES.items():
  prefix=posixpath.relpath('.',route_dir or '.')+'/'
  schema_json=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False).replace('</','<\\/')
  head=f'''\n<meta name="description" content="{escape(desc,quote=True)}">\n<meta name="robots" content="{robots}">\n<link rel="canonical" href="{canonical}">\n<meta property="og:title" content="{escape(title,quote=True)}">\n<meta property="og:description" content="{escape(desc,quote=True)}">\n<meta property="og:url" content="{canonical}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="de_CH">\n<meta property="og:image" content="{BASE}marke/favicon-180.png">\n<link rel="stylesheet" href="{prefix}seo.css?v={stempel("seo.css") or ""}">\n<script type="application/ld+json">{schema_json}</script>\n'''
- if route=='':head+='<link rel="preload" as="image" href="bilder/kopf-person-1100.webp" imagesrcset="bilder/kopf-person-700.webp 700w, bilder/kopf-person-1100.webp 1100w, bilder/kopf-person-1600.webp 1600w, bilder/kopf-person-1912.webp 1912w" imagesizes="(max-width: 820px) 62vw, min(50vw, 900px)" type="image/webp" fetchpriority="high">\n'
+ if route=='':head+='<link rel="preload" as="image" href="bilder/kopf-haar-1600.webp" imagesrcset="bilder/kopf-haar-900.webp 900w, bilder/kopf-haar-1600.webp 1600w, bilder/kopf-haar-2400.webp 2400w, bilder/kopf-haar-3200.webp 3200w" imagesizes="100vw" type="image/webp" fetchpriority="high">\n'
  # A real landscape image replaces the tiny app icon in link previews.
  head=head.replace(BASE+'marke/favicon-180.png',preview_image)
  head=head.replace('property="og:type" content="website"','property="og:type" content="'+('article' if is_article else 'website')+'"')
