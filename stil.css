@@ -6002,3 +6002,83 @@ h1.kf__titel em{font-style:normal;color:var(--violett)}
    Vorher lief der linke Aermel unter der Trennlinie aus dem linken
    Bildrand, dort brach die Kontur senkrecht ab. Jetzt trifft sie links
    wie rechts schraeg auf die Linie. Seitenverhaeltnis darum 900 / 708. */
+
+/* ══ Projektseiten: Kopf nach Vorlage (Auftraggeber 24.11.2026) ══════════════
+   Vollbreites Foto mit runden Ecken, knapp vom Fensterrand abgesetzt. Die
+   Navigation schwebt darueber, solange das Foto unter ihr liegt, als dunkle
+   Glaspille mit hellem "k.". Unten links: "← Projekte", Kundenname als
+   Titel, zwei Zeilen Unterzeile. Darunter "Ueberblick": Marke links, grosser
+   zweitoniger Satz rechts. Videos folgen erst danach, nie im Kopf.
+   Alles auf derselben Kante wie die Navigationspille (max. 1200 px). */
+.fallkopf{--fall-kante:min(100% - 2 * var(--pad), 1200px);
+  position:relative;isolation:isolate;overflow:hidden;
+  margin:12px 12px 0;border-radius:clamp(18px,1.8vw,28px);
+  height:clamp(520px,82svh,860px);display:flex;align-items:flex-end;
+  background:#14110E;color:#FBF8F1}
+.fallkopf__bild{position:absolute;inset:0;width:100%;height:100%;z-index:-2;
+  object-fit:cover;object-position:var(--bildpos,50% 50%)}
+.fallkopf::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:
+  linear-gradient(180deg,rgb(14 13 11 / .5) 0%,rgb(14 13 11 / 0) 24%,rgb(14 13 11 / 0) 42%,rgb(14 13 11 / .72) 100%),
+  linear-gradient(90deg,rgb(14 13 11 / .45) 0%,rgb(14 13 11 / 0) 62%)}
+.fallkopf__inhalt{width:var(--fall-kante);margin:0 auto;padding:0 0 clamp(44px,6vw,92px)}
+.fallkopf__zurueck{display:inline-flex;align-items:center;gap:.55em;margin:0 0 clamp(14px,1.4vw,22px);
+  font-family:var(--text);font-weight:500;font-size:clamp(15px,1.1vw,17px);color:#FBF8F1;text-decoration:none;
+  border-radius:var(--r-pille);padding:.3em .7em;margin-left:-.7em;
+  transition:background-color var(--t-menue) var(--kurve-rein),color var(--t-menue) var(--kurve-rein)}
+.fallkopf__zurueck i{font-style:normal;transition:transform var(--t-menue) var(--kurve-rein)}
+.fallkopf__zurueck:hover,.fallkopf__zurueck:focus-visible{background:#FBF8F1;color:var(--tinte)}
+.fallkopf__zurueck:hover i{transform:translateX(-3px)}
+.fallkopf .fallkopf__titel{margin:0;font-family:var(--text);font-weight:500;color:#FBF8F1;
+  font-size:clamp(36px,4.3vw,68px);line-height:1.04;letter-spacing:-.025em;text-wrap:balance;max-width:20ch}
+.fallkopf__unter{margin:clamp(16px,1.6vw,26px) 0 0;font-family:var(--text);font-weight:400;
+  font-size:clamp(16px,1.3vw,20px);line-height:1.45;color:rgb(251 248 241 / .9);max-width:34em}
+
+.fallblick{width:min(100% - 2 * var(--pad), 1200px);margin:0 auto;
+  padding:clamp(64px,7vw,120px) 0 clamp(40px,4vw,64px);
+  display:grid;grid-template-columns:clamp(120px,15%,210px) minmax(0,1fr);gap:clamp(16px,2vw,32px);align-items:start}
+.fallblick__marke{margin:.55em 0 0;font-family:var(--text);font-weight:500;font-size:clamp(14px,1vw,16px);
+  color:rgb(14 13 11 / .62)}
+.fallblick__text{margin:0;font-family:var(--text);font-weight:400;font-size:clamp(23px,2.35vw,36px);
+  line-height:1.32;letter-spacing:-.012em;color:rgb(14 13 11 / .5);max-width:31em;text-wrap:pretty}
+.fallblick__text span{color:var(--tinte)}
+.fallfilm{width:min(100% - 2 * var(--pad), 1200px);margin:0 auto clamp(40px,4vw,64px)}
+.fallfilm .fall__gross{margin:0;max-width:none;width:100%}
+.unter__leib--fakten{grid-template-columns:minmax(0,1fr)}
+
+/* Navigation ueber dem Foto: dunkle Glaspille, helle Schrift, helles "k.".
+   bewegung.js setzt html.nav-hell, sobald das Foto unter der Leiste weg ist. */
+.nav__mark .mark--dunkel{display:none}
+.nav__mark--zeichen img{height:clamp(40px,3.4vw,50px)!important;width:auto;transform:none!important;margin:0!important}
+html:not(.nav-hell) body:has(.fallkopf) .nav__pille{
+  background:rgb(28 25 21 / .42);border-color:rgb(251 248 241 / .14);color:#FBF8F1;
+  -webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);
+  box-shadow:0 10px 40px -18px rgb(0 0 0 / .5)}
+html:not(.nav-hell) body:has(.fallkopf) .nav__pille .nav__wege .mlink{color:#FBF8F1}
+html:not(.nav-hell) body:has(.fallkopf) .nav__mark .mark--hell{display:none}
+html:not(.nav-hell) body:has(.fallkopf) .nav__mark .mark--dunkel{display:block}
+.nav__pille{transition:background-color .35s var(--kurve-rein),border-color .35s var(--kurve-rein),color .35s var(--kurve-rein)}
+
+@media (max-width:820px){
+  .fallkopf{margin:8px 8px 0;height:clamp(480px,78svh,720px)}
+  .fallkopf__inhalt{padding-bottom:36px}
+  .fallkopf::after{background:linear-gradient(180deg,rgb(14 13 11 / .5) 0%,rgb(14 13 11 / 0) 22%,rgb(14 13 11 / .1) 40%,rgb(14 13 11 / .8) 100%)}
+  .fallblick{grid-template-columns:minmax(0,1fr);gap:14px;padding-top:56px}
+  .fallblick__marke{margin:0}
+}
+/* Korrekturen Projektkopf: Abstand oben als Polster von main (ein Aussen-
+   abstand am Foto kollabierte durch main, darueber schien der orange
+   Seitengrund). Titel einzeilig wo Platz ist. Brotkrume bleibt fuer
+   Suchmaschinen und Screenreader im Kopf, sichtbar ist "← Projekte". */
+main:has(> .fallkopf){padding-top:12px}
+.fallkopf{margin-top:0}
+.fallkopf .fallkopf__titel{max-width:none}
+.fallkopf .seo-breadcrumb{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;margin:0;padding:0}
+.fallfilm .fall__film,.fallfilm .reel,.fallfilm .reel--quer{max-width:none;width:100%;margin-left:0;margin-right:0}
+@media (max-width:820px){
+  main:has(> .fallkopf){padding-top:8px}
+  .fallkopf__bild{object-position:var(--bildpos-handy,var(--bildpos,50% 50%))}
+}
+/* Bild/Video unter dem Ueberblick: volle Kantenbreite (1200), ohne das
+   Seitenpolster von .artikel__bild, Mockup in voller Hoehe statt beschnitten. */
+.fallfilm .artikel__bild{padding:0;margin:0;max-width:none;width:100%}
+.fallfilm .artikel__bild img{height:auto;aspect-ratio:auto}

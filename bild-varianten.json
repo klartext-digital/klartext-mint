@@ -1458,5 +1458,73 @@
       "path": "bilder/fall-qpunkt-breit-3000.webp",
       "width": 3000
     }
+  ],
+  "bilder/fall-redbull-kopf.jpg": [
+    {
+      "path": "bilder/fall-redbull-kopf-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-redbull-kopf-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-redbull-kopf-1600.webp",
+      "width": 1600
+    },
+    {
+      "path": "bilder/fall-redbull-kopf-2400.webp",
+      "width": 2400
+    },
+    {
+      "path": "bilder/fall-redbull-kopf-2800.webp",
+      "width": 2800
+    }
+  ],
+  "bilder/fall-fabio-kopf.jpg": [
+    {
+      "path": "bilder/fall-fabio-kopf-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-fabio-kopf-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-fabio-kopf-1600.webp",
+      "width": 1600
+    }
+  ],
+  "bilder/fall-janssen-kopf.jpg": [
+    {
+      "path": "bilder/fall-janssen-kopf-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-janssen-kopf-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-janssen-kopf-1600.webp",
+      "width": 1600
+    },
+    {
+      "path": "bilder/fall-janssen-kopf-1920.webp",
+      "width": 1920
+    }
+  ],
+  "bilder/fall-qpunkt-kopf.jpg": [
+    {
+      "path": "bilder/fall-qpunkt-kopf-480.webp",
+      "width": 480
+    },
+    {
+      "path": "bilder/fall-qpunkt-kopf-900.webp",
+      "width": 900
+    },
+    {
+      "path": "bilder/fall-qpunkt-kopf-1600.webp",
+      "width": 1600
+    }
   ]
 }
