@@ -28,7 +28,7 @@
 </style>
 <title>PLÜ Restaurant &amp; Lounge: Foodfotografie | Klartext Digital</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%230F4C55'/></svg>">
-<link rel="stylesheet" href="../../stil.css?v=cc12e415">
+<link rel="stylesheet" href="../../stil.css?v=2a742648">
 <script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
    Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
    eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
@@ -85,7 +85,7 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 
 <header class="nav">
   <div class="nav__pille">
-    <a class="nav__mark" href="../../" aria-label="Klartext Digital: zur Startseite"><picture><source media="(max-width: 699px)" srcset="../../marke/zeichen.svg" width="1010" height="916"><img src="../../marke/logo-quer.svg" alt="klartext digital" width="1350" height="259" decoding="async"></picture></a>
+    <a class="nav__mark nav__mark--zeichen" href="../../" aria-label="Klartext Digital: zur Startseite"><img class="mark--hell" src="../../marke/zeichen.svg" alt="klartext digital" width="1009" height="915" decoding="async"><img class="mark--dunkel" src="../../marke/zeichen-negativ.svg" alt="" aria-hidden="true" width="1009" height="915" decoding="async"></a>
     <nav class="nav__wege" aria-label="Hauptnavigation">
       <a class="mlink" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
       <span class="ndd">
@@ -139,24 +139,25 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 </header>
 
 <main>
-  <!-- ══ Kopf ══ -->
-  <section class="unter"><nav class="seo-breadcrumb" aria-label="Brotkrumennavigation"><a class="mlink mlink--fein" href="../../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Startseite</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Startseite</span></a> <span aria-hidden="true">/</span> <a class="mlink mlink--fein" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Projekte</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Projekte</span></a> <span aria-hidden="true">/</span> <span aria-current="page">PLÜ Restaurant &amp; Lounge: Foodfotografie</span></nav>
-    <a class="zurueck" href="../" data-rein>
-      <i aria-hidden="true">←</i><span>Alle Projekte</span></a>
+  <!-- ══ Kopf (Auftraggeber 24.11.2026: Foto, Projekte zurueck, Titel) ══ -->
+  <section class="fallkopf"><nav class="seo-breadcrumb" aria-label="Brotkrumennavigation"><a class="mlink mlink--fein" href="../../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Startseite</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Startseite</span></a> <span aria-hidden="true">/</span> <a class="mlink mlink--fein" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Projekte</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Projekte</span></a> <span aria-hidden="true">/</span> <span aria-current="page">PLÜ Restaurant &amp; Lounge: Foodfotografie</span></nav>
+    <img class="fallkopf__bild" src="../../bilder/fall-plue.jpg" alt="Gebratener Fisch mit Schaum auf dunklem Teller im PLÜ" sizes="100vw" fetchpriority="high" style="--bildpos:50% 50%" width="2000" height="1250" decoding="async" srcset="../../bilder/fall-plue-480.webp 480w, ../../bilder/fall-plue-900.webp 900w, ../../bilder/fall-plue-1200.webp 1200w, ../../bilder/fall-plue-1600.webp 1600w">
+    <div class="fallkopf__inhalt">
+      <a class="fallkopf__zurueck" href="../" data-rein><i aria-hidden="true">←</i><span>Projekte</span></a>
+      <h1 class="fallkopf__titel" data-rein>PLÜ Restaurant & Lounge</h1>
+      <p class="fallkopf__unter" data-rein>Appetit beginnt am Bildschirm.<br>Teller für Teller.</p>
+    </div>
+  </section>
 
-    <figure class="artikel__bild fall__gross" data-rein>
-    <img src="../../bilder/fall-plue.jpg" alt="Gebratener Fisch mit Schaum auf dunklem Teller im PLÜ" sizes="(max-width: 1600px) 100vw, 1520px" fetchpriority="high" width="2000" height="1250" decoding="async" srcset="../../bilder/fall-plue-480.webp 480w, ../../bilder/fall-plue-900.webp 900w, ../../bilder/fall-plue-1200.webp 1200w, ../../bilder/fall-plue-1600.webp 1600w">
-    </figure>
-    <span class="chip" data-rein>PLÜ Restaurant & Lounge · Baden</span>
-    <h1 data-rein-zeilen><span>Appetit beginnt am Bildschirm.</span></h1>
-    <p class="brush" data-rein><span class="brush__t">Teller für Teller.</span></p>
+  <!-- ══ Ueberblick ══ -->
+  <section class="fallblick">
+    <p class="fallblick__marke" data-rein>Überblick</p>
+    <p class="fallblick__text" data-rein><span>Das PLÜ ist Restaurant und Lounge im Grand Casino Baden.</span> Wer dort isst, entscheidet sich oft schon vorher: auf Instagram, beim Durchscrollen der Karte, beim Blick auf ein einzelnes Gericht.</p>
   </section>
 
   <!-- ══ Einstieg und Fakten ══ -->
   <section class="unter__leib">
     <div class="unter__text" data-rein>
-      <h2 class="fall__frage">Worum es ging</h2>
-      <p>Das PLÜ ist Restaurant und Lounge im Grand Casino Baden. Wer dort isst, entscheidet sich oft schon vorher: auf Instagram, beim Durchscrollen der Karte, beim Blick auf ein einzelnes Gericht.</p>
       <p>Wir haben die Gerichte fotografiert, am Tisch im Restaurant, mit dem Geschirr, auf dem sie serviert werden, und in einem Licht, das zur Stimmung des Hauses passt. Daraus entstand Material für Social Media, ergänzt um Bewegtbild.</p>
     </div>
     <aside class="fall__fakten" data-rein>
@@ -271,7 +272,7 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 <script defer src="../../js/gsap.min.js?v=92bb9a96"></script>
 <script defer src="../../js/ScrollTrigger.min.js?v=b0b14d67"></script>
 <script defer src="../../lader.js?v=5e0d8715"></script>
-<script defer src="../../bewegung.js?v=5cd22369"></script>
+<script defer src="../../bewegung.js?v=e09435fb"></script>
 <script defer src="../../reels.js?v=f5867321"></script>
 <script defer src="../../zeiger.js?v=043d1932"></script>
 </body>

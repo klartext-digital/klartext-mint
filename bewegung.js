@@ -554,3 +554,19 @@ setzen();
 if ('ResizeObserver' in window) new ResizeObserver(setzen).observe(recht);
 document.fonts && document.fonts.ready.then(setzen);
 })();
+(() => {
+const kopf = document.querySelector('.fallkopf');
+const nav = document.querySelector('.nav__pille');
+if (!kopf || !nav || !('IntersectionObserver' in window)) return;
+const html = document.documentElement;
+let io;
+const beobachten = () => {
+if (io) io.disconnect();
+const unten = Math.round(nav.getBoundingClientRect().bottom);
+io = new IntersectionObserver(([e]) => html.classList.toggle('nav-hell', !e.isIntersecting),
+{ rootMargin: `-${unten}px 0px 0px 0px` });
+io.observe(kopf);
+};
+beobachten();
+addEventListener('resize', () => { clearTimeout(beobachten.t); beobachten.t = setTimeout(beobachten, 200); });
+})();

@@ -28,7 +28,7 @@
 </style>
 <title>Aesthetics Medical: Social Media | Klartext Digital</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%230F4C55'/></svg>">
-<link rel="stylesheet" href="../../stil.css?v=cc12e415">
+<link rel="stylesheet" href="../../stil.css?v=2a742648">
 <script>/* Der Ladeschirm laeuft beim ersten Aufruf und danach jeden zehnten.
    Bei jedem Klick auf einen Link waere er kein Auftritt mehr, sondern
    eine Bremse. Ohne Speicher (privates Fenster) entscheidet der
@@ -85,7 +85,7 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 
 <header class="nav">
   <div class="nav__pille">
-    <a class="nav__mark" href="../../" aria-label="Klartext Digital: zur Startseite"><picture><source media="(max-width: 699px)" srcset="../../marke/zeichen.svg" width="1010" height="916"><img src="../../marke/logo-quer.svg" alt="klartext digital" width="1350" height="259" decoding="async"></picture></a>
+    <a class="nav__mark nav__mark--zeichen" href="../../" aria-label="Klartext Digital: zur Startseite"><img class="mark--hell" src="../../marke/zeichen.svg" alt="klartext digital" width="1009" height="915" decoding="async"><img class="mark--dunkel" src="../../marke/zeichen-negativ.svg" alt="" aria-hidden="true" width="1009" height="915" decoding="async"></a>
     <nav class="nav__wege" aria-label="Hauptnavigation">
       <a class="mlink" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
       <span class="ndd">
@@ -139,28 +139,25 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 </header>
 
 <main>
-  <!-- ══ Kopf ══ -->
-  <section class="unter"><nav class="seo-breadcrumb" aria-label="Brotkrumennavigation"><a class="mlink mlink--fein" href="../../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Startseite</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Startseite</span></a> <span aria-hidden="true">/</span> <a class="mlink mlink--fein" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Projekte</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Projekte</span></a> <span aria-hidden="true">/</span> <span aria-current="page">Aesthetics Medical: Social Media</span></nav>
-    <a class="zurueck" href="../" data-rein>
-      <i aria-hidden="true">←</i><span>Alle Projekte</span></a>
+  <!-- ══ Kopf (Auftraggeber 24.11.2026: Foto, Projekte zurueck, Titel) ══ -->
+  <section class="fallkopf"><nav class="seo-breadcrumb" aria-label="Brotkrumennavigation"><a class="mlink mlink--fein" href="../../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Startseite</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Startseite</span></a> <span aria-hidden="true">/</span> <a class="mlink mlink--fein" href="../"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Projekte</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Projekte</span></a> <span aria-hidden="true">/</span> <span aria-current="page">Aesthetics Medical: Social Media</span></nav>
+    <img class="fallkopf__bild" src="../../bilder/am-haus.jpg" alt="Dreh in der Klinik: Kamera am Gimbal" sizes="100vw" fetchpriority="high" style="--bildpos:50% 50%" width="1600" height="900" decoding="async" srcset="../../bilder/am-haus-480.webp 480w, ../../bilder/am-haus-900.webp 900w, ../../bilder/am-haus-1600.webp 1600w">
+    <div class="fallkopf__inhalt">
+      <a class="fallkopf__zurueck" href="../" data-rein><i aria-hidden="true">←</i><span>Projekte</span></a>
+      <h1 class="fallkopf__titel" data-rein>Aesthetics Medical</h1>
+      <p class="fallkopf__unter" data-rein>Beauty erklärt sich nicht von selbst.<br>Vertrauen entsteht, bevor jemand anruft.</p>
+    </div>
+  </section>
 
-    <figure class="artikel__bild fall__gross" data-rein>
-    <img src="../../bilder/am-haus.jpg" alt="Dreh in der Klinik: Kamera am Gimbal" width="1600" height="900" decoding="async" srcset="../../bilder/am-haus-480.webp 480w, ../../bilder/am-haus-900.webp 900w, ../../bilder/am-haus-1600.webp 1600w" sizes="(max-width: 1680px) 90vw, 1500px" fetchpriority="high">
-    </figure>
-    <span class="chip" data-rein>Aesthetics Medical · Zürich</span>
-    <h1 data-rein-zeilen><span>Beauty erklärt sich nicht von selbst.</span></h1>
-    <p class="brush" data-rein><span class="brush__t">Vertrauen entsteht, bevor jemand anruft.</span></p>
+  <!-- ══ Ueberblick ══ -->
+  <section class="fallblick">
+    <p class="fallblick__marke" data-rein>Überblick</p>
+    <p class="fallblick__text" data-rein><span>Aesthetics Medical ist eine Beauty-Klinik am Utoquai in Zürich,</span> direkt am See. Das Angebot reicht von ästhetischer Chirurgie über Injektionen und Laser bis zu medizinischer Hautpflege: Behandlungen, über die kaum jemand offen spricht und bei denen niemand die erste Adresse aus einer Anzeige wählt.</p>
   </section>
 
   <!-- ══ Einstieg und Fakten ══ -->
   <section class="unter__leib">
     <div class="unter__text" data-rein>
-      <h2 class="fall__frage">Worum es ging</h2>
-      <p>Aesthetics Medical ist eine Beauty-Klinik am Utoquai in Zürich,
-        direkt am See. Das Angebot reicht von ästhetischer Chirurgie über
-        Injektionen und Laser bis zu medizinischer Hautpflege: Behandlungen,
-        über die kaum jemand offen spricht und bei denen niemand die erste
-        Adresse aus einer Anzeige wählt.</p>
       <p>Genau deshalb passiert die Entscheidung vorher, auf dem Handy.
         Unsere Aufgabe: Social Media so betreuen, dass die Klinik dort
         vorkommt, wo diese Entscheidung reift, mit Material, das im Haus
@@ -362,7 +359,7 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 <script defer src="../../js/gsap.min.js?v=92bb9a96"></script>
 <script defer src="../../js/ScrollTrigger.min.js?v=b0b14d67"></script>
 <script defer src="../../lader.js?v=5e0d8715"></script>
-<script defer src="../../bewegung.js?v=5cd22369"></script>
+<script defer src="../../bewegung.js?v=e09435fb"></script>
 <script defer src="../../reels.js?v=f5867321"></script>
 <script defer src="../../zeiger.js?v=043d1932"></script>
 </body>
