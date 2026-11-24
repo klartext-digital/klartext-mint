@@ -2024,7 +2024,7 @@ body.langtakt .preis__neu{font-size:1em;opacity:1}
      aendert, misst das Verhaeltnis neu; es ist nicht mitgeprueft, nur
      weil es einmal stimmte. */
   max-height:clamp(240px,30vw,430px);
-  aspect-ratio:900 / 750;
+  aspect-ratio:900 / 708;
   background:url("bilder/fuss-person-900.webp") bottom right/contain no-repeat;
   /* Die Kontur steckt bereits im freigestellten Motiv. Der Schein
      daneben ist unserer: weich und rundherum, kein gezeichneter Rand —
@@ -4905,7 +4905,7 @@ p.brush{font-size:clamp(38px,4.4vw,72px)}
 .fuss__oben{display:block;max-width:var(--maxw);margin:0 auto;position:relative;
   padding-bottom:clamp(40px,4vw,64px);border-bottom:1px solid rgb(14 13 11 / .22);min-height:clamp(260px,25vw,380px)}
 .fuss__oben::after{content:"";position:absolute;right:0;bottom:0;z-index:-1;pointer-events:none;
-  width:clamp(260px,32vw,500px);aspect-ratio:900 / 750;
+  width:clamp(260px,32vw,500px);aspect-ratio:900 / 708;
   background:url("bilder/fuss-person-900.webp") bottom right/contain no-repeat}
 .fuss__reden{position:relative;z-index:1;max-width:min(760px,62%)}
 .fuss__reden h2{font-size:clamp(46px,7.2vw,124px);line-height:.92;margin:clamp(10px,1vw,18px) 0 clamp(26px,2.6vw,40px);white-space:nowrap}
@@ -5998,3 +5998,7 @@ h1.kf__titel em{font-style:normal;color:var(--violett)}
 /* Navigation kuerzer (Auftraggeber 23.11.2026: "viel leer"). Gilt auf
    allen Seiten; Raster Logo | Links | Knopf bleibt. */
 .nav__pille{max-width:min(var(--maxw), 1200px)}
+/* Fussportrait (24.11.2026): Die Bilddatei ist unten um 42 px gekuerzt.
+   Vorher lief der linke Aermel unter der Trennlinie aus dem linken
+   Bildrand, dort brach die Kontur senkrecht ab. Jetzt trifft sie links
+   wie rechts schraeg auf die Linie. Seitenverhaeltnis darum 900 / 708. */
