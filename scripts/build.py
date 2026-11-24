@@ -405,7 +405,7 @@ for source,route in ROUTES.items():
  if route and route not in ['marke.html','laune.html','takt.html']:
   markup,bc=breadcrumb(route,title);graph.append(bc)
   # Breadcrumb sits inside existing page intro, beneath floating nav.
-  s=re.sub(r'(<section class="unter[^"\n]*">)',lambda m:m.group(1)+markup,s,count=1)
+  s=re.sub(r'(<section class="(?:unter|fallkopf)[^"\n]*">)',lambda m:m.group(1)+markup,s,count=1)
   if markup not in s:s=s.replace('<main>','<main>'+markup,1)
  # All standard footers expose the new knowledge hub.
  spalte=re.search(r'<p class="fuss__kopf">Seite</p>[\s\S]*?</nav>',s)

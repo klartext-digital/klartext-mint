@@ -65,7 +65,7 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 
 <header class="nav">
   <div class="nav__pille">
-    <a class="nav__mark" href="../index.html" aria-label="Klartext Digital: zur Startseite"><picture><source media="(max-width: 699px)" srcset="../marke/zeichen.svg" width="1010" height="916"><img src="../marke/logo-quer.svg" alt="klartext digital" width="1350" height="259"></picture></a>
+    <a class="nav__mark nav__mark--zeichen" href="../index.html" aria-label="Klartext Digital: zur Startseite"><img class="mark--hell" src="../marke/zeichen.svg" alt="klartext digital" width="1010" height="916"><img class="mark--dunkel" src="../marke/zeichen-negativ.svg" alt="" aria-hidden="true" width="1010" height="916"></a>
     <nav class="nav__wege" aria-label="Hauptnavigation">
       <a class="mlink" href="../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
       <span class="ndd">
@@ -119,24 +119,25 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 </header>
 
 <main>
-  <!-- ══ Kopf ══ -->
-  <section class="unter">
-    <a class="zurueck" href="index.html" data-rein>
-      <i aria-hidden="true">←</i><span>Alle Projekte</span></a>
+  <!-- ══ Kopf (Auftraggeber 24.11.2026: Foto, Projekte zurueck, Titel) ══ -->
+  <section class="fallkopf">
+    <img class="fallkopf__bild" src="../bilder/fall-amann.jpg" alt="Brand Board für Markus Amann: Logo, Raster, Idee und Anwendungen" sizes="100vw" fetchpriority="high" style="--bildpos:50% 50%">
+    <div class="fallkopf__inhalt">
+      <a class="fallkopf__zurueck" href="index.html" data-rein><i aria-hidden="true">←</i><span>Projekte</span></a>
+      <h1 class="fallkopf__titel" data-rein>Markus Amann</h1>
+      <p class="fallkopf__unter" data-rein>Ein Zeichen für das Denken.<br>Zwei Richtungen, ein Ziel.</p>
+    </div>
+  </section>
 
-    <figure class="artikel__bild fall__gross" data-rein>
-    <img src="../bilder/fall-amann.jpg" alt="Brand Board für Markus Amann: Logo, Raster, Idee und Anwendungen" sizes="(max-width: 1600px) 100vw, 1520px" fetchpriority="high">
-    </figure>
-    <span class="chip" data-rein>Markus Amann · St. Pölten und Wien</span>
-    <h1 data-rein-zeilen><span>Ein Zeichen für das Denken.</span></h1>
-    <p class="brush" data-rein>Zwei Richtungen, ein Ziel.</p>
+  <!-- ══ Ueberblick ══ -->
+  <section class="fallblick">
+    <p class="fallblick__marke" data-rein>Überblick</p>
+    <p class="fallblick__text" data-rein><span>Mag. Markus Amann arbeitet als Philosophischer Praktiker,</span> Supervisor und Coach, mit Praxen in St. Pölten und Wien. Seine Arbeit lässt sich schwer in ein Bild fassen: keine Therapie, keine Beratungsfirma, sondern Gespräche, die Gedanken ordnen.</p>
   </section>
 
   <!-- ══ Einstieg und Fakten ══ -->
   <section class="unter__leib">
     <div class="unter__text" data-rein>
-      <h2 class="fall__frage">Worum es ging</h2>
-      <p>Mag. Markus Amann arbeitet als Philosophischer Praktiker, Supervisor und Coach, mit Praxen in St. Pölten und Wien. Seine Arbeit lässt sich schwer in ein Bild fassen: keine Therapie, keine Beratungsfirma, sondern Gespräche, die Gedanken ordnen.</p>
       <p>Wir haben zwei Markenrichtungen entwickelt. Jede mit eigenem Signet, Konstruktion, Farbwelt, Schrift und Anwendungen, damit die Entscheidung an fertigen Beispielen fällt und nicht an Skizzen.</p>
     </div>
     <aside class="fall__fakten" data-rein>

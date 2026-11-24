@@ -65,7 +65,7 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 
 <header class="nav">
   <div class="nav__pille">
-    <a class="nav__mark" href="../index.html" aria-label="Klartext Digital: zur Startseite"><picture><source media="(max-width: 699px)" srcset="../marke/zeichen.svg" width="1010" height="916"><img src="../marke/logo-quer.svg" alt="klartext digital" width="1350" height="259"></picture></a>
+    <a class="nav__mark nav__mark--zeichen" href="../index.html" aria-label="Klartext Digital: zur Startseite"><img class="mark--hell" src="../marke/zeichen.svg" alt="klartext digital" width="1010" height="916"><img class="mark--dunkel" src="../marke/zeichen-negativ.svg" alt="" aria-hidden="true" width="1010" height="916"></a>
     <nav class="nav__wege" aria-label="Hauptnavigation">
       <a class="mlink" href="../arbeiten/index.html"><span class="mlink__bg" aria-hidden="true"></span><span class="mlink__t">Arbeiten</span><span class="mlink__t mlink__t--neu" aria-hidden="true">Arbeiten</span></a>
       <span class="ndd">
@@ -119,24 +119,32 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 </header>
 
 <main>
-  <!-- ══ Kopf ══ -->
-  <section class="unter">
-    <a class="zurueck" href="index.html" data-rein>
-      <i aria-hidden="true">←</i><span>Alle Projekte</span></a>
+  <!-- ══ Kopf (Auftraggeber 24.11.2026: Foto, Projekte zurueck, Titel) ══ -->
+  <section class="fallkopf">
+    <img class="fallkopf__bild" src="../bilder/fall-janssen-kopf.jpg" alt="Polsterarbeit in der Werkstatt: Stoff wird mit dem Tacker befestigt" sizes="100vw" fetchpriority="high">
+    <div class="fallkopf__inhalt">
+      <a class="fallkopf__zurueck" href="index.html" data-rein><i aria-hidden="true">←</i><span>Projekte</span></a>
+      <h1 class="fallkopf__titel" data-rein>Polsterei Janssen</h1>
+      <p class="fallkopf__unter" data-rein>Handwerk, das man online sieht.<br>Vorher, nachher, Anfrage.</p>
+    </div>
+  </section>
 
+  <!-- ══ Ueberblick ══ -->
+  <section class="fallblick">
+    <p class="fallblick__marke" data-rein>Überblick</p>
+    <p class="fallblick__text" data-rein><span>Die Polsterei Janssen in Krefeld bezieht Polstermöbel neu,</span> polstert auf und repariert, in eigener Werkstatt und mit Hol- und Bringservice in ganz Nordrhein-Westfalen. Vom Sofa über den antiken Sessel bis zum Wohnmobil.</p>
+  </section>
+
+  <!-- ══ Website auf den Geraeten ══ -->
+  <section class="fallfilm">
     <figure class="artikel__bild fall__gross" data-rein>
-    <img src="../bilder/fall-janssen-breit.jpg" alt="Website der Polsterei Janssen auf Computer und Handy" sizes="(max-width: 1600px) 100vw, 1520px" fetchpriority="high">
+    <img src="../bilder/fall-janssen-breit.jpg" alt="Website der Polsterei Janssen auf Computer und Handy" sizes="(max-width: 1240px) 100vw, 1200px" loading="lazy">
     </figure>
-    <span class="chip" data-rein>Polsterei Janssen · Krefeld</span>
-    <h1 data-rein-zeilen><span>Handwerk, das man online sieht.</span></h1>
-    <p class="brush" data-rein>Vorher, nachher, Anfrage.</p>
   </section>
 
   <!-- ══ Einstieg und Fakten ══ -->
   <section class="unter__leib">
     <div class="unter__text" data-rein>
-      <h2 class="fall__frage">Worum es ging</h2>
-      <p>Die Polsterei Janssen in Krefeld bezieht Polstermöbel neu, polstert auf und repariert, in eigener Werkstatt und mit Hol- und Bringservice in ganz Nordrhein-Westfalen. Vom Sofa über den antiken Sessel bis zum Wohnmobil.</p>
       <p>Der bisherige Auftritt zeigte davon wenig. Unsere Aufgabe: eine Website, die den Unterschied sichtbar macht, den eine Polsterei ausmacht, und aus einem Besuch ohne Umweg eine Anfrage werden lässt.</p>
     </div>
     <aside class="fall__fakten" data-rein>
