@@ -122,11 +122,21 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 <main>
 
   <!-- ══ 1 · Bühne: Foto (Auftraggeber 23.11.2026) ══ -->
+  <div class="kopfhuelle">
   <section class="buehne buehne--foto">
     <picture class="foto__bild">
       <source type="image/webp" srcset="bilder/kopf-haar-900.webp 900w, bilder/kopf-haar-1600.webp 1600w, bilder/kopf-haar-2400.webp 2400w, bilder/kopf-haar-3200.webp 3200w" sizes="100vw">
       <img src="bilder/kopf-haar.jpg" alt="" width="3200" height="2009" fetchpriority="high" decoding="async">
     </picture>
+    <picture class="foto__bild foto__leer" aria-hidden="true">
+      <source type="image/webp" srcset="bilder/kopf-leer-900.webp 900w, bilder/kopf-leer-1600.webp 1600w, bilder/kopf-leer-2400.webp 2400w" sizes="100vw">
+      <img src="bilder/kopf-leer.jpg" alt="" width="1600" height="1004" loading="lazy" decoding="async">
+    </picture>
+    <picture class="foto__bild foto__frau" aria-hidden="true">
+      <source type="image/webp" srcset="bilder/kopf-frau-900.webp 900w, bilder/kopf-frau-1600.webp 1600w, bilder/kopf-frau-2400.webp 2400w, bilder/kopf-frau-3200.webp 3200w" sizes="100vw">
+      <img src="bilder/kopf-frau.png" alt="" width="3200" height="2009" decoding="async">
+    </picture>
+    <div class="kf__dunkel" aria-hidden="true"></div>
     <div class="kf__zeile kf__zeile--oben" data-rein>
       <p class="kf__klein">Agentur in Pratteln</p>
     </div>
@@ -146,6 +156,8 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
       </div>
     </div>
   </section>
+  </div>
+  <div class="vorhang">
   <!-- ══ 3 · Referenzen ══ -->
   <section class="referenzen">
     <span class="chip" data-rein>Kunden</span>
@@ -167,7 +179,7 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
   <!-- ══ 4 · Leistungen ══ -->
   <section class="dienste" id="leistungen">
     <div class="dienste__block">
-      <div class="dienste__kopf">
+      <div class="dienste__kopf sk">
         <span class="chip" data-rein>Leistungen</span>
         <h2 data-rein-zeilen><span>Was euer Marketing vorwärtsbringt.</span></h2>
       </div>
@@ -300,7 +312,7 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
   <!-- ══ Wie wir arbeiten ══ -->
   <section class="wiewir">
     <div class="haltung">
-      <div class="haltung__wort">
+      <div class="haltung__wort sk">
         <span class="chip" data-rein>Arbeitsweise</span>
         <h2 data-rein-zeilen><span>Wir denken mit.</span><span>Und bringen es</span><span>auf den Weg.</span></h2>
       </div>
@@ -314,8 +326,9 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 </section>
 
   <section class="werke" id="arbeiten">
-    <div class="kopfzeile">
+    <div class="kopfzeile sk">
       <div class="kopfzeile__wort">
+        <span class="chip" data-rein>Projekte</span>
         <h2 data-rein-zeilen><span>Ausgewählte</span><span><em class="wort">Projekte.</em></span></h2>
         <p class="fuehrung werke__lead" data-rein>Marken, für die wir Strategie,
           Gestaltung und Produktion übernommen haben, vom ersten Auftritt bis zur
@@ -462,10 +475,10 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 
   <!-- ══ 8b · Zwei Wege: Abo oder Projekt ══ -->
   <section class="wege" id="wege" aria-labelledby="wege-titel">
-      <div class="wege__kopf mitte">
+      <div class="wege__kopf sk">
         <span class="chip" data-rein>Zusammenarbeit</span>
         <h2 id="wege-titel" data-rein-zeilen><span>Abo oder Projekt?</span></h2>
-        <p class="wege__lead" data-rein>Zwei Wege, ein Ziel: mehr Wirkung für eure Marke.
+        <p class="wege__lead" data-rein><span class="sk__hell">Zwei Wege, ein Ziel:</span> mehr Wirkung für eure Marke.
           Wählt das Modell, das zu euren Zielen, eurem Budget und eurer Lage passt.</p>
       </div>
       <div class="wege__raster">
@@ -516,10 +529,10 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 
   <!-- ══ 9 · Preise ══ -->
   <section class="preise" id="preise">
-    <div class="preise__kopf">
+    <div class="preise__kopf sk">
       <span class="chip chip--hell" data-rein>Preise</span>
       <h2 class="mitte" data-rein-zeilen><span>Ein Team, fest gebucht.</span></h2>
-      <p class="preise__lead" data-rein>Monatlich statt Projekt für Projekt. Ihr bucht Kapazität,
+      <p class="preise__lead" data-rein><span class="sk__hell">Monatlich statt Projekt für Projekt.</span> Ihr bucht Kapazität,
         keine Stunden, und wisst vom ersten Tag an, was es kostet.</p>
       <div class="schalter" id="schalter" data-rein>
         <button class="ist" data-takt="lang">12 Monate <em>−15 %</em></button>
@@ -606,11 +619,11 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 
   <!-- ══ 11 · Blog ══ -->
   <section class="blog" id="blog">
-    <div class="kopfzeile">
+    <div class="kopfzeile sk">
       <div>
         <span class="chip" data-rein>Blog</span>
         <h2 data-rein-zeilen><span>Gedanken zu Marke</span><span>und Marketing<em class="punkt">.</em></span></h2>
-        <p class="fuehrung" data-rein>Strategien, Erfahrungen und Praxiswissen:
+        <p class="fuehrung" data-rein><span class="sk__hell">Strategien, Erfahrungen und Praxiswissen:</span>
           ehrlich, verständlich und auf den Punkt.</p>
       </div>
       <div class="knopfpaar" data-rein>
@@ -718,10 +731,10 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 
   <!-- ══ 12 · FAQ ══ -->
   <section class="fragen" id="faq">
-    <div class="fragen__kopf">
+    <div class="fragen__kopf sk">
       <span class="chip" data-rein>FAQ</span>
       <h2 data-rein-zeilen><span>Häufige Fragen.</span></h2>
-      <p class="fuehrung" data-rein>Noch etwas offen? <a href="#kontakt">Schreib uns</a>.
+      <p class="fuehrung" data-rein><span class="sk__hell">Noch etwas offen?</span> <a href="#kontakt">Schreib uns</a>.
         Wir antworten meist am selben Arbeitstag.</p>
     </div>
     <div class="fragen__reiter" data-rein>
@@ -807,10 +820,10 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 
   <!-- ══ 13 · Kontakt: Formular mit Terminwahl ══ -->
   <section class="ruf" id="kontakt">
-    <div class="ruf__kopfzeile">
+    <div class="ruf__kopfzeile sk">
       <span class="chip chip--hell" data-rein>Termin</span>
       <h2 data-rein-zeilen><span>In 15 Minuten wisst ihr,</span><span><span class="ruf__akzent">woran ihr seid.</span></span></h2>
-      <p class="ruf__lead" data-rein>Kein Verkaufsgespräch. Ihr erzählt, was ansteht, wir sagen
+      <p class="ruf__lead" data-rein><span class="sk__hell">Kein Verkaufsgespräch.</span> Ihr erzählt, was ansteht, wir sagen
         offen, was es dafür braucht und in welchem Rahmen es liegt. Passt es nicht,
         sagen wir das auch.</p>
       <div class="ruf__wege" data-rein>
@@ -876,6 +889,7 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
     </div>
   </section>
 
+  </div>
 </main>
 
 <footer class="fuss">

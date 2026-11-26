@@ -6082,3 +6082,226 @@ main:has(> .fallkopf){padding-top:12px}
    Seitenpolster von .artikel__bild, Mockup in voller Hoehe statt beschnitten. */
 .fallfilm .artikel__bild{padding:0;margin:0;max-width:none;width:100%}
 .fallfilm .artikel__bild img{height:auto;aspect-ratio:auto}
+
+/* ══ Kopfbereich Morph (Auftraggeber 26.11.2026) ═══════════════════════════
+   Beim Scrollen bleibt der Kopf stehen (sticky in .kopfhuelle). Die
+   Wortmarke gleitet als Ganzes nach oben weg (schneller als alles andere),
+   die Frau (eigene freigestellte Ebene ueber dem Foto) kommt naeher, der
+   Hintergrund wird dunkler. Danach schiebt sich .vorhang (der ganze Rest
+   der Seite) mit runden Ecken darueber. Die Ebenenbewegung steuert
+   bewegung.js; ohne JS bleibt der Vorhang, die Schrift steht still.
+   Die Schrift wird nie zerlegt, nur verschoben (Auftraggeber).
+   Masse: Huelle 260svh = 100 Kopf + 60 Loesen + 100 Vorhang. */
+.kopfhuelle{position:relative;height:260svh;background:#120A05}
+.kopfhuelle > .buehne.buehne--foto{position:sticky;top:0;height:100svh;min-height:0}
+.vorhang{position:relative;z-index:2;margin-top:-100svh;background:var(--grund);
+  border-radius:clamp(22px,2.4vw,40px) clamp(22px,2.4vw,40px) 0 0;
+  box-shadow:0 -30px 80px -30px rgb(18 10 5 / .55)}
+/* Frau: gleiche Bildlage wie das Foto darunter, damit sie deckungsgleich sitzt. */
+.foto__frau img,.foto__leer img{object-fit:cover;object-position:58% 30%}
+/* Hintergrund ohne Frau: erst beim Scrollen eingeblendet, Start bleibt das Originalfoto. */
+.foto__leer{opacity:0}
+.foto__frau{transform-origin:58% 62%;will-change:transform}
+/* Abdunkeln fuer die Vorhang-Phase (JS steuert die Deckkraft). */
+.kf__dunkel{position:absolute;inset:0;z-index:-1;background:#120A05;opacity:0;pointer-events:none}
+@media (max-width:820px){
+  .kopfhuelle{height:230svh}
+  .vorhang{margin-top:-100svh}
+  .foto__frau img,.foto__leer img{object-position:41% 34%}
+  .foto__frau{transform-origin:45% 60%}
+}
+@media (prefers-reduced-motion: reduce){
+  .kopfhuelle{height:auto}
+  .kopfhuelle > .buehne.buehne--foto{position:relative;height:auto;min-height:100svh}
+  .vorhang{margin-top:0;box-shadow:none}
+}
+
+/* ══ Seitenaufbau nach Vorlage Belfast (Auftraggeber 26.11.2026) ═══════════
+   Zwei Breiten, beide mit runden Ecken:
+   VOLL   = Flaeche fast randlos (--rand-voll Abstand zum Fenster)
+   SCHMAL = Inhaltsbreite --maxw (wie bisher)
+   Sektionskoepfe dreispaltig: Etikett links (Stil der kleinen Zeilen im
+   Kopfbereich), Titel ab dem ersten Drittel, Untertext rechts, zweitonig
+   wie der Einstiegssatz im Kopfbereich (erster Satz hell, Rest gedaempft). */
+:root{--rand-voll:clamp(6px,.7vw,10px);--r-flaeche:clamp(22px,2.2vw,32px)}
+
+/* Kopfbereich: rundum abgesetzt, auch unten rund. */
+.kopfhuelle{background:var(--grund)}
+.kopfhuelle > .buehne.buehne--foto{top:var(--rand-voll);margin:var(--rand-voll);
+  height:calc(100svh - 2 * var(--rand-voll));border-radius:var(--r-flaeche)}
+.vorhang{border-radius:var(--r-flaeche) var(--r-flaeche) 0 0}
+
+/* VOLL */
+main .dienste,main .werke,main .preise,main .ruf{max-width:none!important;width:auto!important;
+  margin-left:var(--rand-voll)!important;margin-right:var(--rand-voll)!important;border-radius:var(--r-flaeche)!important}
+.fuss{margin:0 var(--rand-voll) var(--rand-voll);border-radius:var(--r-flaeche)}
+/* SCHMAL */
+main .haltung,main .fragen{border-radius:var(--r-flaeche)!important}
+main .fragen{max-width:var(--maxw);margin-left:auto;margin-right:auto}
+
+/* Sektionskopf */
+main .sk{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1.05fr);
+  column-gap:clamp(20px,3vw,56px);row-gap:clamp(14px,1.4vw,22px);align-items:start;
+  text-align:left!important;width:100%;max-width:var(--maxw);margin-left:auto!important;margin-right:auto!important}
+main .sk > div:not(.knopfpaar):not(.schalter):not(.ruf__wege){display:contents}
+main .sk .chip{grid-column:1;grid-row:1 / span 2;justify-self:start;margin:.5em 0 0!important;padding:0;
+  background:none!important;border-radius:0;box-shadow:none;
+  font-family:var(--text)!important;font-weight:500;font-size:clamp(12px,.95vw,15px);line-height:1.3;
+  letter-spacing:.01em;text-transform:uppercase;color:inherit!important;opacity:.62}
+main .sk h2{grid-column:2;grid-row:1;margin:0!important;max-width:none!important;text-align:left!important;
+  font-family:var(--titel)!important;font-weight:800;font-size:clamp(32px,3.4vw,54px)!important;
+  line-height:1.04!important;letter-spacing:-.04em!important;text-wrap:balance}
+main .sk h2 > span{display:inline}
+main .sk h2 > span + span::before{content:" "}
+main .sk > p,main .sk > div > p{grid-column:3;grid-row:1;margin:.35em 0 0!important;max-width:34em!important;
+  text-align:left!important;font-family:var(--text);font-weight:500;font-size:clamp(12.5px,.98vw,15.5px)!important;
+  line-height:1.5!important;letter-spacing:.005em;text-transform:uppercase;color:inherit;opacity:.55}
+main .sk .sk__hell{opacity:1;color:inherit}
+main .sk > p .sk__hell,main .sk > div > p .sk__hell{display:inline}
+/* Gedaempft bleibt gedaempft, nur der erste Satz leuchtet: Deckkraft am
+   Absatz zurueck auf 1 und die Daempfung per Farbe. */
+main .sk > p,main .sk > div > p{opacity:1;color:color-mix(in srgb, currentColor 55%, transparent)}
+main .sk .sk__hell{color:var(--sk-hell,currentColor)}
+main .sk > a,main .sk > .knopfpaar,main .sk > .schalter,main .sk > .ruf__wege{grid-column:3;grid-row:2;justify-self:start;margin:0!important}
+/* Kopf ohne Untertext: Titel nimmt zwei Spalten. */
+main .sk:not(:has(p)) h2{grid-column:2 / span 2}
+@media (max-width:820px){
+  main .sk{grid-template-columns:minmax(0,1fr);row-gap:12px}
+  main .sk .chip,main .sk h2,main .sk > p,main .sk > div > p,main .sk > a,main .sk > .knopfpaar,main .sk > .schalter,main .sk > .ruf__wege{grid-column:1!important;grid-row:auto!important}
+  main .sk .chip{margin:0!important}
+  main .sk h2{font-size:clamp(30px,8.6vw,40px)!important}
+}
+/* Korrekturen Aufbau: Abstand oben als Polster (Aussenabstand fiel durch und
+   liess den orangen Seitengrund sehen). Titel und Etikett immer oben links. */
+.kopfhuelle{padding-top:var(--rand-voll)}
+.kopfhuelle > .buehne.buehne--foto{margin:0 var(--rand-voll)}
+main .sk .chip{align-self:start!important}
+main .sk h2,main .sk h2 *{text-align:left!important}
+main .sk h2{justify-self:start!important}
+/* Blog: Foto-Flaeche jetzt VOLL mit Rand statt 100vw; Preise ueberlappt nicht mehr. */
+main .preise{margin-bottom:var(--rand-voll)!important}
+main .blog{margin-left:var(--rand-voll)!important;margin-right:var(--rand-voll)!important;
+  width:auto!important;max-width:none!important;border-radius:var(--r-flaeche)!important;
+  padding-left:max(var(--pad),calc((100vw - 2 * var(--rand-voll) - var(--maxw)) / 2))!important;
+  padding-right:max(var(--pad),calc((100vw - 2 * var(--rand-voll) - var(--maxw)) / 2))!important}
+/* Fragen: SCHMAL. */
+main .fragen{margin-left:auto!important;margin-right:auto!important;width:calc(100% - 2 * var(--pad))!important;
+  max-width:var(--maxw)!important;padding-left:clamp(20px,3.4vw,56px)!important;padding-right:clamp(20px,3.4vw,56px)!important;
+  margin-top:var(--sec)}
+main .fragen .sk{max-width:none}
+
+/* ══ Über uns nach Vorlage Hapto (Auftraggeber 26.11.2026) ═══════════════════
+   Bild-Kopf mit riesigem zweizeiligem Titel (VOLL), "Wer wir sind" mit
+   grosser zweitoniger Aussage und vier Kennkarten (SCHMAL), Ablauf dunkel
+   mit Karten Text|Bild (VOLL), Haltung als Kartenraster und Team-Karten
+   (SCHMAL). Kleine Texte im Stil des Startseiten-Kopfs, Titel zweitonig.
+   Kennzahlen nur aus belegten Punkten der Haltung. */
+.uu-klein{margin:0;font-family:var(--text);font-weight:500;font-size:clamp(12px,.95vw,15px);
+  line-height:1.35;letter-spacing:.01em;text-transform:uppercase}
+.uu-hell{color:inherit}
+.uu-leiste{display:flex;justify-content:space-between;gap:20px;padding-bottom:clamp(14px,1.3vw,20px);
+  border-bottom:1px solid color-mix(in srgb, currentColor 18%, transparent);
+  font-family:var(--text);font-weight:500;font-size:clamp(12px,.95vw,15px);letter-spacing:.01em;text-transform:uppercase}
+.uu-leiste span:last-child{opacity:.5}
+.uu-titel{margin:clamp(40px,5vw,84px) 0 clamp(32px,3.6vw,60px);font-family:var(--titel);font-weight:800;
+  font-size:clamp(34px,4.2vw,64px);line-height:1.02;letter-spacing:-.04em;text-wrap:balance;
+  color:color-mix(in srgb, currentColor 45%, transparent)}
+.uu-titel .uu-hell{color:var(--uu-hell,var(--tinte))}
+.uu-titel--mitte{text-align:center}
+
+/* Kopf */
+.uu-kopf{position:relative;isolation:isolate;overflow:hidden;margin:var(--rand-voll) var(--rand-voll) 0;
+  border-radius:var(--r-flaeche);height:calc(100svh - 2 * var(--rand-voll));min-height:520px;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 clamp(20px,2.6vw,40px);
+  background:#120A05;color:#FBF8F1}
+.uu-kopf__bild{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 50%;z-index:-2;
+  filter:saturate(1.05) brightness(.78) blur(3px);transform:scale(1.03)}
+.uu-kopf::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(ellipse at 50% 55%,rgb(18 10 5 / .15),rgb(18 10 5 / .62) 78%),
+  linear-gradient(180deg,rgb(18 10 5 / .35),rgb(18 10 5 / 0) 30%,rgb(18 10 5 / .4))}
+.uu-kopf__l{justify-self:start}
+.uu-kopf__r{justify-self:end}
+.uu-kopf__titel{margin:0;text-align:center;font-family:var(--titel);font-weight:800;color:#FBF8F1;
+  font-size:clamp(88px,15.5vw,250px);line-height:.82;letter-spacing:-.055em}
+.uu-kopf__titel span{display:block}
+.uu-kopf__titel span:first-child{font-size:.78em;transform:translateX(.12em)}
+.uu-kopf__titel i{font-style:normal;color:var(--violett)}
+
+/* Wer wir sind */
+.uu-geschichte,.uu-haltung,.uu-team{width:calc(100% - 2 * var(--pad));max-width:var(--maxw);margin:0 auto;
+  padding:var(--sec) 0 0}
+.uu-geschichte__oben{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.1fr);gap:clamp(20px,3vw,56px);
+  margin-top:clamp(40px,4.4vw,76px);align-items:start}
+.uu-ort{color:color-mix(in srgb, var(--tinte) 55%, transparent);padding-top:.6em}
+.uu-aussage{margin:0;font-family:var(--titel);font-weight:800;font-size:clamp(30px,3.8vw,58px);line-height:1.06;
+  letter-spacing:-.035em;color:color-mix(in srgb, var(--tinte) 42%, transparent);text-wrap:balance}
+.uu-aussage .uu-hell{color:var(--tinte)}
+.uu-geschichte__text{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.4vw,40px);
+  margin:clamp(32px,3.6vw,60px) 0 0 calc((100% + clamp(20px,3vw,56px)) / 3.1)}
+.uu-geschichte__text p{margin:0;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:color-mix(in srgb, var(--tinte) 72%, transparent)}
+.uu-zahlen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.1vw,16px);margin-top:clamp(44px,5vw,84px)}
+.uu-zahl{background:#FFFFFF;border-radius:clamp(14px,1.2vw,20px);padding:clamp(18px,1.7vw,28px);
+  display:grid;grid-template-rows:auto 1fr auto;min-height:clamp(200px,17vw,260px);gap:12px}
+.uu-zahl__titel{margin:0;font-family:var(--titel);font-weight:700;font-size:clamp(16px,1.25vw,20px);letter-spacing:-.02em}
+.uu-zahl__wert{margin:0;align-self:end;font-family:var(--titel);font-weight:800;font-size:clamp(44px,4.2vw,68px);
+  line-height:1;letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.uu-zahl__wert i{font-style:normal;font-size:.42em;letter-spacing:-.01em;color:var(--violett);margin-left:.08em}
+.uu-zahl__text{margin:0;font-size:14.5px;line-height:1.45;color:color-mix(in srgb, var(--tinte) 66%, transparent)}
+
+/* Ablauf: VOLL, dunkel */
+.uu-ablauf{margin:var(--sec) var(--rand-voll) 0;border-radius:var(--r-flaeche);background:var(--tinte);color:#FBF8F1;
+  --uu-hell:#FBF8F1;padding:clamp(60px,6vw,110px) max(var(--pad),calc((100% - var(--maxw)) / 2))}
+.uu-schritte{list-style:none;margin:0;padding:0;display:grid;gap:clamp(12px,1.3vw,20px)}
+.uu-schritt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,5fr);gap:clamp(16px,2vw,32px);align-items:start}
+.uu-schritt__nr{font-family:var(--titel);font-weight:800;font-size:clamp(28px,2.6vw,44px);letter-spacing:-.04em;
+  color:rgb(251 248 241 / .38);line-height:1}
+.uu-schritt__karte{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:#1A1814;
+  border-radius:clamp(16px,1.4vw,22px);overflow:hidden;min-height:clamp(260px,24vw,380px)}
+.uu-schritt__text{padding:clamp(24px,2.6vw,44px);display:flex;flex-direction:column;justify-content:flex-end;gap:12px}
+.uu-schritt__text h3{margin:0;font-family:var(--titel);font-weight:800;font-size:clamp(28px,2.9vw,46px);
+  line-height:1.02;letter-spacing:-.035em;color:#FBF8F1}
+.uu-schritt__text p{margin:0;max-width:30em;font-size:clamp(15px,1.1vw,17px);line-height:1.55;color:rgb(251 248 241 / .62)}
+.uu-schritt__bild{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s var(--kurve-rein)}
+.uu-schritt:hover .uu-schritt__bild{transform:scale(1.04)}
+
+/* Haltung */
+.uu-punkte{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.1vw,16px)}
+.uu-punkt{background:#FFFFFF;border-radius:clamp(14px,1.2vw,20px);padding:clamp(18px,1.7vw,28px);
+  min-height:clamp(170px,14vw,220px);display:flex;flex-direction:column;justify-content:space-between;gap:22px}
+.uu-punkt i{width:12px;height:12px;border-radius:50%;background:var(--violett)}
+.uu-punkt p{margin:0;font-family:var(--titel);font-weight:700;font-size:clamp(16px,1.25vw,19px);line-height:1.3;letter-spacing:-.015em;text-wrap:pretty}
+
+/* Team */
+.uu-leute{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.1vw,16px)}
+.uu-person__bild{aspect-ratio:4/5;border-radius:clamp(14px,1.2vw,20px);overflow:hidden;background:#1A1814}
+.uu-person__bild img{width:100%;height:100%;object-fit:cover;object-position:var(--bildpos,50% 30%);
+  filter:brightness(var(--ton,1));transition:transform .9s var(--kurve-rein)}
+.uu-person:hover .uu-person__bild img{transform:scale(1.04)}
+.uu-person__name{margin:14px 0 2px;text-align:center;font-family:var(--titel);font-weight:800;font-size:clamp(18px,1.5vw,24px);letter-spacing:-.025em}
+.uu-person__rolle{margin:0;text-align:center;font-family:var(--text);font-weight:500;font-size:12.5px;letter-spacing:.02em;
+  text-transform:uppercase;color:color-mix(in srgb, var(--tinte) 55%, transparent)}
+.uu-team{padding-bottom:var(--sec)}
+
+@media (max-width:1100px){
+  .uu-punkte,.uu-leute,.uu-zahlen{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .uu-geschichte__text{margin-left:0;grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:820px){
+  .uu-kopf{grid-template-columns:1fr 1fr;grid-template-rows:1fr auto;align-items:end;padding-bottom:28px}
+  .uu-kopf__titel{grid-column:1 / -1;grid-row:1;align-self:center;font-size:clamp(88px,30vw,150px)}
+  .uu-kopf__l{grid-row:2}.uu-kopf__r{grid-row:2}
+  .uu-geschichte__oben{grid-template-columns:minmax(0,1fr);gap:14px}
+  .uu-schritt{grid-template-columns:minmax(0,1fr);gap:10px}
+  .uu-schritt__karte{grid-template-columns:minmax(0,1fr)}
+  .uu-schritt__bild{aspect-ratio:16/10;height:auto;order:-1}
+  .uu-punkte{grid-template-columns:minmax(0,1fr)}
+  .uu-zahl,.uu-punkt{min-height:0}
+}
+/* Ueber uns: Titelteile bleiben im Fluss (globale Regel machte span zum Block). */
+.uu-titel span,.uu-aussage span{display:inline}
+/* Brotkrume bleibt fuer Suchmaschinen und Screenreader, sichtbar ist der Bild-Kopf. */
+body:has(.uu-kopf) .seo-breadcrumb{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;margin:0;padding:0}
+/* Abstand oben als Polster von main (Aussenabstand fiel durch, darueber
+   schien der orange Seitengrund). */
+main:has(> .uu-kopf){padding-top:var(--rand-voll)}
+.uu-kopf{margin-top:0}
