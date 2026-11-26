@@ -591,10 +591,9 @@ trigger: huelle, start: 'top top', end: () => '+=' + innerHeight,
 scrub: 0.6, invalidateOnRefresh: true,
 },
 });
-tl.to(wort, { y: () => -innerHeight * (breit ? 0.7 : 0.55), duration: 0.7 }, 0)
-.to(wort, { autoAlpha: 0, duration: 0.3 }, 0.32)
-.to(oben, { y: () => -innerHeight * 0.35, autoAlpha: 0, duration: 0.5 }, 0)
-.to(unten, { y: () => -innerHeight * 0.18, autoAlpha: 0, duration: 0.22 }, 0)
+const texte = [oben, wort, ...unten];
+tl.to(texte, { y: () => -innerHeight * 0.7, duration: 0.7 }, 0)
+.to(texte, { autoAlpha: 0, duration: 0.3 }, 0.32)
 .to(frau, { scale: breit ? 1.2 : 1.14, yPercent: -4, duration: 1, ease: 'power1.inOut' }, 0)
 .to(leer, { opacity: 1, duration: 0.06 }, 0)
 .to([foto, leer], { yPercent: 3, scale: 1.08, transformOrigin: '50% 100%', filter: 'blur(2px)', duration: 0.6 }, 0)
