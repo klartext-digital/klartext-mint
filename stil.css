@@ -6346,3 +6346,10 @@ main .sk{--sk-breite:min(var(--maxw), calc(100vw - 2 * var(--pad)));
 main .haltung .sk,main .fragen .sk{width:auto!important;margin-left:0!important}
 main .werke .sk,main .ruf .sk,main .uu-ablauf .sk{--sk-ink:#FBF8F1}
 main .sk .sk__hell{color:var(--sk-ink)!important}
+
+/* Startseite (Auftraggeber 26.11.2026): die Leistungen SIND der Vorhang,
+   kein Rahmen im Rahmen. Kein Abstand oben/seitlich, die Flaeche nimmt
+   die runden Ecken des Vorhangs auf. */
+.vorhang > .dienste:first-child{padding-top:0!important;margin-left:0!important;margin-right:0!important;
+  border-radius:var(--r-flaeche) var(--r-flaeche) 0 0!important}
+.vorhang > .dienste:first-child .dienste__block{border-radius:var(--r-flaeche)}

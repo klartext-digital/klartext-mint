@@ -878,7 +878,9 @@ addEventListener('load', () => ScrollTrigger.refresh());
       .to(frau, { scale: breit ? 1.2 : 1.14, yPercent: -4, duration: 1, ease: 'power1.inOut' }, 0)
       /* Unter der Frau liegt ab dem ersten Scrollen ein Hintergrund ohne sie. */
       .to(leer, { opacity: 1, duration: 0.06 }, 0)
-      .to([foto, leer], { yPercent: 3, filter: 'blur(2px)', duration: 0.6 }, 0)
+      /* Bild waechst von unten her mit, damit oben beim Absenken keine
+         dunkle Luecke aufgeht (Auftraggeber 26.11.2026). */
+      .to([foto, leer], { yPercent: 3, scale: 1.08, transformOrigin: '50% 100%', filter: 'blur(2px)', duration: 0.6 }, 0)
       .to(dunkel, { opacity: 0.7, duration: 0.8 }, 0.2)
       .fromTo(kopf, { scale: 1 }, { scale: 0.94, duration: 1 }, 0);
 
