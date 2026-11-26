@@ -6305,3 +6305,19 @@ body:has(.uu-kopf) .seo-breadcrumb{position:absolute!important;width:1px;height:
    schien der orange Seitengrund). */
 main:has(> .uu-kopf){padding-top:var(--rand-voll)}
 .uu-kopf{margin-top:0}
+/* Titel-Effekt: Woerter einzeln (transform braucht inline-block). */
+.wort-e{display:inline-block}
+/* Fragen in einer Textspalte (Leistungsseiten, Blog) bleiben in ihrer Spalte;
+   der Kopf ist dort einspaltig wie auf dem Handy. */
+main .fragen.fragen--eingebettet{width:auto!important;max-width:none!important;margin-left:0!important;margin-right:0!important;
+  padding-left:0!important;padding-right:0!important;margin-top:0;border-radius:0!important}
+main .fragen--eingebettet .sk{grid-template-columns:minmax(0,1fr)!important;row-gap:12px}
+main .fragen--eingebettet .sk .chip,main .fragen--eingebettet .sk h2,main .fragen--eingebettet .sk > p,main .fragen--eingebettet .sk > div > p{grid-column:1!important;grid-row:auto!important}
+/* Sektionskopf in schmalen Spalten (Fragen im Artikel u. a.): einspaltig,
+   sobald der Platz unter 900 px liegt, unabhaengig von der Fensterbreite. */
+main .fragen{container-type:inline-size}
+@container (max-width: 900px){
+  .sk{grid-template-columns:minmax(0,1fr)!important;row-gap:12px!important}
+  .sk .chip,.sk h2,.sk > p,.sk > div > p,.sk > a,.sk > .knopfpaar{grid-column:1!important;grid-row:auto!important}
+  .sk .chip{margin:0!important}
+}

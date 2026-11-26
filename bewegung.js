@@ -128,8 +128,9 @@ function zeileHalten(el, dauerMs) {
         scrollTrigger: { trigger: ausloeser, start: 'top 92%' },
       });
   };
-  document.querySelectorAll('[data-rein]:not(.brush)').forEach((el) => rein(el, el));
-  document.querySelectorAll('[data-rein-zeilen]').forEach((block) => {
+  /* Titel mit Wort-Effekt (.sk h2, uu-Titel) laufen ueber den eigenen Block unten. */
+  document.querySelectorAll('[data-rein]:not(.brush):not(.uu-titel):not(.uu-aussage)').forEach((el) => rein(el, el));
+  document.querySelectorAll('[data-rein-zeilen]:not(.sk h2)').forEach((block) => {
     const zeilen = [...block.children];
     zeilen.forEach((z) => (z.style.display = 'block'));
     rein(zeilen, block);            // ein Auslöser, keine Staffel
@@ -886,4 +887,52 @@ addEventListener('load', () => ScrollTrigger.refresh());
 
     return () => gsap.set([wort, oben, ...unten, frau, foto, leer, dunkel, kopf], { clearProps: 'all' });
   });
+})();
+
+/* Titel-Effekt nach Vorlage Belfast (Auftraggeber 26.11.2026, gemessen):
+   jedes Wort blendet einzeln ein, opacity 0 -> 1, blur 10px -> 0,
+   y 10px -> 0, Woerter versetzt, sobald der Titel ins Bild kommt.
+   Elemente im Titel (Schreibschrift-Wort, Punkt) bewegen sich als Ganzes. */
+(() => {
+  const titel = document.querySelectorAll('.sk h2, .uu-titel, .uu-aussage, .uu-kopf__titel');
+  if (!titel.length) return;
+  const ruhig = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const zerlegen = (el, liste) => {
+    [...el.childNodes].forEach((n) => {
+      if (n.nodeType === 3) {
+        const teile = n.textContent.split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+        teile.forEach((t) => {
+          if (!t) return;
+          if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(t)); return; }
+          const w = document.createElement('span');
+          w.className = 'wort-e'; w.textContent = t;
+          frag.appendChild(w); liste.push(w);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1) {
+        if (n.tagName === 'SPAN' && !n.classList.contains('wort')) zerlegen(n, liste);
+        else if (n.tagName !== 'BR') { n.classList.add('wort-e'); liste.push(n); }
+      }
+    });
+    return liste;
+  };
+  titel.forEach((h) => {
+    const woerter = zerlegen(h, []);
+    if (ruhig || !woerter.length) return;
+    gsap.set(woerter, { autoAlpha: 0, filter: 'blur(10px)', y: 10 });
+    ScrollTrigger.create({
+      trigger: h, start: 'top 88%', once: true,
+      onEnter: () => gsap.to(woerter, {
+        autoAlpha: 1, filter: 'blur(0px)', y: 0, duration: 0.75, ease: 'power2.out',
+        stagger: Math.min(0.07, 0.6 / woerter.length), clearProps: 'filter,transform',
+      }),
+    });
+  });
+  /* Notbremse: nach 3 s ohne Ausloeser (Pane, Hintergrund-Tab) alles zeigen,
+     aber nur Titel, die schon im Bild stehen. */
+  setTimeout(() => titel.forEach((h) => {
+    const r = h.getBoundingClientRect();
+    if (r.top < innerHeight && r.bottom > 0) gsap.set(h.querySelectorAll('.wort-e'), { autoAlpha: 1, filter: 'none', y: 0 });
+  }), 3000);
 })();
