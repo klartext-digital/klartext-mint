@@ -6321,3 +6321,26 @@ main .fragen{container-type:inline-size}
   .sk .chip,.sk h2,.sk > p,.sk > div > p,.sk > a,.sk > .knopfpaar{grid-column:1!important;grid-row:auto!important}
   .sk .chip{margin:0!important}
 }
+
+/* Sektionskopf zweispaltig (Auftraggeber 26.11.2026: "Titel linksbuendig,
+   darueber linksbuendig Untertitel, rechts der Fliesstext"). Links Etikett
+   ueber dem Titel, rechts Text (oben buendig mit dem Titel), Knopf darunter. */
+main .sk{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)!important;row-gap:clamp(12px,1.1vw,18px)!important}
+main .sk .chip{grid-column:1!important;grid-row:1!important;align-self:end!important;margin:0!important}
+main .sk h2{grid-column:1!important;grid-row:2!important}
+main .sk:not(:has(p)) h2{grid-column:1 / -1!important}
+main .sk > p,main .sk > div > p{grid-column:2!important;grid-row:2!important;margin:.3em 0 0!important;justify-self:start}
+main .sk > a,main .sk > .knopfpaar,main .sk > .schalter,main .sk > .ruf__wege{grid-column:2!important;grid-row:3!important}
+@media (max-width:820px){
+  main .sk{grid-template-columns:minmax(0,1fr)!important}
+  main .sk .chip,main .sk h2,main .sk > p,main .sk > div > p,main .sk > a,main .sk > .knopfpaar,main .sk > .schalter,main .sk > .ruf__wege{grid-column:1!important;grid-row:auto!important}
+}
+/* Alle Koepfe auf EINER Kante (Inhaltsbreite), egal welches Polster die
+   Flaeche hat; in schmalen Flaechen (Arbeitsweise, Fragen) bleiben sie in
+   deren Polster. Zweitonig: erster Satz in der vollen Schriftfarbe. */
+main .sk{--sk-breite:min(var(--maxw), calc(100vw - 2 * var(--pad)));
+  width:var(--sk-breite)!important;max-width:none!important;
+  margin-left:calc(50% - var(--sk-breite) / 2)!important;margin-right:0!important;--sk-ink:var(--tinte)}
+main .haltung .sk,main .fragen .sk{width:auto!important;margin-left:0!important}
+main .werke .sk,main .ruf .sk,main .uu-ablauf .sk{--sk-ink:#FBF8F1}
+main .sk .sk__hell{color:var(--sk-ink)!important}
