@@ -128,8 +128,9 @@ function zeileHalten(el, dauerMs) {
         scrollTrigger: { trigger: ausloeser, start: 'top 92%' },
       });
   };
-  document.querySelectorAll('[data-rein]:not(.brush)').forEach((el) => rein(el, el));
-  document.querySelectorAll('[data-rein-zeilen]').forEach((block) => {
+  /* Titel mit Wort-Effekt (.sk h2, uu-Titel) laufen ueber den eigenen Block unten. */
+  document.querySelectorAll('[data-rein]:not(.brush):not(.uu-titel):not(.uu-aussage)').forEach((el) => rein(el, el));
+  document.querySelectorAll('[data-rein-zeilen]:not(.sk h2)').forEach((block) => {
     const zeilen = [...block.children];
     zeilen.forEach((z) => (z.style.display = 'block'));
     rein(zeilen, block);            // ein Auslöser, keine Staffel
@@ -834,4 +835,104 @@ addEventListener('load', () => ScrollTrigger.refresh());
   };
   beobachten();
   addEventListener('resize', () => { clearTimeout(beobachten.t); beobachten.t = setTimeout(beobachten, 200); });
+})();
+
+/* Startseite (Auftraggeber 26.11.2026): Kopf-Morph. Der Kopf steht in
+   .kopfhuelle (sticky). Phase 1 (erste 60svh, Handy 30svh): die Ebenen
+   loesen sich mit eigener Geschwindigkeit, die Wortmarke gleitet als Ganzes
+   nach oben weg (nie zerlegt), die kleinen Texte gehen mit, die Frau kommt
+   naeher, der Hintergrund weicht langsam. Phase 2: .vorhang schiebt sich
+   darueber, der Kopf dunkelt ab und weicht leicht zurueck. scrub am Scrollweg. */
+(() => {
+  const huelle = document.querySelector('.kopfhuelle');
+  if (!huelle || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const kopf = huelle.querySelector('.buehne');
+  const frau = kopf.querySelector('.foto__frau');
+  const foto = kopf.querySelector('.foto__bild:not(.foto__frau):not(.foto__leer)');
+  const leer = kopf.querySelector('.foto__leer');
+  const dunkel = kopf.querySelector('.kf__dunkel');
+  const wort = kopf.querySelector('.kf__logo');
+  const oben = kopf.querySelector('.kf__klein');
+  const unten = kopf.querySelectorAll('.kf__leistungen, .kf__start, .kf__satz');
+
+  const mm = gsap.matchMedia();
+  mm.add({ breit: '(min-width: 821px)', schmal: '(max-width: 820px)' }, (ctx) => {
+    const { breit } = ctx.conditions;
+    const loesen = breit ? 0.6 : 0.3;     // Anteil der Fensterhoehe fuer Phase 1
+    const gesamt = loesen + 1;            // plus Vorhang ueber eine Fensterhoehe
+    const a = loesen / gesamt;            // Ende von Phase 1 in der Zeitleiste
+
+    const tl = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: {
+        trigger: huelle, start: 'top top', end: () => '+=' + innerHeight * gesamt,
+        scrub: 0.6, invalidateOnRefresh: true,
+      },
+    });
+
+    /* Geschwindigkeiten: Schrift schnell, Frau mittel, Hintergrund langsam. */
+    tl.to(wort, { y: () => -innerHeight * 0.62, duration: a + (1 - a) * 0.35 }, 0)
+      .to(wort, { autoAlpha: 0, duration: a * 0.45 }, a * 0.5)
+      .to(oben, { y: () => -innerHeight * 0.5, autoAlpha: 0, duration: a * 0.9 }, 0)
+      .to(unten, { y: () => -innerHeight * 0.12, autoAlpha: 0, duration: a * 0.4 }, 0)
+      /* Frau waechst nach aussen und deckt so ihr Abbild im Foto. */
+      .to(frau, { scale: breit ? 1.12 : 1.08, yPercent: -2, duration: a, ease: 'power1.inOut' }, 0)
+      /* Unter der Frau liegt ab dem ersten Scrollen ein Hintergrund ohne sie,
+         sonst schiene ihr Abbild doppelt durch. */
+      .to(leer, { opacity: 1, duration: a * 0.12 }, 0)
+      .to([foto, leer], { yPercent: 3, filter: 'blur(2px)', duration: a }, 0)
+      .to(frau, { scale: breit ? 1.2 : 1.14, yPercent: -4, duration: 1 - a }, a)
+      .to(dunkel, { opacity: 0.7, duration: 1 - a }, a)
+      .fromTo(kopf, { scale: 1, borderRadius: 0 }, { scale: 0.94, borderRadius: 28, duration: 1 - a }, a);
+
+    return () => gsap.set([wort, oben, ...unten, frau, foto, leer, dunkel, kopf], { clearProps: 'all' });
+  });
+})();
+
+/* Titel-Effekt nach Vorlage Belfast (Auftraggeber 26.11.2026, gemessen):
+   jedes Wort blendet einzeln ein, opacity 0 -> 1, blur 10px -> 0,
+   y 10px -> 0, Woerter versetzt, sobald der Titel ins Bild kommt.
+   Elemente im Titel (Schreibschrift-Wort, Punkt) bewegen sich als Ganzes. */
+(() => {
+  const titel = document.querySelectorAll('.sk h2, .uu-titel, .uu-aussage, .uu-kopf__titel');
+  if (!titel.length) return;
+  const ruhig = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const zerlegen = (el, liste) => {
+    [...el.childNodes].forEach((n) => {
+      if (n.nodeType === 3) {
+        const teile = n.textContent.split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+        teile.forEach((t) => {
+          if (!t) return;
+          if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(t)); return; }
+          const w = document.createElement('span');
+          w.className = 'wort-e'; w.textContent = t;
+          frag.appendChild(w); liste.push(w);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1) {
+        if (n.tagName === 'SPAN' && !n.classList.contains('wort')) zerlegen(n, liste);
+        else if (n.tagName !== 'BR') { n.classList.add('wort-e'); liste.push(n); }
+      }
+    });
+    return liste;
+  };
+  titel.forEach((h) => {
+    const woerter = zerlegen(h, []);
+    if (ruhig || !woerter.length) return;
+    gsap.set(woerter, { autoAlpha: 0, filter: 'blur(10px)', y: 10 });
+    ScrollTrigger.create({
+      trigger: h, start: 'top 88%', once: true,
+      onEnter: () => gsap.to(woerter, {
+        autoAlpha: 1, filter: 'blur(0px)', y: 0, duration: 0.75, ease: 'power2.out',
+        stagger: Math.min(0.07, 0.6 / woerter.length), clearProps: 'filter,transform',
+      }),
+    });
+  });
+  /* Notbremse: nach 3 s ohne Ausloeser (Pane, Hintergrund-Tab) alles zeigen,
+     aber nur Titel, die schon im Bild stehen. */
+  setTimeout(() => titel.forEach((h) => {
+    const r = h.getBoundingClientRect();
+    if (r.top < innerHeight && r.bottom > 0) gsap.set(h.querySelectorAll('.wort-e'), { autoAlpha: 1, filter: 'none', y: 0 });
+  }), 3000);
 })();

@@ -119,26 +119,22 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 </header>
 
 <main>
-  <!-- ══ Kopf ══ -->
-  <div class="hero hero--portraet" data-hero>
-  <section class="unter">
+  <!-- ══ Kopf (Vorlage Hapto, Auftraggeber 26.11.2026) ══ -->
+  <section class="uu-kopf">
+    <img class="uu-kopf__bild" src="bilder/br-position.jpg" sizes="100vw" alt="" width="1200" height="671" fetchpriority="high" decoding="async">
+    <p class="uu-klein uu-kopf__l" data-rein>Über uns</p>
+    <h1 class="uu-kopf__titel"><span>Über</span> <span>uns<i>.</i></span></h1>
+    <p class="uu-klein uu-kopf__r" data-rein>Pratteln</p>
   </section>
 
-  <!-- ══ Text und Bild ══ -->
-  <section class="unter__leib unter__leib--portraet">
-    <div class="unter__kopf" data-rein>
-      <a class="zurueck" href="index.html">
-        <i aria-hidden="true">←</i><span>Zur Startseite</span></a>
-      <span class="chip">Über uns</span>
-      <h1 class="unter__gross unter__gross--artikel">Eine Agentur, keine Abteilung<i class="punkt">.</i></h1>
-      <p class="brush">Kurze Wege statt langer Ketten.</p>
+  <!-- ══ Wer wir sind ══ -->
+  <section class="uu-geschichte">
+    <div class="uu-leiste" data-rein><span>Wer wir sind</span><span>Klartext Digital</span></div>
+    <div class="uu-geschichte__oben">
+      <p class="uu-klein uu-ort" data-rein>Pratteln · Region Basel und Aargau<br>tätig in der ganzen Deutschschweiz</p>
+      <h2 class="uu-aussage" data-rein><span class="uu-hell">Eine Agentur, keine Abteilung.</span> Kurze Wege statt langer Ketten.</h2>
     </div>
-
-    <figure class="unter__motiv" data-rein>
-      <img sizes="(max-width: 1100px) 1px, 62vw" src="bilder/br-marke.jpg" alt="" fetchpriority="high" decoding="async">
-    </figure>
-
-    <div class="unter__text unter__text--satz" data-rein>
+    <div class="uu-geschichte__text" data-rein>
       <p>Klartext Digital ist eine Marketingagentur aus Pratteln mit Schwerpunkt Region Basel und
         Aargau. Wir arbeiten für Unternehmen in der ganzen Deutschschweiz, die keine grosse
         Marketingabteilung haben und trotzdem einen Auftritt brauchen, der
@@ -150,10 +146,14 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
       <p>Was wir nicht machen: Auftritte, die nur intern gefallen. Vor jeder Gestaltung
         steht die Frage, was die Massnahme leisten soll. Bekommt ihr darauf keine klare
         Antwort, sagen wir das, bevor Budget dafür draufgeht.</p>
-      <p class="unter__dauer"><span>Sitz</span><b>Pratteln, tätig in der ganzen Deutschschweiz</b></p>
+    </div>
+    <div class="uu-zahlen">
+      <div class="uu-zahl" data-rein><p class="uu-zahl__titel">Ansprechperson</p><p class="uu-zahl__wert">1</p><p class="uu-zahl__text">Fest, vom ersten Gespräch bis zur Auswertung.</p></div>
+      <div class="uu-zahl" data-rein><p class="uu-zahl__titel">Erstgespräch</p><p class="uu-zahl__wert">15<i> Min.</i></p><p class="uu-zahl__text">Ehrliche Einschätzung, auch wenn am Ende nichts daraus wird.</p></div>
+      <div class="uu-zahl" data-rein><p class="uu-zahl__titel">Kündigungsfrist</p><p class="uu-zahl__wert">0</p><p class="uu-zahl__text">Feste Laufzeit, die automatisch endet.</p></div>
+      <div class="uu-zahl" data-rein><p class="uu-zahl__titel">Eure Dateien</p><p class="uu-zahl__wert">100<i>%</i></p><p class="uu-zahl__text">Alle Dateien und Zugänge gehören euch, auch wenn ihr geht.</p></div>
     </div>
   </section>
-</div>
 
   <!-- ══ Arbeitsweise (von der Startseite, 28.10.2026) ══ -->
   <section class="wiewir">
@@ -304,66 +304,80 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
     </div>
     </section>
 
-  <!-- ══ Haltung ══ -->
-  <section class="unter__block">
-    <div class="dienste__block">
-      <div class="dienste__kopf">
-        <span class="chip" data-rein>Haltung</span>
-        <h2 data-rein-zeilen><span>Acht Punkte, an denen ihr uns messt.</span></h2>
-      </div>
-      <ul class="drin drin--vier">
-        <li>Eine feste Ansprechperson, vom ersten Gespräch bis zur Auswertung</li>
-        <li>Jede Massnahme hat eine Aufgabe, die vorher feststeht</li>
-        <li>Feste Laufzeit, die automatisch endet: keine Kündigung, keine Kündigungsfrist</li>
-        <li>Ihr bekommt alle Dateien und Zugänge, auch wenn ihr geht</li>
-        <li>Zahlen im Monatsbericht, auch die unangenehmen</li>
-        <li>Keine Weitergabe an Subunternehmen ohne euer Wissen</li>
-        <li>Termine, die wir zusagen, halten wir oder melden uns vorher</li>
-        <li>Wir sagen ab, wenn wir nicht die Richtigen sind</li>
-      </ul>
-    </div>
-  </section>
-
   <!-- ══ Ablauf ══ -->
-  <section class="unter__ablauf">
-    <div class="kopfzeile">
-      <div>
-        <span class="chip" data-rein>Zusammenarbeit</span>
-        <h2 data-rein-zeilen><span>So läuft es ab.</span></h2>
-      </div>
-    </div>
-    <ol class="schritte">
-      <li class="schritt"><b>01</b><div><h3>Erstgespräch</h3><p>Fünfzehn Minuten, ehrliche Einschätzung. Auch wenn am Ende nichts daraus wird.</p></div></li>
-      <li class="schritt"><b>02</b><div><h3>Bestandsaufnahme</h3><p>Was ist da, was fehlt, was kostet gerade Geld, ohne zu wirken.</p></div></li>
-      <li class="schritt"><b>03</b><div><h3>Plan</h3><p>Ein Vorschlag mit Aufgaben, Reihenfolge und festem Preis.</p></div></li>
-      <li class="schritt"><b>04</b><div><h3>Umsetzung</h3><p>Produktion im festen Takt, Bericht am Monatsende, Nachjustieren.</p></div></li>
+  <section class="uu-ablauf">
+    <div class="uu-leiste" data-rein><span>Zusammenarbeit</span><span>Vier Schritte</span></div>
+    <h2 class="uu-titel" data-rein><span class="uu-hell">So läuft es ab.</span> Mit Plan und festem Preis.</h2>
+    <ol class="uu-schritte">
+      <li class="uu-schritt" data-rein>
+        <span class="uu-schritt__nr">01</span>
+        <div class="uu-schritt__karte">
+          <div class="uu-schritt__text"><h3>Erstgespräch</h3><p>Fünfzehn Minuten, ehrliche Einschätzung. Auch wenn am Ende nichts daraus wird.</p></div>
+          <img class="uu-schritt__bild" src="bilder/br-sprache.jpg" sizes="(max-width: 820px) 100vw, 45vw" alt="" width="1200" height="671" loading="lazy" decoding="async">
+        </div>
+      </li>
+      <li class="uu-schritt" data-rein>
+        <span class="uu-schritt__nr">02</span>
+        <div class="uu-schritt__karte">
+          <div class="uu-schritt__text"><h3>Bestandsaufnahme</h3><p>Was ist da, was fehlt, was kostet gerade Geld, ohne zu wirken.</p></div>
+          <img class="uu-schritt__bild" src="bilder/br-markt.jpg" sizes="(max-width: 820px) 100vw, 45vw" alt="" width="1200" height="671" loading="lazy" decoding="async">
+        </div>
+      </li>
+      <li class="uu-schritt" data-rein>
+        <span class="uu-schritt__nr">03</span>
+        <div class="uu-schritt__karte">
+          <div class="uu-schritt__text"><h3>Plan</h3><p>Ein Vorschlag mit Aufgaben, Reihenfolge und festem Preis.</p></div>
+          <img class="uu-schritt__bild" src="bilder/br-architektur.jpg" sizes="(max-width: 820px) 100vw, 45vw" alt="" width="1200" height="671" loading="lazy" decoding="async">
+        </div>
+      </li>
+      <li class="uu-schritt" data-rein>
+        <span class="uu-schritt__nr">04</span>
+        <div class="uu-schritt__karte">
+          <div class="uu-schritt__text"><h3>Umsetzung</h3><p>Produktion im festen Takt, Bericht am Monatsende, Nachjustieren.</p></div>
+          <img class="uu-schritt__bild" src="bilder/br-guide.jpg" sizes="(max-width: 820px) 100vw, 45vw" alt="" width="1200" height="671" loading="lazy" decoding="async">
+        </div>
+      </li>
     </ol>
   </section>
 
+  <!-- ══ Haltung ══ -->
+  <section class="uu-haltung">
+    <div class="uu-leiste" data-rein><span>Haltung</span><span>Acht Punkte</span></div>
+    <h2 class="uu-titel uu-titel--mitte" data-rein><span class="uu-hell">Acht Punkte,</span> an denen ihr uns messt.</h2>
+    <ul class="uu-punkte">
+      <li class="uu-punkt" data-rein><i aria-hidden="true"></i><p>Eine feste Ansprechperson, vom ersten Gespräch bis zur Auswertung</p></li>
+      <li class="uu-punkt" data-rein><i aria-hidden="true"></i><p>Jede Massnahme hat eine Aufgabe, die vorher feststeht</p></li>
+      <li class="uu-punkt" data-rein><i aria-hidden="true"></i><p>Feste Laufzeit, die automatisch endet: keine Kündigung, keine Kündigungsfrist</p></li>
+      <li class="uu-punkt" data-rein><i aria-hidden="true"></i><p>Ihr bekommt alle Dateien und Zugänge, auch wenn ihr geht</p></li>
+      <li class="uu-punkt" data-rein><i aria-hidden="true"></i><p>Zahlen im Monatsbericht, auch die unangenehmen</p></li>
+      <li class="uu-punkt" data-rein><i aria-hidden="true"></i><p>Keine Weitergabe an Subunternehmen ohne euer Wissen</p></li>
+      <li class="uu-punkt" data-rein><i aria-hidden="true"></i><p>Termine, die wir zusagen, halten wir oder melden uns vorher</p></li>
+      <li class="uu-punkt" data-rein><i aria-hidden="true"></i><p>Wir sagen ab, wenn wir nicht die Richtigen sind</p></li>
+    </ul>
+  </section>
+
   <!-- ══ Team ══ -->
-  <section class="team" id="team">
-    <div class="team__block" data-zug>
-      <span class="chip chip--hell" data-rein>Team</span>
-      <h2 class="mitte">Die Mannschaft</h2>
-      <div class="lamellen" id="lamellen">
-        <button class="lamelle ist" type="button" aria-pressed="true" style="--bildpos:51% 50%;--ton:.85">
-          <img src="bilder/portrait-2.jpg" alt="">
-          <span class="lamelle__schild"><b>Pia</b><i>Marketing Manager</i></span>
-        </button>
-        <button class="lamelle" type="button" aria-pressed="false" style="--bildpos:50% 50%;--ton:.78">
-          <img src="bilder/portrait-4.jpg" alt="">
-          <span class="lamelle__schild"><b>Mara</b><i>Project Manager</i></span>
-        </button>
-        <button class="lamelle" type="button" aria-pressed="false" style="--bildpos:50% 50%;--ton:.66">
-          <img src="bilder/portrait-5.jpg" alt="">
-          <span class="lamelle__schild"><b>Reto</b><i>Digital Strategist</i></span>
-        </button>
-        <button class="lamelle" type="button" aria-pressed="false" style="--bildpos:50% 50%;--ton:.74">
-          <img src="bilder/portrait-6.jpg" alt="">
-          <span class="lamelle__schild"><b>Amir</b><i>Content Creator</i></span>
-        </button>
-      </div>
-    </div>
+  <section class="uu-team" id="team">
+    <div class="uu-leiste" data-rein><span>Team</span><span>Pratteln</span></div>
+    <h2 class="uu-titel" data-rein><span class="uu-hell">Die Menschen</span> hinter der Arbeit.</h2>
+    <ul class="uu-leute">
+      <li class="uu-person" data-rein>
+        <div class="uu-person__bild" style="--bildpos:51% 30%;--ton:.85"><img src="bilder/portrait-2.jpg" alt="" loading="lazy" decoding="async"></div>
+        <p class="uu-person__name">Pia</p><p class="uu-person__rolle">Marketing Manager</p>
+      </li>
+      <li class="uu-person" data-rein>
+        <div class="uu-person__bild" style="--bildpos:50% 30%;--ton:.78"><img src="bilder/portrait-4.jpg" alt="" loading="lazy" decoding="async"></div>
+        <p class="uu-person__name">Mara</p><p class="uu-person__rolle">Project Manager</p>
+      </li>
+      <li class="uu-person" data-rein>
+        <div class="uu-person__bild" style="--bildpos:50% 30%;--ton:.66"><img src="bilder/portrait-5.jpg" alt="" loading="lazy" decoding="async"></div>
+        <p class="uu-person__name">Reto</p><p class="uu-person__rolle">Digital Strategist</p>
+      </li>
+      <li class="uu-person" data-rein>
+        <div class="uu-person__bild" style="--bildpos:50% 30%;--ton:.74"><img src="bilder/portrait-6.jpg" alt="" loading="lazy" decoding="async"></div>
+        <p class="uu-person__name">Amir</p><p class="uu-person__rolle">Content Creator</p>
+      </li>
+    </ul>
   </section>
 
   <!-- ══ Weiter ══ -->
