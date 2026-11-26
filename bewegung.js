@@ -584,26 +584,22 @@ const unten = kopf.querySelectorAll('.kf__leistungen, .kf__start, .kf__satz');
 const mm = gsap.matchMedia();
 mm.add({ breit: '(min-width: 821px)', schmal: '(max-width: 820px)' }, (ctx) => {
 const { breit } = ctx.conditions;
-const loesen = breit ? 0.6 : 0.3;     // Anteil der Fensterhoehe fuer Phase 1
-const gesamt = loesen + 1;            // plus Vorhang ueber eine Fensterhoehe
-const a = loesen / gesamt;            // Ende von Phase 1 in der Zeitleiste
 const tl = gsap.timeline({
 defaults: { ease: 'none' },
 scrollTrigger: {
-trigger: huelle, start: 'top top', end: () => '+=' + innerHeight * gesamt,
+trigger: huelle, start: 'top top', end: () => '+=' + innerHeight,
 scrub: 0.6, invalidateOnRefresh: true,
 },
 });
-tl.to(wort, { y: () => -innerHeight * 0.62, duration: a + (1 - a) * 0.35 }, 0)
-.to(wort, { autoAlpha: 0, duration: a * 0.45 }, a * 0.5)
-.to(oben, { y: () => -innerHeight * 0.5, autoAlpha: 0, duration: a * 0.9 }, 0)
-.to(unten, { y: () => -innerHeight * 0.12, autoAlpha: 0, duration: a * 0.4 }, 0)
-.to(frau, { scale: breit ? 1.12 : 1.08, yPercent: -2, duration: a, ease: 'power1.inOut' }, 0)
-.to(leer, { opacity: 1, duration: a * 0.12 }, 0)
-.to([foto, leer], { yPercent: 3, filter: 'blur(2px)', duration: a }, 0)
-.to(frau, { scale: breit ? 1.2 : 1.14, yPercent: -4, duration: 1 - a }, a)
-.to(dunkel, { opacity: 0.7, duration: 1 - a }, a)
-.fromTo(kopf, { scale: 1, borderRadius: 0 }, { scale: 0.94, borderRadius: 28, duration: 1 - a }, a);
+tl.to(wort, { y: () => -innerHeight * (breit ? 0.7 : 0.55), duration: 0.7 }, 0)
+.to(wort, { autoAlpha: 0, duration: 0.3 }, 0.32)
+.to(oben, { y: () => -innerHeight * 0.35, autoAlpha: 0, duration: 0.5 }, 0)
+.to(unten, { y: () => -innerHeight * 0.18, autoAlpha: 0, duration: 0.22 }, 0)
+.to(frau, { scale: breit ? 1.2 : 1.14, yPercent: -4, duration: 1, ease: 'power1.inOut' }, 0)
+.to(leer, { opacity: 1, duration: 0.06 }, 0)
+.to([foto, leer], { yPercent: 3, filter: 'blur(2px)', duration: 0.6 }, 0)
+.to(dunkel, { opacity: 0.7, duration: 0.8 }, 0.2)
+.fromTo(kopf, { scale: 1 }, { scale: 0.94, duration: 1 }, 0);
 return () => gsap.set([wort, oben, ...unten, frau, foto, leer, dunkel, kopf], { clearProps: 'all' });
 });
 })();
