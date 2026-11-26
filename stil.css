@@ -6358,3 +6358,14 @@ main .sk .sk__hell{color:var(--sk-ink)!important}
 main .preise .sk > .schalter{grid-column:1 / -1!important;grid-row:3!important;justify-self:center!important;
   margin-top:clamp(18px,2vw,30px)!important}
 @media (max-width:820px){main .preise .sk > .schalter{grid-row:auto!important}}
+
+/* Titel deutlich groesser, fuellen den Kopf statt Leerraum (Auftraggeber 26.11.2026). */
+main .sk h2{font-size:clamp(40px,5vw,84px)!important;line-height:1!important}
+.uu-titel{font-size:clamp(40px,5.4vw,88px)}
+@media (max-width:820px){
+  main .sk h2{font-size:clamp(34px,10.5vw,52px)!important}
+}
+/* Arbeitsweise-Kopf ohne Untertext: eine Spalte, Titel bricht um statt ueberzulaufen. */
+main .haltung .sk{grid-template-columns:minmax(0,1fr)!important}
+main .haltung .sk h2 > span{display:block!important}
+@media (max-width:820px){main .haltung .sk h2{font-size:clamp(30px,9.6vw,52px)!important}}
