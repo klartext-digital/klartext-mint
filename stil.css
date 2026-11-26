@@ -6423,3 +6423,19 @@ main .blog,main .fragen:not(.fragen--eingebettet){background:none!important;box-
 main .blog{margin-left:0!important;margin-right:0!important}
 main .ruf{border-bottom-left-radius:0!important;border-bottom-right-radius:0!important;margin-bottom:0!important}
 main:has(.ruf:last-child) + .fuss,main .ruf + .fuss,body:has(main .ruf) .fuss{border-top-left-radius:0!important;border-top-right-radius:0!important;margin-top:0!important}
+
+/* ══ EINE Inhaltsbreite (Auftraggeber 26.11.2026: "ist das die definierte
+   breite? ueberall korrigieren") ═════════════════════════════════════════
+   SCHMAL = --maxw (1180) bzw. Fenster minus --pad. Titel, Texte, Bilder,
+   Karten und Listen stehen alle auf dieser Kante. VOLL bleibt fast randlos. */
+:root{--maxw:1180px}
+main .sk{--sk-breite:min(var(--maxw), calc(100vw - 2 * var(--pad)))}
+.fallkopf{--fall-kante:min(100% - 2 * var(--pad), var(--maxw))}
+.fallblick,.fallfilm{width:min(100% - 2 * var(--pad), var(--maxw))}
+.ruf__karte,.ruf__kopfzeile,.pruef__karte,.erst{max-width:var(--maxw)}
+.artikel__bild{max-width:var(--maxw)}
+.fragen__liste,.fragen.fragen--wie-start .fragen__liste{max-width:var(--maxw)}
+.unter--eng{max-width:calc(var(--maxw) + var(--pad) * 2)}
+.mitfilm{max-width:calc(var(--maxw) + var(--pad) * 2)}
+.preise__raster,.preise__fuss{max-width:var(--maxw)!important}
+main .haltung{container-type:inline-size} main .haltung .sk h2{font-size:clamp(30px,7.2cqw,84px)!important}
