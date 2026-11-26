@@ -912,7 +912,13 @@ addEventListener('load', () => ScrollTrigger.refresh());
         n.replaceWith(frag);
       } else if (n.nodeType === 1) {
         if (n.tagName === 'SPAN' && !n.classList.contains('wort')) zerlegen(n, liste);
-        else if (n.tagName !== 'BR') { n.classList.add('wort-e'); liste.push(n); }
+        else if (n.tagName !== 'BR') {
+          /* Punkt/Satzzeichen direkt hinter einem Wort gehoert zu diesem Wort,
+             sonst faellt er als eigenes inline-block aus der Zeile. */
+          const vor = n.previousSibling;
+          if ((n.tagName === 'I' || n.classList.contains('punkt')) && vor && vor.nodeType === 1 && vor.classList.contains('wort-e')) { vor.appendChild(n); return; }
+          n.classList.add('wort-e'); liste.push(n);
+        }
       }
     });
     return liste;
