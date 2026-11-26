@@ -881,8 +881,8 @@ addEventListener('load', () => ScrollTrigger.refresh());
       /* Bild waechst von unten her mit, damit oben beim Absenken keine
          dunkle Luecke aufgeht (Auftraggeber 26.11.2026). */
       .to([foto, leer], { yPercent: 3, scale: 1.08, transformOrigin: '50% 100%', filter: 'blur(2px)', duration: 0.6 }, 0)
-      .to(dunkel, { opacity: 0.7, duration: 0.8 }, 0.2)
-      .fromTo(kopf, { scale: 1 }, { scale: 0.94, duration: 1 }, 0);
+      .to(dunkel, { opacity: 0.7, duration: 0.8 }, 0.2);
+      /* Kopf bleibt in voller Groesse, der Vorhang schiebt sich nur darueber (Auftraggeber 26.11.2026). */
 
     return () => gsap.set([wort, oben, ...unten, frau, foto, leer, dunkel, kopf], { clearProps: 'all' });
   });

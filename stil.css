@@ -6353,3 +6353,8 @@ main .sk .sk__hell{color:var(--sk-ink)!important}
 .vorhang > .dienste:first-child{padding-top:0!important;margin-left:0!important;margin-right:0!important;
   border-radius:var(--r-flaeche) var(--r-flaeche) 0 0!important}
 .vorhang > .dienste:first-child .dienste__block{border-radius:var(--r-flaeche)}
+
+/* Preise: Laufzeit-Schalter (6/12 Monate) mittig unter dem Kopf (Auftraggeber 26.11.2026). */
+main .preise .sk > .schalter{grid-column:1 / -1!important;grid-row:3!important;justify-self:center!important;
+  margin-top:clamp(18px,2vw,30px)!important}
+@media (max-width:820px){main .preise .sk > .schalter{grid-row:auto!important}}
