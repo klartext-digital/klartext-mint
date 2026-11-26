@@ -626,7 +626,11 @@ frag.appendChild(w); liste.push(w);
 n.replaceWith(frag);
 } else if (n.nodeType === 1) {
 if (n.tagName === 'SPAN' && !n.classList.contains('wort')) zerlegen(n, liste);
-else if (n.tagName !== 'BR') { n.classList.add('wort-e'); liste.push(n); }
+else if (n.tagName !== 'BR') {
+const vor = n.previousSibling;
+if ((n.tagName === 'I' || n.classList.contains('punkt')) && vor && vor.nodeType === 1 && vor.classList.contains('wort-e')) { vor.appendChild(n); return; }
+n.classList.add('wort-e'); liste.push(n);
+}
 }
 });
 return liste;
