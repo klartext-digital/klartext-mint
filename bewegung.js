@@ -499,6 +499,7 @@ location.href = 'mailto:hallo@klartext-digital.ch'
 zeichne(); zeichneSlots(); melden();
 })();
 (() => {
+return;
 const graf = document.querySelector('.wiewir__bild');
 const bild = graf && graf.querySelector('.ag');
 if (!bild) return;
