@@ -6637,3 +6637,64 @@ main .blog .blog__wort{align-content:center}
 .ag[data-aktiv="S"] .ag__ast[data-fuer="S"] .ag__leitung,
 .ag[data-aktiv="K"] .ag__ast[data-fuer="K"] .ag__leitung,
 .ag[data-aktiv="T"] .ag__ast[data-fuer="T"] .ag__leitung{transition:stroke-dashoffset .3s var(--raus) 0s!important}
+
+/* ══ Abstaende Unterseiten (Auftraggeber 27.11.2026): zwischen zwei
+   Abschnitten genau --sec, auf allen Seiten gemessen. ══ */
+/* Eingebettete Fragen als erster Inhalt eines Abschnitts: kein Zusatzpolster. */
+main > section.unter__block > .fragen--eingebettet:first-child{padding-top:0!important}
+main > :is(.ruf,.pruef) + section.unter__block{margin-top:var(--sec)!important}
+/* Artikelspalte vor einem weiteren Abschnitt: kein Polster unten. */
+main > .artikel.seo-prose:not(:last-child){padding-bottom:0!important}
+/* Kostenrechner: Abstand nur ueber margin. */
+main > .rechner{padding-top:0!important;margin-top:var(--sec)!important}
+/* Arbeiten-Uebersicht: kein Polster vor der Kontaktbox. */
+main .uebersicht.uu-projekte{padding-bottom:0!important}
+/* Projektseiten: Ueberblick, Film und Text im selben Abstand. */
+main > .fallblick{padding-bottom:var(--sec)!important}
+main > .fallfilm{margin-bottom:var(--sec)!important}
+/* Leistungsseiten: vom Kopf (Portraet-Hero) zum ersten Abschnitt genau --sec. */
+main > .hero--portraet > .unter__leib:last-child{padding-bottom:0!important;margin-bottom:0!important}
+main > .hero--portraet + section{margin-top:var(--sec)!important}
+main > .hero--portraet .unter__text > :last-child{margin-bottom:0!important}
+main > .hero--portraet + *{margin-top:var(--sec)!important}
+/* Seitenkopf (Titel) zum Inhalt: ebenfalls --sec. */
+main > section.unter{padding-bottom:0!important;margin-bottom:0!important}
+main > section.unter + *{margin-top:var(--sec)!important;padding-top:0!important}
+main > .artikel__bild + .artikel{margin-top:var(--sec)!important;padding-top:0!important}
+main > section.unter__block.seo-prose + .uebersicht{margin-top:var(--sec)!important;padding-top:0!important}
+@media (max-width:820px){main > .fallkopf + .fallblick{padding-top:var(--sec)!important}main > .gal + :is(.gal,.unter__ablauf){margin-top:var(--sec)!important}}
+@media (max-width:820px){
+  main > .fallkopf + .fallblick{padding-top:calc(var(--sec) + 20px)!important}
+  main > .gal + :is(.gal,.unter__ablauf){margin-top:calc(var(--sec) - 12px)!important}
+  main > .uu-geschichte + .wiewir{padding-top:calc(var(--sec) - 14px)!important}
+}
+/* Vorgehen-Karten der Projektseiten (Auftraggeber 27.11.2026): Nummer
+   oben, Titel und Text unten auf voller Kartenbreite, alle Karten gleich
+   hoch, wie die Zahlenkarten auf Ueber uns. */
+main .unter__ablauf .schritte{grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.1vw,16px);align-items:stretch}
+main .unter__ablauf .schritt{display:grid!important;grid-template-rows:auto 1fr;gap:clamp(36px,3.6vw,64px);
+  background:#fff;border-radius:clamp(14px,1.2vw,20px);padding:clamp(20px,1.8vw,30px);min-height:clamp(250px,21vw,320px)}
+main .unter__ablauf .schritt > b{font-family:var(--titel);font-weight:800;font-size:clamp(34px,3vw,48px);line-height:1;letter-spacing:-.04em;color:var(--violett)}
+main .unter__ablauf .schritt > div{align-self:start}
+main .unter__ablauf .schritt h3{font-family:var(--titel);font-weight:700;font-size:clamp(18px,1.4vw,22px);letter-spacing:-.02em;margin:0 0 8px}
+main .unter__ablauf .schritt p{margin:0;font-size:clamp(14.5px,1vw,16px);line-height:1.5;-webkit-hyphens:auto;hyphens:auto;text-wrap:pretty}
+@media (max-width:1000px){main .unter__ablauf .schritte{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){main .unter__ablauf .schritte{grid-template-columns:minmax(0,1fr)}main .unter__ablauf .schritt{min-height:0}}
+/* "So laeuft es ab" (Ueber uns), Auftraggeber 27.11.2026: gross und
+   untereinander wie bisher, neue Box: Bild fuellt die ganze Karte, dunkler
+   Verlauf von links, Nummer in Amber oben, Titel und Text unten links. */
+main .uu-schritt{grid-template-columns:minmax(0,1fr)!important;position:relative}
+main .uu-schritt__nr{position:absolute;z-index:2;top:clamp(20px,2vw,34px);left:clamp(24px,2.6vw,44px);
+  color:var(--violett)!important;opacity:1!important;font-size:clamp(34px,3vw,52px)!important;line-height:1}
+main .uu-schritt__karte{position:relative;display:block!important;min-height:clamp(320px,30vw,440px);
+  border-radius:clamp(18px,1.6vw,28px);overflow:hidden;background:#1A1814;isolation:isolate}
+main .uu-schritt__bild{position:absolute!important;inset:0;width:100%!important;height:100%!important;object-fit:cover;z-index:-2;aspect-ratio:auto!important;order:0}
+main .uu-schritt__karte::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg, rgb(14 13 11 / .94) 0%, rgb(14 13 11 / .78) 38%, rgb(14 13 11 / .15) 75%, rgb(14 13 11 / 0) 100%)}
+main .uu-schritt__text{position:absolute;left:0;bottom:0;max-width:min(560px,62%);
+  padding:clamp(24px,2.6vw,44px)!important;gap:10px!important}
+@media (max-width:820px){
+  main .uu-schritt__karte{min-height:clamp(380px,100vw,460px)}
+  main .uu-schritt__karte::before{background:linear-gradient(0deg, rgb(14 13 11 / .95) 0%, rgb(14 13 11 / .7) 45%, rgb(14 13 11 / .1) 80%)}
+  main .uu-schritt__text{max-width:none;right:0}
+}
