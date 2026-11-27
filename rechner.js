@@ -2,8 +2,7 @@
 const R = document.getElementById('rechner');
 if (!R) return;
 const PREISE = {
-art: { landingpage: 3000, mehrseitig: 4200, shop: 4990 },
-sprachen: { eine: 0, mehrere: 1500 }
+art: { landingpage: 3000, mehrseitig: 4990, shop: 6990 }
 };
 const chf = (n) => (Math.round(n) + '').replace(/\B(?=(\d{3})+(?!\d))/g, '\u2019');
 const wahl = (g) => R.querySelector('input[name="' + g + '"]:checked');
@@ -22,12 +21,10 @@ else feld.dataset.wert = ziel;
 })(t0);
 }
 function rechne() {
-const art = wahl('art'), sprachen = wahl('sprachen');
+const art = wahl('art');
 const artWert = art ? art.value : 'mehrseitig';
-const sprachWert = sprachen ? sprachen.value : 'eine';
-const summe = PREISE.art[artWert] + PREISE.sprachen[sprachWert];
+const summe = PREISE.art[artWert];
 const posten = [[art ? art.dataset.wort : '', PREISE.art[artWert]]];
-if (PREISE.sprachen[sprachWert]) posten.push([sprachen.dataset.wort, PREISE.sprachen[sprachWert]]);
 zeigeWert(summe);
 const liste = R.querySelector('#rPosten');
 liste.innerHTML = posten.length > 1 ? posten.map(function (p) {
