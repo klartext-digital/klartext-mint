@@ -6578,7 +6578,7 @@ body .wege__mehr:focus-visible,
   background:linear-gradient(var(--tinte),var(--tinte)) center / 100% 100% no-repeat!important;
   color:var(--creme)!important;text-decoration-color:transparent!important;border-radius:var(--r-pille)!important}
 /* Auf dunklem Grund umgekehrt: helle Pille, dunkle Schrift (wie Fusszeile). */
-:is(.ruf,.werke,.fuss) a:not(.knopf):not(.mlink):not(.weiter__karte):is(:hover,:focus-visible){background-image:linear-gradient(var(--creme),var(--creme))!important;color:var(--tinte)!important}
+.ruf :is(.fuehrung,.ruf__text,p,li) > a:not(.knopf):not(.mlink):not(.weiter__karte):is(:hover,:focus-visible){background-image:linear-gradient(var(--creme),var(--creme))!important;color:var(--tinte)!important}
 @media (prefers-reduced-motion:reduce){body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not(.knopf):not(.mlink):not(.weiter__karte){transition:none!important}}
 /* Kontaktbox mit Vorteile-Liste (Leistungsseiten): Kopf einspaltig
    (Etikett, Titel, Text, Knopf untereinander), Liste rechts daneben.
