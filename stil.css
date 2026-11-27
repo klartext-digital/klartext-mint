@@ -6510,3 +6510,17 @@ main :is(.dienste__block,.team__block,.ruf__karte,.pruef__karte) .sk{width:auto!
 /* Boxen in Unterseiten (Umfang, Team): SCHMAL wie alle Boxen, Inhalt auf der Textkante. */
 main .unter__block > :is(.dienste__block,.team__block){width:var(--breite-schmal)!important;max-width:none!important;
   margin-left:calc((100% - var(--breite-schmal)) / 2)!important;margin-right:calc((100% - var(--breite-schmal)) / 2)!important}
+
+/* Projekt-Fakten (Kunde, Ort, Leistungen, Website): keine weisse Box, keine
+   Pillen. Offene Liste im Kopf-Stil, Trennlinien amber 1,5 px nur zwischen
+   den Eintraegen. */
+main .fall__fakten{background:none!important;border-radius:0!important;padding:0!important;box-shadow:none!important;gap:0!important}
+main .fall__fakten > div{gap:6px;padding:clamp(14px,1.2vw,20px) 0}
+main .fall__fakten > div:first-child{padding-top:0}
+main .fall__fakten > div + div{border-top:1.5px solid var(--violett)}
+main .fall__fakten dt{font-family:var(--text);font-weight:500;font-size:clamp(12px,.9vw,15px);letter-spacing:.04em;text-transform:uppercase;opacity:.62;color:inherit}
+main .fall__fakten dd{margin:0;font-family:var(--titel);font-weight:800;letter-spacing:-.03em;font-size:clamp(19px,1.5vw,24px);line-height:1.25}
+main .fall__fakten .pillen{display:inline;gap:0}
+main .fall__fakten .pillen span{border:0;border-radius:0;padding:0;font:inherit;color:inherit;background:none}
+main .fall__fakten .pillen span + span::before{content:", "}
+main .fall__fakten .fall__link{text-decoration:underline;text-decoration-color:var(--violett);text-decoration-thickness:2px;text-underline-offset:.18em}
