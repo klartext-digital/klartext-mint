@@ -6535,3 +6535,17 @@ main .fall__fakten .fall__link{text-decoration:underline;text-decoration-color:v
 .vorhang > .dienste:first-child :is(.lz__kopf,.lz__leib){
   padding-left:max(clamp(20px,2vw,34px), calc((var(--breite-schmal) - var(--maxw)) / 2));
   padding-right:max(clamp(20px,2vw,34px), calc((var(--breite-schmal) - var(--maxw)) / 2))}
+
+/* Keine Schreibmaschinen-Schrift: alle kleinen Etiketten (Blog, Newsletter,
+   Kategorien) in Inter wie die Kopf-Etiketten. */
+:root{--label:'Inter',system-ui,sans-serif}
+.chip,.wege__label,.erst__marke,.pruef__marke,.brief__marke,.blog__marke,.blog__seitentitel,.bzeile__meta{letter-spacing:.04em}
+/* Blog-Block und Newsletter-Box auf der Startseite: SCHMAL wie alle Boxen. */
+main .blog .blog__block,main .blog .brief{width:var(--breite-schmal)!important;max-width:none!important;
+  margin-left:calc((100% - var(--breite-schmal)) / 2)!important;margin-right:calc((100% - var(--breite-schmal)) / 2)!important;box-sizing:border-box}
+/* Arbeitsweise-Box (amber) und Termin-Formular: Boxen = SCHMAL. */
+main .haltung,main .ruf .ruf__karte{width:var(--breite-schmal)!important;max-width:none!important;box-sizing:border-box;
+  margin-left:calc((100% - var(--breite-schmal)) / 2)!important;margin-right:calc((100% - var(--breite-schmal)) / 2)!important}
+/* Fragenliste auf der Textbreite, buendig mit dem Kopf darueber. */
+main .fragen .fragen__liste{width:min(100%, var(--maxw))!important;max-width:none!important;margin-left:auto!important;margin-right:auto!important}
+main .fragen:not(.fragen--eingebettet){padding-left:0!important;padding-right:0!important}
