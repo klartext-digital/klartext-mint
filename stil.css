@@ -6543,8 +6543,8 @@ main .fall__fakten .fall__link{text-decoration:underline;text-decoration-color:v
 /* Blog-Block und Newsletter-Box auf der Startseite: SCHMAL wie alle Boxen. */
 main .blog .blog__block,main .blog .brief{width:var(--breite-schmal)!important;max-width:none!important;
   margin-left:calc((100% - var(--breite-schmal)) / 2)!important;margin-right:calc((100% - var(--breite-schmal)) / 2)!important;box-sizing:border-box}
-/* Arbeitsweise-Box (amber) und Termin-Formular: Boxen = SCHMAL. */
-main .haltung,main .ruf .ruf__karte{width:var(--breite-schmal)!important;max-width:none!important;box-sizing:border-box;
+/* Arbeitsweise-Box (amber): SCHMAL. Termin-Formular bleibt in seiner Breite (Auftraggeber 27.11.2026). */
+main .haltung{width:var(--breite-schmal)!important;max-width:none!important;box-sizing:border-box;
   margin-left:calc((100% - var(--breite-schmal)) / 2)!important;margin-right:calc((100% - var(--breite-schmal)) / 2)!important}
 /* Fragenliste auf der Textbreite, buendig mit dem Kopf darueber. */
 main .fragen .fragen__liste{width:min(100%, var(--maxw))!important;max-width:none!important;margin-left:auto!important;margin-right:auto!important}
@@ -6594,3 +6594,21 @@ main > section.unter__block.seo-prose,main .artikel--recht{
   width:min(820px, 100% - 2 * var(--pad))!important;max-width:none!important;box-sizing:border-box;
   padding-left:0!important;padding-right:0!important;margin-left:auto!important;margin-right:auto!important}
 .weiter__art{letter-spacing:.04em!important}
+
+/* ══ Abstaende Startseite (Auftraggeber 27.11.2026, Regel --sec/--block-in):
+   zwischen zwei Abschnitten genau --sec. Abschnitte ohne eigene Flaeche
+   haben kein Polster; Abschnitte mit Flaeche (Arbeiten, Preise, Kontakt)
+   innen oben = unten --block-in. ══ */
+main .vorhang > section:not(:first-child){margin-top:var(--sec)!important;margin-bottom:0!important}
+main .vorhang > :is(.wiewir,.wege,.blog,.fragen){padding-top:0!important;padding-bottom:0!important}
+main .vorhang > :is(.werke,.preise,.ruf){padding-top:var(--block-in)!important;padding-bottom:var(--block-in)!important}
+main .vorhang > .ruf{margin-bottom:0!important}
+/* Fragenliste: ueberall dieselbe Breite wie auf den Unterseiten (820 px). */
+main .fragen .fragen__liste{width:min(820px, 100%)!important}
+/* Knopf-Beschriftung bricht nie um (Blog "Artikel lesen"). */
+.knopf,.knopf .rolle,.knopf .rolle > span{white-space:nowrap}
+/* Blog-Block: Raster fuellt die ganze Box, Textspalte nie schmaler als 300 px. */
+main .blog .blog__raster{max-width:none!important;width:100%}
+@media (min-width:820px){main .blog .blog__gross{grid-template-columns:minmax(300px,1fr) minmax(0,1fr)}}
+/* Erstgespraech: Text endet vor dem freigestellten Foto (ragte hinein). */
+@media (min-width:1000px){main .erst__lead{max-width:38ch!important}main .erst__aktion{max-width:42ch}}
