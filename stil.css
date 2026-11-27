@@ -6524,3 +6524,14 @@ main .fall__fakten .pillen{display:inline;gap:0}
 main .fall__fakten .pillen span{border:0;border-radius:0;padding:0;font:inherit;color:inherit;background:none}
 main .fall__fakten .pillen span + span::before{content:", "}
 main .fall__fakten .fall__link{text-decoration:underline;text-decoration-color:var(--violett);text-decoration-thickness:2px;text-underline-offset:.18em}
+
+/* Leistungskarten der Startseite (Auftraggeber 27.11.2026: "wieso ist diese
+   section schmaler geworden"): Die Karten sind dunkle Boxen mit Bild und
+   stehen deshalb in der Box-Breite (--breite-schmal, bis 1520 px), nicht auf
+   der Textkante (--maxw 1180). Titel und Text in den Karten bleiben
+   eingerueckt auf der 1180er-Kante, wie der Kopf darueber. */
+.vorhang > .dienste:first-child .lzliste{width:var(--breite-schmal);max-width:none;
+  margin-left:calc((100% - var(--breite-schmal)) / 2);margin-right:calc((100% - var(--breite-schmal)) / 2)}
+.vorhang > .dienste:first-child :is(.lz__kopf,.lz__leib){
+  padding-left:max(clamp(20px,2vw,34px), calc((var(--breite-schmal) - var(--maxw)) / 2));
+  padding-right:max(clamp(20px,2vw,34px), calc((var(--breite-schmal) - var(--maxw)) / 2))}
