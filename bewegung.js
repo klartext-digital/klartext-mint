@@ -745,6 +745,9 @@ function zeileHalten(el, dauerMs) {
    sichtbar zu hoch im Fenster, weil der Platz fuer die Beschriftungen
    unten im Ruhezustand leer ist. */
 (() => {
+  /* Abgeschaltet 27.11.2026 (Auftraggeber: "den Effekt der Verzoegerung
+     raus"): die Kreise scrollen normal mit. */
+  return;
   const graf = document.querySelector('.wiewir__bild');
   const bild = graf && graf.querySelector('.ag');
   if (!bild) return;

@@ -1,0 +1,26 @@
+Team-Abschnitt von ueber-uns.html, vorerst ausgeblendet (Auftraggeber 27.11.2026).
+Zum Zurueckholen vor dem Kommentar '══ Weiter ══' wieder einsetzen.
+
+  <!-- ══ Team ══ -->
+  <section class="uu-team" id="team">
+    <div class="uu-leiste" data-rein><span>Team</span><span>Pratteln</span></div>
+    <h2 class="uu-titel" data-rein><span class="uu-hell">Die Menschen</span> hinter der Arbeit.</h2>
+    <ul class="uu-leute">
+      <li class="uu-person" data-rein>
+        <div class="uu-person__bild" style="--bildpos:51% 30%;--ton:.85"><img src="bilder/portrait-2.jpg" alt="" loading="lazy" decoding="async"></div>
+        <p class="uu-person__name">Pia</p><p class="uu-person__rolle">Marketing Manager</p>
+      </li>
+      <li class="uu-person" data-rein>
+        <div class="uu-person__bild" style="--bildpos:50% 30%;--ton:.78"><img src="bilder/portrait-4.jpg" alt="" loading="lazy" decoding="async"></div>
+        <p class="uu-person__name">Mara</p><p class="uu-person__rolle">Project Manager</p>
+      </li>
+      <li class="uu-person" data-rein>
+        <div class="uu-person__bild" style="--bildpos:50% 30%;--ton:.66"><img src="bilder/portrait-5.jpg" alt="" loading="lazy" decoding="async"></div>
+        <p class="uu-person__name">Reto</p><p class="uu-person__rolle">Digital Strategist</p>
+      </li>
+      <li class="uu-person" data-rein>
+        <div class="uu-person__bild" style="--bildpos:50% 30%;--ton:.74"><img src="bilder/portrait-6.jpg" alt="" loading="lazy" decoding="async"></div>
+        <p class="uu-person__name">Amir</p><p class="uu-person__rolle">Content Creator</p>
+      </li>
+    </ul>
+  </section>
