@@ -6550,19 +6550,19 @@ main .haltung,main .ruf .ruf__karte{width:var(--breite-schmal)!important;max-wid
 main .fragen .fragen__liste{width:min(100%, var(--maxw))!important;max-width:none!important;margin-left:auto!important;margin-right:auto!important}
 main .fragen:not(.fragen--eingebettet){padding-left:0!important;padding-right:0!important}
 
-/* Textlinks Hover (Auftraggeber 27.11.2026: "hover effekt fehlt"): die
-   amberne Unterstreichung fuellt sich von unten zur Markierung, die Schrift
-   bleibt dunkel. */
+/* Textlinks Hover = DER Hover der ganzen Seite (wie Menue, Brotkrume,
+   Fusszeile, Auftraggeber 27.11.2026): dunkle Pille waechst aus der Mitte,
+   Schrift wird creme. Gleiche Dauer und Kurve wie .mlink. */
 body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not(.knopf):not(.mlink):not(.weiter__karte),
 body main :is(p, li, dd, dt, td, blockquote):not(nav *):not(.seo-breadcrumb *) > a:not([class]),
 body .wege__karte .wege__mehr,
 body .wege__mehr,
 .frage__leib a:not(.knopf):not([class]),
 .preise a:not(.knopf):not([class]){
-  background:linear-gradient(var(--violett),var(--violett)) 0 100% / 100% 0 no-repeat!important;
-  padding:0 .12em!important;margin:0 -.12em!important;border-radius:3px!important;
+  background:linear-gradient(var(--tinte),var(--tinte)) center / 25% 0 no-repeat!important;
+  padding:.06em .38em!important;margin:0 -.38em!important;border-radius:var(--r-pille)!important;
   -webkit-box-decoration-break:clone;box-decoration-break:clone;
-  transition:background-size .32s cubic-bezier(.22,1,.36,1),text-decoration-color .2s!important}
+  transition:background-size var(--t-menue) var(--kurve-rein),color var(--t-menue) var(--kurve-rein),text-decoration-color var(--t-menue) var(--kurve-rein)!important}
 body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not(.knopf):not(.mlink):not(.weiter__karte):hover,
 body main :is(p, li, dd, dt, td, blockquote):not(nav *):not(.seo-breadcrumb *) > a:not([class]):hover,
 body .wege__karte .wege__mehr:hover,
@@ -6575,14 +6575,11 @@ body .wege__karte .wege__mehr:focus-visible,
 body .wege__mehr:focus-visible,
 .frage__leib a:not(.knopf):not([class]):focus-visible,
 .preise a:not(.knopf):not([class]):focus-visible{
-  background:linear-gradient(var(--violett),var(--violett)) 0 100% / 100% 100% no-repeat!important;
-  color:var(--tinte)!important;text-decoration-color:transparent!important}
-@media (prefers-reduced-motion:reduce){body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not(.knopf):not(.mlink):not(.weiter__karte),
-body main :is(p, li, dd, dt, td, blockquote):not(nav *):not(.seo-breadcrumb *) > a:not([class]),
-body .wege__karte .wege__mehr,
-body .wege__mehr,
-.frage__leib a:not(.knopf):not([class]),
-.preise a:not(.knopf):not([class]){transition:none!important}}
+  background:linear-gradient(var(--tinte),var(--tinte)) center / 100% 100% no-repeat!important;
+  color:var(--creme)!important;text-decoration-color:transparent!important;border-radius:var(--r-pille)!important}
+/* Auf dunklem Grund umgekehrt: helle Pille, dunkle Schrift (wie Fusszeile). */
+:is(.ruf,.werke,.fuss) a:not(.knopf):not(.mlink):not(.weiter__karte):is(:hover,:focus-visible){background-image:linear-gradient(var(--creme),var(--creme))!important;color:var(--tinte)!important}
+@media (prefers-reduced-motion:reduce){body :is(.fuehrung, .seo-prose, .seo-lesetipp, .wege__team, .pruef__recht) a:not(.knopf):not(.mlink):not(.weiter__karte){transition:none!important}}
 /* Kontaktbox mit Vorteile-Liste (Leistungsseiten): Kopf einspaltig
    (Etikett, Titel, Text, Knopf untereinander), Liste rechts daneben.
    Titel an der Spaltenbreite, damit nichts ueberlappt. */
