@@ -1,6 +1,7 @@
 /* Kostenrechner für Websites.
 
-   Bewusst wenige Fragen: Art der Seite und Sprachen. Alles andere —
+   Bewusst eine Frage: der Aufbau der Seite (Auftraggeber 27.11.2026,
+   Sprachen-Frage entfernt). Alles andere —
    eigenes Design, Inhalte aus Briefing und Onboarding, technische
    Suchmaschinen-Grundlage — gehört bei uns immer dazu und ist deshalb
    keine Option, die man abwählen kann.
@@ -13,8 +14,7 @@
   if (!R) return;
 
   const PREISE = {
-    art: { landingpage: 3000, mehrseitig: 4200, shop: 4990 },
-    sprachen: { eine: 0, mehrere: 1500 }
+    art: { landingpage: 3000, mehrseitig: 4990, shop: 6990 }
   };
 
   const chf = (n) => (Math.round(n) + '').replace(/\B(?=(\d{3})+(?!\d))/g, '\u2019');
@@ -37,13 +37,11 @@
   }
 
   function rechne() {
-    const art = wahl('art'), sprachen = wahl('sprachen');
+    const art = wahl('art');
     const artWert = art ? art.value : 'mehrseitig';
-    const sprachWert = sprachen ? sprachen.value : 'eine';
-    const summe = PREISE.art[artWert] + PREISE.sprachen[sprachWert];
+    const summe = PREISE.art[artWert];
 
     const posten = [[art ? art.dataset.wort : '', PREISE.art[artWert]]];
-    if (PREISE.sprachen[sprachWert]) posten.push([sprachen.dataset.wort, PREISE.sprachen[sprachWert]]);
 
     zeigeWert(summe);
 
