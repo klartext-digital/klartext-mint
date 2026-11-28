@@ -6698,3 +6698,11 @@ main .uu-schritt__text{position:absolute;left:0;bottom:0;max-width:min(560px,62%
   main .uu-schritt__karte::before{background:linear-gradient(0deg, rgb(14 13 11 / .95) 0%, rgb(14 13 11 / .7) 45%, rgb(14 13 11 / .1) 80%)}
   main .uu-schritt__text{max-width:none;right:0}
 }
+/* Blog-Block: Foto fuellt seine Spalte randlos bis zur Trennlinie (kein
+   Rasterabstand). Standard fuer jedes Foto: deckt die Flaeche, Ausschnitt
+   ueber --bildpos am Bild (Auftraggeber 28.11.2026). */
+main .blog .blog__raster{gap:0!important}
+main .blog .blog__bild img{object-fit:cover;object-position:var(--bildpos,50% 50%)}
+/* "Alle ansehen": Hover-Pille nur so breit wie der Text. */
+main .blog__seitenkopf .blog__alle{flex:0 0 auto!important;width:max-content!important;display:inline-grid!important}
+main .blog__seitenkopf .blog__alle .mlink__t{display:inline-flex;align-items:center;gap:8px}
