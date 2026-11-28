@@ -959,6 +959,7 @@ a:hover .rolle > span,button:hover .rolle > span{transform:translateY(-100%)}
 .lz[data-i="2"]{--lz-grund:url("bilder/dienst-grund-3-1920.webp")}
 .lz[data-i="3"]{--lz-grund:url("bilder/dienst-grund-4-1920.webp")}
 .lz[data-i="4"]{--lz-grund:url("bilder/dienst-grund-5-1920.webp")}
+.lz[data-i="5"]{--lz-grund:url("bilder/dienst-grund-6-1920.webp")}
 
 /* Die Polsterung sitzt jetzt IM Balken, nicht mehr aussen: ein Balken mit
    randbuendiger Schrift sieht aus wie ein Fehler. Dadurch ruecken Nummer
