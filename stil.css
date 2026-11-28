@@ -6732,3 +6732,14 @@ main .blog__seitenkopf .blog__alle .mlink__t{display:inline-flex;align-items:cen
 /* Titelgroesse richtet sich nach dem laengsten Wort, damit nichts ueber den Rand laeuft */
 .uu-kopf--leistung .uu-kopf__titel[style*="--zeichen"]{font-size:min(clamp(88px,15.5vw,250px), calc((100vw - 2 * var(--rand-voll) - 48px) / (var(--zeichen) * .52)))!important}
 .uu-kopf--leistung .uu-kopf__titel[style*="--zeichen"] > span:first-child:not(:only-child){font-size:.78em}
+
+/* Sektionskoepfe: Titelspalte breiter, Zeilen ausgeglichen. Kein einzelnes Wort allein
+   auf der ersten Zeile, keine Titel ueber vier Zeilen (Auftraggeber 28.11.2026). */
+@media (min-width:1001px){
+  main .kopfzeile.sk:has(> .fuehrung){grid-template-columns:minmax(0,2fr) minmax(0,1fr)!important}
+}
+main .sk h2{text-wrap:balance}
+/* Woerter eines Titels bleiben auf der Zeile (Zeilen-Spans duerfen Block sein, Woerter nicht) */
+main .sk h2 .wort-e,main h2[data-rein-zeilen] .wort-e{display:inline-block!important}
+/* Kontaktbox auf grossen Schirmen: Titel nicht groesser als bei 1440 und volle Spaltenbreite */
+@media (min-width:1500px){main .ruf__wort.sk h2{font-size:72px!important;max-width:none!important}}
