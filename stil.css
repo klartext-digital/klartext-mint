@@ -6706,3 +6706,7 @@ main .blog .blog__bild img{object-fit:cover;object-position:var(--bildpos,50% 50
 /* "Alle ansehen": Hover-Pille nur so breit wie der Text. */
 main .blog__seitenkopf .blog__alle{flex:0 0 auto!important;width:max-content!important;display:inline-grid!important}
 main .blog__seitenkopf .blog__alle .mlink__t{display:inline-flex;align-items:center;gap:8px}
+/* Textlinks auf dunklen Flaechen (dunkle Abo-Karte, Arbeiten, Zusammenarbeit):
+   Hover-Pille hell, Schrift dunkel, wie im Fussbereich. */
+:is(.wege__karte:not(.wege__karte--hell),.werke,.uu-ablauf) :is(.wege__mehr, p > a:not([class]), li > a:not([class])):is(:hover,:focus-visible){
+  background-image:linear-gradient(var(--creme),var(--creme))!important;color:var(--tinte)!important}
