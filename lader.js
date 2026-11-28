@@ -7,9 +7,9 @@ return;
 }
 const l = document.getElementById('lader');
 if (!l) { wurzel.classList.remove('laedt'); return; }
-const fuell = l.querySelector('.lader__fuell');
-const zahl  = l.querySelector('.lader__zahl:not(.lader__zahl--geist)');
-const wort  = l.querySelector('.lader__wort');
+const fuell = null;
+const zahl  = l.querySelector('.lader__zahl b');
+const wort  = l.querySelector('.lader__satz');
 const SAETZE = [
 'Gutes Marketing braucht Zeit.',
 'Schnell ist nicht immer gut.',
@@ -53,14 +53,12 @@ const ziel   = Math.min(echt, deckel, 1);
 const k = 1 - Math.pow(.84, dt / 25);
 gezeigt += (ziel - gezeigt) * k;
 if (ziel >= 1 && gezeigt > .99) gezeigt = 1;
-fuell.style.width = (gezeigt * 100).toFixed(2) + '%';
-zahl.textContent = Math.round(gezeigt * 100) + '%';
+zahl.textContent = Math.round(gezeigt * 100);
 if (gezeigt >= 1) schluss();
 }, 25);
 const notaus = setTimeout(function () {
 gezeigt = 1;
-fuell.style.width = '100%';
-zahl.textContent = '100%';
+zahl.textContent = '100';
 schluss();
 }, 7000);
 function schluss() {
@@ -68,12 +66,13 @@ if (fertig) return;
 fertig = true;
 clearInterval(uhr);
 clearTimeout(notaus);
-l.classList.add('lader--weg');
+l.classList.add('lader--zoom');
+setTimeout(function () { l.classList.add('lader--weg'); }, sanft ? 0 : 1000);
 setTimeout(function () {
 wurzel.classList.remove('laedt');
 if (l.parentNode) l.parentNode.removeChild(l);
 try { if (window.gsap) gsap.globalTimeline.play(); } catch (e) {}
 try { if (window.ScrollTrigger) ScrollTrigger.refresh(); } catch (e) {}
-}, sanft ? 200 : 620);
+}, sanft ? 250 : 1520);
 }
 })();

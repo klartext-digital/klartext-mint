@@ -6,25 +6,28 @@
 <style>
 .lader{display:none}
 .laedt{overflow:hidden}.laedt body{overflow:hidden}
-.laedt .lader{--marke:clamp(40px,8.6vw,124px);--zahl:clamp(28px,4.2vw,62px);--lueck:clamp(14px,1.6vw,26px);position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:radial-gradient(72% 62% at 78% 24%,rgb(245 165 36 / .30) 0%,rgb(245 165 36 / .07) 46%,transparent 72%),linear-gradient(118deg,#0E0D0B 0%,#151110 20%,#211913 44%,#33260F 72%,#452F0C 100%);color:#F7F7F5;font-family:Figtree,system-ui,sans-serif;transition:opacity .62s cubic-bezier(.44,0,.56,1)}
-/* Waehrend des Ladens liegt das Filmkorn ueber dem Schirm statt
-   darunter. Keine zweite Kornebene: die vorhandene wird nur kurz
-   hochgezogen — damit stimmt auch der Bildpfad auf jeder Unterseite,
-   der steckt in stil.css. */
+/* Ladeschirm "Flug durch die Schrift" (Auftraggeber 28.11.2026, Entwurf H):
+   Durch "klartext." sieht man das Kopfbild; bei 100 % zoomt das Wort mittig
+   auf, bis das Kopfbild den Schirm fuellt, dann blendet die Seite ein. */
+.laedt .lader{display:block;position:fixed;inset:0;z-index:200;isolation:isolate;overflow:hidden;background:#120C08;color:#0E0D0B;font-family:Inter,system-ui,sans-serif;transition:opacity .5s cubic-bezier(.44,0,.56,1)}
 .laedt .korn{z-index:201}
+.lader__bild{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
+.lader__deck{position:absolute;inset:0;background:#F3F1EC;mix-blend-mode:lighten;display:grid;place-items:center;transition:opacity .45s ease .4s}
+.lader__wort{margin:0;font-family:Inter,system-ui,sans-serif;font-weight:800;letter-spacing:-.06em;line-height:.8;font-size:min(17vw,30vh);color:#000;white-space:nowrap;transform:translateY(-6%);transform-origin:50% 50%;transition:transform 1.05s cubic-bezier(.7,0,.25,1)}
+.lader__wort i{font-style:normal;color:#F5A524}
+.lader__ui{position:absolute;inset:0;pointer-events:none;transition:opacity .3s ease}
+.lader__oben{position:absolute;left:clamp(20px,3vw,52px);right:clamp(20px,3vw,52px);top:clamp(18px,2.4vw,40px);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.lader__oben img{width:clamp(150px,15vw,250px);height:auto;display:block}
+.lader__klein{margin:0;font-weight:500;font-size:clamp(11px,.9vw,14px);letter-spacing:.04em;text-transform:uppercase}
+.lader__zahl{position:absolute;left:clamp(14px,2.4vw,40px);bottom:clamp(4px,.8vw,14px);font-weight:800;letter-spacing:-.055em;line-height:.82;font-size:clamp(100px,17vw,290px);font-variant-numeric:tabular-nums}
+.lader__zahl i{font-style:normal;font-size:.5em;letter-spacing:-.03em;vertical-align:top;margin-left:.03em}
+.lader__satz{position:absolute;right:clamp(20px,3vw,52px);bottom:clamp(18px,2.4vw,40px);max-width:22ch;text-align:right}
+.lader--zoom .lader__wort{transform:translateY(-6%) scale(70)}
+.lader--zoom .lader__ui{opacity:0}
+.lader--zoom .lader__deck{opacity:0}
 .lader--weg{opacity:0}
-.lader__mitte{display:grid;justify-items:center;transition:transform .62s cubic-bezier(.44,0,.56,1)}
-.lader--weg .lader__mitte{transform:translateY(-14px)}
-.lader__marke{display:block;line-height:0}.lader__marke img{width:calc(var(--marke)*5.175);max-width:calc(100vw - 48px);height:auto;display:block}
-
-.lader__reihe{display:flex;align-items:center;gap:var(--lueck);width:min(calc(var(--marke)*10.35 + 2*(var(--lueck) + var(--zahl)*3.5)),calc(100vw - 48px));margin-top:clamp(30px,3.4vw,52px)}
-.lader__balken{flex:1;height:clamp(6px,.55vw,10px);border-radius:99px;background:rgb(245 165 36 / .20);overflow:hidden}
-.lader__fuell{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#D8890B 0%,#F5A524 58%,#FFC65C 100%);box-shadow:0 0 20px rgb(245 165 36 / .55)}
-.lader__zahl{flex:none;width:calc(var(--zahl)*3.5);font-family:var(--hand,'Rock Salt'),cursive;font-weight:400;color:#F5A524;font-size:var(--zahl);text-align:left;line-height:1}
-.lader__zahl--geist{visibility:hidden}
-.lader__wort{margin-top:clamp(24px,2.6vw,38px);text-align:center;font-size:clamp(17px,1.65vw,27px);line-height:1.45;max-width:32ch;color:rgb(247 247 245/.78)}
-@media (max-width:720px){.lader__zahl--geist{display:none}.lader__reihe{width:min(calc(var(--marke)*10.35 + var(--lueck) + var(--zahl)*3.5),calc(100vw - 40px))}}
-@media (prefers-reduced-motion:reduce){.laedt .lader{transition-duration:.2s}.lader__mitte{transition:none}}
+@media (max-width:640px){.lader__wort{font-size:23vw}.lader__satz{left:auto;bottom:auto;top:clamp(64px,10vh,90px);right:clamp(20px,3vw,52px)}}
+@media (prefers-reduced-motion:reduce){.lader__wort,.lader__deck{transition:none}.lader--zoom .lader__wort{transform:translateY(-6%)}}
 </style>
 <title>Fabio Soltani Interieur: Website | Klartext Digital</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%230F4C55'/></svg>">
@@ -70,14 +73,12 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 <body>
 
 <div class="lader" id="lader" aria-hidden="true">
-  <div class="lader__mitte">
-    <div class="lader__marke"><img src="../../marke/logo-negativ.svg" alt="klartext. digital" width="766" height="314" decoding="async"></div>
-    <div class="lader__reihe">
-      <span class="lader__zahl lader__zahl--geist" aria-hidden="true">0%</span>
-      <div class="lader__balken"><span class="lader__fuell"></span></div>
-      <span class="lader__zahl">0%</span>
-    </div>
-    <p class="lader__wort"></p>
+  <img class="lader__bild" src="../../bilder/kopf-haar-1600.webp" alt="" decoding="async">
+  <div class="lader__deck"><p class="lader__wort">klartext<i>.</i></p></div>
+  <div class="lader__ui">
+    <div class="lader__oben"><img src="../../marke/kd-logo-schwarz.svg" alt="klartext. digital" width="1350" height="259" decoding="async"><p class="lader__klein">Agentur in Pratteln</p></div>
+    <span class="lader__zahl"><b>0</b><i>%</i></span>
+    <p class="lader__klein lader__satz"></p>
   </div>
 </div>
 
@@ -303,7 +304,7 @@ setTimeout(function(){document.documentElement.classList.remove("laedt")},8000)}
 <script defer src="../../js/lenis.min.js?v=d3cf4de4"></script>
 <script defer src="../../js/gsap.min.js?v=92bb9a96"></script>
 <script defer src="../../js/ScrollTrigger.min.js?v=b0b14d67"></script>
-<script defer src="../../lader.js?v=5e0d8715"></script>
+<script defer src="../../lader.js?v=f5fb719b"></script>
 <script defer src="../../bewegung.js?v=cc93a86b"></script>
 <script defer src="../../reels.js?v=f5867321"></script>
 <script defer src="../../zeiger.js?v=043d1932"></script>
